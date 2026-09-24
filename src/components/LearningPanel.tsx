@@ -228,7 +228,7 @@ export default function LearningPanel({
       </div>
       <p className="points-explainer">
         {state
-          ? `Eine neue Aufgabe gelöst? +${state.pointsByDifficulty[state.difficulty]} Punkte! `
+          ? `Eine neue Aufgabe gelöst? +${state.pointsByDifficulty[state.difficulty]} ${state.pointsByDifficulty[state.difficulty] === 1 ? 'Punkt' : 'Punkte'}! `
           : 'Löse neue Aufgaben und sammle Punkte. '}
         Du darfst so oft probieren, wie du magst. Fehler kosten nichts.
       </p>
@@ -268,8 +268,11 @@ export default function LearningPanel({
                   <strong>{level.name}</strong>
                   <small>{level.description}</small>
                   <small>
-                    +{state.pointsByDifficulty[level.id]} Punkte pro neuer
-                    Lösung
+                    +{state.pointsByDifficulty[level.id]}{' '}
+                    {state.pointsByDifficulty[level.id] === 1
+                      ? 'Punkt'
+                      : 'Punkte'}{' '}
+                    pro neuer Lösung
                   </small>
                 </button>
               ))}
@@ -490,7 +493,7 @@ export default function LearningPanel({
               <strong>
                 {visibleResult.correct
                   ? visibleResult.pointsAwarded > 0
-                    ? `Richtig! +${visibleResult.pointsAwarded} Punkte`
+                    ? `Richtig! +${visibleResult.pointsAwarded} ${visibleResult.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
                     : 'Richtig! Diese Aufgabe hast du bereits gelöst.'
                   : 'Noch nicht richtig. Versuch es noch einmal!'}
               </strong>

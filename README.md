@@ -57,7 +57,7 @@ Details: [Architektur](docs/architecture.md), [Reviewnachweise](docs/reviews/).
 
 ## Punkte und Abzeichen
 
-Nach dem Speichern eines Lernprofils können die Aufgaben in Mathematik und Englisch beantwortet werden. Jede Lernaufgabe in den Themenbereichen bringt bei der ersten korrekten Lösung **5 Punkte in Vorschule**, **10 Punkte in Könner** oder **15 Punkte in Streber**. Maßgeblich ist die Stufe der Aufgabe. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
+Nach dem Speichern eines Lernprofils können die Aufgaben in Mathematik und Englisch beantwortet werden. Jede Lernaufgabe in den Themenbereichen bringt bei der ersten korrekten Lösung **1 Punkt in Vorschule**, **2 Punkte in Könner** oder **3 Punkte in Streber**. Maßgeblich ist die Stufe der Aufgabe. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
 
 Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Abzeichen **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Bereits gebuchte Punkte bleiben bei Regeländerungen erhalten; es gibt keine rückwirkende Neuberechnung. Weitere Belohnungen lassen sich ergänzen.
 
@@ -101,7 +101,7 @@ Eintritt, offene Runde und abgeschlossene Bestwerte werden lokal gespeichert. Na
 
 ## Englisch Klasse 5
 
-108 eigene Aufgaben in zwölf Themen, je drei pro Thema und Stufe, dazu 24 Mitmachaufgaben. Begrüßung, Familie, Wohnen, Schule, Tagesablauf, Freizeit, Einkaufen, Geburtstag, Vergangenheit, Lesen, Landeskunde und Lernstrategien verbinden Wortschatz mit Grammatik. Die Aufgaben sind kurz formuliert und enthalten Tipps und Erklärungen. Neue korrekte Lösungen bringen wie in Mathematik 5/10/15 Punkte.
+108 eigene Aufgaben in zwölf Themen, je drei pro Thema und Stufe, dazu 24 Mitmachaufgaben. Begrüßung, Familie, Wohnen, Schule, Tagesablauf, Freizeit, Einkaufen, Geburtstag, Vergangenheit, Lesen, Landeskunde und Lernstrategien verbinden Wortschatz mit Grammatik. Die Aufgaben sind kurz formuliert und enthalten Tipps und Erklärungen. Neue korrekte Lösungen bringen wie in Mathematik 1/2/3 Punkte.
 
 Grundlage: [LehrplanPLUS Englisch 5, erste Fremdsprache](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache). Thematische Orientierung: [öffentlicher Stoffverteilungsplan Green Line Bayern 1](https://assets.klett.de/assets/43500837/StoffverteilungsplanBd1.pdf), Bayern-Ausgabe ab 2017, ISBN 978-3-12-803010-4. Quellenstand 24.09.2026. Eigene Texte und Aufgaben; kein Klett-Lehrbuchimport und keine vom Verlag freigegebene Begleitsoftware.
 
@@ -113,7 +113,7 @@ Der eigene Bereich **Vokabeltrainer** enthält 370 selbst erstellte Wortkarten i
 
 Tippe deine Übersetzung ein und wähle **Antwort prüfen** (oder drücke Enter). Rust prüft die Antwort gegen hinterlegte Übersetzungen und häufige Varianten. Groß-/Kleinschreibung, zusätzliche Leerzeichen und gerade/typografische Apostrophe werden normalisiert; bei deutschen Antworten sind begleitende Artikel erlaubt. Es gibt keine unscharfe KI-Prüfung: nicht jede mögliche Umschreibung wird erkannt. Die angezeigte Lösung ist ein Beispiel, keine Liste aller akzeptierten Varianten.
 
-**Jede richtige Vokabelantwort bringt 1 Lernpunkt**, unabhängig von der Stufe und auch bei einer später fälligen Wiederholung. Doppelte Übertragungen derselben Antwort geben keine weiteren Punkte. Falsche Antworten und **Weiß ich noch nicht · Lösung zeigen** geben 0 Punkte; es gibt keinen Abzug. Die Belohnung gehört zum gemeinsamen Guthaben für Spiele und Abzeichen. Frühere Selbsteinschätzungen erhalten keine rückwirkenden Punkte. Die Englisch-Lernaufgaben vergeben weiterhin 5/10/15 Punkte.
+**Jede richtige Vokabelantwort bringt 1 Lernpunkt**, unabhängig von der Stufe und auch bei einer später fälligen Wiederholung. Doppelte Übertragungen derselben Antwort geben keine weiteren Punkte. Falsche Antworten und **Weiß ich noch nicht · Lösung zeigen** geben 0 Punkte; es gibt keinen Abzug. Die Belohnung gehört zum gemeinsamen Guthaben für Spiele und Abzeichen. Frühere Selbsteinschätzungen erhalten keine rückwirkenden Punkte. Die Englisch-Lernaufgaben vergeben weiterhin 1/2/3 Punkte.
 
 Fünf Karteifächer planen die Wiederholung: Bei einer richtigen Antwort wandert die Karte ein Fach weiter (höchstens Fach 5), mit 1, 3, 7 oder 14 Tagen Abstand. Bei einer falschen Antwort oder freiwilligem Aufdecken geht sie zurück in Fach 1 und wird nach einer Minute wieder fällig. Bereits fällige Karten werden vor neuen Karten angeboten. Sind alle Karten des gewählten Themas für später geplant, zeigt die App den nächsten Termin. Über **Fällige Karten laden** wird die Auswahl aktualisiert; bei jeder Bewertung und jedem Themenwechsel ebenfalls. Kein Zeitdruck, keine automatische Benachrichtigung.
 

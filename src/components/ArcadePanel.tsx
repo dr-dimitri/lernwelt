@@ -224,9 +224,9 @@ export default function ArcadePanel({
             state.wallet.balance < state.entryCost &&
             !state.activeSession && (
               <p className="points-tip">
-                Sammle mit Lernaufgaben weitere Punkte: Vorschule bringt 5,
-                Könner 10 und Streber 15 Lernpunkte pro neuer richtiger Lösung.
-                Im Vokabeltrainer gibt jede richtige Antwort 1 Lernpunkt. Eine
+                Sammle mit Lernaufgaben weitere Punkte: Vorschule bringt 1,
+                Könner 2 und Streber 3 Lernpunkte pro neuer richtiger Lösung. Im
+                Vokabeltrainer gibt jede richtige Antwort 1 Lernpunkt. Eine
                 Spielrunde kostet 10 Lernpunkte.
               </p>
             )}

@@ -68,7 +68,7 @@ Die vier `sample.*.v1`-Aufgaben stammen aus eigenen Lernwelt-Beispielen (Stand 2
 
 ## Punkte nach Schwierigkeit (Schema 5)
 
-Rust bestimmt die Prämie anhand von `exercise.difficulty`: Vorschule 5, Könner 10, Streber 15. Die aktuell gewählte Einstellung und vom Frontend übergebene Werte ändern diese Zuordnung nicht. `get_learning_state` liefert `pointsByDifficulty` für alle drei Stufen; die UI zeigt damit auch nach einem Stufenwechsel sofort die passende Prämie. Falsche Antworten oder neue Versuche auf bereits gelöste Aufgaben geben weiterhin 0 zusätzliche Punkte.
+Rust bestimmt die Prämie anhand von `exercise.difficulty`: Vorschule 1, Könner 2, Streber 3. Die aktuell gewählte Einstellung und vom Frontend übergebene Werte ändern diese Zuordnung nicht. `get_learning_state` liefert `pointsByDifficulty` für alle drei Stufen; die UI zeigt damit auch nach einem Stufenwechsel sofort die passende Prämie. Falsche Antworten oder neue Versuche auf bereits gelöste Aufgaben geben weiterhin 0 zusätzliche Punkte.
 
 Migration 005 erweitert die erlaubten Beträge in `answer_submissions` auf 0/5/10/15. Alle alten Antworten einschließlich Request-ID, Betrag und Zeitstempel werden in derselben Transaktion erhalten. Das Journal wird nicht neu bewertet: alte 10-Punkte-Gutschriften bleiben bestehen und alte Requests liefern weiterhin ihren damals gespeicherten Betrag, ohne nochmals zu buchen. Abzeichen und Spiele behalten ihre Preise.
 
@@ -94,3 +94,7 @@ Tests verwenden eine interne explizite Zeit, die nicht über IPC erreichbar ist.
 `ReviewInput.answer` enthält eingegebenen Text oder explizit `null` für freiwilliges Aufdecken. Das bisherige `known`-Flag wird nicht mehr als Input akzeptiert. Die vorhandene Spalte `known` enthält für neue Belege das Backend-Prüfergebnis. Antworttext, 0/1 Punkte und `automatically_checked` werden durch Migration 007 ergänzt; alte Belege bleiben mit 0 Punkten und ohne automatisches Prüfsiegel erhalten. Eine neue Antwort darf keinen alten Selbstbewertungsbeleg wiederverwenden.
 
 Migration 007 kopiert alle Spalten des Punktejournals unverändert und erlaubt zusätzlich die Buchungsart `vocabulary` ausschließlich mit Betrag +1. Der Journalschlüssel ist die Request-ID: Jede neue korrekte fällige Antwort gibt 1 Punkt, Replays geben das gespeicherte Ergebnis zurück, ohne neu zu buchen. Fortschritt, Beleg und Journal liegen in derselben Immediate-Transaktion. Ein Fehler bei irgendeinem Insert rollt alles zurück. Keine rückwirkende Neuberechnung. `ReviewResult` enthält das bestätigte Prüfergebnis und den vergebenen Betrag, der neue Kartenstatus das gemeinsame Wallet und die tatsächliche Gesamtzahl aller Karten. Bestehende Spiel-/Belohnungslogik nutzt dieses Guthaben ohne Sonderweg.
+
+## Kleinere Lernprämien (Schema 8)
+
+Migration 008 erlaubt zusätzlich 1/2/3 in Antwortbelegen. Alle historischen Beträge, Request-IDs und Zeitstempel bleiben erhalten. Neue richtige Lernaufgaben erhalten 1/2/3 nach Aufgabenstufe; gespeicherte Replays liefern den damaligen Betrag. Vokabeln bleiben bei 1 Punkt, Spiel- und Abzeichenpreise unverändert.

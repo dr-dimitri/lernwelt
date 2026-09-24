@@ -33,7 +33,7 @@ export const mathTopic: Topic = {
 export const initial: LearningState = {
   profileReady: true,
   difficulty: 'koenner',
-  pointsByDifficulty: { vorschule: 5, koenner: 10, streber: 15 },
+  pointsByDifficulty: { vorschule: 1, koenner: 2, streber: 3 },
   curriculumSource:
     'https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik',
   curriculumVersion: 'LehrplanPLUS 2026-09-24',
