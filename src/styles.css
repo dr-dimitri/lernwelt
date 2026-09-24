@@ -969,3 +969,22 @@ summary {
     flex-wrap: wrap;
   }
 }
+
+.trainer-modes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.trainer-solution {
+  font-size: 1.8rem;
+}
+.multiplication-panel .flashcard h3 {
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+@media (max-width: 600px) {
+  .trainer-modes {
+    grid-template-columns: 1fr;
+  }
+}

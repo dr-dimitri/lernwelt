@@ -1,4 +1,10 @@
 import type {
+  MultiplicationMode,
+  MultiplicationInput,
+  MultiplicationState,
+  MultiplicationResult,
+} from '../domain/multiplication';
+import type {
   VocabularyState,
   VocabularyReview,
   VocabularyReviewResult,
@@ -34,6 +40,10 @@ async function callDesktop<T>(
 }
 
 export const desktop = {
+  getMultiplicationState: (mode: MultiplicationMode) =>
+    callDesktop<MultiplicationState>('get_multiplication_state', { mode }),
+  answerMultiplication: (input: MultiplicationInput) =>
+    callDesktop<MultiplicationResult>('answer_multiplication', { input }),
   getVocabularyState: (deckId: string) =>
     callDesktop<VocabularyState>('get_vocabulary_state', { deckId }),
   reviewVocabulary: (input: VocabularyReview) =>

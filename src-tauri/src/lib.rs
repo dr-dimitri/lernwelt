@@ -2,6 +2,7 @@ mod arcade;
 mod content;
 mod database;
 mod learning;
+mod multiplication;
 mod vocabulary;
 
 use database::{Profile, Progress};
@@ -111,6 +112,21 @@ fn review_vocabulary(
     storage.with_connection(|connection| vocabulary::review(connection, input))
 }
 
+#[tauri::command]
+fn get_multiplication_state(
+    storage: State<'_, Storage>,
+    mode: multiplication::Mode,
+) -> Result<multiplication::TrainerState, String> {
+    storage.with_connection(|c| multiplication::get_state(c, mode))
+}
+#[tauri::command]
+fn answer_multiplication(
+    storage: State<'_, Storage>,
+    input: multiplication::AnswerInput,
+) -> Result<multiplication::AnswerResult, String> {
+    storage.with_connection(|c| multiplication::answer(c, input))
+}
+
 pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
@@ -139,7 +155,9 @@ pub fn run() {
             start_game,
             finish_game,
             get_vocabulary_state,
-            review_vocabulary
+            review_vocabulary,
+            get_multiplication_state,
+            answer_multiplication
         ])
         .run(tauri::generate_context!())
         .expect("Lernwelt konnte nicht gestartet werden");
