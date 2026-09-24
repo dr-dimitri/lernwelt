@@ -1,0 +1,2191 @@
+{
+  "version": 1,
+  "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+  "curriculumVersion": "LehrplanPLUS Bayern · Englisch 5 · 1. Fremdsprache · Quellenstand 24.09.2026",
+  "topics": [
+    {
+      "id": "english-hello",
+      "name": "Hello! Das bin ich",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.1 Sprechen; E5 1.2 Wortschatz, Grammatik; E5 5",
+      "description": "Begrüßen, vorstellen und erste Wörter entdecken.",
+      "lesson": "Hello heißt Hallo. Mit I am … stellst du dich vor. I am, you are, he/she/it is: Die Form von be passt zur Person. Zahlen helfen beim Alter: eleven = elf, twelve = zwölf. Länder und Sprachen schreibt man groß: England, English.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Dein Mini-Steckbrief",
+          "prompt": "Sage laut: Hello! My name is … I am … years old. I like … . Nenne nur Dinge, die du erzählen möchtest.",
+          "check": "Sind dein Name, dein Alter und ein Hobby dabei? Sprich langsam. Eine andere Person kann nachfragen: What is your name?"
+        },
+        {
+          "title": "Hördetektive",
+          "prompt": "Bitte jemanden, dir diesen eigenen Text zweimal vorzulesen, ohne ihn selbst anzuschauen: “Hi! I am Jo. I am eleven. My favourite colour is green.” Frage: Wie alt ist Jo, und welche Farbe mag Jo?",
+          "check": "Jo ist elf und mag Grün. Erst beim zweiten Hören nach Einzelheiten suchen. Ohne Vorleseperson kannst du den Text als Leseübung nutzen."
+        }
+      ]
+    },
+    {
+      "id": "english-family",
+      "name": "Meine bunte Familie",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.2 Wortschatz, Grammatik; E5 5",
+      "description": "Personen, Besitz und Mehrzahl.",
+      "lesson": "My, your, his, her, our und their zeigen, wem etwas gehört. Ben’s dog ist Bens Hund. Bei Dingen steht oft of: the door of the house. Meist bildet -s die Mehrzahl: book → books. Manche Formen sind anders: child → children, foot → feet.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Eine erfundene Familie",
+          "prompt": "Male drei erfundene Personen. Schreibe zu jeder einen Satz mit This is … . Nutze mother, father, sister, brother oder friend.",
+          "check": "Stelle deine Figuren laut vor. Es gibt viele verschiedene Familien. Deine Zeichnung muss nicht deine eigene Familie zeigen."
+        },
+        {
+          "title": "Wörter im Team",
+          "prompt": "Schreibe child – children, foot – feet und book – books auf kleine Zettel. Sortiere in regelmäßige und besondere Mehrzahlformen.",
+          "check": "Book – books ist regelmäßig. Children und feet musst du als Wortpaar lernen."
+        }
+      ]
+    },
+    {
+      "id": "english-home",
+      "name": "Zimmer-Safari",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.2 Wortschatz, Grammatik; E5 5",
+      "description": "Wo ist etwas? This, that und there is.",
+      "lesson": "There is beschreibt eine Sache, there are mehrere. In heißt in, on heißt auf und under heißt unter. This/these zeigen etwas in der Nähe, that/those etwas weiter weg. Im normalen Aussagesatz steht oft: Wer? – tut was? – wo? – wann?",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Das verschwundene Spielzeug",
+          "prompt": "Lege ein Spielzeug auf, unter oder neben einen Stuhl. Beschreibe auf Englisch: It is on/under/next to the chair. Lass jemanden den Ort wechseln.",
+          "check": "Vergleiche jeden Satz mit dem echten Ort. Next to heißt neben."
+        },
+        {
+          "title": "Dein Traumzimmer",
+          "prompt": "Zeichne ein Traumzimmer. Schreibe drei Sätze mit There is … und einen mit There are … .",
+          "check": "Nutze is bei einer Sache und are bei mehreren. Beispiel: There are two windows."
+        }
+      ]
+    },
+    {
+      "id": "english-school",
+      "name": "Mission Schultag",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.1 Sprechen; E5 1.2 Grammatik, Wortschatz; E5 5",
+      "description": "Schulsachen, have got und klare Anweisungen.",
+      "lesson": "A steht vor einem Konsonantenlaut: a book. An steht vor einem Vokallaut: an apple. The meint etwas Bestimmtes. I have got, she has got bedeutet ich habe, sie hat. Can beschreibt, was jemand kann. Ein Imperativ fordert zu etwas auf: Open your book.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Classroom challenge",
+          "prompt": "Spielt Lehrkraft und Klasse. Nutzt: Open your book. Close the door. Listen, please. Read the sentence. Tauscht die Rollen.",
+          "check": "Versteht die andere Person die Anweisung? Please macht sie freundlicher."
+        },
+        {
+          "title": "School detective",
+          "prompt": "Erfinde einen Stundenplan für Montag. Nutze English, maths, music und PE. Erzähle: On Monday I have … .",
+          "check": "Englisch heißt English, Sport heißt PE. Vergleiche mit deinem echten Montag. Es gibt nicht den einen Stundenplan für alle britischen Schulen."
+        }
+      ]
+    },
+    {
+      "id": "english-day",
+      "name": "Ein Tag voller Ideen",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.2 Grammatik, Wortschatz; E5 5",
+      "description": "Uhrzeit, Gewohnheiten und simple present.",
+      "lesson": "Das simple present beschreibt, was regelmäßig passiert. I play, aber he/she/it plays. Fragen nutzen do oder does: Does she play? Danach bleibt play ohne s. Verneinung: I do not play, she does not play. Always = immer, often = oft, never = nie.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Mein Tag als Comic",
+          "prompt": "Zeichne drei Bilder zu deinem Tag. Schreibe je einen Satz: I get up at … . I go to school at … . I play … .",
+          "check": "Passt der Satz zum Bild? Lies einem Partner vor. Schreibe nach I die Grundform des Verbs."
+        },
+        {
+          "title": "Hören: Tagesplan",
+          "prompt": "Eine Person liest zweimal vor: “Sam gets up at seven. School starts at nine. After school, Sam plays football.” Höre zu: Wann beginnt die Schule? Was spielt Sam?",
+          "check": "Die Schule beginnt um neun; Sam spielt Fußball. Der erfundene Text beschreibt Sams Tag, nicht alle britischen Schulen."
+        }
+      ]
+    },
+    {
+      "id": "english-friends",
+      "name": "Freizeit mit Freunden",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.1 Sprechen; E5 1.2 Grammatik; E5 2; E5 5",
+      "description": "Fragen stellen, höflich bitten und Vorlieben teilen.",
+      "lesson": "What = was, where = wo, when = wann, why = warum, whose = wessen. Who spielt die Rolle der handelnden Person in Who plays? Bei Who do you meet? wird nach der anderen Person gefragt. I like swimming beschreibt eine Vorliebe. I’d like … ist eine freundliche Bitte oder ein Wunsch.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Verabredung zu zweit",
+          "prompt": "Spielt einen Dialog: Do you like football? – Yes, I do. – Let’s play after school! – Good idea! Ändert danach das Hobby.",
+          "check": "Habt ihr gefragt, geantwortet und einen Vorschlag gemacht? Let’s heißt Lass uns … ."
+        },
+        {
+          "title": "Zwei höfliche Wünsche",
+          "prompt": "Erfinde eine Bestellung und eine Bitte. Beginne mit I’d like …, please. und Can you …, please? Sprich beide laut.",
+          "check": "Beispiel: I’d like some water, please. Can you help me, please? Ein ruhiger Ton und please helfen."
+        }
+      ]
+    },
+    {
+      "id": "english-shopping",
+      "name": "Im Snackladen",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.1 Sprachmittlung; E5 1.2 Grammatik, Wortschatz; E5 5",
+      "description": "Einkaufen, Mengen und gerade laufende Handlungen.",
+      "lesson": "Many passt zu zählbaren Dingen: many apples. Much passt zu nicht zählbaren Mengen: much water. A lot of passt zu beiden. Some steht oft in bejahten Sätzen, any in Fragen und Verneinungen. Gerade jetzt: I am eating. Regelmäßig: I eat. Homework und information haben im Englischen keine normale Mehrzahl mit -s.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Snack-Shop",
+          "prompt": "Schreibe eine kleine Karte: apple £1, sandwich £3, water £2. Spielt Verkauf und Einkauf mit Spielgeld: I’d like …, please. – Here you are. – Thank you.",
+          "check": "Nennt ihr Ware und Preis? £ bedeutet Pfund. Ihr braucht kein echtes Geld."
+        },
+        {
+          "title": "Sprachbrücke",
+          "prompt": "Ein Schild lautet: “Open Monday to Friday, 9 am–5 pm. Closed on Sunday.” Erkläre einem deutschsprachigen Freund die Zeiten.",
+          "check": "Montag bis Freitag von 9 bis 17 Uhr geöffnet, Sonntag geschlossen. Für Samstag steht hier nichts; nichts dazuerfinden."
+        }
+      ]
+    },
+    {
+      "id": "english-party",
+      "name": "Geburtstag & Regeln",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.1 Lesen; E5 1.2 Grammatik, Wortschatz; E5 5",
+      "description": "Kalender, Einladungen und must/needn’t/mustn’t.",
+      "lesson": "Ordinalzahlen ordnen: first, second, third. Wochentage und Monate beginnen groß: Monday, June. Must heißt müssen; mustn’t heißt nicht dürfen. Needn’t bedeutet nicht müssen: Du darfst es trotzdem tun. Can kann auch Erlaubnis ausdrücken.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Deine Einladung",
+          "prompt": "Schreibe eine kurze Einladung auf Englisch: Come to my party! Nenne Tag, Uhrzeit und Ort. Nutze erfundene Angaben.",
+          "check": "Kann ein Gast aus deiner Einladung erkennen, wann und wo die Feier ist? Beispiel: Saturday, 3 pm, in our garden."
+        },
+        {
+          "title": "Regel-Detektive",
+          "prompt": "Schreibe je eine Regel mit must, mustn’t und needn’t für ein erfundenes Spiel. Erkläre einem Partner den Unterschied.",
+          "check": "Must verlangt etwas. Mustn’t verbietet etwas. Needn’t lässt die Entscheidung offen."
+        }
+      ]
+    },
+    {
+      "id": "english-past",
+      "name": "Gestern war ein Abenteuer",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.1 Schreiben, Sprechen; E5 1.2 Grammatik",
+      "description": "Erlebnisse mit dem simple past erzählen.",
+      "lesson": "Abgeschlossene Erlebnisse erzählst du oft im simple past. Regelmäßige Verben bekommen -ed: play → played. Unregelmäßige Formen lernst du mit: go → went, see → saw, have → had. Be wird was (I/he/she/it) oder were (you/we/they). Nach did und did not steht die Grundform.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Drei Bilder von gestern",
+          "prompt": "Erfinde ein kleines Abenteuer. Zeichne Anfang, Mitte und Ende. Schreibe je einen kurzen Satz mit Yesterday, Then und Finally.",
+          "check": "Nutze Vergangenheitsformen wie played, went oder saw. Erzähle die Bilder in derselben Reihenfolge."
+        },
+        {
+          "title": "Vergangenheit sammeln",
+          "prompt": "Lege drei Wortpaare: go–went, see–saw, have–had. Decke jeweils die Vergangenheit ab und sage sie laut.",
+          "check": "Kontrolliere direkt. Unsichere Paare später erneut abfragen. Das hilft mehr als nur mehrfach lesen."
+        }
+      ]
+    },
+    {
+      "id": "english-stories",
+      "name": "Geschichten-Detektive",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.1 Lesen, Schreiben; E5 1.2 Grammatik; E5 3",
+      "description": "Lesen, Hinweise finden und Sätze verbinden.",
+      "lesson": "Lies zuerst für den Überblick: Wer kommt vor? Was passiert? Suche dann gezielt nach einer Einzelheit. Because nennt einen Grund, when verbindet mit einem Zeitpunkt. Somebody/someone meint jemanden, nobody/no one niemanden. Something ist etwas, nothing nichts.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Eine eigene Nachricht",
+          "prompt": "Schreibe einem erfundenen Freund vier englische Sätze: Begrüßung, ein Erlebnis, eine Frage, Abschied. Lies noch einmal und prüfe I sowie Satzanfänge.",
+          "check": "Beispielaufbau: Hi Jo! I played tennis yesterday. Do you like tennis? See you! Deine Nachricht darf anders sein."
+        },
+        {
+          "title": "Geschichte weiterspinnen",
+          "prompt": "Lies: “Ava opens her school bag. There is a tiny dragon inside.” Erfinde zwei weitere Sätze und spiele die Szene.",
+          "check": "Es gibt viele gute Enden. Kann jemand verstehen, was Ava und der Drache tun? Frage nach Rückmeldung."
+        }
+      ]
+    },
+    {
+      "id": "english-travel",
+      "name": "Unterwegs in Großbritannien",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.1 Sprachmittlung; E5 2; E5 3; E5 5",
+      "description": "Orte entdecken, freundlich fragen und Informationen vermitteln.",
+      "lesson": "Das Vereinigte Königreich (UK) besteht aus England, Schottland, Wales und Nordirland. London ist seine Hauptstadt. In den USA liegt Washington, D.C. als Hauptstadt. Excuse me hilft beim Ansprechen. Beim Vermitteln zählt die wichtige Information; du musst nicht jedes Wort übersetzen.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Zwei Länder entdecken",
+          "prompt": "Suche auf einer vorhandenen Karte das UK und die USA. Finde London und Washington, D.C. Beschreibe auf Deutsch, was nah und was weit weg liegt.",
+          "check": "London liegt im UK, Washington, D.C. in den USA. Der Atlantik liegt dazwischen. Eine Karte im Schulatlas genügt, Internet ist nicht nötig."
+        },
+        {
+          "title": "Sprachbrücke im Museum",
+          "prompt": "Dein Freund versteht dieses Schild nicht: “Children under 12: free. Please do not touch the models.” Erkläre ihm die beiden Hinweise.",
+          "check": "Kinder unter 12 zahlen nichts. Die Modelle dürfen nicht berührt werden. Unter 12 heißt: 12-Jährige sind nicht mehr eingeschlossen."
+        }
+      ]
+    },
+    {
+      "id": "english-words",
+      "name": "Wörter-Werkstatt",
+      "subject": "english",
+      "grade": 5,
+      "curriculumRef": "E5 1.2 Wortschatz, Aussprache; E5 4",
+      "description": "Lerntricks, Stolperwörter und Aussprache entdecken.",
+      "lesson": "Lerne Wörter mit einem Beispiel: get up = aufstehen. Decke die Lösung ab und rufe das Wort selbst ab. Become heißt werden, nicht bekommen. Meinen/bedeuten heißt mean. Wörter mit ähnlicher Bedeutung bilden Wortfelder. Für die Aussprache helfen Lautzeichen: /iː/ ist ein langes i, /ɪ/ ein kurzes i.",
+      "languageSequence": "1. Fremdsprache",
+      "activities": [
+        {
+          "title": "Kurz oder lang?",
+          "prompt": "Lass dir von einer englischkundigen Person ship /ʃɪp/ und sheep /ʃiːp/ vorsprechen. Sprich nach. Zeige jeweils auf ein gemaltes Schiff oder Schaf.",
+          "check": "Ship = Schiff, sheep = Schaf. Achte auf das kurze oder lange i. Ohne Vorbild prüfst du hier nur die Bedeutung; die App bewertet keine Aussprache."
+        },
+        {
+          "title": "Dein Lernlabor",
+          "prompt": "Wähle fünf neue Wörter. Lies sie mit Beispiel, decke sie ab und frage dich selbst ab. Sortiere: schon sicher / noch üben. Prüfe die unsicheren später erneut.",
+          "check": "Notiere ehrlich, was ohne Nachsehen klappte. Auch sichere Wörter nach einigen Tagen wiederholen. Ein Fehler zeigt dir, welches Wort gerade Übung braucht."
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "by.english.5.hello.1.v1",
+      "subject": "english",
+      "topicId": "english-hello",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.hello",
+      "prompt": "Du triffst ein Kind. Wie sagst du Hallo?",
+      "answer": "Hello!",
+      "hint": "Suche eine Begrüßung.",
+      "explanation": "Hello! ist eine freundliche Begrüßung.",
+      "options": [
+        "Goodbye!",
+        "Hello!",
+        "Good night!"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.hello.2.v1",
+      "subject": "english",
+      "topicId": "english-hello",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.hello",
+      "prompt": "Ergänze ein Wort: I ___ Mia.",
+      "answer": "am",
+      "hint": "Die Form von be muss zu I passen.",
+      "explanation": "Es heißt I am Mia.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.hello.3.v1",
+      "subject": "english",
+      "topicId": "english-hello",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.hello",
+      "prompt": "Welche Zahl ist eleven?",
+      "answer": "11",
+      "hint": "Ten ist 10. Eleven kommt direkt danach.",
+      "explanation": "Eleven bedeutet elf.",
+      "options": [
+        "7",
+        "11",
+        "12"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.hello.4.v1",
+      "subject": "english",
+      "topicId": "english-hello",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.hello",
+      "prompt": "Ergänze: You ___ my friend.",
+      "answer": "are",
+      "hint": "Bei you steht dieselbe Form wie bei we.",
+      "explanation": "You are my friend: Du bist mein Freund oder meine Freundin.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.hello.5.v1",
+      "subject": "english",
+      "topicId": "english-hello",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.hello",
+      "prompt": "Ergänze: She ___ twelve.",
+      "answer": "is",
+      "hint": "She bedeutet sie, also eine Person.",
+      "explanation": "Bei he, she und it steht is.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.hello.6.v1",
+      "subject": "english",
+      "topicId": "english-hello",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.hello",
+      "prompt": "Du gehst nach Hause. Was passt?",
+      "answer": "See you!",
+      "hint": "Du verabschiedest dich.",
+      "explanation": "See you! bedeutet Bis dann!",
+      "options": [
+        "See you!",
+        "I am ten.",
+        "Good morning!"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.hello.7.v1",
+      "subject": "english",
+      "topicId": "english-hello",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.hello",
+      "prompt": "Ergänze die Frage nach dem Namen: ___ is your name?",
+      "answer": "What",
+      "hint": "Du fragst Was …?",
+      "explanation": "What is your name? heißt Wie heißt du?",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.hello.8.v1",
+      "subject": "english",
+      "topicId": "english-hello",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.hello",
+      "prompt": "Welche Antwort passt zu “Are you eleven?”",
+      "answer": "Yes, I am.",
+      "hint": "Die Frage beginnt mit einer Form von be.",
+      "explanation": "Die kurze Antwort wiederholt be: Yes, I am.",
+      "options": [
+        "Yes, I do.",
+        "Yes, I am.",
+        "Yes, I can."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.hello.9.v1",
+      "subject": "english",
+      "topicId": "english-hello",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.hello",
+      "prompt": "Welche Schreibweise ist richtig?",
+      "answer": "I speak English.",
+      "hint": "Sprachen und das Wort I schreibt man groß.",
+      "explanation": "English ist ein Sprachname und wird großgeschrieben.",
+      "options": [
+        "i speak english.",
+        "I speak English.",
+        "I speak english."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.family.1.v1",
+      "subject": "english",
+      "topicId": "english-family",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.family",
+      "prompt": "Was bedeutet sister?",
+      "answer": "Schwester",
+      "hint": "Es ist ein Familienwort.",
+      "explanation": "Sister heißt Schwester.",
+      "options": [
+        "Bruder",
+        "Schwester",
+        "Oma"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.family.2.v1",
+      "subject": "english",
+      "topicId": "english-family",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.family",
+      "prompt": "Ergänze: one book, two ___.",
+      "answer": "books",
+      "hint": "Meist kommt ein s dazu.",
+      "explanation": "Die Mehrzahl von book ist books.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.family.3.v1",
+      "subject": "english",
+      "topicId": "english-family",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.family",
+      "prompt": "Ergänze: I have a dog. This is ___ dog.",
+      "answer": "my",
+      "hint": "Gesucht ist mein.",
+      "explanation": "My bedeutet mein oder meine.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.family.4.v1",
+      "subject": "english",
+      "topicId": "english-family",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.family",
+      "prompt": "Ben hat einen Hund. Welche Form passt?",
+      "answer": "Ben’s dog",
+      "hint": "Bei einer Person markiert ’s den Besitz.",
+      "explanation": "Ben’s dog heißt Bens Hund.",
+      "options": [
+        "Ben dog",
+        "Ben’s dog",
+        "Bens dog"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.family.5.v1",
+      "subject": "english",
+      "topicId": "english-family",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.family",
+      "prompt": "Ergänze: one child, two ___.",
+      "answer": "children",
+      "hint": "Diese Mehrzahl ist unregelmäßig.",
+      "explanation": "Ein Kind: child. Mehrere Kinder: children.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.family.6.v1",
+      "subject": "english",
+      "topicId": "english-family",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.family",
+      "prompt": "Ergänze: We have a cat. It is ___ cat.",
+      "answer": "our",
+      "hint": "Gesucht ist unser.",
+      "explanation": "Our zeigt: Die Katze gehört zu uns.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.family.7.v1",
+      "subject": "english",
+      "topicId": "english-family",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.family",
+      "prompt": "Welcher Ausdruck heißt „die Tür des Hauses“?",
+      "answer": "the door of the house",
+      "hint": "Bei Sachen hilft oft of.",
+      "explanation": "Of verbindet die Tür mit dem Haus.",
+      "options": [
+        "the house of the door",
+        "the door of the house",
+        "the house door of"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.family.8.v1",
+      "subject": "english",
+      "topicId": "english-family",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.family",
+      "prompt": "Ergänze: one foot, two ___.",
+      "answer": "feet",
+      "hint": "Der Vokal verändert sich.",
+      "explanation": "Die besondere Mehrzahl von foot ist feet.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.family.9.v1",
+      "subject": "english",
+      "topicId": "english-family",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.family",
+      "prompt": "Ergänze: Leo and Ava have a rabbit. It is ___ rabbit.",
+      "answer": "their",
+      "hint": "Gesucht ist ihr für mehrere Besitzer.",
+      "explanation": "Their rabbit bedeutet ihr Kaninchen.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.home.1.v1",
+      "subject": "english",
+      "topicId": "english-home",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.home",
+      "prompt": "Was bedeutet kitchen?",
+      "answer": "Küche",
+      "hint": "Dort wird gekocht.",
+      "explanation": "Kitchen heißt Küche.",
+      "options": [
+        "Garten",
+        "Küche",
+        "Schlafzimmer"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.home.2.v1",
+      "subject": "english",
+      "topicId": "english-home",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.home",
+      "prompt": "Ergänze: There ___ a bed in my room.",
+      "answer": "is",
+      "hint": "A bed ist ein Bett.",
+      "explanation": "Bei einer Sache heißt es There is.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.home.3.v1",
+      "subject": "english",
+      "topicId": "english-home",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.home",
+      "prompt": "Der Ball liegt unter dem Tisch. Ergänze: The ball is ___ the table.",
+      "answer": "under",
+      "hint": "Gesucht ist unter.",
+      "explanation": "Under the table bedeutet unter dem Tisch.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.home.4.v1",
+      "subject": "english",
+      "topicId": "english-home",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.home",
+      "prompt": "Ergänze: There ___ two chairs.",
+      "answer": "are",
+      "hint": "Two chairs ist Mehrzahl.",
+      "explanation": "Bei mehreren Dingen steht There are.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.home.5.v1",
+      "subject": "english",
+      "topicId": "english-home",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.home",
+      "prompt": "Du hältst ein Buch in der Hand. Wähle: ___ is my book.",
+      "answer": "This",
+      "hint": "Ein Gegenstand ganz nah.",
+      "explanation": "This bezeichnet eine einzelne Sache in der Nähe.",
+      "options": [
+        "Those",
+        "This",
+        "These"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.home.6.v1",
+      "subject": "english",
+      "topicId": "english-home",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.home",
+      "prompt": "Mehrere Schuhe stehen direkt neben dir. Wähle: ___ are my shoes.",
+      "answer": "These",
+      "hint": "Mehrzahl und ganz nah.",
+      "explanation": "These heißt diese hier.",
+      "options": [
+        "That",
+        "This",
+        "These"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.home.7.v1",
+      "subject": "english",
+      "topicId": "english-home",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.home",
+      "prompt": "Ein einzelner Baum steht weit weg. Wähle: ___ tree is tall.",
+      "answer": "That",
+      "hint": "Einzahl und weiter weg.",
+      "explanation": "That tree heißt jener Baum dort.",
+      "options": [
+        "Those",
+        "That",
+        "These"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.home.8.v1",
+      "subject": "english",
+      "topicId": "english-home",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.home",
+      "prompt": "Welche Reihenfolge passt?",
+      "answer": "We play in the garden after school.",
+      "hint": "Der Ort steht hier vor der Zeit.",
+      "explanation": "Wer – Tätigkeit – Ort – Zeit: We play in the garden after school.",
+      "options": [
+        "We play after school in the garden the.",
+        "We play in the garden after school.",
+        "In play we garden school."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.home.9.v1",
+      "subject": "english",
+      "topicId": "english-home",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.home",
+      "prompt": "Mehrere Fahrräder stehen auf der anderen Straßenseite. Wähle: ___ bikes are red.",
+      "answer": "Those",
+      "hint": "Mehrzahl und weit weg.",
+      "explanation": "Those bezeichnet mehrere Dinge dort drüben.",
+      "options": [
+        "This",
+        "That",
+        "Those"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.school.1.v1",
+      "subject": "english",
+      "topicId": "english-school",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.school",
+      "prompt": "Ergänze: ___ book. Wähle a oder an.",
+      "answer": "a",
+      "hint": "Book beginnt mit einem Konsonantenlaut.",
+      "explanation": "Es heißt a book.",
+      "options": [
+        "an",
+        "a"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.school.2.v1",
+      "subject": "english",
+      "topicId": "english-school",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.school",
+      "prompt": "Ergänze: ___ apple. Wähle a oder an.",
+      "answer": "an",
+      "hint": "Apple beginnt mit einem Vokallaut.",
+      "explanation": "Es heißt an apple.",
+      "options": [
+        "a",
+        "an"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.school.3.v1",
+      "subject": "english",
+      "topicId": "english-school",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.school",
+      "prompt": "Was heißt “Open your book”?",
+      "answer": "Öffne dein Buch.",
+      "hint": "Open heißt öffnen.",
+      "explanation": "Das ist eine kurze Aufforderung.",
+      "options": [
+        "Öffne dein Buch.",
+        "Schließe die Tür.",
+        "Setz dich."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.school.4.v1",
+      "subject": "english",
+      "topicId": "english-school",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.school",
+      "prompt": "Ergänze: She ___ got a ruler.",
+      "answer": "has",
+      "hint": "Bei she verändert sich have.",
+      "explanation": "She has got a ruler: Sie hat ein Lineal.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.school.5.v1",
+      "subject": "english",
+      "topicId": "english-school",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.school",
+      "prompt": "Ergänze: I ___ got a new pencil.",
+      "answer": "have",
+      "hint": "Bei I bleibt die Grundform.",
+      "explanation": "I have got heißt ich habe.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.school.6.v1",
+      "subject": "english",
+      "topicId": "english-school",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.school",
+      "prompt": "Antworte kurz: Can you swim? – Yes, I ___.",
+      "answer": "can",
+      "hint": "Wiederhole das Hilfsverb der Frage.",
+      "explanation": "Yes, I can. ist die passende kurze Antwort.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.school.7.v1",
+      "subject": "english",
+      "topicId": "english-school",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.school",
+      "prompt": "Du meinst ein bestimmtes Buch auf dem Tisch. Wähle: Please give me ___ book on the table.",
+      "answer": "the",
+      "hint": "Beide wissen, welches Buch gemeint ist.",
+      "explanation": "The ist der bestimmte Artikel.",
+      "options": [
+        "an",
+        "the",
+        "a an"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.school.8.v1",
+      "subject": "english",
+      "topicId": "english-school",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.school",
+      "prompt": "Welche Frage ist richtig?",
+      "answer": "Has he got a pen?",
+      "hint": "Has steht in dieser Frage vor he.",
+      "explanation": "Has he got a pen? fragt, ob er einen Stift hat.",
+      "options": [
+        "Has he got a pen?",
+        "Have he got a pen?",
+        "He has got a pen what?"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.school.9.v1",
+      "subject": "english",
+      "topicId": "english-school",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.school",
+      "prompt": "Welche Bitte passt, wenn du ein Wort nicht verstehst?",
+      "answer": "What does this word mean?",
+      "hint": "Mean heißt bedeuten.",
+      "explanation": "So fragst du höflich nach der Wortbedeutung.",
+      "options": [
+        "I mean this school.",
+        "What does this word mean?",
+        "Where does this word live?"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.day.1.v1",
+      "subject": "english",
+      "topicId": "english-day",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.day",
+      "prompt": "Was bedeutet never?",
+      "answer": "nie",
+      "hint": "Es passiert kein einziges Mal.",
+      "explanation": "Never heißt nie.",
+      "options": [
+        "oft",
+        "nie",
+        "immer"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.day.2.v1",
+      "subject": "english",
+      "topicId": "english-day",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.day",
+      "prompt": "Ergänze: I ___ football every day. Nutze play.",
+      "answer": "play",
+      "hint": "Nach I steht die Grundform.",
+      "explanation": "I play beschreibt eine Gewohnheit.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.day.3.v1",
+      "subject": "english",
+      "topicId": "english-day",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.day",
+      "prompt": "Welche Uhrzeit ist “eight o’clock”?",
+      "answer": "8:00",
+      "hint": "O’clock bezeichnet eine volle Stunde.",
+      "explanation": "Eight o’clock ist acht Uhr.",
+      "options": [
+        "8:00",
+        "8:30",
+        "9:00"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.day.4.v1",
+      "subject": "english",
+      "topicId": "english-day",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.day",
+      "prompt": "Ergänze mit der richtigen Form von play: She ___ tennis on Mondays.",
+      "answer": "plays",
+      "hint": "He, she, it: Das s muss mit.",
+      "explanation": "Nach she heißt es im simple present plays.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.day.5.v1",
+      "subject": "english",
+      "topicId": "english-day",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.day",
+      "prompt": "Ergänze: ___ you like music?",
+      "answer": "Do",
+      "hint": "Fragen im simple present brauchen hier ein Hilfsverb.",
+      "explanation": "Do you like music? fragt nach einer Vorliebe.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.day.6.v1",
+      "subject": "english",
+      "topicId": "english-day",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.day",
+      "prompt": "Ergänze: He does not ___ milk. Nutze like.",
+      "answer": "like",
+      "hint": "Nach does steht das Verb ohne s.",
+      "explanation": "Does trägt bereits die Personenform; like bleibt unverändert.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.day.7.v1",
+      "subject": "english",
+      "topicId": "english-day",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.day",
+      "prompt": "Ergänze: ___ she walk to school every day?",
+      "answer": "Does",
+      "hint": "She ist die dritte Person Einzahl.",
+      "explanation": "Die Frage heißt Does she walk to school every day?",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.day.8.v1",
+      "subject": "english",
+      "topicId": "english-day",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.day",
+      "prompt": "Welche Antwort passt zu “Does he play chess?”",
+      "answer": "No, he does not.",
+      "hint": "Benutze in der kurzen Antwort das Hilfsverb aus der Frage.",
+      "explanation": "Does passt zu he; die Verneinung lautet does not.",
+      "options": [
+        "No, he is not.",
+        "No, he does not.",
+        "No, he have not."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.day.9.v1",
+      "subject": "english",
+      "topicId": "english-day",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.day",
+      "prompt": "Welche Stellung von often ist hier richtig?",
+      "answer": "I often read in bed.",
+      "hint": "Often steht hier vor dem Tätigkeitsverb.",
+      "explanation": "I often read in bed heißt Ich lese oft im Bett.",
+      "options": [
+        "I read in often bed.",
+        "I often read in bed.",
+        "Often I in read bed."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.friends.1.v1",
+      "subject": "english",
+      "topicId": "english-friends",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.friends",
+      "prompt": "Welches Fragewort heißt wo?",
+      "answer": "Where",
+      "hint": "Du fragst nach einem Ort.",
+      "explanation": "Where fragt nach einem Ort.",
+      "options": [
+        "Why",
+        "Where",
+        "When"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.friends.2.v1",
+      "subject": "english",
+      "topicId": "english-friends",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.friends",
+      "prompt": "Ergänze: I like ___. Wähle die passende Form von swim.",
+      "answer": "swimming",
+      "hint": "Nach like kannst du eine Tätigkeit mit -ing nennen.",
+      "explanation": "I like swimming heißt Ich schwimme gern.",
+      "options": [
+        "swims",
+        "swimming",
+        "swam"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.friends.3.v1",
+      "subject": "english",
+      "topicId": "english-friends",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.friends",
+      "prompt": "Du magst Pizza auch. Was passt nach “I like pizza”?",
+      "answer": "Me too!",
+      "hint": "Du stimmst einer positiven Aussage zu.",
+      "explanation": "Me too! bedeutet Ich auch!",
+      "options": [
+        "Me too!",
+        "Not either!",
+        "Good night!"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.friends.4.v1",
+      "subject": "english",
+      "topicId": "english-friends",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.friends",
+      "prompt": "Ergänze: ___ bike is this? – It is Ava’s bike.",
+      "answer": "Whose",
+      "hint": "Die Antwort sagt, wem es gehört.",
+      "explanation": "Whose bike is this? heißt Wessen Fahrrad ist das?",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.friends.5.v1",
+      "subject": "english",
+      "topicId": "english-friends",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.friends",
+      "prompt": "Ergänze: ___ do you like this game? – Because it is fun.",
+      "answer": "Why",
+      "hint": "Because nennt einen Grund.",
+      "explanation": "Why fragt Warum?, because antwortet weil.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.friends.6.v1",
+      "subject": "english",
+      "topicId": "english-friends",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.friends",
+      "prompt": "Welche Bitte ist höflich?",
+      "answer": "I’d like some water, please.",
+      "hint": "Please bedeutet bitte.",
+      "explanation": "I’d like …, please. ist eine freundliche Bitte.",
+      "options": [
+        "Water! Now!",
+        "I’d like some water, please.",
+        "You water me."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.friends.7.v1",
+      "subject": "english",
+      "topicId": "english-friends",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.friends",
+      "prompt": "Du fragst nach der Person, die Tennis spielt. Welche Frage passt?",
+      "answer": "Who plays tennis?",
+      "hint": "Who ist hier selbst die handelnde Person.",
+      "explanation": "Eine Subjektfrage benötigt hier kein do.",
+      "options": [
+        "Who does plays tennis?",
+        "Who plays tennis?",
+        "Who do tennis?"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.friends.8.v1",
+      "subject": "english",
+      "topicId": "english-friends",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.friends",
+      "prompt": "Ergänze: Who ___ you meet after school? – I meet Jo.",
+      "answer": "do",
+      "hint": "Du kennst die handelnde Person: you. Gefragt ist, wen sie trifft.",
+      "explanation": "In dieser Objektfrage braucht man do.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.friends.9.v1",
+      "subject": "english",
+      "topicId": "english-friends",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.friends",
+      "prompt": "Ergänze: I want you ___ help me.",
+      "answer": "to",
+      "hint": "Nach want you steht to vor dem Verb.",
+      "explanation": "I want you to help me heißt Ich möchte, dass du mir hilfst.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.shopping.1.v1",
+      "subject": "english",
+      "topicId": "english-shopping",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.shopping",
+      "prompt": "Was bedeutet apple?",
+      "answer": "Apfel",
+      "hint": "Es ist eine Frucht.",
+      "explanation": "Apple heißt Apfel.",
+      "options": [
+        "Birne",
+        "Apfel",
+        "Brot"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.shopping.2.v1",
+      "subject": "english",
+      "topicId": "english-shopping",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.shopping",
+      "prompt": "Ergänze: How ___ apples are there? Wähle much oder many.",
+      "answer": "many",
+      "hint": "Äpfel kann man einzeln zählen.",
+      "explanation": "Bei zählbarer Mehrzahl steht many.",
+      "options": [
+        "much",
+        "many"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.shopping.3.v1",
+      "subject": "english",
+      "topicId": "english-shopping",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.shopping",
+      "prompt": "Ergänze: I ___ eating now.",
+      "answer": "am",
+      "hint": "Die Verlaufsform braucht be und ein Verb mit -ing.",
+      "explanation": "I am eating: Ich esse gerade.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.shopping.4.v1",
+      "subject": "english",
+      "topicId": "english-shopping",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.shopping",
+      "prompt": "Ergänze: How ___ water do you need? Wähle much oder many.",
+      "answer": "much",
+      "hint": "Water wird hier als Menge betrachtet.",
+      "explanation": "Bei water steht much.",
+      "options": [
+        "many",
+        "much"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.shopping.5.v1",
+      "subject": "english",
+      "topicId": "english-shopping",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.shopping",
+      "prompt": "Ergänze: We have ___ apples. Wähle some oder any.",
+      "answer": "some",
+      "hint": "Das ist ein bejahter Aussagesatz.",
+      "explanation": "We have some apples heißt Wir haben einige Äpfel.",
+      "options": [
+        "some",
+        "any"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.shopping.6.v1",
+      "subject": "english",
+      "topicId": "english-shopping",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.shopping",
+      "prompt": "Ergänze: Have you got ___ milk? Wähle some oder any für diese offene Frage.",
+      "answer": "any",
+      "hint": "Du weißt noch nicht, ob Milch da ist.",
+      "explanation": "In dieser offenen Frage ist any die passende Wahl.",
+      "options": [
+        "some",
+        "any"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.shopping.7.v1",
+      "subject": "english",
+      "topicId": "english-shopping",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.shopping",
+      "prompt": "Welche Form passt zu now? Look! Ben ___ a sandwich.",
+      "answer": "is eating",
+      "hint": "Die Handlung läuft gerade.",
+      "explanation": "Is eating ist die Verlaufsform für eine Handlung jetzt.",
+      "options": [
+        "eats every day",
+        "is eating",
+        "eat"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.shopping.8.v1",
+      "subject": "english",
+      "topicId": "english-shopping",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.shopping",
+      "prompt": "Welche Übersetzung von „viele Hausaufgaben“ ist richtig?",
+      "answer": "a lot of homework",
+      "hint": "Homework ist nicht zählbar.",
+      "explanation": "Homework bekommt hier kein Mehrzahl-s.",
+      "options": [
+        "many homeworks",
+        "a lot of homework",
+        "a homework many"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.shopping.9.v1",
+      "subject": "english",
+      "topicId": "english-shopping",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.shopping",
+      "prompt": "Welche Form passt zur Gewohnheit? Every morning, Mia ___ tea.",
+      "answer": "drinks",
+      "hint": "Every morning meint regelmäßig.",
+      "explanation": "Für Gewohnheiten steht das simple present: Mia drinks tea.",
+      "options": [
+        "is drinking now",
+        "drink",
+        "drinks"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.party.1.v1",
+      "subject": "english",
+      "topicId": "english-party",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.party",
+      "prompt": "Welcher Wochentag heißt Montag?",
+      "answer": "Monday",
+      "hint": "Wochentage schreibt man groß.",
+      "explanation": "Monday heißt Montag.",
+      "options": [
+        "Sunday",
+        "Monday",
+        "Friday"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.party.2.v1",
+      "subject": "english",
+      "topicId": "english-party",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.party",
+      "prompt": "Welche Ordnungszahl bedeutet erste?",
+      "answer": "first",
+      "hint": "One ist die Zahl, gesucht ist die Reihenfolge.",
+      "explanation": "First heißt erste oder erster.",
+      "options": [
+        "one",
+        "first",
+        "three"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.party.3.v1",
+      "subject": "english",
+      "topicId": "english-party",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.party",
+      "prompt": "Was bedeutet “You must stop”?",
+      "answer": "Du musst anhalten.",
+      "hint": "Must drückt eine Pflicht aus.",
+      "explanation": "Must stop heißt anhalten müssen.",
+      "options": [
+        "Du musst anhalten.",
+        "Du darfst nicht anhalten.",
+        "Du kannst schwimmen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.party.4.v1",
+      "subject": "english",
+      "topicId": "english-party",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.party",
+      "prompt": "Du darfst hier nicht rennen. Ergänze: You ___ run here.",
+      "answer": "mustn’t",
+      "hint": "Gesucht ist ein Verbot.",
+      "explanation": "Mustn’t bedeutet nicht dürfen.",
+      "options": [
+        "needn’t",
+        "mustn’t",
+        "can"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.party.5.v1",
+      "subject": "english",
+      "topicId": "english-party",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.party",
+      "prompt": "Du musst kein Geschenk mitbringen. Ergänze: You ___ bring a present.",
+      "answer": "needn’t",
+      "hint": "Es ist freiwillig, nicht verboten.",
+      "explanation": "Needn’t heißt nicht müssen.",
+      "options": [
+        "mustn’t",
+        "needn’t",
+        "must"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.party.6.v1",
+      "subject": "english",
+      "topicId": "english-party",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.party",
+      "prompt": "Lies: “My party is on Saturday at 3 pm.” Wann ist die Feier?",
+      "answer": "Samstag um 15 Uhr",
+      "hint": "Pm steht für die Zeit nach Mittag.",
+      "explanation": "Saturday ist Samstag; 3 pm ist 15 Uhr.",
+      "options": [
+        "Sonntag um 15 Uhr",
+        "Samstag um 15 Uhr",
+        "Samstag um 13 Uhr"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.party.7.v1",
+      "subject": "english",
+      "topicId": "english-party",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.party",
+      "prompt": "Welche Aussage lässt dir eine Wahl?",
+      "answer": "You needn’t wear a hat.",
+      "hint": "Gesucht ist keine Pflicht und kein Verbot.",
+      "explanation": "Du musst keinen Hut tragen, darfst es aber.",
+      "options": [
+        "You must wear a hat.",
+        "You mustn’t wear a hat.",
+        "You needn’t wear a hat."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.party.8.v1",
+      "subject": "english",
+      "topicId": "english-party",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.party",
+      "prompt": "Welche Schreibweise ist richtig?",
+      "answer": "My birthday is in June.",
+      "hint": "Monatsnamen beginnen groß.",
+      "explanation": "June ist ein Monatsname und wird großgeschrieben.",
+      "options": [
+        "My birthday is in june.",
+        "My birthday is in June.",
+        "my Birthday is in june."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.party.9.v1",
+      "subject": "english",
+      "topicId": "english-party",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.party",
+      "prompt": "Du darfst dein Fahrrad hier abstellen. Welche Aussage passt?",
+      "answer": "You can leave your bike here.",
+      "hint": "Can drückt hier Erlaubnis aus.",
+      "explanation": "Can leave bedeutet hier darfst abstellen.",
+      "options": [
+        "You mustn’t leave your bike here.",
+        "You can leave your bike here.",
+        "You must leave your bike here."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.past.1.v1",
+      "subject": "english",
+      "topicId": "english-past",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.past",
+      "prompt": "Ergänze mit play im simple past: Yesterday I ___ football.",
+      "answer": "played",
+      "hint": "Regelmäßige Verben bekommen -ed.",
+      "explanation": "Play wird zu played.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.past.2.v1",
+      "subject": "english",
+      "topicId": "english-past",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.past",
+      "prompt": "Welche Zeitangabe heißt gestern?",
+      "answer": "yesterday",
+      "hint": "Today heißt heute.",
+      "explanation": "Yesterday heißt gestern.",
+      "options": [
+        "tomorrow",
+        "yesterday",
+        "today"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.past.3.v1",
+      "subject": "english",
+      "topicId": "english-past",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.past",
+      "prompt": "Ergänze: I ___ at home yesterday. Wähle was oder were.",
+      "answer": "was",
+      "hint": "Die Vergangenheit von I am lautet I was.",
+      "explanation": "Bei I steht was.",
+      "options": [
+        "were",
+        "was"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.past.4.v1",
+      "subject": "english",
+      "topicId": "english-past",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.past",
+      "prompt": "Ergänze mit go im simple past: We ___ to the park yesterday.",
+      "answer": "went",
+      "hint": "Go hat eine besondere Vergangenheitsform.",
+      "explanation": "Die Vergangenheit von go heißt went.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.past.5.v1",
+      "subject": "english",
+      "topicId": "english-past",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.past",
+      "prompt": "Ergänze: They ___ happy yesterday. Wähle was oder were.",
+      "answer": "were",
+      "hint": "They ist Mehrzahl.",
+      "explanation": "Die Vergangenheit von they are lautet they were.",
+      "options": [
+        "was",
+        "were"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.past.6.v1",
+      "subject": "english",
+      "topicId": "english-past",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.past",
+      "prompt": "Ergänze: Did you ___ the film? Nutze see.",
+      "answer": "see",
+      "hint": "Nach did steht die Grundform.",
+      "explanation": "Did you see the film? fragt nach einem vergangenen Erlebnis.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.past.7.v1",
+      "subject": "english",
+      "topicId": "english-past",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.past",
+      "prompt": "Ergänze: She did not ___ to school yesterday. Nutze go.",
+      "answer": "go",
+      "hint": "Did not zeigt schon die Vergangenheit.",
+      "explanation": "Das Tätigkeitsverb bleibt in der Grundform go.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.past.8.v1",
+      "subject": "english",
+      "topicId": "english-past",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.past",
+      "prompt": "Ergänze mit have im simple past: We ___ a picnic last Sunday.",
+      "answer": "had",
+      "hint": "Have ist unregelmäßig.",
+      "explanation": "Die Vergangenheit von have heißt had.",
+      "options": [],
+      "answerKind": "text",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.past.9.v1",
+      "subject": "english",
+      "topicId": "english-past",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.past",
+      "prompt": "Welche kurze Antwort passt zu “Did she win?”",
+      "answer": "Yes, she did.",
+      "hint": "Die Antwort nutzt dasselbe Hilfsverb.",
+      "explanation": "Bei dieser Vergangenheitsfrage heißt es Yes, she did.",
+      "options": [
+        "Yes, she does.",
+        "Yes, she was.",
+        "Yes, she did."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.stories.1.v1",
+      "subject": "english",
+      "topicId": "english-stories",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.stories",
+      "prompt": "Lies: “Tom has a red bike.” Welche Farbe hat das Fahrrad?",
+      "answer": "rot",
+      "hint": "Suche das Farbwort.",
+      "explanation": "Red heißt rot.",
+      "options": [
+        "blau",
+        "rot",
+        "grün"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.stories.2.v1",
+      "subject": "english",
+      "topicId": "english-stories",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.stories",
+      "prompt": "Lies: “Ava likes music. Her brother likes football.” Wer mag Musik?",
+      "answer": "Ava",
+      "hint": "Suche likes music.",
+      "explanation": "Im ersten Satz steht Ava likes music.",
+      "options": [
+        "Ava",
+        "ihr Bruder",
+        "beide"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.stories.3.v1",
+      "subject": "english",
+      "topicId": "english-stories",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.stories",
+      "prompt": "Was bedeutet nothing?",
+      "answer": "nichts",
+      "hint": "Es ist das Gegenteil von etwas.",
+      "explanation": "Nothing heißt nichts.",
+      "options": [
+        "alles",
+        "nichts",
+        "jemand"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.stories.4.v1",
+      "subject": "english",
+      "topicId": "english-stories",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.stories",
+      "prompt": "Ergänze: I stay inside ___ it is raining. Wähle because oder when für den Grund.",
+      "answer": "because",
+      "hint": "Die Frage dazu lautet Warum?",
+      "explanation": "Because heißt weil und nennt hier den Grund.",
+      "options": [
+        "when",
+        "because"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.stories.5.v1",
+      "subject": "english",
+      "topicId": "english-stories",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.stories",
+      "prompt": "Lies: “The club meets on Tuesday. Bring a pencil.” Was sollst du mitbringen?",
+      "answer": "einen Bleistift",
+      "hint": "Suche die Anweisung mit Bring.",
+      "explanation": "Pencil heißt Bleistift.",
+      "options": [
+        "einen Ball",
+        "einen Bleistift",
+        "ein Getränk"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.stories.6.v1",
+      "subject": "english",
+      "topicId": "english-stories",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.stories",
+      "prompt": "Jemand klopft an. Wähle: ___ is at the door.",
+      "answer": "Somebody",
+      "hint": "Es geht um eine Person.",
+      "explanation": "Somebody bedeutet jemand.",
+      "options": [
+        "Something",
+        "Somebody",
+        "Nothing"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.stories.7.v1",
+      "subject": "english",
+      "topicId": "english-stories",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.stories",
+      "prompt": "Niemand ist im Zimmer. Wähle: ___ is in the room.",
+      "answer": "Nobody",
+      "hint": "Gesucht ist niemand.",
+      "explanation": "Nobody bedeutet niemand; der Satz braucht kein zusätzliches not.",
+      "options": [
+        "Nobody",
+        "Anything",
+        "Something"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.stories.8.v1",
+      "subject": "english",
+      "topicId": "english-stories",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.stories",
+      "prompt": "Ergänze: I think ___ the story is funny. Wähle die Satzverbindung.",
+      "answer": "that",
+      "hint": "Gesucht ist dass.",
+      "explanation": "That leitet ein, was du denkst.",
+      "options": [
+        "whose",
+        "that",
+        "who"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.stories.9.v1",
+      "subject": "english",
+      "topicId": "english-stories",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.stories",
+      "prompt": "Lies: “Leo missed the bus, so he walked. He arrived before the lesson.” Kam Leo zu spät zum Unterricht?",
+      "answer": "Nein",
+      "hint": "Before heißt vor.",
+      "explanation": "Er kam vor der Unterrichtsstunde an. Den Bus zu verpassen heißt hier nicht, zu spät zu sein.",
+      "options": [
+        "Ja",
+        "Nein",
+        "Das steht nicht im Text."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.travel.1.v1",
+      "subject": "english",
+      "topicId": "english-travel",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.travel",
+      "prompt": "Welche Stadt ist die Hauptstadt des UK?",
+      "answer": "London",
+      "hint": "Sie liegt in England.",
+      "explanation": "London ist die Hauptstadt des Vereinigten Königreichs.",
+      "options": [
+        "London",
+        "Paris",
+        "Berlin"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.travel.2.v1",
+      "subject": "english",
+      "topicId": "english-travel",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.travel",
+      "prompt": "Du sprichst eine fremde Person an. Was ist freundlich?",
+      "answer": "Excuse me.",
+      "hint": "Das bedeutet Entschuldigung.",
+      "explanation": "Excuse me ist ein freundlicher Anfang für eine Frage.",
+      "options": [
+        "Go away!",
+        "Excuse me.",
+        "Stop talking!"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.travel.3.v1",
+      "subject": "english",
+      "topicId": "english-travel",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.travel",
+      "prompt": "Was bedeutet “Thank you”?",
+      "answer": "Danke",
+      "hint": "So bedankst du dich.",
+      "explanation": "Thank you heißt Danke.",
+      "options": [
+        "Bitte",
+        "Danke",
+        "Gute Nacht"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.travel.4.v1",
+      "subject": "english",
+      "topicId": "english-travel",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.travel",
+      "prompt": "Welche Gruppe gehört zum UK?",
+      "answer": "England, Scotland, Wales, Northern Ireland",
+      "hint": "Achte auf Nordirland.",
+      "explanation": "Diese vier Landesteile bilden das UK.",
+      "options": [
+        "England, Scotland, Wales, Northern Ireland",
+        "England, France, Wales, Spain",
+        "England, Scotland, Germany, Italy"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.travel.5.v1",
+      "subject": "english",
+      "topicId": "english-travel",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.travel",
+      "prompt": "Ein Schild sagt “Closed”. Was erklärst du deinem Freund?",
+      "answer": "Es ist geschlossen.",
+      "hint": "Das Gegenteil ist open.",
+      "explanation": "Closed bedeutet geschlossen.",
+      "options": [
+        "Es ist kostenlos.",
+        "Es ist geschlossen.",
+        "Es ist geöffnet."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.travel.6.v1",
+      "subject": "english",
+      "topicId": "english-travel",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.travel",
+      "prompt": "Welche Stadt ist die Hauptstadt der USA?",
+      "answer": "Washington, D.C.",
+      "hint": "Die Hauptstadt ist nicht New York.",
+      "explanation": "Washington, D.C. ist die Hauptstadt der USA.",
+      "options": [
+        "Los Angeles",
+        "New York",
+        "Washington, D.C."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.travel.7.v1",
+      "subject": "english",
+      "topicId": "english-travel",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.travel",
+      "prompt": "Lies: “Free entry for children under 12.” Kim ist 11. Muss Kim Eintritt zahlen?",
+      "answer": "Nein",
+      "hint": "Under 12 heißt jünger als 12.",
+      "explanation": "Kim ist elf und darf deshalb kostenlos hinein.",
+      "options": [
+        "Ja",
+        "Nein"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.travel.8.v1",
+      "subject": "english",
+      "topicId": "english-travel",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.travel",
+      "prompt": "Lies: “Please queue here.” Was ist zu tun?",
+      "answer": "Hier anstellen.",
+      "hint": "Queue ist eine Warteschlange.",
+      "explanation": "Please queue here heißt Bitte hier anstellen.",
+      "options": [
+        "Hier rennen.",
+        "Hier anstellen.",
+        "Hier essen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.travel.9.v1",
+      "subject": "english",
+      "topicId": "english-travel",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.travel",
+      "prompt": "Lies: “Bus to the park: 10 am. Return: 4 pm.” Wann fährt der Bus zurück?",
+      "answer": "16 Uhr",
+      "hint": "Return meint Rückfahrt, pm die Zeit nach Mittag.",
+      "explanation": "4 pm ist 16 Uhr.",
+      "options": [
+        "4 Uhr morgens",
+        "10 Uhr",
+        "16 Uhr"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.words.1.v1",
+      "subject": "english",
+      "topicId": "english-words",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.words",
+      "prompt": "Was bedeutet get up?",
+      "answer": "aufstehen",
+      "hint": "Das passt zum Morgen.",
+      "explanation": "Get up ist ein Wortpaar und bedeutet aufstehen.",
+      "options": [
+        "aufstehen",
+        "essen",
+        "schlafen"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.words.2.v1",
+      "subject": "english",
+      "topicId": "english-words",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.words",
+      "prompt": "Welche Wörter gehören zum Thema Essen?",
+      "answer": "bread, apple, cheese",
+      "hint": "Suche drei Lebensmittel.",
+      "explanation": "Brot, Apfel und Käse gehören zum Wortfeld Essen.",
+      "options": [
+        "chair, desk, bed",
+        "bread, apple, cheese",
+        "Monday, Friday, Sunday"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.words.3.v1",
+      "subject": "english",
+      "topicId": "english-words",
+      "difficulty": "vorschule",
+      "competencyId": "by.english.5.words",
+      "prompt": "Wie prüfst du, ob du ein Wort schon kannst?",
+      "answer": "Lösung abdecken und selbst antworten.",
+      "hint": "Beim Nachsehen wirkt ein Wort oft leichter.",
+      "explanation": "Selbst abrufen zeigt dir besser, was du schon weißt.",
+      "options": [
+        "Nur auf die Lösung schauen.",
+        "Lösung abdecken und selbst antworten.",
+        "Nie wieder wiederholen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.words.4.v1",
+      "subject": "english",
+      "topicId": "english-words",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.words",
+      "prompt": "Was bedeutet become?",
+      "answer": "werden",
+      "hint": "Achtung: Es heißt nicht bekommen.",
+      "explanation": "Become ist ein Stolperwort: Es bedeutet werden.",
+      "options": [
+        "bekommen",
+        "werden",
+        "behalten"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.words.5.v1",
+      "subject": "english",
+      "topicId": "english-words",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.words",
+      "prompt": "Was bedeutet “What do you mean?”",
+      "answer": "Was meinst du?",
+      "hint": "Mean heißt hier meinen.",
+      "explanation": "What do you mean? fragt, was jemand meint.",
+      "options": [
+        "Was bekommst du?",
+        "Was meinst du?",
+        "Wo wohnst du?"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.words.6.v1",
+      "subject": "english",
+      "topicId": "english-words",
+      "difficulty": "koenner",
+      "competencyId": "by.english.5.words",
+      "prompt": "Welche Wortgruppe ist richtig?",
+      "answer": "some information",
+      "hint": "Information ist nicht zählbar.",
+      "explanation": "Man sagt some information, ohne Mehrzahl-s.",
+      "options": [
+        "three informations",
+        "an information",
+        "some information"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.words.7.v1",
+      "subject": "english",
+      "topicId": "english-words",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.words",
+      "prompt": "Welches Lautzeichen steht für ein langes i?",
+      "answer": "/iː/",
+      "hint": "Die zwei Punkte zeigen die Länge.",
+      "explanation": "/iː/ steht für den langen Laut wie in sheep.",
+      "options": [
+        "/ɪ/",
+        "/iː/",
+        "/æ/"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.words.8.v1",
+      "subject": "english",
+      "topicId": "english-words",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.words",
+      "prompt": "Du kennst ein Wort im Text nicht. Was hilft zuerst?",
+      "answer": "Die Sätze davor und danach lesen.",
+      "hint": "Oft gibt der Zusammenhang einen Hinweis.",
+      "explanation": "Der Zusammenhang kann helfen, die Bedeutung zu erschließen.",
+      "options": [
+        "Sofort aufhören.",
+        "Die Sätze davor und danach lesen.",
+        "Immer irgendeine Bedeutung raten."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.english.5.words.9.v1",
+      "subject": "english",
+      "topicId": "english-words",
+      "difficulty": "streber",
+      "competencyId": "by.english.5.words",
+      "prompt": "Welche Aussage über Wiederholen hilft beim Lernen?",
+      "answer": "Unsichere Wörter öfter, sichere später wiederholen.",
+      "hint": "Auch gewusste Wörter können wieder verblassen.",
+      "explanation": "Passende Abstände halten das Üben kurz und helfen beim Behalten.",
+      "options": [
+        "Sichere Wörter nie wieder ansehen.",
+        "Unsichere Wörter öfter, sichere später wiederholen.",
+        "Nur schwierige Wörter abschreiben, nie abfragen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    }
+  ]
+}

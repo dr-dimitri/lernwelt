@@ -30,12 +30,18 @@ describe('Lernwelt', () => {
     const user = userEvent.setup();
     render(<App />);
     await user.click(screen.getByRole('button', { name: /Englisch/ }));
-    expect(screen.getByRole('heading', { name: 'Englisch' })).toBeVisible();
+    expect(
+      screen.getByRole('heading', { name: 'Englisch · Klasse 5' }),
+    ).toBeVisible();
     expect(screen.getByRole('button', { name: /Englisch/ })).toHaveAttribute(
       'aria-pressed',
       'true',
     );
-    expect(screen.getByText(/Noch kein vollständiger Lehrplan/)).toBeVisible();
+    expect(screen.getByText(/12 Themen zum Entdecken/)).toBeVisible();
+    await user.click(
+      screen.getByText('Für Neugierige & Erwachsene: Englisch-Lerninhalte'),
+    );
+    expect(screen.getByText(/automatische Aussprachebewertung/)).toBeVisible();
   });
 
   it('lädt das gespeicherte Profil', async () => {

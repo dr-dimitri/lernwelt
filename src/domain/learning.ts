@@ -42,6 +42,8 @@ export interface Topic {
     note: string;
   }[];
   languageSequence: string | null;
+  source?: string;
+  curriculumVersion?: string;
   activities: { title: string; prompt: string; check: string }[];
 }
 

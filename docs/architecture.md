@@ -71,3 +71,7 @@ Die vier `sample.*.v1`-Aufgaben stammen aus eigenen Lernwelt-Beispielen (Stand 2
 Rust bestimmt die Prämie anhand von `exercise.difficulty`: Vorschule 5, Könner 10, Streber 15. Die aktuell gewählte Einstellung und vom Frontend übergebene Werte ändern diese Zuordnung nicht. `get_learning_state` liefert `pointsByDifficulty` für alle drei Stufen; die UI zeigt damit auch nach einem Stufenwechsel sofort die passende Prämie. Falsche Antworten oder neue Versuche auf bereits gelöste Aufgaben geben weiterhin 0 zusätzliche Punkte.
 
 Migration 005 erweitert die erlaubten Beträge in `answer_submissions` auf 0/5/10/15. Alle alten Antworten einschließlich Request-ID, Betrag und Zeitstempel werden in derselben Transaktion erhalten. Das Journal wird nicht neu bewertet: alte 10-Punkte-Gutschriften bleiben bestehen und alte Requests liefern weiterhin ihren damals gespeicherten Betrag, ohne nochmals zu buchen. Abzeichen und Spiele behalten ihre Preise.
+
+## Englisches Lernpaket
+
+`english-5-v1.json` ergänzt das Mathematikpaket als separates eingebettetes Paket. Der Loader validiert beide Pakete und danach den gemeinsamen Katalog (einschließlich global eindeutiger IDs). Er ergänzt jeden Topic mit der Quelle und dem Lehrplanstand seines Pakets; Englisch zeigt dadurch seine eigene Quelle. Historische Englischbeispiele bleiben nur für alte Requests/Journalverweise erhalten. Keine Schemaänderung oder neue Berechtigung.

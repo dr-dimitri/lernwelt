@@ -60,6 +60,10 @@ pub struct Topic {
     pub tables: Vec<LearningTable>,
     pub activities: Vec<Activity>,
     pub language_sequence: Option<String>,
+    #[serde(default)]
+    pub source: String,
+    #[serde(default)]
+    pub curriculum_version: String,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -103,8 +107,26 @@ pub fn catalog() -> Result<&'static Catalog, String> {
     static CONTENT: OnceLock<Result<Catalog, String>> = OnceLock::new();
     CONTENT
         .get_or_init(|| {
-            let data: Catalog = serde_json::from_str(include_str!("../content/curriculum-v1.json"))
-                .map_err(|_| "Das Lernpaket konnte nicht gelesen werden.".to_owned())?;
+            let mut packages = [
+                include_str!("../content/curriculum-v1.json"),
+                include_str!("../content/english-5-v1.json"),
+            ]
+            .into_iter()
+            .map(|json| {
+                let mut data: Catalog = serde_json::from_str(json)
+                    .map_err(|_| "Das Lernpaket konnte nicht gelesen werden.".to_owned())?;
+                data.validate()?;
+                for topic in &mut data.topics {
+                    topic.source = data.source.clone();
+                    topic.curriculum_version = data.curriculum_version.clone();
+                }
+                Ok(data)
+            })
+            .collect::<Result<Vec<_>, String>>()?;
+            let english = packages.pop().expect("two embedded packages");
+            let mut data = packages.pop().expect("two embedded packages");
+            data.topics.extend(english.topics);
+            data.exercises.extend(english.exercises);
             data.validate()?;
             Ok(data)
         })
@@ -273,6 +295,54 @@ mod tests {
                 }
             }
         }
+    }
+
+    #[test]
+    fn english_package_has_own_sources_and_keeps_historical_answers() {
+        let data = catalog().unwrap();
+        let topics: Vec<_> = data
+            .topics
+            .iter()
+            .filter(|t| t.subject == Subject::English)
+            .collect();
+        assert_eq!(topics.len(), 12);
+        for topic in topics {
+            assert!(topic.source.ends_with("englisch/1-fremdsprache"));
+            assert!(topic.curriculum_version.contains("24.09.2026"));
+            assert_eq!(topic.language_sequence.as_deref(), Some("1. Fremdsprache"));
+            assert_eq!(topic.activities.len(), 2);
+            for difficulty in [
+                Difficulty::Vorschule,
+                Difficulty::Koenner,
+                Difficulty::Streber,
+            ] {
+                assert_eq!(
+                    data.exercises
+                        .iter()
+                        .filter(|e| e.topic_id == topic.id
+                            && e.difficulty == difficulty
+                            && !e.legacy)
+                        .count(),
+                    3
+                );
+            }
+        }
+        let old = data
+            .exercises
+            .iter()
+            .find(|e| e.id == "sample.english.cat.v1")
+            .unwrap();
+        assert!(old.legacy);
+        assert!(is_correct(old, " CAT "));
+        let new = data
+            .exercises
+            .iter()
+            .find(|e| e.id == "by.english.5.past.4.v1")
+            .unwrap();
+        assert!(is_correct(new, " WENT "));
+        assert!(!is_correct(new, "goed"));
+        let math = data.topics.iter().find(|t| t.id == "sets").unwrap();
+        assert!(math.source.ends_with("mathematik"));
     }
 
     #[test]
