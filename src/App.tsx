@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ProfilePanel from './components/ProfilePanel';
 import { subjects, type SubjectId } from './domain/subjects';
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
           <h2 id="detail-title">{subject.name}</h2>
           <p>Hier entsteht dein Lernbereich. Übungen und Lehrplaninhalte werden in den nächsten Ausbauschritten ergänzt.</p>
         </section>
+        <ProfilePanel />
         <footer>Deine Lernwelt wächst. Dies ist die technische Grundversion.</footer>
       </main>
     </div>
