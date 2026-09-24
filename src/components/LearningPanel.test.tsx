@@ -3,47 +3,19 @@ import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import LearningPanel from './LearningPanel';
 import { desktop } from '../lib/desktop';
-import type { AnswerResult, LearningState } from '../domain/learning';
+import type { AnswerResult } from '../domain/learning';
+
+import { initial, mathQuestion, mathTopic } from '../test/learning-fixture';
 
 vi.mock('../lib/desktop', () => ({
   desktop: {
     getLearningState: vi.fn(),
     submitAnswer: vi.fn(),
     redeemReward: vi.fn(),
+    setDifficulty: vi.fn(),
   },
 }));
 
-const initial: LearningState = {
-  profileReady: true,
-  pointsPerAnswer: 10,
-  questions: [
-    {
-      id: 'math',
-      subject: 'mathematics',
-      prompt: 'Was ist 17 + 25?',
-      solved: false,
-    },
-    {
-      id: 'english',
-      subject: 'english',
-      prompt: 'Katze auf Englisch?',
-      solved: false,
-    },
-  ],
-  wallet: {
-    balance: 10,
-    totalEarned: 10,
-    rewards: [
-      {
-        id: 'star',
-        name: 'Sternsammler',
-        description: 'Dein Abzeichen.',
-        cost: 20,
-        owned: false,
-      },
-    ],
-  },
-};
 const awarded: AnswerResult = {
   correct: true,
   pointsAwarded: 10,
@@ -218,5 +190,144 @@ it('aktiviert Aufgaben erst nach Anlage des Lernprofils', async () => {
     expect(
       screen.getByRole('button', { name: 'Antwort prüfen' }),
     ).toBeEnabled(),
+  );
+});
+
+it('wechselt die Stufe fachübergreifend und leert alte Antworten', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...initial,
+    questions: [
+      ...initial.questions,
+      {
+        ...mathQuestion,
+        id: 'hard',
+        difficulty: 'streber',
+        prompt: 'Wie groß ist −24 − (−17)?',
+      },
+      {
+        ...mathQuestion,
+        id: 'english-hard',
+        subject: 'english',
+        topicId: 'english',
+        difficulty: 'streber',
+        prompt: 'He ___ to school.',
+        answerKind: 'text',
+      },
+    ],
+  });
+  vi.mocked(desktop.setDifficulty).mockResolvedValue('streber');
+  const { rerender } = render(
+    <LearningPanel subject="mathematics" profileVersion={0} />,
+  );
+  await user.type(await screen.findByLabelText('Was ist 17 + 25?'), '42');
+  await user.click(screen.getByRole('button', { name: /Streber/ }));
+  expect(desktop.setDifficulty).toHaveBeenCalledWith('streber');
+  expect(await screen.findByLabelText('Wie groß ist −24 − (−17)?')).toHaveValue(
+    '',
+  );
+  rerender(<LearningPanel subject="english" profileVersion={0} />);
+  expect(screen.getByLabelText('He ___ to school.')).toHaveValue('');
+  expect(screen.getByRole('button', { name: /Streber/ })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+});
+
+it('behält bei fehlgeschlagener Stufenänderung die bisherige Aufgabe', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.setDifficulty).mockRejectedValue(
+    new Error('Stufe konnte nicht gespeichert werden.'),
+  );
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await user.type(await screen.findByLabelText('Was ist 17 + 25?'), '42');
+  await user.click(screen.getByRole('button', { name: /Vorschule/ }));
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Stufe konnte nicht gespeichert werden.',
+  );
+  expect(screen.getByRole('button', { name: /Könner/ })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  expect(screen.getByLabelText('Was ist 17 + 25?')).toHaveValue('42');
+});
+
+it('filtert nach Thema, zeigt Tipps und übermittelt ausgewählte Antworten', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...initial,
+    topics: [
+      ...initial.topics,
+      { ...mathTopic, id: 'geometry', name: 'Geometrie-Werkstatt' },
+    ],
+    questions: [
+      ...initial.questions,
+      {
+        ...mathQuestion,
+        id: 'choice',
+        topicId: 'geometry',
+        prompt: 'Welche Linie hat zwei Endpunkte?',
+        answerKind: 'choice',
+        options: ['Gerade', 'Strecke'],
+        hint: 'Verbinde zwei Punkte.',
+      },
+    ],
+  });
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await user.type(await screen.findByLabelText('Was ist 17 + 25?'), '42');
+  await user.click(screen.getByRole('button', { name: /Geometrie-Werkstatt/ }));
+  expect(screen.queryByLabelText('Was ist 17 + 25?')).not.toBeInTheDocument();
+  expect(screen.getByRole('radio', { name: 'Strecke' })).not.toBeChecked();
+  await user.click(screen.getByRole('button', { name: 'Gib mir einen Tipp' }));
+  expect(screen.getByText('Verbinde zwei Punkte.')).toBeVisible();
+  await user.click(screen.getByRole('radio', { name: 'Strecke' }));
+  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  expect(desktop.submitAnswer).toHaveBeenCalledWith(
+    expect.any(String),
+    'choice',
+    'Strecke',
+  );
+});
+
+it('zeigt Mitmachaufgaben mit Selbstkontrolle ohne Punktebuchung', async () => {
+  const user = userEvent.setup();
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await screen.findByLabelText('Was ist 17 + 25?');
+  await user.click(screen.getByText('Stift raus! 1 Mitmachaufgaben'));
+  expect(screen.getByText('Erkläre deinen Weg.')).toBeVisible();
+  await user.click(screen.getByText('So kannst du dich prüfen'));
+  expect(screen.getByText('Viele Wege sind möglich.')).toBeVisible();
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
+});
+
+it('leert eine alte Antwort auch nach Wiederherstellung einer anders gespeicherten Stufe', async () => {
+  const user = userEvent.setup();
+  const questions = [
+    ...initial.questions,
+    {
+      ...mathQuestion,
+      id: 'hard-reload',
+      difficulty: 'streber' as const,
+      prompt: 'Berechne −24 − (−17).',
+    },
+  ];
+  vi.mocked(desktop.getLearningState)
+    .mockResolvedValueOnce({ ...initial, questions })
+    .mockResolvedValueOnce({ ...initial, questions, difficulty: 'streber' });
+  // The database committed, but its response was lost. Reload reveals the saved value.
+  vi.mocked(desktop.setDifficulty).mockRejectedValue(
+    new Error('Antwort verloren.'),
+  );
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await user.type(await screen.findByLabelText('Was ist 17 + 25?'), '42');
+  await user.click(screen.getByRole('button', { name: /Streber/ }));
+  await screen.findByRole('alert');
+  await user.click(
+    screen.getByRole('button', { name: 'Punktekonto neu laden' }),
+  );
+  expect(await screen.findByLabelText('Berechne −24 − (−17).')).toHaveValue('');
+  expect(screen.getByRole('button', { name: /Streber/ })).toHaveAttribute(
+    'aria-pressed',
+    'true',
   );
 });

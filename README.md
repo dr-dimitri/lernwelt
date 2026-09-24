@@ -29,13 +29,13 @@ npm run desktop:build -- --bundles app  # macOS .app
 npm run desktop:build -- --bundles nsis # Windows Installer, auf Windows ausführen
 ```
 
-Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale macOS-App ist noch nicht signiert oder notarisiert. Inhalte und vollständige Lehrplanabdeckung sind nicht Teil dieses technischen Grundgerüsts.
+Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale macOS-App ist noch nicht signiert oder notarisiert. Mathematik Klasse 5 enthält ein offline gebündeltes Übungspaket für alle sieben Lernbereiche; Englisch enthält weiterhin Beispiele.
 
 ## Lokale Daten
 
 Das Lernprofil (Spitzname und Jahrgangsstufe 5–13) wird in `lernwelt.sqlite3` im Tauri-Anwendungsdatenverzeichnis `de.lernwelt.desktop` gespeichert. Auf macOS ist dies `~/Library/Application Support/de.lernwelt.desktop/`, auf Windows unter `%APPDATA%\\de.lernwelt.desktop\\`. Die Browser-Vorschau zeigt einen Hinweis statt Speicherung zu simulieren.
 
-Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Vier eigene Beispielaufgaben sind zum Ausprobieren des Punktesystems angeschlossen. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
+Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Mathematikaufgaben und Englischbeispiele sind an das Punktesystem angeschlossen. Eine fachübergreifende Stufenauswahl wird ebenfalls lokal gespeichert. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
 
 ```sh
 cargo test --manifest-path src-tauri/Cargo.toml
@@ -57,10 +57,29 @@ Details: [Architektur](docs/architecture.md), [Reviewnachweise](docs/reviews/).
 
 ## Punkte und Abzeichen
 
-Nach dem Speichern eines Lernprofils können die Beispielaufgaben in Mathematik und Englisch beantwortet werden. Jede Aufgabe bringt bei der ersten korrekten Lösung **10 Punkte**. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
+Nach dem Speichern eines Lernprofils können die Aufgaben in Mathematik und Englisch beantwortet werden. Jede Aufgabe bringt bei der ersten korrekten Lösung **10 Punkte**. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
 
-Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Abzeichen **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Mit den vier Beispielaufgaben sind insgesamt 40 Punkte erreichbar. Weitere Aufgaben und Belohnungen lassen sich ergänzen.
+Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Abzeichen **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Die Stufen bringen gleich viele Punkte pro neuer Aufgabe. Weitere Belohnungen lassen sich ergänzen.
 
 Antworten werden lokal im Rust-Backend geprüft. Gutschrift und Lernfortschritt werden gemeinsam gespeichert; Einlösen prüft das Guthaben und bucht atomar ab. Doppelte Requests erzeugen keine doppelten Buchungen. Das lokale System bietet keine manipulationssichere Währung und hat keinen Geldwert.
 
-Die Beispiele sind eigene Aufgaben ohne bestätigte Lehrplanzuordnung. Sie sind keine vollständigen Lerninhalte. Aufgaben- und Belohnungsregeln stehen in `src-tauri/src/learning.rs`.
+Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri/content/curriculum-v1.json`. Bestehende Aufgaben-IDs behalten ihre Bedeutung; alte Beispiel-Mathematikaufgaben bleiben für gespeicherte Buchungen und Wiederholungsrequests intern auflösbar.
+
+
+## Mathematik Klasse 5
+
+153 eigene Aufgaben nach [LehrplanPLUS Gymnasium Bayern, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik), Quellenstand 24.09.2026. Alle sieben Lernbereiche sind als Themen auswählbar:
+
+- Zahlen entdecken: Stellenwerte, römische Zahlen, Runden, Zahlengerade, ganze Zahlen und Betrag.
+- Plus & Minus: schriftliches Rechnen, Überschläge, Vorzeichen, Gleichungen und Rechenwege.
+- Geometrie-Werkstatt: Koordinaten, Geraden, Abstände, Kreise, Winkel und Vierecke.
+- Mal, Geteilt & Potenzen: schriftliches Rechnen, Teilbarkeit, Primfaktoren, Zählprinzip, Vorzeichen, Potenzen und Gleichungen.
+- Rechentricks & Terme: Rechenreihenfolge, Klammern, Rechengesetze, Termstruktur und Sachaufgaben.
+- Größen im Alltag: Geld, Längen, Massen, Zeit, Schätzen, Dreisatz und Maßstäbe.
+- Flächen-Abenteuer: Flächeninhalt, Umfang, Einheiten, zusammengesetzte Flächen und Quaderoberflächen.
+
+**Vorschule** bietet einen leichten Einstieg, **Könner** reguläre Übungen und **Streber** anspruchsvollere Knobelaufgaben. Es sind spielerische Bezeichnungen, keine Altersstufen. Die Wahl bleibt über Fachwechsel, Profiländerung und Neustart erhalten; Standard ist Könner. Für Englisch gibt es zwei ausdrücklich als Beispiele gekennzeichnete Aufgaben pro Stufe (1. Fremdsprache), noch keinen vollständigen Englischlehrplan. Die angebotene Mathematik bleibt Klasse 5, auch wenn im Profil eine andere Klasse steht.
+
+Jede Bildschirmaufgabe bietet einen Tipp und nach der Antwort einen erklärten Lösungsweg. Auswahlfragen, ganze Zahlen und exakte Dezimalzahlen werden im Backend bewertet. Komma oder Punkt gelten als Dezimaltrennzeichen, normale/geschützte Leerzeichen als Dreiergruppierung: `25 000` oder `25000`; `25.000` bedeutet 25. Einheiten stehen in der Frage und werden nicht mit eingegeben. Englischwörter werden ohne Beachtung der Großschreibung verglichen.
+
+20 Mitmachaufgaben ergänzen Zeichnen, Messen, Schätzen und Begründen mit Selbstkontrollhinweisen. Sie gelten für alle Stufen, vergeben keine Punkte und werden nicht automatisch bewertet. Das Paket repräsentiert alle Lernbereiche, ist aber kein unbegrenzter Aufgabengenerator, keine vollständige Lernstandserhebung und kein Ersatz für Unterricht. Es gibt keine amtliche Freigabe. Weitere Hinweise und die Inhaltsmatrix stehen in [docs/curriculum-math-5.md](docs/curriculum-math-5.md).

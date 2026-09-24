@@ -1,6 +1,11 @@
 import { invoke, isTauri } from '@tauri-apps/api/core';
 import type { LearnerProfile, LearningProgress } from '../domain/learner';
-import type { AnswerResult, LearningState, Wallet } from '../domain/learning';
+import type {
+  AnswerResult,
+  Difficulty,
+  LearningState,
+  Wallet,
+} from '../domain/learning';
 
 async function callDesktop<T>(
   command: string,
@@ -28,6 +33,8 @@ export const desktop = {
     callDesktop<LearnerProfile>('save_profile', { profile }),
   listProgress: () => callDesktop<LearningProgress[]>('list_progress'),
   getLearningState: () => callDesktop<LearningState>('get_learning_state'),
+  setDifficulty: (difficulty: Difficulty) =>
+    callDesktop<Difficulty>('set_difficulty', { difficulty }),
   submitAnswer: (requestId: string, questionId: string, answer: string) =>
     callDesktop<AnswerResult>('submit_answer', {
       requestId,

@@ -23,13 +23,21 @@ Die Datenbank ist nicht verschlüsselt. Es gibt noch keine Mehrbenutzerverwaltun
 
 ## Offline und Schnittstellen
 
-Sechs explizite Commands sind für das lokale Hauptfenster erlaubt: `get_profile`, `save_profile`, `list_progress`, `get_learning_state`, `submit_answer`, `redeem_reward`. Ein vom Frontend geliefertes `correct`-Flag wird nicht als Antwortbewertung akzeptiert. Rust prüft Eingaben auch dann, wenn das Frontend bereits geprüft hat. Es gibt keinen beliebigen SQL-, Shell- oder Dateisystemzugriff aus der Oberfläche und keine Netzwerk-Plugins. Produktions-CSP und lokal gebündelte Assets vermeiden externe Ressourcen. Die Entwicklungs-CSP erlaubt nur zusätzlich Vite/HMR auf der Loopback-Adresse.
+Sieben explizite Commands sind für das lokale Hauptfenster erlaubt: `get_profile`, `save_profile`, `list_progress`, `get_learning_state`, `submit_answer`, `redeem_reward`, `set_difficulty`. Ein vom Frontend geliefertes `correct`-Flag wird nicht als Antwortbewertung akzeptiert. Rust prüft Eingaben auch dann, wenn das Frontend bereits geprüft hat. Es gibt keinen beliebigen SQL-, Shell- oder Dateisystemzugriff aus der Oberfläche und keine Netzwerk-Plugins. Produktions-CSP und lokal gebündelte Assets vermeiden externe Ressourcen. Die Entwicklungs-CSP erlaubt nur zusätzlich Vite/HMR auf der Loopback-Adresse.
 
 ## Lehrplaninhalte ergänzen
 
 Lehrplaninhalte getrennt von Nutzerdaten als versionierte Pakete pflegen. Vor einem Import ein überprüfbares Schema einführen: stabile ID, Fach, Jahrgangsstufe, Lernbereich, Kompetenz, Quellen-URL, Lehrplanstand, Inhaltsversion und bei Englisch Fremdsprachenfolge. Offizielle Grundlage ist [LehrplanPLUS Bayern](https://www.lehrplanplus.bayern.de/). Ein technisches Beispiel stellt keine fachliche Vollständigkeit sicher.
 
-Aufgaben benötigen eigene Antwortprüfer; Formeldarstellung (später etwa KaTeX) ersetzt keine mathematische Validierung. Vier eigene Beispielaufgaben prüfen ganze Zahlen beziehungsweise einzelne englische Wörter. Umfangreiche Aufgabenpakete, differenzierte Fachbewertungen, Wiederholungsplanung, Audioinhalte und KI-Funktionen sind noch nicht enthalten.
+Das erste Paket liegt in `src-tauri/content/curriculum-v1.json` und wird über `include_str!` offline eingebunden. `content.rs` liest es einmalig, validiert Metadaten, IDs und Antworten und trennt es von der Punktebuchung in `learning.rs`. Topics tragen Jahrgangsstufe, Lehrplanbezug und ggf. Fremdsprachenfolge; Aufgaben verweisen auf Topic, Kompetenz, Stufe und eine unveränderliche Versions-ID. Quelle und Abrufstand gelten paketweit für die Mathematikzuordnung; Englisch ist ausdrücklich als Beispiel ohne vollständige Zuordnung markiert.
+
+Die IPC-Projektion liefert Aufgaben ohne Lösungsschlüssel. Rust bewertet Zahlen über exakte Dezimalnormalisierung (keine Fließkomma-Rundung, kein `eval`), Text ohne ASCII-Großschreibung und Auswahlantworten exakt. Einheiten werden durch die Fragestellung vorgegeben. Antwort- und Requestvalidierung, Journal und Idempotenz gelten für alle Stufen. Die vier ursprünglichen Beispiel-IDs behalten ihre Antworten; die beiden Mathematikbeispiele werden in der neuen Themenauswahl nicht angezeigt, bleiben aber für alte Request-Replays erreichbar. Geänderte Antwortbedeutungen benötigen neue Aufgaben-IDs.
+
+Die UI wählt Thema und Stufe, zeigt Tipps, Rückmeldung und lösbare Teilaufgaben. Papieraktivitäten mit Selbstkontrolle ergänzen geometrische Konstruktionen und das Erklären von Rechenwegen; sie lösen keine Punktebuchung aus. Audio, adaptive Wiederholungsplanung und KI sind nicht enthalten.
+
+## Fachübergreifende Stufe (Schema 3)
+
+`learning_settings` enthält genau eine Einstellung mit den erlaubten Werten `vorschule`, `koenner`, `streber`. Die transaktionale Migration setzt bestehende und neue Installationen auf `koenner` und lässt Profile, Fortschritt und Buchungen unverändert. Die Einstellung ist unabhängig von Profiljahrgang und Fach; Profiländerung und Neustart erhalten sie. `set_difficulty` prüft auch ungültige Strings am Rust-Eingang, bevor geschrieben wird. Die UI ändert die aktive Stufe erst nach erfolgreichem Speichern und zeigt Fehler mit Wiederholungsmöglichkeit an.
 
 ## Qualität und Review
 
@@ -47,4 +55,4 @@ Schreibtransaktionen verwenden `BEGIN IMMEDIATE`, damit auch mehrere App-Prozess
 
 Die Migration von Schema 1 erhält Profile und Fortschritt und startet das Buchungsjournal leer. Für alte aggregierte Fortschrittsdaten fehlen eindeutige Aufgaben-IDs; daraus werden keine Punkte erfunden. Zukünftige geänderte Aufgaben benötigen eine neue stabile Inhaltsversion/ID. Belohnungen sind derzeit einmalige digitale Abzeichen; wiederholt einlösbare oder eigene Belohnungen benötigen ein erweitertes Datenmodell.
 
-Die vier `sample.*.v1`-Aufgaben stammen aus eigenen Lernwelt-Beispielen (Stand 2026-09-24); ihre Kompetenz-IDs sind ausdrücklich Beispiel-IDs. Eine amtlich geprüfte Jahrgangs-/Lehrplanzuordnung ist noch nicht erfolgt. Vor der Aufnahme regulärer Aufgabenpakete gelten die oben beschriebenen Quellen- und Metadatenanforderungen.
+Die vier `sample.*.v1`-Aufgaben stammen aus eigenen Lernwelt-Beispielen (Stand 2026-09-24); ihre Kompetenz-IDs sind ausdrücklich Beispiel-IDs. Die Englischbeispiele werden weiterhin als Beispiele gekennzeichnet; die neue Mathematikzuordnung und ihre Grenzen sind in `curriculum-math-5.md` dokumentiert.

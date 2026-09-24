@@ -20,16 +20,16 @@ export default function App() {
       </header>
       <main id="main">
         <section className="intro" aria-labelledby="welcome">
-          <p className="eyebrow">DEIN RAUM ZUM LERNEN</p>
+          <p className="eyebrow">DEIN NÄCHSTES AHA!</p>
           <h1 id="welcome">
-            Neugierig bleiben.
+            Kleine Rätsel.
             <br />
-            <span>Schritt für Schritt wachsen.</span>
+            <span>Große Entdeckungen.</span>
           </h1>
           <p className="intro-text">
             Mathematik und Englisch für das bayerische Gymnasium.
             <br />
-            In deinem Tempo, auf deinem Gerät.
+            Wähle dein Thema, hol dir einen Tipp und sammle Punkte.
           </p>
         </section>
         <section aria-labelledby="subjects-title">
@@ -61,9 +61,7 @@ export default function App() {
         <ProfilePanel
           onSaved={() => setProfileVersion((version) => version + 1)}
         />
-        <footer>
-          Deine Lernwelt wächst. Dies ist die technische Grundversion.
-        </footer>
+        <footer>Dein Tempo zählt. Pausen gehören zum Lernen dazu.</footer>
       </main>
     </div>
   );
