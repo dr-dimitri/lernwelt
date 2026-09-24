@@ -657,3 +657,242 @@ summary {
   background: #fff;
   font-variant-numeric: tabular-nums;
 }
+
+.view-switch {
+  display: flex;
+  gap: 12px;
+  margin: 28px 0;
+  flex-wrap: wrap;
+}
+.view-switch button {
+  padding: 14px 22px;
+  border-radius: 16px;
+  border: 2px solid #d9d5e7;
+  background: white;
+  color: #453565;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+.view-switch button[aria-pressed='true'] {
+  background: #5e438a;
+  color: white;
+  border-color: #5e438a;
+}
+.arcade {
+  padding: 28px;
+  background: #f5f2fd;
+  border: 1px solid #e5def2;
+  border-radius: 28px;
+}
+.arcade .section-heading {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.arcade h2,
+.arcade h3 {
+  margin-top: 0;
+}
+.arcade-balance {
+  background: #fff1b4;
+  padding: 13px 19px;
+  border-radius: 18px;
+  color: #57420b;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.arcade-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 26px 0;
+}
+.arcade-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: white;
+  padding: 24px;
+  border-radius: 22px;
+  border-top: 5px solid #8d70c5;
+}
+.arcade-runner {
+  border-color: #6bad78;
+}
+.arcade-space {
+  border-color: #60a9d1;
+}
+.arcade-chickens {
+  border-color: #e6a456;
+}
+.arcade-icon {
+  font-size: 42px;
+  color: #66438e;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.arcade-card p {
+  margin: 0 0 15px;
+}
+.arcade-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+}
+.arcade-card details {
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+.arcade-card summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.arcade-card details p {
+  margin-top: 12px;
+}
+.arcade button {
+  background: #5e438a;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 17px;
+  cursor: pointer;
+  min-height: 44px;
+}
+.arcade button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.arcade-card > button {
+  margin-top: auto;
+  width: 100%;
+}
+.arcade .best-score {
+  font-size: 0.9rem;
+  color: #655575;
+}
+.arcade-note {
+  font-size: 0.9rem;
+  color: #655575;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+.resume-round,
+.arcade-result,
+.points-tip {
+  background: #fff5ce;
+  padding: 20px;
+  border-radius: 16px;
+  margin: 22px 0;
+}
+.game-stage {
+  margin-top: 28px;
+}
+.game-stage > p {
+  line-height: 1.65;
+}
+.game-hud {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px 0 12px;
+}
+.game-hud > span:last-child {
+  font-size: 0.85rem;
+}
+.game-hud > span[aria-label] {
+  color: #b64066;
+  font-size: 24px;
+}
+.game-focus {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #192442;
+  max-width: 800px;
+  margin: auto;
+}
+.game-focus:focus-visible {
+  outline: 4px solid #8d70c5;
+  outline-offset: 4px;
+}
+.game-focus canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+}
+.game-overlay {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  aspect-ratio: 640 / 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #15203de8;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.game-overlay h3 {
+  color: white;
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+}
+.game-overlay p {
+  margin: 0 0 20px;
+}
+.game-overlay button {
+  background: #f2d06c;
+  color: #253042;
+}
+.game-controls {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.game-controls button {
+  background: #e9e3fb;
+  color: #382654;
+  touch-action: none;
+  user-select: none;
+}
+.game-actions {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0;
+}
+.game-actions button:last-child {
+  background: #e5ddf4;
+  color: #453565;
+}
+@media (max-width: 650px) {
+  .arcade {
+    padding: 18px;
+  }
+  .arcade-grid {
+    grid-template-columns: 1fr;
+  }
+  .game-overlay h3 {
+    font-size: 1.25rem;
+  }
+  .game-overlay p {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+  .game-controls {
+    gap: 6px;
+  }
+  .game-controls button {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}

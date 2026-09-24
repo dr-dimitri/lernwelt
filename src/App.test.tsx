@@ -12,6 +12,7 @@ vi.mock('./lib/desktop', () => ({
     getProfile: vi.fn(),
     saveProfile: vi.fn(),
     getLearningState: vi.fn(),
+    getArcadeState: vi.fn(),
   },
 }));
 
@@ -145,4 +146,35 @@ describe('Lernwelt', () => {
     expect(await screen.findByRole('status')).toHaveTextContent('gespeichert');
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
+});
+
+it('lädt beim Rückweg aus der Spielhalle das gemeinsame Lernpunktekonto neu', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState)
+    .mockResolvedValueOnce({
+      ...initial,
+      wallet: { ...initial.wallet, balance: 20 },
+    })
+    .mockResolvedValueOnce({
+      ...initial,
+      wallet: { ...initial.wallet, balance: 10 },
+    });
+  vi.mocked(desktop.getArcadeState).mockResolvedValue({
+    profileReady: true,
+    entryCost: 10,
+    wallet: { ...initial.wallet, balance: 10 },
+    activeSession: null,
+    bestScores: [],
+  });
+  render(<App />);
+  expect(await screen.findByText('20 Punkte')).toBeVisible();
+  await user.click(screen.getByRole('button', { name: 'Spielhalle' }));
+  expect(
+    await screen.findByText('10 Lernpunkte', { selector: '.arcade-balance' }),
+  ).toBeVisible();
+  await user.click(
+    screen.getByRole('button', { name: 'Lernen & Punkte sammeln' }),
+  );
+  expect(await screen.findByText('10 Punkte')).toBeVisible();
+  expect(desktop.getLearningState).toHaveBeenCalledTimes(2);
 });

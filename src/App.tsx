@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import ArcadePanel from './components/ArcadePanel';
 import ProfilePanel from './components/ProfilePanel';
 import LearningPanel from './components/LearningPanel';
 import { subjects, type SubjectId } from './domain/subjects';
 
 export default function App() {
+  const [view, setView] = useState<'learn' | 'arcade'>('learn');
   const [selected, setSelected] = useState<SubjectId>('mathematics');
   const [profileVersion, setProfileVersion] = useState(0);
 
@@ -32,32 +34,54 @@ export default function App() {
             Wähle dein Thema, hol dir einen Tipp und sammle Punkte.
           </p>
         </section>
-        <section aria-labelledby="subjects-title">
-          <div className="section-heading">
-            <h2 id="subjects-title">Deine Fächer</h2>
-            <span>Gymnasium · Bayern</span>
-          </div>
-          <div className="subject-grid">
-            {subjects.map((item) => (
-              <button
-                key={item.id}
-                className={`subject-card ${item.id}`}
-                aria-pressed={selected === item.id}
-                onClick={() => setSelected(item.id)}
-              >
-                <span className="subject-symbol" aria-hidden="true">
-                  {item.symbol}
-                </span>
-                <span className="subject-name">{item.name}</span>
-                <span className="subject-description">{item.description}</span>
-                <span className="subject-action">
-                  Fach auswählen <span aria-hidden="true">↗</span>
-                </span>
-              </button>
-            ))}
-          </div>
-        </section>
-        <LearningPanel subject={selected} profileVersion={profileVersion} />
+        <nav className="view-switch" aria-label="Lernwelt-Bereiche">
+          <button
+            aria-pressed={view === 'learn'}
+            onClick={() => setView('learn')}
+          >
+            Lernen & Punkte sammeln
+          </button>
+          <button
+            aria-pressed={view === 'arcade'}
+            onClick={() => setView('arcade')}
+          >
+            Spielhalle
+          </button>
+        </nav>
+        {view === 'learn' ? (
+          <>
+            <section aria-labelledby="subjects-title">
+              <div className="section-heading">
+                <h2 id="subjects-title">Deine Fächer</h2>
+                <span>Gymnasium · Bayern</span>
+              </div>
+              <div className="subject-grid">
+                {subjects.map((item) => (
+                  <button
+                    key={item.id}
+                    className={`subject-card ${item.id}`}
+                    aria-pressed={selected === item.id}
+                    onClick={() => setSelected(item.id)}
+                  >
+                    <span className="subject-symbol" aria-hidden="true">
+                      {item.symbol}
+                    </span>
+                    <span className="subject-name">{item.name}</span>
+                    <span className="subject-description">
+                      {item.description}
+                    </span>
+                    <span className="subject-action">
+                      Fach auswählen <span aria-hidden="true">↗</span>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </section>
+            <LearningPanel subject={selected} profileVersion={profileVersion} />
+          </>
+        ) : (
+          <ArcadePanel profileVersion={profileVersion} />
+        )}
         <ProfilePanel
           onSaved={() => setProfileVersion((version) => version + 1)}
         />

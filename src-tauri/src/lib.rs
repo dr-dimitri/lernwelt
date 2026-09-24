@@ -1,3 +1,4 @@
+mod arcade;
 mod content;
 mod database;
 mod learning;
@@ -73,6 +74,27 @@ fn redeem_reward(
     storage.with_connection(|connection| learning::redeem_reward(connection, &reward_id))
 }
 
+#[tauri::command]
+fn get_arcade_state(storage: State<'_, Storage>) -> Result<arcade::ArcadeState, String> {
+    storage.with_connection(arcade::get_state)
+}
+#[tauri::command]
+fn start_game(
+    storage: State<'_, Storage>,
+    session_id: String,
+    game_id: String,
+) -> Result<arcade::ArcadeState, String> {
+    storage.with_connection(|connection| arcade::start(connection, &session_id, &game_id))
+}
+#[tauri::command]
+fn finish_game(
+    storage: State<'_, Storage>,
+    session_id: String,
+    score: i64,
+) -> Result<arcade::ArcadeState, String> {
+    storage.with_connection(|connection| arcade::finish(connection, &session_id, score))
+}
+
 pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
@@ -96,7 +118,10 @@ pub fn run() {
             get_learning_state,
             set_difficulty,
             submit_answer,
-            redeem_reward
+            redeem_reward,
+            get_arcade_state,
+            start_game,
+            finish_game
         ])
         .run(tauri::generate_context!())
         .expect("Lernwelt konnte nicht gestartet werden");
