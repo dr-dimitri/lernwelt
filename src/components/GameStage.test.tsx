@@ -8,18 +8,47 @@ vi.mock('../games/draw', () => ({ drawGame: vi.fn() }));
 beforeEach(() => {
   vi.useFakeTimers();
   Element.prototype.scrollIntoView = vi.fn();
-  vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(
-    {} as CanvasRenderingContext2D,
-  );
+  vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
+    setTransform: vi.fn(),
+  } as unknown as CanvasRenderingContext2D);
 });
 afterEach(() => {
   vi.useRealTimers();
   vi.restoreAllMocks();
 });
+it('zeichnet auf Retina scharf und trifft Hühner bei verkleinerter Anzeige weiterhin an der richtigen Position', () => {
+  vi.spyOn(window, 'devicePixelRatio', 'get').mockReturnValue(2);
+  render(<GameStage gameId="chickens" onFinish={vi.fn()} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Losspielen / Weiter' }));
+  act(() => vi.advanceTimersByTime(32));
+  const canvas = screen.getByLabelText('Hühner-Rummel', {
+    selector: 'canvas',
+  }) as HTMLCanvasElement;
+  expect(canvas.width).toBe(1280);
+  expect(canvas.height).toBe(800);
+  vi.spyOn(canvas, 'getBoundingClientRect').mockReturnValue({
+    left: 100,
+    top: 100,
+    width: 320,
+    height: 200,
+  } as DOMRect);
+  const chicken = renderedGame().entities[0];
+  fireEvent.pointerDown(canvas, {
+    clientX: 100 + (chicken.x + chicken.w / 2) / 2,
+    clientY: 100 + (chicken.y + chicken.h / 2) / 2,
+  });
+  act(() => vi.advanceTimersByTime(120));
+  expect(screen.getByText('50 Spielpunkte')).toBeVisible();
+});
 it('startet erst auf Wunsch, pausiert per Bildschirmtaste und zählt nur aktive Spielzeit', () => {
   const finish = vi.fn();
   render(<GameStage gameId="chickens" onFinish={finish} />);
+  act(() => vi.advanceTimersByTime(32));
+  const initialFrames = vi.mocked(drawGame).mock.calls.length;
   act(() => vi.advanceTimersByTime(50000));
+  expect(drawGame).toHaveBeenCalledTimes(initialFrames);
+  fireEvent(window, new Event('resize'));
+  expect(drawGame).toHaveBeenCalledTimes(initialFrames + 1);
   expect(finish).not.toHaveBeenCalled();
   fireEvent.click(screen.getByRole('button', { name: 'Losspielen / Weiter' }));
   const field = screen.getByRole('group', { name: 'Spielfeld Hühner-Rummel' });

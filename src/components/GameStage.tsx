@@ -10,6 +10,7 @@ import {
   type Action,
 } from '../games/engine';
 import { drawGame } from '../games/draw';
+import { prepareCanvas } from '../games/canvas';
 
 export default function GameStage({
   gameId,
@@ -70,6 +71,10 @@ export default function GameStage({
       previous = 0,
       hudClock = 0,
       repeatClock = 0;
+    const paint = () => {
+      const context = canvas.current ? prepareCanvas(canvas.current) : null;
+      if (context) drawGame(context, game);
+    };
     const tick = (time: number) => {
       const dt = previous ? Math.min((time - previous) / 1000, 0.04) : 0;
       previous = time;
@@ -83,8 +88,7 @@ export default function GameStage({
           repeatClock = 0;
         }
       }
-      const context = canvas.current?.getContext('2d');
-      if (context) drawGame(context, game);
+      paint();
       hudClock += dt;
       if (hudClock >= 0.1 || game.over) {
         setHud({
@@ -99,10 +103,14 @@ export default function GameStage({
         ended.current = true;
         finishRef.current(game.score);
       }
-      if (!game.over) frame = requestAnimationFrame(tick);
+      if (!game.over && !paused) frame = requestAnimationFrame(tick);
     };
+    window.addEventListener('resize', paint);
     frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('resize', paint);
+    };
   }, [game, gameId, paused]);
   function press(action: Action) {
     if (paused || game.over) return;
@@ -231,18 +239,20 @@ export default function GameStage({
         </canvas>
         {(paused || hud.over) && (
           <div className="game-overlay">
-            {hud.over ? (
-              <>
-                <h3>{hud.won ? 'Runde geschafft!' : 'Gut gespielt!'}</h3>
-                <p>{hud.score} Spielpunkte gesammelt.</p>
-              </>
-            ) : (
-              <>
-                <h3>Zeit für dein Spiel!</h3>
-                <p>Bereit? Du kannst jederzeit pausieren.</p>
-                <button onClick={togglePause}>Losspielen / Weiter</button>
-              </>
-            )}
+            <div className="game-dialog">
+              {hud.over ? (
+                <>
+                  <h3>{hud.won ? 'Runde geschafft!' : 'Gut gespielt!'}</h3>
+                  <p>{hud.score} Spielpunkte gesammelt.</p>
+                </>
+              ) : (
+                <>
+                  <h3>Zeit für dein Spiel!</h3>
+                  <p>Bereit? Du kannst jederzeit pausieren.</p>
+                  <button onClick={togglePause}>Losspielen / Weiter</button>
+                </>
+              )}
+            </div>
           </div>
         )}
         <div className="game-controls" aria-label="Spielsteuerung">

@@ -4,6 +4,7 @@ import { beforeEach, expect, it, vi } from 'vitest';
 import ArcadePanel from './ArcadePanel';
 import { desktop } from '../lib/desktop';
 import type { ArcadeState } from '../domain/arcade';
+vi.mock('./GamePreview', () => ({ default: () => null }));
 vi.mock('../lib/desktop', () => ({
   desktop: { getArcadeState: vi.fn(), startGame: vi.fn(), finishGame: vi.fn() },
 }));
