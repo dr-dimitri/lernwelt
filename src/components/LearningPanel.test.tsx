@@ -357,7 +357,7 @@ it('zeigt Einheitentafeln mit Spaltenüberschriften und Erklärung', async () =>
   expect(screen.getByText('Diese Zeile bedeutet 3,05 €.')).toBeVisible();
 });
 
-it('zeigt nach Stufenwechsel 5, 10 und 15 Punkte und die tatsächliche Gutschrift', async () => {
+it('zeigt nach Stufenwechsel 1, 2 und 3 Punkte und die tatsächliche Gutschrift', async () => {
   const user = userEvent.setup();
   vi.mocked(desktop.getLearningState).mockResolvedValue({
     ...initial,
@@ -372,17 +372,19 @@ it('zeigt nach Stufenwechsel 5, 10 und 15 Punkte und die tatsächliche Gutschrif
   );
   render(<LearningPanel subject="mathematics" profileVersion={0} />);
   expect(
-    await screen.findByText(/Eine neue Aufgabe gelöst\? \+10 Punkte!/),
+    await screen.findByText(/Eine neue Aufgabe gelöst\? \+2 Punkte!/),
   ).toBeVisible();
   for (const [name, points] of [
-    ['Vorschule', 5],
-    ['Könner', 10],
-    ['Streber', 15],
+    ['Vorschule', 1],
+    ['Könner', 2],
+    ['Streber', 3],
   ] as const) {
     await user.click(screen.getByRole('button', { name: new RegExp(name) }));
     expect(
       await screen.findByText(
-        new RegExp(`Eine neue Aufgabe gelöst\\? \\+${points} Punkte!`),
+        new RegExp(
+          `Eine neue Aufgabe gelöst\\? \\+${points} ${points === 1 ? 'Punkt' : 'Punkte'}!`,
+        ),
       ),
     ).toBeVisible();
     vi.mocked(desktop.submitAnswer).mockResolvedValue({
@@ -391,6 +393,10 @@ it('zeigt nach Stufenwechsel 5, 10 und 15 Punkte und die tatsächliche Gutschrif
     });
     await user.type(screen.getByLabelText('Was ist 17 + 25?'), '42');
     await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
-    expect(await screen.findByText(`Richtig! +${points} Punkte`)).toBeVisible();
+    expect(
+      await screen.findByText(
+        `Richtig! +${points} ${points === 1 ? 'Punkt' : 'Punkte'}`,
+      ),
+    ).toBeVisible();
   }
 });
