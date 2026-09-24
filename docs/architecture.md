@@ -119,3 +119,12 @@ Die letzte Antwort, ihr Punkt und die Vorbereitung der folgenden Runde werden ge
 ## Quadratzahlen ab 10 (Schema 11)
 
 Neue Runden wählen fünf Faktoren aus 10–25. Migration 011 entfernt ausschließlich noch unbeantwortete Aufgabenpläne, sodass auch direkt nach dem Update keine alte offene Aufgabe unter 10 angeboten wird. Beantwortete Faktoren bleiben für Replays unverändert; Statistik und Guthaben bleiben erhalten. Die erste neu angelegte Runde startet nach der letzten beantworteten Sequenz mit einer neuen Rundennummer. Die sichtbare Bezeichnung des unveränderten kleinen Einmaleins lautet „10er-Einmaleins“.
+
+
+## Sternenlabyrinth (Schema 12)
+
+Migration 012 erweitert die Spiel-IDs um `maze` und erhält sämtliche alten Sessions mit IDs, Scores und Zeitstempeln sowie den Index für genau eine offene Runde. `runner` darf nur als bereits bezahlte Session wiederholt werden; neue Käufe sind gesperrt. Neue Labyrinth-Bestwerte sind von historischen Läufer-Scores getrennt. Keine Änderung an Eintritt oder Punktekonto.
+
+Ein deterministisch gesetzter Zufallsgenerator erstellt pro neuem Spielstart ein verbundenes 15×15-Labyrinth mit zusätzlichen Rundwegen. Alle Sterne, Roboter und der Ausgang liegen auf erreichbaren freien Zellen; die Karte berechnet einen kürzesten Weg zum nächsten Stern. Die Engine validiert Kollisionen und Sichtlinien; Blasen treffen keine Roboter durch Wände. Der Canvas zeichnet Wände per Raycasting und verdeckt Sprites anhand der Wandtiefe. Eigene lokale Vektorgrafik, keine Bibliothek und keine Originalassets. Spielstände bleiben wie bisher nur als Eintritt/Abschluss gespeichert; ein wiederaufgenommenes Spiel beginnt mit neuer Welt.
+
+Zeitlimits: Blöcke 240 Sekunden, Hühner 90 Sekunden, Labyrinth 240 Sekunden. Sternenwache hat sechs statt drei Wellen, jedoch keine feste Zeitbegrenzung. Animation und Zeit laufen ausschließlich bei aktivem, fokussiertem Spiel.

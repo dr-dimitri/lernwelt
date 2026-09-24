@@ -1,7 +1,8 @@
+import { aimRobot, createMaze, moveMaze, visible, type Maze } from './maze';
 import type { GameId } from '../domain/arcade';
 
 export type Action =
-  'left' | 'right' | 'down' | 'rotate' | 'jump' | 'fire' | 'drop';
+  'left' | 'right' | 'down' | 'forward' | 'rotate' | 'jump' | 'fire' | 'drop';
 export interface Entity {
   x: number;
   y: number;
@@ -15,6 +16,7 @@ export interface Shot {
   enemy: boolean;
 }
 export interface Game {
+  maze?: Maze;
   id: GameId;
   score: number;
   elapsed: number;
@@ -119,6 +121,10 @@ export function createGame(id: GameId, seed = Date.now()): Game {
     color: 1,
     bursts: [],
   };
+  if (id === 'maze') {
+    g.maze = createMaze(() => random(g));
+    g.lives = 5;
+  }
   if (id === 'blocks') {
     g.next = Math.floor(random(g) * 7);
     spawn(g);
@@ -218,6 +224,15 @@ export function actGame(g: Game, action: Action) {
       g.fallClock = 0;
     }
   }
+  if (g.id === 'maze' && g.maze && action === 'fire' && g.cooldown <= 0) {
+    const robot = aimRobot(g.maze);
+    if (robot) {
+      robot.alive = false;
+      g.score += 75;
+    }
+    g.maze.flash = 0.22;
+    g.cooldown = 0.3;
+  }
   if (g.id === 'runner' && action === 'jump' && g.y >= 310) g.vy = -500;
   if (g.id === 'space' && action === 'fire' && g.cooldown <= 0) {
     g.shots.push({ x: g.x + 15, y: g.y, enemy: false });
@@ -257,7 +272,7 @@ export function stepGame(
       descend(g);
       g.fallClock = 0;
     }
-    if (g.elapsed >= 120) {
+    if (g.elapsed >= 240) {
       g.over = true;
       g.won = true;
     }
@@ -279,6 +294,45 @@ export function stepGame(
       if (!g.lives) g.over = true;
     }
     if (!g.over && g.x >= 3400) {
+      g.over = true;
+      g.won = true;
+      g.score += 500;
+    }
+  }
+  if (g.id === 'maze' && g.maze) {
+    const m = g.maze;
+    m.flash = Math.max(0, m.flash - dt);
+    m.angle +=
+      ((held.has('right') ? 1 : 0) - (held.has('left') ? 1 : 0)) * 2.2 * dt;
+    const distance =
+      ((held.has('forward') ? 1 : 0) - (held.has('down') ? 1 : 0)) * 2.6 * dt;
+    moveMaze(m, m, Math.cos(m.angle) * distance, Math.sin(m.angle) * distance);
+    if (held.has('fire')) actGame(g, 'fire');
+    for (const star of m.stars)
+      if (star.alive && Math.hypot(m.x - star.x, m.y - star.y) < 0.55) {
+        star.alive = false;
+        g.score += 100;
+      }
+    for (const robot of m.robots) {
+      if (!robot.alive) continue;
+      const distance = Math.hypot(m.x - robot.x, m.y - robot.y);
+      if (distance > 0.4 && distance < 5 && visible(m, robot.x, robot.y, m))
+        moveMaze(
+          m,
+          robot,
+          ((m.x - robot.x) / distance) * 0.65 * dt,
+          ((m.y - robot.y) / distance) * 0.65 * dt,
+        );
+      if (distance < 0.55 && g.invincible <= 0) {
+        g.lives--;
+        g.invincible = 2;
+      }
+    }
+    if (g.lives <= 0 || g.elapsed >= 240) g.over = true;
+    else if (
+      m.stars.every((s) => !s.alive) &&
+      Math.hypot(m.x - m.exit.x, m.y - m.exit.y) < 0.65
+    ) {
       g.over = true;
       g.won = true;
       g.score += 500;
@@ -336,7 +390,7 @@ export function stepGame(
     if (g.lives <= 0 || alive.some((e) => e.alive && e.y + e.h >= 340))
       g.over = true;
     else if (g.entities.every((e) => !e.alive)) {
-      if (g.wave === 3) {
+      if (g.wave === 6) {
         g.over = true;
         g.won = true;
       } else {
@@ -352,7 +406,7 @@ export function stepGame(
       if (e.x < 0) e.x = 584;
       e.y += Math.sin(g.elapsed * 2 + i * 2) * 24 * dt;
     });
-    if (g.elapsed >= 45) {
+    if (g.elapsed >= 90) {
       g.over = true;
       g.won = true;
     }

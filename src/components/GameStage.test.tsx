@@ -66,6 +66,8 @@ it('startet erst auf Wunsch, pausiert per Bildschirmtaste und zählt nur aktive 
   expect(finish).not.toHaveBeenCalled();
   fireEvent.click(screen.getByRole('button', { name: 'Losspielen / Weiter' }));
   act(() => vi.advanceTimersByTime(46000));
+  expect(finish).not.toHaveBeenCalled();
+  act(() => vi.advanceTimersByTime(45000));
   expect(finish).toHaveBeenCalledExactlyOnceWith(50);
   act(() => vi.advanceTimersByTime(1000));
   expect(finish).toHaveBeenCalledTimes(1);
@@ -217,4 +219,24 @@ it('pausiert mit P auch auf einer fokussierten Bildschirmtaste', () => {
   ).toBeVisible();
   act(() => vi.advanceTimersByTime(200));
   expect(renderedGame().x).toBe(305);
+});
+
+it('steuert das Sternenlabyrinth mit WASD und pausiert ohne Zeitverlust bei Fokuswechsel', () => {
+  render(<GameStage gameId="maze" onFinish={vi.fn()} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Losspielen / Weiter' }));
+  act(() => vi.advanceTimersByTime(32));
+  const field = screen.getByRole('group', {
+    name: 'Spielfeld Sternenlabyrinth',
+  });
+  const m = renderedGame().maze!;
+  const before = [m.x, m.y];
+  fireEvent.keyDown(field, { key: 'w' });
+  act(() => vi.advanceTimersByTime(160));
+  fireEvent.keyUp(field, { key: 'w' });
+  expect([m.x, m.y]).not.toEqual(before);
+  fireEvent(window, new Event('blur'));
+  const elapsed = renderedGame().elapsed;
+  act(() => vi.advanceTimersByTime(10000));
+  expect(renderedGame().elapsed).toBe(elapsed);
+  expect(screen.getByLabelText('5 Herzen')).toBeVisible();
 });

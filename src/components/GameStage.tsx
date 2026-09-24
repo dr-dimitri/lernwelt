@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { GameId } from '../domain/arcade';
-import { games } from '../domain/arcade';
+import { gameDefinition } from '../domain/arcade';
 import {
   actGame,
   createGame,
@@ -41,11 +41,11 @@ export default function GameStage({
   const [paused, setPaused] = useState(true);
   const [hud, setHud] = useState({
     score: 0,
-    lives: 3,
+    lives: game.lives,
     over: false,
     won: false,
   });
-  const definition = games.find((g) => g.id === gameId)!;
+  const definition = gameDefinition(gameId);
   const finishRef = useRef(onFinish);
   useEffect(() => {
     finishRef.current = onFinish;
@@ -139,11 +139,19 @@ export default function GameStage({
         ArrowLeft: 'left',
         ArrowRight: 'right',
         ArrowDown: 'down',
-        ArrowUp: gameId === 'blocks' ? 'rotate' : 'jump',
+        ArrowUp:
+          gameId === 'blocks'
+            ? 'rotate'
+            : gameId === 'maze'
+              ? 'forward'
+              : 'jump',
+        ...(gameId === 'maze'
+          ? { w: 'forward', s: 'down', a: 'left', d: 'right' }
+          : {}),
         ' ':
           gameId === 'blocks' ? 'drop' : gameId === 'runner' ? 'jump' : 'fire',
       }) as Record<string, Action>
-    )[key];
+    )[key.length === 1 ? key.toLowerCase() : key];
   const controls: [Action, string][] =
     gameId === 'blocks'
       ? [
@@ -153,17 +161,25 @@ export default function GameStage({
           ['down', '↓ Senken'],
           ['drop', 'Ablegen'],
         ]
-      : gameId === 'runner'
+      : gameId === 'maze'
         ? [
-            ['left', 'Bremsen'],
-            ['jump', '↑ Springen'],
-            ['right', 'Schneller'],
+            ['left', '↶ Drehen'],
+            ['forward', '↑ Vorwärts'],
+            ['fire', '◎ Blasen'],
+            ['down', '↓ Zurück'],
+            ['right', 'Drehen ↷'],
           ]
-        : [
-            ['left', '← Links'],
-            ['fire', '✦ Lichtblitz'],
-            ['right', 'Rechts →'],
-          ];
+        : gameId === 'runner'
+          ? [
+              ['left', 'Bremsen'],
+              ['jump', '↑ Springen'],
+              ['right', 'Schneller'],
+            ]
+          : [
+              ['left', '← Links'],
+              ['fire', '✦ Lichtblitz'],
+              ['right', 'Rechts →'],
+            ];
   return (
     <section className="game-stage" aria-labelledby="game-title">
       <div className="section-heading">
@@ -175,7 +191,7 @@ export default function GameStage({
       </p>
       <div className="game-hud">
         <strong>{hud.score} Spielpunkte</strong>
-        {(gameId === 'runner' || gameId === 'space') && (
+        {(gameId === 'runner' || gameId === 'space' || gameId === 'maze') && (
           <span aria-label={`${hud.lives} Herzen`}>
             {'♥'.repeat(Math.max(0, hud.lives))}
           </span>
