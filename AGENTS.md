@@ -14,6 +14,14 @@
 - Die frei wählbaren Schwierigkeitsgrade **Vorschule**, **Könner**, **Streber** gelten fachübergreifend und werden lokal gespeichert. Die Namen sind spielerisch: leichter Einstieg, reguläres Üben, anspruchsvolles Knobeln innerhalb des Themas; keine Alterszuordnung oder Bewertung des Kindes.
 - Stufenwechsel jederzeit ermöglichen. Keine Sperren oder Belohnungsnachteile für leichtere Stufen. Lerninhalte, Sprache und Gestaltung auf altersgerechte Verständlichkeit und Freude am Lernen prüfen.
 
+### Verständliche Aufgaben
+- Schwierigkeit entsteht durch die Mathematik, nicht durch komplizierte Sprache. Auch Streber-Aufgaben verwenden kurze, direkte Sätze.
+- Pro Bildschirmaufgabe eine klare Frage stellen. Ausgangslage, gesuchte Größe und Einheit nennen. Lange Sachaufgaben in kurze Absätze gliedern; mehrteilige Mitmachaufträge als nummerierte Schritte darstellen.
+- Fachbegriffe und neue Zeichen erhalten, aber beim ersten Auftreten oder in unmittelbar erreichbaren Tipps in Alltagssprache erklären (z. B. „Betrag = Abstand zur 0“, „∈ = gehört dazu“). Unnötige Fremdwörter wie „plausibel“ durch verständliche Formulierungen ersetzen.
+- Zahlen, Bedingungen und mathematische Bedeutung beim Vereinfachen erhalten. Mehrdeutige Bezüge vermeiden. Bei reinen Sprachänderungen richtige Antworten, stabile IDs und Punktehistorie erhalten.
+- Im Inhaltsreview jede Frage samt Tipp und Lösungsweg prüfen: Ist klar, was das Kind tun soll? Sind alle nötigen Angaben vorhanden? Werden unbekannte Begriffe erklärt? Wurde eine schwierige Denkaufgabe versehentlich verraten oder inhaltlich verändert?
+- Keine Zertifizierung als „Leichte Sprache“ und keine Verständlichkeitsprüfung mit Kindern behaupten, solange sie nicht tatsächlich erfolgt ist.
+
 ## Verbindlicher Issue-Ablauf
 1. Vor jeder Umsetzung ein GitHub-Issue mit Ziel und überprüfbaren Akzeptanzkriterien anlegen bzw. ein vorhandenes verwenden.
 2. Jedes Issue auf einem eigenen Branch von aktuellem `main` bearbeiten: `codex/issue-<nummer>-<kurzname>`. Keine Umsetzung direkt auf `main`; keine Vermischung unabhängiger Issues.
