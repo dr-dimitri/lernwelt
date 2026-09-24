@@ -9,6 +9,12 @@ vi.mock('./components/GamePreview', () => ({ default: () => null }));
 import { vocabularyInitial } from './test/vocabulary-fixture';
 import { multiplicationInitial } from './test/multiplication-fixture';
 import { initial } from './test/learning-fixture';
+import {
+  missionInitial,
+  missionActive,
+  missionAt,
+  missionCorrect,
+} from './test/mission-fixture';
 
 vi.mock('./lib/desktop', () => ({
   desktop: {
@@ -18,12 +24,16 @@ vi.mock('./lib/desktop', () => ({
     getArcadeState: vi.fn(),
     getVocabularyState: vi.fn(),
     getMultiplicationState: vi.fn(),
+    getMissionState: vi.fn(),
+    startMission: vi.fn(),
+    actMission: vi.fn(),
   },
 }));
 
 beforeEach(() => {
   vi.resetAllMocks();
   vi.mocked(desktop.getProfile).mockResolvedValue(null);
+  vi.mocked(desktop.getMissionState).mockResolvedValue(missionInitial);
   vi.mocked(desktop.getLearningState).mockResolvedValue({
     ...initial,
     profileReady: false,
@@ -310,4 +320,49 @@ it('schließt das kompakte Menü mit Escape und nach einer Bereichswahl', async 
   expect(
     await screen.findByRole('button', { name: 'Antwort prüfen' }),
   ).toBeVisible();
+});
+
+it('startet die Lernrunde, setzt bestätigte Rückmeldung nach Navigation fort und lädt Lernpunkte neu', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.startMission).mockImplementation(async () => {
+    vi.mocked(desktop.getMissionState).mockResolvedValue(missionActive);
+    return missionActive;
+  });
+  const answered = missionAt(0, missionCorrect);
+  vi.mocked(desktop.actMission).mockImplementation(async () => {
+    vi.mocked(desktop.getMissionState).mockResolvedValue(answered);
+    return answered;
+  });
+  render(<App />);
+  await user.click(
+    await screen.findByRole('button', { name: 'Lernrunde starten' }),
+  );
+  expect(
+    await screen.findByRole('heading', { name: 'Deine Lernrunde', level: 1 }),
+  ).toHaveFocus();
+  expect(desktop.startMission).toHaveBeenCalledTimes(1);
+  await user.type(await screen.findByLabelText('Deine Antwort in m'), '22');
+  await user.keyboard('{Enter}');
+  expect(
+    await screen.findByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+  ).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: '← Alle Fächer' }));
+  await user.click(
+    await screen.findByRole('button', { name: 'Runde fortsetzen' }),
+  );
+  expect(
+    await screen.findByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+  ).toBeVisible();
+  expect(screen.getByRole('heading', { level: 1 })).toHaveFocus();
+  expect(desktop.startMission).toHaveBeenCalledTimes(1);
+  expect(desktop.actMission).toHaveBeenCalledTimes(1);
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...initial,
+    wallet: answered.wallet,
+  });
+  await user.click(screen.getByRole('button', { name: '← Alle Fächer' }));
+  await user.click(screen.getByRole('button', { name: 'Mathematik' }));
+  expect(await screen.findByLabelText('Verfügbare Punkte')).toHaveTextContent(
+    '10 Punkte',
+  );
 });

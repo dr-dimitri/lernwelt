@@ -61,6 +61,12 @@ Der CI-Workflow kontrolliert bei Pull Requests den Issue-Branch, die passende `C
 
 Details: [Architektur](docs/architecture.md), [Reviewnachweise](docs/reviews/).
 
+## Deine Lernrunde
+
+Auf **Meine Fächer** führt die Karte **Deine Lernrunde** zum ersten Lernabenteuer über den Rechteckumfang: **Ein Zaun für unseren Garten**. Fünf kurze Schritte verbinden Erinnern, ein anschauliches Beispiel, eigenes Lösen, Fehlerdetektiv und eine freiwillige Mitmachaufgabe. Alle drei Stufen sind wählbar; bestätigte Schritte bleiben bei Unterbrechung und Neustart erhalten.
+
+Die App plant Wiederholungen lokal und bietet drei geprüfte Varianten je Stufe. Tipps, Aufdecken und selbstständige erste Antworten werden unterschieden. Der Themenfortschritt zeigt **ausprobiert**, **selbst gelöst** und **später wieder geschafft**. Neue automatisch geprüfte Erstlösungen erhalten die üblichen 1/2/3 Punkte; Beispiele und Mitmachen vergeben keine Punkte. Es gibt kein Zeitlimit. Das erste Thema ist ein begrenztes Angebot, keine vollständige Lernstandsdiagnose. [Ablauf, Forschungsbezug und Grenzen](docs/learning-missions.md).
+
 ## Punkte und Abzeichen
 
 Nach dem Speichern eines Lernprofils können die Aufgaben in Mathematik und Englisch beantwortet werden. Jede Lernaufgabe in den Themenbereichen bringt bei der ersten korrekten Lösung **1 Punkt in Vorschule**, **2 Punkte in Könner** oder **3 Punkte in Streber**. Maßgeblich ist die Stufe der Aufgabe. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.

@@ -1,0 +1,660 @@
+{
+  "id": "by.math.5.round.garden.v1",
+  "title": "Ein Zaun für unseren Garten",
+  "description": "Entdecke den Umfang eines Rechtecks in fünf kleinen Schritten.",
+  "subject": "mathematics",
+  "grade": 5,
+  "competencyId": "by.math.5.area.perimeter",
+  "source": "Eigene Lernwelt-Aufgaben nach https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik · M5 4.2/3",
+  "curriculumVersion": "LehrplanPLUS Gymnasium Bayern · abgerufen 24.09.2026",
+  "variants": [
+    {
+      "difficulty": "vorschule",
+      "variant": 0,
+      "recall": {
+        "id": "by.math.5.round.garden.recall.vorschule.a.v1",
+        "prompt": "Ein rechteckiges Beet hat vier Seiten: 3 m, 2 m, 3 m und 2 m. Wie lang ist der Rand insgesamt? Antworte in m.",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "10",
+        "explanation": "3 + 2 + 3 + 2 = 10 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 3,
+          "height": 2,
+          "unit": "m"
+        }
+      },
+      "solve": {
+        "id": "by.math.5.round.garden.solve.vorschule.a.v1",
+        "prompt": "Unser rechteckiger Garten ist 4 m lang und 2 m breit. Wie viele Meter Zaun brauchen wir für alle vier Seiten?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "12",
+        "explanation": "4 + 2 + 4 + 2 = 12 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 4,
+          "height": 2,
+          "unit": "m"
+        }
+      },
+      "detect": {
+        "id": "by.math.5.round.garden.detect.vorschule.a.v1",
+        "prompt": "Milo plant einen Zaun um einen Garten: 5 m lang und 2 m breit. Er rechnet 5 + 2 = 7 m. Was fehlt in seiner Rechnung?",
+        "hint": "Stelle dir vor, du gehst einmal ganz um den Garten. Jede der vier Seiten gehört zum Umfang.",
+        "answer": "Die beiden anderen Seiten.",
+        "explanation": "5 m und 2 m zählen erst zwei Seiten. Dazu kommen noch einmal 5 m und 2 m. Zusammen sind es 14 m.",
+        "answerKind": "choice",
+        "options": [
+          "Die beiden anderen Seiten.",
+          "Eine weitere Ecke.",
+          "Nichts, die Rechnung reicht."
+        ],
+        "unit": null,
+        "diagram": {
+          "width": 5,
+          "height": 2,
+          "unit": "m"
+        }
+      },
+      "discovery": {
+        "title": "Einmal außen herum",
+        "text": "Der Zaun läuft an allen vier Seiten entlang. 3 + 1 + 3 + 1 = 8 m. Wir brauchen 8 m Zaun. Die Länge einmal außen herum heißt Umfang.",
+        "diagram": {
+          "width": 3,
+          "height": 1,
+          "unit": "m"
+        }
+      },
+      "activity": {
+        "title": "Dein eigener Rand",
+        "steps": [
+          "Du brauchst ein Lineal und ein rechteckiges Heft.",
+          "Miss die Länge und Breite der Vorderseite in cm.",
+          "Berechne den Umfang.",
+          "Fahre mit dem Finger einmal um den Rand. Erkläre dabei deine Rechnung."
+        ],
+        "check": "Hast du zwei lange und zwei kurze Seiten gezählt? Beispiel: Bei 20 cm Länge und 15 cm Breite sind es 20 + 15 + 20 + 15 = 70 cm. Dein Heft kann andere Maße haben."
+      }
+    },
+    {
+      "difficulty": "vorschule",
+      "variant": 1,
+      "recall": {
+        "id": "by.math.5.round.garden.recall.vorschule.b.v1",
+        "prompt": "Ein rechteckiges Beet hat vier Seiten: 4 m, 3 m, 4 m und 3 m. Wie lang ist der Rand insgesamt? Antworte in m.",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "14",
+        "explanation": "4 + 3 + 4 + 3 = 14 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 4,
+          "height": 3,
+          "unit": "m"
+        }
+      },
+      "solve": {
+        "id": "by.math.5.round.garden.solve.vorschule.b.v1",
+        "prompt": "Unser rechteckiger Garten ist 5 m lang und 3 m breit. Wie viele Meter Zaun brauchen wir für alle vier Seiten?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "16",
+        "explanation": "5 + 3 + 5 + 3 = 16 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 5,
+          "height": 3,
+          "unit": "m"
+        }
+      },
+      "detect": {
+        "id": "by.math.5.round.garden.detect.vorschule.b.v1",
+        "prompt": "Milo plant einen Zaun um einen Garten: 7 m lang und 3 m breit. Er rechnet 7 + 3 = 10 m. Was fehlt in seiner Rechnung?",
+        "hint": "Stelle dir vor, du gehst einmal ganz um den Garten. Jede der vier Seiten gehört zum Umfang.",
+        "answer": "Die beiden anderen Seiten.",
+        "explanation": "7 m und 3 m zählen erst zwei Seiten. Dazu kommen noch einmal 7 m und 3 m. Zusammen sind es 20 m.",
+        "answerKind": "choice",
+        "options": [
+          "Eine weitere Ecke.",
+          "Nichts, die Rechnung reicht.",
+          "Die beiden anderen Seiten."
+        ],
+        "unit": null,
+        "diagram": {
+          "width": 7,
+          "height": 3,
+          "unit": "m"
+        }
+      },
+      "discovery": {
+        "title": "Einmal außen herum",
+        "text": "Der Zaun läuft an allen vier Seiten entlang. 3 + 1 + 3 + 1 = 8 m. Wir brauchen 8 m Zaun. Die Länge einmal außen herum heißt Umfang.",
+        "diagram": {
+          "width": 3,
+          "height": 1,
+          "unit": "m"
+        }
+      },
+      "activity": {
+        "title": "Dein eigener Rand",
+        "steps": [
+          "Du brauchst ein Lineal und ein rechteckiges Heft.",
+          "Miss die Länge und Breite der Vorderseite in cm.",
+          "Berechne den Umfang.",
+          "Fahre mit dem Finger einmal um den Rand. Erkläre dabei deine Rechnung."
+        ],
+        "check": "Hast du zwei lange und zwei kurze Seiten gezählt? Beispiel: Bei 20 cm Länge und 15 cm Breite sind es 20 + 15 + 20 + 15 = 70 cm. Dein Heft kann andere Maße haben."
+      }
+    },
+    {
+      "difficulty": "vorschule",
+      "variant": 2,
+      "recall": {
+        "id": "by.math.5.round.garden.recall.vorschule.c.v1",
+        "prompt": "Ein rechteckiges Beet hat vier Seiten: 6 m, 2 m, 6 m und 2 m. Wie lang ist der Rand insgesamt? Antworte in m.",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "16",
+        "explanation": "6 + 2 + 6 + 2 = 16 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 6,
+          "height": 2,
+          "unit": "m"
+        }
+      },
+      "solve": {
+        "id": "by.math.5.round.garden.solve.vorschule.c.v1",
+        "prompt": "Unser rechteckiger Garten ist 7 m lang und 3 m breit. Wie viele Meter Zaun brauchen wir für alle vier Seiten?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "20",
+        "explanation": "7 + 3 + 7 + 3 = 20 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 7,
+          "height": 3,
+          "unit": "m"
+        }
+      },
+      "detect": {
+        "id": "by.math.5.round.garden.detect.vorschule.c.v1",
+        "prompt": "Milo plant einen Zaun um einen Garten: 8 m lang und 3 m breit. Er rechnet 8 + 3 = 11 m. Was fehlt in seiner Rechnung?",
+        "hint": "Stelle dir vor, du gehst einmal ganz um den Garten. Jede der vier Seiten gehört zum Umfang.",
+        "answer": "Die beiden anderen Seiten.",
+        "explanation": "8 m und 3 m zählen erst zwei Seiten. Dazu kommen noch einmal 8 m und 3 m. Zusammen sind es 22 m.",
+        "answerKind": "choice",
+        "options": [
+          "Nichts, die Rechnung reicht.",
+          "Die beiden anderen Seiten.",
+          "Eine weitere Ecke."
+        ],
+        "unit": null,
+        "diagram": {
+          "width": 8,
+          "height": 3,
+          "unit": "m"
+        }
+      },
+      "discovery": {
+        "title": "Einmal außen herum",
+        "text": "Der Zaun läuft an allen vier Seiten entlang. 3 + 1 + 3 + 1 = 8 m. Wir brauchen 8 m Zaun. Die Länge einmal außen herum heißt Umfang.",
+        "diagram": {
+          "width": 3,
+          "height": 1,
+          "unit": "m"
+        }
+      },
+      "activity": {
+        "title": "Dein eigener Rand",
+        "steps": [
+          "Du brauchst ein Lineal und ein rechteckiges Heft.",
+          "Miss die Länge und Breite der Vorderseite in cm.",
+          "Berechne den Umfang.",
+          "Fahre mit dem Finger einmal um den Rand. Erkläre dabei deine Rechnung."
+        ],
+        "check": "Hast du zwei lange und zwei kurze Seiten gezählt? Beispiel: Bei 20 cm Länge und 15 cm Breite sind es 20 + 15 + 20 + 15 = 70 cm. Dein Heft kann andere Maße haben."
+      }
+    },
+    {
+      "difficulty": "koenner",
+      "variant": 0,
+      "recall": {
+        "id": "by.math.5.round.garden.recall.koenner.a.v1",
+        "prompt": "Unser rechteckiger Garten ist 7 m lang und 4 m breit. Wie viele Meter Zaun brauchen wir für alle vier Seiten?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "22",
+        "explanation": "7 + 4 + 7 + 4 = 22 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 7,
+          "height": 4,
+          "unit": "m"
+        }
+      },
+      "solve": {
+        "id": "by.math.5.round.garden.solve.koenner.a.v1",
+        "prompt": "Unser rechteckiger Garten ist 9 m lang und 5 m breit. Wie viele Meter Zaun brauchen wir für alle vier Seiten?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "28",
+        "explanation": "9 + 5 + 9 + 5 = 28 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 9,
+          "height": 5,
+          "unit": "m"
+        }
+      },
+      "detect": {
+        "id": "by.math.5.round.garden.detect.koenner.a.v1",
+        "prompt": "Milo plant einen Zaun um einen Garten: 8 m lang und 3 m breit. Er rechnet 8 × 3 = 24 und sagt: „Ich brauche 24 m Zaun.“ Was hat er verwechselt?",
+        "hint": "Stelle dir vor, du gehst einmal ganz um den Garten. Jede der vier Seiten gehört zum Umfang.",
+        "answer": "Er hat den Flächeninhalt statt des Umfangs berechnet.",
+        "explanation": "8 × 3 ergibt 24 m² Flächeninhalt. Das ist die Größe der Fläche im Inneren. Für den Zaun zählt der Rand: 8 + 3 + 8 + 3 = 22 m.",
+        "answerKind": "choice",
+        "options": [
+          "Er hat nur eine Seite gemessen.",
+          "Er hat zu viele Seiten addiert.",
+          "Er hat den Flächeninhalt statt des Umfangs berechnet."
+        ],
+        "unit": null,
+        "diagram": {
+          "width": 8,
+          "height": 3,
+          "unit": "m"
+        }
+      },
+      "discovery": {
+        "title": "Einmal außen herum",
+        "text": "Der Umfang ist die Länge einmal außen herum. Die gegenüberliegenden Seiten sind gleich lang. 6 + 4 + 6 + 4 = 20 m. Kurz geht es auch: 2 × (6 + 4) = 20 m.",
+        "diagram": {
+          "width": 6,
+          "height": 4,
+          "unit": "m"
+        }
+      },
+      "activity": {
+        "title": "Dein eigener Rand",
+        "steps": [
+          "Du brauchst ein Lineal und ein rechteckiges Heft.",
+          "Miss die Länge und Breite der Vorderseite in cm.",
+          "Berechne den Umfang.",
+          "Fahre mit dem Finger einmal um den Rand. Erkläre dabei deine Rechnung."
+        ],
+        "check": "Hast du zwei lange und zwei kurze Seiten gezählt? Beispiel: Bei 20 cm Länge und 15 cm Breite sind es 20 + 15 + 20 + 15 = 70 cm. Dein Heft kann andere Maße haben."
+      }
+    },
+    {
+      "difficulty": "koenner",
+      "variant": 1,
+      "recall": {
+        "id": "by.math.5.round.garden.recall.koenner.b.v1",
+        "prompt": "Unser rechteckiger Garten ist 9 m lang und 4 m breit. Wie viele Meter Zaun brauchen wir für alle vier Seiten?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "26",
+        "explanation": "9 + 4 + 9 + 4 = 26 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 9,
+          "height": 4,
+          "unit": "m"
+        }
+      },
+      "solve": {
+        "id": "by.math.5.round.garden.solve.koenner.b.v1",
+        "prompt": "Unser rechteckiger Garten ist 12 m lang und 5 m breit. Wie viele Meter Zaun brauchen wir für alle vier Seiten?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "34",
+        "explanation": "12 + 5 + 12 + 5 = 34 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 12,
+          "height": 5,
+          "unit": "m"
+        }
+      },
+      "detect": {
+        "id": "by.math.5.round.garden.detect.koenner.b.v1",
+        "prompt": "Milo plant einen Zaun um einen Garten: 7 m lang und 4 m breit. Er rechnet 7 × 4 = 28 und sagt: „Ich brauche 28 m Zaun.“ Was hat er verwechselt?",
+        "hint": "Stelle dir vor, du gehst einmal ganz um den Garten. Jede der vier Seiten gehört zum Umfang.",
+        "answer": "Er hat den Flächeninhalt statt des Umfangs berechnet.",
+        "explanation": "7 × 4 ergibt 28 m² Flächeninhalt. Das ist die Größe der Fläche im Inneren. Für den Zaun zählt der Rand: 7 + 4 + 7 + 4 = 22 m.",
+        "answerKind": "choice",
+        "options": [
+          "Er hat zu viele Seiten addiert.",
+          "Er hat den Flächeninhalt statt des Umfangs berechnet.",
+          "Er hat nur eine Seite gemessen."
+        ],
+        "unit": null,
+        "diagram": {
+          "width": 7,
+          "height": 4,
+          "unit": "m"
+        }
+      },
+      "discovery": {
+        "title": "Einmal außen herum",
+        "text": "Der Umfang ist die Länge einmal außen herum. Die gegenüberliegenden Seiten sind gleich lang. 6 + 4 + 6 + 4 = 20 m. Kurz geht es auch: 2 × (6 + 4) = 20 m.",
+        "diagram": {
+          "width": 6,
+          "height": 4,
+          "unit": "m"
+        }
+      },
+      "activity": {
+        "title": "Dein eigener Rand",
+        "steps": [
+          "Du brauchst ein Lineal und ein rechteckiges Heft.",
+          "Miss die Länge und Breite der Vorderseite in cm.",
+          "Berechne den Umfang.",
+          "Fahre mit dem Finger einmal um den Rand. Erkläre dabei deine Rechnung."
+        ],
+        "check": "Hast du zwei lange und zwei kurze Seiten gezählt? Beispiel: Bei 20 cm Länge und 15 cm Breite sind es 20 + 15 + 20 + 15 = 70 cm. Dein Heft kann andere Maße haben."
+      }
+    },
+    {
+      "difficulty": "koenner",
+      "variant": 2,
+      "recall": {
+        "id": "by.math.5.round.garden.recall.koenner.c.v1",
+        "prompt": "Unser rechteckiger Garten ist 11 m lang und 6 m breit. Wie viele Meter Zaun brauchen wir für alle vier Seiten?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "34",
+        "explanation": "11 + 6 + 11 + 6 = 34 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 11,
+          "height": 6,
+          "unit": "m"
+        }
+      },
+      "solve": {
+        "id": "by.math.5.round.garden.solve.koenner.c.v1",
+        "prompt": "Unser rechteckiger Garten ist 14 m lang und 6 m breit. Wie viele Meter Zaun brauchen wir für alle vier Seiten?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "40",
+        "explanation": "14 + 6 + 14 + 6 = 40 m. Die Länge einmal außen herum heißt Umfang.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": 14,
+          "height": 6,
+          "unit": "m"
+        }
+      },
+      "detect": {
+        "id": "by.math.5.round.garden.detect.koenner.c.v1",
+        "prompt": "Milo plant einen Zaun um einen Garten: 9 m lang und 5 m breit. Er rechnet 9 × 5 = 45 und sagt: „Ich brauche 45 m Zaun.“ Was hat er verwechselt?",
+        "hint": "Stelle dir vor, du gehst einmal ganz um den Garten. Jede der vier Seiten gehört zum Umfang.",
+        "answer": "Er hat den Flächeninhalt statt des Umfangs berechnet.",
+        "explanation": "9 × 5 ergibt 45 m² Flächeninhalt. Das ist die Größe der Fläche im Inneren. Für den Zaun zählt der Rand: 9 + 5 + 9 + 5 = 28 m.",
+        "answerKind": "choice",
+        "options": [
+          "Er hat den Flächeninhalt statt des Umfangs berechnet.",
+          "Er hat nur eine Seite gemessen.",
+          "Er hat zu viele Seiten addiert."
+        ],
+        "unit": null,
+        "diagram": {
+          "width": 9,
+          "height": 5,
+          "unit": "m"
+        }
+      },
+      "discovery": {
+        "title": "Einmal außen herum",
+        "text": "Der Umfang ist die Länge einmal außen herum. Die gegenüberliegenden Seiten sind gleich lang. 6 + 4 + 6 + 4 = 20 m. Kurz geht es auch: 2 × (6 + 4) = 20 m.",
+        "diagram": {
+          "width": 6,
+          "height": 4,
+          "unit": "m"
+        }
+      },
+      "activity": {
+        "title": "Dein eigener Rand",
+        "steps": [
+          "Du brauchst ein Lineal und ein rechteckiges Heft.",
+          "Miss die Länge und Breite der Vorderseite in cm.",
+          "Berechne den Umfang.",
+          "Fahre mit dem Finger einmal um den Rand. Erkläre dabei deine Rechnung."
+        ],
+        "check": "Hast du zwei lange und zwei kurze Seiten gezählt? Beispiel: Bei 20 cm Länge und 15 cm Breite sind es 20 + 15 + 20 + 15 = 70 cm. Dein Heft kann andere Maße haben."
+      }
+    },
+    {
+      "difficulty": "streber",
+      "variant": 0,
+      "recall": {
+        "id": "by.math.5.round.garden.recall.streber.a.v1",
+        "prompt": "Ein rechteckiger Garten hat einen Umfang von 34 m. Er ist 5 m breit. Wie lang ist er in m?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "12",
+        "explanation": "Die beiden Breiten brauchen 10 m. Es bleiben 34 − 10 = 24 m für die beiden langen Seiten. 24 : 2 = 12 m.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": null,
+          "height": 5,
+          "unit": "m"
+        }
+      },
+      "solve": {
+        "id": "by.math.5.round.garden.solve.streber.a.v1",
+        "prompt": "Ein rechteckiger Garten hat einen Umfang von 46 m. Er ist 8 m breit. Wie lang ist er in m?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "15",
+        "explanation": "Die beiden Breiten brauchen 16 m. Es bleiben 46 − 16 = 30 m für die beiden langen Seiten. 30 : 2 = 15 m.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": null,
+          "height": 8,
+          "unit": "m"
+        }
+      },
+      "detect": {
+        "id": "by.math.5.round.garden.detect.streber.a.v1",
+        "prompt": "Ein rechteckiger Garten hat 40 m Umfang und ist 6 m breit. Milo rechnet 40 − 6 − 6 = 28 und sagt: „Der Garten ist 28 m lang.“ Welcher Schritt fehlt?",
+        "hint": "Stelle dir vor, du gehst einmal ganz um den Garten. Jede der vier Seiten gehört zum Umfang.",
+        "answer": "Die übrigen 28 m auf zwei lange Seiten verteilen.",
+        "explanation": "Nach den beiden Breiten bleiben beide langen Seiten übrig. Eine lange Seite ist 28 : 2 = 14 m lang.",
+        "answerKind": "choice",
+        "options": [
+          "Die 28 m verdoppeln.",
+          "Die übrigen 28 m auf zwei lange Seiten verteilen.",
+          "Noch einmal 6 m abziehen."
+        ],
+        "unit": null,
+        "diagram": {
+          "width": null,
+          "height": 6,
+          "unit": "m"
+        }
+      },
+      "discovery": {
+        "title": "Einmal außen herum",
+        "text": "Der Umfang ist die Länge einmal außen herum. Dieses Rechteck hat 38 m Umfang und ist 7 m breit. Zwei Breiten brauchen 14 m. Für die beiden Längen bleiben 38 − 14 = 24 m. Jede Länge ist 24 : 2 = 12 m.",
+        "diagram": {
+          "width": 12,
+          "height": 7,
+          "unit": "m"
+        }
+      },
+      "activity": {
+        "title": "Dein eigener Rand",
+        "steps": [
+          "Du brauchst ein Lineal und ein rechteckiges Heft.",
+          "Miss die Länge und Breite der Vorderseite in cm.",
+          "Berechne den Umfang.",
+          "Fahre mit dem Finger einmal um den Rand. Erkläre dabei deine Rechnung."
+        ],
+        "check": "Hast du zwei lange und zwei kurze Seiten gezählt? Beispiel: Bei 20 cm Länge und 15 cm Breite sind es 20 + 15 + 20 + 15 = 70 cm. Dein Heft kann andere Maße haben."
+      }
+    },
+    {
+      "difficulty": "streber",
+      "variant": 1,
+      "recall": {
+        "id": "by.math.5.round.garden.recall.streber.b.v1",
+        "prompt": "Ein rechteckiger Garten hat einen Umfang von 42 m. Er ist 6 m breit. Wie lang ist er in m?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "15",
+        "explanation": "Die beiden Breiten brauchen 12 m. Es bleiben 42 − 12 = 30 m für die beiden langen Seiten. 30 : 2 = 15 m.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": null,
+          "height": 6,
+          "unit": "m"
+        }
+      },
+      "solve": {
+        "id": "by.math.5.round.garden.solve.streber.b.v1",
+        "prompt": "Ein rechteckiger Garten hat einen Umfang von 54 m. Er ist 9 m breit. Wie lang ist er in m?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "18",
+        "explanation": "Die beiden Breiten brauchen 18 m. Es bleiben 54 − 18 = 36 m für die beiden langen Seiten. 36 : 2 = 18 m.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": null,
+          "height": 9,
+          "unit": "m"
+        }
+      },
+      "detect": {
+        "id": "by.math.5.round.garden.detect.streber.b.v1",
+        "prompt": "Ein rechteckiger Garten hat 48 m Umfang und ist 8 m breit. Milo rechnet 48 − 8 − 8 = 32 und sagt: „Der Garten ist 32 m lang.“ Welcher Schritt fehlt?",
+        "hint": "Stelle dir vor, du gehst einmal ganz um den Garten. Jede der vier Seiten gehört zum Umfang.",
+        "answer": "Die übrigen 32 m auf zwei lange Seiten verteilen.",
+        "explanation": "Nach den beiden Breiten bleiben beide langen Seiten übrig. Eine lange Seite ist 32 : 2 = 16 m lang.",
+        "answerKind": "choice",
+        "options": [
+          "Die übrigen 32 m auf zwei lange Seiten verteilen.",
+          "Noch einmal 8 m abziehen.",
+          "Die 32 m verdoppeln."
+        ],
+        "unit": null,
+        "diagram": {
+          "width": null,
+          "height": 8,
+          "unit": "m"
+        }
+      },
+      "discovery": {
+        "title": "Einmal außen herum",
+        "text": "Der Umfang ist die Länge einmal außen herum. Dieses Rechteck hat 38 m Umfang und ist 7 m breit. Zwei Breiten brauchen 14 m. Für die beiden Längen bleiben 38 − 14 = 24 m. Jede Länge ist 24 : 2 = 12 m.",
+        "diagram": {
+          "width": 12,
+          "height": 7,
+          "unit": "m"
+        }
+      },
+      "activity": {
+        "title": "Dein eigener Rand",
+        "steps": [
+          "Du brauchst ein Lineal und ein rechteckiges Heft.",
+          "Miss die Länge und Breite der Vorderseite in cm.",
+          "Berechne den Umfang.",
+          "Fahre mit dem Finger einmal um den Rand. Erkläre dabei deine Rechnung."
+        ],
+        "check": "Hast du zwei lange und zwei kurze Seiten gezählt? Beispiel: Bei 20 cm Länge und 15 cm Breite sind es 20 + 15 + 20 + 15 = 70 cm. Dein Heft kann andere Maße haben."
+      }
+    },
+    {
+      "difficulty": "streber",
+      "variant": 2,
+      "recall": {
+        "id": "by.math.5.round.garden.recall.streber.c.v1",
+        "prompt": "Ein rechteckiger Garten hat einen Umfang von 50 m. Er ist 7 m breit. Wie lang ist er in m?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "18",
+        "explanation": "Die beiden Breiten brauchen 14 m. Es bleiben 50 − 14 = 36 m für die beiden langen Seiten. 36 : 2 = 18 m.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": null,
+          "height": 7,
+          "unit": "m"
+        }
+      },
+      "solve": {
+        "id": "by.math.5.round.garden.solve.streber.c.v1",
+        "prompt": "Ein rechteckiger Garten hat einen Umfang von 62 m. Er ist 10 m breit. Wie lang ist er in m?",
+        "hint": "Bei diesem Rechteck sind die gegenüberliegenden Seiten gleich lang. Der Umfang ist die Länge einmal außen herum.",
+        "answer": "21",
+        "explanation": "Die beiden Breiten brauchen 20 m. Es bleiben 62 − 20 = 42 m für die beiden langen Seiten. 42 : 2 = 21 m.",
+        "answerKind": "number",
+        "options": [],
+        "unit": "m",
+        "diagram": {
+          "width": null,
+          "height": 10,
+          "unit": "m"
+        }
+      },
+      "detect": {
+        "id": "by.math.5.round.garden.detect.streber.c.v1",
+        "prompt": "Ein rechteckiger Garten hat 56 m Umfang und ist 9 m breit. Milo rechnet 56 − 9 − 9 = 38 und sagt: „Der Garten ist 38 m lang.“ Welcher Schritt fehlt?",
+        "hint": "Stelle dir vor, du gehst einmal ganz um den Garten. Jede der vier Seiten gehört zum Umfang.",
+        "answer": "Die übrigen 38 m auf zwei lange Seiten verteilen.",
+        "explanation": "Nach den beiden Breiten bleiben beide langen Seiten übrig. Eine lange Seite ist 38 : 2 = 19 m lang.",
+        "answerKind": "choice",
+        "options": [
+          "Noch einmal 9 m abziehen.",
+          "Die 38 m verdoppeln.",
+          "Die übrigen 38 m auf zwei lange Seiten verteilen."
+        ],
+        "unit": null,
+        "diagram": {
+          "width": null,
+          "height": 9,
+          "unit": "m"
+        }
+      },
+      "discovery": {
+        "title": "Einmal außen herum",
+        "text": "Der Umfang ist die Länge einmal außen herum. Dieses Rechteck hat 38 m Umfang und ist 7 m breit. Zwei Breiten brauchen 14 m. Für die beiden Längen bleiben 38 − 14 = 24 m. Jede Länge ist 24 : 2 = 12 m.",
+        "diagram": {
+          "width": 12,
+          "height": 7,
+          "unit": "m"
+        }
+      },
+      "activity": {
+        "title": "Dein eigener Rand",
+        "steps": [
+          "Du brauchst ein Lineal und ein rechteckiges Heft.",
+          "Miss die Länge und Breite der Vorderseite in cm.",
+          "Berechne den Umfang.",
+          "Fahre mit dem Finger einmal um den Rand. Erkläre dabei deine Rechnung."
+        ],
+        "check": "Hast du zwei lange und zwei kurze Seiten gezählt? Beispiel: Bei 20 cm Länge und 15 cm Breite sind es 20 + 15 + 20 + 15 = 70 cm. Dein Heft kann andere Maße haben."
+      }
+    }
+  ]
+}

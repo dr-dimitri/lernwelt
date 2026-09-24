@@ -10,6 +10,11 @@ import type {
   VocabularyReviewResult,
 } from '../domain/vocabulary';
 import type { ArcadeState, GameId } from '../domain/arcade';
+import type {
+  MissionState,
+  MissionStartInput,
+  MissionActionInput,
+} from '../domain/mission';
 import { invoke, isTauri } from '@tauri-apps/api/core';
 import type { LearnerProfile, LearningProgress } from '../domain/learner';
 import type {
@@ -40,6 +45,11 @@ async function callDesktop<T>(
 }
 
 export const desktop = {
+  getMissionState: () => callDesktop<MissionState>('get_mission_state'),
+  startMission: (input: MissionStartInput) =>
+    callDesktop<MissionState>('start_mission', { input }),
+  actMission: (input: MissionActionInput) =>
+    callDesktop<MissionState>('act_mission', { input }),
   getMultiplicationState: (mode: MultiplicationMode) =>
     callDesktop<MultiplicationState>('get_multiplication_state', { mode }),
   answerMultiplication: (input: MultiplicationInput) =>

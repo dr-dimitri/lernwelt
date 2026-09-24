@@ -196,7 +196,7 @@ impl Catalog {
 
 // Exact decimal normalization, with no floating-point rounding or expression execution.
 // Spaces may separate digit groups; dots and commas are decimal separators, never thousands.
-fn canonical_number(value: &str) -> Option<String> {
+pub(crate) fn canonical_number(value: &str) -> Option<String> {
     let value = value.trim().replace('−', "-");
     let value = value.strip_prefix('+').unwrap_or(&value);
     let (negative, unsigned) = match value.strip_prefix('-') {
