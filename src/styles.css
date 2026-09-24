@@ -618,3 +618,12 @@ summary {
     flex-wrap: wrap;
   }
 }
+
+/* Keep authored steps and short paragraphs readable without interpreting HTML. */
+.answer-label,
+.lesson p,
+.activities p,
+.hint-box,
+.answer-feedback p {
+  white-space: pre-line;
+}

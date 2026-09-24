@@ -32,16 +32,16 @@
       "grade": 5,
       "curriculumRef": "M5 1.1",
       "description": "Große Zahlen, Zahlengerade und Minus-Zahlen.",
-      "lesson": "Jede Stelle ist zehnmal so viel wert wie die Stelle rechts daneben. Auf der Zahlengeraden werden die Zahlen nach rechts größer. Der Betrag ist der Abstand zur Null. Zum Runden schaust du auf die nächste kleinere Stelle: Ab 5 rundest du auf.",
+      "lesson": "Jede Stelle ist zehnmal so viel wert wie die Stelle rechts daneben. Zum Beispiel: 10 Einer sind 1 Zehner.\nAuf der Zahlengeraden werden Zahlen nach rechts größer. Der Betrag einer Zahl ist ihr Abstand zur 0.\nBeim Runden schaust du auf die Stelle rechts neben der Rundungsstelle: Bei 0 bis 4 rundest du ab, bei 5 bis 9 auf.",
       "activities": [
         {
           "title": "Deine Zahlengerade",
-          "prompt": "Zeichne eine Zahlengerade von −10 bis 10. Markiere −7, −2, 0 und 5. Begründe, warum −2 größer als −7 ist.",
+          "prompt": "1. Zeichne eine Zahlengerade von −10 bis 10.\n2. Markiere −7, −2, 0 und 5.\n3. Erkläre: Warum ist −2 größer als −7?",
           "check": "Alle Schritte sind gleich lang. −2 liegt rechts von −7. Die Abstände zur Null sind 7, 2, 0 und 5."
         },
         {
           "title": "Unendlich weiter",
-          "prompt": "Jemand behauptet: „Ich habe die größte natürliche Zahl gefunden!“ Erfinde ein Gegenargument.",
+          "prompt": "Jemand sagt: „Ich kenne die größte natürliche Zahl!“\nErkläre, wie du eine noch größere Zahl finden kannst.",
           "check": "Du kannst immer 1 dazuzählen. Deshalb gibt es keine größte natürliche Zahl."
         }
       ],
@@ -54,16 +54,16 @@
       "grade": 5,
       "curriculumRef": "M5 1.2",
       "description": "Schlau addieren, subtrahieren und Unbekannte finden.",
-      "lesson": "Bei einer Summe darfst du Zahlen vertauschen und geschickt zusammenfassen. Subtrahieren heißt die Gegenzahl addieren: 8 − (−3) = 8 + 3. Bei einer Gleichung suchst du die Zahl, mit der beide Seiten denselben Wert haben.",
+      "lesson": "Plusrechnen heißt Addieren. Das Ergebnis heißt Summe. Du darfst die Zahlen dabei vertauschen.\nMinusrechnen heißt Subtrahieren. Das Ergebnis heißt Differenz. Eine negative Zahl abziehen wird zu Plus: 8 − (−3) = 8 + 3.\nBei einer Gleichung sind beide Seiten gleich viel wert. Für x suchst du eine Zahl, mit der das stimmt.",
       "activities": [
         {
           "title": "Rechenwege vergleichen",
-          "prompt": "Rechne 48 + 27 + 52 auf zwei Arten. Erkläre, welcher Weg für dich leichter ist.",
+          "prompt": "1. Rechne 48 + 27 + 52 auf zwei verschiedenen Wegen.\n2. Erkläre, welcher Weg für dich leichter ist.",
           "check": "(48 + 52) + 27 = 100 + 27 = 127. Vertauschen und Zusammenfassen machen die Rechnung leichter."
         },
         {
           "title": "Große Zahlen untereinander",
-          "prompt": "Schreibe 3 405 678 + 876 543 untereinander. Schätze zuerst mit gerundeten Zahlen und prüfe dann schriftlich.",
+          "prompt": "1. Schätze 3 405 678 + 876 543 mit gerundeten Zahlen.\n2. Schreibe die Zahlen untereinander und rechne genau.\n3. Vergleiche dein Ergebnis mit deiner Schätzung.",
           "check": "Ein möglicher Überschlag ist 3 400 000 + 900 000 = 4 300 000. Genau erhältst du 4 282 221. Einer stehen unter Einern, Zehner unter Zehnern."
         }
       ],
@@ -76,31 +76,31 @@
       "grade": 5,
       "curriculumRef": "M5 2",
       "description": "Punkte, Linien, Kreise, Winkel und Vierecke.",
-      "lesson": "Bei einem Punkt (x ; y) gehst du zuerst waagerecht, dann senkrecht. Eine Strecke hat zwei Endpunkte; eine Gerade geht in beide Richtungen weiter. Den kürzesten Abstand misst du senkrecht. Ein rechter Winkel hat 90°, ein Vollwinkel 360°.",
+      "lesson": "Bei (x ; y) startest du bei (0 ; 0). Die erste Zahl sagt: nach rechts oder links. Die zweite sagt: nach oben oder unten.\nEine Strecke hat zwei Endpunkte. Eine Gerade geht in beide Richtungen immer weiter.\nSenkrecht heißt: im rechten Winkel. Den kürzesten Abstand zu einer Geraden misst du senkrecht.\nEin rechter Winkel hat 90°. Eine ganze Drehung hat 360° und heißt Vollwinkel.",
       "activities": [
         {
           "title": "Punkte verbinden",
-          "prompt": "Zeichne A(1 ; 1), B(5 ; 1), C(5 ; 4) und D(1 ; 4) auf kariertes Papier. Verbinde sie der Reihe nach und zurück zu A. Zeichne auch die Gerade durch A und C.",
+          "prompt": "1. Zeichne A(1 ; 1), B(5 ; 1), C(5 ; 4) und D(1 ; 4) auf kariertes Papier.\n2. Verbinde A mit B, B mit C, C mit D und D mit A.\n3. Zeichne auch die Gerade durch A und C. Sie geht über die Punkte hinaus.",
           "check": "ABCD ist ein Rechteck: AB und CD sind parallel, BC und AD auch. Benachbarte Seiten sind senkrecht. Die Strecke AC endet an A und C; die Gerade geht darüber hinaus."
         },
         {
           "title": "Zirkel-Detektiv",
-          "prompt": "Zeichne einen Kreis mit Mittelpunkt M und Radius 3 cm. Markiere innen einen Punkt P. Zeichne eine Tangente am Kreis und verbinde M mit dem Berührpunkt. Wo liegen alle Punkte mit Abstand höchstens 3 cm von M?",
+          "prompt": "1. Zeichne einen Kreis. Sein Mittelpunkt heißt M, sein Radius ist 3 cm.\n2. Zeichne einen Punkt P im Inneren.\n3. Zeichne eine Gerade, die den Kreis nur berührt. Sie heißt Tangente. Verbinde M mit dem Berührpunkt.\n4. Wo liegen alle Punkte, die höchstens 3 cm von M entfernt sind?",
           "check": "P liegt in der Kreisscheibe. Die Tangente berührt den Kreis genau einmal. Radius und Tangente stehen am Berührpunkt senkrecht. Alle gesuchten Punkte liegen innen oder auf der Kreislinie."
         },
         {
           "title": "Winkel bauen",
-          "prompt": "Zeichne mit dem Geodreieck 40°, 90° und 130°. Markiere auch den überstumpfen Außenwinkel zur 130°-Öffnung. Miss anschließend nach.",
+          "prompt": "1. Zeichne mit dem Geodreieck Winkel von 40°, 90° und 130°.\n2. Markiere beim 130°-Winkel auch den Winkel auf der anderen Seite: Er füllt den Rest der ganzen Drehung.\n3. Miss alle Winkel zur Kontrolle nach.",
           "check": "40° ist spitz, 90° recht und 130° stumpf. Der andere Winkel um denselben Scheitel beträgt 360° − 130° = 230°. Kontrolliere den Nullpunkt und die richtige Skala."
         },
         {
           "title": "Viereck-Forscher",
-          "prompt": "Zeichne ein Quadrat, ein Rechteck ohne vier gleich lange Seiten, eine Raute ohne rechte Winkel, ein Parallelogramm, ein Drachenviereck und ein Trapez mit genau einem parallelen Seitenpaar. Markiere parallele und gleich lange Seiten.",
-          "check": "Beim Quadrat: vier gleiche Seiten und rechte Winkel. Beim Rechteck: rechte Winkel. Bei Raute/Parallelogramm: gegenüberliegende Seiten parallel, bei der Raute alle gleich lang. Ein Drachen hat zwei Paare gleich langer benachbarter Seiten. Ein Trapez hat mindestens ein paralleles Seitenpaar."
+          "prompt": "Zeichne diese sechs Vierecke:\n1. ein Quadrat;\n2. ein Rechteck, bei dem nicht alle Seiten gleich lang sind;\n3. eine Raute ohne rechte Winkel;\n4. ein Parallelogramm;\n5. ein Drachenviereck;\n6. ein Trapez mit genau einem parallelen Seitenpaar.\nMarkiere danach parallele und gleich lange Seiten.",
+          "check": "Quadrat: vier gleich lange Seiten und vier rechte Winkel.\nRechteck: vier rechte Winkel.\nRaute: vier gleich lange Seiten; gegenüberliegende Seiten parallel.\nParallelogramm: gegenüberliegende Seiten parallel.\nDrachenviereck: zwei Paare gleich langer benachbarter Seiten.\nTrapez: mindestens ein Paar paralleler Seiten."
         },
         {
           "title": "Abstand messen",
-          "prompt": "Zeichne eine Gerade g und daneben einen Punkt P. Zeichne das Lot von P auf g. Vergleiche seine Länge mit zwei schrägen Verbindungen von P zu g. Zeichne außerdem zwei sich schneidende Kreise.",
+          "prompt": "1. Zeichne eine Gerade g und daneben einen Punkt P.\n2. Zeichne von P die senkrechte Strecke zu g. Sie heißt Lot.\n3. Zeichne zwei schräge Verbindungen von P zu g. Vergleiche die drei Längen.\n4. Zeichne außerdem zwei Kreise, die sich an zwei Punkten schneiden.",
           "check": "Der Lotfuß liegt auf g. Das Lot steht senkrecht auf g und ist die kürzeste Verbindung. Zwei sich schneidende Kreise haben zwei gemeinsame Punkte."
         }
       ],
@@ -113,21 +113,21 @@
       "grade": 5,
       "curriculumRef": "M5 3.1",
       "description": "Rechnen, Primzahlen und Möglichkeiten zählen.",
-      "lesson": "Gleiche Vorzeichen ergeben beim Multiplizieren und Dividieren Plus, verschiedene ergeben Minus. Eine Potenz ist eine Kurzschreibweise: 3⁴ = 3 × 3 × 3 × 3. Beim Zählen von Kombinationen multiplizierst du die Anzahl der Möglichkeiten pro Schritt.",
+      "lesson": "Malrechnen heißt Multiplizieren. Geteiltrechnen heißt Dividieren.\nBei Mal und Geteilt gilt: gleiche Vorzeichen ergeben Plus, verschiedene Vorzeichen ergeben Minus.\nEine Potenz ist eine kurze Schreibweise: 3⁴ bedeutet 3 × 3 × 3 × 3.\nBeim Zählen von Kombinationen hilft Malrechnen: Zu jeder von 3 Eissorten gibt es 2 Soßen. Das sind 3 × 2 Möglichkeiten.",
       "activities": [
         {
           "title": "Dein Eisladen",
-          "prompt": "Zeichne ein Baumdiagramm für 3 Eissorten und 2 Soßen. Jede Bestellung enthält eine Sorte und eine Soße. Zähle alle Wege.",
+          "prompt": "Es gibt 3 Eissorten und 2 Soßen. Du wählst immer eine Sorte und eine Soße.\n1. Zeichne für jede Sorte einen Ast.\n2. Zeichne an jeden Ast zwei weitere Äste für die Soßen. So entsteht ein Baumdiagramm.\n3. Zähle die vollständigen Wege.",
           "check": "Von jeder der 3 Eissorten gehen 2 Soßenäste ab. Es gibt 3 × 2 = 6 Bestellungen."
         },
         {
           "title": "Primzahl-Werkstatt",
-          "prompt": "Zerlege 84 durch wiederholtes Teilen in Primfaktoren. Rechne danach zur Kontrolle zurück.",
+          "prompt": "1. Schreibe 84 als Malrechnung.\n2. Zerlege die Zahlen darin weiter, bis nur noch Primzahlen vorkommen. Das sind die Primfaktoren.\n3. Multipliziere zur Kontrolle alle Faktoren. Kommt wieder 84 heraus?",
           "check": "84 = 2 × 42 = 2 × 2 × 21 = 2 × 2 × 3 × 7. Die Faktoren 2, 3 und 7 sind Primzahlen."
         },
         {
           "title": "Schriftlich und geschätzt",
-          "prompt": "Berechne 234 × 123 schriftlich. Schätze davor, zum Beispiel mit 230 × 120.",
+          "prompt": "1. Schätze 234 × 123, zum Beispiel mit 230 × 120.\n2. Rechne 234 × 123 schriftlich aus.\n3. Vergleiche dein Ergebnis mit der Schätzung.",
           "check": "234 × 100 + 234 × 20 + 234 × 3 = 23 400 + 4 680 + 702 = 28 782. Der Überschlag 27 600 liegt in der Nähe."
         }
       ],
@@ -140,16 +140,16 @@
       "grade": 5,
       "curriculumRef": "M5 3.2",
       "description": "Klammern knacken und Lösungswege planen.",
-      "lesson": "Zuerst Klammern, dann Potenzen, dann Punktrechnung, dann Strichrechnung. Bei gleichrangigen Rechenarten rechnest du von links nach rechts. Das Verteilungsgesetz hilft: 7 × 18 = 7 × (20 − 2) = 140 − 14.",
+      "lesson": "Ein Term ist eine Rechenaufgabe mit Zahlen, Zeichen und manchmal Klammern.\nRechne zuerst die Klammern, dann die Potenzen. Danach kommen Mal/Geteilt, zum Schluss Plus/Minus.\nSind die Rechenarten gleich wichtig, gehst du von links nach rechts.\nEin Trick: 7 × 18 = 7 × (20 − 2) = 140 − 14. Du verteilst die Malrechnung auf die Klammer. Das heißt Verteilungsgesetz.",
       "activities": [
         {
           "title": "Erkläre deinen Trick",
-          "prompt": "Berechne 25 × 36 auf zwei Wegen. Nutze bei einem Weg 36 = 4 × 9. Erkläre, warum beide Wege stimmen.",
-          "check": "Direkt erhältst du 900. Geschickt: 25 × (4 × 9) = (25 × 4) × 9 = 100 × 9 = 900. Das Verbindungsgesetz erlaubt das Umklammern."
+          "prompt": "1. Rechne 25 × 36 auf zwei Wegen.\n2. Nutze bei einem Weg: 36 = 4 × 9.\n3. Erkläre, warum bei beiden Wegen dasselbe herauskommt.",
+          "check": "Direkt gerechnet: 25 × 36 = 900.\nMit dem Trick: 25 × (4 × 9) = (25 × 4) × 9 = 100 × 9 = 900.\nBei Malrechnungen darfst du die Klammern so umsetzen. Diese Regel heißt Verbindungsgesetz."
         },
         {
           "title": "Vorwärts und rückwärts",
-          "prompt": "Denke dir eine Zahl. Multipliziere sie mit 3 und addiere 7. Dein Ergebnis soll 40 sein. Zeichne die Rechenkette hin und rückwärts.",
+          "prompt": "Eine Zahl wird mit 3 multipliziert. Danach werden 7 dazugezählt. Am Ende kommt 40 heraus.\n1. Zeichne diese Schritte als Rechenkette.\n2. Gehe die Schritte rückwärts durch.\n3. Welche Zahl steht am Anfang?",
           "check": "Vorwärts: 11 → 33 → 40. Rückwärts: 40 − 7 = 33, 33 : 3 = 11. Rückwärts benutzt du die Umkehroperationen in umgekehrter Reihenfolge."
         }
       ],
@@ -162,16 +162,16 @@
       "grade": 5,
       "curriculumRef": "M5 4.1",
       "description": "Geld, Längen, Gewichte, Zeit und Maßstäbe.",
-      "lesson": "Schreibe die Einheit immer dazu. 1 m = 100 cm, 1 kg = 1 000 g, aber 1 h = 60 min. Bei Kommazahlen zählt der Stellenwert: 1,5 m = 150 cm. Beim Dreisatz rechnest du zuerst für ein Stück und dann für die gewünschte Anzahl.",
+      "lesson": "Eine Größe hat eine Zahl und eine Einheit, zum Beispiel 3 m. Auf dem Papier schreibst du beides auf. In das Antwortfeld kommt nur die Zahl; die gesuchte Einheit steht in der Frage.\n1 m = 100 cm, 1 kg = 1 000 g, aber 1 h = 60 min.\nAuch Kommazahlen kannst du umrechnen: 1,5 m = 150 cm.\nBeim Dreisatz rechnest du zuerst für ein Stück und danach für die gewünschte Anzahl.",
       "activities": [
         {
           "title": "Schätzmeister",
-          "prompt": "Schätze die Länge deines Tisches und das Gewicht eines Apfels. Miss bzw. wiege danach mit einer erwachsenen Person nach. Wie gut war deine Schätzung?",
-          "check": "Eine Tischlänge lässt sich sinnvoll in cm oder m angeben, ein Apfelgewicht in g. Notiere Schätzung, Messwert und Unterschied. Es gibt hier keinen festen Einheitswert."
+          "prompt": "1. Schätze die Länge deines Tisches und das Gewicht eines Apfels.\n2. Miss den Tisch und wiege den Apfel. Lass dir bei Bedarf helfen.\n3. Schreibe auf: Was hast du geschätzt? Was hast du gemessen? Wie groß ist der Unterschied?",
+          "check": "Für den Tisch passen cm oder m, für den Apfel g.\nVergleiche deine Schätzung mit dem gemessenen Wert. Es gibt keine gemeinsame richtige Zahl: Jeder Tisch und jeder Apfel kann anders groß oder schwer sein."
         },
         {
           "title": "Dein Zimmer als Plan",
-          "prompt": "Zeichne eine 4 m lange Wand im Maßstab 1 : 50. Erkläre, wie du gerechnet hast.",
+          "prompt": "Eine Wand ist in Wirklichkeit 4 m lang. Der Plan hat den Maßstab 1 : 50.\n1. Rechne aus, wie lang die Wand auf dem Plan sein muss.\n2. Zeichne sie und erkläre deinen Rechenweg.",
           "check": "4 m = 400 cm. 400 cm : 50 = 8 cm auf dem Papier. Alle Längen im Plan werden mit demselben Faktor verkleinert."
         }
       ],
@@ -184,26 +184,26 @@
       "grade": 5,
       "curriculumRef": "M5 4.2",
       "description": "Umfang, Flächen und Quaderhüllen erforschen.",
-      "lesson": "Umfang heißt: einmal außen herum. Flächeninhalt heißt: Wie viele Einheitsquadrate passen hinein? Für ein Rechteck gilt A = Länge × Breite und U = 2 × (Länge + Breite). 1 m² = 10 000 cm², denn in jede Richtung passen 100 cm.",
+      "lesson": "Umfang heißt: die Länge einmal außen am Rand entlang.\nFlächeninhalt heißt: Wie viele kleine Einheitsquadrate passen hinein? Ein Einheitsquadrat ist zum Beispiel 1 cm lang und 1 cm breit.\nBeim Rechteck: Fläche = Länge × Breite. Umfang = 2 × (Länge + Breite).\n1 m² = 10 000 cm², denn 100 Reihen mit je 100 kleinen Quadraten passen hinein.",
       "activities": [
         {
           "title": "Kästchen zählen",
-          "prompt": "Zeichne auf kariertem Papier ein Rechteck mit 6 Kästchen Länge und 4 Kästchen Breite. Zähle die Kästchen innen und die Kanten außen.",
+          "prompt": "1. Zeichne ein Rechteck: 6 Kästchen lang und 4 Kästchen breit.\n2. Zähle die Kästchen im Inneren. Das ergibt die Fläche in Kästchenquadraten.\n3. Zähle die Kästchenkanten außen am Rand. Das ergibt den Umfang.",
           "check": "Innen sind 6 × 4 = 24 Kästchenquadrate. Außen sind 6 + 4 + 6 + 4 = 20 Kästchenkanten. Fläche und Umfang sind unterschiedliche Größen."
         },
         {
           "title": "Eine L-Form, zwei Wege",
-          "prompt": "Zeichne ein Rechteck mit 8 cm Länge und 6 cm Breite. Entferne oben rechts ein Rechteck von 3 cm Länge und 2 cm Höhe. Berechne die übrige Fläche auf zwei Wegen.",
+          "prompt": "1. Zeichne ein Rechteck: 8 cm lang und 6 cm breit.\n2. Streiche oben rechts ein Stück weg: 3 cm lang und 2 cm hoch.\n3. Berechne die übrige Fläche auf zwei verschiedenen Wegen.",
           "check": "Abziehen: 8 × 6 − 3 × 2 = 42 cm². Zerlegen: unten 8 × 4 und oben links 5 × 2, zusammen 32 + 10 = 42 cm²."
         },
         {
           "title": "Schachtel-Werkstatt",
-          "prompt": "Zeichne ein Netz für eine Schachtel mit 4 cm Länge, 3 cm Breite und 2 cm Höhe. Skizziere auch ein Schrägbild. Welche Flächen gehören paarweise zusammen?",
-          "check": "Du brauchst je zwei Rechtecke 4 × 3, 4 × 2 und 3 × 2 cm. Oberfläche: 2 × (12 + 8 + 6) = 52 cm². Ein Netz muss sich ohne Überlappung schließen lassen. Im Schrägbild bleiben verdeckte Kanten erkennbar, z. B. gestrichelt."
+          "prompt": "Eine Schachtel ist 4 cm lang, 3 cm breit und 2 cm hoch.\n1. Zeichne ein Netz: alle sechs Seitenflächen so nebeneinander, dass du sie zur Schachtel falten könntest.\n2. Zeichne ein Schrägbild. Das ist eine Zeichnung, in der du auch die Tiefe der Schachtel erkennst.\n3. Markiere, welche Flächen gleich groß sind.",
+          "check": "Du brauchst je zwei Rechtecke: 4 × 3 cm, 4 × 2 cm und 3 × 2 cm.\nIhre Flächen sind 12 cm², 8 cm² und 6 cm². Zusammen: 2 × (12 + 8 + 6) = 52 cm².\nDas Netz muss sich schließen lassen, ohne dass Flächen übereinanderliegen. Im Schrägbild kannst du verdeckte Kanten gestrichelt zeichnen."
         },
         {
           "title": "Würfel zusammenbauen",
-          "prompt": "Setze zwei gleich große Würfel an einer ganzen Seitenfläche zusammen. Erkläre, warum nicht alle ursprünglichen Flächen außen bleiben.",
+          "prompt": "1. Lege zwei gleich große Würfel an einer ganzen Seitenfläche zusammen.\n2. Erkläre: Welche Flächen liegen nun innen?\n3. Wie viele Flächen bleiben außen?",
           "check": "Die beiden Kontaktflächen liegen innen. Von 12 Flächen bleiben 10 außen. Mit Würfelkante 2 cm sind das 10 × 4 = 40 cm². Kontrolliere an echten Bauklötzen."
         }
       ],
@@ -216,7 +216,7 @@
       "grade": 5,
       "curriculumRef": "Beispiele ohne vollständige Lehrplanzuordnung",
       "description": "Kleine Wort- und Satzrätsel zum Ausprobieren.",
-      "lesson": "Lies den ganzen Satz. Bei I verwendest du am, bei he/she/it is und bei you/we/they are. In der Knobelstufe suchst du auch Fehler.",
+      "lesson": "Lies zuerst den ganzen Satz.\nTo be heißt „sein“: Bei I steht am, bei he/she/it steht is, bei you/we/they steht are.\nIn der Stufe Streber suchst du auch ein falsches Wort und verbesserst es.",
       "languageSequence": "Englisch als 1. Fremdsprache · Beispiele",
       "activities": []
     }
@@ -234,7 +234,7 @@
       "explanation": "352 besteht aus 3 Hundertern, 5 Zehnern und 2 Einern.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -243,13 +243,13 @@
       "topicId": "numbers",
       "difficulty": "koenner",
       "competencyId": "by.math.5.numbers.place-value",
-      "prompt": "Welchen Wert hat die Ziffer 7 in 4 732 109?",
+      "prompt": "Schau dir die Zahl 4 732 109 an.\nWie viel ist die Ziffer 7 an dieser Stelle wert?",
       "answer": "700000",
-      "hint": "Die 7 steht sechs Stellen von rechts.",
+      "hint": "Zähle von rechts: Einer, Zehner, Hunderter, Tausender, Zehntausender, Hunderttausender.",
       "explanation": "Die 7 steht an der Hunderttausenderstelle: 7 × 100 000 = 700 000.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -258,13 +258,13 @@
       "topicId": "numbers",
       "difficulty": "streber",
       "competencyId": "by.math.5.numbers.place-value",
-      "prompt": "Wie viele Tausender ergeben zusammen eine Milliarde?",
+      "prompt": "Eine Milliarde ist 1 000 000 000.\nWie viele Tausender brauchst du dafür?",
       "answer": "1000000",
       "hint": "Eine Milliarde hat neun Nullen. Teile durch 1 000.",
       "explanation": "1 000 000 000 : 1 000 = 1 000 000 Tausender.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -279,7 +279,7 @@
       "explanation": "VI = 5 + 1 = 6.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -288,13 +288,13 @@
       "topicId": "numbers",
       "difficulty": "koenner",
       "competencyId": "by.math.5.numbers.roman",
-      "prompt": "Welche Zahl bedeutet XLIV?",
+      "prompt": "XLIV ist eine römische Zahl.\nWelche Zahl ist das in unserer Schreibweise?",
       "answer": "44",
-      "hint": "Ein kleineres Zeichen vor einem größeren wird abgezogen.",
+      "hint": "X steht für 10, L für 50, I für 1 und V für 5. Ein kleineres Zeichen vor einem größeren wird abgezogen.",
       "explanation": "XL = 50 − 10 = 40 und IV = 5 − 1 = 4. Zusammen 44.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -303,7 +303,7 @@
       "topicId": "numbers",
       "difficulty": "streber",
       "competencyId": "by.math.5.numbers.roman",
-      "prompt": "Was unterscheidet unser Dezimalsystem vom römischen Zahlensystem?",
+      "prompt": "Wir schreiben Zahlen mit den Ziffern 0 bis 9. Das heißt Dezimalsystem.\nWas ist dabei anders als bei römischen Zahlen?",
       "answer": "Der Wert einer Ziffer hängt von ihrer Stelle ab.",
       "hint": "Vergleiche die 1 in 12 und 21.",
       "explanation": "Unsere 1 kann einen Einer oder einen Zehner meinen. Das Dezimalsystem ist ein Stellenwertsystem.",
@@ -328,7 +328,7 @@
       "explanation": "Die 7 ist mindestens 5, also wird auf 50 aufgerundet.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -339,11 +339,11 @@
       "competencyId": "by.math.5.numbers.rounding",
       "prompt": "Runde 2 748 200 auf Hunderttausender.",
       "answer": "2700000",
-      "hint": "Die nächstkleinere Stelle ist die Zehntausenderstelle.",
+      "hint": "Schau auf die Zehntausenderstelle. Sie steht direkt rechts neben der Hunderttausenderstelle.",
       "explanation": "Die Zehntausenderziffer ist 4. Daher wird auf 2 700 000 abgerundet.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -352,7 +352,7 @@
       "topicId": "numbers",
       "difficulty": "streber",
       "competencyId": "by.math.5.numbers.rounding",
-      "prompt": "Ein Bus hat 48 Plätze. 49 Kinder fahren mit. Auf 50 gerundet klingt das ähnlich. Reicht ein Bus?",
+      "prompt": "Ein Bus hat 48 Plätze. Es wollen 49 Kinder mitfahren.\nGerundet sind beides etwa 50.\nHaben trotzdem alle Kinder einen Sitzplatz?",
       "answer": "Nein",
       "hint": "Eine Schätzung darf keine fehlenden Plätze verstecken.",
       "explanation": "49 ist größer als 48. Beim Planen der Plätze zählt die genaue Kinderzahl.",
@@ -370,13 +370,13 @@
       "topicId": "numbers",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.numbers.number-line",
-      "prompt": "Auf einer Zahlengeraden stehen 0, 10, 20 in gleichen Abständen. Welche Zahl folgt?",
+      "prompt": "Auf einer Zahlengeraden stehen 0, 10 und 20. Die Abstände sind gleich groß.\nWelche Zahl folgt als Nächstes?",
       "answer": "30",
       "hint": "Jeder Schritt bedeutet zehn mehr.",
       "explanation": "20 + 10 = 30.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -385,13 +385,13 @@
       "topicId": "numbers",
       "difficulty": "koenner",
       "competencyId": "by.math.5.numbers.number-line",
-      "prompt": "Zwischen den Markierungen 0 und 1 000 liegen fünf gleich große Abschnitte. Welchen Wert hat ein Abschnitt?",
+      "prompt": "Auf einer Zahlengeraden liegen zwischen 0 und 1 000 fünf gleich große Schritte.\nUm wie viel wird die Zahl bei einem Schritt größer?",
       "answer": "200",
       "hint": "Teile die ganze Strecke in fünf Teile.",
       "explanation": "1 000 : 5 = 200 je Abschnitt.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -400,13 +400,13 @@
       "topicId": "numbers",
       "difficulty": "streber",
       "competencyId": "by.math.5.numbers.number-line",
-      "prompt": "Zwischen −600 und 600 liegen acht gleich große Abschnitte. Welche Zahl steht drei Abschnitte rechts von −600?",
+      "prompt": "Von −600 bis 600 sind es acht gleich große Schritte.\nStarte bei −600 und gehe drei Schritte nach rechts.\nBei welcher Zahl kommst du an?",
       "answer": "−150",
-      "hint": "Berechne zuerst die Spannweite und dann die Schrittweite.",
-      "explanation": "Die Spannweite ist 1 200, ein Schritt ist 150. −600 + 3 × 150 = −150.",
+      "hint": "Wie groß ist der Abstand von −600 bis 600? Teile diesen Abstand durch 8.",
+      "explanation": "Von −600 bis 600 beträgt der Abstand 1 200.\nEin Schritt ist 1 200 : 8 = 150.\nDrei Schritte nach rechts: −600 + 3 × 150 = −150.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -477,7 +477,7 @@
       "explanation": "Von −4 bis 0 sind es 4 Schritte. Der Betrag von −4 ist 4.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -486,13 +486,13 @@
       "topicId": "numbers",
       "difficulty": "koenner",
       "competencyId": "by.math.5.numbers.absolute",
-      "prompt": "Welche Zahl hat den Betrag 9 und ist kleiner als 0?",
+      "prompt": "Der Betrag einer Zahl ist ihr Abstand zur 0.\nWelche Zahl hat den Betrag 9 und ist kleiner als 0?",
       "answer": "−9",
       "hint": "Es gibt zwei Zahlen mit Abstand 9 zur Null.",
       "explanation": "9 und −9 haben Betrag 9. Nur −9 ist kleiner als 0.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -501,9 +501,9 @@
       "topicId": "numbers",
       "difficulty": "streber",
       "competencyId": "by.math.5.numbers.absolute",
-      "prompt": "„Größerer Betrag bedeutet größere Zahl.“ Welches Paar widerlegt das?",
+      "prompt": "Jemand sagt: „Je weiter eine Zahl von 0 entfernt ist, desto größer ist sie.“\nBei welchem Zahlenpaar stimmt das nicht?",
       "answer": "−8 und 3",
-      "hint": "Suche eine kleinere Zahl mit größerem Abstand zur Null.",
+      "hint": "Suche eine kleinere Zahl, die weiter von 0 entfernt ist. Der Abstand zur 0 heißt Betrag.",
       "explanation": "−8 hat Betrag 8 und damit mehr als 3. Trotzdem gilt −8 < 3.",
       "options": [
         "2 und 5",
@@ -526,7 +526,7 @@
       "explanation": "999 + 1 = 1 000.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -541,7 +541,7 @@
       "explanation": "Der Vorgänger ist −10 − 1 = −11.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -550,7 +550,7 @@
       "topicId": "numbers",
       "difficulty": "streber",
       "competencyId": "by.math.5.numbers.successor",
-      "prompt": "Gibt es eine größte natürliche Zahl?",
+      "prompt": "Die natürlichen Zahlen gehen so weiter: 1, 2, 3, …\nGibt es eine größte natürliche Zahl?",
       "answer": "Nein, ich kann immer 1 addieren.",
       "hint": "Denke auch an riesige Zahlen.",
       "explanation": "Zu jeder natürlichen Zahl gehört eine noch größere: die Zahl plus 1.",
@@ -575,7 +575,7 @@
       "explanation": "28 + 30 = 58, dazu 5 ergibt 63.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -590,7 +590,7 @@
       "explanation": "3 405 678 + 800 000 + 76 543 = 4 282 221.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -601,11 +601,11 @@
       "competencyId": "by.math.5.add.written",
       "prompt": "Berechne 10 000 000 − 3 876 543.",
       "answer": "6123457",
-      "hint": "Du kannst deine Antwort durch Addition prüfen.",
-      "explanation": "6 123 457 + 3 876 543 = 10 000 000. Die Differenz ist 6 123 457.",
+      "hint": "Rechne zur Kontrolle deine Antwort plus 3 876 543. Kommt 10 000 000 heraus?",
+      "explanation": "Die gesuchte Zahl ist 6 123 457.\nProbe: 6 123 457 + 3 876 543 = 10 000 000.\nDas Ergebnis einer Minusrechnung heißt Differenz.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -614,7 +614,7 @@
       "topicId": "add",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.add.estimate",
-      "prompt": "Welche Zahl ist ein guter Überschlag für 49 + 32?",
+      "prompt": "Schätze das Ergebnis von 49 + 32.\nWelche gerundete Zahl passt? Eine solche Schätzung heißt Überschlag.",
       "answer": "80",
       "hint": "Runde beide Zahlen auf Zehner.",
       "explanation": "50 + 30 = 80 liegt nahe am genauen Ergebnis 81.",
@@ -652,7 +652,7 @@
       "topicId": "add",
       "difficulty": "streber",
       "competencyId": "by.math.5.add.estimate",
-      "prompt": "Eine Rechnung 7 999 998 + 2 000 005 ergibt angeblich 9 000 003. Stimmt das ungefähr?",
+      "prompt": "Jemand rechnet: 7 999 998 + 2 000 005 = 9 000 003.\nPrüfe das durch Runden. Passt das Ergebnis ungefähr?",
       "answer": "Nein, es sind ungefähr 10 Millionen.",
       "hint": "Runde auf Millionen.",
       "explanation": "8 Millionen + 2 Millionen = 10 Millionen; genau sind es 10 000 003.",
@@ -677,7 +677,7 @@
       "explanation": "−2 + 5 = 3. Die Temperatur beträgt 3 °C.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -692,7 +692,7 @@
       "explanation": "−17 + 9 = −8.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -707,7 +707,7 @@
       "explanation": "−24 + 17 − 8 = −7 − 8 = −15.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -722,7 +722,7 @@
       "explanation": "12 − 7 = 5, also x = 5.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -731,13 +731,13 @@
       "topicId": "add",
       "difficulty": "koenner",
       "competencyId": "by.math.5.add.equations",
-      "prompt": "Löse 18 − x = 31.",
+      "prompt": "Welche Zahl passt für x?\n18 − x = 31.",
       "answer": "−13",
-      "hint": "Ein negatives x macht die Differenz größer.",
+      "hint": "Eine negative Zahl abziehen bedeutet: Ihre positive Gegenzahl dazuzählen.",
       "explanation": "18 − (−13) = 18 + 13 = 31. Also x = −13.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -746,13 +746,13 @@
       "topicId": "add",
       "difficulty": "streber",
       "competencyId": "by.math.5.add.equations",
-      "prompt": "Löse x − (−28) = −15.",
+      "prompt": "Welche Zahl passt für x?\nx − (−28) = −15.",
       "answer": "−43",
-      "hint": "Links steht x + 28.",
+      "hint": "Eine negative Zahl abziehen wird zur Plusrechnung. Links steht also x + 28.",
       "explanation": "x = −15 − 28 = −43. Probe: −43 + 28 = −15.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -767,7 +767,7 @@
       "explanation": "19 + 1 + 6 = 20 + 6 = 26.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -782,7 +782,7 @@
       "explanation": "(275 + 725) + 48 = 1 000 + 48 = 1 048.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -793,11 +793,11 @@
       "competencyId": "by.math.5.add.strategy",
       "prompt": "Rechne geschickt: −125 + 78 + 125 − 178.",
       "answer": "−100",
-      "hint": "Gegenzahlen ergeben zusammen 0.",
+      "hint": "Eine Zahl und ihre Gegenzahl ergeben 0. Zum Beispiel: −5 + 5 = 0.",
       "explanation": "−125 + 125 = 0 und 78 − 178 = −100.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -806,7 +806,7 @@
       "topicId": "add",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.add.terms",
-      "prompt": "Wie heißt das Ergebnis einer Addition?",
+      "prompt": "Wie heißt das Ergebnis einer Plusrechnung?\nDas Fachwort für Plusrechnen ist Addition.",
       "answer": "Summe",
       "hint": "Denke an das Pluszeichen.",
       "explanation": "Die Zahlen heißen Summanden, das Ergebnis heißt Summe.",
@@ -825,10 +825,10 @@
       "topicId": "add",
       "difficulty": "koenner",
       "competencyId": "by.math.5.add.terms",
-      "prompt": "Wie heißt bei 48 − 19 die Zahl 19?",
+      "prompt": "Bei 48 − 19 wird die Zahl 19 abgezogen.\nWie heißt diese Zahl mit dem passenden Fachwort?",
       "answer": "Subtrahend",
       "hint": "Gesucht ist der Name der Zahl, die abgezogen wird.",
-      "explanation": "48 ist der Minuend, 19 der Subtrahend und 29 die Differenz.",
+      "explanation": "48 heißt Minuend: Von dieser Zahl ziehst du etwas ab.\n19 heißt Subtrahend: Diese Zahl ziehst du ab.\nDas Ergebnis 29 heißt Differenz.",
       "options": [
         "Minuend",
         "Summe",
@@ -844,10 +844,10 @@
       "topicId": "add",
       "difficulty": "streber",
       "competencyId": "by.math.5.add.terms",
-      "prompt": "Welche Rechenart wird bei 80 − (12 + 9) zuletzt ausgeführt?",
+      "prompt": "Schau dir die Rechnung 80 − (12 + 9) an.\nWelche Rechenart kommt zuletzt?",
       "answer": "Subtraktion",
       "hint": "Die Klammer wird zuerst berechnet.",
-      "explanation": "Zuerst 12 + 9, dann 80 − 21. Der ganze Term ist eine Differenz.",
+      "explanation": "Zuerst rechnest du 12 + 9 = 21.\nDanach rechnest du 80 − 21.\nZuletzt kommt also die Subtraktion, eine Minusrechnung.",
       "options": [
         "Addition",
         "Subtraktion",
@@ -869,7 +869,7 @@
       "explanation": "15 − 6 = 9 Murmeln.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -884,7 +884,7 @@
       "explanation": "−3 + 8 = 5.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -893,13 +893,13 @@
       "topicId": "add",
       "difficulty": "streber",
       "competencyId": "by.math.5.add.context",
-      "prompt": "Auf einem Spielkonto stehen −35 Münzen. Nach einer Gutschrift und einer Ausgabe von 18 Münzen stehen dort 12. Wie groß war die Gutschrift?",
+      "prompt": "Auf deinem Spielkonto stehen −35 Münzen.\nDu bekommst Münzen dazu und gibst danach 18 Münzen aus.\nJetzt stehen 12 Münzen auf dem Konto.\nWie viele Münzen hast du dazubekommen?",
       "answer": "65",
-      "hint": "Rechne vom Endstand rückwärts.",
+      "hint": "Gehe vom Endstand 12 aus rückwärts. Mache zuerst die Ausgabe von 18 Münzen rückgängig.",
       "explanation": "Vor der Ausgabe waren es 12 + 18 = 30 Münzen. Von −35 bis 30 fehlen 65 Münzen.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -908,13 +908,13 @@
       "topicId": "geometry",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.geometry.coordinates",
-      "prompt": "Beim Punkt P(3 ; 2): Wie viele Schritte gehst du vom Ursprung zuerst nach rechts?",
+      "prompt": "Du willst den Punkt P(3 ; 2) einzeichnen. Start ist (0 ; 0).\nWie viele Schritte gehst du zuerst nach rechts?",
       "answer": "3",
-      "hint": "Die erste Koordinate beschreibt die waagerechte Richtung.",
+      "hint": "Die erste Zahl gibt an, wie weit du nach rechts gehst. Sie heißt x-Koordinate.",
       "explanation": "Die x-Koordinate ist 3: zuerst 3 nach rechts, dann 2 nach oben.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -923,13 +923,13 @@
       "topicId": "geometry",
       "difficulty": "koenner",
       "competencyId": "by.math.5.geometry.coordinates",
-      "prompt": "A(2 ; 3) und B(7 ; 3) liegen auf einer waagerechten Strecke. Wie lang ist sie in Kästcheneinheiten?",
+      "prompt": "Die Punkte A(2 ; 3) und B(7 ; 3) liegen auf gleicher Höhe.\nWie lang ist die Strecke von A nach B? Gib die Länge in Kästchen an.",
       "answer": "5",
-      "hint": "Die y-Koordinate bleibt gleich.",
+      "hint": "Die zweite Zahl ist bei beiden Punkten 3. Zähle den Abstand zwischen 2 und 7.",
       "explanation": "7 − 2 = 5 Einheiten.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -938,7 +938,7 @@
       "topicId": "geometry",
       "difficulty": "streber",
       "competencyId": "by.math.5.geometry.coordinates",
-      "prompt": "Ein Rechteck hat A(−2 ; −1), B(4 ; −1) und C(4 ; 3). Wo liegt die vierte Ecke D?",
+      "prompt": "Ein Rechteck hat die Ecken A, B, C und D. Sie liegen in dieser Reihenfolge am Rand.\nA ist bei (−2 ; −1), B bei (4 ; −1) und C bei (4 ; 3).\nWo liegt D?",
       "answer": "D(−2 ; 3)",
       "hint": "D liegt senkrecht über A und waagerecht neben C.",
       "explanation": "D übernimmt x = −2 von A und y = 3 von C.",
@@ -976,9 +976,9 @@
       "topicId": "geometry",
       "difficulty": "koenner",
       "competencyId": "by.math.5.geometry.lines",
-      "prompt": "Zwei verschiedene Geraden stehen beide senkrecht auf derselben Geraden. Wie liegen sie zueinander in der Ebene?",
+      "prompt": "Auf einem Blatt sind drei Geraden gezeichnet.\nZwei verschiedene Geraden stehen beide senkrecht auf der dritten Geraden.\nWie liegen diese beiden Geraden zueinander?",
       "answer": "Parallel",
-      "hint": "Zeichne zwei senkrechte Striche auf eine waagerechte Linie.",
+      "hint": "Zeichne eine waagerechte Gerade. Zeichne darauf zwei Geraden mit jeweils einem rechten Winkel.",
       "explanation": "In der Ebene sind die beiden Geraden parallel.",
       "options": [
         "Parallel",
@@ -995,13 +995,13 @@
       "topicId": "geometry",
       "difficulty": "streber",
       "competencyId": "by.math.5.geometry.lines",
-      "prompt": "Wie viele gemeinsame Punkte können zwei verschiedene Geraden in der Ebene höchstens haben?",
+      "prompt": "Du zeichnest zwei verschiedene Geraden auf ein Blatt.\nWie viele gemeinsame Punkte können sie höchstens haben?",
       "answer": "1",
-      "hint": "Durch zwei verschiedene Punkte ist genau eine Gerade festgelegt.",
+      "hint": "Wenn zwei Geraden durch dieselben zwei Punkte gehen, liegen sie ganz aufeinander. Dann sind es keine verschiedenen Geraden.",
       "explanation": "Zwei verschiedene Geraden sind parallel oder schneiden sich in genau einem Punkt.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1010,10 +1010,10 @@
       "topicId": "geometry",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.geometry.distance",
-      "prompt": "Wie misst man den kürzesten Abstand eines Punktes von einer Geraden?",
+      "prompt": "Du möchtest von einem Punkt auf dem kürzesten Weg zu einer Geraden.\nIn welche Richtung musst du die Strecke zeichnen?",
       "answer": "Senkrecht zur Geraden",
       "hint": "Eine schräge Verbindung ist länger.",
-      "explanation": "Die kürzeste Verbindung ist das Lot, also eine senkrechte Strecke.",
+      "explanation": "Zeichne die Strecke senkrecht zur Geraden, also im rechten Winkel.\nDiese kürzeste Verbindung heißt Lot.",
       "options": [
         "Schräg zur Geraden",
         "Senkrecht zur Geraden",
@@ -1029,13 +1029,13 @@
       "topicId": "geometry",
       "difficulty": "koenner",
       "competencyId": "by.math.5.geometry.distance",
-      "prompt": "Die Gerade g verläuft waagerecht durch y = 2. P liegt bei (4 ; 7). Wie groß ist der Abstand in Einheiten?",
+      "prompt": "Die Gerade g liegt waagerecht auf der Höhe 2.\nDer Punkt P liegt bei (4 ; 7).\nWie viele Einheiten ist P von g entfernt?",
       "answer": "5",
-      "hint": "Vergleiche die y-Koordinaten.",
-      "explanation": "Das Lot geht von P zu (4 ; 2). Der Abstand ist 7 − 2 = 5.",
+      "hint": "Vergleiche die Höhe des Punktes mit der Höhe der Geraden.",
+      "explanation": "Gehe von P gerade nach unten zu (4 ; 2). Das ist das Lot.\nDer Abstand beträgt 7 − 2 = 5 Einheiten.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1044,7 +1044,7 @@
       "topicId": "geometry",
       "difficulty": "streber",
       "competencyId": "by.math.5.geometry.distance",
-      "prompt": "Wo liegen alle Punkte der Ebene, die von M genau 4 cm entfernt sind?",
+      "prompt": "Markiere auf einem Blatt alle Punkte, die genau 4 cm von M entfernt sind.\nWelche Form bilden diese Punkte?",
       "answer": "Auf der Kreislinie mit Mittelpunkt M und Radius 4 cm",
       "hint": "Alle gesuchten Punkte haben denselben Abstand zu M.",
       "explanation": "Die Kreislinie besteht genau aus den Punkten mit diesem festen Abstand.",
@@ -1063,13 +1063,13 @@
       "topicId": "geometry",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.geometry.circles",
-      "prompt": "Ein Kreis hat Radius 3 cm. Wie lang ist sein Durchmesser in cm?",
+      "prompt": "Vom Mittelpunkt eines Kreises bis zum Rand sind es 3 cm. Das ist der Radius.\nWie lang ist der Durchmesser in cm?",
       "answer": "6",
-      "hint": "Der Durchmesser ist doppelt so lang wie der Radius.",
+      "hint": "Der Durchmesser geht durch die Mitte von einem Rand zum anderen. Er ist doppelt so lang wie der Radius.",
       "explanation": "2 × 3 = 6 cm.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1078,13 +1078,13 @@
       "topicId": "geometry",
       "difficulty": "koenner",
       "competencyId": "by.math.5.geometry.circles",
-      "prompt": "Wie viele gemeinsame Punkte haben eine Tangente und ihr Kreis?",
+      "prompt": "Eine Tangente ist eine Gerade, die einen Kreis nur berührt.\nWie viele Punkte haben die Tangente und der Kreis gemeinsam?",
       "answer": "1",
       "hint": "Eine Tangente berührt, statt den Kreis zu durchqueren.",
       "explanation": "Die Tangente hat genau einen Berührpunkt mit dem Kreis.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1093,13 +1093,13 @@
       "topicId": "geometry",
       "difficulty": "streber",
       "competencyId": "by.math.5.geometry.circles",
-      "prompt": "Zwei Kreise haben beide Radius 3 cm. Ihre Mittelpunkte sind 6 cm voneinander entfernt. Wie viele gemeinsame Punkte haben sie?",
+      "prompt": "Du zeichnest zwei Kreise. Beide haben einen Radius von 3 cm.\nDie Mittelpunkte sind 6 cm voneinander entfernt.\nWie viele Punkte haben die Kreise gemeinsam?",
       "answer": "1",
-      "hint": "Vergleiche den Abstand mit der Summe der Radien.",
+      "hint": "Addiere die beiden Radien. Vergleiche das Ergebnis mit dem Abstand der Mittelpunkte.",
       "explanation": "3 + 3 = 6. Die Kreise berühren sich von außen in genau einem Punkt.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1165,13 +1165,13 @@
       "topicId": "geometry",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.geometry.angles",
-      "prompt": "Ein Vollwinkel hat 360°. Wie viele Grad hat ein halber Vollwinkel?",
+      "prompt": "Eine ganze Drehung hat 360°. Das heißt Vollwinkel.\nWie viele Grad hat eine halbe Drehung?",
       "answer": "180",
       "hint": "Teile 360 durch 2.",
       "explanation": "360° : 2 = 180°. Das ist ein gestreckter Winkel.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1180,13 +1180,13 @@
       "topicId": "geometry",
       "difficulty": "koenner",
       "competencyId": "by.math.5.geometry.angles",
-      "prompt": "Zwei Winkel ergänzen sich zu 180°. Einer hat 65°. Wie viele Grad hat der andere?",
+      "prompt": "Zwei Winkel ergeben zusammen 180°. Einer davon hat 65°.\nWie viele Grad hat der andere?",
       "answer": "115",
       "hint": "Ziehe den bekannten Winkel von 180° ab.",
       "explanation": "180° − 65° = 115°.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1195,13 +1195,13 @@
       "topicId": "geometry",
       "difficulty": "streber",
       "competencyId": "by.math.5.geometry.angles",
-      "prompt": "Um einen Punkt liegen Winkel von 85°, 120° und ein Restwinkel. Wie viele Grad hat der Restwinkel?",
+      "prompt": "Drei Winkel füllen zusammen eine ganze Drehung um einen Punkt.\nZwei davon haben 85° und 120°.\nWie viele Grad hat der dritte Winkel?",
       "answer": "155",
-      "hint": "Zusammen ist es ein Vollwinkel.",
+      "hint": "Eine ganze Drehung hat 360°. Ziehe die beiden bekannten Winkel ab.",
       "explanation": "360° − 85° − 120° = 155°.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1229,9 +1229,9 @@
       "topicId": "geometry",
       "difficulty": "koenner",
       "competencyId": "by.math.5.geometry.quadrilaterals",
-      "prompt": "Welches Viereck hat immer zwei Paare paralleler gegenüberliegender Seiten?",
+      "prompt": "Bei welchem Viereck sind die gegenüberliegenden Seiten immer parallel – bei beiden Seitenpaaren?",
       "answer": "Parallelogramm",
-      "hint": "Schon der Name verrät etwas.",
+      "hint": "Parallel heißt: Die Seiten würden sich auch verlängert nie treffen.",
       "explanation": "Beim Parallelogramm sind beide Paare gegenüberliegender Seiten parallel.",
       "options": [
         "Jedes Drachenviereck",
@@ -1273,7 +1273,7 @@
       "explanation": "7 × 8 = 56.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1288,7 +1288,7 @@
       "explanation": "23 400 + 4 680 + 702 = 28 782.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1299,11 +1299,11 @@
       "competencyId": "by.math.5.multiply.written",
       "prompt": "Berechne 28 782 : 123.",
       "answer": "234",
-      "hint": "Nutze eine Überschlagsrechnung und prüfe durch Multiplikation.",
-      "explanation": "123 × 234 = 28 782. Also ist der Quotient 234.",
+      "hint": "Schätze zuerst die Größe des Ergebnisses. Prüfe danach: Deine Antwort mal 123 muss 28 782 ergeben.",
+      "explanation": "123 × 234 = 28 782.\nAlso ist 28 782 : 123 = 234. Das Ergebnis einer Geteiltrechnung heißt Quotient.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1312,7 +1312,7 @@
       "topicId": "multiply",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.multiply.divisibility",
-      "prompt": "Welche Zahl ist durch 5 teilbar?",
+      "prompt": "Welche Zahl lässt sich durch 5 teilen, ohne dass ein Rest bleibt?",
       "answer": "35",
       "hint": "Schau auf die letzte Ziffer.",
       "explanation": "Zahlen mit Endziffer 0 oder 5 sind durch 5 teilbar.",
@@ -1331,10 +1331,10 @@
       "topicId": "multiply",
       "difficulty": "koenner",
       "competencyId": "by.math.5.multiply.divisibility",
-      "prompt": "Welche Zahl ist durch 2, 3, 5 und 10 teilbar?",
+      "prompt": "Welche Zahl lässt sich durch 2, durch 3, durch 5 und durch 10 teilen – jedes Mal ohne Rest?",
       "answer": "120",
-      "hint": "Endziffer 0 und Quersumme durch 3 teilbar?",
-      "explanation": "120 endet auf 0, ist also durch 2, 5 und 10 teilbar. Die Quersumme 3 macht sie auch durch 3 teilbar.",
+      "hint": "Eine Zahl mit letzter Ziffer 0 ist durch 2, 5 und 10 teilbar. Addiere die Ziffern: Diese Summe heißt Quersumme. Ist sie durch 3 teilbar?",
+      "explanation": "120 endet auf 0. Daher ist 120 durch 2, 5 und 10 teilbar.\nDie Quersumme ist 1 + 2 + 0 = 3. Deshalb ist 120 auch durch 3 teilbar.",
       "options": [
         "120",
         "125",
@@ -1350,13 +1350,13 @@
       "topicId": "multiply",
       "difficulty": "streber",
       "competencyId": "by.math.5.multiply.divisibility",
-      "prompt": "Welche kleinste Ziffer ersetzt □, damit 4□2 durch 3 teilbar ist?",
+      "prompt": "In der Zahl 4□2 fehlt eine Ziffer.\nSetze die kleinste passende Ziffer ein, damit die Zahl ohne Rest durch 3 teilbar ist.",
       "answer": "0",
-      "hint": "Die Quersumme ist 4 + □ + 2.",
+      "hint": "Addiere die drei Ziffern: 4 + □ + 2. Diese Quersumme muss durch 3 teilbar sein.",
       "explanation": "Mit 0 ist die Quersumme 6 und durch 3 teilbar. Kleinere Ziffern als 0 gibt es nicht.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1367,7 +1367,7 @@
       "competencyId": "by.math.5.multiply.prime",
       "prompt": "Welche dieser Zahlen ist eine Primzahl?",
       "answer": "7",
-      "hint": "Eine Primzahl hat genau zwei positive Teiler.",
+      "hint": "Eine Primzahl ist größer als 1. Sie lässt sich ohne Rest nur durch 1 und durch sich selbst teilen.",
       "explanation": "7 ist nur durch 1 und 7 teilbar. 6 und 9 haben weitere Teiler.",
       "options": [
         "6",
@@ -1384,10 +1384,10 @@
       "topicId": "multiply",
       "difficulty": "koenner",
       "competencyId": "by.math.5.multiply.prime",
-      "prompt": "Welche Zerlegung von 60 besteht nur aus Primfaktoren?",
+      "prompt": "60 lässt sich als Malrechnung schreiben.\nBei welcher Antwort sind alle Zahlen der Malrechnung Primzahlen? Diese Zahlen heißen Primfaktoren.",
       "answer": "2 × 2 × 3 × 5",
-      "hint": "Zerlege auch zusammengesetzte Faktoren weiter.",
-      "explanation": "2 × 2 × 3 × 5 = 60; alle Faktoren sind prim.",
+      "hint": "Eine Primzahl lässt sich ohne Rest nur durch 1 und sich selbst teilen. 4, 6 und 10 sind keine Primzahlen.",
+      "explanation": "2 × 2 × 3 × 5 = 60.\nJede Zahl in dieser Malrechnung ist eine Primzahl. Deshalb ist das eine Primfaktorzerlegung.",
       "options": [
         "6 × 10",
         "2 × 2 × 3 × 5",
@@ -1403,13 +1403,13 @@
       "topicId": "multiply",
       "difficulty": "streber",
       "competencyId": "by.math.5.multiply.prime",
-      "prompt": "Eine Zahl hat die Primfaktorzerlegung 2³ × 3². Wie groß ist sie?",
+      "prompt": "Eine Zahl wurde in Primfaktoren zerlegt: 2³ × 3².\nWelche Zahl kommt bei dieser Rechnung heraus?",
       "answer": "72",
       "hint": "Rechne erst die Potenzen aus.",
       "explanation": "2³ = 8 und 3² = 9. 8 × 9 = 72.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1418,13 +1418,13 @@
       "topicId": "multiply",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.multiply.counting",
-      "prompt": "Du hast 2 Mützen und 3 Schals. Wie viele Kombinationen aus einer Mütze und einem Schal gibt es?",
+      "prompt": "Du hast 2 Mützen und 3 Schals. Du wählst eine Mütze und einen Schal.\nWie viele verschiedene Kombinationen sind möglich?",
       "answer": "6",
       "hint": "Zu jeder Mütze passen drei Schals.",
       "explanation": "2 × 3 = 6 Kombinationen.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1439,7 +1439,7 @@
       "explanation": "4 × 3 = 12 Möglichkeiten.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1448,13 +1448,13 @@
       "topicId": "multiply",
       "difficulty": "streber",
       "competencyId": "by.math.5.multiply.counting",
-      "prompt": "Ein Code hat drei Stellen. Jede Stelle ist 1, 2 oder 3. Wiederholungen sind erlaubt. Wie viele Codes gibt es?",
+      "prompt": "Ein Zahlencode hat drei Stellen. Für jede Stelle darfst du 1, 2 oder 3 wählen.\nDu darfst Zahlen mehrfach verwenden, zum Beispiel 111.\nWie viele Codes sind möglich?",
       "answer": "27",
       "hint": "Für jede der drei Stellen hast du drei Möglichkeiten.",
       "explanation": "3 × 3 × 3 = 27 Codes.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1469,7 +1469,7 @@
       "explanation": "3 × 4 = 12. Mit verschiedenen Vorzeichen ist das Ergebnis −12.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1484,7 +1484,7 @@
       "explanation": "72 : 8 = 9; Minus durch Minus ergibt Plus.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1499,7 +1499,7 @@
       "explanation": "(−5) × (−4) = 20 und 20 × (−3) = −60.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1514,7 +1514,7 @@
       "explanation": "4 × 4 = 16.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1529,7 +1529,7 @@
       "explanation": "20 × 20 = 400.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1540,11 +1540,11 @@
       "competencyId": "by.math.5.multiply.powers",
       "prompt": "Berechne (−2)⁵.",
       "answer": "−32",
-      "hint": "Multipliziere fünfmal den Faktor −2.",
-      "explanation": "Zwei Minuspaare ergeben Plus; ein Minus bleibt übrig. 2⁵ = 32, also −32.",
+      "hint": "Schreibe fünfmal −2 mit Malzeichen dazwischen. Rechne dann von links nach rechts.",
+      "explanation": "(−2) × (−2) = 4.\n4 × (−2) = −8.\n(−8) × (−2) = 16.\n16 × (−2) = −32.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1559,7 +1559,7 @@
       "explanation": "10 × 10 × 10 = 1 000.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1568,13 +1568,13 @@
       "topicId": "multiply",
       "difficulty": "koenner",
       "competencyId": "by.math.5.multiply.growth",
-      "prompt": "Ein Spiel startet mit 3 Kristallen. Die Anzahl verdoppelt sich viermal. Wie viele Kristalle sind es danach?",
+      "prompt": "Du startest mit 3 Kristallen. In jeder Runde verdoppelt sich die Anzahl.\nWie viele Kristalle hast du nach vier Runden?",
       "answer": "48",
-      "hint": "Viermal verdoppeln bedeutet mal 2⁴.",
+      "hint": "Verdoppeln heißt mal 2. Rechne das viermal nacheinander.",
       "explanation": "3 × 2 × 2 × 2 × 2 = 48.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1602,13 +1602,13 @@
       "topicId": "multiply",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.multiply.equations",
-      "prompt": "Löse 6 × x = 42.",
+      "prompt": "Welche Zahl passt für x?\n6 × x = 42.",
       "answer": "7",
       "hint": "Teile 42 durch 6.",
       "explanation": "42 : 6 = 7. Probe: 6 × 7 = 42.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1617,13 +1617,13 @@
       "topicId": "multiply",
       "difficulty": "koenner",
       "competencyId": "by.math.5.multiply.equations",
-      "prompt": "Löse x : (−7) = 8.",
+      "prompt": "Welche Zahl passt für x?\nx : (−7) = 8.",
       "answer": "−56",
       "hint": "Multipliziere 8 mit −7.",
       "explanation": "x = 8 × (−7) = −56. Probe: (−56) : (−7) = 8.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1632,13 +1632,13 @@
       "topicId": "multiply",
       "difficulty": "streber",
       "competencyId": "by.math.5.multiply.equations",
-      "prompt": "Löse (−96) : x = 12.",
+      "prompt": "Welche Zahl passt für x?\n(−96) : x = 12.",
       "answer": "−8",
       "hint": "Welche Zahl mal 12 ergibt −96?",
       "explanation": "x = (−96) : 12 = −8. Probe: (−96) : (−8) = 12.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1649,11 +1649,11 @@
       "competencyId": "by.math.5.terms.precedence",
       "prompt": "Berechne 3 + 4 × 2.",
       "answer": "11",
-      "hint": "Punktrechnung geht vor Strichrechnung.",
+      "hint": "Rechne zuerst mal, dann plus. Das heißt „Punkt vor Strich“.",
       "explanation": "Zuerst 4 × 2 = 8, dann 3 + 8 = 11.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1664,11 +1664,11 @@
       "competencyId": "by.math.5.terms.precedence",
       "prompt": "Berechne 36 : 6 × 2.",
       "answer": "12",
-      "hint": "Division und Multiplikation sind gleichrangig: von links nach rechts.",
+      "hint": "Mal und Geteilt sind gleich wichtig. Ohne Klammern rechnest du hier von links nach rechts.",
       "explanation": "36 : 6 = 6, danach 6 × 2 = 12.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1679,11 +1679,11 @@
       "competencyId": "by.math.5.terms.precedence",
       "prompt": "Berechne 50 − 3 × 2³ + 6.",
       "answer": "32",
-      "hint": "Beginne mit der Potenz, dann multipliziere.",
+      "hint": "Rechne zuerst 2³, dann die Malrechnung. Zum Schluss kommen Plus und Minus.",
       "explanation": "2³ = 8, 3 × 8 = 24. Dann 50 − 24 + 6 = 32.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1698,7 +1698,7 @@
       "explanation": "3 + 4 = 7, dann 7 × 2 = 14.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1709,11 +1709,11 @@
       "competencyId": "by.math.5.terms.brackets",
       "prompt": "Berechne 5 × (18 − 2 × 4).",
       "answer": "50",
-      "hint": "In der Klammer gilt ebenfalls Punkt vor Strich.",
+      "hint": "Auch in der Klammer gilt: zuerst mal, dann minus.",
       "explanation": "2 × 4 = 8, 18 − 8 = 10, 5 × 10 = 50.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1728,7 +1728,7 @@
       "explanation": "7 − 4 = 3; 2 × 3 = 6; 120 : 6 = 20; 20 − 9 = 11.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1743,7 +1743,7 @@
       "explanation": "4 × 10 + 4 × 1 = 40 + 4 = 44.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1758,7 +1758,7 @@
       "explanation": "7 × 100 − 7 × 2 = 700 − 14 = 686.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1769,11 +1769,11 @@
       "competencyId": "by.math.5.terms.distribute",
       "prompt": "Berechne geschickt 37 × 24 + 63 × 24.",
       "answer": "2400",
-      "hint": "Der Faktor 24 steckt in beiden Produkten.",
+      "hint": "Beide Malrechnungen enthalten 24. Du kannst zuerst 37 und 63 zusammenzählen.",
       "explanation": "(37 + 63) × 24 = 100 × 24 = 2 400.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1788,7 +1788,7 @@
       "explanation": "(2 × 5) × 3 = 10 × 3 = 30.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1803,7 +1803,7 @@
       "explanation": "25 × 4 × 17 = 100 × 17 = 1 700.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1812,10 +1812,10 @@
       "topicId": "terms",
       "difficulty": "streber",
       "competencyId": "by.math.5.terms.associate",
-      "prompt": "Darfst du 24 : (6 : 2) durch (24 : 6) : 2 ersetzen?",
+      "prompt": "Vergleiche diese Rechnungen:\n24 : (6 : 2) und (24 : 6) : 2.\nDarfst du die Klammern so verschieben, ohne das Ergebnis zu ändern?",
       "answer": "Nein, die Ergebnisse sind verschieden.",
-      "hint": "Berechne beide Terme.",
-      "explanation": "24 : (6 : 2) = 8, aber (24 : 6) : 2 = 2. Das Verbindungsgesetz gilt nicht allgemein für Division.",
+      "hint": "Rechne beide Seiten getrennt aus. Beginne jeweils mit der Klammer.",
+      "explanation": "Links: 6 : 2 = 3, dann 24 : 3 = 8.\nRechts: 24 : 6 = 4, dann 4 : 2 = 2.\nDie Ergebnisse sind verschieden. Bei Geteiltrechnungen darfst du Klammern nicht einfach verschieben.",
       "options": [
         "Ja, immer.",
         "Nein, die Ergebnisse sind verschieden."
@@ -1830,9 +1830,9 @@
       "topicId": "terms",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.terms.structure",
-      "prompt": "Wie heißt das Ergebnis einer Multiplikation?",
+      "prompt": "Wie heißt das Ergebnis einer Malrechnung?\nDas Fachwort für Malrechnen ist Multiplikation.",
       "answer": "Produkt",
-      "hint": "Die Faktoren werden miteinander multipliziert.",
+      "hint": "Die Zahlen, die du miteinander malnimmst, heißen Faktoren.",
       "explanation": "Faktor mal Faktor ergibt ein Produkt.",
       "options": [
         "Summe",
@@ -1849,10 +1849,10 @@
       "topicId": "terms",
       "difficulty": "koenner",
       "competencyId": "by.math.5.terms.structure",
-      "prompt": "Wie ist der ganze Term (8 + 4) : 3 aufgebaut?",
+      "prompt": "Schau dir die Rechnung (8 + 4) : 3 an. Eine solche Rechnung heißt Term.\nWelche Beschreibung passt dazu?",
       "answer": "Quotient aus einer Summe und 3",
-      "hint": "Welche Rechnung wird zuletzt ausgeführt?",
-      "explanation": "Die Summe 8 + 4 wird durch 3 geteilt. Der ganze Term ist ein Quotient.",
+      "hint": "Beschreibe zuerst die Klammer. Überlege dann, was mit ihrem Ergebnis passiert.",
+      "explanation": "Zuerst wird 8 + 4 gerechnet. Das Ergebnis heißt Summe.\nDann wird diese Summe durch 3 geteilt.\nDie ganze Rechnung ist deshalb ein Quotient aus einer Summe und 3.",
       "options": [
         "Summe aus 8 und einem Quotienten",
         "Quotient aus einer Summe und 3",
@@ -1868,9 +1868,9 @@
       "topicId": "terms",
       "difficulty": "streber",
       "competencyId": "by.math.5.terms.structure",
-      "prompt": "Welcher Term bedeutet: „Subtrahiere das Produkt aus 3 und 8 von 50“?",
+      "prompt": "Du sollst zuerst 3 mal 8 rechnen. Ziehe dieses Ergebnis von 50 ab.\nWelche Rechnung passt dazu?",
       "answer": "50 − 3 × 8",
-      "hint": "Das Produkt wird von 50 abgezogen.",
+      "hint": "Das Ergebnis von 3 mal 8 heißt Produkt. Dieses Produkt ziehst du von 50 ab.",
       "explanation": "Zuerst das Produkt 3 × 8, dann die Differenz zu 50.",
       "options": [
         "(50 − 3) × 8",
@@ -1893,7 +1893,7 @@
       "explanation": "9 − 4 = 5.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1902,13 +1902,13 @@
       "topicId": "terms",
       "difficulty": "koenner",
       "competencyId": "by.math.5.terms.reverse",
-      "prompt": "Eine Zahl wird verdreifacht. Danach werden 7 addiert. Das Ergebnis ist 40. Wie heißt die Zahl?",
+      "prompt": "Du denkst dir eine Zahl. Du rechnest sie mal 3 und zählst danach 7 dazu.\nAm Ende kommt 40 heraus.\nWelche Zahl hast du dir gedacht?",
       "answer": "11",
       "hint": "Mache zuerst +7 rückgängig, dann mal 3.",
       "explanation": "(40 − 7) : 3 = 33 : 3 = 11.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1917,13 +1917,13 @@
       "topicId": "terms",
       "difficulty": "streber",
       "competencyId": "by.math.5.terms.reverse",
-      "prompt": "Von einer Zahl werden 8 abgezogen. Das Ergebnis wird durch 4 geteilt und dann 6 addiert. Am Ende steht 15. Wie heißt die Zahl?",
+      "prompt": "Du denkst dir eine Zahl.\n1. Ziehe 8 ab.\n2. Teile das Ergebnis durch 4.\n3. Zähle 6 dazu.\nJetzt kommt 15 heraus. Welche Zahl war es am Anfang?",
       "answer": "44",
       "hint": "Rückwärts: minus 6, mal 4, plus 8.",
       "explanation": "(15 − 6) × 4 + 8 = 9 × 4 + 8 = 44.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1938,7 +1938,7 @@
       "explanation": "3 × 4 = 12 Sticker.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1947,13 +1947,13 @@
       "topicId": "terms",
       "difficulty": "koenner",
       "competencyId": "by.math.5.terms.model",
-      "prompt": "Eine Klasse kauft 24 Hefte zu je 3 € und einen Ball für 18 €. Wie viele Euro kostet alles?",
+      "prompt": "Eine Klasse kauft 24 Hefte. Jedes Heft kostet 3 €.\nDazu kommt ein Ball für 18 €.\nWie viele Euro kostet alles zusammen?",
       "answer": "90",
       "hint": "Berechne erst die Hefte, dann addiere den Ball.",
       "explanation": "24 × 3 + 18 = 72 + 18 = 90 €.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1962,13 +1962,13 @@
       "topicId": "terms",
       "difficulty": "streber",
       "competencyId": "by.math.5.terms.model",
-      "prompt": "Für einen Ausflug zahlen 28 Kinder je 12 €. Der Bus kostet 250 €, Eintritt für alle zusammen 70 €. Wie viele Euro bleiben übrig?",
+      "prompt": "28 Kinder zahlen je 12 € für einen Ausflug.\nDer Bus kostet 250 €. Der Eintritt für alle zusammen kostet 70 €.\nWie viele Euro bleiben übrig?",
       "answer": "16",
-      "hint": "Vergleiche Einnahmen und Gesamtkosten.",
-      "explanation": "28 × 12 − (250 + 70) = 336 − 320 = 16 €. Ein kleiner positiver Rest ist plausibel.",
+      "hint": "Rechne aus, wie viel Geld die Kinder zusammen bezahlen. Ziehe dann Bus und Eintritt ab.",
+      "explanation": "Einnahmen: 28 × 12 € = 336 €.\nKosten: 250 € + 70 € = 320 €.\nÜbrig bleiben 336 € − 320 € = 16 €.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1983,7 +1983,7 @@
       "explanation": "2 × 100 = 200 ct.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -1998,7 +1998,7 @@
       "explanation": "275 ct + 140 ct = 415 ct = 4,15 €.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2013,7 +2013,7 @@
       "explanation": "3 × 2,80 € = 8,40 €. 10 € − 8,40 € = 1,60 €.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2028,7 +2028,7 @@
       "explanation": "3 × 100 = 300 cm.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2043,7 +2043,7 @@
       "explanation": "2,35 × 1 000 = 2 350 m.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2058,7 +2058,7 @@
       "explanation": "200 cm − 7 × 18 cm = 200 cm − 126 cm = 74 cm.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2073,7 +2073,7 @@
       "explanation": "2 × 1 000 = 2 000 g.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2088,7 +2088,7 @@
       "explanation": "1,25 × 1 000 = 1 250 kg.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2103,7 +2103,7 @@
       "explanation": "8 × 2,5 g = 20 g = 20 000 mg.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2118,7 +2118,7 @@
       "explanation": "2 × 60 = 120 Minuten.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2146,13 +2146,13 @@
       "topicId": "units",
       "difficulty": "streber",
       "competencyId": "by.math.5.units.time",
-      "prompt": "Ein Lauf dauert 4 min 35 s. Ein anderer ist 48 s kürzer. Wie viele Sekunden dauert der kürzere Lauf?",
+      "prompt": "Ein Lauf dauert 4 Minuten und 35 Sekunden.\nEin anderer Lauf ist 48 Sekunden kürzer.\nWie viele Sekunden dauert der kürzere Lauf?",
       "answer": "227",
       "hint": "Wandle die ganze Zeit zuerst in Sekunden um.",
       "explanation": "4 × 60 + 35 = 275 s. 275 − 48 = 227 s.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2180,7 +2180,7 @@
       "topicId": "units",
       "difficulty": "koenner",
       "competencyId": "by.math.5.units.estimate",
-      "prompt": "Welche Masse passt ungefähr zu einer vollen 1-Liter-Wasserflasche?",
+      "prompt": "Wie schwer ist eine volle 1-Liter-Wasserflasche ungefähr?\nWähle eine passende Masse.",
       "answer": "1 kg",
       "hint": "Vergleiche mit einem Kilogramm Mehl.",
       "explanation": "Das Wasser wiegt ungefähr 1 kg; die Flasche kommt noch dazu.",
@@ -2199,7 +2199,7 @@
       "topicId": "units",
       "difficulty": "streber",
       "competencyId": "by.math.5.units.estimate",
-      "prompt": "Eine 100-m-Strecke wird angeblich zu Fuß in 2 s zurückgelegt. Ist das für ein Kind plausibel?",
+      "prompt": "Ein Kind soll 100 Meter in nur 2 Sekunden gelaufen sein.\nKann das stimmen?",
       "answer": "Nein",
       "hint": "Das wären in jeder Sekunde 50 m.",
       "explanation": "100 m in 2 s bedeutet 50 m pro Sekunde. Das schafft ein Kind zu Fuß nicht.",
@@ -2223,7 +2223,7 @@
       "explanation": "6 € : 2 = 3 €.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2238,7 +2238,7 @@
       "explanation": "4,50 € : 3 = 1,50 €. 5 × 1,50 € = 7,50 €.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2247,13 +2247,13 @@
       "topicId": "units",
       "difficulty": "streber",
       "competencyId": "by.math.5.units.unitary",
-      "prompt": "Sechs gleiche Packungen wiegen zusammen 1,8 kg. Wie viele Gramm wiegen 14 Packungen?",
+      "prompt": "6 gleiche Packungen wiegen zusammen 1,8 kg.\nWie viele Gramm wiegen 14 dieser Packungen?",
       "answer": "4200",
       "hint": "Rechne erst in Gramm und dann für eine Packung.",
       "explanation": "1 800 g : 6 = 300 g. 14 × 300 g = 4 200 g.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2262,13 +2262,13 @@
       "topicId": "units",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.units.scale",
-      "prompt": "Im Maßstab 1 : 100 entsprechen 1 cm auf dem Plan wie vielen cm in Wirklichkeit?",
+      "prompt": "Auf einem Plan steht der Maßstab 1 : 100.\nWie viele Zentimeter in Wirklichkeit sind 1 cm auf dem Plan?",
       "answer": "100",
-      "hint": "Die zweite Zahl gibt den Vergrößerungsfaktor an.",
+      "hint": "Der Maßstab sagt dir, wie stark der Plan verkleinert ist. Die zweite Zahl zeigt: So viele Zentimeter sind es in Wirklichkeit.",
       "explanation": "1 cm auf dem Plan entspricht 100 cm in Wirklichkeit.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2277,13 +2277,13 @@
       "topicId": "units",
       "difficulty": "koenner",
       "competencyId": "by.math.5.units.scale",
-      "prompt": "Eine Karte hat Maßstab 1 : 25 000. Eine Strecke misst dort 4 cm. Wie viele Meter sind das in Wirklichkeit?",
+      "prompt": "Eine Karte hat den Maßstab 1 : 25 000.\nEine Strecke ist auf der Karte 4 cm lang.\nWie viele Meter sind das in Wirklichkeit?",
       "answer": "1000",
       "hint": "Multipliziere erst und wandle dann cm in m um.",
       "explanation": "4 × 25 000 cm = 100 000 cm = 1 000 m.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2292,13 +2292,13 @@
       "topicId": "units",
       "difficulty": "streber",
       "competencyId": "by.math.5.units.scale",
-      "prompt": "Eine echte Strecke von 1,5 km ist auf einer Karte 3 cm lang. Ergänze den Maßstab 1 : x. Wie groß ist x?",
+      "prompt": "Eine Strecke ist in Wirklichkeit 1,5 km lang. Auf der Karte ist sie 3 cm lang.\nWelcher Maßstab passt: 1 : ___?\nSchreibe die fehlende Zahl auf.",
       "answer": "50000",
       "hint": "Wandle 1,5 km in cm um und teile durch 3.",
       "explanation": "1,5 km = 150 000 cm. 150 000 : 3 = 50 000. Maßstab 1 : 50 000.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2313,7 +2313,7 @@
       "explanation": "4 × 10 = 40 mm.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2328,7 +2328,7 @@
       "explanation": "3,5 × 10 = 35 cm.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2343,7 +2343,7 @@
       "explanation": "20 cm + 3,5 cm = 23,5 cm.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2352,13 +2352,13 @@
       "topicId": "area",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.area.squares",
-      "prompt": "Ein Rechteck besteht aus 3 Reihen mit je 4 Einheitsquadraten. Wie viele Einheitsquadrate sind es?",
+      "prompt": "Ein Rechteck ist mit kleinen, gleich großen Quadraten ausgelegt.\nEs hat 3 Reihen mit je 4 Quadraten.\nWie viele Quadrate sind es insgesamt?",
       "answer": "12",
-      "hint": "Zähle pro Reihe und multipliziere.",
+      "hint": "Zähle die Quadrate in einer Reihe. Nimm diese Anzahl mal 3.",
       "explanation": "3 × 4 = 12 Einheitsquadrate.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2373,7 +2373,7 @@
       "explanation": "9 cm × 7 cm = 63 cm².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2388,7 +2388,7 @@
       "explanation": "96 cm² : 12 cm = 8 cm.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2397,13 +2397,13 @@
       "topicId": "area",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.area.perimeter",
-      "prompt": "Ein Quadrat hat Seitenlänge 5 cm. Wie groß ist sein Umfang in cm?",
+      "prompt": "Jede Seite eines Quadrats ist 5 cm lang.\nWie lang ist der Rand einmal ganz außen herum? Das ist der Umfang. Antworte in cm.",
       "answer": "20",
       "hint": "Alle vier Seiten sind gleich lang.",
       "explanation": "4 × 5 cm = 20 cm.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2412,13 +2412,13 @@
       "topicId": "area",
       "difficulty": "koenner",
       "competencyId": "by.math.5.area.perimeter",
-      "prompt": "Ein Rechteck ist 8 cm lang und 3 cm breit. Wie groß ist sein Umfang in cm?",
+      "prompt": "Ein Rechteck ist 8 cm lang und 3 cm breit.\nWie lang ist der Rand einmal ganz außen herum? Gib den Umfang in cm an.",
       "answer": "22",
       "hint": "Addiere alle vier Seiten.",
       "explanation": "8 + 3 + 8 + 3 = 22 cm.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2427,13 +2427,13 @@
       "topicId": "area",
       "difficulty": "streber",
       "competencyId": "by.math.5.area.perimeter",
-      "prompt": "Ein Rechteck hat Umfang 30 cm und Breite 4 cm. Wie lang ist es in cm?",
+      "prompt": "Der Umfang eines Rechtecks ist 30 cm. Das ist die Länge des ganzen Randes.\nDas Rechteck ist 4 cm breit. Wie lang ist es in cm?",
       "answer": "11",
       "hint": "Die halbe Umrandung besteht aus Länge plus Breite.",
       "explanation": "30 : 2 = 15; 15 − 4 = 11 cm.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2444,11 +2444,11 @@
       "competencyId": "by.math.5.area.conversion",
       "prompt": "Wie viele cm² sind 1 dm²?",
       "answer": "100",
-      "hint": "Ein dm ist 10 cm lang und breit.",
+      "hint": "Stell dir ein Quadrat mit Seitenlänge 1 dm vor. Jede Seite ist 10 cm lang. Wie viele kleine Quadrate von 1 cm² passen hinein?",
       "explanation": "10 cm × 10 cm = 100 cm².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2463,7 +2463,7 @@
       "explanation": "2,5 × 10 000 = 25 000 cm².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2474,11 +2474,11 @@
       "competencyId": "by.math.5.area.conversion",
       "prompt": "Wie viele mm² sind 0,03 dm²?",
       "answer": "300",
-      "hint": "1 dm sind 100 mm. Quadriere den Umrechnungsfaktor.",
+      "hint": "1 dm sind 100 mm. Ein Quadrat mit 1 dm Seitenlänge ist also 100 mm lang und 100 mm breit.",
       "explanation": "1 dm² = 10 000 mm². 0,03 × 10 000 = 300 mm².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2487,13 +2487,13 @@
       "topicId": "area",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.area.land",
-      "prompt": "Wie viele m² sind 1 a?",
+      "prompt": "Die Flächeneinheit a heißt Ar.\nWie viele Quadratmeter (m²) sind 1 a?",
       "answer": "100",
       "hint": "Ein Ar ist ein Quadrat mit 10 m Seitenlänge.",
       "explanation": "10 m × 10 m = 100 m².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2502,13 +2502,13 @@
       "topicId": "area",
       "difficulty": "koenner",
       "competencyId": "by.math.5.area.land",
-      "prompt": "Wie viele m² sind 1,5 ha?",
+      "prompt": "Die Flächeneinheit ha heißt Hektar.\nWie viele Quadratmeter (m²) sind 1,5 ha?",
       "answer": "15000",
       "hint": "1 ha sind 10 000 m².",
       "explanation": "1,5 × 10 000 = 15 000 m².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2517,13 +2517,13 @@
       "topicId": "area",
       "difficulty": "streber",
       "competencyId": "by.math.5.area.land",
-      "prompt": "Wie viele ha sind 2,4 km²?",
+      "prompt": "Wie viele Hektar (ha) sind 2,4 Quadratkilometer (km²)?",
       "answer": "240",
       "hint": "1 km² sind 100 ha.",
       "explanation": "2,4 × 100 = 240 ha.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2532,7 +2532,7 @@
       "topicId": "area",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.area.compare",
-      "prompt": "Für einen Zaun um einen Garten brauchst du welche Größe?",
+      "prompt": "Du willst einen Zaun um deinen Garten bauen.\nWas musst du kennen: den Umfang oder den Flächeninhalt?",
       "answer": "Umfang",
       "hint": "Der Zaun steht am Rand.",
       "explanation": "Die Länge am Rand ist der Umfang. Die Fläche brauchst du etwa für Rasensamen.",
@@ -2550,7 +2550,7 @@
       "topicId": "area",
       "difficulty": "koenner",
       "competencyId": "by.math.5.area.compare",
-      "prompt": "Ein Quadrat hat Seitenlänge 6 cm. Welche Einheit passt zu seinem Flächeninhalt 36?",
+      "prompt": "Jede Seite eines Quadrats ist 6 cm lang. Sein Flächeninhalt ist 36.\nWelche Einheit gehört zu dieser 36?",
       "answer": "cm²",
       "hint": "Flächen werden mit Quadraten gemessen.",
       "explanation": "6 cm × 6 cm = 36 cm².",
@@ -2569,7 +2569,7 @@
       "topicId": "area",
       "difficulty": "streber",
       "competencyId": "by.math.5.area.compare",
-      "prompt": "Zwei Rechtecke sind 8 × 2 cm und 6 × 4 cm groß. Was stimmt?",
+      "prompt": "Rechteck A ist 8 cm lang und 2 cm breit.\nRechteck B ist 6 cm lang und 4 cm breit.\nWelche Aussage über Umfang und Fläche stimmt?",
       "answer": "Gleicher Umfang, verschiedene Flächen.",
       "hint": "Berechne jeweils Umfang und Fläche.",
       "explanation": "Beide haben Umfang 20 cm. Die Flächen sind 16 cm² und 24 cm².",
@@ -2588,13 +2588,13 @@
       "topicId": "area",
       "difficulty": "vorschule",
       "competencyId": "by.math.5.area.compound",
-      "prompt": "Zwei Rechtecke mit 12 cm² und 8 cm² werden ohne Überlappung zusammengesetzt. Wie groß ist die Gesamtfläche in cm²?",
+      "prompt": "Du legst zwei Rechtecke aneinander. Sie überdecken sich nicht.\nEin Rechteck hat 12 cm² Fläche, das andere 8 cm².\nWie groß ist die gesamte Fläche in cm²?",
       "answer": "20",
       "hint": "Die Flächen kommen zusammen.",
       "explanation": "12 + 8 = 20 cm².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2603,13 +2603,13 @@
       "topicId": "area",
       "difficulty": "koenner",
       "competencyId": "by.math.5.area.compound",
-      "prompt": "Aus einem 8 cm × 6 cm großen Rechteck wird an einer Ecke ein 3 cm × 2 cm großes Stück entfernt. Wie groß ist die Restfläche in cm²?",
+      "prompt": "Ein Rechteck ist 8 cm lang und 6 cm breit.\nAn einer Ecke schneidest du ein Stück von 3 cm mal 2 cm ab.\nWie viel Fläche bleibt übrig? Antworte in cm².",
       "answer": "42",
       "hint": "Berechne das große und das kleine Rechteck.",
       "explanation": "8 × 6 − 3 × 2 = 48 − 6 = 42 cm².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2618,13 +2618,13 @@
       "topicId": "area",
       "difficulty": "streber",
       "competencyId": "by.math.5.area.compound",
-      "prompt": "Ein 10 m × 8 m großer Garten bekommt innen rundherum einen 1 m breiten Weg. Wie groß ist die Wegfläche in m²?",
+      "prompt": "Ein Garten ist 10 m lang und 8 m breit.\nInnen am Rand verläuft rundherum ein 1 m breiter Weg.\nWie groß ist die Fläche des Weges in m²?",
       "answer": "32",
       "hint": "Die innere Rasenfläche ist in beiden Richtungen um 2 m kleiner.",
       "explanation": "Gesamtfläche 80 m², innen 8 × 6 = 48 m². Der Weg hat 80 − 48 = 32 m².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2639,7 +2639,7 @@
       "explanation": "Ein Würfel hat 6 quadratische Flächen.",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2648,13 +2648,13 @@
       "topicId": "area",
       "difficulty": "koenner",
       "competencyId": "by.math.5.area.surface",
-      "prompt": "Ein Quader hat Kantenlängen 4 cm, 3 cm und 2 cm. Wie groß ist seine Oberfläche in cm²?",
+      "prompt": "Eine rechteckige Schachtel ist 4 cm lang, 3 cm breit und 2 cm hoch. Sie hat die Form eines Quaders.\nWie groß ist die gesamte Fläche außen, mit Deckel und Boden? Antworte in cm².",
       "answer": "52",
-      "hint": "Es gibt drei Paare gleich großer Rechtecke.",
+      "hint": "Gegenüberliegende Seiten sind gleich groß. Du brauchst die Flächen von vorne/hinten, links/rechts und oben/unten.",
       "explanation": "2 × (4 × 3 + 4 × 2 + 3 × 2) = 2 × (12 + 8 + 6) = 52 cm².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2663,13 +2663,13 @@
       "topicId": "area",
       "difficulty": "streber",
       "competencyId": "by.math.5.area.surface",
-      "prompt": "Zwei Würfel mit Kantenlänge 2 cm werden an einer ganzen Fläche zusammengeklebt. Wie groß ist die äußere Oberfläche in cm²?",
+      "prompt": "Zwei Würfel haben jeweils 2 cm lange Kanten.\nDu klebst sie an einer ganzen Seitenfläche zusammen.\nWie groß ist die Fläche, die außen bleibt? Antworte in cm².",
       "answer": "40",
-      "hint": "Zwei der zwölf ursprünglichen Flächen liegen innen.",
+      "hint": "Die beiden zusammengeklebten Flächen liegen innen. Zähle nur die Flächen außen.",
       "explanation": "Jede Fläche hat 4 cm². 12 − 2 = 10 Flächen bleiben außen. 10 × 4 = 40 cm².",
       "options": [],
       "answerKind": "number",
-      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false
     },
     {
@@ -2723,9 +2723,9 @@
       "topicId": "english-samples",
       "difficulty": "koenner",
       "competencyId": "sample.english.grammar",
-      "prompt": "Ergänze: We ___ at school.",
+      "prompt": "Welches Wort fehlt?\nWe ___ at school.",
       "answer": "are",
-      "hint": "Die Form von to be gehört zu we.",
+      "hint": "We heißt „wir“. Du brauchst die passende Form von to be („sein“).",
       "explanation": "Bei we steht are: We are at school.",
       "options": [],
       "answerKind": "text",
@@ -2738,7 +2738,7 @@
       "topicId": "english-samples",
       "difficulty": "streber",
       "competencyId": "sample.english.grammar",
-      "prompt": "Ergänze: She does ___ like rain.",
+      "prompt": "Der Satz soll heißen: Sie mag keinen Regen.\nWelches Wort fehlt? She does ___ like rain.",
       "answer": "not",
       "hint": "Gesucht ist das Wort, das verneint.",
       "explanation": "Does not verneint: She does not like rain.",
@@ -2753,9 +2753,9 @@
       "topicId": "english-samples",
       "difficulty": "streber",
       "competencyId": "sample.english.grammar",
-      "prompt": "Verbessere nur das falsche Wort: He go to school.",
+      "prompt": "In diesem Satz ist ein Wort falsch: He go to school.\nSchreibe nur die richtige Form dieses Wortes auf.",
       "answer": "goes",
-      "hint": "Bei he/she/it ändert sich das Verb im simple present.",
+      "hint": "He heißt „er“. In der einfachen Gegenwart (simple present) braucht das Verb bei he eine andere Endung.",
       "explanation": "Richtig ist: He goes to school. Bei go wird daraus goes.",
       "options": [],
       "answerKind": "text",
