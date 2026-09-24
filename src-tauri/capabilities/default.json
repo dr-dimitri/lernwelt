@@ -2,9 +2,7 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "main-window",
   "description": "Lokales Hauptfenster ohne Dateisystem-, Shell- oder Netzwerk-Plugins.",
-  "windows": [
-    "main"
-  ],
+  "windows": ["main"],
   "permissions": [
     "allow-get-profile",
     "allow-save-profile",
