@@ -10,6 +10,9 @@
     "allow-get-learning-state",
     "allow-set-difficulty",
     "allow-submit-answer",
-    "allow-redeem-reward"
+    "allow-redeem-reward",
+    "allow-get-arcade-state",
+    "allow-start-game",
+    "allow-finish-game"
   ]
 }

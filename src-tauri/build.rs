@@ -8,6 +8,9 @@ fn main() {
             "set_difficulty",
             "submit_answer",
             "redeem_reward",
+            "get_arcade_state",
+            "start_game",
+            "finish_game",
         ]),
     ))
     .expect("Tauri build configuration failed");

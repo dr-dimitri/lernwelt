@@ -1,3 +1,4 @@
+import type { ArcadeState, GameId } from '../domain/arcade';
 import { invoke, isTauri } from '@tauri-apps/api/core';
 import type { LearnerProfile, LearningProgress } from '../domain/learner';
 import type {
@@ -28,6 +29,11 @@ async function callDesktop<T>(
 }
 
 export const desktop = {
+  getArcadeState: () => callDesktop<ArcadeState>('get_arcade_state'),
+  startGame: (sessionId: string, gameId: GameId) =>
+    callDesktop<ArcadeState>('start_game', { sessionId, gameId }),
+  finishGame: (sessionId: string, score: number) =>
+    callDesktop<ArcadeState>('finish_game', { sessionId, score }),
   getProfile: () => callDesktop<LearnerProfile | null>('get_profile'),
   saveProfile: (profile: LearnerProfile) =>
     callDesktop<LearnerProfile>('save_profile', { profile }),
