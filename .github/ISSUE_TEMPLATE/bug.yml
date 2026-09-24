@@ -1,0 +1,29 @@
+name: Bug
+description: Einen neu gefundenen Fehler separat erfassen
+title: "Bug: "
+labels: [bug]
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduktion
+      description: Schritte, Plattform und betroffener Stand.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Erwartetes Verhalten
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Tatsächliches Verhalten und Auswirkung
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Entdeckt bei
+      description: Ursprüngliches Issue oder Pull Request verlinken, keine persönlichen Lerndaten anhängen.

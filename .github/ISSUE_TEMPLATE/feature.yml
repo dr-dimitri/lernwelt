@@ -1,0 +1,21 @@
+name: Umsetzung
+description: Eine klar abgegrenzte Erweiterung planen
+title: ""
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Ziel und Nutzen
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Akzeptanzkriterien
+      description: Beobachtbares Ergebnis und passende Prüfungen beschreiben.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Abhängigkeiten und Grenzen
