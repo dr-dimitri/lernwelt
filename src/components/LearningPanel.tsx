@@ -583,12 +583,11 @@ export default function LearningPanel({
         <details className="source-note">
           <summary>Für Neugierige & Erwachsene: Lerninhalte</summary>
           <p>
-            Übungsauswahl für Klasse 5 am bayerischen Gymnasium. Der komplette
-            Lehrplan ist noch nicht lückenlos umgesetzt. Eigene Übungen nach
-            LehrplanPLUS; Zeichnungen und Begründungen werden über
-            Mitmachaufgaben geübt und nicht automatisch bewertet. Ein begrenztes
-            Übungspaket, kein Ersatz für Unterricht oder eine vollständige
-            Lernstandserhebung.
+            Lernangebote zu allen 39 Kompetenzerwartungen für Mathematik Klasse
+            5 am bayerischen Gymnasium. Eigene Übungen nach LehrplanPLUS;
+            Zeichnungen und Begründungen werden über Mitmachaufgaben geübt und
+            nicht automatisch bewertet. Ein begrenztes Übungspaket, kein Ersatz
+            für Unterricht oder eine vollständige Lernstandserhebung.
           </p>
           <p>
             {state.curriculumVersion}. Themenbezug: {topic?.curriculumRef}.

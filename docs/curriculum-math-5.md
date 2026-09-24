@@ -1,94 +1,94 @@
 # Mathematik 5 · Inhaltsstand 24.09.2026
 
-Grundlage: [LehrplanPLUS Bayern, Gymnasium, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik). Eigene Aufgaben und didaktische Zuordnung, keine amtliche Freigabe. Die Quelle wurde am 24.09.2026 gelesen; die URL wird beim Üben nicht aufgerufen. Das Paket wird mit der Anwendung ausgeliefert.
+Grundlage: [LehrplanPLUS Bayern, Gymnasium, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik), am 24.09.2026 erneut gelesen. Eigene Aufgaben und didaktische Zuordnung, keine amtliche Freigabe. Alle Inhalte werden offline mit der Anwendung ausgeliefert.
 
-**Status: Der komplette Lehrplan ist noch nicht lückenlos umgesetzt.** Die bisherige Zuordnung zu sieben Bereichen belegt nur, dass jeder Bereich vertreten ist. Sie war kein Nachweis für jede einzelne Kompetenzerwartung. Issue #13 ergänzt den zuvor fehlenden Mengenbegriff und dokumentiert den genaueren Abgleich unten.
+**Stand nach Issue #17: Zu allen 39 Kompetenzerwartungen liegen konkrete Lernangebote vor.** Die zuvor dokumentierten Inhaltslücken wurden in #18–#24 durch Erklärungen, Bildschirmaufgaben und angeleitete Tätigkeiten geschlossen. Die Tabelle unten belegt die Zuordnung einzeln. Sie belegt die angebotenen Lerninhalte, nicht die Beherrschung durch ein Kind oder eine unabhängige fachpädagogische Zertifizierung.
 
-Zusätzliche offizielle Erläuterung: [Mengenbegriff zu M5 1.1](https://www.lehrplanplus.bayern.de/serviceinformation/l76991), geprüft am 24.09.2026. Die Erläuterung konkretisiert den Einstieg mit Mengen, Elementen, ∈ und ∉. Sie ist als ergänzende Information gekennzeichnet. Abstrakte Schnitt-, Vereinigungs- und Teilmengen werden dort späteren Klassen zugeordnet. In Lernwelt wird die verwendete Konvention ausdrücklich genannt: ℕ ab 1, ℕ₀ einschließlich 0.
+Zusätzliche offizielle Erläuterung: [Mengenbegriff zu M5 1.1](https://www.lehrplanplus.bayern.de/serviceinformation/l76991), geprüft am 24.09.2026. Mengen, Elemente, ∈ und ∉ werden ausdrücklich geübt. Die ergänzende Erläuterung ordnet abstrakte Schnitt-, Vereinigungs- und Teilmengen späteren Klassen zu. Unsere Konvention ist ausdrücklich erklärt: ℕ ab 1, ℕ₀ einschließlich 0.
 
-## Themen und Abdeckung
+## Umfang und Bedienung
 
-| Themen-ID | Lehrplanbezug | Automatische Aufgaben | Ergänzende Tätigkeiten |
-| --- | --- | ---: | --- |
-| `sets` | M5 1.1, Erläuterung Mengenbegriff | 21 | Elemente sortieren; Zugehörigkeit und Zahlenmengen erklären |
-| `numbers` | M5 1.1 | 21 | Zahlengerade zeichnen; Unbegrenztheit begründen |
-| `add` | M5 1.2 | 21 | Rechenwege vergleichen; schriftliche Addition und Überschlag |
-| `geometry` | M5 2 | 21 | Koordinaten, Kreis/Tangente, Winkel messen/zeichnen, Vierecke, Lot und Lagebeziehungen |
-| `multiply` | M5 3.1 | 24 | Baumdiagramm, Primfaktorzerlegung, schriftliche Multiplikation |
-| `terms` | M5 3.2 | 21 | Rechengesetze erklären; Vorwärts-/Rückwärtsketten |
-| `units` | M5 4.1 | 24 | Größen schätzen/messen; Maßstabszeichnung |
-| `area` | M5 4.2 | 21 | Einheitsquadrate, Flächenzerlegung, Quadernetz/Schrägbild, zusammengesetzter Körper |
+| Thema | Lehrplanbezug | Bildschirmaufgaben | Mitmachaufgaben |
+| --- | --- | ---: | ---: |
+| Mengen & Zahlenmengen (`sets`) | M5 1.1 | 21 | 2 |
+| Zahlen entdecken (`numbers`) | M5 1.1 | 36 | 5 |
+| Plus & Minus (`add`) | M5 1.2 | 36 | 5 |
+| Geometrie-Werkstatt (`geometry`) | M5 2 | 48 | 9 |
+| Mal, Geteilt & Potenzen (`multiply`) | M5 3.1 | 108 | 10 |
+| Rechentricks & Terme (`terms`) | M5 3.2 | 30 | 5 |
+| Größen im Alltag (`units`) | M5 4.1 | 48 | 7 |
+| Flächen-Abenteuer (`area`) | M5 4.2 | 36 | 8 |
+| **Gesamt** | | **363** | **51** |
 
-Insgesamt **174 Bildschirmaufgaben** (58 pro Stufe) und **22 Mitmachaufgaben**. Jeder Kompetenzstrang hat genau drei Aufgaben mit eigenen stabilen IDs: Vorschule, Könner, Streber. Die Mitmachaufgaben gelten für alle Stufen und ergänzen die Bildschirmaufgaben ohne Punktevergabe.
+**121 Bildschirmaufgaben je Stufe:** Vorschule aktiviert Voraussetzungen und bietet direkte Hilfen, Könner übt die regulären Inhalte, Streber fordert Transfer oder mehrere Schritte. Die Sprache bleibt in allen Stufen verständlich. Die Namen sind spielerisch und bewerten weder Alter noch Begabung. Die Wahl gilt auch für Englisch und bleibt über Neustarts erhalten. Pro erstmals korrekt gelöster Aufgabe gibt es unabhängig von der Stufe 10 Punkte; Fehler kosten nichts.
 
-Die leichten Aufgaben aktivieren Voraussetzungen (beispielsweise kleine natürliche Zahlen), Könner orientiert sich am normalen Üben in Klasse 5, Streber verlangt Transfer oder mehrere Schritte innerhalb des jeweiligen Lernbereichs. Die Namen sagen nichts über Alter oder Begabung aus. Keine Zeitmessung und keine Strafe für Fehler. Auch leichte Aufgaben geben bei erstmaligem Erfolg 10 Punkte.
+„So geht’s · kurz erklärt“ enthält Erklärungen und bei Größen/Flächen beschriftete Einheitentafeln mit Beispielen. „Stift raus!“ enthält Zeichen-, Mess-, Begründungs- und Präsentationsaufträge mit aufklappbarer Selbstkontrolle; einzelne Aufträge nennen passende Einstiege für die drei Stufen. Diese Tätigkeiten sind ein notwendiger Teil des Lernangebots und vergeben keine automatisch bewerteten Punkte. Für Recherche reichen Messung, Verpackungsangaben oder ein Sachbuch; die App benötigt keine Online-Dienste.
 
-## Fachlicher Umfang
+Die vollständige Quadratzahlreihe 0² bis 20² ist in jeder Stufe vorhanden: als Malrechnung, Potenz und Rückwärtsfrage. Das ermöglicht Wiederholung ohne Zeitdruck. Gelöste Aufgaben allein beweisen keine dauerhafte Automatisierung.
 
-- `sets`: Mengen als Sammlungen, Elemente, Aufzählung, ∈/∉, natürliche Zahlen, Null, ganze Zahlen und unendliche Fortsetzung.
-- `numbers`: Dezimalsystem einschließlich großer Zahlen, Vergleich mit römischer Darstellung, Rundung und deren Zweck, Skalierung, Ordnung ganzer Zahlen, Betrag, Gegenbeispiele und Vorgänger/Nachfolger.
-- `add`: schriftliche Verfahren über eine Million, Überschläge, vorzeichenbehaftete Addition/Subtraktion, die drei einfachen Gleichungsformen, Rechenvorteile und Bezeichnungen.
-- `geometry`: Punkte/Strecken/Geraden und Kreis, Koordinaten, parallel/senkrecht, kürzester Abstand und Lotfuß, Kreislinie/Kreisscheibe und Abstandsmengen, Tangenten, zwei Kreise, Winkel bis 360°, Quadrat/Rechteck/Parallelogramm/Raute/Drachen/Trapez. Trapez wird inklusiv als Viereck mit mindestens einem parallelen Seitenpaar verwendet.
-- `multiply`: schriftliche Verfahren mit mehrstelligen Faktoren/Divisoren, Teilbarkeit durch 2/3/5/10, Primzahlen/Primfaktoren, Zählprinzip/Baumdiagramm, Vorzeichen, Potenzen mit ganzen Basen, Zehnerpotenzen, Verdopplung, Quadratzahlen bis 400 und einfache Gleichungen.
-- `terms`: Termstruktur, Fachbegriffe, Rangfolge/Klammern, Kommutativ-/Assoziativ-/Distributivgesetz und Grenzen, Vorwärts-/Rückwärtsarbeiten, Modelle und Plausibilität.
-- `units`: Geld, alle vorgesehenen Längen- und Masseneinheiten, Zeit h/min/s, Dezimalschreibweise, Umrechnen/Rechnen, Vergleich mit realen Größen, Dreisatz und Maßstab.
-- `area`: Einheitsquadrate, Rechteckformel, Umfang vs. Fläche, Flächeneinheiten von mm² bis km² einschließlich a/ha, Dezimalschreibweise, Zerlegung/Ergänzung, Quaderoberfläche, Netz/Schrägbild und einfache zusammengesetzte Körper.
+## Abgleich aller Kompetenzerwartungen
 
-Die automatischen Aufgaben prüfen einzelne Ergebnisse und Entscheidungen. Schriftliche Verfahren, selbst erstellte Zeichnungen, Argumentationsqualität und räumliches Vorstellungsvermögen lassen sich so nur teilweise erfassen; dazu gibt es Mitmachaufträge mit Kontrollkriterien und bei Bedarf Unterstützung durch Erwachsene. Die App behauptet weder eine vollständige Prüfung jeder Kompetenz noch eine unbegrenzte Aufgabenvielfalt. Alle Lernbereiche sind vertreten; didaktische Erprobung mit Kindern und fachpädagogische Freigabe stehen noch aus.
+Die Nummer nach dem Schrägstrich ist die Reihenfolge des Kompetenzabsatzes auf der offiziellen Fachlehrplanseite: 7 + 5 + 5 + 7 + 5 + 5 + 5 = 39. Kurzlabels und Aufgaben sind eigene Formulierungen. IDs bestehen aus `by.math.5.<Thema>.<Strang>.<Stufe>.v1`.
 
-## Inhaltsformat und Änderungen
+Die maschinenlesbare Zuordnung in [math-5-coverage.json](math-5-coverage.json) wird durch Tests geprüft: alle 39 eindeutigen Bezüge, vorhandene Aufgaben in jeder Stufe und vorhandene Tätigkeiten. Das schützt vor verlorenen Verweisen; die fachliche Zuordnung bleibt eine redaktionelle Reviewaufgabe. Jede Zeile nennt vorhandene Angebote und deren konkrete Umsetzung bzw. Prüfgrenze.
 
-`src-tauri/content/curriculum-v1.json` enthält Paketversion, Quellen-URL, Abrufstand, Topics und Übungen. Pro Topic: Fach, Klasse, Lehrplanreferenz, eigene Erklärung und Papieraktivitäten; bei Englisch Fremdsprachenfolge. Pro Aufgabe: stabile Versions-ID, Topic- und Kompetenz-ID, Stufe, Fragetext, Antworttyp, Antwort, Tipp und Lösungsweg. Metadaten werden über Topic/Paket vererbt, nicht bei jeder Aufgabe dupliziert.
+| Bezug | Inhalt | Bildschirm-Stränge | Tätigkeiten | Umsetzung / Prüfgrenze |
+| --- | --- | --- | --- | --- |
+| 1.1/1 | Große Zahlen und Zahlbereich | `numbers.word-to-number`, `numbers.read-number`, `numbers.word-zero-groups`, `numbers.successor` | Zahlwort-Werkstatt; Unendlich weiter | Zahlwörter mit Nullgruppen und Unbegrenztheit; zusätzlich Mengen/Zahlenmengen im Thema sets. |
+| 1.1/2 | Stellenwertsystem | `numbers.place-value`, `numbers.roman` | Zahlwort-Werkstatt | Dreiergruppen und Vergleich zur römischen Schreibweise; eigene Erklärung auf Papier. |
+| 1.1/3 | Eigene Skalierung | `numbers.number-line`, `numbers.choose-scale` | Dein Maß für den Zahlenstrahl | Start, Ende und Einteilung selbst wählen, zeichnen und begründen; keine automatische Zeichenprüfung. |
+| 1.1/4 | Runden im Alltag | `numbers.rounding` | Tipp und erklärter Lösungsweg am Bildschirm | Runden und Grenzen der Rundung in einer Alltagssituation. |
+| 1.1/5 | Negative Zahlen im Kontext | `add.signed`, `add.context`, `add.debt-reasoning` | Zeichen und Rechenbaum | Guthaben/Schulden und Zahlengerade; zusätzlich Thermometer und ℤ im Thema sets. |
+| 1.1/6 | Ordnung und Betrag | `numbers.ordering`, `numbers.absolute` | Deine Zahlengerade | Zahlen ordnen, Abstände zur Null vergleichen und zeichnen. |
+| 1.1/7 | Eigene Gegenbeispiele | `numbers.build-counterexample` | Eine Behauptung knacken | Eigene Zahlen wählen und Voraussetzung/Widerspruch begründen; offene Argumente mit Kriterien prüfen. |
+| 1.2/1 | Schriftlich addieren und subtrahieren | `add.written`, `add.estimate`, `add.written-carry`, `add.written-exchange` | Rechnen mit Übertrag; Tauschen beim Minusrechnen | Überträge, Nullstellen, Tauschen, Überschlag und Probe auch über einer Million; Rechenschritte auf Papier. |
+| 1.2/2 | Vorzeichen und Rechenzeichen | `add.sign-or-operation`, `add.debt-reasoning`, `add.signed` | Zeichen und Rechenbaum | Zeichenrollen unterscheiden und Strategie mit Konto/Zahlengerade erklären. |
+| 1.2/3 | Additive Gleichungen | `add.equations` | Tipp und erklärter Lösungsweg am Bildschirm | Alle drei geforderten Formen durch Umkehrung bzw. Probieren; feste Beispielauswahl. |
+| 1.2/4 | Rechenvorteile | `add.strategy`, `add.sign-or-operation` | Rechenwege vergleichen | Vertauschen, Zusammenfassen und Differenz als Addition der Gegenzahl. |
+| 1.2/5 | Additive Terme gliedern | `add.terms`, `add.sum-difference-structure` | Zeichen und Rechenbaum | Minuend/Subtrahend und innere Summe; vollständige gleichwertige Zeilen auf Papier. |
+| 2/1 | Geometrische Darstellung und Kurzschrift | `geometry.coordinates`, `geometry.short-notation` | Punkte verbinden; Kurzschrift zeichnen | Punkte, Strecken, Geraden und Kreise im Koordinatensystem; Konventionen ausdrücklich erklärt. |
+| 2/2 | Grundlegende Lagebeziehungen | `geometry.point-line`, `geometry.line-cases`, `geometry.circle-line-cases`, `geometry.circle-circle-cases`, `geometry.nested-circles` | Alle Lagen erforschen; Abstand messen | Auch deckungsgleiche Objekte, konzentrische Kreise und innere/äußere Berührung; Lot/Abstand/Tangente. |
+| 2/3 | Abstandsbedingungen im Alltag | `geometry.distance`, `geometry.distance-conditions` | Ein Platz für die Bank | Abstand zu Punkt und Gerade, beide Straßenseiten, gemeinsame Bedingungen und begründete Platzwahl. |
+| 2/4 | Winkel messen und zeichnen | `geometry.angle-types`, `geometry.angles` | Winkel bauen | Winkel bis 360° einschließlich größerer Außenwinkel; Messgenauigkeit per Selbstkontrolle. |
+| 2/5 | Vierecke im Umfeld und im Kopf | `geometry.quadrilaterals`, `geometry.quadrilaterals-around-us`, `geometry.mental-quadrilaterals` | Viereck-Forscher; Vierecke im Zimmer und im Kopf | Sechs Vierecksarten zeichnen, Eigenschaften erklären, idealisierte Umrisse und gedrehte Figuren betrachten. |
+| 3.1/1 | Schriftlich multiplizieren und dividieren | `multiply.written`, `multiply.written-product-steps`, `multiply.division-steps` | Malrechnung mit Stellenwerten; Teilen Schritt für Schritt | Mehrstellige Faktoren/Divisoren, Teilprodukte, Quotient mit Nullstelle, Überschlag und Umkehrprobe. |
+| 3.1/2 | Teilbarkeit und eindeutige Primfaktoren | `multiply.divisibility`, `multiply.prime`, `multiply.factor-uniqueness` | Zwei Wege, dieselben Primfaktoren | Teilbarkeitsregeln und verschiedene Zerlegungswege; Eindeutigkeit bis auf Reihenfolge erklären. |
+| 3.1/3 | Zählprinzip und Grenzen | `multiply.counting`, `multiply.counting-limits` | Darf ich einfach malnehmen? | Baumdiagramme, verschiedene Verzweigungen und Wahl ohne Wiederholung; erlaubte Wege zählen. |
+| 3.1/4 | Vorzeichen begründen | `multiply.signs`, `multiply.sign-pattern`, `multiply.division-sign-reason` | Vorzeichen begründen | Muster und Verteilungsgesetz erklären Malregeln; Umkehraufgaben begründen Geteiltregeln; Division durch 0 ausschließen. |
+| 3.1/5 | Rechenvorteile bei Produkten | `terms.associate` | Erkläre deinen Trick | Vertauschen/Zusammenfassen und Vorteil am eigenen Rechenweg erklären. |
+| 3.1/6 | Potenzen und Quadratzahlen | `multiply.powers`, `multiply.growth`, `multiply.ten-powers-context`, `multiply.square-00`, `multiply.square-20` | Quadratzahlen sammeln; Nullen kurz schreiben | Alle 0² bis 20² in jeder Stufe; Zehnerpotenzen im Kontext und Verdopplung. Bearbeitung beweist keine dauerhafte Automatisierung. |
+| 3.1/7 | Multiplikative Gleichungen | `multiply.equations` | Tipp und erklärter Lösungsweg am Bildschirm | Alle drei geforderten Gleichungsformen; Umkehrung mit erklärter Probe. |
+| 3.2/1 | Terme frei gliedern | `terms.structure`, `terms.describe-structure` | Dein eigener Rechenbaum | Hauptrechenart, Teilterme und Fachbegriffe; eigener Term mit gleicher Struktur. |
+| 3.2/2 | Rechenreihenfolge und gültige Zeilen | `terms.precedence`, `terms.brackets`, `terms.equal-calculation-lines` | Dein eigener Rechenbaum | Klammern/Potenzen/Punkt/Strich und vollständige gleichwertige Rechnungen; fehlerhafte Gleichheitsketten erkennen. |
+| 3.2/3 | Rechengesetze erklären | `terms.distribute`, `terms.associate` | Erkläre deinen Trick | Vertauschen, Zusammenfassen und Verteilen; Grenzen bei Division. |
+| 3.2/4 | Vorwärts und rückwärts | `terms.reverse` | Vorwärts und rückwärts | Rechenkette mit Umkehraufgaben und Erklärung der umgekehrten Reihenfolge. |
+| 3.2/5 | Sachaufgaben präsentieren und prüfen | `terms.model`, `terms.explain-model` | Deine Erklärbühne; Eine eigene Rechengeschichte | Gegeben/gesucht, Term, Rechnung, Antwortsatz, Überschlag, Sachprüfung und alternativen Weg erklären. |
+| 4.1/1 | Messen und Einheitentafeln | `units.money`, `units.length`, `units.mass`, `units.time`, `units.small-lengths`, `units.money-table`, `units.length-table`, `units.mass-table`, `units.time-is-different` | Messen heißt Einheiten anlegen; Einheiten passend eintragen | Geld/Länge/Masse mit echten Tafeln und Dezimalangaben; Zeit gesondert mit 60er-Bündelung. |
+| 4.1/2 | Alle vier Größenrechenarten | `units.add-quantities`, `units.subtract-quantities`, `units.multiply-quantities`, `units.divide-quantities` | Größenrechnen erklären | Gleiche Einheiten herstellen; Dezimalgrößen plus/minus; Größe durch Anzahl vs. Größe durch Größe. |
+| 4.1/3 | Schätzen, recherchieren und präsentieren | `units.estimate` | Schätzmeister; Recherche ohne Internet | Bezugsgröße, Nachmessen/Quelle, Dokumentation und Plakat; Internet optional und nicht benötigt. |
+| 4.1/4 | Dreisatz strukturiert darstellen | `units.unitary` | Dreisatz in drei Zeilen | Von mehreren auf ein Stück und weiter; Voraussetzungen gleicher Stückpreise/-massen benennen. |
+| 4.1/5 | Maßstab im Alltag | `units.scale` | Dein Zimmer als Plan | Passende Einheiten und maßstäbliche Planzeichnung. |
+| 4.2/1 | Flächenformel herleiten | `area.squares` | Kästchen zählen | Gleiche Einheitsquadrate in Reihen; Fläche und Umfang unterscheiden. |
+| 4.2/2 | Flächentafel und Umrechnungsbegründung | `area.conversion`, `area.land`, `area.square-unit-reason`, `area.area-table`, `area.decimal-area-conversion` | Warum immer mal 100?; Flächentafel selbst füllen | Alle Einheiten km²/ha/a/m²/dm²/cm²/mm², Zweiergruppen und Dezimalangaben; Übergänge als 10×10 erklären. |
+| 4.2/3 | Umfang, Fläche und Näherung | `area.perimeter`, `area.compare`, `area.approximate-area`, `area.area-bounds` | Ein Blatt mit Rechtecken schätzen; Rechteckmodelle vergleichen | Alltagsrechtecke und unregelmäßige Flächen; Modellfläche, Schätzung sowie innere/äußere Grenzen unterscheiden. |
+| 4.2/4 | Zerlegen und Ergänzen | `area.compound` | Eine L-Form, zwei Wege | Zwei unterschiedliche Zerlegungs-/Ergänzungswege vergleichen und erklären. |
+| 4.2/5 | Quader und zusammengesetzte Körper | `area.surface` | Schachtel-Werkstatt; Würfel zusammenbauen | Netz, Schrägbild, äußere Flächen und räumliche Überlegungen mit Bauklötzen; Zeichenprüfung per Kriterien. |
 
-IDs sind fachlich unveränderlich. Wenn sich die Bedeutung oder richtige Antwort ändert, eine neue ID verwenden und bereits veröffentlichte IDs für alte Buchungen/Request-Replays weiter auflösen. Reine Formulierungsverbesserungen ohne Bedeutungswechsel dürfen die ID behalten. Antwortschlüssel werden nicht mit `get_learning_state` ausgegeben. Mitmachlösungen sind bewusst jederzeit zur Selbstkontrolle aufklappbar.
+## Inhaltspflege und unveränderliche IDs
 
-Die sechs Englischbeispiele sind kein weiterer implementierter Lehrplan. Die ursprünglichen zwei Englisch-IDs und zwei intern weiter auflösbaren Mathematik-IDs behalten ihre Antwortbedeutung und Punktehistorie.
+`src-tauri/content/curriculum-v1.json` enthält Quellenstand, Themen, Erklärungen, optionale Lerntafeln, Tätigkeiten und Übungen. Thema und Paket vererben Fach, Klasse, Quelle und Lehrplanbezug an die Aufgaben; jede Aufgabe hat zusätzlich eine Kompetenz-ID, Stufe, stabile Versions-ID, Frage, Antworttyp, Antwort, Tipp und Lösungsweg. Englisch berücksichtigt die Fremdsprachenfolge und bleibt ausdrücklich eine Auswahl von sechs Beispielen.
 
+Alle 182 vor #17 vorhandenen Übungsdatensätze behalten ihre vollständigen Inhalte und Antwortbedeutungen. Die 189 neuen Mathematikaufgaben haben neue IDs. Die beiden historischen Mathematikbeispiele bleiben intern für alte Buchungen/Request-Replays auflösbar. Antworten werden im Backend geprüft und nicht als Lösungsschlüssel mit dem Lernzustand ausgegeben. Reine Formulierungsänderungen dürfen eine ID behalten; geänderte Antwortbedeutungen benötigen eine neue ID.
 
-## Abgleich der einzelnen Kompetenzerwartungen
+Tabellen sind Textdaten mit Caption, Spalten, Zeilen und Erklärung; kein HTML aus Inhaltsdateien. Spaltenzahl und Metadaten werden vor Nutzung validiert. Keine Migration der Nutzerdaten, kein Cloud-Import und kein Aufgaben-`eval`.
 
-Die Nummern nach dem Schrägstrich bezeichnen die Reihenfolge der Kompetenzabsätze auf der offiziellen Fachlehrplanseite (7 + 5 + 5 + 7 + 5 + 5 + 5 = 39). Die Kurzbezeichnungen sind eigene Arbeitslabels. Aufgabenbelege nennen den Teil der ID nach `by.math.5.` und vor der Stufe/Version. „Übung“ bedeutet eine vorhandene Auswahl automatisch bewerteter Aufgaben, keine vollständig entwickelte Unterrichtseinheit oder nachgewiesene Beherrschung. „Teilweise“ benennt konkret fehlende bzw. nur manuell abgedeckte Teile.
+## Review und verbleibende Grenzen
 
-| Bezug | Kurzlabel | Belege | Status / Grenze |
-| --- | --- | --- | --- |
-| 1.1/1 | Zahlbereich | `numbers.place-value`, `numbers.successor`, `sets.*`; Aktivität „Unendlich weiter“ | Übung; Zahlwörter großer Zahlen noch nicht systematisch trainiert |
-| 1.1/2 | Stellenwert | `numbers.place-value`, `numbers.roman` | Übung und Erklärung; eigene Begründungen nur mündlich |
-| 1.1/3 | Zahlenstrahl | `numbers.number-line`; „Deine Zahlengerade“ | Teilweise: vorgegebene Skalierung geprüft, eigene Skalierung noch nicht angeleitet |
-| 1.1/4 | Runden | `numbers.rounding` | Übung mit Alltagsentscheidung |
-| 1.1/5 | Zahlbereich erweitern | `sets.integers`, `add.signed`, `add.context` | Übung und Erklärung |
-| 1.1/6 | Ordnung/Betrag | `numbers.ordering`, `numbers.absolute`; „Deine Zahlengerade“ | Übung; Zeichnung mit Selbstkontrolle |
-| 1.1/7 | Gegenbeispiel | `numbers.absolute.streber`, `sets.infinite` | Auswahlübung; eigene Gegenbeispiele noch nicht systematisch angeleitet |
-| 1.2/1 | Schriftlich +/− | `add.written`, `add.estimate`; „Große Zahlen untereinander“ | Teilweise: Resultate geprüft, schriftliche Rechenschritte nicht erfasst |
-| 1.2/2 | Vorzeichen +/− | `add.signed`, `add.context` | Teilweise: Rechnen vorhanden, Vorzeichen/Rechenzeichen nicht eigens gegenübergestellt |
-| 1.2/3 | Gleichungen +/− | `add.equations` | Alle drei Formen mit Beispielen; keine breite Variantenbank |
-| 1.2/4 | Rechenvorteile +/− | `add.strategy`; „Rechenwege vergleichen“ | Übung und Selbstkontrolle |
-| 1.2/5 | Termaufbau +/− | `add.terms`, `add.signed`; „Rechenwege vergleichen“ | Teilweise: Fachwörter/Resultate, keine strukturierte Eingabe ganzer Rechnungen |
-| 2/1 | Geometrisch darstellen | `geometry.coordinates`, `geometry.lines`; „Punkte verbinden“ | Teilweise: Zeichnen auf Papier; abkürzende Strecken-/Geraden-/Kreisschreibweisen nicht systematisch trainiert |
-| 2/2 | Lagebeziehungen | `geometry.lines`, `geometry.distance`, `geometry.circles`; „Abstand messen“ | Teilweise: ausgewählte Fälle; nicht alle Kreis-/Geradenlagen als eigene Aufgaben |
-| 2/3 | Abstandsbedingungen | `geometry.distance.streber`; „Zirkel-Detektiv“ | Teilweise: Kreisbedingungen, noch keine angeleitete Alltagsentscheidung mit mehreren Bedingungen |
-| 2/4 | Winkel | `geometry.angle-types`, `geometry.angles`; „Winkel bauen“ | Übung und Papierkonstruktion; Messgenauigkeit nicht automatisch geprüft |
-| 2/5 | Vierecke | `geometry.quadrilaterals`; „Viereck-Forscher“ | Teilweise: Eigenschaften/Zeichnen; wenig Umfeldzuordnung und Kopfgeometrie |
-| 3.1/1 | Schriftlich ×/: | `multiply.written`; „Schriftlich und geschätzt“ | Teilweise: Ergebnisse und Überschlag, Division nicht schrittweise angeleitet |
-| 3.1/2 | Faktoren | `multiply.prime`, `multiply.divisibility`; „Primzahl-Werkstatt“ | Teilweise: Zerlegen/Teilbarkeit; Eindeutigkeit noch nicht eigens erklärt |
-| 3.1/3 | Möglichkeiten | `multiply.counting`; „Dein Eisladen“ | Übung und Baumdiagramm; Grenzen des Zählprinzips nicht eigens trainiert |
-| 3.1/4 | Vorzeichen ×/: | `multiply.signs` | Teilweise: Regeln anwenden, ihre Herleitung fehlt |
-| 3.1/5 | Rechenvorteile × | `terms.associate`; „Erkläre deinen Trick“ | Übung und Erklärung |
-| 3.1/6 | Potenzen | `multiply.powers`, `multiply.growth` | Teilweise: keine vollständige Übungsreihe aller Quadratzahlen bis 400; große Zahlen als Zehnerpotenzen nur kurz |
-| 3.1/7 | Gleichungen ×/: | `multiply.equations` | Alle drei Formen mit Beispielen |
-| 3.2/1 | Termstruktur | `terms.structure` | Auswahlübung; keine freie Termgliederung |
-| 3.2/2 | Rechenreihenfolge | `terms.precedence`, `terms.brackets` | Übung; Prüfung des Endwerts statt einzelner Rechenschritte |
-| 3.2/3 | Rechengesetze | `terms.distribute`, `terms.associate`; „Erkläre deinen Trick“ | Übung und eigener Vergleich auf Papier |
-| 3.2/4 | Lösungsstrategien | `terms.reverse`; „Vorwärts und rückwärts“ | Übung und Rechenkette |
-| 3.2/5 | Sachaufgaben | `terms.model`; „Erkläre deinen Trick“ | Teilweise: Modell/Ergebnis; Präsentation und Reflexion nicht automatisch bewertet |
-| 4.1/1 | Messen/Einheiten | `units.money`, `units.length`, `units.mass`, `units.time`, `units.small-lengths`; „Schätzmeister“ | Teilweise: Umrechnung vorhanden, Einheitentafeln fehlen |
-| 4.1/2 | Größenrechnung | `units.money`, `units.length`, `units.mass`, `units.time`, `units.small-lengths` | Übung; nicht alle Kombinationen von Operation/Einheit |
-| 4.1/3 | Schätzen | `units.estimate`; „Schätzmeister“ | Teilweise: Vergleich und Nachmessen; Recherche/Präsentation nicht angeleitet |
-| 4.1/4 | Dreisatz | `units.unitary` | Drei Beispiele mit Lösungsweg; keine freie schrittweise Eingabe |
-| 4.1/5 | Maßstab | `units.scale`; „Dein Zimmer als Plan“ | Übung und Planzeichnung |
-| 4.2/1 | Flächenformel | `area.squares`; „Kästchen zählen“ | Übung und anschauliche Herleitung |
-| 4.2/2 | Flächeneinheiten | `area.conversion`, `area.land`; „Kästchen zählen“ | Teilweise: Umrechnung, keine Einheitentafel/ausführliche Herleitung aller Übergänge |
-| 4.2/3 | Umfang/Fläche | `area.perimeter`, `area.compare`, `area.squares` | Teilweise: exakte Rechtecke vorhanden, Näherung beliebiger Flächen durch Rechtecke fehlt |
-| 4.2/4 | Flächen zerlegen | `area.compound`; „Eine L-Form, zwei Wege“ | Übung und Vergleich zweier Lösungswege |
-| 4.2/5 | Oberflächen | `area.surface`; „Schachtel-Werkstatt“, „Würfel zusammenbauen“ | Übung, Netz/Schrägbild auf Papier; keine automatische Zeichnungsprüfung |
+Die Teilpakete #18–#24 wurden jeweils auf eigenem Branch implementiert, separat selbstreviewt und mit eigenen Pull Requests geprüft. [Review #17](reviews/issue-17.md) dokumentiert den erneuten Gesamtabgleich, automatisierte Prüfungen und die native Abschlussprüfung.
 
-Diese Matrix ersetzt den früheren pauschalen Vollständigkeitseindruck. Die offenen Teile sind keine bloßen Testlücken: Ein vollständiger Lehrgang benötigt zusätzliche Erklärungen, Aufgabenvarianten und angeleitete Tätigkeiten. Die Menge der Aufgaben allein ist dafür kein Qualitätsmaß. Der Mengenbegriff wird ab Issue #13 ausdrücklich angeboten; Sprache und Auftragsgestaltung wurden in Issue #14 überarbeitet: kurze Sätze, getrennte Angaben und Fragen, erklärte Fachbegriffe und sichtbare Schritte bei mehrteiligen Mitmachaufträgen. Die fachliche Schwierigkeit bleibt erhalten.
+Die bisher ausdrücklich fehlenden Inhalte sind ergänzt. Verbleibende Produktgrenzen werden nicht als erledigte Lernleistungen ausgegeben:
+
+- Feste, begrenzte Aufgabenbank statt beliebig vieler Varianten oder adaptiver Wiederholungsplanung.
+- Zeichnungen, freie Gliederungen, mündliche Begründungen, Messgenauigkeit und Präsentationen werden mit Beispielen und Kriterien selbst bzw. gemeinsam geprüft. Es gibt keine automatische Bewertung dieser offenen Leistungen.
+- Keine empirische Verständlichkeitsstudie mit Kindern, keine amtliche Freigabe und keine unabhängige fachpädagogische Zertifizierung.
+- Die Inhalte unterstützen Lernen; sie ersetzen Unterricht und eine vollständige Lernstandserhebung nicht. Eine vollständige Themenzuordnung ist keine Garantie, dass jedes Kind jede Kompetenz bereits beherrscht.

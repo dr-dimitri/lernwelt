@@ -378,3 +378,6 @@ mod tests {
         assert!(Difficulty::parse("expert").is_err());
     }
 }
+
+#[cfg(test)]
+mod coverage_tests;
