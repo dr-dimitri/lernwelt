@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { difficulties, type Difficulty } from '../domain/learning';
-import type { VocabularyState, VocabularyReview } from '../domain/vocabulary';
+import type {
+  VocabularyState,
+  VocabularyReview,
+  VocabularyReviewResult,
+} from '../domain/vocabulary';
 import { desktop } from '../lib/desktop';
 
 const modes: Record<Difficulty, string> = {
@@ -19,6 +23,12 @@ const message = (error: unknown) =>
   error instanceof Error
     ? error.message
     : 'Die Wortkarten sind gerade nicht verfügbar.';
+type Feedback = {
+  result: VocabularyReviewResult;
+  presented: NonNullable<VocabularyState['card']>;
+  difficulty: Difficulty;
+  answer: string | null;
+};
 
 export default function VocabularyPanel({
   profileVersion,
@@ -28,24 +38,22 @@ export default function VocabularyPanel({
   const [state, setState] = useState<VocabularyState | null>(null);
   const [deck, setDeck] = useState('all');
   const [reload, setReload] = useState(0);
-  const [flipped, setFlipped] = useState(false);
   const [answer, setAnswer] = useState('');
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [busy, setBusy] = useState(true);
   const [error, setError] = useState('');
-  const [notice, setNotice] = useState('');
   const [pending, setPending] = useState<VocabularyReview | null>(null);
   const revision = useRef(0);
   const inFlight = useRef(false);
-  const flipButton = useRef<HTMLButtonElement>(null);
+  const feedbackHeading = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const current = ++revision.current;
     setBusy(true);
     setError('');
-    setNotice('');
     setState(null);
     setPending(null);
-    setFlipped(false);
+    setFeedback(null);
     setAnswer('');
     inFlight.current = true;
     void desktop
@@ -73,13 +81,12 @@ export default function VocabularyPanel({
     inFlight.current = true;
     setBusy(true);
     setError('');
-    setNotice('');
+    setFeedback(null);
     try {
       await desktop.setDifficulty(difficulty);
       const next = await desktop.getVocabularyState(deck);
       if (current !== revision.current) return;
       setState(next);
-      setFlipped(false);
       setAnswer('');
     } catch (err) {
       if (current !== revision.current) return;
@@ -92,37 +99,34 @@ export default function VocabularyPanel({
       }
     }
   }
-
-  async function rate(known: boolean) {
-    if (inFlight.current || !state?.card || !flipped || !state.profileReady)
+  async function submit(value: string | null) {
+    if (inFlight.current || !state?.card || !state.profileReady || feedback)
       return;
+    if (value !== null && !value.trim() && !pending) return;
     const request = pending ?? {
       requestId: crypto.randomUUID(),
       cardId: state.card.card.id,
       deckId: deck,
       difficulty: state.difficulty,
       expectedReviews: state.card.reviews,
-      known,
+      answer: value,
     };
     const current = revision.current;
     inFlight.current = true;
     setBusy(true);
     setError('');
-    setNotice('');
     setPending(request);
     try {
       const result = await desktop.reviewVocabulary(request);
       if (current !== revision.current) return;
+      setFeedback({
+        result,
+        presented: state.card,
+        difficulty: request.difficulty,
+        answer: request.answer,
+      });
       setState(result.state);
       setPending(null);
-      setFlipped(false);
-      setAnswer('');
-      setNotice(
-        request.known
-          ? `Gut erinnert! Die Karte liegt jetzt in Fach ${result.boxNumber}. Wieder dran: ${date(result.dueAt)}.`
-          : 'Alles okay! Diese Karte kommt in etwa einer Minute wieder. Übe inzwischen ein anderes Wort oder mach eine kleine Pause.',
-      );
-      // The next card is mounted by this state update. Focus it after React commits.
     } catch (err) {
       if (current === revision.current) setError(message(err));
     } finally {
@@ -133,24 +137,22 @@ export default function VocabularyPanel({
     }
   }
   useEffect(() => {
-    if (notice && !busy && !flipped) flipButton.current?.focus();
-  }, [notice, busy, flipped]);
+    if (feedback && !busy) feedbackHeading.current?.focus();
+  }, [feedback, busy]);
 
-  const presented = state?.card;
+  const presented = feedback?.presented ?? state?.card;
   const card = presented?.card;
+  const difficulty = feedback?.difficulty ?? state?.difficulty ?? 'koenner';
   const disabled = busy || !!pending;
   const front =
     card &&
-    state &&
-    (state.difficulty === 'vorschule'
+    (difficulty === 'vorschule'
       ? card.english
-      : state.difficulty === 'koenner'
+      : difficulty === 'koenner'
         ? card.german
         : card.cloze);
   const back =
-    card &&
-    state &&
-    (state.difficulty === 'vorschule' ? card.german : card.english);
+    card && (difficulty === 'vorschule' ? card.german : card.english);
   return (
     <section
       className="detail-panel vocabulary-panel"
@@ -161,9 +163,15 @@ export default function VocabularyPanel({
       <h2 id="vocabulary-title">Vokabeltrainer</h2>
       <p>Englisch · Klasse 5 · 1. Fremdsprache</p>
       <p>
-        Erst selbst überlegen, dann umdrehen. Noch unsicher? Dieses Wort kommt
-        bald wieder. Du bestimmst dein Tempo.
+        Tippe deine Übersetzung ein. Jede richtige Antwort bringt 1 Punkt – auch
+        wenn du ein Wort später wiederholst. Fehler kosten nichts.
       </p>
+      {state && (
+        <div className="points-balance" aria-label="Verfügbare Lernpunkte">
+          {state.wallet.balance}{' '}
+          {state.wallet.balance === 1 ? 'Punkt' : 'Punkte'}
+        </div>
+      )}
       {busy && (
         <p role="status">Wortkarten werden geladen oder gespeichert …</p>
       )}
@@ -173,7 +181,7 @@ export default function VocabularyPanel({
           {pending && (
             <button
               className="primary-button"
-              onClick={() => void rate(pending.known)}
+              onClick={() => void submit(pending.answer)}
               disabled={busy}
             >
               Speichern erneut versuchen
@@ -184,7 +192,7 @@ export default function VocabularyPanel({
       <button
         className="secondary-button"
         disabled={busy}
-        onClick={() => setReload((value) => value + 1)}
+        onClick={() => setReload((v) => v + 1)}
       >
         {error ? 'Karten neu laden' : 'Fällige Karten laden'}
       </button>
@@ -203,7 +211,7 @@ export default function VocabularyPanel({
                 disabled={disabled}
                 onClick={() => void changeDifficulty(level.id)}
               >
-                <span aria-hidden="true">{level.symbol}</span>{' '}
+                <span aria-hidden="true">{level.symbol}</span>
                 <strong>{level.name}</strong>
                 <small>{modes[level.id]}</small>
               </button>
@@ -211,9 +219,9 @@ export default function VocabularyPanel({
           </div>
           <p className="sample-note">
             Deine Stufe gilt auch in den anderen Fächern. Wir merken uns deine
-            Wortkarten für jede Stufe getrennt. Für die ehrliche
-            Selbsteinschätzung gibt es keine Punkte; Punkte sammelst du bei den
-            Lernaufgaben.
+            Wortkarten für jede Stufe getrennt. Hier gibt es in jeder Stufe 1
+            Punkt pro richtiger Antwort. Deine Punkte kannst du für Spiele und
+            Belohnungen verwenden.
           </p>
           <label className="vocabulary-deck">
             Dein Wortthema
@@ -266,71 +274,95 @@ export default function VocabularyPanel({
                   ? 'NEUES WORT'
                   : `WIEDERHOLUNG · FACH ${presented.boxNumber}`}
               </p>
-              <p>{modes[state.difficulty]}</p>
-              {state.difficulty === 'streber' && (
-                <p>Gesuchtes Wort: {card.german}</p>
-              )}
+              <p>{modes[difficulty]}</p>
+              {difficulty === 'streber' && <p>Gesuchtes Wort: {card.german}</p>}
               <h3
                 id="card-prompt"
-                lang={state.difficulty === 'koenner' ? 'de' : 'en'}
+                lang={difficulty === 'koenner' ? 'de' : 'en'}
               >
                 {front}
               </h3>
-              {!flipped ? (
-                <>
+              {!feedback && difficulty === 'vorschule' && (
+                <p lang="en">{card.example}</p>
+              )}
+              {!feedback ? (
+                <form
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    void submit(answer);
+                  }}
+                >
                   <label>
-                    Deine Antwort zum Vergleichen (freiwillig)
+                    {difficulty === 'vorschule'
+                      ? 'Deine deutsche Übersetzung'
+                      : 'Deine englische Antwort'}
                     <input
                       value={answer}
-                      disabled={busy}
+                      disabled={disabled}
                       maxLength={160}
                       autoComplete="off"
+                      autoCapitalize="off"
+                      spellCheck={false}
                       onChange={(event) => setAnswer(event.target.value)}
+                      aria-describedby="vocabulary-answer-help"
                     />
                   </label>
-                  <button
-                    className="primary-button"
-                    ref={flipButton}
-                    disabled={busy}
-                    onClick={() => setFlipped(true)}
-                  >
-                    Karte umdrehen
-                  </button>
-                </>
-              ) : (
-                <>
-                  {answer && <p>Deine Antwort: {answer}</p>}
-                  <div className="card-answer">
-                    <p>Die Lösung</p>
-                    <strong
-                      lang={state.difficulty === 'vorschule' ? 'de' : 'en'}
-                    >
-                      {back}
-                    </strong>
-                    <p lang="en">{card.example}</p>
-                    {state.difficulty !== 'vorschule' && <p>{card.german}</p>}
-                  </div>
-                  <p>
-                    Hattest du die Bedeutung oder das Wort vor dem Umdrehen
-                    gewusst? Auch eine passende andere Übersetzung zählt. Sei
-                    ehrlich – so übst du genau das Richtige.
+                  <p id="vocabulary-answer-help">
+                    Eine passende Übersetzung reicht. Schreibe nur das gesuchte
+                    Wort oder die Wortgruppe. Groß- und Kleinschreibung ist hier
+                    egal.
                   </p>
                   <div className="card-actions">
                     <button
-                      className="secondary-button"
-                      disabled={disabled}
-                      onClick={() => void rate(false)}
+                      className="primary-button"
+                      type="submit"
+                      disabled={disabled || !answer.trim()}
                     >
-                      Noch üben
+                      Antwort prüfen
                     </button>
                     <button
-                      className="primary-button"
+                      className="secondary-button"
+                      type="button"
                       disabled={disabled}
-                      onClick={() => void rate(true)}
+                      onClick={() => void submit(null)}
                     >
-                      Gewusst
+                      Weiß ich noch nicht · Lösung zeigen
                     </button>
                   </div>
+                </form>
+              ) : (
+                <>
+                  <h4 ref={feedbackHeading} tabIndex={-1}>
+                    {feedback.result.correct
+                      ? `Richtig! +${feedback.result.pointsAwarded} Punkt`
+                      : 'Noch nicht ganz – wir üben das wieder!'}
+                  </h4>
+                  {feedback.answer !== null && (
+                    <p>Deine Antwort: {feedback.answer}</p>
+                  )}
+                  <div className="card-answer">
+                    <p>
+                      {feedback.result.correct
+                        ? 'Eine passende Lösung'
+                        : 'Die Lösung'}
+                    </p>
+                    <strong lang={difficulty === 'vorschule' ? 'de' : 'en'}>
+                      {back}
+                    </strong>
+                    <p lang="en">{card.example}</p>
+                  </div>
+                  <p>
+                    {feedback.result.correct
+                      ? `Die Karte liegt jetzt in Fach ${feedback.result.boxNumber}. Wieder dran: ${date(feedback.result.dueAt)}.`
+                      : 'Kein Punkteabzug. Schau dir das Wort in Ruhe an. Es kommt in etwa einer Minute wieder.'}
+                  </p>
+                  <button
+                    className="primary-button"
+                    disabled={busy}
+                    onClick={() => setReload((v) => v + 1)}
+                  >
+                    Nächste Karte
+                  </button>
                 </>
               )}
             </article>
@@ -351,23 +383,27 @@ export default function VocabularyPanel({
               <p>Du kannst auch ein anderes Wortthema wählen.</p>
             </div>
           )}
-          {notice && <p role="status">{notice}</p>}
           <details className="source-note">
             <summary>So funktionieren deine Karteifächer</summary>
             <p>
-              Gewusst: ein Fach weiter, höchstens bis Fach 5. Noch üben: zurück
-              in Fach 1, nach einer Minute wieder dran. Die weiteren Abstände
-              sind 1, 3, 7 und 14 Tage. Fällige Wiederholungen kommen vor neuen
-              Wörtern. Dein Stand bleibt auf diesem Gerät gespeichert.
+              Richtig: 1 Punkt und ein Fach weiter, höchstens bis Fach 5. Falsch
+              oder Lösung aufgedeckt: 0 Punkte, zurück in Fach 1 und nach einer
+              Minute wieder dran. Die weiteren Abstände sind 1, 3, 7 und 14
+              Tage. Fällige Wiederholungen kommen vor neuen Wörtern.
             </p>
             <p>
-              120 eigene Wortkarten mit Beispielen. {state.orientation}{' '}
-              {state.curriculumVersion}. Quelle: {state.source}
+              Die App prüft hinterlegte Übersetzungen und häufige Varianten. Es
+              gibt keine KI-Bewertung; nicht jede mögliche Umschreibung wird
+              erkannt. Die angezeigte Lösung ist ein Beispiel.
             </p>
             <p>
-              Die Termine richten sich nach der Uhr deines Geräts. Die App muss
-              nicht offen bleiben. Kein Timer läuft gegen dich, und es gibt
-              keinen Punkteabzug.
+              {state.catalogTotal} eigene Wortkarten mit Beispielen.{' '}
+              {state.orientation} {state.curriculumVersion}. Quelle:{' '}
+              {state.source}
+            </p>
+            <p>
+              Dein Stand bleibt auf diesem Gerät. Termine richten sich nach der
+              Geräteuhr. Insgesamt verdient: {state.wallet.totalEarned} Punkte.
             </p>
           </details>
         </>

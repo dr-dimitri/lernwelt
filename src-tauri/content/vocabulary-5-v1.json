@@ -54,6 +54,30 @@
     {
       "id": "words",
       "name": "Wörter-Werkstatt"
+    },
+    {
+      "id": "animals",
+      "name": "Tierfreunde"
+    },
+    {
+      "id": "clothes",
+      "name": "Kleiderschrank"
+    },
+    {
+      "id": "body",
+      "name": "Von Kopf bis Fuß"
+    },
+    {
+      "id": "weather",
+      "name": "Wind & Wetter"
+    },
+    {
+      "id": "calendar",
+      "name": "Durch das Jahr"
+    },
+    {
+      "id": "numbers",
+      "name": "Zahlen entdecken"
     }
   ],
   "cards": [
@@ -64,7 +88,16 @@
       "german": "hallo",
       "example": "I say hello to my friend.",
       "cloze": "I say ___ to my friend.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "hello",
+        "hi"
+      ],
+      "germanAnswers": [
+        "hallo",
+        "hi",
+        "guten Tag"
+      ]
     },
     {
       "id": "by.english.5.vocab.hello.goodbye.v1",
@@ -73,7 +106,18 @@
       "german": "auf Wiedersehen",
       "example": "We say goodbye after school.",
       "cloze": "We say ___ after school.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "goodbye",
+        "bye",
+        "bye-bye"
+      ],
+      "germanAnswers": [
+        "auf Wiedersehen",
+        "tschüss",
+        "tschüs",
+        "bis dann"
+      ]
     },
     {
       "id": "by.english.5.vocab.hello.name.v1",
@@ -82,7 +126,13 @@
       "german": "Name",
       "example": "My name is Jo.",
       "cloze": "My ___ is Jo.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "name"
+      ],
+      "germanAnswers": [
+        "Name"
+      ]
     },
     {
       "id": "by.english.5.vocab.hello.friend.v1",
@@ -91,7 +141,15 @@
       "german": "Freund / Freundin",
       "example": "My friend likes music.",
       "cloze": "My ___ likes music.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "friend"
+      ],
+      "germanAnswers": [
+        "Freund",
+        "Freundin",
+        "Kumpel"
+      ]
     },
     {
       "id": "by.english.5.vocab.hello.eleven.v1",
@@ -100,7 +158,14 @@
       "german": "elf",
       "example": "I am eleven years old.",
       "cloze": "I am ___ years old.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "eleven"
+      ],
+      "germanAnswers": [
+        "elf",
+        "11"
+      ]
     },
     {
       "id": "by.english.5.vocab.hello.twelve.v1",
@@ -109,7 +174,14 @@
       "german": "zwölf",
       "example": "There are twelve months in a year.",
       "cloze": "There are ___ months in a year.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "twelve"
+      ],
+      "germanAnswers": [
+        "zwölf",
+        "12"
+      ]
     },
     {
       "id": "by.english.5.vocab.hello.colour.v1",
@@ -118,7 +190,14 @@
       "german": "Farbe",
       "example": "My favourite colour is green.",
       "cloze": "My favourite ___ is green.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "colour",
+        "color"
+      ],
+      "germanAnswers": [
+        "Farbe"
+      ]
     },
     {
       "id": "by.english.5.vocab.hello.green.v1",
@@ -127,7 +206,13 @@
       "german": "grün",
       "example": "The tree is green.",
       "cloze": "The tree is ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "green"
+      ],
+      "germanAnswers": [
+        "grün"
+      ]
     },
     {
       "id": "by.english.5.vocab.hello.blue.v1",
@@ -136,7 +221,13 @@
       "german": "blau",
       "example": "My bag is blue.",
       "cloze": "My bag is ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "blue"
+      ],
+      "germanAnswers": [
+        "blau"
+      ]
     },
     {
       "id": "by.english.5.vocab.hello.favourite.v1",
@@ -145,7 +236,16 @@
       "german": "Lieblings- / bevorzugt",
       "example": "This is my favourite book.",
       "cloze": "This is my ___ book.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "favourite"
+      ],
+      "germanAnswers": [
+        "Lieblings-",
+        "bevorzugt",
+        "Lieblings",
+        "am liebsten"
+      ]
     },
     {
       "id": "by.english.5.vocab.family.mother.v1",
@@ -154,7 +254,14 @@
       "german": "Mutter",
       "example": "My mother likes tennis.",
       "cloze": "My ___ likes tennis.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "mother"
+      ],
+      "germanAnswers": [
+        "Mutter",
+        "Mama"
+      ]
     },
     {
       "id": "by.english.5.vocab.family.father.v1",
@@ -163,7 +270,14 @@
       "german": "Vater",
       "example": "My father reads a book.",
       "cloze": "My ___ reads a book.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "father"
+      ],
+      "germanAnswers": [
+        "Vater",
+        "Papa"
+      ]
     },
     {
       "id": "by.english.5.vocab.family.sister.v1",
@@ -172,7 +286,13 @@
       "german": "Schwester",
       "example": "My sister is ten.",
       "cloze": "My ___ is ten.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sister"
+      ],
+      "germanAnswers": [
+        "Schwester"
+      ]
     },
     {
       "id": "by.english.5.vocab.family.brother.v1",
@@ -181,7 +301,13 @@
       "german": "Bruder",
       "example": "My brother has a bike.",
       "cloze": "My ___ has a bike.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "brother"
+      ],
+      "germanAnswers": [
+        "Bruder"
+      ]
     },
     {
       "id": "by.english.5.vocab.family.grandmother.v1",
@@ -190,7 +316,14 @@
       "german": "Großmutter / Oma",
       "example": "My grandmother has a dog.",
       "cloze": "My ___ has a dog.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "grandmother"
+      ],
+      "germanAnswers": [
+        "Großmutter",
+        "Oma"
+      ]
     },
     {
       "id": "by.english.5.vocab.family.grandfather.v1",
@@ -199,7 +332,14 @@
       "german": "Großvater / Opa",
       "example": "My grandfather likes cooking.",
       "cloze": "My ___ likes cooking.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "grandfather"
+      ],
+      "germanAnswers": [
+        "Großvater",
+        "Opa"
+      ]
     },
     {
       "id": "by.english.5.vocab.family.parents.v1",
@@ -208,7 +348,14 @@
       "german": "Eltern",
       "example": "My parents are at home.",
       "cloze": "My ___ are at home.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "parents"
+      ],
+      "germanAnswers": [
+        "Eltern",
+        "Mama und Papa"
+      ]
     },
     {
       "id": "by.english.5.vocab.family.child.v1",
@@ -217,7 +364,13 @@
       "german": "Kind",
       "example": "The child has a red ball.",
       "cloze": "The ___ has a red ball.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "child"
+      ],
+      "germanAnswers": [
+        "Kind"
+      ]
     },
     {
       "id": "by.english.5.vocab.family.children.v1",
@@ -226,7 +379,13 @@
       "german": "Kinder",
       "example": "The children play in the garden.",
       "cloze": "The ___ play in the garden.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "children"
+      ],
+      "germanAnswers": [
+        "Kinder"
+      ]
     },
     {
       "id": "by.english.5.vocab.family.family.v1",
@@ -235,7 +394,13 @@
       "german": "Familie",
       "example": "My family likes picnics.",
       "cloze": "My ___ likes picnics.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "family"
+      ],
+      "germanAnswers": [
+        "Familie"
+      ]
     },
     {
       "id": "by.english.5.vocab.home.house.v1",
@@ -244,7 +409,13 @@
       "german": "Haus",
       "example": "The house has a blue door.",
       "cloze": "The ___ has a blue door.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "house"
+      ],
+      "germanAnswers": [
+        "Haus"
+      ]
     },
     {
       "id": "by.english.5.vocab.home.room.v1",
@@ -253,7 +424,14 @@
       "german": "Zimmer / Raum",
       "example": "My room is small.",
       "cloze": "My ___ is small.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "room"
+      ],
+      "germanAnswers": [
+        "Zimmer",
+        "Raum"
+      ]
     },
     {
       "id": "by.english.5.vocab.home.kitchen.v1",
@@ -262,7 +440,13 @@
       "german": "Küche",
       "example": "We cook in the kitchen.",
       "cloze": "We cook in the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "kitchen"
+      ],
+      "germanAnswers": [
+        "Küche"
+      ]
     },
     {
       "id": "by.english.5.vocab.home.bedroom.v1",
@@ -271,7 +455,13 @@
       "german": "Schlafzimmer",
       "example": "My bed is in my bedroom.",
       "cloze": "My bed is in my ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "bedroom"
+      ],
+      "germanAnswers": [
+        "Schlafzimmer"
+      ]
     },
     {
       "id": "by.english.5.vocab.home.garden.v1",
@@ -280,7 +470,13 @@
       "german": "Garten",
       "example": "We play in the garden.",
       "cloze": "We play in the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "garden"
+      ],
+      "germanAnswers": [
+        "Garten"
+      ]
     },
     {
       "id": "by.english.5.vocab.home.chair.v1",
@@ -289,7 +485,13 @@
       "german": "Stuhl",
       "example": "The chair is next to the table.",
       "cloze": "The ___ is next to the table.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "chair"
+      ],
+      "germanAnswers": [
+        "Stuhl"
+      ]
     },
     {
       "id": "by.english.5.vocab.home.table.v1",
@@ -298,7 +500,13 @@
       "german": "Tisch",
       "example": "The book is on the table.",
       "cloze": "The book is on the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "table"
+      ],
+      "germanAnswers": [
+        "Tisch"
+      ]
     },
     {
       "id": "by.english.5.vocab.home.window.v1",
@@ -307,7 +515,13 @@
       "german": "Fenster",
       "example": "The window is open.",
       "cloze": "The ___ is open.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "window"
+      ],
+      "germanAnswers": [
+        "Fenster"
+      ]
     },
     {
       "id": "by.english.5.vocab.home.door.v1",
@@ -316,7 +530,13 @@
       "german": "Tür",
       "example": "Please close the door.",
       "cloze": "Please close the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "door"
+      ],
+      "germanAnswers": [
+        "Tür"
+      ]
     },
     {
       "id": "by.english.5.vocab.home.under.v1",
@@ -325,7 +545,13 @@
       "german": "unter",
       "example": "The cat is under the bed.",
       "cloze": "The cat is ___ the bed.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "under"
+      ],
+      "germanAnswers": [
+        "unter"
+      ]
     },
     {
       "id": "by.english.5.vocab.school.school.v1",
@@ -334,7 +560,13 @@
       "german": "Schule",
       "example": "I walk to school.",
       "cloze": "I walk to ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "school"
+      ],
+      "germanAnswers": [
+        "Schule"
+      ]
     },
     {
       "id": "by.english.5.vocab.school.teacher.v1",
@@ -343,7 +575,14 @@
       "german": "Lehrer / Lehrerin",
       "example": "Our teacher likes stories.",
       "cloze": "Our ___ likes stories.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "teacher"
+      ],
+      "germanAnswers": [
+        "Lehrer",
+        "Lehrerin"
+      ]
     },
     {
       "id": "by.english.5.vocab.school.pupil.v1",
@@ -352,7 +591,15 @@
       "german": "Schüler / Schülerin",
       "example": "The new pupil is called Sam.",
       "cloze": "The new ___ is called Sam.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "pupil",
+        "student"
+      ],
+      "germanAnswers": [
+        "Schüler",
+        "Schülerin"
+      ]
     },
     {
       "id": "by.english.5.vocab.school.book.v1",
@@ -361,7 +608,13 @@
       "german": "Buch",
       "example": "I read a book.",
       "cloze": "I read a ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "book"
+      ],
+      "germanAnswers": [
+        "Buch"
+      ]
     },
     {
       "id": "by.english.5.vocab.school.pencil.v1",
@@ -370,7 +623,13 @@
       "german": "Bleistift",
       "example": "I draw with a pencil.",
       "cloze": "I draw with a ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "pencil"
+      ],
+      "germanAnswers": [
+        "Bleistift"
+      ]
     },
     {
       "id": "by.english.5.vocab.school.ruler.v1",
@@ -379,7 +638,13 @@
       "german": "Lineal",
       "example": "My ruler is in my bag.",
       "cloze": "My ___ is in my bag.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "ruler"
+      ],
+      "germanAnswers": [
+        "Lineal"
+      ]
     },
     {
       "id": "by.english.5.vocab.school.exercise-book.v1",
@@ -388,7 +653,15 @@
       "german": "Heft / Schulheft",
       "example": "I write in my exercise book.",
       "cloze": "I write in my ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "exercise book"
+      ],
+      "germanAnswers": [
+        "Heft",
+        "Schulheft",
+        "Schreibheft"
+      ]
     },
     {
       "id": "by.english.5.vocab.school.homework.v1",
@@ -397,7 +670,13 @@
       "german": "Hausaufgaben",
       "example": "I do my homework after school.",
       "cloze": "I do my ___ after school.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "homework"
+      ],
+      "germanAnswers": [
+        "Hausaufgaben"
+      ]
     },
     {
       "id": "by.english.5.vocab.school.lesson.v1",
@@ -406,7 +685,13 @@
       "german": "Unterrichtsstunde",
       "example": "Our first lesson is English.",
       "cloze": "Our first ___ is English.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "lesson"
+      ],
+      "germanAnswers": [
+        "Unterrichtsstunde"
+      ]
     },
     {
       "id": "by.english.5.vocab.school.question.v1",
@@ -415,7 +700,13 @@
       "german": "Frage",
       "example": "I have a question.",
       "cloze": "I have a ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "question"
+      ],
+      "germanAnswers": [
+        "Frage"
+      ]
     },
     {
       "id": "by.english.5.vocab.day.morning.v1",
@@ -424,7 +715,14 @@
       "german": "Morgen / Vormittag",
       "example": "I eat breakfast in the morning.",
       "cloze": "I eat breakfast in the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "morning"
+      ],
+      "germanAnswers": [
+        "Morgen",
+        "Vormittag"
+      ]
     },
     {
       "id": "by.english.5.vocab.day.afternoon.v1",
@@ -433,7 +731,13 @@
       "german": "Nachmittag",
       "example": "We play in the afternoon.",
       "cloze": "We play in the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "afternoon"
+      ],
+      "germanAnswers": [
+        "Nachmittag"
+      ]
     },
     {
       "id": "by.english.5.vocab.day.evening.v1",
@@ -442,7 +746,13 @@
       "german": "Abend",
       "example": "I read in the evening.",
       "cloze": "I read in the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "evening"
+      ],
+      "germanAnswers": [
+        "Abend"
+      ]
     },
     {
       "id": "by.english.5.vocab.day.breakfast.v1",
@@ -451,7 +761,13 @@
       "german": "Frühstück",
       "example": "I have breakfast at seven.",
       "cloze": "I have ___ at seven.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "breakfast"
+      ],
+      "germanAnswers": [
+        "Frühstück"
+      ]
     },
     {
       "id": "by.english.5.vocab.day.get-up.v1",
@@ -460,7 +776,13 @@
       "german": "aufstehen",
       "example": "I get up at seven.",
       "cloze": "I ___ at seven.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "get up"
+      ],
+      "germanAnswers": [
+        "aufstehen"
+      ]
     },
     {
       "id": "by.english.5.vocab.day.walk.v1",
@@ -469,7 +791,14 @@
       "german": "gehen / zu Fuß gehen",
       "example": "We walk to school.",
       "cloze": "We ___ to school.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "walk"
+      ],
+      "germanAnswers": [
+        "gehen",
+        "zu Fuß gehen"
+      ]
     },
     {
       "id": "by.english.5.vocab.day.always.v1",
@@ -478,7 +807,13 @@
       "german": "immer",
       "example": "I always brush my teeth.",
       "cloze": "I ___ brush my teeth.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "always"
+      ],
+      "germanAnswers": [
+        "immer"
+      ]
     },
     {
       "id": "by.english.5.vocab.day.often.v1",
@@ -487,7 +822,13 @@
       "german": "oft",
       "example": "We often play chess.",
       "cloze": "We ___ play chess.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "often"
+      ],
+      "germanAnswers": [
+        "oft"
+      ]
     },
     {
       "id": "by.english.5.vocab.day.sometimes.v1",
@@ -496,7 +837,13 @@
       "german": "manchmal",
       "example": "I sometimes drink tea.",
       "cloze": "I ___ drink tea.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sometimes"
+      ],
+      "germanAnswers": [
+        "manchmal"
+      ]
     },
     {
       "id": "by.english.5.vocab.day.never.v1",
@@ -505,7 +852,13 @@
       "german": "nie",
       "example": "I never play football in the kitchen.",
       "cloze": "I ___ play football in the kitchen.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "never"
+      ],
+      "germanAnswers": [
+        "nie"
+      ]
     },
     {
       "id": "by.english.5.vocab.friends.play.v1",
@@ -514,7 +867,13 @@
       "german": "spielen",
       "example": "We play a game.",
       "cloze": "We ___ a game.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "play"
+      ],
+      "germanAnswers": [
+        "spielen"
+      ]
     },
     {
       "id": "by.english.5.vocab.friends.swim.v1",
@@ -523,7 +882,13 @@
       "german": "schwimmen",
       "example": "I can swim.",
       "cloze": "I can ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "swim"
+      ],
+      "germanAnswers": [
+        "schwimmen"
+      ]
     },
     {
       "id": "by.english.5.vocab.friends.read.v1",
@@ -532,7 +897,13 @@
       "german": "lesen",
       "example": "I read every day.",
       "cloze": "I ___ every day.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "read"
+      ],
+      "germanAnswers": [
+        "lesen"
+      ]
     },
     {
       "id": "by.english.5.vocab.friends.dance.v1",
@@ -541,7 +912,13 @@
       "german": "tanzen",
       "example": "We dance to the music.",
       "cloze": "We ___ to the music.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "dance"
+      ],
+      "germanAnswers": [
+        "tanzen"
+      ]
     },
     {
       "id": "by.english.5.vocab.friends.sing.v1",
@@ -550,7 +927,13 @@
       "german": "singen",
       "example": "I like to sing.",
       "cloze": "I like to ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sing"
+      ],
+      "germanAnswers": [
+        "singen"
+      ]
     },
     {
       "id": "by.english.5.vocab.friends.football.v1",
@@ -559,7 +942,13 @@
       "german": "Fußball",
       "example": "We play football in the park.",
       "cloze": "We play ___ in the park.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "football"
+      ],
+      "germanAnswers": [
+        "Fußball"
+      ]
     },
     {
       "id": "by.english.5.vocab.friends.bike.v1",
@@ -568,7 +957,14 @@
       "german": "Fahrrad",
       "example": "My bike is red.",
       "cloze": "My ___ is red.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "bike",
+        "bicycle"
+      ],
+      "germanAnswers": [
+        "Fahrrad"
+      ]
     },
     {
       "id": "by.english.5.vocab.friends.game.v1",
@@ -577,7 +973,13 @@
       "german": "Spiel",
       "example": "This game is fun.",
       "cloze": "This ___ is fun.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "game"
+      ],
+      "germanAnswers": [
+        "Spiel"
+      ]
     },
     {
       "id": "by.english.5.vocab.friends.help.v1",
@@ -586,7 +988,14 @@
       "german": "helfen / Hilfe",
       "example": "Can you help me, please?",
       "cloze": "Can you ___ me, please?",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "help"
+      ],
+      "germanAnswers": [
+        "helfen",
+        "Hilfe"
+      ]
     },
     {
       "id": "by.english.5.vocab.friends.together.v1",
@@ -595,7 +1004,13 @@
       "german": "zusammen",
       "example": "We play together.",
       "cloze": "We play ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "together"
+      ],
+      "germanAnswers": [
+        "zusammen"
+      ]
     },
     {
       "id": "by.english.5.vocab.shopping.apple.v1",
@@ -604,7 +1019,13 @@
       "german": "Apfel",
       "example": "I eat an apple.",
       "cloze": "I eat an ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "apple"
+      ],
+      "germanAnswers": [
+        "Apfel"
+      ]
     },
     {
       "id": "by.english.5.vocab.shopping.bread.v1",
@@ -613,7 +1034,13 @@
       "german": "Brot",
       "example": "We have bread for breakfast.",
       "cloze": "We have ___ for breakfast.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "bread"
+      ],
+      "germanAnswers": [
+        "Brot"
+      ]
     },
     {
       "id": "by.english.5.vocab.shopping.cheese.v1",
@@ -622,7 +1049,13 @@
       "german": "Käse",
       "example": "There is cheese in my sandwich.",
       "cloze": "There is ___ in my sandwich.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cheese"
+      ],
+      "germanAnswers": [
+        "Käse"
+      ]
     },
     {
       "id": "by.english.5.vocab.shopping.water.v1",
@@ -631,7 +1064,13 @@
       "german": "Wasser",
       "example": "I drink water.",
       "cloze": "I drink ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "water"
+      ],
+      "germanAnswers": [
+        "Wasser"
+      ]
     },
     {
       "id": "by.english.5.vocab.shopping.milk.v1",
@@ -640,7 +1079,13 @@
       "german": "Milch",
       "example": "There is milk in the glass.",
       "cloze": "There is ___ in the glass.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "milk"
+      ],
+      "germanAnswers": [
+        "Milch"
+      ]
     },
     {
       "id": "by.english.5.vocab.shopping.sandwich.v1",
@@ -649,7 +1094,14 @@
       "german": "belegtes Brot / Sandwich",
       "example": "I have a sandwich for lunch.",
       "cloze": "I have a ___ for lunch.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sandwich"
+      ],
+      "germanAnswers": [
+        "belegtes Brot",
+        "Sandwich"
+      ]
     },
     {
       "id": "by.english.5.vocab.shopping.shop.v1",
@@ -658,7 +1110,15 @@
       "german": "Laden / Geschäft",
       "example": "The shop is open.",
       "cloze": "The ___ is open.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "shop",
+        "store"
+      ],
+      "germanAnswers": [
+        "Laden",
+        "Geschäft"
+      ]
     },
     {
       "id": "by.english.5.vocab.shopping.money.v1",
@@ -667,7 +1127,13 @@
       "german": "Geld",
       "example": "My money is in my pocket.",
       "cloze": "My ___ is in my pocket.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "money"
+      ],
+      "germanAnswers": [
+        "Geld"
+      ]
     },
     {
       "id": "by.english.5.vocab.shopping.please.v1",
@@ -676,7 +1142,13 @@
       "german": "bitte",
       "example": "Can I have some water, please?",
       "cloze": "Can I have some water, ___?",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "please"
+      ],
+      "germanAnswers": [
+        "bitte"
+      ]
     },
     {
       "id": "by.english.5.vocab.shopping.thank-you.v1",
@@ -685,7 +1157,13 @@
       "german": "danke",
       "example": "I say thank you for the present.",
       "cloze": "I say ___ for the present.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "thank you"
+      ],
+      "germanAnswers": [
+        "danke"
+      ]
     },
     {
       "id": "by.english.5.vocab.party.birthday.v1",
@@ -694,7 +1172,13 @@
       "german": "Geburtstag",
       "example": "My birthday is in June.",
       "cloze": "My ___ is in June.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "birthday"
+      ],
+      "germanAnswers": [
+        "Geburtstag"
+      ]
     },
     {
       "id": "by.english.5.vocab.party.present.v1",
@@ -703,7 +1187,14 @@
       "german": "Geschenk",
       "example": "This present is for you.",
       "cloze": "This ___ is for you.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "present",
+        "gift"
+      ],
+      "germanAnswers": [
+        "Geschenk"
+      ]
     },
     {
       "id": "by.english.5.vocab.party.party.v1",
@@ -712,7 +1203,14 @@
       "german": "Feier / Party",
       "example": "Come to my party!",
       "cloze": "Come to my ___!",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "party"
+      ],
+      "germanAnswers": [
+        "Feier",
+        "Party"
+      ]
     },
     {
       "id": "by.english.5.vocab.party.monday.v1",
@@ -721,7 +1219,13 @@
       "german": "Montag",
       "example": "We have music on Monday.",
       "cloze": "We have music on ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "Monday"
+      ],
+      "germanAnswers": [
+        "Montag"
+      ]
     },
     {
       "id": "by.english.5.vocab.party.friday.v1",
@@ -730,7 +1234,13 @@
       "german": "Freitag",
       "example": "I play tennis on Friday.",
       "cloze": "I play tennis on ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "Friday"
+      ],
+      "germanAnswers": [
+        "Freitag"
+      ]
     },
     {
       "id": "by.english.5.vocab.party.saturday.v1",
@@ -739,7 +1249,13 @@
       "german": "Samstag",
       "example": "Our party is on Saturday.",
       "cloze": "Our party is on ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "Saturday"
+      ],
+      "germanAnswers": [
+        "Samstag"
+      ]
     },
     {
       "id": "by.english.5.vocab.party.sunday.v1",
@@ -748,7 +1264,13 @@
       "german": "Sonntag",
       "example": "We visit Grandma on Sunday.",
       "cloze": "We visit Grandma on ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "Sunday"
+      ],
+      "germanAnswers": [
+        "Sonntag"
+      ]
     },
     {
       "id": "by.english.5.vocab.party.june.v1",
@@ -757,7 +1279,13 @@
       "german": "Juni",
       "example": "My birthday is in June.",
       "cloze": "My birthday is in ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "June"
+      ],
+      "germanAnswers": [
+        "Juni"
+      ]
     },
     {
       "id": "by.english.5.vocab.party.first.v1",
@@ -766,7 +1294,15 @@
       "german": "erste / erster / erstes",
       "example": "This is my first day at school.",
       "cloze": "This is my ___ day at school.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "first"
+      ],
+      "germanAnswers": [
+        "erste",
+        "erster",
+        "erstes"
+      ]
     },
     {
       "id": "by.english.5.vocab.party.second.v1",
@@ -775,7 +1311,15 @@
       "german": "zweite / zweiter / zweites",
       "example": "I am second in the queue.",
       "cloze": "I am ___ in the queue.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "second"
+      ],
+      "germanAnswers": [
+        "zweite",
+        "zweiter",
+        "zweites"
+      ]
     },
     {
       "id": "by.english.5.vocab.past.yesterday.v1",
@@ -784,7 +1328,13 @@
       "german": "gestern",
       "example": "We played tennis yesterday.",
       "cloze": "We played tennis ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "yesterday"
+      ],
+      "germanAnswers": [
+        "gestern"
+      ]
     },
     {
       "id": "by.english.5.vocab.past.went.v1",
@@ -793,7 +1343,14 @@
       "german": "ging / gingen (Vergangenheit von go)",
       "example": "We went to the park.",
       "cloze": "We ___ to the park.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "went"
+      ],
+      "germanAnswers": [
+        "ging",
+        "gingen"
+      ]
     },
     {
       "id": "by.english.5.vocab.past.saw.v1",
@@ -802,7 +1359,14 @@
       "german": "sah / sahen",
       "example": "I saw a fox.",
       "cloze": "I ___ a fox.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "saw"
+      ],
+      "germanAnswers": [
+        "sah",
+        "sahen"
+      ]
     },
     {
       "id": "by.english.5.vocab.past.had.v1",
@@ -811,7 +1375,14 @@
       "german": "hatte / hatten",
       "example": "We had a picnic.",
       "cloze": "We ___ a picnic.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "had"
+      ],
+      "germanAnswers": [
+        "hatte",
+        "hatten"
+      ]
     },
     {
       "id": "by.english.5.vocab.past.was.v1",
@@ -820,7 +1391,13 @@
       "german": "war",
       "example": "I was happy.",
       "cloze": "I ___ happy.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "was"
+      ],
+      "germanAnswers": [
+        "war"
+      ]
     },
     {
       "id": "by.english.5.vocab.past.were.v1",
@@ -829,7 +1406,15 @@
       "german": "warst / waren / wart",
       "example": "We were at home.",
       "cloze": "We ___ at home.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "were"
+      ],
+      "germanAnswers": [
+        "warst",
+        "waren",
+        "wart"
+      ]
     },
     {
       "id": "by.english.5.vocab.past.played.v1",
@@ -838,7 +1423,14 @@
       "german": "spielte / spielten",
       "example": "We played a game.",
       "cloze": "We ___ a game.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "played"
+      ],
+      "germanAnswers": [
+        "spielte",
+        "spielten"
+      ]
     },
     {
       "id": "by.english.5.vocab.past.visited.v1",
@@ -847,7 +1439,14 @@
       "german": "besuchte / besuchten",
       "example": "I visited my friend.",
       "cloze": "I ___ my friend.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "visited"
+      ],
+      "germanAnswers": [
+        "besuchte",
+        "besuchten"
+      ]
     },
     {
       "id": "by.english.5.vocab.past.then.v1",
@@ -856,7 +1455,14 @@
       "german": "dann / danach",
       "example": "We ate and then we played.",
       "cloze": "We ate and ___ we played.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "then"
+      ],
+      "germanAnswers": [
+        "dann",
+        "danach"
+      ]
     },
     {
       "id": "by.english.5.vocab.past.last-week.v1",
@@ -865,7 +1471,13 @@
       "german": "letzte Woche",
       "example": "I visited Jo last week.",
       "cloze": "I visited Jo ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "last week"
+      ],
+      "germanAnswers": [
+        "letzte Woche"
+      ]
     },
     {
       "id": "by.english.5.vocab.stories.story.v1",
@@ -874,7 +1486,14 @@
       "german": "Geschichte / Erzählung",
       "example": "This story is funny.",
       "cloze": "This ___ is funny.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "story"
+      ],
+      "germanAnswers": [
+        "Geschichte",
+        "Erzählung"
+      ]
     },
     {
       "id": "by.english.5.vocab.stories.letter.v1",
@@ -883,7 +1502,13 @@
       "german": "Brief",
       "example": "I write a letter to Jo.",
       "cloze": "I write a ___ to Jo.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "letter"
+      ],
+      "germanAnswers": [
+        "Brief"
+      ]
     },
     {
       "id": "by.english.5.vocab.stories.message.v1",
@@ -892,7 +1517,13 @@
       "german": "Nachricht",
       "example": "I have a message for you.",
       "cloze": "I have a ___ for you.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "message"
+      ],
+      "germanAnswers": [
+        "Nachricht"
+      ]
     },
     {
       "id": "by.english.5.vocab.stories.because.v1",
@@ -901,7 +1532,13 @@
       "german": "weil",
       "example": "I am happy because you are here.",
       "cloze": "I am happy ___ you are here.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "because"
+      ],
+      "germanAnswers": [
+        "weil"
+      ]
     },
     {
       "id": "by.english.5.vocab.stories.when.v1",
@@ -910,7 +1547,15 @@
       "german": "als / wenn / wann",
       "example": "I read when I have time.",
       "cloze": "I read ___ I have time.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "when"
+      ],
+      "germanAnswers": [
+        "als",
+        "wenn",
+        "wann"
+      ]
     },
     {
       "id": "by.english.5.vocab.stories.somebody.v1",
@@ -919,7 +1564,14 @@
       "german": "jemand",
       "example": "There is somebody at the door.",
       "cloze": "There is ___ at the door.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "somebody",
+        "someone"
+      ],
+      "germanAnswers": [
+        "jemand"
+      ]
     },
     {
       "id": "by.english.5.vocab.stories.nobody.v1",
@@ -928,7 +1580,14 @@
       "german": "niemand",
       "example": "There is nobody in the room.",
       "cloze": "There is ___ in the room.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "nobody",
+        "no one"
+      ],
+      "germanAnswers": [
+        "niemand"
+      ]
     },
     {
       "id": "by.english.5.vocab.stories.something.v1",
@@ -937,7 +1596,13 @@
       "german": "etwas",
       "example": "There is something in my bag.",
       "cloze": "There is ___ in my bag.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "something"
+      ],
+      "germanAnswers": [
+        "etwas"
+      ]
     },
     {
       "id": "by.english.5.vocab.stories.nothing.v1",
@@ -946,7 +1611,13 @@
       "german": "nichts",
       "example": "There is nothing in the box.",
       "cloze": "There is ___ in the box.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "nothing"
+      ],
+      "germanAnswers": [
+        "nichts"
+      ]
     },
     {
       "id": "by.english.5.vocab.stories.funny.v1",
@@ -955,7 +1626,15 @@
       "german": "lustig / komisch",
       "example": "This story is funny.",
       "cloze": "This story is ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "funny"
+      ],
+      "germanAnswers": [
+        "lustig",
+        "komisch",
+        "witzig"
+      ]
     },
     {
       "id": "by.english.5.vocab.travel.map.v1",
@@ -964,7 +1643,14 @@
       "german": "Karte / Landkarte",
       "example": "London is on this map.",
       "cloze": "London is on this ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "map"
+      ],
+      "germanAnswers": [
+        "Karte",
+        "Landkarte"
+      ]
     },
     {
       "id": "by.english.5.vocab.travel.country.v1",
@@ -973,7 +1659,14 @@
       "german": "Land / Staat",
       "example": "Wales is a country in the UK.",
       "cloze": "Wales is a ___ in the UK.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "country"
+      ],
+      "germanAnswers": [
+        "Land",
+        "Staat"
+      ]
     },
     {
       "id": "by.english.5.vocab.travel.city.v1",
@@ -982,7 +1675,14 @@
       "german": "Stadt / Großstadt",
       "example": "London is a big city.",
       "cloze": "London is a big ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "city"
+      ],
+      "germanAnswers": [
+        "Stadt",
+        "Großstadt"
+      ]
     },
     {
       "id": "by.english.5.vocab.travel.river.v1",
@@ -991,7 +1691,13 @@
       "german": "Fluss",
       "example": "The river is long.",
       "cloze": "The ___ is long.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "river"
+      ],
+      "germanAnswers": [
+        "Fluss"
+      ]
     },
     {
       "id": "by.english.5.vocab.travel.museum.v1",
@@ -1000,7 +1706,13 @@
       "german": "Museum",
       "example": "We visit the museum.",
       "cloze": "We visit the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "museum"
+      ],
+      "germanAnswers": [
+        "Museum"
+      ]
     },
     {
       "id": "by.english.5.vocab.travel.park.v1",
@@ -1009,7 +1721,13 @@
       "german": "Park",
       "example": "We play in the park.",
       "cloze": "We play in the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "park"
+      ],
+      "germanAnswers": [
+        "Park"
+      ]
     },
     {
       "id": "by.english.5.vocab.travel.bus.v1",
@@ -1018,7 +1736,13 @@
       "german": "Bus",
       "example": "We go by bus.",
       "cloze": "We go by ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "bus"
+      ],
+      "germanAnswers": [
+        "Bus"
+      ]
     },
     {
       "id": "by.english.5.vocab.travel.queue.v1",
@@ -1027,7 +1751,13 @@
       "german": "Warteschlange",
       "example": "We wait in the queue.",
       "cloze": "We wait in the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "queue"
+      ],
+      "germanAnswers": [
+        "Warteschlange"
+      ]
     },
     {
       "id": "by.english.5.vocab.travel.left.v1",
@@ -1036,7 +1766,13 @@
       "german": "links",
       "example": "Turn left at the shop.",
       "cloze": "Turn ___ at the shop.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "left"
+      ],
+      "germanAnswers": [
+        "links"
+      ]
     },
     {
       "id": "by.english.5.vocab.travel.right.v1",
@@ -1045,7 +1781,13 @@
       "german": "rechts",
       "example": "Turn right at the park.",
       "cloze": "Turn ___ at the park.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "right"
+      ],
+      "germanAnswers": [
+        "rechts"
+      ]
     },
     {
       "id": "by.english.5.vocab.words.word.v1",
@@ -1054,7 +1796,13 @@
       "german": "Wort",
       "example": "This word is new.",
       "cloze": "This ___ is new.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "word"
+      ],
+      "germanAnswers": [
+        "Wort"
+      ]
     },
     {
       "id": "by.english.5.vocab.words.sentence.v1",
@@ -1063,7 +1811,13 @@
       "german": "Satz",
       "example": "Please read the sentence.",
       "cloze": "Please read the ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sentence"
+      ],
+      "germanAnswers": [
+        "Satz"
+      ]
     },
     {
       "id": "by.english.5.vocab.words.meaning.v1",
@@ -1072,7 +1826,13 @@
       "german": "Bedeutung",
       "example": "I know the meaning of this word.",
       "cloze": "I know the ___ of this word.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "meaning"
+      ],
+      "germanAnswers": [
+        "Bedeutung"
+      ]
     },
     {
       "id": "by.english.5.vocab.words.become.v1",
@@ -1081,7 +1841,13 @@
       "german": "werden",
       "example": "I want to become a teacher.",
       "cloze": "I want to ___ a teacher.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "become"
+      ],
+      "germanAnswers": [
+        "werden"
+      ]
     },
     {
       "id": "by.english.5.vocab.words.mean.v1",
@@ -1090,7 +1856,14 @@
       "german": "meinen / bedeuten",
       "example": "What does this word mean?",
       "cloze": "What does this word ___?",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "mean"
+      ],
+      "germanAnswers": [
+        "meinen",
+        "bedeuten"
+      ]
     },
     {
       "id": "by.english.5.vocab.words.information.v1",
@@ -1099,7 +1872,14 @@
       "german": "Information / Informationen",
       "example": "We need some information.",
       "cloze": "We need some ___.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "information"
+      ],
+      "germanAnswers": [
+        "Information",
+        "Informationen"
+      ]
     },
     {
       "id": "by.english.5.vocab.words.sheep.v1",
@@ -1108,7 +1888,14 @@
       "german": "Schaf / Schafe",
       "example": "The sheep is in the field.",
       "cloze": "The ___ is in the field.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sheep"
+      ],
+      "germanAnswers": [
+        "Schaf",
+        "Schafe"
+      ]
     },
     {
       "id": "by.english.5.vocab.words.ship.v1",
@@ -1117,7 +1904,13 @@
       "german": "Schiff",
       "example": "The ship is on the sea.",
       "cloze": "The ___ is on the sea.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "ship"
+      ],
+      "germanAnswers": [
+        "Schiff"
+      ]
     },
     {
       "id": "by.english.5.vocab.words.learn.v1",
@@ -1126,7 +1919,13 @@
       "german": "lernen",
       "example": "We learn new words.",
       "cloze": "We ___ new words.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "learn"
+      ],
+      "germanAnswers": [
+        "lernen"
+      ]
     },
     {
       "id": "by.english.5.vocab.words.remember.v1",
@@ -1135,7 +1934,3882 @@
       "german": "sich erinnern / behalten",
       "example": "I remember your name.",
       "cloze": "I ___ your name.",
-      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien"
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "remember"
+      ],
+      "germanAnswers": [
+        "sich erinnern",
+        "behalten"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.hello.red.v1",
+      "deckId": "hello",
+      "english": "red",
+      "german": "rot",
+      "example": "My bike is red.",
+      "cloze": "My bike is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "red"
+      ],
+      "germanAnswers": [
+        "rot"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.hello.yellow.v1",
+      "deckId": "hello",
+      "english": "yellow",
+      "german": "gelb",
+      "example": "The sun is yellow.",
+      "cloze": "The sun is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "yellow"
+      ],
+      "germanAnswers": [
+        "gelb"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.hello.black.v1",
+      "deckId": "hello",
+      "english": "black",
+      "german": "schwarz",
+      "example": "Our cat is black.",
+      "cloze": "Our cat is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "black"
+      ],
+      "germanAnswers": [
+        "schwarz"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.hello.white.v1",
+      "deckId": "hello",
+      "english": "white",
+      "german": "weiß",
+      "example": "The rabbit is white.",
+      "cloze": "The rabbit is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "white"
+      ],
+      "germanAnswers": [
+        "weiß"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.hello.orange.v1",
+      "deckId": "hello",
+      "english": "orange",
+      "german": "orange (Farbe)",
+      "example": "My T-shirt is orange.",
+      "cloze": "My T-shirt is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "orange"
+      ],
+      "germanAnswers": [
+        "orange"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.hello.pink.v1",
+      "deckId": "hello",
+      "english": "pink",
+      "german": "rosa",
+      "example": "The flower is pink.",
+      "cloze": "The flower is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "pink"
+      ],
+      "germanAnswers": [
+        "rosa"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.hello.brown.v1",
+      "deckId": "hello",
+      "english": "brown",
+      "german": "braun",
+      "example": "The dog is brown.",
+      "cloze": "The dog is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "brown"
+      ],
+      "germanAnswers": [
+        "braun"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.hello.purple.v1",
+      "deckId": "hello",
+      "english": "purple",
+      "german": "lila",
+      "example": "I have a purple pencil.",
+      "cloze": "I have a ___ pencil.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "purple"
+      ],
+      "germanAnswers": [
+        "lila"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.hello.grey.v1",
+      "deckId": "hello",
+      "english": "grey",
+      "german": "grau",
+      "example": "The sky is grey.",
+      "cloze": "The sky is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "grey",
+        "gray"
+      ],
+      "germanAnswers": [
+        "grau"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.hello.nice.v1",
+      "deckId": "hello",
+      "english": "nice",
+      "german": "nett / schön",
+      "example": "You are a nice friend.",
+      "cloze": "You are a ___ friend.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "nice",
+        "kind"
+      ],
+      "germanAnswers": [
+        "nett",
+        "schön",
+        "freundlich",
+        "lieb"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.family.aunt.v1",
+      "deckId": "family",
+      "english": "aunt",
+      "german": "Tante",
+      "example": "My aunt lives in London.",
+      "cloze": "My ___ lives in London.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "aunt"
+      ],
+      "germanAnswers": [
+        "Tante"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.family.uncle.v1",
+      "deckId": "family",
+      "english": "uncle",
+      "german": "Onkel",
+      "example": "My uncle plays tennis.",
+      "cloze": "My ___ plays tennis.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "uncle"
+      ],
+      "germanAnswers": [
+        "Onkel"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.family.cousin.v1",
+      "deckId": "family",
+      "english": "cousin",
+      "german": "Cousin / Cousine",
+      "example": "My cousin is twelve.",
+      "cloze": "My ___ is twelve.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cousin"
+      ],
+      "germanAnswers": [
+        "Cousin",
+        "Cousine"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.family.baby.v1",
+      "deckId": "family",
+      "english": "baby",
+      "german": "Baby",
+      "example": "The baby is asleep.",
+      "cloze": "The ___ is asleep.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "baby"
+      ],
+      "germanAnswers": [
+        "Baby"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.family.daughter.v1",
+      "deckId": "family",
+      "english": "daughter",
+      "german": "Tochter",
+      "example": "Their daughter likes music.",
+      "cloze": "Their ___ likes music.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "daughter"
+      ],
+      "germanAnswers": [
+        "Tochter"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.family.son.v1",
+      "deckId": "family",
+      "english": "son",
+      "german": "Sohn",
+      "example": "Their son has a rabbit.",
+      "cloze": "Their ___ has a rabbit.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "son"
+      ],
+      "germanAnswers": [
+        "Sohn"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.family.grandparent.v1",
+      "deckId": "family",
+      "english": "grandparent",
+      "german": "Großelternteil",
+      "example": "A grandparent can be a grandmother or a grandfather.",
+      "cloze": "A ___ can be a grandmother or a grandfather.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "grandparent"
+      ],
+      "germanAnswers": [
+        "Großelternteil"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.family.grandchild.v1",
+      "deckId": "family",
+      "english": "grandchild",
+      "german": "Enkel / Enkelin",
+      "example": "My grandmother has one grandchild.",
+      "cloze": "My grandmother has one ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "grandchild"
+      ],
+      "germanAnswers": [
+        "Enkel",
+        "Enkelin"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.family.husband.v1",
+      "deckId": "family",
+      "english": "husband",
+      "german": "Ehemann",
+      "example": "My aunt’s husband is called Tom.",
+      "cloze": "My aunt’s ___ is called Tom.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "husband"
+      ],
+      "germanAnswers": [
+        "Ehemann"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.family.wife.v1",
+      "deckId": "family",
+      "english": "wife",
+      "german": "Ehefrau",
+      "example": "My uncle’s wife is called Sue.",
+      "cloze": "My uncle’s ___ is called Sue.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "wife"
+      ],
+      "germanAnswers": [
+        "Ehefrau"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.home.bathroom.v1",
+      "deckId": "home",
+      "english": "bathroom",
+      "german": "Badezimmer",
+      "example": "I brush my teeth in the bathroom.",
+      "cloze": "I brush my teeth in the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "bathroom"
+      ],
+      "germanAnswers": [
+        "Badezimmer"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.home.living-room.v1",
+      "deckId": "home",
+      "english": "living room",
+      "german": "Wohnzimmer",
+      "example": "We sit in the living room.",
+      "cloze": "We sit in the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "living room"
+      ],
+      "germanAnswers": [
+        "Wohnzimmer"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.home.dining-room.v1",
+      "deckId": "home",
+      "english": "dining room",
+      "german": "Esszimmer",
+      "example": "We eat in the dining room.",
+      "cloze": "We eat in the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "dining room"
+      ],
+      "germanAnswers": [
+        "Esszimmer"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.home.floor.v1",
+      "deckId": "home",
+      "english": "floor",
+      "german": "Fußboden / Stockwerk",
+      "example": "My shoes are on the floor.",
+      "cloze": "My shoes are on the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "floor"
+      ],
+      "germanAnswers": [
+        "Fußboden",
+        "Stockwerk"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.home.key.v1",
+      "deckId": "home",
+      "english": "key",
+      "german": "Schlüssel",
+      "example": "Here is the key to our house.",
+      "cloze": "Here is the ___ to our house.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "key"
+      ],
+      "germanAnswers": [
+        "Schlüssel"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.home.cupboard.v1",
+      "deckId": "home",
+      "english": "cupboard",
+      "german": "Schrank",
+      "example": "The cups are in the cupboard.",
+      "cloze": "The cups are in the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cupboard",
+        "cabinet"
+      ],
+      "germanAnswers": [
+        "Schrank"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.home.sofa.v1",
+      "deckId": "home",
+      "english": "sofa",
+      "german": "Sofa",
+      "example": "The cat sleeps on the sofa.",
+      "cloze": "The cat sleeps on the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sofa"
+      ],
+      "germanAnswers": [
+        "Sofa"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.home.lamp.v1",
+      "deckId": "home",
+      "english": "lamp",
+      "german": "Lampe",
+      "example": "The lamp is next to my bed.",
+      "cloze": "The ___ is next to my bed.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "lamp"
+      ],
+      "germanAnswers": [
+        "Lampe"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.home.picture.v1",
+      "deckId": "home",
+      "english": "picture",
+      "german": "Bild",
+      "example": "There is a picture on the wall.",
+      "cloze": "There is a ___ on the wall.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "picture"
+      ],
+      "germanAnswers": [
+        "Bild",
+        "Foto"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.home.mirror.v1",
+      "deckId": "home",
+      "english": "mirror",
+      "german": "Spiegel",
+      "example": "I can see my face in the mirror.",
+      "cloze": "I can see my face in the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "mirror"
+      ],
+      "germanAnswers": [
+        "Spiegel"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.school.bag.v1",
+      "deckId": "school",
+      "english": "bag",
+      "german": "Tasche",
+      "example": "My books are in my bag.",
+      "cloze": "My books are in my ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "bag",
+        "schoolbag"
+      ],
+      "germanAnswers": [
+        "Tasche"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.school.pen.v1",
+      "deckId": "school",
+      "english": "pen",
+      "german": "Füller / Kugelschreiber / Stift",
+      "example": "I write with a blue pen.",
+      "cloze": "I write with a blue ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "pen"
+      ],
+      "germanAnswers": [
+        "Füller",
+        "Kugelschreiber",
+        "Stift"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.school.sharpener.v1",
+      "deckId": "school",
+      "english": "sharpener",
+      "german": "Spitzer",
+      "example": "Can I borrow your sharpener?",
+      "cloze": "Can I borrow your ___?",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sharpener"
+      ],
+      "germanAnswers": [
+        "Spitzer"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.school.rubber.v1",
+      "deckId": "school",
+      "english": "rubber",
+      "german": "Radiergummi (britisches Englisch)",
+      "example": "I need a rubber for my drawing.",
+      "cloze": "I need a ___ for my drawing.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "rubber",
+        "eraser"
+      ],
+      "germanAnswers": [
+        "Radiergummi"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.school.desk.v1",
+      "deckId": "school",
+      "english": "desk",
+      "german": "Schreibtisch / Schultisch",
+      "example": "My book is on the desk.",
+      "cloze": "My book is on the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "desk"
+      ],
+      "germanAnswers": [
+        "Schreibtisch",
+        "Schultisch"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.school.board.v1",
+      "deckId": "school",
+      "english": "board",
+      "german": "Tafel / Brett",
+      "example": "The teacher writes on the board.",
+      "cloze": "The teacher writes on the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "board"
+      ],
+      "germanAnswers": [
+        "Tafel",
+        "Brett"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.school.maths.v1",
+      "deckId": "school",
+      "english": "maths",
+      "german": "Mathematik (britisches Englisch)",
+      "example": "We learn about numbers in maths.",
+      "cloze": "We learn about numbers in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "maths",
+        "math"
+      ],
+      "germanAnswers": [
+        "Mathematik"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.school.english.v1",
+      "deckId": "school",
+      "english": "English",
+      "german": "Englisch / englisch",
+      "example": "We speak English in this lesson.",
+      "cloze": "We speak ___ in this lesson.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "English"
+      ],
+      "germanAnswers": [
+        "Englisch",
+        "englisch"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.school.music.v1",
+      "deckId": "school",
+      "english": "music",
+      "german": "Musik",
+      "example": "I like this music.",
+      "cloze": "I like this ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "music"
+      ],
+      "germanAnswers": [
+        "Musik"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.school.pe.v1",
+      "deckId": "school",
+      "english": "PE",
+      "german": "Sport (Schulfach)",
+      "example": "We play basketball in PE.",
+      "cloze": "We play basketball in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "PE",
+        "P.E.",
+        "physical education"
+      ],
+      "germanAnswers": [
+        "Sport"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.day.lunch.v1",
+      "deckId": "day",
+      "english": "lunch",
+      "german": "Mittagessen",
+      "example": "I have lunch at school.",
+      "cloze": "I have ___ at school.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "lunch"
+      ],
+      "germanAnswers": [
+        "Mittagessen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.day.dinner.v1",
+      "deckId": "day",
+      "english": "dinner",
+      "german": "Abendessen / Hauptmahlzeit",
+      "example": "We have dinner at six in the evening.",
+      "cloze": "We have ___ at six in the evening.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "dinner",
+        "supper"
+      ],
+      "germanAnswers": [
+        "Abendessen",
+        "Hauptmahlzeit",
+        "Abendbrot"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.day.night.v1",
+      "deckId": "day",
+      "english": "night",
+      "german": "Nacht",
+      "example": "I sleep at night.",
+      "cloze": "I sleep at ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "night"
+      ],
+      "germanAnswers": [
+        "Nacht"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.day.today.v1",
+      "deckId": "day",
+      "english": "today",
+      "german": "heute",
+      "example": "We have a test today.",
+      "cloze": "We have a test ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "today"
+      ],
+      "germanAnswers": [
+        "heute"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.day.tomorrow.v1",
+      "deckId": "day",
+      "english": "tomorrow",
+      "german": "morgen",
+      "example": "See you tomorrow.",
+      "cloze": "See you ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "tomorrow"
+      ],
+      "germanAnswers": [
+        "morgen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.day.early.v1",
+      "deckId": "day",
+      "english": "early",
+      "german": "früh",
+      "example": "I get up early.",
+      "cloze": "I get up ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "early"
+      ],
+      "germanAnswers": [
+        "früh"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.day.late.v1",
+      "deckId": "day",
+      "english": "late",
+      "german": "spät / verspätet",
+      "example": "The bus is late.",
+      "cloze": "The bus is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "late"
+      ],
+      "germanAnswers": [
+        "spät",
+        "verspätet"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.day.usually.v1",
+      "deckId": "day",
+      "english": "usually",
+      "german": "gewöhnlich / normalerweise",
+      "example": "I usually walk to school.",
+      "cloze": "I ___ walk to school.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "usually"
+      ],
+      "germanAnswers": [
+        "gewöhnlich",
+        "normalerweise"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.day.oclock.v1",
+      "deckId": "day",
+      "english": "o’clock",
+      "german": "Uhr (bei vollen Stunden)",
+      "example": "It is seven o’clock.",
+      "cloze": "It is seven ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "o’clock",
+        "o'clock"
+      ],
+      "germanAnswers": [
+        "Uhr"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.day.half-past.v1",
+      "deckId": "day",
+      "english": "half past",
+      "german": "halb (eine halbe Stunde nach)",
+      "example": "It is half past seven: 7:30.",
+      "cloze": "It is ___ seven: 7:30.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "half past"
+      ],
+      "germanAnswers": [
+        "halb"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.friends.run.v1",
+      "deckId": "friends",
+      "english": "run",
+      "german": "rennen / laufen",
+      "example": "I can run fast.",
+      "cloze": "I can ___ fast.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "run"
+      ],
+      "germanAnswers": [
+        "rennen",
+        "laufen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.friends.jump.v1",
+      "deckId": "friends",
+      "english": "jump",
+      "german": "springen",
+      "example": "We jump over the small puddle.",
+      "cloze": "We ___ over the small puddle.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "jump"
+      ],
+      "germanAnswers": [
+        "springen",
+        "hüpfen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.friends.draw.v1",
+      "deckId": "friends",
+      "english": "draw",
+      "german": "zeichnen",
+      "example": "I like to draw animals.",
+      "cloze": "I like to ___ animals.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "draw"
+      ],
+      "germanAnswers": [
+        "zeichnen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.friends.cook.v1",
+      "deckId": "friends",
+      "english": "cook",
+      "german": "kochen",
+      "example": "We cook pasta together.",
+      "cloze": "We ___ pasta together.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cook"
+      ],
+      "germanAnswers": [
+        "kochen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.friends.listen.v1",
+      "deckId": "friends",
+      "english": "listen",
+      "german": "zuhören / hören",
+      "example": "Please listen to the story.",
+      "cloze": "Please ___ to the story.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "listen"
+      ],
+      "germanAnswers": [
+        "zuhören",
+        "hören"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.friends.watch.v1",
+      "deckId": "friends",
+      "english": "watch",
+      "german": "anschauen / beobachten",
+      "example": "We watch a film.",
+      "cloze": "We ___ a film.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "watch"
+      ],
+      "germanAnswers": [
+        "anschauen",
+        "beobachten"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.friends.chess.v1",
+      "deckId": "friends",
+      "english": "chess",
+      "german": "Schach",
+      "example": "My friend plays chess.",
+      "cloze": "My friend plays ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "chess"
+      ],
+      "germanAnswers": [
+        "Schach"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.friends.sport.v1",
+      "deckId": "friends",
+      "english": "sport",
+      "german": "Sport",
+      "example": "Football is my favourite sport.",
+      "cloze": "Football is my favourite ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sport"
+      ],
+      "germanAnswers": [
+        "Sport"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.friends.tennis.v1",
+      "deckId": "friends",
+      "english": "tennis",
+      "german": "Tennis",
+      "example": "We play tennis on Friday.",
+      "cloze": "We play ___ on Friday.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "tennis"
+      ],
+      "germanAnswers": [
+        "Tennis"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.friends.hobby.v1",
+      "deckId": "friends",
+      "english": "hobby",
+      "german": "Hobby",
+      "example": "My favourite hobby is drawing.",
+      "cloze": "My favourite ___ is drawing.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "hobby"
+      ],
+      "germanAnswers": [
+        "Hobby"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.shopping.egg.v1",
+      "deckId": "shopping",
+      "english": "egg",
+      "german": "Ei",
+      "example": "I have an egg for breakfast.",
+      "cloze": "I have an ___ for breakfast.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "egg"
+      ],
+      "germanAnswers": [
+        "Ei"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.shopping.banana.v1",
+      "deckId": "shopping",
+      "english": "banana",
+      "german": "Banane",
+      "example": "The monkey eats a banana.",
+      "cloze": "The monkey eats a ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "banana"
+      ],
+      "germanAnswers": [
+        "Banane"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.shopping.potato.v1",
+      "deckId": "shopping",
+      "english": "potato",
+      "german": "Kartoffel",
+      "example": "There is a potato on my plate.",
+      "cloze": "There is a ___ on my plate.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "potato"
+      ],
+      "germanAnswers": [
+        "Kartoffel"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.shopping.rice.v1",
+      "deckId": "shopping",
+      "english": "rice",
+      "german": "Reis",
+      "example": "We have rice for lunch.",
+      "cloze": "We have ___ for lunch.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "rice"
+      ],
+      "germanAnswers": [
+        "Reis"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.shopping.pasta.v1",
+      "deckId": "shopping",
+      "english": "pasta",
+      "german": "Nudeln / Pasta",
+      "example": "I like pasta with cheese.",
+      "cloze": "I like ___ with cheese.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "pasta"
+      ],
+      "germanAnswers": [
+        "Nudeln",
+        "Pasta"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.shopping.juice.v1",
+      "deckId": "shopping",
+      "english": "juice",
+      "german": "Saft",
+      "example": "Would you like some apple juice?",
+      "cloze": "Would you like some apple ___?",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "juice"
+      ],
+      "germanAnswers": [
+        "Saft"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.shopping.tea.v1",
+      "deckId": "shopping",
+      "english": "tea",
+      "german": "Tee",
+      "example": "There is tea in my cup.",
+      "cloze": "There is ___ in my cup.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "tea"
+      ],
+      "germanAnswers": [
+        "Tee"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.shopping.cup.v1",
+      "deckId": "shopping",
+      "english": "cup",
+      "german": "Tasse",
+      "example": "This cup is blue.",
+      "cloze": "This ___ is blue.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cup"
+      ],
+      "germanAnswers": [
+        "Tasse"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.shopping.plate.v1",
+      "deckId": "shopping",
+      "english": "plate",
+      "german": "Teller",
+      "example": "My plate is empty.",
+      "cloze": "My ___ is empty.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "plate"
+      ],
+      "germanAnswers": [
+        "Teller"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.shopping.fork.v1",
+      "deckId": "shopping",
+      "english": "fork",
+      "german": "Gabel",
+      "example": "I eat pasta with a fork.",
+      "cloze": "I eat pasta with a ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "fork"
+      ],
+      "germanAnswers": [
+        "Gabel"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.party.cake.v1",
+      "deckId": "party",
+      "english": "cake",
+      "german": "Kuchen / Torte",
+      "example": "The birthday cake is big.",
+      "cloze": "The birthday ___ is big.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cake"
+      ],
+      "germanAnswers": [
+        "Kuchen",
+        "Torte"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.party.candle.v1",
+      "deckId": "party",
+      "english": "candle",
+      "german": "Kerze",
+      "example": "There is a candle on the table.",
+      "cloze": "There is a ___ on the table.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "candle"
+      ],
+      "germanAnswers": [
+        "Kerze"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.party.balloon.v1",
+      "deckId": "party",
+      "english": "balloon",
+      "german": "Luftballon",
+      "example": "The balloon is red.",
+      "cloze": "The ___ is red.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "balloon"
+      ],
+      "germanAnswers": [
+        "Luftballon"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.party.invitation.v1",
+      "deckId": "party",
+      "english": "invitation",
+      "german": "Einladung",
+      "example": "Thank you for the invitation.",
+      "cloze": "Thank you for the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "invitation"
+      ],
+      "germanAnswers": [
+        "Einladung"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.party.guest.v1",
+      "deckId": "party",
+      "english": "guest",
+      "german": "Gast",
+      "example": "Every guest gets a drink.",
+      "cloze": "Every ___ gets a drink.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "guest"
+      ],
+      "germanAnswers": [
+        "Gast"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.party.date.v1",
+      "deckId": "party",
+      "english": "date",
+      "german": "Datum",
+      "example": "What is the date today?",
+      "cloze": "What is the ___ today?",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "date"
+      ],
+      "germanAnswers": [
+        "Datum"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.party.age.v1",
+      "deckId": "party",
+      "english": "age",
+      "german": "Alter",
+      "example": "What is your age?",
+      "cloze": "What is your ___?",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "age"
+      ],
+      "germanAnswers": [
+        "Alter"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.party.celebrate.v1",
+      "deckId": "party",
+      "english": "celebrate",
+      "german": "feiern",
+      "example": "We celebrate my birthday today.",
+      "cloze": "We ___ my birthday today.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "celebrate"
+      ],
+      "germanAnswers": [
+        "feiern"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.party.wear.v1",
+      "deckId": "party",
+      "english": "wear",
+      "german": "tragen (Kleidung)",
+      "example": "I wear a hat in the sun.",
+      "cloze": "I ___ a hat in the sun.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "wear"
+      ],
+      "germanAnswers": [
+        "tragen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.party.bring.v1",
+      "deckId": "party",
+      "english": "bring",
+      "german": "bringen / mitbringen",
+      "example": "Please bring your book.",
+      "cloze": "Please ___ your book.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "bring"
+      ],
+      "germanAnswers": [
+        "bringen",
+        "mitbringen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.past.ate.v1",
+      "deckId": "past",
+      "english": "ate",
+      "german": "aß / aßen (Vergangenheit von eat)",
+      "example": "We ate sandwiches in the park.",
+      "cloze": "We ___ sandwiches in the park.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "ate"
+      ],
+      "germanAnswers": [
+        "aß",
+        "aßen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.past.drank.v1",
+      "deckId": "past",
+      "english": "drank",
+      "german": "trank / tranken (Vergangenheit von drink)",
+      "example": "I drank some water.",
+      "cloze": "I ___ some water.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "drank"
+      ],
+      "germanAnswers": [
+        "trank",
+        "tranken"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.past.bought.v1",
+      "deckId": "past",
+      "english": "bought",
+      "german": "kaufte / kauften (Vergangenheit von buy)",
+      "example": "We bought a new ball.",
+      "cloze": "We ___ a new ball.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "bought"
+      ],
+      "germanAnswers": [
+        "kaufte",
+        "kauften"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.past.made.v1",
+      "deckId": "past",
+      "english": "made",
+      "german": "machte / machten (Vergangenheit von make)",
+      "example": "I made a cake.",
+      "cloze": "I ___ a cake.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "made"
+      ],
+      "germanAnswers": [
+        "machte",
+        "machten"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.past.did.v1",
+      "deckId": "past",
+      "english": "did",
+      "german": "tat / taten (Vergangenheit von do)",
+      "example": "We did our homework.",
+      "cloze": "We ___ our homework.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "did"
+      ],
+      "germanAnswers": [
+        "tat",
+        "taten"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.past.took.v1",
+      "deckId": "past",
+      "english": "took",
+      "german": "nahm / nahmen (Vergangenheit von take)",
+      "example": "I took a photo.",
+      "cloze": "I ___ a photo.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "took"
+      ],
+      "germanAnswers": [
+        "nahm",
+        "nahmen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.past.came.v1",
+      "deckId": "past",
+      "english": "came",
+      "german": "kam / kamen (Vergangenheit von come)",
+      "example": "My friends came to my party.",
+      "cloze": "My friends ___ to my party.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "came"
+      ],
+      "germanAnswers": [
+        "kam",
+        "kamen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.past.wrote.v1",
+      "deckId": "past",
+      "english": "wrote",
+      "german": "schrieb / schrieben (Vergangenheit von write)",
+      "example": "I wrote a letter.",
+      "cloze": "I ___ a letter.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "wrote"
+      ],
+      "germanAnswers": [
+        "schrieb",
+        "schrieben"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.past.got.v1",
+      "deckId": "past",
+      "english": "got",
+      "german": "bekam / bekamen (Vergangenheit von get)",
+      "example": "I got a present.",
+      "cloze": "I ___ a present.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "got"
+      ],
+      "germanAnswers": [
+        "bekam",
+        "bekamen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.past.found.v1",
+      "deckId": "past",
+      "english": "found",
+      "german": "fand / fanden (Vergangenheit von find)",
+      "example": "We found a key.",
+      "cloze": "We ___ a key.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "found"
+      ],
+      "germanAnswers": [
+        "fand",
+        "fanden"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.stories.begin.v1",
+      "deckId": "stories",
+      "english": "begin",
+      "german": "beginnen / anfangen",
+      "example": "Let’s begin the story.",
+      "cloze": "Let’s ___ the story.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "begin"
+      ],
+      "germanAnswers": [
+        "beginnen",
+        "anfangen",
+        "starten"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.stories.end.v1",
+      "deckId": "stories",
+      "english": "end",
+      "german": "Ende / enden",
+      "example": "The story has a happy end.",
+      "cloze": "The story has a happy ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "end"
+      ],
+      "germanAnswers": [
+        "Ende",
+        "enden",
+        "Schluss"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.stories.before.v1",
+      "deckId": "stories",
+      "english": "before",
+      "german": "vor / bevor",
+      "example": "Wash your hands before dinner.",
+      "cloze": "Wash your hands ___ dinner.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "before"
+      ],
+      "germanAnswers": [
+        "vor",
+        "bevor"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.stories.after.v1",
+      "deckId": "stories",
+      "english": "after",
+      "german": "nach / nachdem",
+      "example": "We play after school.",
+      "cloze": "We play ___ school.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "after"
+      ],
+      "germanAnswers": [
+        "nach",
+        "nachdem"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.stories.but.v1",
+      "deckId": "stories",
+      "english": "but",
+      "german": "aber",
+      "example": "The dog is small but strong.",
+      "cloze": "The dog is small ___ strong.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "but"
+      ],
+      "germanAnswers": [
+        "aber"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.stories.and.v1",
+      "deckId": "stories",
+      "english": "and",
+      "german": "und",
+      "example": "I like cats and dogs.",
+      "cloze": "I like cats ___ dogs.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "and"
+      ],
+      "germanAnswers": [
+        "und"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.stories.or.v1",
+      "deckId": "stories",
+      "english": "or",
+      "german": "oder",
+      "example": "Would you like milk or water?",
+      "cloze": "Would you like milk ___ water?",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "or"
+      ],
+      "germanAnswers": [
+        "oder"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.stories.who.v1",
+      "deckId": "stories",
+      "english": "who",
+      "german": "wer / wen",
+      "example": "I know who has the key.",
+      "cloze": "I know ___ has the key.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "who"
+      ],
+      "germanAnswers": [
+        "wer",
+        "wen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.stories.where.v1",
+      "deckId": "stories",
+      "english": "where",
+      "german": "wo / wohin",
+      "example": "I know where the park is.",
+      "cloze": "I know ___ the park is.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "where"
+      ],
+      "germanAnswers": [
+        "wo",
+        "wohin"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.stories.why.v1",
+      "deckId": "stories",
+      "english": "why",
+      "german": "warum",
+      "example": "Tell me why you are happy.",
+      "cloze": "Tell me ___ you are happy.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "why"
+      ],
+      "germanAnswers": [
+        "warum"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.travel.street.v1",
+      "deckId": "travel",
+      "english": "street",
+      "german": "Straße (in einem Ort)",
+      "example": "Our school is in this street.",
+      "cloze": "Our school is in this ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "street"
+      ],
+      "germanAnswers": [
+        "Straße",
+        "Strasse"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.travel.road.v1",
+      "deckId": "travel",
+      "english": "road",
+      "german": "Straße / Verkehrsweg",
+      "example": "This road goes to the village.",
+      "cloze": "This ___ goes to the village.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "road"
+      ],
+      "germanAnswers": [
+        "Straße",
+        "Verkehrsweg",
+        "Strasse"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.travel.bridge.v1",
+      "deckId": "travel",
+      "english": "bridge",
+      "german": "Brücke",
+      "example": "The bridge is over the river.",
+      "cloze": "The ___ is over the river.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "bridge"
+      ],
+      "germanAnswers": [
+        "Brücke"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.travel.beach.v1",
+      "deckId": "travel",
+      "english": "beach",
+      "german": "Strand",
+      "example": "We play on the beach.",
+      "cloze": "We play on the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "beach"
+      ],
+      "germanAnswers": [
+        "Strand"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.travel.sea.v1",
+      "deckId": "travel",
+      "english": "sea",
+      "german": "Meer",
+      "example": "We swim in the sea.",
+      "cloze": "We swim in the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sea"
+      ],
+      "germanAnswers": [
+        "Meer"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.travel.mountain.v1",
+      "deckId": "travel",
+      "english": "mountain",
+      "german": "Berg",
+      "example": "The mountain is high.",
+      "cloze": "The ___ is high.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "mountain"
+      ],
+      "germanAnswers": [
+        "Berg"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.travel.train.v1",
+      "deckId": "travel",
+      "english": "train",
+      "german": "Zug",
+      "example": "We go to London by train.",
+      "cloze": "We go to London by ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "train"
+      ],
+      "germanAnswers": [
+        "Zug"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.travel.station.v1",
+      "deckId": "travel",
+      "english": "station",
+      "german": "Bahnhof / Station",
+      "example": "The train is at the station.",
+      "cloze": "The train is at the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "station"
+      ],
+      "germanAnswers": [
+        "Bahnhof",
+        "Station"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.travel.ticket.v1",
+      "deckId": "travel",
+      "english": "ticket",
+      "german": "Fahrkarte / Eintrittskarte",
+      "example": "I have a ticket for the bus.",
+      "cloze": "I have a ___ for the bus.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "ticket"
+      ],
+      "germanAnswers": [
+        "Fahrkarte",
+        "Eintrittskarte"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.travel.airport.v1",
+      "deckId": "travel",
+      "english": "airport",
+      "german": "Flughafen",
+      "example": "We wait at the airport.",
+      "cloze": "We wait at the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "airport"
+      ],
+      "germanAnswers": [
+        "Flughafen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.words.noun.v1",
+      "deckId": "words",
+      "english": "noun",
+      "german": "Nomen / Hauptwort",
+      "example": "The word dog is a noun.",
+      "cloze": "The word dog is a ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "noun"
+      ],
+      "germanAnswers": [
+        "Nomen",
+        "Hauptwort"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.words.verb.v1",
+      "deckId": "words",
+      "english": "verb",
+      "german": "Verb / Tätigkeitswort",
+      "example": "The word swim is a verb.",
+      "cloze": "The word swim is a ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "verb"
+      ],
+      "germanAnswers": [
+        "Verb",
+        "Tätigkeitswort"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.words.adjective.v1",
+      "deckId": "words",
+      "english": "adjective",
+      "german": "Adjektiv / Eigenschaftswort",
+      "example": "The word small is an adjective.",
+      "cloze": "The word small is an ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "adjective"
+      ],
+      "germanAnswers": [
+        "Adjektiv",
+        "Eigenschaftswort"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.words.singular.v1",
+      "deckId": "words",
+      "english": "singular",
+      "german": "Einzahl / Singular",
+      "example": "One cat is singular.",
+      "cloze": "One cat is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "singular"
+      ],
+      "germanAnswers": [
+        "Einzahl",
+        "Singular"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.words.plural.v1",
+      "deckId": "words",
+      "english": "plural",
+      "german": "Mehrzahl / Plural",
+      "example": "Two cats is an example of the plural.",
+      "cloze": "Two cats is an example of the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "plural"
+      ],
+      "germanAnswers": [
+        "Mehrzahl",
+        "Plural"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.words.answer.v1",
+      "deckId": "words",
+      "english": "answer",
+      "german": "Antwort / antworten",
+      "example": "I know the answer.",
+      "cloze": "I know the ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "answer"
+      ],
+      "germanAnswers": [
+        "Antwort",
+        "antworten"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.words.tell.v1",
+      "deckId": "words",
+      "english": "tell",
+      "german": "erzählen / sagen",
+      "example": "Please tell me a story.",
+      "cloze": "Please ___ me a story.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "tell"
+      ],
+      "germanAnswers": [
+        "erzählen",
+        "sagen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.words.ask.v1",
+      "deckId": "words",
+      "english": "ask",
+      "german": "fragen / bitten",
+      "example": "Can I ask a question?",
+      "cloze": "Can I ___ a question?",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "ask"
+      ],
+      "germanAnswers": [
+        "fragen",
+        "bitten"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.words.spell.v1",
+      "deckId": "words",
+      "english": "spell",
+      "german": "buchstabieren / richtig schreiben",
+      "example": "Can you spell your name?",
+      "cloze": "Can you ___ your name?",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "spell"
+      ],
+      "germanAnswers": [
+        "buchstabieren",
+        "richtig schreiben"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.words.repeat.v1",
+      "deckId": "words",
+      "english": "repeat",
+      "german": "wiederholen",
+      "example": "Please repeat the sentence.",
+      "cloze": "Please ___ the sentence.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "repeat"
+      ],
+      "germanAnswers": [
+        "wiederholen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.cat.v1",
+      "deckId": "animals",
+      "english": "cat",
+      "german": "Katze",
+      "example": "The cat is on the sofa.",
+      "cloze": "The ___ is on the sofa.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cat"
+      ],
+      "germanAnswers": [
+        "Katze"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.dog.v1",
+      "deckId": "animals",
+      "english": "dog",
+      "german": "Hund",
+      "example": "Our dog likes long walks.",
+      "cloze": "Our ___ likes long walks.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "dog"
+      ],
+      "germanAnswers": [
+        "Hund"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.rabbit.v1",
+      "deckId": "animals",
+      "english": "rabbit",
+      "german": "Kaninchen",
+      "example": "The rabbit eats a carrot.",
+      "cloze": "The ___ eats a carrot.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "rabbit"
+      ],
+      "germanAnswers": [
+        "Kaninchen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.bird.v1",
+      "deckId": "animals",
+      "english": "bird",
+      "german": "Vogel",
+      "example": "A bird is in the tree.",
+      "cloze": "A ___ is in the tree.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "bird"
+      ],
+      "germanAnswers": [
+        "Vogel"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.fish.v1",
+      "deckId": "animals",
+      "english": "fish",
+      "german": "Fisch / Fische",
+      "example": "There is a fish in the pond.",
+      "cloze": "There is a ___ in the pond.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "fish"
+      ],
+      "germanAnswers": [
+        "Fisch",
+        "Fische"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.horse.v1",
+      "deckId": "animals",
+      "english": "horse",
+      "german": "Pferd",
+      "example": "The horse is brown.",
+      "cloze": "The ___ is brown.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "horse"
+      ],
+      "germanAnswers": [
+        "Pferd"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.cow.v1",
+      "deckId": "animals",
+      "english": "cow",
+      "german": "Kuh",
+      "example": "The cow is in the field.",
+      "cloze": "The ___ is in the field.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cow"
+      ],
+      "germanAnswers": [
+        "Kuh"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.pig.v1",
+      "deckId": "animals",
+      "english": "pig",
+      "german": "Schwein",
+      "example": "The pig is pink.",
+      "cloze": "The ___ is pink.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "pig"
+      ],
+      "germanAnswers": [
+        "Schwein"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.mouse.v1",
+      "deckId": "animals",
+      "english": "mouse",
+      "german": "Maus",
+      "example": "The mouse is very small.",
+      "cloze": "The ___ is very small.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "mouse"
+      ],
+      "germanAnswers": [
+        "Maus"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.hamster.v1",
+      "deckId": "animals",
+      "english": "hamster",
+      "german": "Hamster",
+      "example": "My hamster sleeps in the daytime.",
+      "cloze": "My ___ sleeps in the daytime.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "hamster"
+      ],
+      "germanAnswers": [
+        "Hamster"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.duck.v1",
+      "deckId": "animals",
+      "english": "duck",
+      "german": "Ente",
+      "example": "The duck swims on the pond.",
+      "cloze": "The ___ swims on the pond.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "duck"
+      ],
+      "germanAnswers": [
+        "Ente"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.chicken.v1",
+      "deckId": "animals",
+      "english": "chicken",
+      "german": "Huhn",
+      "example": "The chicken is in the garden.",
+      "cloze": "The ___ is in the garden.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "chicken"
+      ],
+      "germanAnswers": [
+        "Huhn"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.fox.v1",
+      "deckId": "animals",
+      "english": "fox",
+      "german": "Fuchs",
+      "example": "We saw a fox last night.",
+      "cloze": "We saw a ___ last night.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "fox"
+      ],
+      "germanAnswers": [
+        "Fuchs"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.lion.v1",
+      "deckId": "animals",
+      "english": "lion",
+      "german": "Löwe",
+      "example": "The lion is a big animal.",
+      "cloze": "The ___ is a big animal.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "lion"
+      ],
+      "germanAnswers": [
+        "Löwe"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.tiger.v1",
+      "deckId": "animals",
+      "english": "tiger",
+      "german": "Tiger",
+      "example": "The tiger has stripes.",
+      "cloze": "The ___ has stripes.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "tiger"
+      ],
+      "germanAnswers": [
+        "Tiger"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.monkey.v1",
+      "deckId": "animals",
+      "english": "monkey",
+      "german": "Affe",
+      "example": "The monkey is in the tree.",
+      "cloze": "The ___ is in the tree.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "monkey"
+      ],
+      "germanAnswers": [
+        "Affe"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.elephant.v1",
+      "deckId": "animals",
+      "english": "elephant",
+      "german": "Elefant",
+      "example": "The elephant has big ears.",
+      "cloze": "The ___ has big ears.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "elephant"
+      ],
+      "germanAnswers": [
+        "Elefant"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.tail.v1",
+      "deckId": "animals",
+      "english": "tail",
+      "german": "Schwanz (bei einem Tier)",
+      "example": "The cat has a long tail.",
+      "cloze": "The cat has a long ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "tail"
+      ],
+      "germanAnswers": [
+        "Schwanz"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.wing.v1",
+      "deckId": "animals",
+      "english": "wing",
+      "german": "Flügel",
+      "example": "The bird has a white mark on one wing.",
+      "cloze": "The bird has a white mark on one ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "wing"
+      ],
+      "germanAnswers": [
+        "Flügel"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.animals.animal.v1",
+      "deckId": "animals",
+      "english": "animal",
+      "german": "Tier",
+      "example": "A rabbit is a small animal.",
+      "cloze": "A rabbit is a small ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "animal"
+      ],
+      "germanAnswers": [
+        "Tier"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.t-shirt.v1",
+      "deckId": "clothes",
+      "english": "T-shirt",
+      "german": "T-Shirt",
+      "example": "My T-shirt is green.",
+      "cloze": "My ___ is green.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "T-shirt",
+        "t shirt",
+        "tshirt"
+      ],
+      "germanAnswers": [
+        "T-Shirt"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.shirt.v1",
+      "deckId": "clothes",
+      "english": "shirt",
+      "german": "Hemd",
+      "example": "My father wears a blue shirt.",
+      "cloze": "My father wears a blue ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "shirt"
+      ],
+      "germanAnswers": [
+        "Hemd"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.trousers.v1",
+      "deckId": "clothes",
+      "english": "trousers",
+      "german": "Hose (britisches Englisch)",
+      "example": "These trousers are too long.",
+      "cloze": "These ___ are too long.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "trousers",
+        "pants"
+      ],
+      "germanAnswers": [
+        "Hose"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.jeans.v1",
+      "deckId": "clothes",
+      "english": "jeans",
+      "german": "Jeans",
+      "example": "I wear jeans at the weekend.",
+      "cloze": "I wear ___ at the weekend.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "jeans"
+      ],
+      "germanAnswers": [
+        "Jeans"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.dress.v1",
+      "deckId": "clothes",
+      "english": "dress",
+      "german": "Kleid",
+      "example": "This dress is yellow.",
+      "cloze": "This ___ is yellow.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "dress"
+      ],
+      "germanAnswers": [
+        "Kleid"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.skirt.v1",
+      "deckId": "clothes",
+      "english": "skirt",
+      "german": "Rock",
+      "example": "Her skirt is blue.",
+      "cloze": "Her ___ is blue.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "skirt"
+      ],
+      "germanAnswers": [
+        "Rock"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.sweater.v1",
+      "deckId": "clothes",
+      "english": "sweater",
+      "german": "Pullover",
+      "example": "My sweater is warm.",
+      "cloze": "My ___ is warm.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sweater",
+        "jumper"
+      ],
+      "germanAnswers": [
+        "Pullover",
+        "Pulli"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.jacket.v1",
+      "deckId": "clothes",
+      "english": "jacket",
+      "german": "Jacke",
+      "example": "Take your jacket with you.",
+      "cloze": "Take your ___ with you.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "jacket"
+      ],
+      "germanAnswers": [
+        "Jacke"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.coat.v1",
+      "deckId": "clothes",
+      "english": "coat",
+      "german": "Mantel",
+      "example": "I wear a coat in winter.",
+      "cloze": "I wear a ___ in winter.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "coat"
+      ],
+      "germanAnswers": [
+        "Mantel"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.shoes.v1",
+      "deckId": "clothes",
+      "english": "shoes",
+      "german": "Schuhe",
+      "example": "My shoes are under the bed.",
+      "cloze": "My ___ are under the bed.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "shoes"
+      ],
+      "germanAnswers": [
+        "Schuhe"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.socks.v1",
+      "deckId": "clothes",
+      "english": "socks",
+      "german": "Socken",
+      "example": "These socks are red.",
+      "cloze": "These ___ are red.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "socks"
+      ],
+      "germanAnswers": [
+        "Socken"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.trainers.v1",
+      "deckId": "clothes",
+      "english": "trainers",
+      "german": "Turnschuhe (britisches Englisch)",
+      "example": "I wear trainers for sport.",
+      "cloze": "I wear ___ for sport.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "trainers",
+        "sneakers"
+      ],
+      "germanAnswers": [
+        "Turnschuhe",
+        "Sportschuhe",
+        "Sneaker"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.boots.v1",
+      "deckId": "clothes",
+      "english": "boots",
+      "german": "Stiefel",
+      "example": "My boots keep my feet dry.",
+      "cloze": "My ___ keep my feet dry.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "boots"
+      ],
+      "germanAnswers": [
+        "Stiefel"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.hat.v1",
+      "deckId": "clothes",
+      "english": "hat",
+      "german": "Hut / Mütze",
+      "example": "I wear a hat in the sun.",
+      "cloze": "I wear a ___ in the sun.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "hat"
+      ],
+      "germanAnswers": [
+        "Hut",
+        "Mütze"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.cap.v1",
+      "deckId": "clothes",
+      "english": "cap",
+      "german": "Kappe / Schirmmütze",
+      "example": "My cap is on the chair.",
+      "cloze": "My ___ is on the chair.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cap"
+      ],
+      "germanAnswers": [
+        "Kappe",
+        "Schirmmütze"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.scarf.v1",
+      "deckId": "clothes",
+      "english": "scarf",
+      "german": "Schal",
+      "example": "This scarf is very long.",
+      "cloze": "This ___ is very long.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "scarf"
+      ],
+      "germanAnswers": [
+        "Schal"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.gloves.v1",
+      "deckId": "clothes",
+      "english": "gloves",
+      "german": "Handschuhe",
+      "example": "I wear gloves when it is cold.",
+      "cloze": "I wear ___ when it is cold.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "gloves"
+      ],
+      "germanAnswers": [
+        "Handschuhe"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.uniform.v1",
+      "deckId": "clothes",
+      "english": "uniform",
+      "german": "Uniform / Schuluniform",
+      "example": "Our school uniform is blue.",
+      "cloze": "Our school ___ is blue.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "uniform"
+      ],
+      "germanAnswers": [
+        "Uniform",
+        "Schuluniform"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.shorts.v1",
+      "deckId": "clothes",
+      "english": "shorts",
+      "german": "kurze Hose",
+      "example": "I wear shorts in summer.",
+      "cloze": "I wear ___ in summer.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "shorts"
+      ],
+      "germanAnswers": [
+        "kurze Hose"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.clothes.pocket.v1",
+      "deckId": "clothes",
+      "english": "pocket",
+      "german": "Tasche (an der Kleidung)",
+      "example": "My key is in my pocket.",
+      "cloze": "My key is in my ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "pocket"
+      ],
+      "germanAnswers": [
+        "Tasche"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.head.v1",
+      "deckId": "body",
+      "english": "head",
+      "german": "Kopf",
+      "example": "I wear a hat on my head.",
+      "cloze": "I wear a hat on my ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "head"
+      ],
+      "germanAnswers": [
+        "Kopf"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.hair.v1",
+      "deckId": "body",
+      "english": "hair",
+      "german": "Haare / Haar",
+      "example": "My hair is brown.",
+      "cloze": "My ___ is brown.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "hair"
+      ],
+      "germanAnswers": [
+        "Haare",
+        "Haar"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.face.v1",
+      "deckId": "body",
+      "english": "face",
+      "german": "Gesicht",
+      "example": "I wash my face every morning.",
+      "cloze": "I wash my ___ every morning.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "face"
+      ],
+      "germanAnswers": [
+        "Gesicht"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.eye.v1",
+      "deckId": "body",
+      "english": "eye",
+      "german": "Auge",
+      "example": "Close one eye and look at the picture.",
+      "cloze": "Close one ___ and look at the picture.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "eye"
+      ],
+      "germanAnswers": [
+        "Auge"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.nose.v1",
+      "deckId": "body",
+      "english": "nose",
+      "german": "Nase",
+      "example": "My nose is cold.",
+      "cloze": "My ___ is cold.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "nose"
+      ],
+      "germanAnswers": [
+        "Nase"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.mouth.v1",
+      "deckId": "body",
+      "english": "mouth",
+      "german": "Mund",
+      "example": "Open your mouth and say hello.",
+      "cloze": "Open your ___ and say hello.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "mouth"
+      ],
+      "germanAnswers": [
+        "Mund"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.ear.v1",
+      "deckId": "body",
+      "english": "ear",
+      "german": "Ohr",
+      "example": "My left ear is cold.",
+      "cloze": "My left ___ is cold.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "ear"
+      ],
+      "germanAnswers": [
+        "Ohr"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.hand.v1",
+      "deckId": "body",
+      "english": "hand",
+      "german": "Hand",
+      "example": "Put up your hand, please.",
+      "cloze": "Put up your ___, please.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "hand"
+      ],
+      "germanAnswers": [
+        "Hand"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.finger.v1",
+      "deckId": "body",
+      "english": "finger",
+      "german": "Finger",
+      "example": "Point at the picture with your finger.",
+      "cloze": "Point at the picture with your ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "finger"
+      ],
+      "germanAnswers": [
+        "Finger"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.arm.v1",
+      "deckId": "body",
+      "english": "arm",
+      "german": "Arm",
+      "example": "Raise your right arm.",
+      "cloze": "Raise your right ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "arm"
+      ],
+      "germanAnswers": [
+        "Arm"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.leg.v1",
+      "deckId": "body",
+      "english": "leg",
+      "german": "Bein",
+      "example": "The dog has a mark on one leg.",
+      "cloze": "The dog has a mark on one ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "leg"
+      ],
+      "germanAnswers": [
+        "Bein"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.foot.v1",
+      "deckId": "body",
+      "english": "foot",
+      "german": "Fuß",
+      "example": "My left foot is wet.",
+      "cloze": "My left ___ is wet.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "foot"
+      ],
+      "germanAnswers": [
+        "Fuß",
+        "Fuss"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.feet.v1",
+      "deckId": "body",
+      "english": "feet",
+      "german": "Füße",
+      "example": "I have shoes on my feet.",
+      "cloze": "I have shoes on my ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "feet"
+      ],
+      "germanAnswers": [
+        "Füße",
+        "Fuesse"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.tooth.v1",
+      "deckId": "body",
+      "english": "tooth",
+      "german": "Zahn",
+      "example": "I have a loose tooth.",
+      "cloze": "I have a loose ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "tooth"
+      ],
+      "germanAnswers": [
+        "Zahn"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.teeth.v1",
+      "deckId": "body",
+      "english": "teeth",
+      "german": "Zähne",
+      "example": "I brush my teeth twice a day.",
+      "cloze": "I brush my ___ twice a day.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "teeth"
+      ],
+      "germanAnswers": [
+        "Zähne"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.back.v1",
+      "deckId": "body",
+      "english": "back",
+      "german": "Rücken / zurück",
+      "example": "My bag is on my back.",
+      "cloze": "My bag is on my ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "back"
+      ],
+      "germanAnswers": [
+        "Rücken",
+        "zurück"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.stomach.v1",
+      "deckId": "body",
+      "english": "stomach",
+      "german": "Bauch / Magen",
+      "example": "My stomach hurts.",
+      "cloze": "My ___ hurts.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "stomach"
+      ],
+      "germanAnswers": [
+        "Bauch",
+        "Magen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.knee.v1",
+      "deckId": "body",
+      "english": "knee",
+      "german": "Knie",
+      "example": "I have a mark on my knee.",
+      "cloze": "I have a mark on my ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "knee"
+      ],
+      "germanAnswers": [
+        "Knie"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.shoulder.v1",
+      "deckId": "body",
+      "english": "shoulder",
+      "german": "Schulter",
+      "example": "The parrot is on my shoulder.",
+      "cloze": "The parrot is on my ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "shoulder"
+      ],
+      "germanAnswers": [
+        "Schulter"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.body.body.v1",
+      "deckId": "body",
+      "english": "body",
+      "german": "Körper",
+      "example": "Sport is good for your body.",
+      "cloze": "Sport is good for your ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "body"
+      ],
+      "germanAnswers": [
+        "Körper"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.sun.v1",
+      "deckId": "weather",
+      "english": "sun",
+      "german": "Sonne",
+      "example": "The sun is bright.",
+      "cloze": "The ___ is bright.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sun"
+      ],
+      "germanAnswers": [
+        "Sonne"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.rain.v1",
+      "deckId": "weather",
+      "english": "rain",
+      "german": "Regen",
+      "example": "I can hear the rain on the window.",
+      "cloze": "I can hear the ___ on the window.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "rain"
+      ],
+      "germanAnswers": [
+        "Regen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.wind.v1",
+      "deckId": "weather",
+      "english": "wind",
+      "german": "Wind",
+      "example": "The wind moves the leaves.",
+      "cloze": "The ___ moves the leaves.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "wind"
+      ],
+      "germanAnswers": [
+        "Wind"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.cloud.v1",
+      "deckId": "weather",
+      "english": "cloud",
+      "german": "Wolke",
+      "example": "There is a dark cloud in the sky.",
+      "cloze": "There is a dark ___ in the sky.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cloud"
+      ],
+      "germanAnswers": [
+        "Wolke"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.snow.v1",
+      "deckId": "weather",
+      "english": "snow",
+      "german": "Schnee",
+      "example": "The garden is white with snow.",
+      "cloze": "The garden is white with ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "snow"
+      ],
+      "germanAnswers": [
+        "Schnee"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.sunny.v1",
+      "deckId": "weather",
+      "english": "sunny",
+      "german": "sonnig",
+      "example": "It is sunny today.",
+      "cloze": "It is ___ today.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sunny"
+      ],
+      "germanAnswers": [
+        "sonnig"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.rainy.v1",
+      "deckId": "weather",
+      "english": "rainy",
+      "german": "regnerisch",
+      "example": "It is a rainy day.",
+      "cloze": "It is a ___ day.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "rainy"
+      ],
+      "germanAnswers": [
+        "regnerisch"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.windy.v1",
+      "deckId": "weather",
+      "english": "windy",
+      "german": "windig",
+      "example": "It is too windy for our picnic.",
+      "cloze": "It is too ___ for our picnic.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "windy"
+      ],
+      "germanAnswers": [
+        "windig"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.cloudy.v1",
+      "deckId": "weather",
+      "english": "cloudy",
+      "german": "bewölkt",
+      "example": "The sky is cloudy.",
+      "cloze": "The sky is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cloudy"
+      ],
+      "germanAnswers": [
+        "bewölkt"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.snowy.v1",
+      "deckId": "weather",
+      "english": "snowy",
+      "german": "verschneit / schneereich",
+      "example": "We walk through the snowy park.",
+      "cloze": "We walk through the ___ park.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "snowy"
+      ],
+      "germanAnswers": [
+        "verschneit",
+        "schneereich"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.hot.v1",
+      "deckId": "weather",
+      "english": "hot",
+      "german": "heiß",
+      "example": "The tea is hot.",
+      "cloze": "The tea is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "hot"
+      ],
+      "germanAnswers": [
+        "heiß"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.cold.v1",
+      "deckId": "weather",
+      "english": "cold",
+      "german": "kalt",
+      "example": "It is cold outside.",
+      "cloze": "It is ___ outside.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cold"
+      ],
+      "germanAnswers": [
+        "kalt"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.warm.v1",
+      "deckId": "weather",
+      "english": "warm",
+      "german": "warm",
+      "example": "My hands are warm.",
+      "cloze": "My hands are ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "warm"
+      ],
+      "germanAnswers": [
+        "warm"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.cool.v1",
+      "deckId": "weather",
+      "english": "cool",
+      "german": "kühl / cool",
+      "example": "It is cool in the shade.",
+      "cloze": "It is ___ in the shade.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "cool"
+      ],
+      "germanAnswers": [
+        "kühl",
+        "cool"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.wet.v1",
+      "deckId": "weather",
+      "english": "wet",
+      "german": "nass",
+      "example": "My shoes are wet.",
+      "cloze": "My shoes are ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "wet"
+      ],
+      "germanAnswers": [
+        "nass"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.dry.v1",
+      "deckId": "weather",
+      "english": "dry",
+      "german": "trocken",
+      "example": "The towel is dry.",
+      "cloze": "The towel is ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "dry"
+      ],
+      "germanAnswers": [
+        "trocken"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.weather.v1",
+      "deckId": "weather",
+      "english": "weather",
+      "german": "Wetter",
+      "example": "What is the weather like today?",
+      "cloze": "What is the ___ like today?",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "weather"
+      ],
+      "germanAnswers": [
+        "Wetter"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.umbrella.v1",
+      "deckId": "weather",
+      "english": "umbrella",
+      "german": "Regenschirm",
+      "example": "I need an umbrella in the rain.",
+      "cloze": "I need an ___ in the rain.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "umbrella"
+      ],
+      "germanAnswers": [
+        "Regenschirm"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.sky.v1",
+      "deckId": "weather",
+      "english": "sky",
+      "german": "Himmel",
+      "example": "The sky is blue.",
+      "cloze": "The ___ is blue.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sky"
+      ],
+      "germanAnswers": [
+        "Himmel"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.weather.outside.v1",
+      "deckId": "weather",
+      "english": "outside",
+      "german": "draußen / außerhalb",
+      "example": "The children are outside.",
+      "cloze": "The children are ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "outside"
+      ],
+      "germanAnswers": [
+        "draußen",
+        "außerhalb",
+        "außen"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.tuesday.v1",
+      "deckId": "calendar",
+      "english": "Tuesday",
+      "german": "Dienstag",
+      "example": "We have art on Tuesday.",
+      "cloze": "We have art on ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "Tuesday"
+      ],
+      "germanAnswers": [
+        "Dienstag"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.wednesday.v1",
+      "deckId": "calendar",
+      "english": "Wednesday",
+      "german": "Mittwoch",
+      "example": "I visit my friend on Wednesday.",
+      "cloze": "I visit my friend on ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "Wednesday"
+      ],
+      "germanAnswers": [
+        "Mittwoch"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.thursday.v1",
+      "deckId": "calendar",
+      "english": "Thursday",
+      "german": "Donnerstag",
+      "example": "Our test is on Thursday.",
+      "cloze": "Our test is on ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "Thursday"
+      ],
+      "germanAnswers": [
+        "Donnerstag"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.january.v1",
+      "deckId": "calendar",
+      "english": "January",
+      "german": "Januar",
+      "example": "The year starts in January.",
+      "cloze": "The year starts in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "January"
+      ],
+      "germanAnswers": [
+        "Januar"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.february.v1",
+      "deckId": "calendar",
+      "english": "February",
+      "german": "Februar",
+      "example": "My birthday is in February.",
+      "cloze": "My birthday is in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "February"
+      ],
+      "germanAnswers": [
+        "Februar"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.march.v1",
+      "deckId": "calendar",
+      "english": "March",
+      "german": "März",
+      "example": "We visit London in March.",
+      "cloze": "We visit London in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "March"
+      ],
+      "germanAnswers": [
+        "März"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.april.v1",
+      "deckId": "calendar",
+      "english": "April",
+      "german": "April",
+      "example": "My sister’s birthday is in April.",
+      "cloze": "My sister’s birthday is in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "April"
+      ],
+      "germanAnswers": [
+        "April"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.may.v1",
+      "deckId": "calendar",
+      "english": "May",
+      "german": "Mai",
+      "example": "Our school trip is in May.",
+      "cloze": "Our school trip is in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "May"
+      ],
+      "germanAnswers": [
+        "Mai"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.july.v1",
+      "deckId": "calendar",
+      "english": "July",
+      "german": "Juli",
+      "example": "It is often warm in July.",
+      "cloze": "It is often warm in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "July"
+      ],
+      "germanAnswers": [
+        "Juli"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.august.v1",
+      "deckId": "calendar",
+      "english": "August",
+      "german": "August",
+      "example": "We go camping in August.",
+      "cloze": "We go camping in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "August"
+      ],
+      "germanAnswers": [
+        "August"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.september.v1",
+      "deckId": "calendar",
+      "english": "September",
+      "german": "September",
+      "example": "School starts again in September.",
+      "cloze": "School starts again in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "September"
+      ],
+      "germanAnswers": [
+        "September"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.october.v1",
+      "deckId": "calendar",
+      "english": "October",
+      "german": "Oktober",
+      "example": "My cousin’s birthday is in October.",
+      "cloze": "My cousin’s birthday is in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "October"
+      ],
+      "germanAnswers": [
+        "Oktober"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.november.v1",
+      "deckId": "calendar",
+      "english": "November",
+      "german": "November",
+      "example": "It is often cold in November.",
+      "cloze": "It is often cold in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "November"
+      ],
+      "germanAnswers": [
+        "November"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.december.v1",
+      "deckId": "calendar",
+      "english": "December",
+      "german": "Dezember",
+      "example": "Christmas is in December.",
+      "cloze": "Christmas is in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "December"
+      ],
+      "germanAnswers": [
+        "Dezember"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.spring.v1",
+      "deckId": "calendar",
+      "english": "spring",
+      "german": "Frühling",
+      "example": "Flowers grow in spring.",
+      "cloze": "Flowers grow in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "spring"
+      ],
+      "germanAnswers": [
+        "Frühling"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.summer.v1",
+      "deckId": "calendar",
+      "english": "summer",
+      "german": "Sommer",
+      "example": "We swim in the lake in summer.",
+      "cloze": "We swim in the lake in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "summer"
+      ],
+      "germanAnswers": [
+        "Sommer"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.autumn.v1",
+      "deckId": "calendar",
+      "english": "autumn",
+      "german": "Herbst",
+      "example": "The leaves fall in autumn.",
+      "cloze": "The leaves fall in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "autumn",
+        "fall"
+      ],
+      "germanAnswers": [
+        "Herbst"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.winter.v1",
+      "deckId": "calendar",
+      "english": "winter",
+      "german": "Winter",
+      "example": "I wear gloves in winter.",
+      "cloze": "I wear gloves in ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "winter"
+      ],
+      "germanAnswers": [
+        "Winter"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.month.v1",
+      "deckId": "calendar",
+      "english": "month",
+      "german": "Monat",
+      "example": "June is a month of the year.",
+      "cloze": "June is a ___ of the year.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "month"
+      ],
+      "germanAnswers": [
+        "Monat"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.calendar.year.v1",
+      "deckId": "calendar",
+      "english": "year",
+      "german": "Jahr",
+      "example": "There are twelve months in a year.",
+      "cloze": "There are twelve months in a ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "year"
+      ],
+      "germanAnswers": [
+        "Jahr"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.one.v1",
+      "deckId": "numbers",
+      "english": "one",
+      "german": "eins",
+      "example": "I have one brother.",
+      "cloze": "I have ___ brother.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "one"
+      ],
+      "germanAnswers": [
+        "eins",
+        "1"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.two.v1",
+      "deckId": "numbers",
+      "english": "two",
+      "german": "zwei",
+      "example": "There are two cats.",
+      "cloze": "There are ___ cats.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "two"
+      ],
+      "germanAnswers": [
+        "zwei",
+        "2"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.three.v1",
+      "deckId": "numbers",
+      "english": "three",
+      "german": "drei",
+      "example": "I have three pencils.",
+      "cloze": "I have ___ pencils.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "three"
+      ],
+      "germanAnswers": [
+        "drei",
+        "3"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.four.v1",
+      "deckId": "numbers",
+      "english": "four",
+      "german": "vier",
+      "example": "A chair usually has four legs.",
+      "cloze": "A chair usually has ___ legs.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "four"
+      ],
+      "germanAnswers": [
+        "vier",
+        "4"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.five.v1",
+      "deckId": "numbers",
+      "english": "five",
+      "german": "fünf",
+      "example": "There are five apples.",
+      "cloze": "There are ___ apples.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "five"
+      ],
+      "germanAnswers": [
+        "fünf",
+        "5"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.six.v1",
+      "deckId": "numbers",
+      "english": "six",
+      "german": "sechs",
+      "example": "I get up at six.",
+      "cloze": "I get up at ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "six"
+      ],
+      "germanAnswers": [
+        "sechs",
+        "6"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.seven.v1",
+      "deckId": "numbers",
+      "english": "seven",
+      "german": "sieben",
+      "example": "There are seven days in a week.",
+      "cloze": "There are ___ days in a week.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "seven"
+      ],
+      "germanAnswers": [
+        "sieben",
+        "7"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.eight.v1",
+      "deckId": "numbers",
+      "english": "eight",
+      "german": "acht",
+      "example": "School starts at eight.",
+      "cloze": "School starts at ___.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "eight"
+      ],
+      "germanAnswers": [
+        "acht",
+        "8"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.nine.v1",
+      "deckId": "numbers",
+      "english": "nine",
+      "german": "neun",
+      "example": "There are nine books on the desk.",
+      "cloze": "There are ___ books on the desk.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "nine"
+      ],
+      "germanAnswers": [
+        "neun",
+        "9"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.ten.v1",
+      "deckId": "numbers",
+      "english": "ten",
+      "german": "zehn",
+      "example": "I have ten fingers.",
+      "cloze": "I have ___ fingers.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "ten"
+      ],
+      "germanAnswers": [
+        "zehn",
+        "10"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.thirteen.v1",
+      "deckId": "numbers",
+      "english": "thirteen",
+      "german": "dreizehn",
+      "example": "There are thirteen cards on the table.",
+      "cloze": "There are ___ cards on the table.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "thirteen"
+      ],
+      "germanAnswers": [
+        "dreizehn",
+        "13"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.fourteen.v1",
+      "deckId": "numbers",
+      "english": "fourteen",
+      "german": "vierzehn",
+      "example": "Two weeks have fourteen days.",
+      "cloze": "Two weeks have ___ days.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "fourteen"
+      ],
+      "germanAnswers": [
+        "vierzehn",
+        "14"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.fifteen.v1",
+      "deckId": "numbers",
+      "english": "fifteen",
+      "german": "fünfzehn",
+      "example": "There are fifteen pupils on the bus.",
+      "cloze": "There are ___ pupils on the bus.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "fifteen"
+      ],
+      "germanAnswers": [
+        "fünfzehn",
+        "15"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.sixteen.v1",
+      "deckId": "numbers",
+      "english": "sixteen",
+      "german": "sechzehn",
+      "example": "My brother is sixteen years old.",
+      "cloze": "My brother is ___ years old.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sixteen"
+      ],
+      "germanAnswers": [
+        "sechzehn",
+        "16"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.seventeen.v1",
+      "deckId": "numbers",
+      "english": "seventeen",
+      "german": "siebzehn",
+      "example": "There are seventeen chairs in this room.",
+      "cloze": "There are ___ chairs in this room.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "seventeen"
+      ],
+      "germanAnswers": [
+        "siebzehn",
+        "17"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.eighteen.v1",
+      "deckId": "numbers",
+      "english": "eighteen",
+      "german": "achtzehn",
+      "example": "We need eighteen plates.",
+      "cloze": "We need ___ plates.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "eighteen"
+      ],
+      "germanAnswers": [
+        "achtzehn",
+        "18"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.nineteen.v1",
+      "deckId": "numbers",
+      "english": "nineteen",
+      "german": "neunzehn",
+      "example": "There are nineteen books in the box.",
+      "cloze": "There are ___ books in the box.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "nineteen"
+      ],
+      "germanAnswers": [
+        "neunzehn",
+        "19"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.twenty.v1",
+      "deckId": "numbers",
+      "english": "twenty",
+      "german": "zwanzig",
+      "example": "I have twenty stickers.",
+      "cloze": "I have ___ stickers.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "twenty"
+      ],
+      "germanAnswers": [
+        "zwanzig",
+        "20"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.hundred.v1",
+      "deckId": "numbers",
+      "english": "hundred",
+      "german": "hundert",
+      "example": "There are a hundred pages in this book.",
+      "cloze": "There are a ___ pages in this book.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "hundred"
+      ],
+      "germanAnswers": [
+        "hundert",
+        "100"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.thousand.v1",
+      "deckId": "numbers",
+      "english": "thousand",
+      "german": "tausend",
+      "example": "A kilometre is a thousand metres.",
+      "cloze": "A kilometre is a ___ metres.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "thousand"
+      ],
+      "germanAnswers": [
+        "tausend",
+        "1000"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.thirty.v1",
+      "deckId": "numbers",
+      "english": "thirty",
+      "german": "dreißig",
+      "example": "Half an hour is thirty minutes.",
+      "cloze": "Half an hour is ___ minutes.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "thirty"
+      ],
+      "germanAnswers": [
+        "dreißig",
+        "30"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.forty.v1",
+      "deckId": "numbers",
+      "english": "forty",
+      "german": "vierzig",
+      "example": "The bus has forty seats.",
+      "cloze": "The bus has ___ seats.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "forty"
+      ],
+      "germanAnswers": [
+        "vierzig",
+        "40"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.fifty.v1",
+      "deckId": "numbers",
+      "english": "fifty",
+      "german": "fünfzig",
+      "example": "This pencil costs fifty pence.",
+      "cloze": "This pencil costs ___ pence.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "fifty"
+      ],
+      "germanAnswers": [
+        "fünfzig",
+        "50"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.sixty.v1",
+      "deckId": "numbers",
+      "english": "sixty",
+      "german": "sechzig",
+      "example": "An hour has sixty minutes.",
+      "cloze": "An hour has ___ minutes.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "sixty"
+      ],
+      "germanAnswers": [
+        "sechzig",
+        "60"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.seventy.v1",
+      "deckId": "numbers",
+      "english": "seventy",
+      "german": "siebzig",
+      "example": "My grandfather is seventy years old.",
+      "cloze": "My grandfather is ___ years old.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "seventy"
+      ],
+      "germanAnswers": [
+        "siebzig",
+        "70"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.eighty.v1",
+      "deckId": "numbers",
+      "english": "eighty",
+      "german": "achtzig",
+      "example": "The ticket costs eighty pence.",
+      "cloze": "The ticket costs ___ pence.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "eighty"
+      ],
+      "germanAnswers": [
+        "achtzig",
+        "80"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.ninety.v1",
+      "deckId": "numbers",
+      "english": "ninety",
+      "german": "neunzig",
+      "example": "The film is ninety minutes long.",
+      "cloze": "The film is ___ minutes long.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "ninety"
+      ],
+      "germanAnswers": [
+        "neunzig",
+        "90"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.zero.v1",
+      "deckId": "numbers",
+      "english": "zero",
+      "german": "null",
+      "example": "It is zero degrees today.",
+      "cloze": "It is ___ degrees today.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "zero"
+      ],
+      "germanAnswers": [
+        "null",
+        "0"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.million.v1",
+      "deckId": "numbers",
+      "english": "million",
+      "german": "Million",
+      "example": "A million is a very large number.",
+      "cloze": "A ___ is a very large number.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "million"
+      ],
+      "germanAnswers": [
+        "Million",
+        "1000000"
+      ]
+    },
+    {
+      "id": "by.english.5.vocab.numbers.third.v1",
+      "deckId": "numbers",
+      "english": "third",
+      "german": "dritte / dritter / drittes",
+      "example": "March is the third month.",
+      "cloze": "March is the ___ month.",
+      "competencyId": "E5 1.2 Wortschatz; E5 4 Lernstrategien",
+      "englishAnswers": [
+        "third"
+      ],
+      "germanAnswers": [
+        "dritte",
+        "dritter",
+        "drittes"
+      ]
     }
   ]
 }

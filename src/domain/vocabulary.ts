@@ -1,4 +1,4 @@
-import type { Difficulty } from './learning';
+import type { Difficulty, Wallet } from './learning';
 export interface VocabularyCard {
   id: string;
   deckId: string;
@@ -19,6 +19,8 @@ export interface VocabularyState {
   dueCount: number;
   boxes: [number, number, number, number, number];
   total: number;
+  catalogTotal: number;
+  wallet: Wallet;
   nextDueAt: number | null;
   card: { card: VocabularyCard; boxNumber: number; reviews: number } | null;
 }
@@ -28,10 +30,12 @@ export interface VocabularyReview {
   deckId: string;
   difficulty: Difficulty;
   expectedReviews: number;
-  known: boolean;
+  answer: string | null;
 }
 export interface VocabularyReviewResult {
   state: VocabularyState;
   boxNumber: number;
   dueAt: number;
+  correct: boolean;
+  pointsAwarded: number;
 }

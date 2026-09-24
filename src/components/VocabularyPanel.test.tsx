@@ -22,45 +22,92 @@ const done: VocabularyState = {
   total: 1,
   boxes: [0, 1, 0, 0, 0],
   nextDueAt: 1_800_000_000,
+  wallet: { ...initial.wallet, balance: 9, totalEarned: 29 },
+};
+const success: VocabularyReviewResult = {
+  state: done,
+  boxNumber: 2,
+  dueAt: 1_800_000_000,
+  correct: true,
+  pointsAwarded: 1,
 };
 beforeEach(() => {
   vi.resetAllMocks();
   vi.mocked(desktop.getVocabularyState).mockResolvedValue(initial);
-  vi.mocked(desktop.reviewVocabulary).mockResolvedValue({
-    state: done,
-    boxNumber: 2,
-    dueAt: 1_800_000_000,
-  });
+  vi.mocked(desktop.reviewVocabulary).mockResolvedValue(success);
 });
-it('versteckt die Lösung bis zum Umdrehen und speichert eine ehrliche Bewertung', async () => {
+it('prüft die Eingabe per Enter, zeigt erst danach die Lösung und aktualisiert das Guthaben', async () => {
   const user = userEvent.setup();
   render(<VocabularyPanel profileVersion={0} />);
-  await screen.findByRole('button', { name: 'Karte umdrehen' });
+  const field = await screen.findByLabelText('Deine englische Antwort');
   expect(screen.queryByText('I say hello.')).not.toBeInTheDocument();
   expect(
     screen.queryByRole('button', { name: 'Gewusst' }),
   ).not.toBeInTheDocument();
-  await user.type(
-    screen.getByLabelText('Deine Antwort zum Vergleichen (freiwillig)'),
-    'hello',
+  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+  expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
+    '8 Punkte',
   );
-  await user.click(screen.getByRole('button', { name: 'Karte umdrehen' }));
-  expect(screen.getByText('I say hello.')).toBeVisible();
-  expect(screen.getByText('Deine Antwort: hello')).toBeVisible();
-  await user.click(screen.getByRole('button', { name: 'Gewusst' }));
+  await user.type(field, 'HELLO{Enter}');
   expect(desktop.reviewVocabulary).toHaveBeenCalledWith(
     expect.objectContaining({
       cardId: 'hello',
       deckId: 'all',
       difficulty: 'koenner',
       expectedReviews: 0,
-      known: true,
+      answer: 'HELLO',
     }),
   );
+  expect(
+    await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
+  ).toBeVisible();
+  expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
+    '9 Punkte',
+  );
+  expect(screen.getByText('I say hello.')).toBeVisible();
+  expect(
+    screen.queryByRole('button', { name: 'Antwort prüfen' }),
+  ).not.toBeInTheDocument();
+  vi.mocked(desktop.getVocabularyState).mockResolvedValue(done);
+  await user.click(screen.getByRole('button', { name: 'Nächste Karte' }));
   expect(await screen.findByText('Für jetzt geschafft!')).toBeVisible();
   expect(screen.getByText(/Nächste Wiederholung:/)).toBeVisible();
+  expect(desktop.reviewVocabulary).toHaveBeenCalledTimes(1);
 });
-it('behält nach Speicherfehler Karte und Request und verhindert doppelte Bewertungen', async () => {
+it('zeigt eine falsche Lösung ohne Punkte und erlaubt bewusstes Aufdecken ohne Antwort', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.reviewVocabulary).mockResolvedValue({
+    ...success,
+    correct: false,
+    pointsAwarded: 0,
+    boxNumber: 1,
+    state: { ...done, wallet: initial.wallet },
+  });
+  render(<VocabularyPanel profileVersion={0} />);
+  await user.type(
+    await screen.findByLabelText('Deine englische Antwort'),
+    'cat',
+  );
+  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  expect(
+    await screen.findByText('Noch nicht ganz – wir üben das wieder!'),
+  ).toBeVisible();
+  expect(screen.getByText('hello', { selector: 'strong' })).toBeVisible();
+  expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
+    '8 Punkte',
+  );
+  await user.click(screen.getByRole('button', { name: 'Nächste Karte' }));
+  await user.click(
+    await screen.findByRole('button', {
+      name: 'Weiß ich noch nicht · Lösung zeigen',
+    }),
+  );
+  expect(desktop.reviewVocabulary).toHaveBeenLastCalledWith(
+    expect.objectContaining({ answer: null }),
+  );
+  expect(await screen.findByText(/Kein Punkteabzug/)).toBeVisible();
+});
+it('behält nach Speicherfehler Antwort und Request und verhindert doppelte Punkte', async () => {
   const user = userEvent.setup();
   let resolve!: (value: VocabularyReviewResult) => void;
   vi.mocked(desktop.reviewVocabulary)
@@ -72,38 +119,47 @@ it('behält nach Speicherfehler Karte und Request und verhindert doppelte Bewert
         }),
     );
   render(<VocabularyPanel profileVersion={0} />);
-  await user.click(
-    await screen.findByRole('button', { name: 'Karte umdrehen' }),
+  await user.type(
+    await screen.findByLabelText('Deine englische Antwort'),
+    'hello',
   );
-  await user.click(screen.getByRole('button', { name: 'Noch üben' }));
+  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
   expect(await screen.findByRole('alert')).toHaveTextContent('Transportfehler');
-  expect(screen.getByRole('button', { name: 'Gewusst' })).toBeDisabled();
+  expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
+    '8 Punkte',
+  );
+  expect(screen.getByLabelText('Deine englische Antwort')).toHaveValue('hello');
+  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
   expect(screen.getByLabelText('Dein Wortthema')).toBeDisabled();
   await user.click(
     screen.getByRole('button', { name: 'Speichern erneut versuchen' }),
   );
-  expect(screen.getByRole('button', { name: 'Gewusst' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
   expect(vi.mocked(desktop.reviewVocabulary).mock.calls[0]).toEqual(
     vi.mocked(desktop.reviewVocabulary).mock.calls[1],
   );
-  await act(async () =>
-    resolve({ state: done, boxNumber: 1, dueAt: 1_800_000_000 }),
+  await act(async () => resolve(success));
+  expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
+    '9 Punkte',
   );
-  expect(
-    screen.getByText(/Diese Karte kommt in etwa einer Minute wieder/),
-  ).toBeVisible();
 });
-it('wechselt Stufe und zeigt Erkennen oder Satzlücke ohne Fortschritt zu übernehmen', async () => {
+it('wechselt die Antwortrichtung und zeigt Satzlücken ohne alten Fortschritt oder Antwort', async () => {
   const user = userEvent.setup();
   render(<VocabularyPanel profileVersion={0} />);
-  await screen.findByRole('button', { name: 'Karte umdrehen' });
+  await user.type(
+    await screen.findByLabelText('Deine englische Antwort'),
+    'alt',
+  );
   vi.mocked(desktop.setDifficulty).mockResolvedValue('vorschule');
   vi.mocked(desktop.getVocabularyState).mockResolvedValue({
     ...initial,
     difficulty: 'vorschule',
   });
   await user.click(screen.getByRole('button', { name: /Vorschule/ }));
-  expect(await screen.findByRole('heading', { name: 'hello' })).toBeVisible();
+  expect(
+    await screen.findByLabelText('Deine deutsche Übersetzung'),
+  ).toHaveValue('');
+  expect(screen.getByText('I say hello.')).toBeVisible();
   expect(desktop.setDifficulty).toHaveBeenCalledWith('vorschule');
   vi.mocked(desktop.setDifficulty).mockResolvedValue('streber');
   vi.mocked(desktop.getVocabularyState).mockResolvedValue({
@@ -115,19 +171,20 @@ it('wechselt Stufe und zeigt Erkennen oder Satzlücke ohne Fortschritt zu übern
     await screen.findByRole('heading', { name: 'I say ___.' }),
   ).toBeVisible();
   expect(screen.getByText('Gesuchtes Wort: hallo')).toBeVisible();
+  expect(screen.getByLabelText('Deine englische Antwort')).toHaveValue('');
 });
-it('lädt Themen neu und räumt eine zuvor umgedrehte Karte auf', async () => {
+it('lädt Themen neu und entfernt alte Rückmeldungen', async () => {
   const user = userEvent.setup();
   render(<VocabularyPanel profileVersion={0} />);
-  await user.click(
-    await screen.findByRole('button', { name: 'Karte umdrehen' }),
+  await user.type(
+    await screen.findByLabelText('Deine englische Antwort'),
+    'hello{Enter}',
   );
+  await screen.findByText('Richtig! +1 Punkt');
   await user.selectOptions(screen.getByLabelText('Dein Wortthema'), 'family');
-  await screen.findByRole('button', { name: 'Karte umdrehen' });
+  await screen.findByLabelText('Deine englische Antwort');
   expect(desktop.getVocabularyState).toHaveBeenLastCalledWith('family');
-  expect(
-    screen.queryByRole('button', { name: 'Gewusst' }),
-  ).not.toBeInTheDocument();
+  expect(screen.queryByText('Richtig! +1 Punkt')).not.toBeInTheDocument();
   await user.click(
     screen.getByRole('button', { name: 'Fällige Karten laden' }),
   );
@@ -152,7 +209,7 @@ it('zeigt Profilhinweis und lässt einen Ladefehler erneut versuchen', async () 
     await screen.findByText(/Speichere unten zuerst dein Lernprofil/),
   ).toBeVisible();
   expect(
-    screen.queryByRole('button', { name: 'Karte umdrehen' }),
+    screen.queryByRole('button', { name: 'Antwort prüfen' }),
   ).not.toBeInTheDocument();
 });
 it('verwirft veraltete Ladeantworten nach einer Profiländerung', async () => {
@@ -169,23 +226,23 @@ it('verwirft veraltete Ladeantworten nach einer Profiländerung', async () => {
   expect(await screen.findByText('Für jetzt geschafft!')).toBeVisible();
   await act(async () => resolve(initial));
   expect(
-    screen.queryByRole('button', { name: 'Karte umdrehen' }),
+    screen.queryByRole('button', { name: 'Antwort prüfen' }),
   ).not.toBeInTheDocument();
 });
 it('zeigt nach fehlgeschlagenem Stufenwechsel keine veraltete Karte als aktuell', async () => {
   const user = userEvent.setup();
   render(<VocabularyPanel profileVersion={0} />);
-  await screen.findByRole('button', { name: 'Karte umdrehen' });
+  await screen.findByRole('button', { name: 'Antwort prüfen' });
   vi.mocked(desktop.setDifficulty).mockRejectedValueOnce(
     new Error('Speicherfehler'),
   );
   await user.click(screen.getByRole('button', { name: /Streber/ }));
   expect(await screen.findByRole('alert')).toHaveTextContent('Speicherfehler');
   expect(
-    screen.queryByRole('button', { name: 'Karte umdrehen' }),
+    screen.queryByRole('button', { name: 'Antwort prüfen' }),
   ).not.toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Karten neu laden' }));
   expect(
-    await screen.findByRole('button', { name: 'Karte umdrehen' }),
+    await screen.findByRole('button', { name: 'Antwort prüfen' }),
   ).toBeVisible();
 });
