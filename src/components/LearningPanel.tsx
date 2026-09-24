@@ -146,6 +146,7 @@ export default function LearningPanel({
     setBusy(true);
     setError('');
     setNotice('');
+    setResult(null);
     const submittedId = question.id;
     // Retain the request ID after transport errors so retry cannot duplicate a booking.
     if (

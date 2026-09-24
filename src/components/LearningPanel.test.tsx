@@ -1,4 +1,10 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import LearningPanel from './LearningPanel';
@@ -425,3 +431,48 @@ it('öffnet die Rückmeldung kompakt und führt zurück zur nächsten Aufgabe', 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   expect(screen.getByLabelText('Deine Übung')).toHaveFocus();
 });
+
+it.each([
+  { correct: true, close: 'button' },
+  { correct: true, close: 'escape' },
+  { correct: false, close: 'button' },
+  { correct: false, close: 'escape' },
+])(
+  'zeigt bei gleicher Antwort eine neue Rückmeldung (richtig=$correct, schließen=$close)',
+  async ({ correct, close }) => {
+    const user = userEvent.setup();
+    vi.mocked(desktop.submitAnswer).mockResolvedValue({
+      ...awarded,
+      correct,
+      pointsAwarded: 0,
+      wallet: initial.wallet,
+    });
+    const { rerender } = render(
+      <LearningPanel subject="mathematics" profileVersion={0} />,
+    );
+    await user.type(
+      await screen.findByLabelText('Was ist 17 + 25?'),
+      correct ? '42' : '43',
+    );
+    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+    const dialog = await screen.findByRole('dialog', {
+      name: 'Deine Rückmeldung',
+    });
+    if (close === 'escape') {
+      fireEvent(dialog, new Event('cancel', { cancelable: true }));
+    } else {
+      await user.click(screen.getByRole('button', { name: 'Schließen' }));
+    }
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    rerender(<LearningPanel subject="mathematics" profileVersion={0} />);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+    expect(
+      await screen.findByRole('dialog', { name: 'Deine Rückmeldung' }),
+    ).toBeVisible();
+    expect(desktop.submitAnswer).toHaveBeenCalledTimes(2);
+    expect(screen.getByLabelText('Verfügbare Punkte')).toHaveTextContent(
+      '10 Punkte',
+    );
+  },
+);
