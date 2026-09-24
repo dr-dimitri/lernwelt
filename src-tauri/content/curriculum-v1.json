@@ -76,7 +76,7 @@
       "grade": 5,
       "curriculumRef": "M5 2",
       "description": "Punkte, Linien, Kreise, Winkel und Vierecke.",
-      "lesson": "Bei (x ; y) startest du bei (0 ; 0). Die erste Zahl sagt: nach rechts oder links. Die zweite sagt: nach oben oder unten.\nEine Strecke hat zwei Endpunkte. Eine Gerade geht in beide Richtungen immer weiter.\nSenkrecht heißt: im rechten Winkel. Den kürzesten Abstand zu einer Geraden misst du senkrecht.\nEin rechter Winkel hat 90°. Eine ganze Drehung hat 360° und heißt Vollwinkel.",
+      "lesson": "Bei (x ; y) startest du bei (0 ; 0). Die erste Zahl sagt: nach rechts oder links. Die zweite sagt: nach oben oder unten.\nEine Strecke hat zwei Endpunkte. Eine Gerade geht in beide Richtungen immer weiter.\nSenkrecht heißt: im rechten Winkel. Den kürzesten Abstand zu einer Geraden misst du senkrecht.\nEin rechter Winkel hat 90°. Eine ganze Drehung hat 360° und heißt Vollwinkel.\n\nUnsere Kurzschreibweisen: [AB] ist die Strecke mit Endpunkten A und B. (AB) ist die ganze Gerade durch A und B. k(M; 3 cm) ist die Kreislinie mit Mittelpunkt M und Radius 3 cm. Wir nennen die gefüllte Fläche Kreisscheibe.\nEin Punkt liegt auf einer Geraden oder außerhalb. Zwei Geraden in einer Ebene schneiden sich einmal, sind verschieden und parallel oder liegen ganz aufeinander. Bei Geraden, die aufeinanderliegen, gibt es unendlich viele gemeinsame Punkte.\nEine Gerade hat mit einer Kreislinie 0, 1 oder 2 gemeinsame Punkte: Passante, Tangente oder Sekante. Zwei Kreislinien können 0, 1 oder 2 gemeinsame Punkte haben oder gleich sein. Berühren geht außen und innen.\nAlle Punkte mit festem Abstand zu M liegen auf einer Kreislinie. Alle Punkte mit festem positivem Abstand zu einer Geraden liegen auf zwei parallelen Geraden, je einer auf jeder Seite. Bei mehreren Bedingungen muss ein Punkt jede Bedingung erfüllen.",
       "activities": [
         {
           "title": "Punkte verbinden",
@@ -102,6 +102,26 @@
           "title": "Abstand messen",
           "prompt": "1. Zeichne eine Gerade g und daneben einen Punkt P.\n2. Zeichne von P die senkrechte Strecke zu g. Sie heißt Lot.\n3. Zeichne zwei schräge Verbindungen von P zu g. Vergleiche die drei Längen.\n4. Zeichne außerdem zwei Kreise, die sich an zwei Punkten schneiden.",
           "check": "Der Lotfuß liegt auf g. Das Lot steht senkrecht auf g und ist die kürzeste Verbindung. Zwei sich schneidende Kreise haben zwei gemeinsame Punkte."
+        },
+        {
+          "title": "Kurzschrift zeichnen",
+          "prompt": "1. Zeichne ein Koordinatensystem. Trage A(1 ; 1), B(5 ; 1) und M(3 ; 3) ein. Ein Kästchen ist eine Einheit.\n2. Zeichne [AB] farbig und (AB) mit einem Bleistift darüber hinaus.\n3. Zeichne k(M; 2 Einheiten).\n4. Erkläre einer anderen Person die drei Kurzschreibweisen.",
+          "check": "[AB] endet an den Punkten und ist 4 Einheiten lang. (AB) verläuft waagerecht auf Höhe 1 weiter. Der Kreis berührt die Gerade in (3 ; 1); dieser Punkt liegt auch auf [AB]. Die Strecke von M dorthin steht senkrecht auf der Geraden."
+        },
+        {
+          "title": "Alle Lagen erforschen",
+          "prompt": "1. Vorschule: Zeichne zu einer Geraden einen Punkt darauf und einen daneben. Zeichne zwei parallele und zwei sich schneidende Geraden.\n2. Könner: Zeichne zu einem Kreis eine Passante, Tangente und Sekante. Vergleiche den Abstand zur Mitte mit dem Radius.\n3. Streber: Zeichne Kreispaare mit 0, 1, 2 und unendlich vielen gemeinsamen Punkten. Probiere bei 0 und 1 Punkten je eine Lage außen und innen.\n4. Beschrifte alle Bilder und erkläre die Anzahl gemeinsamer Punkte.",
+          "check": "Geraden: kein, ein oder unendlich viele gemeinsame Punkte (deckungsgleich). Kreis/Gerade: Abstand größer, gleich oder kleiner als der Radius ergibt 0, 1 oder 2 Punkte.\nKreispaare: getrennt außen oder einer ganz innen ergeben 0; äußere/innere Berührung 1; zwei Schnittpunkte 2; gleiche Mitte und gleicher Radius unendlich viele. Gleiche Mitte mit verschiedenen Radien ergibt 0."
+        },
+        {
+          "title": "Ein Platz für die Bank",
+          "prompt": "1. Zeichne einen Plan: 1 cm bedeutet 1 m. Die Straße liegt waagerecht auf Höhe 0, der Baum bei (0 ; 0).\n2. Zeichne einen Kreis mit Radius 5 cm. Innen und auf dem Rand liegt der Schatten.\n3. Markiere beide Linien im Abstand 3 cm zur Straße. Die Bank muss auf oder jenseits dieser Linien liegen.\n4. Markiere den Bereich, der beide Bedingungen erfüllt. Wähle einen Platz und begründe ihn.",
+          "check": "Die gesuchten Bereiche liegen im Kreis, auf Höhe mindestens 3 oder höchstens −3. Zum Beispiel (0 ; 4) und (0 ; −4) passen. (0 ; 2) liegt zu nahe an der Straße; (0 ; 6) außerhalb des Schattens. Andere Plätze sind richtig, wenn beide Abstände passen. Der Abstand zur Straße wird senkrecht gemessen."
+        },
+        {
+          "title": "Vierecke im Zimmer und im Kopf",
+          "prompt": "1. Suche im Zimmer oder zeichne Beispiele für Quadrat, Rechteck, Parallelogramm, Raute, Drachenviereck und Trapez.\n2. Beschreibe die idealisierte Form: Welche Seiten sind parallel oder gleich lang? Sind rechte Winkel vorhanden?\n3. Stelle dir jede Figur gedreht vor. Bleibt sie dieselbe Art?\n4. Knoble: Kann ein Quadrat auch Raute, Rechteck und Parallelogramm heißen? Begründe.",
+          "check": "Echte Gegenstände sind nicht immer genau eben oder gerade; wir betrachten ein vereinfachtes Modell ihrer Umrisse. Drehen ändert Seitenlängen, Parallelität und Winkel nicht. Ein Quadrat erfüllt die Eigenschaften von Raute, Rechteck und Parallelogramm. Beim Trapez verwenden wir „mindestens ein paralleles Seitenpaar“. Ein Drachen hat zwei Paare gleich langer benachbarter Seiten."
         }
       ],
       "languageSequence": null
@@ -1256,6 +1276,487 @@
         "Jede Raute ist ein Quadrat.",
         "Jedes Quadrat ist auch eine Raute.",
         "Jedes Rechteck hat vier gleich lange Seiten."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.short-notation.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.2.short-notation",
+      "prompt": "In unseren Aufgaben steht [AB] für eine Strecke.\nWo endet [AB]?",
+      "answer": "Bei A und B",
+      "hint": "Eine Strecke hat genau zwei Endpunkte.",
+      "explanation": "[AB] verbindet A mit B und endet an diesen Punkten.",
+      "options": [
+        "Bei A und B",
+        "Sie hat keine Endpunkte",
+        "Nur bei A"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.short-notation.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.2.short-notation",
+      "prompt": "Wir schreiben (AB) für die Gerade durch A und B.\nWas gehört beim Zeichnen dazu?",
+      "answer": "Die Linie über A und B hinaus verlängern",
+      "hint": "Eine Gerade geht in beide Richtungen weiter.",
+      "explanation": "[AB] endet an A und B. (AB) setzt sich in beiden Richtungen fort.",
+      "options": [
+        "Nur A und B markieren",
+        "Die Linie bei beiden Punkten beenden",
+        "Die Linie über A und B hinaus verlängern"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.short-notation.streber.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.2.short-notation",
+      "prompt": "k(M; 4 cm) ist eine Kreislinie. P ist 3 cm von M entfernt.\nWo liegt P?",
+      "answer": "In der Kreisscheibe, aber nicht auf der Kreislinie",
+      "hint": "Vergleiche den Abstand 3 cm mit dem Radius 4 cm.",
+      "explanation": "3 < 4. P liegt innen. Nur Punkte mit Abstand genau 4 cm liegen auf k.",
+      "options": [
+        "Außerhalb der Kreisscheibe",
+        "In der Kreisscheibe, aber nicht auf der Kreislinie",
+        "Auf der Kreislinie"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.point-line.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.2.point-line",
+      "prompt": "P liegt auf der Geraden g.\nWie groß ist der Abstand zwischen P und g?",
+      "answer": "0",
+      "hint": "P ist schon auf der Geraden.",
+      "explanation": "Ein Punkt auf der Geraden hat Abstand 0.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.point-line.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.2.point-line",
+      "prompt": "g verläuft waagerecht auf Höhe 2.\nWelcher Punkt liegt auf g?",
+      "answer": "P(−3 ; 2)",
+      "hint": "Die zweite Koordinate gibt die Höhe an.",
+      "explanation": "P hat Höhe 2 und liegt deshalb auf g.",
+      "options": [
+        "Q(2 ; −3)",
+        "R(2 ; 4)",
+        "P(−3 ; 2)"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.point-line.streber.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.2.point-line",
+      "prompt": "g verläuft senkrecht durch die erste Koordinate −2. P liegt bei (3 ; 7).\nWie groß ist der kürzeste Abstand in Kästchen?",
+      "answer": "5",
+      "hint": "Gehe waagerecht bis zur Geraden.",
+      "explanation": "Von 3 bis −2 sind es 5 Kästchen. Der Fußpunkt ist (−2 ; 7).",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.line-cases.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.2.line-cases",
+      "prompt": "Zwei verschiedene Geraden in einer Ebene treffen sich nie.\nWie nennt man ihre Lage?",
+      "answer": "parallel",
+      "hint": "Denke an gerade Schienen.",
+      "explanation": "Verschiedene parallele Geraden haben keinen gemeinsamen Punkt.",
+      "options": [
+        "parallel",
+        "senkrecht",
+        "deckungsgleich"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.line-cases.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.2.line-cases",
+      "prompt": "Zwei Geraden schneiden sich in einem rechten Winkel.\nWie heißt ihre Lage?",
+      "answer": "senkrecht",
+      "hint": "Ein rechter Winkel hat 90°.",
+      "explanation": "Senkrechte Geraden schneiden sich im rechten Winkel.",
+      "options": [
+        "parallel",
+        "deckungsgleich",
+        "senkrecht"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.line-cases.streber.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.2.line-cases",
+      "prompt": "Zwei Geraden gehen beide durch die verschiedenen Punkte A und B.\nWie viele gemeinsame Punkte haben sie?",
+      "answer": "Unendlich viele",
+      "hint": "Durch zwei verschiedene Punkte geht genau eine Gerade.",
+      "explanation": "Die beiden Geraden liegen ganz aufeinander. Jeder ihrer Punkte ist gemeinsam.",
+      "options": [
+        "Unendlich viele",
+        "Keinen",
+        "Genau zwei"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.circle-line-cases.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.2.circle-line-cases",
+      "prompt": "Eine Gerade verläuft vollständig an einem Kreis vorbei.\nWie viele gemeinsame Punkte hat sie mit der Kreislinie?",
+      "answer": "0",
+      "hint": "Vorbei bedeutet: kein Schneiden und kein Berühren.",
+      "explanation": "Es gibt keinen gemeinsamen Punkt. Eine solche Gerade heißt Passante.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.circle-line-cases.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.2.circle-line-cases",
+      "prompt": "Der Abstand einer Geraden vom Kreismittelpunkt ist genauso groß wie der Radius.\nWie heißt diese Gerade?",
+      "answer": "Tangente",
+      "hint": "Die Gerade erreicht die Kreislinie gerade noch.",
+      "explanation": "Sie berührt die Kreislinie in einem Punkt. Das ist eine Tangente.",
+      "options": [
+        "Sekante",
+        "Passante",
+        "Tangente"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.circle-line-cases.streber.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.2.circle-line-cases",
+      "prompt": "Ein Kreis hat Radius 5 cm. Eine Gerade hat vom Mittelpunkt 3 cm Abstand.\nWie viele Schnittpunkte hat sie mit der Kreislinie?",
+      "answer": "2",
+      "hint": "Der Abstand zur Mitte ist kleiner als der Radius.",
+      "explanation": "Die Gerade schneidet die Kreislinie beim Hinein- und Hinauslaufen: zwei Punkte. Sie heißt Sekante.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.circle-circle-cases.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.2.circle-circle-cases",
+      "prompt": "Zwei Kreise haben jeweils Radius 2 cm. Ihre Mittelpunkte sind 7 cm voneinander entfernt.\nWie viele gemeinsame Punkte haben die Kreislinien?",
+      "answer": "0",
+      "hint": "Beide Radien zusammen ergeben 4 cm.",
+      "explanation": "7 cm sind mehr als 4 cm. Zwischen den Kreisen bleibt Platz.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.circle-circle-cases.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.2.circle-circle-cases",
+      "prompt": "Zwei Kreise haben Radius 3 cm. Ihre Mittelpunkte sind 4 cm voneinander entfernt.\nWie viele gemeinsame Punkte haben die Kreislinien?",
+      "answer": "2",
+      "hint": "Zeichne die Kreise mit dem Zirkel. Der Abstand ist kleiner als die Summe der Radien.",
+      "explanation": "Bei gleichem Radius und Abstand 4 cm schneiden sich die Kreise zweimal. Der Abstand ist größer als 0 und kleiner als 6 cm.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.circle-circle-cases.streber.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.2.circle-circle-cases",
+      "prompt": "Zwei Kreise haben denselben Mittelpunkt und denselben Radius.\nWie viele gemeinsame Punkte haben ihre Kreislinien?",
+      "answer": "Unendlich viele",
+      "hint": "Was passiert, wenn du beide Kreise zeichnest?",
+      "explanation": "Die Kreislinien liegen ganz aufeinander. Alle Punkte sind gemeinsam.",
+      "options": [
+        "Unendlich viele",
+        "Keinen",
+        "Genau zwei"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.nested-circles.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.2.nested-circles",
+      "prompt": "Zwei Kreise haben denselben Mittelpunkt. Ihre Radien sind 2 cm und 5 cm.\nWie viele gemeinsame Punkte haben die Kreislinien?",
+      "answer": "0",
+      "hint": "Eine Kreislinie liegt ganz innen.",
+      "explanation": "Die Kreislinien liegen wie zwei verschiedene Ringe ineinander. Sie berühren sich nicht.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.nested-circles.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.2.nested-circles",
+      "prompt": "Ein großer Kreis hat Radius 5 cm, ein kleiner Radius 2 cm. Ihre Mittelpunkte sind 3 cm voneinander entfernt.\nWie viele gemeinsame Punkte haben die Kreislinien?",
+      "answer": "1",
+      "hint": "3 cm Abstand plus 2 cm kleiner Radius ergeben 5 cm.",
+      "explanation": "Der kleine Kreis liegt innen und berührt den großen genau einmal. Das heißt innere Berührung.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.nested-circles.streber.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.2.nested-circles",
+      "prompt": "Ein Kreis hat Radius 5 cm, ein zweiter Radius 2 cm. Der Abstand ihrer Mittelpunkte ist 2 cm.\nWelche Lage haben die Kreislinien?",
+      "answer": "Die kleine liegt ganz innen, ohne Berührung.",
+      "hint": "Der entfernteste Punkt des kleinen Kreises ist 2 + 2 = 4 cm vom großen Mittelpunkt entfernt.",
+      "explanation": "Alle Punkte des kleinen Kreises sind weniger als 5 cm vom großen Mittelpunkt entfernt. Es gibt keinen gemeinsamen Punkt.",
+      "options": [
+        "Sie schneiden sich zweimal.",
+        "Die kleine liegt ganz innen, ohne Berührung.",
+        "Sie berühren sich außen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.distance-conditions.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.2.distance-conditions",
+      "prompt": "Ein Springbrunnen steht bei M. Eine Bank soll genau 3 m entfernt stehen.\nAuf welcher Form liegen alle möglichen Plätze?",
+      "answer": "Auf einer Kreislinie um M mit Radius 3 m",
+      "hint": "Gesucht ist ein fester Abstand zu einem Punkt.",
+      "explanation": "Jeder Punkt dieser Kreislinie hat genau 3 m Abstand zu M.",
+      "options": [
+        "Auf einer Kreislinie um M mit Radius 3 m",
+        "Nur im Mittelpunkt M",
+        "Auf einer Geraden durch M"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.distance-conditions.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.2.distance-conditions",
+      "prompt": "Eine gerade Straße verläuft auf Höhe 0. Ein Baum soll genau 4 m von ihr entfernt stehen.\nAuf welcher Höhe darf er stehen?",
+      "answer": "Auf Höhe 4 m oder −4 m",
+      "hint": "Denke an beide Seiten der Straße.",
+      "explanation": "Auf jeder Seite liegt eine parallele Linie im Abstand 4 m.",
+      "options": [
+        "Auf Höhe 4 m oder −4 m",
+        "Auf jeder beliebigen Höhe",
+        "Nur auf Höhe 4 m"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.distance-conditions.streber.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.2.distance-conditions",
+      "prompt": "Ein Baum bei (0 ; 0) spendet Schatten bis 5 m Entfernung. Eine gerade Straße liegt auf Höhe 0.\nEine Bank muss mindestens 3 m von der Straße entfernt stehen und im Schatten liegen. Welche Stelle passt?",
+      "answer": "(0 ; 4)",
+      "hint": "Prüfe bei jeder Stelle den Abstand zur Straße und den Abstand zum Baum.",
+      "explanation": "(0 ; 4) hat 4 m Abstand zur Straße und zum Baum. (0 ; 2) ist zu nah an der Straße; (0 ; 6) außerhalb des Schattens.",
+      "options": [
+        "(0 ; 6)",
+        "(0 ; 4)",
+        "(0 ; 2)"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.quadrilaterals-around-us.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.2.quadrilaterals-around-us",
+      "prompt": "Eine Buchseite hat vier rechte Winkel. Ihre langen Seiten sind länger als ihre kurzen.\nWelche Figur beschreibt sie genau?",
+      "answer": "Ein Rechteck, das kein Quadrat ist",
+      "hint": "Beim Quadrat müssten alle Seiten gleich lang sein.",
+      "explanation": "Die Buchseite ist ein Rechteck. Wegen der unterschiedlichen Seitenlängen ist sie kein Quadrat.",
+      "options": [
+        "Ein Rechteck, das kein Quadrat ist",
+        "Ein Quadrat",
+        "Ein Dreieck"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.quadrilaterals-around-us.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.2.quadrilaterals-around-us",
+      "prompt": "Ein Muster auf einem Pullover hat vier gleich lange Seiten, aber keine rechten Winkel.\nWelche Figur ist das?",
+      "answer": "Eine Raute, die kein Quadrat ist",
+      "hint": "Vier gleich lange Seiten reichen für eine Raute.",
+      "explanation": "Die Figur ist eine Raute. Fehlende rechte Winkel schließen ein Quadrat aus.",
+      "options": [
+        "Ein Quadrat",
+        "Ein Rechteck",
+        "Eine Raute, die kein Quadrat ist"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.quadrilaterals-around-us.streber.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.2.quadrilaterals-around-us",
+      "prompt": "Ein Tisch hat die Form eines Vierecks mit genau einem parallelen Seitenpaar.\nWelche Beschreibung passt?",
+      "answer": "Ein Trapez, aber kein Parallelogramm",
+      "hint": "Ein Parallelogramm hat zwei parallele Seitenpaare.",
+      "explanation": "Ein Trapez besitzt mindestens ein paralleles Seitenpaar. Hier ist es genau eines.",
+      "options": [
+        "Ein Parallelogramm",
+        "Ein Trapez, aber kein Parallelogramm",
+        "Ein Quadrat"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.mental-quadrilaterals.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.2.mental-quadrilaterals",
+      "prompt": "Du drehst ein Quadrat auf dem Papier.\nWas bleibt erhalten?",
+      "answer": "Vier gleich lange Seiten und vier rechte Winkel",
+      "hint": "Drehen verändert die Form nicht.",
+      "explanation": "Ein gedrehtes Quadrat bleibt ein Quadrat, auch wenn es auf einer Ecke steht.",
+      "options": [
+        "Vier gleich lange Seiten und vier rechte Winkel",
+        "Nur drei Seiten",
+        "Die rechten Winkel verschwinden"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.mental-quadrilaterals.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.2.mental-quadrilaterals",
+      "prompt": "Stell dir ein Parallelogramm vor. Eine seiner Ecken hat einen rechten Winkel.\nWelche genauere Beschreibung muss dann stimmen?",
+      "answer": "Es ist ein Rechteck.",
+      "hint": "Die parallelen Seiten erzwingen die übrigen rechten Winkel.",
+      "explanation": "Bei einem Parallelogramm mit einem rechten Winkel sind alle vier Winkel recht. Es ist ein Rechteck; gleiche Seitenlängen sind nicht nötig.",
+      "options": [
+        "Es muss ein Quadrat sein.",
+        "Es hat nur einen rechten Winkel.",
+        "Es ist ein Rechteck."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.geometry.mental-quadrilaterals.streber.v1",
+      "subject": "mathematics",
+      "topicId": "geometry",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.2.mental-quadrilaterals",
+      "prompt": "Ein Drachenviereck hat zwei Paare gleich langer benachbarter Seiten.\nDu faltest es entlang der Diagonale durch die Ecken, an denen die gleich langen Seiten zusammentreffen. Was passiert?",
+      "answer": "Die beiden Hälften passen aufeinander.",
+      "hint": "Diese Diagonale ist eine Symmetrieachse.",
+      "explanation": "Die beiden Dreiecke haben die gleichen drei Seitenlängen und liegen spiegelbildlich. Diese Faltlinie ist eine Symmetrieachse.",
+      "options": [
+        "Die Seiten werden unterschiedlich lang.",
+        "Die beiden Hälften passen aufeinander.",
+        "Es entsteht immer ein Quadrat."
       ],
       "answerKind": "choice",
       "unit": null,
