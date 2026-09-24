@@ -22,6 +22,20 @@ export default function GameStage({
   const canvas = useRef<HTMLCanvasElement>(null);
   const area = useRef<HTMLDivElement>(null);
   const held = useRef(new Set<Action>());
+  const taps = useRef(new Map<Action, ReturnType<typeof setTimeout>>());
+  const keyboardStarted = useRef(new Map<Action, number>());
+  function release(action: Action) {
+    keyboardStarted.current.delete(action);
+    clearTimeout(taps.current.get(action));
+    taps.current.delete(action);
+    held.current.delete(action);
+  }
+  function clearControls() {
+    for (const timer of taps.current.values()) clearTimeout(timer);
+    taps.current.clear();
+    keyboardStarted.current.clear();
+    held.current.clear();
+  }
   const ended = useRef(false);
   const [paused, setPaused] = useState(true);
   const [hud, setHud] = useState({
@@ -37,7 +51,7 @@ export default function GameStage({
   }, [onFinish]);
   useEffect(() => {
     const pause = () => {
-      held.current.clear();
+      clearControls();
       setPaused(true);
     };
     const visibility = () => {
@@ -46,6 +60,7 @@ export default function GameStage({
     window.addEventListener('blur', pause);
     document.addEventListener('visibilitychange', visibility);
     return () => {
+      clearControls();
       window.removeEventListener('blur', pause);
       document.removeEventListener('visibilitychange', visibility);
     };
@@ -91,17 +106,18 @@ export default function GameStage({
   }, [game, gameId, paused]);
   function press(action: Action) {
     if (paused || game.over) return;
+    release(action);
     held.current.add(action);
     actGame(game, action);
   }
   function togglePause() {
-    held.current.clear();
+    clearControls();
     setPaused(!paused);
     area.current?.focus({ preventScroll: true });
     area.current?.scrollIntoView({ block: 'center' });
   }
   function end() {
-    held.current.clear();
+    clearControls();
     game.over = true;
     setHud({ score: game.score, lives: game.lives, over: true, won: false });
     if (!ended.current) {
@@ -169,17 +185,17 @@ export default function GameStage({
           if (
             !event.currentTarget.contains(event.relatedTarget as Node | null)
           ) {
-            held.current.clear();
+            clearControls();
             setPaused(true);
           }
         }}
         onKeyDown={(event) => {
-          if (event.target !== event.currentTarget) return;
           if (event.key.toLowerCase() === 'p') {
             event.preventDefault();
             if (!event.repeat) togglePause();
             return;
           }
+          if (event.target !== event.currentTarget) return;
           const action = keyAction(event.key);
           if (action) {
             event.preventDefault();
@@ -253,13 +269,45 @@ export default function GameStage({
                     area.current?.focus();
                     press(action);
                   }}
-                  onPointerUp={() => held.current.delete(action)}
-                  onPointerCancel={() => held.current.delete(action)}
-                  onLostPointerCapture={() => held.current.delete(action)}
+                  onPointerUp={() => release(action)}
+                  onPointerCancel={() => release(action)}
+                  onLostPointerCapture={() => release(action)}
+                  onKeyDown={(event) => {
+                    if (event.key !== 'Enter' && event.key !== ' ') return;
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (!event.repeat) {
+                      press(action);
+                      keyboardStarted.current.set(action, performance.now());
+                    }
+                  }}
+                  onKeyUp={(event) => {
+                    if (event.key !== 'Enter' && event.key !== ' ') return;
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const began = keyboardStarted.current.get(action);
+                    keyboardStarted.current.delete(action);
+                    const remaining =
+                      began === undefined
+                        ? 0
+                        : 120 - (performance.now() - began);
+                    // A quick tap must last long enough to reach an animation frame.
+                    if (remaining > 0 && held.current.has(action)) {
+                      taps.current.set(
+                        action,
+                        setTimeout(() => release(action), remaining),
+                      );
+                    } else release(action);
+                  }}
+                  onBlur={() => release(action)}
                   onClick={(event) => {
-                    if (event.detail === 0) {
-                      if (!paused && !game.over) actGame(game, action);
-                      area.current?.focus();
+                    // Assistive technology may activate a button without key events.
+                    if (event.detail === 0 && !paused && !game.over) {
+                      press(action);
+                      taps.current.set(
+                        action,
+                        setTimeout(() => release(action), 120),
+                      );
                     }
                   }}
                 >
