@@ -1,4 +1,4 @@
-use crate::{content::Difficulty, database};
+use crate::{content::Difficulty, database, learning};
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::{Deserialize, Serialize};
 use std::{
@@ -23,6 +23,10 @@ pub struct Card {
     example: String,
     cloze: String,
     competency_id: String,
+    #[serde(skip_serializing)]
+    english_answers: Vec<String>,
+    #[serde(skip_serializing)]
+    german_answers: Vec<String>,
 }
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -81,6 +85,14 @@ impl Bank {
                 || card.english.trim().is_empty()
                 || card.german.trim().is_empty()
                 || card.competency_id.is_empty()
+                || card.english_answers.is_empty()
+                || card.german_answers.is_empty()
+                || card
+                    .english_answers
+                    .iter()
+                    .chain(&card.german_answers)
+                    .any(|a| normalized(a).is_empty())
+                || !card.english_answers.contains(&card.english)
                 || card.cloze.matches("___").count() != 1
                 || card.cloze.replace("___", &card.english) != card.example
             {
@@ -116,6 +128,8 @@ pub struct VocabularyState {
     due_count: u32,
     boxes: [u32; 5],
     total: u32,
+    catalog_total: usize,
+    wallet: learning::Wallet,
     next_due_at: Option<i64>,
     card: Option<PresentedCard>,
 }
@@ -127,7 +141,7 @@ pub struct ReviewInput {
     deck_id: String,
     difficulty: Difficulty,
     expected_reviews: i64,
-    known: bool,
+    answer: Option<String>,
 }
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -135,6 +149,8 @@ pub struct ReviewResult {
     state: VocabularyState,
     box_number: u8,
     due_at: i64,
+    correct: bool,
+    points_awarded: i64,
 }
 #[derive(Debug)]
 struct Progress {
@@ -191,6 +207,8 @@ fn state_at(connection: &Connection, deck: &str, time: i64) -> Result<Vocabulary
         due_count: 0,
         boxes: [0; 5],
         total: 0,
+        catalog_total: bank.cards.len(),
+        wallet: learning::wallet(connection)?,
         next_due_at: None,
         card: None,
     };
@@ -259,6 +277,16 @@ fn review_at(
     {
         return Err("Die Kartenbewertung ist ungültig. Bitte lade die Karten neu.".to_owned());
     }
+    if input.answer.as_ref().is_some_and(|answer| {
+        answer.trim().is_empty()
+            || answer.chars().count() > 160
+            || answer.chars().any(char::is_control)
+    }) {
+        return Err(
+            "Bitte gib eine Antwort mit 1 bis 160 Zeichen ein oder wähle „Weiß ich noch nicht“."
+                .to_owned(),
+        );
+    }
     let bank = bank()?;
     bank.validate_deck(&input.deck_id)?;
     let card = bank
@@ -277,14 +305,27 @@ fn review_at(
     }
     // Retried responses remain idempotent even if the current global level has since changed.
     let old = tx.query_row(
-        "SELECT card_id,difficulty,expected_reviews,known,box_number,due_at,deck_id FROM vocabulary_reviews WHERE request_id=?1 AND profile_id=1",
-        [&input.request_id], |r| Ok((r.get::<_,String>(0)?,r.get::<_,String>(1)?,r.get::<_,i64>(2)?,r.get::<_,bool>(3)?,r.get::<_,u8>(4)?,r.get::<_,i64>(5)?,r.get::<_,String>(6)?))
+        "SELECT card_id,difficulty,expected_reviews,known,box_number,due_at,deck_id,answer,points_awarded,automatically_checked FROM vocabulary_reviews WHERE request_id=?1 AND profile_id=1",
+        [&input.request_id], |r| Ok((r.get::<_,String>(0)?,r.get::<_,String>(1)?,r.get::<_,i64>(2)?,r.get::<_,bool>(3)?,r.get::<_,u8>(4)?,r.get::<_,i64>(5)?,r.get::<_,String>(6)?,r.get::<_,Option<String>>(7)?,r.get::<_,i64>(8)?,r.get::<_,bool>(9)?))
     ).optional().map_err(db_error)?;
-    if let Some((id, difficulty, reviews, known, box_number, due_at, deck)) = old {
+    if let Some((
+        id,
+        difficulty,
+        reviews,
+        correct,
+        box_number,
+        due_at,
+        deck,
+        answer,
+        points_awarded,
+        checked,
+    )) = old
+    {
         if id != input.card_id
             || difficulty != input.difficulty.as_str()
             || reviews != input.expected_reviews
-            || known != input.known
+            || !checked
+            || answer != input.answer
             || deck != input.deck_id
         {
             return Err("Diese Bewertungs-ID wurde bereits anders verwendet.".to_owned());
@@ -295,6 +336,8 @@ fn review_at(
             state,
             box_number,
             due_at,
+            correct,
+            points_awarded,
         });
     }
     if database::get_difficulty(&tx)? != input.difficulty {
@@ -307,7 +350,12 @@ fn review_at(
     {
         return Err("Diese Karte wurde schon bewertet oder ist noch nicht fällig. Bitte lade die Karten neu.".to_owned());
     }
-    let box_number = if input.known {
+    let correct = input
+        .answer
+        .as_deref()
+        .is_some_and(|answer| is_correct(card, input.difficulty, answer));
+    let points_awarded = i64::from(correct);
+    let box_number = if correct {
         previous.map_or(2, |p| (p.box_number + 1).min(5))
     } else {
         1
@@ -328,15 +376,56 @@ fn review_at(
         params![input.card_id,input.difficulty.as_str(),box_number,input.expected_reviews+1,due_at]
     ).map_err(db_error)?;
     tx.execute(
-        "INSERT INTO vocabulary_reviews (request_id,profile_id,card_id,difficulty,expected_reviews,known,box_number,due_at,deck_id) VALUES (?1,1,?2,?3,?4,?5,?6,?7,?8)",
-        params![input.request_id,input.card_id,input.difficulty.as_str(),input.expected_reviews,input.known,box_number,due_at,input.deck_id]
+        "INSERT INTO vocabulary_reviews (request_id,profile_id,card_id,difficulty,expected_reviews,known,box_number,due_at,deck_id,answer,points_awarded,automatically_checked) VALUES (?1,1,?2,?3,?4,?5,?6,?7,?8,?9,?10,1)",
+        params![input.request_id,input.card_id,input.difficulty.as_str(),input.expected_reviews,correct,box_number,due_at,input.deck_id,input.answer,points_awarded]
     ).map_err(db_error)?;
+    if correct {
+        tx.execute("INSERT INTO point_entries (profile_id,kind,item_id,amount) VALUES (1,'vocabulary',?1,1)", [&input.request_id]).map_err(db_error)?;
+    }
     let state = state_at(&tx, &input.deck_id, time)?;
     tx.commit().map_err(db_error)?;
     Ok(ReviewResult {
         state,
         box_number,
         due_at,
+        correct,
+        points_awarded,
+    })
+}
+
+// Compare explicit translations, not fuzzy guesses. Normalize typography and harmless spacing.
+fn normalized(value: &str) -> String {
+    value
+        .replace(['’', '‘'], "'")
+        .replace(['‑', '–'], "-")
+        .split_whitespace()
+        .collect::<Vec<_>>()
+        .join(" ")
+        .trim_end_matches(['.', '!', '?'])
+        .to_lowercase()
+}
+fn without_article(value: &str) -> &str {
+    for prefix in ["der ", "die ", "das ", "ein ", "eine "] {
+        if let Some(rest) = value.strip_prefix(prefix) {
+            return rest;
+        }
+    }
+    value
+}
+fn is_correct(card: &Card, difficulty: Difficulty, answer: &str) -> bool {
+    let actual = normalized(answer);
+    let alternatives = if difficulty == Difficulty::Vorschule {
+        &card.german_answers
+    } else {
+        &card.english_answers
+    };
+    alternatives.iter().any(|expected| {
+        let expected = normalized(expected);
+        if difficulty == Difficulty::Vorschule {
+            without_article(&actual) == without_article(&expected)
+        } else {
+            actual == expected
+        }
     })
 }
 

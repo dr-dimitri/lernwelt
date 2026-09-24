@@ -9,10 +9,12 @@ export const vocabularyInitial: VocabularyState = {
   source: 'https://www.lehrplanplus.bayern.de/',
   curriculumVersion: '24.09.2026',
   orientation: 'Eigene Wörter',
-  newCount: 120,
+  newCount: 370,
   dueCount: 0,
   boxes: [0, 0, 0, 0, 0],
-  total: 120,
+  total: 370,
+  catalogTotal: 370,
+  wallet: { balance: 8, totalEarned: 28, rewards: [] },
   nextDueAt: null,
   card: {
     card: {

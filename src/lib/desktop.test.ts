@@ -38,7 +38,7 @@ describe('Desktop-Schnittstelle', () => {
   });
 });
 
-it('übermittelt bei Wortkarten nur Selbsteinschätzung und Versionsschutz, keine Fälligkeit', async () => {
+it('übermittelt bei Wortkarten die Antwort und den Versionsschutz, keine Punkte oder Richtig-Behauptung', async () => {
   vi.mocked(invoke).mockResolvedValue(undefined);
   await desktop.getVocabularyState('family');
   expect(invoke).toHaveBeenCalledWith('get_vocabulary_state', {
@@ -50,7 +50,7 @@ it('übermittelt bei Wortkarten nur Selbsteinschätzung und Versionsschutz, kein
     deckId: 'family',
     difficulty: 'koenner' as const,
     expectedReviews: 2,
-    known: false,
+    answer: 'cat',
   };
   await desktop.reviewVocabulary(input);
   expect(invoke).toHaveBeenCalledWith('review_vocabulary', { input });

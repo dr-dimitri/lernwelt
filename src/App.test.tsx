@@ -194,7 +194,7 @@ it('öffnet den separaten Vokabeltrainer und lädt beim Rückweg die gemeinsame 
   await screen.findByText('Wie möchtest du heute üben?');
   await user.click(screen.getByRole('button', { name: 'Vokabeltrainer' }));
   expect(
-    await screen.findByRole('button', { name: 'Karte umdrehen' }),
+    await screen.findByRole('button', { name: 'Antwort prüfen' }),
   ).toBeVisible();
   vi.mocked(desktop.getLearningState).mockResolvedValue({
     ...initial,
