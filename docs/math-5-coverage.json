@@ -1,0 +1,535 @@
+[
+  {
+    "ref": "1.1/1",
+    "topic": "numbers",
+    "label": "Große Zahlen und Zahlbereich",
+    "strands": [
+      "word-to-number",
+      "read-number",
+      "word-zero-groups",
+      "successor"
+    ],
+    "activities": [
+      "Zahlwort-Werkstatt",
+      "Unendlich weiter"
+    ],
+    "note": "Zahlwörter mit Nullgruppen und Unbegrenztheit; zusätzlich Mengen/Zahlenmengen im Thema sets."
+  },
+  {
+    "ref": "1.1/2",
+    "topic": "numbers",
+    "label": "Stellenwertsystem",
+    "strands": [
+      "place-value",
+      "roman"
+    ],
+    "activities": [
+      "Zahlwort-Werkstatt"
+    ],
+    "note": "Dreiergruppen und Vergleich zur römischen Schreibweise; eigene Erklärung auf Papier."
+  },
+  {
+    "ref": "1.1/3",
+    "topic": "numbers",
+    "label": "Eigene Skalierung",
+    "strands": [
+      "number-line",
+      "choose-scale"
+    ],
+    "activities": [
+      "Dein Maß für den Zahlenstrahl"
+    ],
+    "note": "Start, Ende und Einteilung selbst wählen, zeichnen und begründen; keine automatische Zeichenprüfung."
+  },
+  {
+    "ref": "1.1/4",
+    "topic": "numbers",
+    "label": "Runden im Alltag",
+    "strands": [
+      "rounding"
+    ],
+    "activities": [],
+    "note": "Runden und Grenzen der Rundung in einer Alltagssituation."
+  },
+  {
+    "ref": "1.1/5",
+    "topic": "add",
+    "label": "Negative Zahlen im Kontext",
+    "strands": [
+      "signed",
+      "context",
+      "debt-reasoning"
+    ],
+    "activities": [
+      "Zeichen und Rechenbaum"
+    ],
+    "note": "Guthaben/Schulden und Zahlengerade; zusätzlich Thermometer und ℤ im Thema sets."
+  },
+  {
+    "ref": "1.1/6",
+    "topic": "numbers",
+    "label": "Ordnung und Betrag",
+    "strands": [
+      "ordering",
+      "absolute"
+    ],
+    "activities": [
+      "Deine Zahlengerade"
+    ],
+    "note": "Zahlen ordnen, Abstände zur Null vergleichen und zeichnen."
+  },
+  {
+    "ref": "1.1/7",
+    "topic": "numbers",
+    "label": "Eigene Gegenbeispiele",
+    "strands": [
+      "build-counterexample"
+    ],
+    "activities": [
+      "Eine Behauptung knacken"
+    ],
+    "note": "Eigene Zahlen wählen und Voraussetzung/Widerspruch begründen; offene Argumente mit Kriterien prüfen."
+  },
+  {
+    "ref": "1.2/1",
+    "topic": "add",
+    "label": "Schriftlich addieren und subtrahieren",
+    "strands": [
+      "written",
+      "estimate",
+      "written-carry",
+      "written-exchange"
+    ],
+    "activities": [
+      "Rechnen mit Übertrag",
+      "Tauschen beim Minusrechnen"
+    ],
+    "note": "Überträge, Nullstellen, Tauschen, Überschlag und Probe auch über einer Million; Rechenschritte auf Papier."
+  },
+  {
+    "ref": "1.2/2",
+    "topic": "add",
+    "label": "Vorzeichen und Rechenzeichen",
+    "strands": [
+      "sign-or-operation",
+      "debt-reasoning",
+      "signed"
+    ],
+    "activities": [
+      "Zeichen und Rechenbaum"
+    ],
+    "note": "Zeichenrollen unterscheiden und Strategie mit Konto/Zahlengerade erklären."
+  },
+  {
+    "ref": "1.2/3",
+    "topic": "add",
+    "label": "Additive Gleichungen",
+    "strands": [
+      "equations"
+    ],
+    "activities": [],
+    "note": "Alle drei geforderten Formen durch Umkehrung bzw. Probieren; feste Beispielauswahl."
+  },
+  {
+    "ref": "1.2/4",
+    "topic": "add",
+    "label": "Rechenvorteile",
+    "strands": [
+      "strategy",
+      "sign-or-operation"
+    ],
+    "activities": [
+      "Rechenwege vergleichen"
+    ],
+    "note": "Vertauschen, Zusammenfassen und Differenz als Addition der Gegenzahl."
+  },
+  {
+    "ref": "1.2/5",
+    "topic": "add",
+    "label": "Additive Terme gliedern",
+    "strands": [
+      "terms",
+      "sum-difference-structure"
+    ],
+    "activities": [
+      "Zeichen und Rechenbaum"
+    ],
+    "note": "Minuend/Subtrahend und innere Summe; vollständige gleichwertige Zeilen auf Papier."
+  },
+  {
+    "ref": "2/1",
+    "topic": "geometry",
+    "label": "Geometrische Darstellung und Kurzschrift",
+    "strands": [
+      "coordinates",
+      "short-notation"
+    ],
+    "activities": [
+      "Punkte verbinden",
+      "Kurzschrift zeichnen"
+    ],
+    "note": "Punkte, Strecken, Geraden und Kreise im Koordinatensystem; Konventionen ausdrücklich erklärt."
+  },
+  {
+    "ref": "2/2",
+    "topic": "geometry",
+    "label": "Grundlegende Lagebeziehungen",
+    "strands": [
+      "point-line",
+      "line-cases",
+      "circle-line-cases",
+      "circle-circle-cases",
+      "nested-circles"
+    ],
+    "activities": [
+      "Alle Lagen erforschen",
+      "Abstand messen"
+    ],
+    "note": "Auch deckungsgleiche Objekte, konzentrische Kreise und innere/äußere Berührung; Lot/Abstand/Tangente."
+  },
+  {
+    "ref": "2/3",
+    "topic": "geometry",
+    "label": "Abstandsbedingungen im Alltag",
+    "strands": [
+      "distance",
+      "distance-conditions"
+    ],
+    "activities": [
+      "Ein Platz für die Bank"
+    ],
+    "note": "Abstand zu Punkt und Gerade, beide Straßenseiten, gemeinsame Bedingungen und begründete Platzwahl."
+  },
+  {
+    "ref": "2/4",
+    "topic": "geometry",
+    "label": "Winkel messen und zeichnen",
+    "strands": [
+      "angle-types",
+      "angles"
+    ],
+    "activities": [
+      "Winkel bauen"
+    ],
+    "note": "Winkel bis 360° einschließlich größerer Außenwinkel; Messgenauigkeit per Selbstkontrolle."
+  },
+  {
+    "ref": "2/5",
+    "topic": "geometry",
+    "label": "Vierecke im Umfeld und im Kopf",
+    "strands": [
+      "quadrilaterals",
+      "quadrilaterals-around-us",
+      "mental-quadrilaterals"
+    ],
+    "activities": [
+      "Viereck-Forscher",
+      "Vierecke im Zimmer und im Kopf"
+    ],
+    "note": "Sechs Vierecksarten zeichnen, Eigenschaften erklären, idealisierte Umrisse und gedrehte Figuren betrachten."
+  },
+  {
+    "ref": "3.1/1",
+    "topic": "multiply",
+    "label": "Schriftlich multiplizieren und dividieren",
+    "strands": [
+      "written",
+      "written-product-steps",
+      "division-steps"
+    ],
+    "activities": [
+      "Malrechnung mit Stellenwerten",
+      "Teilen Schritt für Schritt"
+    ],
+    "note": "Mehrstellige Faktoren/Divisoren, Teilprodukte, Quotient mit Nullstelle, Überschlag und Umkehrprobe."
+  },
+  {
+    "ref": "3.1/2",
+    "topic": "multiply",
+    "label": "Teilbarkeit und eindeutige Primfaktoren",
+    "strands": [
+      "divisibility",
+      "prime",
+      "factor-uniqueness"
+    ],
+    "activities": [
+      "Zwei Wege, dieselben Primfaktoren"
+    ],
+    "note": "Teilbarkeitsregeln und verschiedene Zerlegungswege; Eindeutigkeit bis auf Reihenfolge erklären."
+  },
+  {
+    "ref": "3.1/3",
+    "topic": "multiply",
+    "label": "Zählprinzip und Grenzen",
+    "strands": [
+      "counting",
+      "counting-limits"
+    ],
+    "activities": [
+      "Darf ich einfach malnehmen?"
+    ],
+    "note": "Baumdiagramme, verschiedene Verzweigungen und Wahl ohne Wiederholung; erlaubte Wege zählen."
+  },
+  {
+    "ref": "3.1/4",
+    "topic": "multiply",
+    "label": "Vorzeichen begründen",
+    "strands": [
+      "signs",
+      "sign-pattern",
+      "division-sign-reason"
+    ],
+    "activities": [
+      "Vorzeichen begründen"
+    ],
+    "note": "Muster und Verteilungsgesetz erklären Malregeln; Umkehraufgaben begründen Geteiltregeln; Division durch 0 ausschließen."
+  },
+  {
+    "ref": "3.1/5",
+    "topic": "terms",
+    "label": "Rechenvorteile bei Produkten",
+    "strands": [
+      "associate"
+    ],
+    "activities": [
+      "Erkläre deinen Trick"
+    ],
+    "note": "Vertauschen/Zusammenfassen und Vorteil am eigenen Rechenweg erklären."
+  },
+  {
+    "ref": "3.1/6",
+    "topic": "multiply",
+    "label": "Potenzen und Quadratzahlen",
+    "strands": [
+      "powers",
+      "growth",
+      "ten-powers-context",
+      "square-00",
+      "square-20"
+    ],
+    "activities": [
+      "Quadratzahlen sammeln",
+      "Nullen kurz schreiben"
+    ],
+    "note": "Alle 0² bis 20² in jeder Stufe; Zehnerpotenzen im Kontext und Verdopplung. Bearbeitung beweist keine dauerhafte Automatisierung."
+  },
+  {
+    "ref": "3.1/7",
+    "topic": "multiply",
+    "label": "Multiplikative Gleichungen",
+    "strands": [
+      "equations"
+    ],
+    "activities": [],
+    "note": "Alle drei geforderten Gleichungsformen; Umkehrung mit erklärter Probe."
+  },
+  {
+    "ref": "3.2/1",
+    "topic": "terms",
+    "label": "Terme frei gliedern",
+    "strands": [
+      "structure",
+      "describe-structure"
+    ],
+    "activities": [
+      "Dein eigener Rechenbaum"
+    ],
+    "note": "Hauptrechenart, Teilterme und Fachbegriffe; eigener Term mit gleicher Struktur."
+  },
+  {
+    "ref": "3.2/2",
+    "topic": "terms",
+    "label": "Rechenreihenfolge und gültige Zeilen",
+    "strands": [
+      "precedence",
+      "brackets",
+      "equal-calculation-lines"
+    ],
+    "activities": [
+      "Dein eigener Rechenbaum"
+    ],
+    "note": "Klammern/Potenzen/Punkt/Strich und vollständige gleichwertige Rechnungen; fehlerhafte Gleichheitsketten erkennen."
+  },
+  {
+    "ref": "3.2/3",
+    "topic": "terms",
+    "label": "Rechengesetze erklären",
+    "strands": [
+      "distribute",
+      "associate"
+    ],
+    "activities": [
+      "Erkläre deinen Trick"
+    ],
+    "note": "Vertauschen, Zusammenfassen und Verteilen; Grenzen bei Division."
+  },
+  {
+    "ref": "3.2/4",
+    "topic": "terms",
+    "label": "Vorwärts und rückwärts",
+    "strands": [
+      "reverse"
+    ],
+    "activities": [
+      "Vorwärts und rückwärts"
+    ],
+    "note": "Rechenkette mit Umkehraufgaben und Erklärung der umgekehrten Reihenfolge."
+  },
+  {
+    "ref": "3.2/5",
+    "topic": "terms",
+    "label": "Sachaufgaben präsentieren und prüfen",
+    "strands": [
+      "model",
+      "explain-model"
+    ],
+    "activities": [
+      "Deine Erklärbühne",
+      "Eine eigene Rechengeschichte"
+    ],
+    "note": "Gegeben/gesucht, Term, Rechnung, Antwortsatz, Überschlag, Sachprüfung und alternativen Weg erklären."
+  },
+  {
+    "ref": "4.1/1",
+    "topic": "units",
+    "label": "Messen und Einheitentafeln",
+    "strands": [
+      "money",
+      "length",
+      "mass",
+      "time",
+      "small-lengths",
+      "money-table",
+      "length-table",
+      "mass-table",
+      "time-is-different"
+    ],
+    "activities": [
+      "Messen heißt Einheiten anlegen",
+      "Einheiten passend eintragen"
+    ],
+    "note": "Geld/Länge/Masse mit echten Tafeln und Dezimalangaben; Zeit gesondert mit 60er-Bündelung."
+  },
+  {
+    "ref": "4.1/2",
+    "topic": "units",
+    "label": "Alle vier Größenrechenarten",
+    "strands": [
+      "add-quantities",
+      "subtract-quantities",
+      "multiply-quantities",
+      "divide-quantities"
+    ],
+    "activities": [
+      "Größenrechnen erklären"
+    ],
+    "note": "Gleiche Einheiten herstellen; Dezimalgrößen plus/minus; Größe durch Anzahl vs. Größe durch Größe."
+  },
+  {
+    "ref": "4.1/3",
+    "topic": "units",
+    "label": "Schätzen, recherchieren und präsentieren",
+    "strands": [
+      "estimate"
+    ],
+    "activities": [
+      "Schätzmeister",
+      "Recherche ohne Internet"
+    ],
+    "note": "Bezugsgröße, Nachmessen/Quelle, Dokumentation und Plakat; Internet optional und nicht benötigt."
+  },
+  {
+    "ref": "4.1/4",
+    "topic": "units",
+    "label": "Dreisatz strukturiert darstellen",
+    "strands": [
+      "unitary"
+    ],
+    "activities": [
+      "Dreisatz in drei Zeilen"
+    ],
+    "note": "Von mehreren auf ein Stück und weiter; Voraussetzungen gleicher Stückpreise/-massen benennen."
+  },
+  {
+    "ref": "4.1/5",
+    "topic": "units",
+    "label": "Maßstab im Alltag",
+    "strands": [
+      "scale"
+    ],
+    "activities": [
+      "Dein Zimmer als Plan"
+    ],
+    "note": "Passende Einheiten und maßstäbliche Planzeichnung."
+  },
+  {
+    "ref": "4.2/1",
+    "topic": "area",
+    "label": "Flächenformel herleiten",
+    "strands": [
+      "squares"
+    ],
+    "activities": [
+      "Kästchen zählen"
+    ],
+    "note": "Gleiche Einheitsquadrate in Reihen; Fläche und Umfang unterscheiden."
+  },
+  {
+    "ref": "4.2/2",
+    "topic": "area",
+    "label": "Flächentafel und Umrechnungsbegründung",
+    "strands": [
+      "conversion",
+      "land",
+      "square-unit-reason",
+      "area-table",
+      "decimal-area-conversion"
+    ],
+    "activities": [
+      "Warum immer mal 100?",
+      "Flächentafel selbst füllen"
+    ],
+    "note": "Alle Einheiten km²/ha/a/m²/dm²/cm²/mm², Zweiergruppen und Dezimalangaben; Übergänge als 10×10 erklären."
+  },
+  {
+    "ref": "4.2/3",
+    "topic": "area",
+    "label": "Umfang, Fläche und Näherung",
+    "strands": [
+      "perimeter",
+      "compare",
+      "approximate-area",
+      "area-bounds"
+    ],
+    "activities": [
+      "Ein Blatt mit Rechtecken schätzen",
+      "Rechteckmodelle vergleichen"
+    ],
+    "note": "Alltagsrechtecke und unregelmäßige Flächen; Modellfläche, Schätzung sowie innere/äußere Grenzen unterscheiden."
+  },
+  {
+    "ref": "4.2/4",
+    "topic": "area",
+    "label": "Zerlegen und Ergänzen",
+    "strands": [
+      "compound"
+    ],
+    "activities": [
+      "Eine L-Form, zwei Wege"
+    ],
+    "note": "Zwei unterschiedliche Zerlegungs-/Ergänzungswege vergleichen und erklären."
+  },
+  {
+    "ref": "4.2/5",
+    "topic": "area",
+    "label": "Quader und zusammengesetzte Körper",
+    "strands": [
+      "surface"
+    ],
+    "activities": [
+      "Schachtel-Werkstatt",
+      "Würfel zusammenbauen"
+    ],
+    "note": "Netz, Schrägbild, äußere Flächen und räumliche Überlegungen mit Bauklötzen; Zeichenprüfung per Kriterien."
+  }
+]

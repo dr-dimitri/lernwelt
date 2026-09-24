@@ -559,4 +559,55 @@ mod tests {
             1
         );
     }
+    #[test]
+    fn complete_math_catalog_awards_once_and_survives_reopening() {
+        let (directory, mut connection) = setup();
+        let exercises: Vec<_> = content::catalog()
+            .unwrap()
+            .exercises
+            .iter()
+            .filter(|e| !e.legacy && e.subject == Subject::Mathematics)
+            .collect();
+        assert_eq!(exercises.len(), 363);
+        for (i, exercise) in exercises.iter().enumerate() {
+            let wrong = submit_answer(
+                &mut connection,
+                &format!("bad-{i}"),
+                &exercise.id,
+                "keine passende Antwort",
+            )
+            .unwrap();
+            assert!(!wrong.correct, "{}", exercise.id);
+            assert_eq!(wrong.points_awarded, 0);
+            let request = format!("good-{i}");
+            let good =
+                submit_answer(&mut connection, &request, &exercise.id, &exercise.answer).unwrap();
+            assert!(good.correct, "{}", exercise.id);
+            assert_eq!(good.points_awarded, 10);
+            let replay =
+                submit_answer(&mut connection, &request, &exercise.id, &exercise.answer).unwrap();
+            assert_eq!(replay.wallet.balance, good.wallet.balance);
+            let repeated = submit_answer(
+                &mut connection,
+                &format!("again-{i}"),
+                &exercise.id,
+                &exercise.answer,
+            )
+            .unwrap();
+            assert_eq!(repeated.points_awarded, 0);
+        }
+        drop(connection);
+        let mut connection = database::open(&directory.path().join("test.sqlite3")).unwrap();
+        let state = get_state(&mut connection).unwrap();
+        assert_eq!(state.wallet.balance, 3630);
+        assert_eq!(state.questions.iter().filter(|q| q.solved).count(), 363);
+        for question in serde_json::to_value(&state).unwrap()["questions"]
+            .as_array()
+            .unwrap()
+        {
+            assert!(question.get("answer").is_none());
+        }
+        let progress = database::list_progress(&connection).unwrap();
+        assert_eq!(progress.iter().map(|p| p.correct).sum::<u32>(), 726);
+    }
 }
