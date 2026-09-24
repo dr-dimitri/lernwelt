@@ -3,7 +3,7 @@ import { desktop } from '../lib/desktop';
 
 export default function ProfilePanel({ onSaved }: { onSaved?: () => void }) {
   const [name, setName] = useState('');
-  const [grade, setGrade] = useState(5);
+  const [savedGrade, setSavedGrade] = useState(5);
   const [state, setState] = useState<
     'loading' | 'ready' | 'saving' | 'unavailable'
   >('loading');
@@ -20,7 +20,7 @@ export default function ProfilePanel({ onSaved }: { onSaved?: () => void }) {
       .then((profile) => {
         if (!active) return;
         setName(profile?.displayName ?? '');
-        setGrade(profile?.grade ?? 5);
+        setSavedGrade(profile?.grade ?? 5);
         setState('ready');
       })
       .catch((reason: unknown) => {
@@ -44,8 +44,12 @@ export default function ProfilePanel({ onSaved }: { onSaved?: () => void }) {
     setError('');
     setNotice('');
     try {
-      const profile = await desktop.saveProfile({ displayName: name, grade });
+      const profile = await desktop.saveProfile({
+        displayName: name,
+        grade: 5,
+      });
       setName(profile.displayName);
+      setSavedGrade(profile.grade);
       setNotice('Dein Lernprofil wurde auf diesem Gerät gespeichert.');
       onSaved?.();
     } catch (reason) {
@@ -69,6 +73,11 @@ export default function ProfilePanel({ onSaved }: { onSaved?: () => void }) {
       <h2 id="profile-title">Dein Lernprofil</h2>
       <p>
         Ein Vorname oder Spitzname reicht. Dein Profil bleibt auf diesem Gerät.
+      </p>
+      <p id="profile-grade-note" className="profile-grade-note">
+        {savedGrade !== 5
+          ? `In deinem Profil ist noch Klasse ${savedGrade} gespeichert. Mit „Profil speichern“ wechselst du zu Klasse 5. Dein Lernfortschritt bleibt erhalten.`
+          : 'Hier übst du für Klasse 5.'}
       </p>
       {state === 'loading' && <p role="status">Dein Profil wird geladen …</p>}
       {error && (
@@ -108,19 +117,10 @@ export default function ProfilePanel({ onSaved }: { onSaved?: () => void }) {
               Jahrgangsstufe
               <select
                 id="profile-grade"
-                value={grade}
-                onChange={(event) => {
-                  setGrade(Number(event.target.value));
-                  setNotice('');
-                }}
+                defaultValue="5"
+                aria-describedby="profile-grade-note"
               >
-                {Array.from({ length: 9 }, (_, index) => index + 5).map(
-                  (value) => (
-                    <option key={value} value={value}>
-                      Klasse {value}
-                    </option>
-                  ),
-                )}
+                <option value="5">Klasse 5</option>
               </select>
             </label>
             <button className="primary-button" type="submit">

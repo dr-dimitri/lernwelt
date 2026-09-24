@@ -31,9 +31,15 @@ npm run desktop:build -- --bundles nsis # Windows Installer, auf Windows ausfüh
 
 Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale macOS-App ist noch nicht signiert oder notarisiert. Mathematik Klasse 5 enthält ein offline gebündeltes Übungspaket für alle sieben Lernbereiche; Englisch Klasse 5 bietet zwölf eigene Themen für die erste Fremdsprache.
 
+## Bedienung
+
+Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Eine feste Seitennavigation führt zu Fächern, Trainern und Spielhalle; im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
+
 ## Lokale Daten
 
-Das Lernprofil (Spitzname und Jahrgangsstufe 5–13) wird in `lernwelt.sqlite3` im Tauri-Anwendungsdatenverzeichnis `de.lernwelt.desktop` gespeichert. Auf macOS ist dies `~/Library/Application Support/de.lernwelt.desktop/`, auf Windows unter `%APPDATA%\\de.lernwelt.desktop\\`. Die Browser-Vorschau zeigt einen Hinweis statt Speicherung zu simulieren.
+Das Lernprofil (Spitzname und Klasse 5) wird in `lernwelt.sqlite3` im Tauri-Anwendungsdatenverzeichnis `de.lernwelt.desktop` gespeichert. Auf macOS ist dies `~/Library/Application Support/de.lernwelt.desktop/`, auf Windows unter `%APPDATA%\\de.lernwelt.desktop\\`. Die Browser-Vorschau zeigt einen Hinweis statt Speicherung zu simulieren.
+
+In der Klassenauswahl steht ausschließlich Klasse 5 zur Verfügung. Ältere Profile mit einer anderen Klasse bleiben lesbar und werden beim Laden nicht verändert. Ein Hinweis erklärt die bisherige Klasse; erst **Profil speichern** stellt sie auf Klasse 5 um. Der Lernfortschritt bleibt erhalten.
 
 Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Mathematik- und Englischaufgaben sind an das Punktesystem angeschlossen. Eine fachübergreifende Stufenauswahl wird ebenfalls lokal gespeichert. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
 
@@ -80,7 +86,7 @@ Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri
 - Größen im Alltag: Geld, Längen, Massen, Zeit, Schätzen, Dreisatz und Maßstäbe.
 - Flächen-Abenteuer: Flächeninhalt, Umfang, Einheiten, zusammengesetzte Flächen und Quaderoberflächen.
 
-**Vorschule** bietet einen leichten Einstieg, **Könner** reguläre Übungen und **Streber** anspruchsvollere Knobelaufgaben. Es sind spielerische Bezeichnungen, keine Altersstufen. Die Wahl bleibt über Fachwechsel, Profiländerung und Neustart erhalten; Standard ist Könner. Englisch bietet ebenfalls alle drei Stufen (1. Fremdsprache). Die angebotene Mathematik bleibt Klasse 5, auch wenn im Profil eine andere Klasse steht.
+**Vorschule** bietet einen leichten Einstieg, **Könner** reguläre Übungen und **Streber** anspruchsvollere Knobelaufgaben. Es sind spielerische Bezeichnungen, keine Altersstufen. Die Wahl bleibt über Fachwechsel, Profiländerung und Neustart erhalten; Standard ist Könner. Englisch bietet ebenfalls alle drei Stufen (1. Fremdsprache). Die angebotene Mathematik bleibt Klasse 5, auch wenn ein älteres Profil noch eine andere Klasse enthält.
 
 Jede Bildschirmaufgabe bietet einen Tipp und nach der Antwort einen erklärten Lösungsweg. Auswahlfragen, ganze Zahlen und exakte Dezimalzahlen werden im Backend bewertet. Komma oder Punkt gelten als Dezimaltrennzeichen, normale/geschützte Leerzeichen als Dreiergruppierung: `25 000` oder `25000`; `25.000` bedeutet 25. Einheiten stehen in der Frage und werden nicht mit eingegeben. Englischwörter werden ohne Beachtung der Großschreibung verglichen.
 
@@ -107,7 +113,7 @@ Eintritt, offene Runde und abgeschlossene Bestwerte werden lokal gespeichert. Na
 
 Grundlage: [LehrplanPLUS Englisch 5, erste Fremdsprache](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache). Thematische Orientierung: [öffentlicher Stoffverteilungsplan Green Line Bayern 1](https://assets.klett.de/assets/43500837/StoffverteilungsplanBd1.pdf), Bayern-Ausgabe ab 2017, ISBN 978-3-12-803010-4. Quellenstand 24.09.2026. Eigene Texte und Aufgaben; kein Klett-Lehrbuchimport und keine vom Verlag freigegebene Begleitsoftware.
 
-Sprechen, freies Schreiben und Hörverstehen werden durch angeleitete Aktivitäten mit Selbstkontrolle bzw. Vorleseperson geübt. Keine Audioaufnahmen, keine automatische Aussprache- oder Freitextbewertung. Das begrenzte Paket ist keine vollständige Abdeckung jedes Lehrbuchinhalts und keine vollständige Lernstandserhebung. Die Themen bleiben Klasse 5, auch bei einer anderen Profilklasse. [Inhaltsübersicht und Grenzen](docs/curriculum-english-5.md).
+Sprechen, freies Schreiben und Hörverstehen werden durch angeleitete Aktivitäten mit Selbstkontrolle bzw. Vorleseperson geübt. Keine Audioaufnahmen, keine automatische Aussprache- oder Freitextbewertung. Das begrenzte Paket ist keine vollständige Abdeckung jedes Lehrbuchinhalts und keine vollständige Lernstandserhebung. Die Themen bleiben Klasse 5, auch wenn ein älteres Profil noch eine andere Klasse enthält. [Inhaltsübersicht und Grenzen](docs/curriculum-english-5.md).
 
 ## Vokabeltrainer
 
@@ -121,7 +127,7 @@ Fünf Karteifächer planen die Wiederholung: Bei einer richtigen Antwort wandert
 
 Neu hinzugekommen sind unter anderem Tiere, Kleidung, Körper, Wetter, Kalender und Zahlen. Alle ursprünglichen 120 Karten behalten ihre IDs und Inhalte; ergänzt wurden 250 Karten und Antwortvarianten. [Wortschatzumfang und Prüfung](docs/vocabulary-5.md).
 
-Kartenstand und Wiederholungstermine bleiben lokal in SQLite gespeichert. Die Geräteuhr bestimmt die Termine. Neue Profilnamen oder Klassen ändern den vorhandenen Fortschritt nicht. Es gibt noch keinen Import eigener Karten, keine Ausspracheaufnahmen und keine Synchronisierung.
+Kartenstand und Wiederholungstermine bleiben lokal in SQLite gespeichert. Die Geräteuhr bestimmt die Termine. Neue Profilnamen oder das Umstellen eines älteren Profils auf Klasse 5 ändern den vorhandenen Fortschritt nicht. Es gibt noch keinen Import eigener Karten, keine Ausspracheaufnahmen und keine Synchronisierung.
 
 ## Einmaleins-Trainer
 
