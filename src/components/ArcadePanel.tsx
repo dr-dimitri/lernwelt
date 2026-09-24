@@ -96,7 +96,9 @@ export default function ArcadePanel({
           <h2 id="arcade-title">Die Spielhalle</h2>
         </div>
         <span className="arcade-balance">
-          {state ? `${state.wallet.balance} Lernpunkte` : 'Punkte laden …'}
+          {state
+            ? `${state.wallet.balance} ${state.wallet.balance === 1 ? 'Lernpunkt' : 'Lernpunkte'}`
+            : 'Punkte laden …'}
         </span>
       </div>
       <p>
