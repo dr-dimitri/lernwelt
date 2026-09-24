@@ -8,6 +8,16 @@ export interface Subject {
 }
 
 export const subjects: readonly Subject[] = [
-  { id: 'mathematics', name: 'Mathematik', symbol: 'π', description: 'Zusammenhänge entdecken. Lösungen verstehen.' },
-  { id: 'english', name: 'Englisch', symbol: 'Aa', description: 'Sprache entdecken. Mit jedem Schritt sicherer werden.' },
+  {
+    id: 'mathematics',
+    name: 'Mathematik',
+    symbol: 'π',
+    description: 'Zusammenhänge entdecken. Lösungen verstehen.',
+  },
+  {
+    id: 'english',
+    name: 'Englisch',
+    symbol: 'Aa',
+    description: 'Sprache entdecken. Mit jedem Schritt sicherer werden.',
+  },
 ];

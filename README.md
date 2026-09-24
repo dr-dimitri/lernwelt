@@ -40,3 +40,17 @@ Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogene
 ```sh
 cargo test --manifest-path src-tauri/Cargo.toml
 ```
+
+## Qualität prüfen
+
+```sh
+npm run check:all       # Formatierung, Frontend-Tests, TypeScript, Build, Rust-Checks und -Tests
+npm run test:watch      # Frontend-Tests während der Entwicklung
+npm run format         # Frontend- und Konfigurationsformatierung anwenden
+```
+
+Rust-Prüfungen benötigen `rustfmt` und `clippy`. In CI wird Rust 1.98.1 mit Node.js 24 verwendet. GitHub Actions prüft Pull Requests auf macOS und Windows und erstellt native Debug-Programme als kurzlebige Prüfartefakte. Diese sind keine signierten Installer. `npm run desktop:build` baut lokal ein Release-Artefakt.
+
+Der CI-Workflow kontrolliert bei Pull Requests den Issue-Branch, die passende `Closes #…`-Verknüpfung und die Reviewdatei. Das ersetzt nicht den inhaltlichen Review. Branch Protection ist nicht automatisch eingerichtet.
+
+Details: [Architektur](docs/architecture.md), [Reviewnachweise](docs/reviews/).
