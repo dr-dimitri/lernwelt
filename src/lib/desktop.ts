@@ -1,3 +1,8 @@
+import type {
+  VocabularyState,
+  VocabularyReview,
+  VocabularyReviewResult,
+} from '../domain/vocabulary';
 import type { ArcadeState, GameId } from '../domain/arcade';
 import { invoke, isTauri } from '@tauri-apps/api/core';
 import type { LearnerProfile, LearningProgress } from '../domain/learner';
@@ -29,6 +34,10 @@ async function callDesktop<T>(
 }
 
 export const desktop = {
+  getVocabularyState: (deckId: string) =>
+    callDesktop<VocabularyState>('get_vocabulary_state', { deckId }),
+  reviewVocabulary: (input: VocabularyReview) =>
+    callDesktop<VocabularyReviewResult>('review_vocabulary', { input }),
   getArcadeState: () => callDesktop<ArcadeState>('get_arcade_state'),
   startGame: (sessionId: string, gameId: GameId) =>
     callDesktop<ArcadeState>('start_game', { sessionId, gameId }),

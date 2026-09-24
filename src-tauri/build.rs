@@ -11,6 +11,8 @@ fn main() {
             "get_arcade_state",
             "start_game",
             "finish_game",
+            "get_vocabulary_state",
+            "review_vocabulary",
         ]),
     ))
     .expect("Tauri build configuration failed");
