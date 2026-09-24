@@ -1,3 +1,4 @@
+import { drawMaze } from './maze-draw';
 import type { Game } from './engine';
 
 const gems = [
@@ -238,7 +239,7 @@ function blocks(b: Brushes, g: Game) {
   b.box(453, 36, 160, 91, '#ffffff0d', 16);
   b.text('NOCH ZEIT', 470, 61, 12, '#a6c2e3');
   b.text(
-    `${Math.max(0, Math.ceil(120 - g.elapsed))} s`,
+    `${Math.max(0, Math.ceil(240 - g.elapsed))} s`,
     470,
     99,
     31,
@@ -476,7 +477,7 @@ function space(b: Brushes, g: Game) {
   for (let x = 12; x < 640; x += 39) b.box(x, 394, 18, 3, '#65d6d0', 1);
   g.entities.forEach((e, i) => {
     if (!e.alive) return;
-    const color = ['#bba0ff', '#ffbf78', '#fb91b8'][g.wave - 1];
+    const color = ['#bba0ff', '#ffbf78', '#fb91b8'][(g.wave - 1) % 3];
     b.oval(e.x + 15, e.y + 23, 10, 2, '#adbdff30');
     b.line(
       [
@@ -579,9 +580,9 @@ function space(b: Brushes, g: Game) {
     b.box(s.x - 3, s.y, 6, 12, s.enemy ? '#ff9fb5' : '#a5fff2', 3);
     b.box(s.x - 1, s.y + 2, 2, 7, '#fff5e6', 1);
   });
-  b.box(18, 15, 167, 32, '#0b183ce8', 12);
-  b.text(`WELLE ${g.wave} / 3`, 32, 36, 14, '#b9fff0');
-  for (let i = 0; i < 3; i++)
+  b.box(18, 15, 202, 32, '#0b183ce8', 12);
+  b.text(`WELLE ${g.wave} / 6`, 32, 36, 14, '#b9fff0');
+  for (let i = 0; i < 6; i++)
     b.oval(136 + i * 13, 31, 3, 3, i < g.wave ? '#ffe28e' : '#546285');
 }
 
@@ -765,7 +766,7 @@ function chickens(c: CanvasRenderingContext2D, b: Brushes, g: Game) {
     }
   });
   b.box(18, 15, 170, 36, '#214b60ed', 12);
-  b.text(`${Math.max(0, Math.ceil(45 - g.elapsed))} Sekunden`, 32, 40, 19);
+  b.text(`${Math.max(0, Math.ceil(90 - g.elapsed))} Sekunden`, 32, 40, 19);
   b.box(158, 370, 324, 23, '#3a354de8', 11);
   b.oval(177, 381, 4, 4, g.cooldown > 0 ? '#ffbb80' : '#a4e99e');
   b.text(
@@ -780,7 +781,8 @@ export function drawGame(c: CanvasRenderingContext2D, g: Game) {
   c.save();
   c.clearRect(0, 0, 640, 400);
   const b = brushes(c);
-  if (g.id === 'blocks') blocks(b, g);
+  if (g.id === 'maze') drawMaze(c, g);
+  else if (g.id === 'blocks') blocks(b, g);
   else if (g.id === 'runner') runner(b, g);
   else if (g.id === 'space') space(b, g);
   else chickens(c, b, g);

@@ -2,7 +2,7 @@ use crate::{database, learning};
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::Serialize;
 
-const GAMES: [&str; 4] = ["blocks", "runner", "space", "chickens"];
+const GAMES: [&str; 5] = ["blocks", "runner", "maze", "space", "chickens"];
 const ENTRY_COST: i64 = 10;
 
 #[derive(Debug, Serialize)]
@@ -112,6 +112,9 @@ pub fn start(
             return Err("Diese Runden-ID wurde bereits verwendet. Lade die Spielhalle neu.".into());
         }
     } else {
+        if game_id == "runner" {
+            return Err("Wähle das neue Sternenlabyrinth. Bereits bezahlte Wolkenflitzer-Runden bleiben spielbar.".into());
+        }
         let before = state(&transaction)?;
         if before.active_session.is_some() {
             return Err(
@@ -284,7 +287,7 @@ mod tests {
                 let barrier = barrier.clone();
                 std::thread::spawn(move || {
                     barrier.wait();
-                    start(&mut connection, &format!("r{i}"), "runner").is_ok()
+                    start(&mut connection, &format!("r{i}"), "maze").is_ok()
                 })
             })
             .collect();
@@ -374,5 +377,71 @@ mod tests {
         assert_eq!(learning::wallet(&connection).unwrap().balance, 20);
         // The old CHECK constraint must still reject the new journal kind after rollback.
         assert!(connection.execute("INSERT INTO point_entries (profile_id,kind,item_id,amount) VALUES (1,'game','r1',-10)", []).is_err());
+    }
+}
+
+#[cfg(test)]
+mod labyrinth_tests {
+    use super::*;
+    #[test]
+    fn migration_preserves_paid_runner_and_separates_labyrinth_scores() {
+        let d = tempfile::tempdir().unwrap();
+        let path = d.path().join("arcade.db");
+        let c = database::open(&path).unwrap();
+        database::save_profile(
+            &c,
+            database::Profile {
+                display_name: "Alt".into(),
+                grade: 5,
+            },
+        )
+        .unwrap();
+        c.execute_batch("INSERT INTO point_entries (profile_id,kind,item_id,amount) VALUES (1,'answer','fixture',30),(1,'game','old-runner',-10); INSERT INTO game_sessions VALUES ('old-runner',1,'runner',NULL,'2026-09-01'); PRAGMA user_version=11;").unwrap();
+        drop(c);
+        let mut c = database::open(&path).unwrap();
+        assert_eq!(
+            get_state(&mut c).unwrap().active_session.unwrap().game_id,
+            "runner"
+        );
+        assert_eq!(
+            start(&mut c, "old-runner", "runner")
+                .unwrap()
+                .wallet
+                .balance,
+            20
+        );
+        finish(&mut c, "old-runner", 500).unwrap();
+        assert!(start(&mut c, "new-runner", "runner").is_err());
+        assert_eq!(
+            start(&mut c, "maze-round", "maze").unwrap().wallet.balance,
+            10
+        );
+        drop(c);
+        let mut c = database::open(&path).unwrap();
+        assert_eq!(
+            start(&mut c, "maze-round", "maze").unwrap().wallet.balance,
+            10
+        );
+        let state = finish(&mut c, "maze-round", 1000).unwrap();
+        assert_eq!(state.best_scores.len(), 2);
+        assert_eq!(
+            state
+                .best_scores
+                .iter()
+                .find(|s| s.game_id == "runner")
+                .unwrap()
+                .score,
+            500
+        );
+        assert_eq!(
+            state
+                .best_scores
+                .iter()
+                .find(|s| s.game_id == "maze")
+                .unwrap()
+                .score,
+            1000
+        );
+        assert_eq!(state.wallet.balance, 10);
     }
 }

@@ -15,6 +15,10 @@ export default function GamePreview({ gameId }: { gameId: GameId }) {
       game.board[16] = [1, 1, 2, 2, 0, 3, 0, 0, 4, 4];
       game.board[15] = [0, 0, 0, 0, 0, 0, 0, 0, 4, 0];
       game.pieceY = 5;
+    } else if (gameId === 'maze' && game.maze) {
+      const m = game.maze;
+      m.robots[0].x = m.x + Math.cos(m.angle) * 2;
+      m.robots[0].y = m.y + Math.sin(m.angle) * 2;
     } else if (gameId === 'runner') {
       game.x = 390;
       game.y = 268;

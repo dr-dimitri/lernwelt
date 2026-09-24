@@ -31,9 +31,9 @@ describe('Klötzchen-Kosmos', () => {
     actGame(g, 'drop');
     expect(g.over).toBe(true);
   });
-  it('endet nach zwei Minuten ohne automatische neue Runde', () => {
+  it('endet nach vier Minuten ohne automatische neue Runde', () => {
     const g = createGame('blocks');
-    g.elapsed = 119.99;
+    g.elapsed = 239.99;
     stepGame(g, 0.02);
     expect(g.over).toBe(true);
     const snapshot = structuredClone(g);
@@ -70,14 +70,14 @@ describe('Wolkenflitzer', () => {
   });
 });
 describe('Sternenwache', () => {
-  it('trifft Roboter, startet die nächste Welle und gewinnt nach drei Wellen', () => {
+  it('trifft Roboter, startet die nächste Welle und gewinnt nach sechs Wellen', () => {
     const g = createGame('space', 1);
     g.entities = [{ x: 300, y: 100, w: 30, h: 25, alive: true }];
     g.shots = [{ x: 315, y: 124, enemy: false }];
     stepGame(g, 0.02);
     expect(g.score).toBe(25);
     expect(g.wave).toBe(2);
-    g.wave = 3;
+    g.wave = 6;
     g.entities.forEach((e) => (e.alive = false));
     stepGame(g, 0.02);
     expect(g.over).toBe(true);
@@ -113,7 +113,7 @@ describe('Hühner-Rummel', () => {
     expect(g.score).toBe(100);
     hitChicken(g, 99);
     expect(g.score).toBe(100);
-    g.elapsed = 44.99;
+    g.elapsed = 89.99;
     stepGame(g, 0.02);
     expect(g.over).toBe(true);
     hitChicken(g, 2);

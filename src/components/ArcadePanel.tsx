@@ -2,6 +2,7 @@ import InfoPanel from './InfoPanel';
 import { useEffect, useRef, useState } from 'react';
 import {
   games,
+  gameDefinition,
   type ArcadeState,
   type GameSession,
   type GameId,
@@ -168,10 +169,9 @@ export default function ArcadePanel({
             <div className="resume-round">
               <h3>Deine bezahlte Runde wartet!</h3>
               <p>
-                {games.find((g) => g.id === state.activeSession!.gameId)?.name}:
-                Du startest die unterbrochene Runde von vorn. Das kostet keine
-                weiteren Punkte. Beende diese Runde, bevor du ein anderes Spiel
-                wählst.
+                {gameDefinition(state.activeSession.gameId).name}: Du startest
+                die unterbrochene Runde von vorn. Das kostet keine weiteren
+                Punkte. Beende diese Runde, bevor du ein anderes Spiel wählst.
               </p>
               <button
                 disabled={busy}
