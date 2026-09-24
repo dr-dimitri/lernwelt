@@ -98,3 +98,13 @@ Migration 007 kopiert alle Spalten des Punktejournals unverändert und erlaubt z
 ## Kleinere Lernprämien (Schema 8)
 
 Migration 008 erlaubt zusätzlich 1/2/3 in Antwortbelegen. Alle historischen Beträge, Request-IDs und Zeitstempel bleiben erhalten. Neue richtige Lernaufgaben erhalten 1/2/3 nach Aufgabenstufe; gespeicherte Replays liefern den damaligen Betrag. Vokabeln bleiben bei 1 Punkt, Spiel- und Abzeichenpreise unverändert.
+
+## Einmaleins-Trainer (Schema 9)
+
+`multiplication.rs` erzeugt 100 geordnete Faktorenpaare von 1–10 und 25 Quadratzahlen von 1–25. Feste bijektive Permutationen liefern pro Runde jede Aufgabe genau einmal. Stabile fachliche IDs enthalten Rechenart, Faktoren und Inhaltsversion; Sequenznummern unterscheiden neue Übungsversuche. Metadaten enthalten Fach, Jahrgang, Kompetenz, Quelle und Zuordnungsstand. Eine Änderung der v1-Folge oder Antwortbedeutung benötigt eine neue Inhalts-/Belegversion.
+
+Zwei weitere begrenzte Commands: `get_multiplication_state(mode)` und `answer_multiplication(input)`, in Rust-Handler, Buildmanifest und Capability eingetragen. Frontend liefert nur Rechenart, Aufgaben-Sequenz und Antwort (oder null zum Aufdecken). Backend erlaubt nur Ziffern mit äußerem Leerraum, berechnet das Produkt selbst und prüft Profil, Modus und aktuelle Sequenz. Antworttext und Richtig-Ergebnis werden in `multiplication_answers` gespeichert. Der nächste Aufgabenstand folgt aus dem letzten Beleg je Profil und Rechenart.
+
+Belegschlüssel `(profile_id, mode, sequence)` erlaubt genau eine Bewertung je angebotenem Versuch. Identische Wiederholungen liefern das ursprüngliche Ergebnis und aktuelles Guthaben, abweichende Antworten auf alte Versuche werden abgewiesen. Jeder korrekte neue Versuch bucht +1 in `point_entries` mit Art `multiplication`; Beleg und Journal liegen in derselben Immediate-Transaktion. Zwei Verbindungen können denselben Versuch nicht doppelt buchen. Falsch/Aufdecken speichert den Versuch ohne Punkte; Korrektur nach gezeigter Lösung gibt keine Punkte für denselben Versuch.
+
+Migration 009 erhält alle bisherigen Journalzeilen einschließlich IDs und Zeitstempel und erweitert die erlaubten Arten um `multiplication` mit exakt +1. Neues Antwortjournal getrennt vom Curriculum- und Vokabelfortschritt. UI hält die bestätigte Rückmeldung bis zum bewussten Weitergehen; Speicherfehler behalten die identische Antwort für Retry, Neuladen holt den bestätigten Stand. Profilwechsel/Unmount ignorieren veraltete Antworten. Keine zusätzlichen Abhängigkeiten, keine externe Kommunikation, keine Zeitvorgaben.

@@ -226,8 +226,8 @@ export default function ArcadePanel({
               <p className="points-tip">
                 Sammle mit Lernaufgaben weitere Punkte: Vorschule bringt 1,
                 Könner 2 und Streber 3 Lernpunkte pro neuer richtiger Lösung. Im
-                Vokabeltrainer gibt jede richtige Antwort 1 Lernpunkt. Eine
-                Spielrunde kostet 10 Lernpunkte.
+                Vokabel- und Einmaleins-Trainer gibt jede richtige Antwort 1
+                Lernpunkt. Eine Spielrunde kostet 10 Lernpunkte.
               </p>
             )}
         </>

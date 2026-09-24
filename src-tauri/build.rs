@@ -13,6 +13,8 @@ fn main() {
             "finish_game",
             "get_vocabulary_state",
             "review_vocabulary",
+            "get_multiplication_state",
+            "answer_multiplication",
         ]),
     ))
     .expect("Tauri build configuration failed");

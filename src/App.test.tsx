@@ -6,6 +6,7 @@ import { desktop } from './lib/desktop';
 import type { LearnerProfile } from './domain/learner';
 
 import { vocabularyInitial } from './test/vocabulary-fixture';
+import { multiplicationInitial } from './test/multiplication-fixture';
 import { initial } from './test/learning-fixture';
 
 vi.mock('./lib/desktop', () => ({
@@ -15,6 +16,7 @@ vi.mock('./lib/desktop', () => ({
     getLearningState: vi.fn(),
     getArcadeState: vi.fn(),
     getVocabularyState: vi.fn(),
+    getMultiplicationState: vi.fn(),
   },
 }));
 
@@ -206,5 +208,29 @@ it('öffnet den separaten Vokabeltrainer und lädt beim Rückweg die gemeinsame 
   expect(
     await screen.findByRole('button', { name: /Streber/ }),
   ).toHaveAttribute('aria-pressed', 'true');
+  expect(desktop.getLearningState).toHaveBeenCalledTimes(2);
+});
+
+it('öffnet den Einmaleins-Trainer neben dem Vokabeltrainer und lädt danach das Guthaben neu', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getMultiplicationState).mockResolvedValue(
+    multiplicationInitial,
+  );
+  render(<App />);
+  await screen.findByText('Wie möchtest du heute üben?');
+  await user.click(screen.getByRole('button', { name: 'Einmaleins-Trainer' }));
+  expect(
+    await screen.findByRole('heading', { name: '2 × 8 = ?' }),
+  ).toBeVisible();
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...initial,
+    wallet: { ...initial.wallet, balance: 11 },
+  });
+  await user.click(
+    screen.getByRole('button', { name: 'Lernen & Punkte sammeln' }),
+  );
+  expect(await screen.findByLabelText('Verfügbare Punkte')).toHaveTextContent(
+    '11 Punkte',
+  );
   expect(desktop.getLearningState).toHaveBeenCalledTimes(2);
 });

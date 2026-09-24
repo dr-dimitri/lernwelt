@@ -120,3 +120,13 @@ Fünf Karteifächer planen die Wiederholung: Bei einer richtigen Antwort wandert
 Neu hinzugekommen sind unter anderem Tiere, Kleidung, Körper, Wetter, Kalender und Zahlen. Alle ursprünglichen 120 Karten behalten ihre IDs und Inhalte; ergänzt wurden 250 Karten und Antwortvarianten. [Wortschatzumfang und Prüfung](docs/vocabulary-5.md).
 
 Kartenstand und Wiederholungstermine bleiben lokal in SQLite gespeichert. Die Geräteuhr bestimmt die Termine. Neue Profilnamen oder Klassen ändern den vorhandenen Fortschritt nicht. Es gibt noch keinen Import eigener Karten, keine Ausspracheaufnahmen und keine Synchronisierung.
+
+## Einmaleins-Trainer
+
+Neben dem Vokabeltrainer gibt es einen eigenen Bereich für **100er-Einmaleins (1 × 1 bis 10 × 10)** und **Quadratzahlen (1 × 1 bis 25 × 25)**. Beide Rechenarten werden gemischt angeboten, mit allen 100 beziehungsweise 25 Aufgaben pro Runde. Danach startet eine neue Übungsrunde. Es gibt keinen Timer. Rechentipps helfen beim Üben.
+
+Ergebnis eintippen und Enter oder **Antwort prüfen** drücken. Jede richtige neue Antwort gibt **1 Lernpunkt**, auch in weiteren Runden und unabhängig von der globalen Stufe. Falsche Antworten und **Lösung zeigen** geben 0 Punkte ohne Abzug. Nach der Rückmeldung führt **Nächste Aufgabe** weiter. Die Punkte sind im gemeinsamen Guthaben für Spiele und Abzeichen verfügbar.
+
+Aufgabenstand und Anzahl richtiger Antworten bleiben pro Rechenart in SQLite erhalten. Beim erneuten Öffnen geht es nach der zuletzt gespeicherten Antwort weiter; noch nicht gesendete Eingaben bleiben nicht erhalten. Doppelte Übertragungen derselben Antwort buchen nichts zusätzlich. Bei einem Speicherfehler lässt sich dieselbe Antwort erneut speichern oder der bestätigte Stand neu laden.
+
+Eigene prozedurale Aufgaben mit stabilen Inhalts-IDs, Fach Mathematik, Zuordnung Klasse 5 / M5 3.1 (Grundfertigkeiten beim Multiplizieren und Quadratzahlen), Inhaltsstand 24.09.2026. Ergänzendes Üben, keine vollständige Lehrplanabdeckung oder Lernstandsdiagnose. Die Aufgabenfolge ist fest gemischt und wiederholt sich nach jeder Runde; sie ist nicht adaptiv.

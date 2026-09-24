@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import MultiplicationPanel from './components/MultiplicationPanel';
 import VocabularyPanel from './components/VocabularyPanel';
 import ArcadePanel from './components/ArcadePanel';
 import ProfilePanel from './components/ProfilePanel';
@@ -6,7 +7,9 @@ import LearningPanel from './components/LearningPanel';
 import { subjects, type SubjectId } from './domain/subjects';
 
 export default function App() {
-  const [view, setView] = useState<'learn' | 'arcade' | 'vocabulary'>('learn');
+  const [view, setView] = useState<
+    'learn' | 'arcade' | 'vocabulary' | 'multiplication'
+  >('learn');
   const [selected, setSelected] = useState<SubjectId>('mathematics');
   const [profileVersion, setProfileVersion] = useState(0);
 
@@ -54,6 +57,12 @@ export default function App() {
           >
             Vokabeltrainer
           </button>
+          <button
+            aria-pressed={view === 'multiplication'}
+            onClick={() => setView('multiplication')}
+          >
+            Einmaleins-Trainer
+          </button>
         </nav>
         {view === 'learn' ? (
           <>
@@ -86,6 +95,8 @@ export default function App() {
             </section>
             <LearningPanel subject={selected} profileVersion={profileVersion} />
           </>
+        ) : view === 'multiplication' ? (
+          <MultiplicationPanel profileVersion={profileVersion} />
         ) : view === 'vocabulary' ? (
           <VocabularyPanel profileVersion={profileVersion} />
         ) : (

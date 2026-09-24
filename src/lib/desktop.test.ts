@@ -55,3 +55,14 @@ it('übermittelt bei Wortkarten die Antwort und den Versionsschutz, keine Punkte
   await desktop.reviewVocabulary(input);
   expect(invoke).toHaveBeenCalledWith('review_vocabulary', { input });
 });
+
+it('übermittelt beim Einmaleins nur Rechenart, Aufgabenstand und Antwort', async () => {
+  vi.mocked(invoke).mockResolvedValue(undefined);
+  await desktop.getMultiplicationState('squares');
+  expect(invoke).toHaveBeenCalledWith('get_multiplication_state', {
+    mode: 'squares',
+  });
+  const input = { mode: 'tables' as const, sequence: 0, answer: '16' };
+  await desktop.answerMultiplication(input);
+  expect(invoke).toHaveBeenCalledWith('answer_multiplication', { input });
+});
