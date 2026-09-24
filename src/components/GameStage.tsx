@@ -90,7 +90,7 @@ export default function GameStage({
       }
       paint();
       hudClock += dt;
-      if (hudClock >= 0.1 || game.over) {
+      if (paused || hudClock >= 0.1 || game.over) {
         setHud({
           score: game.score,
           lives: game.lives,

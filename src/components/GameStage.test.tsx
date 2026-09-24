@@ -83,6 +83,16 @@ it('pausiert bei Fokusverlust und beendet eine Runde auch aus der Pause einmalig
   expect(screen.getByRole('button', { name: 'Runde beenden' })).toBeDisabled();
 });
 
+it('zeigt einen Treffer auch bei sofortiger Pause vor dem nächsten HUD-Intervall', () => {
+  render(<GameStage gameId="chickens" onFinish={vi.fn()} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Losspielen / Weiter' }));
+  act(() => vi.advanceTimersByTime(32));
+  fireEvent.click(screen.getByRole('button', { name: 'Huhn 1' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Pause' }));
+  act(() => vi.advanceTimersByTime(32));
+  expect(screen.getByText('50 Spielpunkte')).toBeVisible();
+});
+
 it.each(['Enter', ' '])(
   'bewegt das Raumschiff beim Halten einer fokussierten Bildschirmtaste mit %s',
   (key) => {
