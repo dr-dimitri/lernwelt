@@ -209,7 +209,7 @@ mod tests {
             math.iter()
                 .map(|t| t.curriculum_ref.as_str())
                 .collect::<Vec<_>>(),
-            ["M5 1.1", "M5 1.2", "M5 2", "M5 3.1", "M5 3.2", "M5 4.1", "M5 4.2"]
+            ["M5 1.1", "M5 1.1", "M5 1.2", "M5 2", "M5 3.1", "M5 3.2", "M5 4.1", "M5 4.2"]
         );
         for topic in &content.topics {
             assert!(!topic.lesson.is_empty());
@@ -244,6 +244,62 @@ mod tests {
                 }
             }
         }
+    }
+
+    #[test]
+    fn sets_teach_membership_and_number_sets_at_each_level() {
+        let content = catalog().unwrap();
+        let topic = content
+            .topics
+            .iter()
+            .find(|topic| topic.id == "sets")
+            .unwrap();
+        assert_eq!(topic.curriculum_ref, "M5 1.1");
+        for difficulty in [
+            Difficulty::Vorschule,
+            Difficulty::Koenner,
+            Difficulty::Streber,
+        ] {
+            for strand in [
+                "elements",
+                "notation",
+                "belongs",
+                "not-belongs",
+                "natural",
+                "integers",
+                "infinite",
+            ] {
+                let id = format!("by.math.5.sets.{strand}.{}.v1", difficulty.as_str());
+                let exercise = content
+                    .exercises
+                    .iter()
+                    .find(|exercise| exercise.id == id)
+                    .unwrap();
+                assert!(!exercise.legacy);
+                assert_eq!(exercise.topic_id, "sets");
+            }
+        }
+        let membership = content
+            .exercises
+            .iter()
+            .find(|e| e.id == "by.math.5.sets.belongs.koenner.v1")
+            .unwrap();
+        assert!(is_correct(membership, "∈"));
+        assert!(!is_correct(membership, "∉"));
+        let nonmembership = content
+            .exercises
+            .iter()
+            .find(|e| e.id == "by.math.5.sets.not-belongs.koenner.v1")
+            .unwrap();
+        assert!(is_correct(nonmembership, "∉"));
+        assert!(!is_correct(nonmembership, "∈"));
+        let zero = content
+            .exercises
+            .iter()
+            .find(|e| e.id == "by.math.5.sets.natural.koenner.v1")
+            .unwrap();
+        assert!(is_correct(zero, "0"));
+        assert!(!is_correct(zero, "1"));
     }
 
     #[test]

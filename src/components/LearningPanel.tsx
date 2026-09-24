@@ -280,7 +280,7 @@ export default function LearningPanel({
             </h3>
             <p>
               {subject === 'mathematics'
-                ? 'Sieben Themenwelten. Wo beginnt dein nächstes Abenteuer?'
+                ? `${topics.length} Themenwelten. Wo beginnt dein nächstes Abenteuer?`
                 : 'Beispielaufgaben · Noch kein vollständiger Lehrplan · Englisch als 1. Fremdsprache'}
             </p>
             <div className="topic-grid" aria-label="Themen">
@@ -550,8 +550,9 @@ export default function LearningPanel({
         <details className="source-note">
           <summary>Für Neugierige & Erwachsene: Lerninhalte</summary>
           <p>
-            Klasse 5 am bayerischen Gymnasium, alle sieben Lernbereiche. Eigene
-            Übungen nach LehrplanPLUS; Zeichnungen und Begründungen werden über
+            Übungsauswahl für Klasse 5 am bayerischen Gymnasium. Der komplette
+            Lehrplan ist noch nicht lückenlos umgesetzt. Eigene Übungen nach
+            LehrplanPLUS; Zeichnungen und Begründungen werden über
             Mitmachaufgaben geübt und nicht automatisch bewertet. Ein begrenztes
             Übungspaket, kein Ersatz für Unterricht oder eine vollständige
             Lernstandserhebung.
