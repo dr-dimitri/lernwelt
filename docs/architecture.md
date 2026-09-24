@@ -115,3 +115,12 @@ Migration 010 ergänzt `square_round_tasks` (Profil, globale Versuchsequenz, Fak
 Neue Quadratzahlenaufgaben tragen Inhaltsversion v2; die v1-Folge bleibt für historische Antwort-Replays und das 100er-Einmaleins verfügbar. Vorhandene Belege/Journalzeilen werden nicht umgeschrieben. Neue Runden beginnen an der nächsten freien Versuchsequenz, Rundennummer 1 startet unabhängig von der alten Gesamtstatistik. Das Backend liefert `round`, `position` und `roundSize` pro Aufgabe; die Oberfläche berechnet die Anzeige nicht aus der historischen Sequenz. Die Rückmeldung der letzten Aufgabe bleibt bis zum Weitergehen der abgeschlossenen Runde zugeordnet.
 
 Die letzte Antwort, ihr Punkt und die Vorbereitung der folgenden Runde werden gemeinsam atomar gespeichert. Bei einem Fehler wird alles zurückgerollt; die vorherige Aufgabe bleibt für Retry verfügbar. Bereits bestätigte Antworten erhalten bei Replay ihre ursprüngliche Lösung über den gespeicherten Faktor (v2) bzw. die v1-Permutation, ohne einen weiteren Punkt zu buchen. Alle bisher angebotenen v2-Aufgaben bleiben dafür gespeichert.
+
+
+## Sternenlabyrinth (Schema 12)
+
+Migration 012 erweitert die Spiel-IDs um `maze` und erhält sämtliche alten Sessions mit IDs, Scores und Zeitstempeln sowie den Index für genau eine offene Runde. `runner` darf nur als bereits bezahlte Session wiederholt werden; neue Käufe sind gesperrt. Neue Labyrinth-Bestwerte sind von historischen Läufer-Scores getrennt. Keine Änderung an Eintritt oder Punktekonto.
+
+Ein deterministisch gesetzter Zufallsgenerator erstellt pro neuem Spielstart ein verbundenes 15×15-Labyrinth mit zusätzlichen Rundwegen. Alle Sterne, Roboter und der Ausgang liegen auf erreichbaren freien Zellen; die Karte berechnet einen kürzesten Weg zum nächsten Stern. Die Engine validiert Kollisionen und Sichtlinien; Blasen treffen keine Roboter durch Wände. Der Canvas zeichnet Wände per Raycasting und verdeckt Sprites anhand der Wandtiefe. Eigene lokale Vektorgrafik, keine Bibliothek und keine Originalassets. Spielstände bleiben wie bisher nur als Eintritt/Abschluss gespeichert; ein wiederaufgenommenes Spiel beginnt mit neuer Welt.
+
+Zeitlimits: Blöcke 240 Sekunden, Hühner 90 Sekunden, Labyrinth 240 Sekunden. Sternenwache hat sechs statt drei Wellen, jedoch keine feste Zeitbegrenzung. Animation und Zeit laufen ausschließlich bei aktivem, fokussiertem Spiel.

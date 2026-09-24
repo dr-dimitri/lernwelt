@@ -90,14 +90,16 @@ Jede Bildschirmaufgabe bietet einen Tipp und nach der Antwort einen erklärten L
 
 Verdiente Lernpunkte lassen sich für vier eigene Offline-Spiele einlösen. Eine Runde kostet **10 Lernpunkte**, unabhängig vom Lern-Schwierigkeitsgrad:
 
-- **Klötzchen-Kosmos:** fallende Formen drehen und vollständige Reihen bilden (bis zu zwei Minuten).
-- **Wolkenflitzer:** ein Jump-and-Run mit Sternen, Baumstämmen und einer Zielfahne.
-- **Sternenwache:** drei Wellen frecher Weltraumroboter mit Lichtblitzen abwehren.
-- **Hühner-Rummel:** fliegende Hühner mit Konfetti erwischen (45 Sekunden).
+- **Klötzchen-Kosmos:** fallende Formen drehen und vollständige Reihen bilden (bis zu vier Minuten).
+- **Sternenlabyrinth:** ein buntes Abenteuer in der Ich-Perspektive mit zufälligem Labyrinth, fünf Sternen, Blasenwerfer und Ausgangsportal (bis zu vier Minuten).
+- **Sternenwache:** sechs Wellen frecher Weltraumroboter mit Lichtblitzen abwehren.
+- **Hühner-Rummel:** fliegende Hühner mit Konfetti erwischen (90 Sekunden).
+
+Eine bereits bezahlte Wolkenflitzer-Runde bleibt kostenlos spielbar, neue Runden nutzen das Sternenlabyrinth mit eigenen Bestwerten. Seine Karte zeigt den Weg zum nächsten Stern und danach zum Portal. Die Welten sind zusammenhängend; jeder Neustart erzeugt eine neue Welt. Die verlängerten Zeitlimits ändern nichts daran, dass eine Runde durch Zielerreichung oder verlorene Herzen früher enden kann.
 
 Jedes Spiel bietet deutsche Anleitungen, Tastatur- und Bildschirmtasten, Pause und ein sichtbares Rundenende. Hühner können zusätzlich direkt angetippt werden. Beim Fokusverlust pausiert das Spiel. **Spielpunkte und Bestwerte sind getrennt von Lernpunkten** und bringen kein neues Guthaben. Keine automatische kostenpflichtige Wiederholung.
 
-Eintritt, offene Runde und abgeschlossene Bestwerte werden lokal gespeichert. Nach Verlassen oder App-Neustart lässt sich eine offene bezahlte Runde kostenlos von vorn starten; die genaue Spielposition wird nicht gespeichert. Erst nach Abschluss dieser Runde ist ein neues Spiel auswählbar. Ein Speicherfehler lässt sich ohne weitere Abbuchung erneut versuchen. Die Spielauswahl zeigt statische Vorschauen der echten Spielgrafik. Kristallblöcke, ein Laufroboter vor mehrschichtigen Bergen, Raumschiffe mit Triebwerken und flatternde Hühner auf dem Bauernhof werden lokal im Canvas gezeichnet, auf hochauflösenden Displays mit bis zu doppelter interner Auflösung. Animationen folgen der aktiven Spielzeit; in der Pause ruht die Zeichenschleife. Es werden keine Original-Assets der bekannten Spiele und keine neuen Bibliotheken eingebunden.
+Eintritt, offene Runde und abgeschlossene Bestwerte werden lokal gespeichert. Nach Verlassen oder App-Neustart lässt sich eine offene bezahlte Runde kostenlos von vorn starten; die genaue Spielposition wird nicht gespeichert. Erst nach Abschluss dieser Runde ist ein neues Spiel auswählbar. Ein Speicherfehler lässt sich ohne weitere Abbuchung erneut versuchen. Die Spielauswahl zeigt statische Vorschauen der echten Spielgrafik. Kristallblöcke, ein perspektivisches Sternenlabyrinth mit freundlichen Robotern, Raumschiffe mit Triebwerken und flatternde Hühner auf dem Bauernhof werden lokal im Canvas gezeichnet, auf hochauflösenden Displays mit bis zu doppelter interner Auflösung. Animationen folgen der aktiven Spielzeit; in der Pause ruht die Zeichenschleife. Es werden keine Original-Assets der bekannten Spiele und keine neuen Bibliotheken eingebunden.
 
 ## Englisch Klasse 5
 

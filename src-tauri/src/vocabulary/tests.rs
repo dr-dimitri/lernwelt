@@ -227,7 +227,7 @@ fn migration_from_v5_preserves_learning_points_rewards_games_and_profile() {
     assert_eq!(
         c.pragma_query_value(None, "user_version", |r| r.get::<_, i64>(0))
             .unwrap(),
-        10
+        12
     );
     assert_eq!(
         database::get_profile(&c).unwrap().unwrap().display_name,
