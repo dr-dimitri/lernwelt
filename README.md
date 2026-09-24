@@ -30,3 +30,13 @@ npm run desktop:build -- --bundles nsis # Windows Installer, auf Windows ausfüh
 ```
 
 Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale macOS-App ist noch nicht signiert oder notarisiert. Inhalte und vollständige Lehrplanabdeckung sind nicht Teil dieses technischen Grundgerüsts.
+
+## Lokale Daten
+
+Das Lernprofil (Spitzname und Jahrgangsstufe 5–13) wird in `lernwelt.sqlite3` im Tauri-Anwendungsdatenverzeichnis `de.lernwelt.desktop` gespeichert. Auf macOS ist dies `~/Library/Application Support/de.lernwelt.desktop/`, auf Windows unter `%APPDATA%\\de.lernwelt.desktop\\`. Die Browser-Vorschau zeigt einen Hinweis statt Speicherung zu simulieren.
+
+Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Noch sind keine Übungen angeschlossen. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
+
+```sh
+cargo test --manifest-path src-tauri/Cargo.toml
+```
