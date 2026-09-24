@@ -356,3 +356,41 @@ it('zeigt Einheitentafeln mit Spaltenüberschriften und Erklärung', async () =>
   expect(screen.getByRole('cell', { name: '05' })).toBeVisible();
   expect(screen.getByText('Diese Zeile bedeutet 3,05 €.')).toBeVisible();
 });
+
+it('zeigt nach Stufenwechsel 5, 10 und 15 Punkte und die tatsächliche Gutschrift', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...initial,
+    questions: ['vorschule', 'koenner', 'streber'].map((difficulty) => ({
+      ...mathQuestion,
+      id: difficulty,
+      difficulty: difficulty as typeof mathQuestion.difficulty,
+    })),
+  });
+  vi.mocked(desktop.setDifficulty).mockImplementation(
+    async (difficulty) => difficulty,
+  );
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  expect(
+    await screen.findByText(/Eine neue Aufgabe gelöst\? \+10 Punkte!/),
+  ).toBeVisible();
+  for (const [name, points] of [
+    ['Vorschule', 5],
+    ['Könner', 10],
+    ['Streber', 15],
+  ] as const) {
+    await user.click(screen.getByRole('button', { name: new RegExp(name) }));
+    expect(
+      await screen.findByText(
+        new RegExp(`Eine neue Aufgabe gelöst\\? \\+${points} Punkte!`),
+      ),
+    ).toBeVisible();
+    vi.mocked(desktop.submitAnswer).mockResolvedValue({
+      ...awarded,
+      pointsAwarded: points,
+    });
+    await user.type(screen.getByLabelText('Was ist 17 + 25?'), '42');
+    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+    expect(await screen.findByText(`Richtig! +${points} Punkte`)).toBeVisible();
+  }
+});

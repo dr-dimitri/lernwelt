@@ -57,9 +57,9 @@ Details: [Architektur](docs/architecture.md), [Reviewnachweise](docs/reviews/).
 
 ## Punkte und Abzeichen
 
-Nach dem Speichern eines Lernprofils können die Aufgaben in Mathematik und Englisch beantwortet werden. Jede Aufgabe bringt bei der ersten korrekten Lösung **10 Punkte**. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
+Nach dem Speichern eines Lernprofils können die Aufgaben in Mathematik und Englisch beantwortet werden. Jede Aufgabe bringt bei der ersten korrekten Lösung **5 Punkte in Vorschule**, **10 Punkte in Könner** oder **15 Punkte in Streber**. Maßgeblich ist die Stufe der Aufgabe. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
 
-Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Abzeichen **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Die Stufen bringen gleich viele Punkte pro neuer Aufgabe. Weitere Belohnungen lassen sich ergänzen.
+Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Abzeichen **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Bereits gebuchte Punkte bleiben bei Regeländerungen erhalten; es gibt keine rückwirkende Neuberechnung. Weitere Belohnungen lassen sich ergänzen.
 
 Antworten werden lokal im Rust-Backend geprüft. Gutschrift und Lernfortschritt werden gemeinsam gespeichert; Einlösen prüft das Guthaben und bucht atomar ab. Doppelte Requests erzeugen keine doppelten Buchungen. Das lokale System bietet keine manipulationssichere Währung und hat keinen Geldwert.
 

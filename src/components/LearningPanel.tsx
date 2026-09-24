@@ -227,8 +227,10 @@ export default function LearningPanel({
         </div>
       </div>
       <p className="points-explainer">
-        Eine neue Aufgabe gelöst? +{state?.pointsPerAnswer ?? 10} Punkte! Du
-        darfst so oft probieren, wie du magst. Fehler kosten nichts.
+        {state
+          ? `Eine neue Aufgabe gelöst? +${state.pointsByDifficulty[state.difficulty]} Punkte! `
+          : 'Löse neue Aufgaben und sammle Punkte. '}
+        Du darfst so oft probieren, wie du magst. Fehler kosten nichts.
       </p>
       {loading && <p role="status">Dein Punktekonto wird geladen …</p>}
       {error && (
@@ -265,6 +267,10 @@ export default function LearningPanel({
                   <span aria-hidden="true">{level.symbol}</span>
                   <strong>{level.name}</strong>
                   <small>{level.description}</small>
+                  <small>
+                    +{state.pointsByDifficulty[level.id]} Punkte pro neuer
+                    Lösung
+                  </small>
                 </button>
               ))}
             </div>

@@ -3,7 +3,13 @@ use crate::database::{self, Subject};
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::Serialize;
 
-const POINTS_PER_ANSWER: i64 = 10;
+fn points_for_difficulty(difficulty: Difficulty) -> i64 {
+    match difficulty {
+        Difficulty::Vorschule => 5,
+        Difficulty::Koenner => 10,
+        Difficulty::Streber => 15,
+    }
+}
 
 const REWARDS: &[(&str, &str, &str, i64)] = &[
     (
@@ -62,7 +68,7 @@ pub struct LearningState {
     topics: &'static [Topic],
     curriculum_source: &'static str,
     curriculum_version: &'static str,
-    points_per_answer: i64,
+    points_by_difficulty: std::collections::BTreeMap<&'static str, i64>,
     questions: Vec<Question>,
     wallet: Wallet,
 }
@@ -140,7 +146,14 @@ pub fn get_state(connection: &mut Connection) -> Result<LearningState, String> {
         topics: &catalog.topics,
         curriculum_source: &catalog.source,
         curriculum_version: &catalog.curriculum_version,
-        points_per_answer: POINTS_PER_ANSWER,
+        points_by_difficulty: [
+            Difficulty::Vorschule,
+            Difficulty::Koenner,
+            Difficulty::Streber,
+        ]
+        .into_iter()
+        .map(|difficulty| (difficulty.as_str(), points_for_difficulty(difficulty)))
+        .collect(),
         questions,
         wallet: wallet(&transaction)?,
     };
@@ -195,7 +208,7 @@ pub fn submit_answer(
     } else {
         let correct = content::is_correct(exercise, answer);
         let points = if correct && !has_entry(&transaction, "answer", question_id)? {
-            POINTS_PER_ANSWER
+            points_for_difficulty(exercise.difficulty)
         } else {
             0
         };
@@ -267,8 +280,8 @@ mod tests {
     }
 
     fn earn_twenty(connection: &mut Connection) {
-        submit_answer(connection, "one", "sample.math.add.v1", "42").unwrap();
-        submit_answer(connection, "two", "sample.math.multiply.v1", "42").unwrap();
+        submit_answer(connection, "one", "sample.english.plural.v1", "books").unwrap();
+        submit_answer(connection, "two", "sample.english.we.v1", "are").unwrap();
     }
 
     #[test]
@@ -281,10 +294,10 @@ mod tests {
         let correct =
             submit_answer(&mut connection, "correct", "sample.english.cat.v1", " CAT ").unwrap();
         assert!(correct.correct);
-        assert_eq!((correct.points_awarded, correct.wallet.balance), (10, 10));
+        assert_eq!((correct.points_awarded, correct.wallet.balance), (5, 5));
         let repeated =
             submit_answer(&mut connection, "again", "sample.english.cat.v1", "cat").unwrap();
-        assert_eq!((repeated.points_awarded, repeated.wallet.balance), (0, 10));
+        assert_eq!((repeated.points_awarded, repeated.wallet.balance), (0, 5));
         database::save_profile(
             &connection,
             Profile {
@@ -293,7 +306,7 @@ mod tests {
             },
         )
         .unwrap();
-        assert_eq!(wallet(&connection).unwrap().balance, 10);
+        assert_eq!(wallet(&connection).unwrap().balance, 5);
         let progress = database::list_progress(&connection).unwrap();
         assert_eq!((progress[0].attempts, progress[0].correct), (3, 2));
     }
@@ -304,7 +317,7 @@ mod tests {
         for _ in 0..2 {
             let result =
                 submit_answer(&mut connection, "retry-id", "sample.math.add.v1", "42").unwrap();
-            assert_eq!((result.points_awarded, result.wallet.balance), (10, 10));
+            assert_eq!((result.points_awarded, result.wallet.balance), (5, 5));
         }
         assert!(submit_answer(&mut connection, "retry-id", "sample.math.add.v1", "43").is_err());
         assert_eq!(database::list_progress(&connection).unwrap()[0].attempts, 1);
@@ -378,7 +391,7 @@ mod tests {
             submit_answer(&mut connection, "one", "sample.math.add.v1", "42")
                 .unwrap()
                 .points_awarded,
-            10
+            5
         );
     }
 
@@ -428,7 +441,7 @@ mod tests {
         ] {
             let result = submit_answer(&mut connection, id, question, answer).unwrap();
             assert!(result.correct, "{question}");
-            assert_eq!(result.points_awarded, 10);
+            assert_eq!(result.points_awarded, if id == "choice" { 5 } else { 10 });
         }
         let wrong = submit_answer(
             &mut connection,
@@ -438,11 +451,11 @@ mod tests {
         )
         .unwrap();
         assert!(!wrong.correct);
-        assert_eq!(wrong.wallet.balance, 40);
+        assert_eq!(wrong.wallet.balance, 35);
         drop(connection);
         let mut connection = database::open(&directory.path().join("test.sqlite3")).unwrap();
         let state = get_state(&mut connection).unwrap();
-        assert_eq!(state.wallet.balance, 40);
+        assert_eq!(state.wallet.balance, 35);
         assert_eq!(
             state
                 .questions
@@ -495,7 +508,8 @@ mod tests {
                 },
             )
             .unwrap();
-            let replay = submit_answer(&mut connection, "one", "sample.math.add.v1", "42").unwrap();
+            let replay =
+                submit_answer(&mut connection, "one", "sample.english.plural.v1", "books").unwrap();
             assert!(replay.correct);
             assert_eq!(
                 (
@@ -583,7 +597,14 @@ mod tests {
             let good =
                 submit_answer(&mut connection, &request, &exercise.id, &exercise.answer).unwrap();
             assert!(good.correct, "{}", exercise.id);
-            assert_eq!(good.points_awarded, 10);
+            assert_eq!(
+                good.points_awarded,
+                match exercise.difficulty {
+                    Difficulty::Vorschule => 5,
+                    Difficulty::Koenner => 10,
+                    Difficulty::Streber => 15,
+                }
+            );
             let replay =
                 submit_answer(&mut connection, &request, &exercise.id, &exercise.answer).unwrap();
             assert_eq!(replay.wallet.balance, good.wallet.balance);
@@ -609,5 +630,209 @@ mod tests {
         }
         let progress = database::list_progress(&connection).unwrap();
         assert_eq!(progress.iter().map(|p| p.correct).sum::<u32>(), 726);
+    }
+    #[test]
+    fn awards_five_ten_fifteen_in_both_subjects_independent_of_selected_level() {
+        let (directory, mut connection) = setup();
+        for (subject, prefix) in [
+            (Subject::Mathematics, "math"),
+            (Subject::English, "english"),
+        ] {
+            for (difficulty, expected) in [
+                (Difficulty::Vorschule, 5),
+                (Difficulty::Koenner, 10),
+                (Difficulty::Streber, 15),
+            ] {
+                database::set_difficulty(
+                    &connection,
+                    if difficulty == Difficulty::Streber {
+                        "vorschule"
+                    } else {
+                        "streber"
+                    },
+                )
+                .unwrap();
+                let exercise = content::catalog()
+                    .unwrap()
+                    .exercises
+                    .iter()
+                    .find(|e| !e.legacy && e.subject == subject && e.difficulty == difficulty)
+                    .unwrap();
+                let id = format!("{prefix}-{}", difficulty.as_str());
+                let wrong = submit_answer(
+                    &mut connection,
+                    &format!("{id}-wrong"),
+                    &exercise.id,
+                    "wrong",
+                )
+                .unwrap();
+                assert_eq!(wrong.points_awarded, 0);
+                let correct =
+                    submit_answer(&mut connection, &id, &exercise.id, &exercise.answer).unwrap();
+                assert_eq!(correct.points_awarded, expected);
+                let replay =
+                    submit_answer(&mut connection, &id, &exercise.id, &exercise.answer).unwrap();
+                assert_eq!(replay.points_awarded, expected);
+                assert_eq!(replay.wallet.balance, correct.wallet.balance);
+                let repeated = submit_answer(
+                    &mut connection,
+                    &format!("{id}-again"),
+                    &exercise.id,
+                    &exercise.answer,
+                )
+                .unwrap();
+                assert_eq!(repeated.points_awarded, 0);
+            }
+        }
+        drop(connection);
+        let mut reopened = database::open(&directory.path().join("test.sqlite3")).unwrap();
+        let state = get_state(&mut reopened).unwrap();
+        assert_eq!(state.wallet.balance, 60);
+        let json = serde_json::to_value(state).unwrap();
+        assert_eq!(
+            json["pointsByDifficulty"],
+            serde_json::json!({"vorschule": 5, "koenner": 10, "streber": 15})
+        );
+    }
+
+    fn old_v4(path: &std::path::Path) -> Connection {
+        let old = Connection::open(path).unwrap();
+        for migration in [
+            include_str!("../migrations/001_initial.sql"),
+            include_str!("../migrations/002_points.sql"),
+            include_str!("../migrations/003_difficulty.sql"),
+            include_str!("../migrations/004_arcade.sql"),
+        ] {
+            old.execute_batch(migration).unwrap();
+        }
+        old.execute_batch("INSERT INTO learner_profile VALUES (1,'Alt',5);
+            INSERT INTO point_entries (profile_id,kind,item_id,amount) VALUES
+            (1,'answer','sample.english.cat.v1',10),(1,'answer','sample.english.negation.v1',10),(1,'answer','sample.math.add.v1',10),(1,'reward','star',-20),(1,'game','old-game',-10);
+            INSERT INTO answer_submissions VALUES ('old-easy',1,'sample.english.cat.v1','cat',1,10,'2026-09-01'),('old-hard',1,'sample.english.negation.v1','not',1,10,'2026-09-01');
+            INSERT INTO game_sessions (id,profile_id,game_id) VALUES ('old-game',1,'blocks');
+            UPDATE learning_settings SET difficulty='streber'; PRAGMA user_version=4;").unwrap();
+        database::record_attempt(&old, Subject::English, "old.competency", true).unwrap();
+        old
+    }
+
+    #[test]
+    fn v5_migration_preserves_old_awards_replays_and_active_games() {
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("old.sqlite3");
+        drop(old_v4(&path));
+        let mut connection = database::open(&path).unwrap();
+        for (request, question, answer) in [
+            ("old-easy", "sample.english.cat.v1", "cat"),
+            ("old-hard", "sample.english.negation.v1", "not"),
+        ] {
+            let replay = submit_answer(&mut connection, request, question, answer).unwrap();
+            assert_eq!(replay.points_awarded, 10);
+            assert_eq!(replay.wallet.balance, 0);
+            assert_eq!(replay.wallet.total_earned, 30);
+            assert!(replay.wallet.rewards[0].owned);
+            assert_eq!(
+                submit_answer(
+                    &mut connection,
+                    &format!("{request}-again"),
+                    question,
+                    answer
+                )
+                .unwrap()
+                .points_awarded,
+                0
+            );
+        }
+        assert_eq!(
+            crate::arcade::get_state(&mut connection)
+                .unwrap()
+                .active_session
+                .unwrap()
+                .id,
+            "old-game"
+        );
+        assert_eq!(
+            database::get_difficulty(&connection).unwrap(),
+            Difficulty::Streber
+        );
+        assert_eq!(
+            database::get_profile(&connection)
+                .unwrap()
+                .unwrap()
+                .display_name,
+            "Alt"
+        );
+        assert!(database::list_progress(&connection)
+            .unwrap()
+            .iter()
+            .any(|p| p.competency_id == "old.competency" && p.correct == 1));
+        assert_eq!(
+            connection
+                .query_row(
+                    "SELECT created_at FROM answer_submissions WHERE request_id='old-easy'",
+                    [],
+                    |row| row.get::<_, String>(0)
+                )
+                .unwrap(),
+            "2026-09-01"
+        );
+        assert_eq!(
+            submit_answer(&mut connection, "new-easy", "sample.english.be.v1", "is")
+                .unwrap()
+                .points_awarded,
+            5
+        );
+        assert_eq!(
+            submit_answer(
+                &mut connection,
+                "new-hard",
+                "sample.english.repair.v1",
+                "goes"
+            )
+            .unwrap()
+            .points_awarded,
+            15
+        );
+        drop(connection);
+        let mut reopened = database::open(&path).unwrap();
+        assert_eq!(wallet(&reopened).unwrap().balance, 20);
+        assert_eq!(
+            submit_answer(&mut reopened, "old-easy", "sample.english.cat.v1", "cat")
+                .unwrap()
+                .points_awarded,
+            10
+        );
+    }
+
+    #[test]
+    fn failed_v5_migration_keeps_old_answer_table_and_version() {
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("old.sqlite3");
+        let old = old_v4(&path);
+        old.execute_batch("CREATE TABLE answer_submissions_v5 (collision TEXT);")
+            .unwrap();
+        drop(old);
+        assert!(database::open(&path).is_err());
+        let old = Connection::open(&path).unwrap();
+        assert_eq!(
+            old.pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
+                .unwrap(),
+            4
+        );
+        assert_eq!(
+            old.query_row(
+                "SELECT points_awarded FROM answer_submissions WHERE request_id='old-easy'",
+                [],
+                |row| row.get::<_, i64>(0)
+            )
+            .unwrap(),
+            10
+        );
+        assert!(old
+            .execute(
+                "INSERT INTO answer_submissions VALUES ('new',1,'q','a',1,5,'today')",
+                []
+            )
+            .is_err());
+        assert_eq!(wallet(&old).unwrap().total_earned, 30);
     }
 }
