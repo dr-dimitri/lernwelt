@@ -285,7 +285,7 @@ fn square_rounds_use_five_factors_four_times_each_and_preserve_order_across_reop
         let mut counts = std::collections::HashMap::new();
         for n in &plan {
             *counts.entry(n).or_insert(0) += 1;
-            assert!((1..=25).contains(n));
+            assert!((10..=25).contains(n));
         }
         assert_eq!(counts.len(), 5);
         assert!(counts.values().all(|count| *count == 4));
@@ -475,4 +475,40 @@ fn v9_upgrade_keeps_historical_square_replays_and_starts_a_new_twenty_task_round
             2
         );
     }
+}
+
+#[test]
+fn v10_upgrade_replaces_only_unanswered_squares_and_preserves_small_factor_replays() {
+    let (d, mut c) = setup();
+    c.execute("INSERT INTO square_round_tasks VALUES (1,0,3,1,1)", [])
+        .unwrap();
+    solve(&mut c, Mode::Squares, 0);
+    c.execute(
+        "UPDATE square_round_tasks SET factor=4 WHERE sequence>0",
+        [],
+    )
+    .unwrap();
+    c.pragma_update(None, "user_version", 10).unwrap();
+    drop(c);
+    let mut c = database::open(&d.path().join("test.db")).unwrap();
+    let replay = answer(&mut c, input(Mode::Squares, 0, Some("9".into()))).unwrap();
+    assert_eq!(replay.solution, 9);
+    assert_eq!(replay.state.wallet.balance, 1);
+    let q = replay.state.task.unwrap();
+    assert_eq!((q.sequence, q.position, q.round_size), (1, 1, 20));
+    for seq in 1..=20 {
+        let task = saved_square(&c, seq).unwrap().unwrap();
+        assert!((10..=25).contains(&task.left));
+    }
+    assert_eq!(solve(&mut c, Mode::Squares, 1).state.wallet.balance, 2);
+    drop(c);
+    let mut c = database::open(&d.path().join("test.db")).unwrap();
+    assert_eq!(
+        get_state(&mut c, Mode::Squares)
+            .unwrap()
+            .task
+            .unwrap()
+            .position,
+        2
+    );
 }

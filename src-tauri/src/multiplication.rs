@@ -74,7 +74,7 @@ fn square_task(c: &Connection, sequence: i64) -> Result<Task, String> {
             |r| r.get(0),
         )
         .map_err(db_error)?;
-    let mut select = c.prepare("WITH RECURSIVE numbers(n) AS (VALUES(1) UNION ALL SELECT n+1 FROM numbers WHERE n<25) SELECT n FROM numbers ORDER BY random() LIMIT 5").map_err(db_error)?;
+    let mut select = c.prepare("WITH RECURSIVE numbers(n) AS (VALUES(10) UNION ALL SELECT n+1 FROM numbers WHERE n<25) SELECT n FROM numbers ORDER BY random() LIMIT 5").map_err(db_error)?;
     let chosen = select
         .query_map([], |r| r.get::<_, i64>(0))
         .map_err(db_error)?
