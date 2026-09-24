@@ -627,3 +627,33 @@ summary {
 .answer-feedback p {
   white-space: pre-line;
 }
+
+.learning-table {
+  margin-block: 1.5rem;
+}
+.learning-table-scroll {
+  overflow-x: auto;
+}
+.learning-table table {
+  border-collapse: collapse;
+  min-width: 100%;
+}
+.learning-table caption {
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+}
+.learning-table th,
+.learning-table td {
+  border: 1px solid #8caaa3;
+  padding: 0.6rem;
+  text-align: right;
+  white-space: nowrap;
+}
+.learning-table th {
+  background: #e2eeea;
+}
+.learning-table td {
+  background: #fff;
+  font-variant-numeric: tabular-nums;
+}

@@ -331,3 +331,28 @@ it('leert eine alte Antwort auch nach Wiederherstellung einer anders gespeichert
     'true',
   );
 });
+
+it('zeigt Einheitentafeln mit Spaltenüberschriften und Erklärung', async () => {
+  const user = userEvent.setup();
+  const state = structuredClone(initial);
+  state.topics[0].tables = [
+    {
+      caption: 'Geld: Euro und Cent',
+      headers: ['€', 'ct (2 Stellen)'],
+      rows: [['3', '05']],
+      note: 'Diese Zeile bedeutet 3,05 €.',
+    },
+  ];
+  vi.mocked(desktop.getLearningState).mockResolvedValue(state);
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await screen.findByLabelText('Was ist 17 + 25?');
+  await user.click(screen.getByText('So geht’s · kurz erklärt'));
+  expect(
+    screen.getByRole('table', { name: 'Geld: Euro und Cent' }),
+  ).toBeVisible();
+  expect(
+    screen.getByRole('columnheader', { name: 'ct (2 Stellen)' }),
+  ).toBeVisible();
+  expect(screen.getByRole('cell', { name: '05' })).toBeVisible();
+  expect(screen.getByText('Diese Zeile bedeutet 3,05 €.')).toBeVisible();
+});

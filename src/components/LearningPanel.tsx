@@ -338,6 +338,39 @@ export default function LearningPanel({
           <details className="lesson" key={topic.id}>
             <summary>So geht’s · kurz erklärt</summary>
             <p>{topic.lesson}</p>
+            {topic.tables?.map((table) => (
+              <div key={table.caption} className="learning-table">
+                <div
+                  className="learning-table-scroll"
+                  role="region"
+                  aria-label={table.caption}
+                  tabIndex={0}
+                >
+                  <table>
+                    <caption>{table.caption}</caption>
+                    <thead>
+                      <tr>
+                        {table.headers.map((header, index) => (
+                          <th key={index} scope="col">
+                            {header}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {table.rows.map((row, index) => (
+                        <tr key={index}>
+                          {row.map((cell, column) => (
+                            <td key={column}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p>{table.note}</p>
+              </div>
+            ))}
           </details>
           <div className="question-navigation">
             <label htmlFor="question-picker">Deine Aufgabe</label>

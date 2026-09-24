@@ -262,7 +262,7 @@
       "grade": 5,
       "curriculumRef": "M5 4.1",
       "description": "Geld, Längen, Gewichte, Zeit und Maßstäbe.",
-      "lesson": "Eine Größe hat eine Zahl und eine Einheit, zum Beispiel 3 m. Auf dem Papier schreibst du beides auf. In das Antwortfeld kommt nur die Zahl; die gesuchte Einheit steht in der Frage.\n1 m = 100 cm, 1 kg = 1 000 g, aber 1 h = 60 min.\nAuch Kommazahlen kannst du umrechnen: 1,5 m = 150 cm.\nBeim Dreisatz rechnest du zuerst für ein Stück und danach für die gewünschte Anzahl.",
+      "lesson": "Eine Größe hat eine Zahl und eine Einheit, zum Beispiel 3 m. Auf dem Papier schreibst du beides auf. In das Antwortfeld kommt nur die Zahl; die gesuchte Einheit steht in der Frage.\n1 m = 100 cm, 1 kg = 1 000 g, aber 1 h = 60 min.\nAuch Kommazahlen kannst du umrechnen: 1,5 m = 150 cm.\nBeim Dreisatz rechnest du zuerst für ein Stück und danach für die gewünschte Anzahl.\n\nEine Einheitentafel sortiert die Stellen einer Größe. Schreibe die Einerziffer zur genannten Einheit. Die Stellen rechts davon gehören zu kleineren Einheiten. Lies danach die ganze Zeile in der gewünschten Einheit. Leere Stellen füllst du mit 0.\nBei Geld hat die Centgruppe zwei Stellen. Bei Länge stehen zwischen km und m drei Stellen; von m über dm und cm zu mm geht es jeweils um eine Stelle. Bei Masse haben die Gruppen kg, g und mg jeweils drei Stellen.\nZum Addieren und Subtrahieren bringst du Größen zuerst auf dieselbe Einheit: 1,2 m + 35 cm = 120 cm + 35 cm = 155 cm. Beim Vervielfachen und Aufteilen bleibt die Einheit: 3 × 20 cm = 60 cm, 60 cm : 3 = 20 cm.\nZeit ist anders: 1 h = 60 min, 1 min = 60 s. 1 h 30 min sind deshalb 1,5 h, nicht 1,30 h.\nEine Schätzung braucht einen Vergleich: Wie lang ist dein Lineal? Wie schwer ist eine beschriftete Packung? Miss nach oder prüfe in einem Sachbuch. Notiere Quelle, Einheit und Vergleich; die App braucht dafür kein Internet.",
       "activities": [
         {
           "title": "Schätzmeister",
@@ -273,9 +273,126 @@
           "title": "Dein Zimmer als Plan",
           "prompt": "Eine Wand ist in Wirklichkeit 4 m lang. Der Plan hat den Maßstab 1 : 50.\n1. Rechne aus, wie lang die Wand auf dem Plan sein muss.\n2. Zeichne sie und erkläre deinen Rechenweg.",
           "check": "4 m = 400 cm. 400 cm : 50 = 8 cm auf dem Papier. Alle Längen im Plan werden mit demselben Faktor verkleinert."
+        },
+        {
+          "title": "Einheiten passend eintragen",
+          "prompt": "1. Zeichne die Geld-, Längen- und Massentafel aus der Erklärung ab.\n2. Vorschule: Trage 3 € 5 ct, 2 m 34 cm und 1 kg 250 g ein.\n3. Könner: Trage 7,08 €, 1,025 km und 3,045 kg ein.\n4. Streber: Trage 12,09 €, 2,045 m und 4,005 g ein.\n5. Lies jede Zeile in einer größeren und einer kleineren Einheit. Erkläre die Nullen.",
+          "check": "Vorschule: 3,05 € = 305 ct; 2,34 m = 234 cm; 1,25 kg = 1 250 g.\nKönner: 708 ct; 1 025 m; 3 045 g.\nStreber: 1 209 ct; 2 045 mm; 4 005 mg.\nDie Null hält eine leere Stelle frei. Die Gruppenbreite ist wichtig: Cent zwei Stellen; km zu m drei Stellen; m zu dm zu cm zu mm je eine; Massegruppen je drei."
+        },
+        {
+          "title": "Größenrechnen erklären",
+          "prompt": "1. Rechne auf Papier: 2,35 € + 85 ct; 2,5 m − 75 cm; 4 × 200 g; 1,5 kg : 6.\n2. Schreibe zunächst alles in derselben Einheit.\n3. Begründe, warum 2,35 + 85 hier nicht der Europreis sein kann.\n4. Knoble: Was ist der Unterschied zwischen 240 cm : 8 und 240 cm : 30 cm?",
+          "check": "Ergebnisse: 3,20 €; 1,75 m; 800 g; 250 g. Die Maßzahlen darfst du erst nach Angleichung der Einheiten zusammenzählen oder abziehen.\n240 cm : 8 = 30 cm: Länge jedes von 8 Stücken. 240 cm : 30 cm = 8: Anzahl der Stücke. Prüfe, ob dein Antwortsatz eine Länge oder eine Anzahl verlangt."
+        },
+        {
+          "title": "Messen heißt Einheiten anlegen",
+          "prompt": "1. Schneide einen Papierstreifen von genau 10 cm Länge ab.\n2. Lege ihn ohne Lücken und ohne Überlappung mehrfach an einer Tischkante an. Zähle die ganzen Streifen. Miss den Rest mit dem Lineal.\n3. Rechne ganze Streifen mal 10 cm plus Rest.\n4. Miss die Tischkante zum Vergleich mit einem Maßband. Beginne bei der Nullmarke.",
+          "check": "Die Anzahl der gleichen Einheiten bestimmt die Maßzahl. Ein Rest wird in kleinere Einheiten unterteilt. Beispiel: 8 Streifen und 6 cm Rest ergeben 86 cm. Dein Tisch darf anders lang sein. Große Unterschiede deuten auf Lücken, Überlappungen oder eine falsche Startmarke hin."
+        },
+        {
+          "title": "Recherche ohne Internet",
+          "prompt": "1. Schätze die Länge eines Gegenstands oder die Masse einer Packung. Nutze einen Vergleich, etwa ein 30-cm-Lineal oder eine beschriftete 1-kg-Packung.\n2. Prüfe die Schätzung durch Messen, eine Verpackungsangabe oder ein Sachbuch. Bei einer Packung unterscheide Inhalt und Packung zusammen.\n3. Notiere Schätzung, geprüften Wert, Einheit und Quelle (z. B. Buch mit Seite oder Verpackung).\n4. Zeige deine Ergebnisse auf einem kleinen Plakat. Erkläre, warum deine Schätzung nah dran oder weit weg war.\n5. Streber: Vergleiche eine zweite Quelle oder Messung. Warum könnten die Angaben abweichen?",
+          "check": "Keine feste Musterzahl: Gegenstände unterscheiden sich. Dein Plakat muss einen nachvollziehbaren Vergleich, gleiche Einheiten und eine benannte Quelle zeigen. Packungsangaben können nur den Inhalt meinen; Messgeräte haben begrenzte Genauigkeit. Internet ist für diesen Auftrag nicht nötig. Eine erwachsene Person kann beim Nachschlagen helfen."
+        },
+        {
+          "title": "Dreisatz in drei Zeilen",
+          "prompt": "1. Drei gleiche Hefte kosten zusammen 6 €. Was kosten fünf?\n2. Schreibe eine Zeile für 3 Hefte, eine für 1 Heft und eine für 5 Hefte.\n3. Könner: 6 gleiche Beutel wiegen 1,8 kg. Wie viel wiegen 14?\n4. Streber: Erkläre, warum dieser Weg nur bei gleichem Preis oder gleichem Gewicht pro Stück passt.",
+          "check": "3 Hefte → 6 €; 1 Heft → 2 €; 5 Hefte → 10 €.\n6 Beutel → 1,8 kg; 1 Beutel → 0,3 kg; 14 Beutel → 4,2 kg. Zuerst teilen, dann vervielfachen. Unterschiedliche Stückpreise, Rabatte oder verschieden gefüllte Beutel können diese Zuordnung verändern."
         }
       ],
-      "languageSequence": null
+      "languageSequence": null,
+      "tables": [
+        {
+          "caption": "Geld: Euro und Cent",
+          "headers": [
+            "€",
+            "ct (2 Stellen)"
+          ],
+          "rows": [
+            [
+              "3",
+              "05"
+            ],
+            [
+              "0",
+              "75"
+            ]
+          ],
+          "note": "Lies: 3 € 05 ct = 3,05 € = 305 ct. Darunter: 0,75 € = 75 ct. Von € zu ct mal 100, zurück geteilt durch 100."
+        },
+        {
+          "caption": "Länge: von km bis mm",
+          "headers": [
+            "km",
+            "m (3 Stellen)",
+            "dm",
+            "cm",
+            "mm"
+          ],
+          "rows": [
+            [
+              "0",
+              "002",
+              "3",
+              "4",
+              "0"
+            ],
+            [
+              "1",
+              "234",
+              "5",
+              "6",
+              "7"
+            ]
+          ],
+          "note": "Erste Zeile: 2 m 3 dm 4 cm = 2,34 m = 234 cm. Zweite Zeile: 1 234,567 m. Zwischen km und m liegen drei Stellen (mal 1 000); danach jeweils eine (mal 10). Lies die Einerstelle an der gewünschten Einheit ab."
+        },
+        {
+          "caption": "Masse: von t bis mg",
+          "headers": [
+            "t",
+            "kg (3 Stellen)",
+            "g (3 Stellen)",
+            "mg (3 Stellen)"
+          ],
+          "rows": [
+            [
+              "0",
+              "003",
+              "045",
+              "000"
+            ],
+            [
+              "0",
+              "000",
+              "004",
+              "005"
+            ]
+          ],
+          "note": "Erste Zeile: 3 kg 45 g = 3,045 kg = 3 045 g. Zweite Zeile: 4 g 5 mg = 4,005 g = 4 005 mg. Jeder Schritt zur kleineren Gruppe bedeutet mal 1 000; zurück geteilt durch 1 000."
+        },
+        {
+          "caption": "Zeit: Stunden, Minuten, Sekunden",
+          "headers": [
+            "h",
+            "min",
+            "s"
+          ],
+          "rows": [
+            [
+              "1",
+              "02",
+              "03"
+            ],
+            [
+              "0",
+              "90",
+              "00"
+            ]
+          ],
+          "note": "Erste Zeile: 1 h 2 min 3 s = 3 723 s. Zweite Zeile: 90 min = 1 h 30 min. Minuten und Sekunden werden bei 60 gebündelt. Diese Übersicht ist keine Dezimal-Stellenwerttafel."
+        }
+      ]
     },
     {
       "id": "area",
@@ -4855,6 +4972,366 @@
       "answer": "23,5",
       "hint": "2 dm sind 20 cm, 35 mm sind 3,5 cm.",
       "explanation": "20 cm + 3,5 cm = 23,5 cm.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.money-table.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.1.money-table",
+      "prompt": "Eine Geldtafel zeigt 2 € und 05 ct.\nWie viele Cent sind das?",
+      "answer": "205",
+      "hint": "1 € sind 100 ct.",
+      "explanation": "2×100 ct + 5 ct = 205 ct. Die 0 in 05 hält die Zehnerstelle frei.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.money-table.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.1.money-table",
+      "prompt": "Du trägst 7,08 € in eine Geldtafel ein.\nWie viele Cent stehen in der Centgruppe?",
+      "answer": "8",
+      "hint": "Die Centgruppe hat zwei Stellen rechts vom Euro-Komma.",
+      "explanation": "Die Zeile lautet 7 | 08. In der Centgruppe stehen 8 ct.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.money-table.streber.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.1.money-table",
+      "prompt": "Die Geldtafel zeigt 12 € und 09 ct. Du gibst 85 ct aus.\nWie viele Euro bleiben?",
+      "answer": "11.24",
+      "hint": "Rechne zuerst alles in Cent.",
+      "explanation": "1 209 ct − 85 ct = 1 124 ct = 11,24 €.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.length-table.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.1.length-table",
+      "prompt": "Die Längentafel zeigt 2 m, 3 dm und 4 cm.\nWie viele Zentimeter sind das?",
+      "answer": "234",
+      "hint": "Rechne jede Gruppe in cm um.",
+      "explanation": "200 cm + 30 cm + 4 cm = 234 cm.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.length-table.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.1.length-table",
+      "prompt": "Wie viele Meter sind 1,025 km?",
+      "answer": "1025",
+      "hint": "Zwischen km und m liegen drei Stellen.",
+      "explanation": "1 km + 25 m = 1 025 m. 1,025 × 1 000 = 1 025.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.length-table.streber.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.1.length-table",
+      "prompt": "Eine Länge besteht aus 2 m, 4 cm und 5 mm.\nWie viele Meter sind das?",
+      "answer": "2.045",
+      "hint": "Die dm-Stelle bleibt 0.",
+      "explanation": "2 m + 0,04 m + 0,005 m = 2,045 m. Tafel: m=2, dm=0, cm=4, mm=5.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.mass-table.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.1.mass-table",
+      "prompt": "Eine Massentafel zeigt 1 kg und 250 g.\nWie viele Gramm sind das?",
+      "answer": "1250",
+      "hint": "1 kg = 1 000 g.",
+      "explanation": "1 000 g + 250 g = 1 250 g.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.mass-table.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.1.mass-table",
+      "prompt": "Wie viele Kilogramm sind 3 t und 45 kg?",
+      "answer": "3045",
+      "hint": "Die kg-Gruppe hat drei Stellen: 045.",
+      "explanation": "3 t = 3 000 kg. Mit 45 kg sind es 3 045 kg.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.mass-table.streber.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.1.mass-table",
+      "prompt": "Eine Massentafel zeigt 4 g und 5 mg.\nWie viele Gramm sind das?",
+      "answer": "4.005",
+      "hint": "Die mg-Gruppe lautet 005.",
+      "explanation": "5 mg = 0,005 g. Insgesamt 4,005 g.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.time-is-different.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.1.time-is-different",
+      "prompt": "Wie viele Minuten sind 2 Stunden?",
+      "answer": "120",
+      "hint": "Eine Stunde hat 60 Minuten.",
+      "explanation": "2 × 60 min = 120 min.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.time-is-different.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.1.time-is-different",
+      "prompt": "Wie viele Minuten sind 1,5 Stunden?",
+      "answer": "90",
+      "hint": "Eine halbe Stunde hat 30 Minuten.",
+      "explanation": "1,5 × 60 min = 90 min. Das ist 1 h 30 min.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.time-is-different.streber.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.1.time-is-different",
+      "prompt": "Wie viele Sekunden sind 1 h 2 min 3 s?",
+      "answer": "3723",
+      "hint": "Wandle Stunden und Minuten getrennt in Sekunden um.",
+      "explanation": "1×3 600 + 2×60 + 3 = 3 723 s.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.add-quantities.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.1.add-quantities",
+      "prompt": "Ein Band ist 30 cm lang, ein zweites 45 cm.\nWie lang sind beide zusammen in cm?",
+      "answer": "75",
+      "hint": "Gleiche Einheiten darfst du direkt zusammenzählen.",
+      "explanation": "30 cm + 45 cm = 75 cm.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.add-quantities.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.1.add-quantities",
+      "prompt": "Ein Einkauf kostet 2,35 €. Dazu kommen 85 ct.\nWie viel kostet alles zusammen in Euro?",
+      "answer": "3.2",
+      "hint": "85 ct = 0,85 €.",
+      "explanation": "2,35 € + 0,85 € = 3,20 €.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.add-quantities.streber.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.1.add-quantities",
+      "prompt": "Eine Tasche wiegt 1,25 kg. Du legst ein Buch mit 375 g hinein.\nWie schwer ist sie nun in kg?",
+      "answer": "1.625",
+      "hint": "Schreibe 375 g als Kilogramm.",
+      "explanation": "1,25 kg + 0,375 kg = 1,625 kg.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.subtract-quantities.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.1.subtract-quantities",
+      "prompt": "Ein Film dauert 90 Minuten. 25 Minuten sind vorbei.\nWie viele Minuten fehlen noch?",
+      "answer": "65",
+      "hint": "Ziehe die vergangene Zeit ab.",
+      "explanation": "90 min − 25 min = 65 min.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.subtract-quantities.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.1.subtract-quantities",
+      "prompt": "Von einem 2,5 m langen Band schneidest du 75 cm ab.\nWie viele Meter bleiben?",
+      "answer": "1.75",
+      "hint": "75 cm = 0,75 m.",
+      "explanation": "2,5 m − 0,75 m = 1,75 m.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.subtract-quantities.streber.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.1.subtract-quantities",
+      "prompt": "Ein Vorrat wiegt 3,2 kg. Du entnimmst 875 g.\nWie viele Kilogramm bleiben?",
+      "answer": "2.325",
+      "hint": "875 g = 0,875 kg.",
+      "explanation": "3,200 kg − 0,875 kg = 2,325 kg.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.multiply-quantities.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.1.multiply-quantities",
+      "prompt": "Ein Beutel wiegt 200 g.\nWie viele Gramm wiegen 4 gleiche Beutel?",
+      "answer": "800",
+      "hint": "Nimm 200 g viermal.",
+      "explanation": "4 × 200 g = 800 g.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.multiply-quantities.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.1.multiply-quantities",
+      "prompt": "Eine Runde dauert 2 min 15 s.\nWie viele Sekunden dauern 3 gleich lange Runden?",
+      "answer": "405",
+      "hint": "Rechne eine Runde zuerst in Sekunden um.",
+      "explanation": "2 min 15 s = 135 s. 3×135 s = 405 s.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.multiply-quantities.streber.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.1.multiply-quantities",
+      "prompt": "Ein Seil ist 1,25 m lang. Du brauchst 6 solche Stücke.\nWie viele Zentimeter Seil brauchst du insgesamt?",
+      "answer": "750",
+      "hint": "Ein Stück hat 125 cm.",
+      "explanation": "6×125 cm = 750 cm. Das sind 7,5 m.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.divide-quantities.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.1.divide-quantities",
+      "prompt": "12 € werden gerecht auf 3 Kinder verteilt.\nWie viele Euro bekommt jedes Kind?",
+      "answer": "4",
+      "hint": "Gerecht heißt: alle erhalten gleich viel.",
+      "explanation": "12 € : 3 = 4 €.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.divide-quantities.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.1.divide-quantities",
+      "prompt": "1,5 kg Reis werden gleichmäßig in 6 Beutel gefüllt.\nWie viele Gramm sind in jedem Beutel?",
+      "answer": "250",
+      "hint": "Rechne 1,5 kg zuerst in Gramm um.",
+      "explanation": "1 500 g : 6 = 250 g.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.units.divide-quantities.streber.v1",
+      "subject": "mathematics",
+      "topicId": "units",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.1.divide-quantities",
+      "prompt": "Ein 2,4 m langes Band wird in gleich lange Stücke von 30 cm geschnitten.\nWie viele Stücke entstehen?",
+      "answer": "8",
+      "hint": "Hier teilst du eine Länge durch eine Länge. Das Ergebnis ist eine Anzahl.",
+      "explanation": "240 cm : 30 cm = 8. Anders als beim Verteilen auf eine Anzahl hat das Ergebnis hier keine Längeneinheit.",
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
