@@ -68,7 +68,9 @@ Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri
 
 ## Mathematik Klasse 5
 
-153 eigene Aufgaben nach [LehrplanPLUS Gymnasium Bayern, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik), Quellenstand 24.09.2026. Alle sieben Lernbereiche sind als Themen auswählbar:
+174 eigene Aufgaben nach [LehrplanPLUS Gymnasium Bayern, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik), Quellenstand 24.09.2026. Die sieben Lernbereiche sind in acht Themen vertreten; eine lückenlose Umsetzung aller Kompetenzen liegt noch nicht vor. Der genaue Abgleich mit offenen Teilen steht in der Inhaltsmatrix.
+
+- Mengen & Zahlenmengen: Elemente, Mengenschreibweise, ∈/∉ und natürliche/ganze Zahlen.
 
 - Zahlen entdecken: Stellenwerte, römische Zahlen, Runden, Zahlengerade, ganze Zahlen und Betrag.
 - Plus & Minus: schriftliches Rechnen, Überschläge, Vorzeichen, Gleichungen und Rechenwege.
@@ -82,4 +84,4 @@ Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri
 
 Jede Bildschirmaufgabe bietet einen Tipp und nach der Antwort einen erklärten Lösungsweg. Auswahlfragen, ganze Zahlen und exakte Dezimalzahlen werden im Backend bewertet. Komma oder Punkt gelten als Dezimaltrennzeichen, normale/geschützte Leerzeichen als Dreiergruppierung: `25 000` oder `25000`; `25.000` bedeutet 25. Einheiten stehen in der Frage und werden nicht mit eingegeben. Englischwörter werden ohne Beachtung der Großschreibung verglichen.
 
-20 Mitmachaufgaben ergänzen Zeichnen, Messen, Schätzen und Begründen mit Selbstkontrollhinweisen. Sie gelten für alle Stufen, vergeben keine Punkte und werden nicht automatisch bewertet. Das Paket repräsentiert alle Lernbereiche, ist aber kein unbegrenzter Aufgabengenerator, keine vollständige Lernstandserhebung und kein Ersatz für Unterricht. Es gibt keine amtliche Freigabe. Weitere Hinweise und die Inhaltsmatrix stehen in [docs/curriculum-math-5.md](docs/curriculum-math-5.md).
+22 Mitmachaufgaben ergänzen Zeichnen, Messen, Schätzen und Begründen mit Selbstkontrollhinweisen. Sie gelten für alle Stufen, vergeben keine Punkte und werden nicht automatisch bewertet. Das Paket repräsentiert alle Lernbereiche, ist aber kein unbegrenzter Aufgabengenerator, keine vollständige Lernstandserhebung und kein Ersatz für Unterricht. Es gibt keine amtliche Freigabe. Weitere Hinweise und die Inhaltsmatrix stehen in [docs/curriculum-math-5.md](docs/curriculum-math-5.md).

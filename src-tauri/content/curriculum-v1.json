@@ -4,6 +4,28 @@
   "curriculumVersion": "LehrplanPLUS Gymnasium Bayern · abgerufen 24.09.2026",
   "topics": [
     {
+      "id": "sets",
+      "name": "Mengen & Zahlenmengen",
+      "subject": "mathematics",
+      "grade": 5,
+      "curriculumRef": "M5 1.1",
+      "description": "Was gehört dazu? Entdecke Mengen und ihre Zeichen.",
+      "lesson": "Eine Menge ist eine Sammlung. Die Dinge oder Zahlen darin heißen Elemente. A = {2; 4; 6} bedeutet: Zur Menge A gehören 2, 4 und 6. Das Zeichen ∈ heißt „gehört dazu“. Das Zeichen ∉ heißt „gehört nicht dazu“. Hier schreiben wir ℕ = {1; 2; 3; …} für die natürlichen Zahlen ohne 0 und ℕ₀ = {0; 1; 2; …} mit 0. Die ganzen Zahlen ℤ = {…; −2; −1; 0; 1; 2; …} enthalten auch negative Zahlen. Die Punkte … zeigen: Es geht immer weiter.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Deine Sticker-Menge",
+          "prompt": "Schreibe die Zahlen 1 bis 8 auf kleine Zettel. Lege 2, 4, 6 und 8 in einen Kreis. Nenne diese Menge A. Schreibe auf, welche Zahlen dazugehören. Schreibe dann einen richtigen Satz mit ∈ und einen mit ∉.",
+          "check": "A = {2; 4; 6; 8}. Zum Beispiel: 4 ∈ A heißt „4 gehört zu A“. 3 ∉ A heißt „3 gehört nicht zu A“. Auch andere passende Beispiele sind richtig."
+        },
+        {
+          "title": "Zahlen sortieren",
+          "prompt": "Schreibe −3, 0, 2 und 5 auf Zettel. Welche Zahlen gehören zu ℕ = {1; 2; 3; …}? Welche gehören zu ℕ₀ = {0; 1; 2; …}? Welche gehören zu ℤ, den ganzen Zahlen? Ein Zettel darf bei mehreren Antworten vorkommen.",
+          "check": "Zu ℕ gehören hier 2 und 5. Zu ℕ₀ gehören 0, 2 und 5. Zu ℤ gehören alle vier Zahlen. −3 ist eine negative ganze Zahl."
+        }
+      ]
+    },
+    {
       "id": "numbers",
       "name": "Zahlen entdecken",
       "subject": "mathematics",
@@ -2769,6 +2791,392 @@
       "answerKind": "number",
       "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
       "legacy": true
+    },
+    {
+      "id": "by.math.5.sets.elements.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.sets.elements",
+      "prompt": "In einer Obstmenge liegen Apfel, Birne und Banane. Welches Obst gehört dazu?",
+      "answer": "Birne",
+      "hint": "Suche ein Obst aus der Liste.",
+      "explanation": "Die Birne steht in der Liste. Sie ist ein Element dieser Menge.",
+      "options": [
+        "Birne",
+        "Kirsche",
+        "Pflaume"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.elements.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.sets.elements",
+      "prompt": "A = {3; 6; 9; 12}. Wie viele Zahlen gehören zur Menge A?",
+      "answer": "4",
+      "hint": "Zähle die Zahlen zwischen den geschweiften Klammern.",
+      "explanation": "Die vier Elemente sind 3, 6, 9 und 12.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.elements.streber.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.sets.elements",
+      "prompt": "A = {2; 4; 6}. B = {6; 2; 4}. Enthalten A und B dieselben Zahlen?",
+      "answer": "Ja",
+      "hint": "Bei einer Menge ist die Reihenfolge egal.",
+      "explanation": "In beiden Mengen stehen genau 2, 4 und 6. Eine andere Reihenfolge ändert die Menge nicht.",
+      "options": [
+        "Ja",
+        "Nein"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.notation.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.sets.notation",
+      "prompt": "Zur Menge A gehören 1, 2 und 3. Welche Schreibweise passt?",
+      "answer": "A = {1; 2; 3}",
+      "hint": "Die geschweiften Klammern fassen die Zahlen zusammen.",
+      "explanation": "A ist der Name. In den Klammern stehen die drei Elemente 1, 2 und 3.",
+      "options": [
+        "A = {1; 2; 3}",
+        "A = {1; 3}",
+        "A = {2; 3; 4}"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.notation.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.sets.notation",
+      "prompt": "Welche Menge enthält genau die geraden Zahlen von 2 bis 8?",
+      "answer": "{2; 4; 6; 8}",
+      "hint": "Gerade Zahlen kannst du ohne Rest durch 2 teilen.",
+      "explanation": "Von 2 bis 8 sind die geraden Zahlen 2, 4, 6 und 8.",
+      "options": [
+        "{1; 3; 5; 7}",
+        "{2; 4; 8}",
+        "{2; 4; 6; 8}"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.notation.streber.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.sets.notation",
+      "prompt": "Welche Menge enthält alle ganzen Zahlen, die größer als −3 und kleiner als 2 sind?",
+      "answer": "{−2; −1; 0; 1}",
+      "hint": "Die Grenzen −3 und 2 gehören nicht dazu.",
+      "explanation": "Zwischen −3 und 2 liegen die ganzen Zahlen −2, −1, 0 und 1.",
+      "options": [
+        "{−2; −1; 1}",
+        "{−3; −2; −1; 0; 1; 2}",
+        "{−2; −1; 0; 1}"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.belongs.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.sets.belongs",
+      "prompt": "A = {2; 4; 6}. Gehört 4 zur Menge A?",
+      "answer": "Ja",
+      "hint": "Schau nach, ob 4 in der Liste steht.",
+      "explanation": "4 steht in A. Dafür schreibt man 4 ∈ A. Das heißt: 4 gehört zu A.",
+      "options": [
+        "Ja",
+        "Nein"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.belongs.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.sets.belongs",
+      "prompt": "A = {1; 3; 5}. Welches Zeichen passt: 3 ___ A? ∈ heißt „gehört dazu“, ∉ heißt „gehört nicht dazu“.",
+      "answer": "∈",
+      "hint": "Suche die 3 zwischen den Klammern.",
+      "explanation": "3 steht in der Menge A. Also ist 3 ∈ A richtig.",
+      "options": [
+        "∉",
+        "∈"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.belongs.streber.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.sets.belongs",
+      "prompt": "A = {2; 4; 6; 8; …}. Es geht immer in Zweierschritten weiter. Welche Aussage stimmt? ∈ heißt „gehört dazu“.",
+      "answer": "100 ∈ A",
+      "hint": "Auch Zahlen nach den Punkten können dazugehören.",
+      "explanation": "100 ist gerade und wird beim Zählen in Zweierschritten erreicht. 101 und 103 sind ungerade.",
+      "options": [
+        "103 ∈ A",
+        "100 ∈ A",
+        "101 ∈ A"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.not-belongs.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.sets.not-belongs",
+      "prompt": "A = {1; 2; 3}. Welche Zahl gehört nicht zu A?",
+      "answer": "4",
+      "hint": "Vergleiche jede Antwort mit der Liste.",
+      "explanation": "4 steht nicht in A. Dafür schreibt man 4 ∉ A.",
+      "options": [
+        "1",
+        "2",
+        "4"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.not-belongs.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.sets.not-belongs",
+      "prompt": "A = {5; 10; 15}. Welches Zeichen passt: 12 ___ A? ∈ heißt „gehört dazu“, ∉ heißt „gehört nicht dazu“.",
+      "answer": "∉",
+      "hint": "Ist die 12 in der Liste zu finden?",
+      "explanation": "12 steht nicht in A. Daher gilt 12 ∉ A.",
+      "options": [
+        "∈",
+        "∉"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.not-belongs.streber.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.sets.not-belongs",
+      "prompt": "A = {−2; −1; 0; 1; 2}. Welche Aussage stimmt? ∉ heißt „gehört nicht dazu“.",
+      "answer": "3 ∉ A",
+      "hint": "Prüfe, welche Zahl nicht in der Liste steht.",
+      "explanation": "3 steht nicht in A. −1 und 0 stehen dagegen in A.",
+      "options": [
+        "3 ∉ A",
+        "−1 ∉ A",
+        "0 ∉ A"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.natural.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.sets.natural",
+      "prompt": "ℕ = {1; 2; 3; …} sind hier die natürlichen Zahlen ohne 0. Welche Zahl gehört dazu?",
+      "answer": "7",
+      "hint": "Das sind die Zahlen, mit denen du bei 1 beginnend zählst.",
+      "explanation": "7 kommt beim Zählen vor. −2 ist negativ und 0 ist in dieser Schreibweise ausgeschlossen.",
+      "options": [
+        "7",
+        "−2",
+        "0"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.natural.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.sets.natural",
+      "prompt": "Wir schreiben ℕ = {1; 2; 3; …} und ℕ₀ = {0; 1; 2; …}. Welche Zahl gehört zu ℕ₀, aber nicht zu ℕ?",
+      "answer": "0",
+      "hint": "Vergleiche die beiden Listen.",
+      "explanation": "ℕ₀ enthält zusätzlich die 0. Sie steht hier nicht in ℕ.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Nur die Zahl eingeben; ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.natural.streber.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.sets.natural",
+      "prompt": "Wir schreiben ℕ = {1; 2; 3; …} und ℕ₀ = {0; 1; 2; …}. Welche Aussage stimmt? ∈ heißt „gehört dazu“, ∉ heißt „gehört nicht dazu“.",
+      "answer": "0 ∉ ℕ und 0 ∈ ℕ₀",
+      "hint": "Schau auf den Anfang beider Listen.",
+      "explanation": "In unserer Schreibweise beginnt ℕ bei 1. ℕ₀ enthält auch 0.",
+      "options": [
+        "−1 ∈ ℕ₀",
+        "0 ∈ ℕ und 0 ∉ ℕ₀",
+        "0 ∉ ℕ und 0 ∈ ℕ₀"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.integers.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.sets.integers",
+      "prompt": "Die ganzen Zahlen ℤ enthalten negative Zahlen, 0 und positive Zahlen ohne Komma. Welche Zahl ist negativ?",
+      "answer": "−4",
+      "hint": "Das Minuszeichen steht vor einer negativen Zahl.",
+      "explanation": "−4 ist negativ. Auch negative Zahlen gehören zu den ganzen Zahlen.",
+      "options": [
+        "−4",
+        "0",
+        "4"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.integers.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.sets.integers",
+      "prompt": "ℤ = {…; −2; −1; 0; 1; 2; …} sind die ganzen Zahlen. Gehört −8 dazu?",
+      "answer": "Ja",
+      "hint": "Die Punkte zeigen: Auch nach links geht es weiter.",
+      "explanation": "−8 ist eine negative ganze Zahl. Deshalb gilt −8 ∈ ℤ.",
+      "options": [
+        "Ja",
+        "Nein"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.integers.streber.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.sets.integers",
+      "prompt": "Ein Thermometer zeigt −5 °C. Warum brauchen wir hier auch negative Zahlen?",
+      "answer": "Damit wir Temperaturen unter 0 °C angeben können.",
+      "hint": "Mit 1, 2, 3, … kannst du eine Temperatur unter 0 °C nicht beschreiben.",
+      "explanation": "Die ganzen Zahlen enthalten auch negative Zahlen. So lässt sich −5 °C beschreiben.",
+      "options": [
+        "Weil −5 eine natürliche Zahl ist.",
+        "Damit wir Temperaturen unter 0 °C angeben können.",
+        "Weil ein Thermometer nur positive Zahlen zeigt."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.infinite.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.sets.infinite",
+      "prompt": "A = {1; 2; 3; …}. Wofür stehen die Punkte?",
+      "answer": "Die Zahlen gehen immer weiter.",
+      "hint": "Zähle nach 3 weiter.",
+      "explanation": "Nach 3 kommen 4, 5, 6 und immer noch mehr natürliche Zahlen.",
+      "options": [
+        "Die Zahlen gehen immer weiter.",
+        "Die Menge endet bei 3.",
+        "Es fehlt nur die 4."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.infinite.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.sets.infinite",
+      "prompt": "Jemand sagt: „999 ist die größte natürliche Zahl.“ Welche Zahl widerlegt das?",
+      "answer": "1000",
+      "hint": "Finde eine natürliche Zahl, die größer als 999 ist.",
+      "explanation": "1 000 ist größer als 999. Damit ist die Behauptung falsch.",
+      "options": [
+        "999",
+        "1000",
+        "998"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.sets.infinite.streber.v1",
+      "subject": "mathematics",
+      "topicId": "sets",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.sets.infinite",
+      "prompt": "Jemand nennt eine riesige natürliche Zahl n. Wie findest du sicher eine noch größere natürliche Zahl?",
+      "answer": "Ich rechne n + 1.",
+      "hint": "Der Trick soll bei jeder natürlichen Zahl funktionieren.",
+      "explanation": "n + 1 ist wieder eine natürliche Zahl und größer als n. Deshalb gibt es keine größte natürliche Zahl.",
+      "options": [
+        "Ich ändere nur die Reihenfolge der Ziffern.",
+        "Ich rechne n − 1.",
+        "Ich rechne n + 1."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
     }
   ]
 }
