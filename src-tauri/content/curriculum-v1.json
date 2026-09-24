@@ -401,7 +401,7 @@
       "grade": 5,
       "curriculumRef": "M5 4.2",
       "description": "Umfang, Flächen und Quaderhüllen erforschen.",
-      "lesson": "Umfang heißt: die Länge einmal außen am Rand entlang.\nFlächeninhalt heißt: Wie viele kleine Einheitsquadrate passen hinein? Ein Einheitsquadrat ist zum Beispiel 1 cm lang und 1 cm breit.\nBeim Rechteck: Fläche = Länge × Breite. Umfang = 2 × (Länge + Breite).\n1 m² = 10 000 cm², denn 100 Reihen mit je 100 kleinen Quadraten passen hinein.",
+      "lesson": "Umfang heißt: die Länge einmal außen am Rand entlang.\nFlächeninhalt heißt: Wie viele kleine Einheitsquadrate passen hinein? Ein Einheitsquadrat ist zum Beispiel 1 cm lang und 1 cm breit.\nBeim Rechteck: Fläche = Länge × Breite. Umfang = 2 × (Länge + Breite).\n1 m² = 10 000 cm², denn 100 Reihen mit je 100 kleinen Quadraten passen hinein.\n\nBei Flächen werden zwei Längen miteinander multipliziert. Ein Quadrat mit Seite 1 dm ist 10 cm lang und 10 cm breit: 10 × 10 = 100 kleine Quadrate von 1 cm². Daher ist 1 dm² = 100 cm², nicht 10 cm².\nEinheitsquadrate: 1 a hat Seitenlänge 10 m, 1 ha hat Seitenlänge 100 m, 1 km² hat Seitenlänge 1 km. Deshalb: 1 a = 100 m², 1 ha = 100 a und 1 km² = 100 ha. Auch von m² zu dm² zu cm² zu mm² ist jeder Schritt mal 100. Zurück teilst du jeweils durch 100.\nDie Flächentafel lautet km² | ha | a | m² | dm² | cm² | mm². Jede Gruppe rechts von km² hat zwei Stellen. Beispiel: m²=2, dm²=35 bedeutet 2,35 m² = 235 dm².\nEine unregelmäßige Fläche kannst du näherungsweise mit Rechtecken auslegen. Rechtecke ganz innen geben einen zu kleinen oder gleichen Wert. Eine vollständige rechteckige Umhüllung gibt einen zu großen oder gleichen Wert. Schätze die Randstücke mit. Feinere Rechtecke passen meist besser. Schreibe „ungefähr“ und erkläre dein Modell.",
       "activities": [
         {
           "title": "Kästchen zählen",
@@ -422,9 +422,73 @@
           "title": "Würfel zusammenbauen",
           "prompt": "1. Lege zwei gleich große Würfel an einer ganzen Seitenfläche zusammen.\n2. Erkläre: Welche Flächen liegen nun innen?\n3. Wie viele Flächen bleiben außen?",
           "check": "Die beiden Kontaktflächen liegen innen. Von 12 Flächen bleiben 10 außen. Mit Würfelkante 2 cm sind das 10 × 4 = 40 cm². Kontrolliere an echten Bauklötzen."
+        },
+        {
+          "title": "Warum immer mal 100?",
+          "prompt": "1. Zeichne ein Quadrat mit Seite 10 cm. Teile jede Seite in Zentimeter. Zeichne ein Raster. Wie viele Quadrate von 1 cm² entstehen?\n2. Lege mit Schnur ein Quadrat von 1 m Seitenlänge auf dem Boden. Stelle dir ein Raster aus Quadraten mit 1 dm Seite vor.\n3. Könner: Skizziere ein Ar mit 10 m Seite und ein Hektar mit 100 m Seite. Wie viele Ar passen in einen Hektar?\n4. Streber: Erkläre genauso den Übergang von km² zu ha und von cm² zu mm².",
+          "check": "Immer werden beide Seiten verzehnfacht: 10×10 = 100 kleinere Quadrate. 1 dm² = 100 cm²; 1 m² = 100 dm²; 1 a = 100 m²; 1 ha = 100 a; 1 km² = 100 ha; 1 cm² = 100 mm². Die Skizzen von a und ha brauchen einen passenden Maßstab, keine echten 100-m-Seiten."
+        },
+        {
+          "title": "Flächentafel selbst füllen",
+          "prompt": "1. Zeichne sieben Spalten: km² | ha | a | m² | dm² | cm² | mm². Plane je zwei Ziffern pro Gruppe rechts von km² ein.\n2. Vorschule: Trage 2 m² 35 dm² ein. Könner: 1,25 ha. Streber: 0,035 km² und 3 cm² 50 mm².\n3. Lies jede Angabe in zwei anderen Einheiten.\n4. Erkläre, warum die Flächentafel andere Gruppen als die Längentafel hat.",
+          "check": "2,35 m² = 235 dm² = 23 500 cm². 1,25 ha = 125 a = 12 500 m². 0,035 km² = 3,5 ha = 350 a. 3 cm² 50 mm² = 3,5 cm² = 350 mm².\nZwei Längen gehen in die Fläche ein. Deshalb wird aus einem Längenschritt mal 10 ein Flächenschritt mal 100, also eine Zweiergruppe."
+        },
+        {
+          "title": "Ein Blatt mit Rechtecken schätzen",
+          "prompt": "1. Zeichne den Umriss eines Blatts auf kariertes Papier. Notiere die Fläche eines Kästchens, zum Beispiel 1 cm².\n2. Zähle Kästchen, die ganz innen liegen. Das ist eine untere Grenze.\n3. Zähle alle Kästchen, die der Umriss oder das Innere berührt. Damit hast du eine obere Grenze; zähle jedes Kästchen nur einmal.\n4. Schätze die Randstücke als halbe oder andere Teile von Rechtecken. Nenne einen Näherungswert zwischen den Grenzen.\n5. Könner/Streber: Benutze ein feineres Raster. Vergleiche den Aufwand und die Grenzen.",
+          "check": "Deine Zahlen hängen vom Blatt und Raster ab. Ein Beispiel: 6 ganze Kästchen plus 4 ungefähr halbe ergeben etwa 8 cm²; die obere Grenze wäre hier 10 cm².\nPrüfe, dass dein Näherungswert zwischen den Grenzen liegt. Feinere Raster lassen weniger Randfläche unklar. Schreibe „ungefähr“; ein Rechteckmodell kann den gebogenen Rand nur annähern."
+        },
+        {
+          "title": "Rechteckmodelle vergleichen",
+          "prompt": "1. Zeichne eine unregelmäßige Wiese auf kariertes Papier. Ein Kästchen steht für 1 m².\n2. Schätze sie zuerst mit einem großen Rechteck.\n3. Teile sie dann in mehrere schmale, nicht überlappende Rechteckstreifen. Addiere deren Flächen.\n4. Vergleiche die Ergebnisse: Wo zählen die Modelle zu viel oder zu wenig? Welches bildet den Rand besser ab?\n5. Erkläre einer anderen Person, warum auch eine genau ausgerechnete Modellfläche nur eine Schätzung der Wiese ist.",
+          "check": "Es gibt keinen gemeinsamen Zahlenwert. Die Skizze, Maße, Einheiten und Rechnungen müssen zusammenpassen. Streifen dürfen sich nicht überlappen; fehlende Teile müssen erklärt werden. Mehr kleinere Rechtecke können den Rand genauer treffen, brauchen aber mehr Rechenarbeit. Vergleiche zusätzlich mit einer inneren und äußeren Grenze."
         }
       ],
-      "languageSequence": null
+      "languageSequence": null,
+      "tables": [
+        {
+          "caption": "Fläche: je zwei Stellen pro Einheit",
+          "headers": [
+            "km²",
+            "ha (2)",
+            "a (2)",
+            "m² (2)",
+            "dm² (2)",
+            "cm² (2)",
+            "mm² (2)"
+          ],
+          "rows": [
+            [
+              "0",
+              "00",
+              "00",
+              "02",
+              "35",
+              "00",
+              "00"
+            ],
+            [
+              "0",
+              "01",
+              "25",
+              "00",
+              "00",
+              "00",
+              "00"
+            ],
+            [
+              "0",
+              "00",
+              "00",
+              "00",
+              "00",
+              "03",
+              "50"
+            ]
+          ],
+          "note": "Lies: 2,35 m² = 235 dm². Dann: 1,25 ha = 125 a = 12 500 m². Zuletzt: 3,50 cm² = 350 mm². Pro Schritt nach rechts mal 100, nach links geteilt durch 100. Eine leere Zweiergruppe wird 00."
+        }
+      ]
     },
     {
       "id": "english-samples",
@@ -5661,6 +5725,239 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.square-unit-reason.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.2.square-unit-reason",
+      "prompt": "Ein Quadrat ist 1 dm lang und 1 dm breit. Jede Seite ist also 10 cm lang.\nWie viele Quadrate von 1 cm² passen hinein?",
+      "answer": "100",
+      "hint": "Zähle 10 Reihen mit je 10 Quadraten.",
+      "explanation": "10 × 10 = 100. Deshalb ist 1 dm² = 100 cm².",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.square-unit-reason.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.2.square-unit-reason",
+      "prompt": "Ein Quadrat mit 1 ha Fläche hat Seitenlänge 100 m.\nWie viele Quadratmeter sind 1 ha?",
+      "answer": "10000",
+      "hint": "Berechne die Fläche aus Länge mal Breite.",
+      "explanation": "100 m × 100 m = 10 000 m². Ein Ar hat 100 m², also passen 100 a in 1 ha.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.square-unit-reason.streber.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.2.square-unit-reason",
+      "prompt": "Ein Quadrat von 1 km² ist 1 000 m lang und breit. Ein Hektarquadrat hat Seitenlänge 100 m.\nWie viele Hektarquadrate passen hinein?",
+      "answer": "100",
+      "hint": "Entlang jeder Seite passen 10 Hektarquadrate.",
+      "explanation": "10 Reihen mit je 10 Hektarquadraten ergeben 100 ha = 1 km².",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.area-table.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.2.area-table",
+      "prompt": "Die Flächentafel zeigt 2 m² und 35 dm².\nWie viele dm² sind das?",
+      "answer": "235",
+      "hint": "1 m² = 100 dm².",
+      "explanation": "200 dm² + 35 dm² = 235 dm². Die Angabe in m² ist 2,35.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.area-table.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.2.area-table",
+      "prompt": "Wie viele Quadratmeter sind 1,25 ha?",
+      "answer": "12500",
+      "hint": "1 ha sind 10 000 m². Nutze in der Tafel die Gruppen ha, a und m².",
+      "explanation": "1 ha + 25 a = 10 000 m² + 2 500 m² = 12 500 m².",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.area-table.streber.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.2.area-table",
+      "prompt": "Die Tafel zeigt 3 cm² und 50 mm².\nWie viele cm² sind das?",
+      "answer": "3.5",
+      "hint": "50 mm² sind die Hälfte von 100 mm².",
+      "explanation": "3 cm² + 0,5 cm² = 3,5 cm² = 350 mm².",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.decimal-area-conversion.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.2.decimal-area-conversion",
+      "prompt": "Wie viele cm² sind 2 dm²?",
+      "answer": "200",
+      "hint": "Ein Schritt zur kleineren Flächeneinheit bedeutet mal 100.",
+      "explanation": "2 × 100 = 200 cm².",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.decimal-area-conversion.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.2.decimal-area-conversion",
+      "prompt": "Wie viele m² sind 350 dm²?",
+      "answer": "3.5",
+      "hint": "Ein Schritt zurück bedeutet geteilt durch 100.",
+      "explanation": "350 : 100 = 3,5 m². Die Tafel enthält 3 m² und 50 dm².",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.decimal-area-conversion.streber.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.2.decimal-area-conversion",
+      "prompt": "Wie viele Hektar sind 0,035 km²?",
+      "answer": "3.5",
+      "hint": "Von km² zu ha ist es ein Schritt in der Flächentafel.",
+      "explanation": "0,035 × 100 = 3,5 ha. Kontrolle: 3,5 ha = 35 000 m² und 0,035 km² ebenfalls.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.approximate-area.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.2.approximate-area",
+      "prompt": "Ein Blatt bedeckt auf kariertem Papier 6 ganze Kästchen und 4 ungefähr halbe Kästchen. Jedes Kästchen hat 1 cm².\nWie groß ist die Blattfläche ungefähr in cm²?",
+      "answer": "8",
+      "hint": "Je zwei halbe Kästchen ergeben ungefähr ein ganzes.",
+      "explanation": "6 + 4:2 = 8 cm². Das ist eine Schätzung, weil die Randstücke nicht genau halbe Kästchen sein müssen.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.approximate-area.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.2.approximate-area",
+      "prompt": "Du näherst die Form eines Teichs durch ein Rechteck an: 6 m lang und 4 m breit.\nWelche Fläche hat dein Modell in m²?",
+      "answer": "24",
+      "hint": "Rechne Länge mal Breite.",
+      "explanation": "6×4 = 24 m². Das Rechteckmodell hat genau 24 m². Die Teichfläche ist nur ungefähr so groß, weil der Rand anders verläuft.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.approximate-area.streber.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.2.approximate-area",
+      "prompt": "Du teilst das Modell einer Wiese in drei nebeneinanderliegende Streifen ohne Überlappung. Jeder ist 2 m breit. Die geschätzten Längen sind 3 m, 5 m und 4 m.\nWie groß ist die Wiese nach diesem Modell ungefähr in m²?",
+      "answer": "24",
+      "hint": "Berechne die drei Rechteckflächen und addiere.",
+      "explanation": "2×3 + 2×5 + 2×4 = 6+10+8 = 24 m². Weil die Längen geschätzt sind und der Rand vereinfacht wird, bleibt die Wiesenfläche ein Näherungswert.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.area-bounds.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.4.2.area-bounds",
+      "prompt": "Ein Blatt liegt auf einem Raster. 5 Kästchen von je 1 cm² liegen ganz unter dem Blatt. Weitere Randstücke sind noch nicht gezählt.\nWas kannst du sicher sagen?",
+      "answer": "Die Fläche ist mindestens 5 cm².",
+      "hint": "Die ganzen inneren Kästchen gehören sicher zur Fläche.",
+      "explanation": "5 cm² liegen vollständig innen. Randstücke können noch dazukommen.",
+      "options": [
+        "Die Fläche ist mindestens 5 cm².",
+        "Die Fläche ist höchstens 5 cm².",
+        "Die Fläche ist genau 5 cm²."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.area-bounds.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.4.2.area-bounds",
+      "prompt": "Ein Teich liegt vollständig in einem Rechteck von 8 m mal 5 m.\nWelchen Wert kann seine Fläche nicht überschreiten? Antworte in m².",
+      "answer": "40",
+      "hint": "Die Teichfläche ist höchstens so groß wie die Umhüllung.",
+      "explanation": "8×5 = 40 m². Das ist eine obere Grenze; die genaue Teichfläche kann kleiner sein.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.area.area-bounds.streber.v1",
+      "subject": "mathematics",
+      "topicId": "area",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.4.2.area-bounds",
+      "prompt": "Rechtecke ganz innerhalb einer Fläche bedecken zusammen 18 m². Eine vollständige äußere Umhüllung hat 26 m².\nWelche Schätzung ist damit vereinbar?",
+      "answer": "22 m²",
+      "hint": "Die echte Fläche liegt zwischen unterer und oberer Grenze.",
+      "explanation": "18 ≤ Fläche ≤ 26. 22 m² liegt dazwischen. Es bleibt eine mögliche Schätzung, kein bewiesener genauer Wert.",
+      "options": [
+        "28 m²",
+        "16 m²",
+        "22 m²"
+      ],
+      "answerKind": "choice",
+      "unit": null,
       "legacy": false
     },
     {
