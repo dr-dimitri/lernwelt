@@ -170,7 +170,7 @@
       "grade": 5,
       "curriculumRef": "M5 3.2",
       "description": "Klammern knacken und Lösungswege planen.",
-      "lesson": "Ein Term ist eine Rechenaufgabe mit Zahlen, Zeichen und manchmal Klammern.\nRechne zuerst die Klammern, dann die Potenzen. Danach kommen Mal/Geteilt, zum Schluss Plus/Minus.\nSind die Rechenarten gleich wichtig, gehst du von links nach rechts.\nEin Trick: 7 × 18 = 7 × (20 − 2) = 140 − 14. Du verteilst die Malrechnung auf die Klammer. Das heißt Verteilungsgesetz.",
+      "lesson": "Ein Term ist eine Rechenaufgabe mit Zahlen, Zeichen und manchmal Klammern.\nRechne zuerst die Klammern, dann die Potenzen. Danach kommen Mal/Geteilt, zum Schluss Plus/Minus.\nSind die Rechenarten gleich wichtig, gehst du von links nach rechts.\nEin Trick: 7 × 18 = 7 × (20 − 2) = 140 − 14. Du verteilst die Malrechnung auf die Klammer. Das heißt Verteilungsgesetz.\n\nEinen Term gliederst du von außen nach innen: Welche Rechenart kommt zuletzt? Das ist die Hauptrechenart. Benenne ihre Teile und untersuche dann die Klammern. Bei (8 + 4) × 3 ist die Hauptrechenart Mal: ein Produkt aus der Summe 8 + 4 und der Zahl 3.\nBeim Rechnen muss jede Zeile gleich viel wert sein. Zum Beispiel: 40 − 3 × (2 + 4) = 40 − 3 × 6 = 40 − 18 = 22. Schreibe nicht 2 + 4 = 6 × 3 = 18, denn 6 ist nicht 18.\nEine Lösung erklären: Was ist gegeben? Was suche ich? Welcher Term passt? Wie rechne ich? Was bedeutet das Ergebnis mit seiner Einheit? Prüfe durch Überschlag und überlege, ob die Größe zur Geschichte passt. Du darfst deinen Weg mit einer Skizze oder einem Rechenbaum zeigen.",
       "activities": [
         {
           "title": "Erkläre deinen Trick",
@@ -181,6 +181,21 @@
           "title": "Vorwärts und rückwärts",
           "prompt": "Eine Zahl wird mit 3 multipliziert. Danach werden 7 dazugezählt. Am Ende kommt 40 heraus.\n1. Zeichne diese Schritte als Rechenkette.\n2. Gehe die Schritte rückwärts durch.\n3. Welche Zahl steht am Anfang?",
           "check": "Vorwärts: 11 → 33 → 40. Rückwärts: 40 − 7 = 33, 33 : 3 = 11. Rückwärts benutzt du die Umkehroperationen in umgekehrter Reihenfolge."
+        },
+        {
+          "title": "Dein eigener Rechenbaum",
+          "prompt": "1. Wähle einen Term: Vorschule (8 + 4) × 3; Könner 50 − 3 × 8; Streber (60 − 12) : (5 + 3).\n2. Schreibe die Hauptrechenart auf. Zerlege den Term in ihre beiden Teile. Zeichne darunter weitere Äste für die Teile in den Klammern.\n3. Beschreibe den Aufbau mit Summe, Differenz, Produkt oder Quotient.\n4. Rechne den Wert in vollständigen, gleichwertigen Zeilen aus.\n5. Erfinde einen eigenen Term mit gleicher Struktur und erkläre ihn.",
+          "check": "Vorschule: Produkt aus Summe 8+4 und 3; Wert 36. Könner: Differenz aus 50 und Produkt 3×8; Wert 26. Streber: Quotient aus Differenz 60−12 und Summe 5+3; Wert 6.\nEigene Terme dürfen andere Zahlen haben. Prüfe: Die Hauptrechenart und die Anordnung der Teile stimmen; nicht durch 0 teilen. Jede Zeile der Auswertung bleibt gleich viel wert."
+        },
+        {
+          "title": "Deine Erklärbühne",
+          "prompt": "1. Vorschule: 3 Hefte zu je 2 € und 1 Stift für 1 €. Könner: 24 Eintritte zu je 4 €, Budget 120 €. Streber: 28 Kinder zahlen je 12 €, Kosten 320 €.\n2. Schreibe auf: Was ist gegeben? Was suchst du?\n3. Schätze zuerst. Stelle einen Term auf und rechne ihn in klaren Zeilen aus. Schreibe einen Antwortsatz mit Euro.\n4. Erkläre deinen Weg einer anderen Person oder laut für dich. Verwende Summe, Produkt oder Differenz passend.\n5. Prüfe: Ist das Ergebnis kleiner/größer als das vorhandene Geld? Passt es zum Überschlag? Vergleiche mit einem anderen Rechenweg.",
+          "check": "Antworten: Gesamtpreis 7 €; Rest 24 €; Rest 16 €. Mögliche Terme: 3×2+1; 120−24×4; 28×12−320.\nAndere Rechenwege sind erlaubt: Zum Beispiel 28×12 = 28×10+28×2. Eine gute Erklärung nennt die Bedeutung der Zahlen, Rechenschritte, Einheit und Kontrolle. Ein richtiges Endergebnis allein ersetzt die Erklärung nicht."
+        },
+        {
+          "title": "Eine eigene Rechengeschichte",
+          "prompt": "1. Erfinde zu 5 × 4 + 3 eine Einkaufsgeschichte.\n2. Schreibe eine Frage, die genau dieser Term beantwortet. Löse sie.\n3. Könner: Erfinde stattdessen eine Geschichte zu 50 − 5 × 4. Streber: zu (−10) + 4 × 6. Du kannst ein Spielkonto verwenden.\n4. Lass eine andere Person erklären, was jede Zahl bedeutet. Passt deine Geschichte? Verbessere unklare Stellen.",
+          "check": "Beispiele: 5 Eintrittskarten zu je 4 € plus 3 € Gebühr ergeben 23 €. Von 50 € werden 20 € ausgegeben: Rest 30 €. Spielkonto −10 Punkte, vier Gewinne zu je 6: Endstand 14 Punkte.\nViele Geschichten sind richtig. Alle Zahlen und Rechenarten müssen eine Bedeutung haben; eine Einheit und eine klare Frage dürfen nicht fehlen."
         }
       ],
       "languageSequence": null
@@ -2493,6 +2508,165 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.terms.describe-structure.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "terms",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.3.2.describe-structure",
+      "prompt": "Bei (8 + 4) × 3 wird zuletzt multipliziert.\nWelche Teile werden miteinander multipliziert?",
+      "answer": "Die Summe 8 + 4 und die Zahl 3",
+      "hint": "Eine Klammer kann ein ganzer Faktor sein.",
+      "explanation": "Es ist ein Produkt. Seine Faktoren sind die Summe 8 + 4 und die Zahl 3.",
+      "options": [
+        "Die Summe 8 + 4 und die Zahl 3",
+        "Nur 4 und 3",
+        "Die Zahl 8 und die Summe 4 + 3"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.terms.describe-structure.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "terms",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.3.2.describe-structure",
+      "prompt": "Wie beschreibst du 50 − 3 × 8?",
+      "answer": "Differenz aus 50 und dem Produkt von 3 und 8",
+      "hint": "Die Hauptrechenart ist die letzte Rechenart.",
+      "explanation": "Zuerst das Produkt 3×8, dann die Differenz 50−24.",
+      "options": [
+        "Produkt aus der Differenz 50−3 und 8",
+        "Summe aus 50, 3 und 8",
+        "Differenz aus 50 und dem Produkt von 3 und 8"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.terms.describe-structure.streber.v1",
+      "subject": "mathematics",
+      "topicId": "terms",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.3.2.describe-structure",
+      "prompt": "Der Term lautet (60 − 12) : (5 + 3).\nWelche Rechenart steht ganz außen, wird also zuletzt ausgeführt?",
+      "answer": "Division",
+      "hint": "Die beiden Klammern sind die Teile der letzten Rechnung.",
+      "explanation": "Ein Quotient: Dividend ist die Differenz 60−12, Divisor die Summe 5+3. Erst beide Klammern, dann teilen.",
+      "options": [
+        "Division",
+        "Addition",
+        "Subtraktion"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.terms.equal-calculation-lines.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "terms",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.3.2.equal-calculation-lines",
+      "prompt": "Welche Rechenkette hat in jedem Teil denselben Wert?",
+      "answer": "2 + 3 × 4 = 2 + 12 = 14",
+      "hint": "Rechne erst mal. Die übrigen Teile des Terms müssen stehen bleiben.",
+      "explanation": "Jeder der drei Terme ist 14. Bei den anderen Ketten ändern sich die Werte.",
+      "options": [
+        "2 + 3 × 4 = 2 + 12 = 14",
+        "2 + 3 × 4 = 5 × 4 = 20",
+        "2 + 3 × 4 = 12 = 14"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.terms.equal-calculation-lines.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "terms",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.3.2.equal-calculation-lines",
+      "prompt": "Rechne in Schritten: 40 − 3 × (2 + 4).\nWelchen Wert erhältst du?",
+      "answer": "22",
+      "hint": "Klammer, dann mal, dann minus.",
+      "explanation": "40 − 3×(2+4) = 40 − 3×6 = 40 − 18 = 22.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.terms.equal-calculation-lines.streber.v1",
+      "subject": "mathematics",
+      "topicId": "terms",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.3.2.equal-calculation-lines",
+      "prompt": "Rechne in Schritten: (−6) × (4 − 9) + 18 : (−3).\nWelchen Wert erhältst du?",
+      "answer": "24",
+      "hint": "Die Klammer ergibt −5. Rechne danach Mal und Geteilt getrennt.",
+      "explanation": "(−6)×(−5) + 18:(−3) = 30 + (−6) = 24.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.terms.explain-model.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "terms",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.3.2.explain-model",
+      "prompt": "Du kaufst 3 Hefte zu je 2 € und einen Stift für 1 €.\nWelcher Term beschreibt den Gesamtpreis in Euro?",
+      "answer": "3 × 2 + 1",
+      "hint": "Der Stift wird nur einmal gekauft.",
+      "explanation": "3×2 € + 1 € = 7 €. Der Faktor 3 zählt die Hefte.",
+      "options": [
+        "3 × 2 + 1",
+        "3 × (2 + 1)",
+        "3 + 2 + 1"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.terms.explain-model.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "terms",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.3.2.explain-model",
+      "prompt": "Eine Klasse hat 120 €. Für 24 Kinder kostet der Eintritt je 4 €.\nWie viele Euro bleiben übrig?",
+      "answer": "24",
+      "hint": "Gesamtgeld minus Eintrittskosten.",
+      "explanation": "120 − 24×4 = 120 − 96 = 24 €. Überschlag: 25×4 = 100, also bleiben ungefähr 20 €.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.terms.explain-model.streber.v1",
+      "subject": "mathematics",
+      "topicId": "terms",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.3.2.explain-model",
+      "prompt": "Ein Ausflug kostet 28 Kinder je 12 €. Bus und Eintritt kosten zusammen 320 €.\nJemand behauptet: „Es bleiben 160 € übrig.“ Welche Prüfung zeigt den Fehler?",
+      "answer": "Etwa 30 × 12 = 360; nach 320 bleiben nur etwa 40.",
+      "hint": "Ein Überschlag soll die Größenordnung prüfen.",
+      "explanation": "Genau: 28×12−320 = 336−320 = 16 €. Der Überschlag zeigt schon, dass 160 € viel zu groß ist.",
+      "options": [
+        "28 ist kleiner als 160, also stimmt es.",
+        "Etwa 30 × 12 = 360; nach 320 bleiben nur etwa 40.",
+        "320 ist größer als 160, also stimmt es."
+      ],
+      "answerKind": "choice",
+      "unit": null,
       "legacy": false
     },
     {
