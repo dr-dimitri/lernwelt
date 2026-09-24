@@ -32,7 +32,7 @@
       "grade": 5,
       "curriculumRef": "M5 1.1",
       "description": "Große Zahlen, Zahlengerade und Minus-Zahlen.",
-      "lesson": "Jede Stelle ist zehnmal so viel wert wie die Stelle rechts daneben. Zum Beispiel: 10 Einer sind 1 Zehner.\nAuf der Zahlengeraden werden Zahlen nach rechts größer. Der Betrag einer Zahl ist ihr Abstand zur 0.\nBeim Runden schaust du auf die Stelle rechts neben der Rundungsstelle: Bei 0 bis 4 rundest du ab, bei 5 bis 9 auf.",
+      "lesson": "Jede Stelle ist zehnmal so viel wert wie die Stelle rechts daneben. Zum Beispiel: 10 Einer sind 1 Zehner.\nAuf der Zahlengeraden werden Zahlen nach rechts größer. Der Betrag einer Zahl ist ihr Abstand zur 0.\nBeim Runden schaust du auf die Stelle rechts neben der Rundungsstelle: Bei 0 bis 4 rundest du ab, bei 5 bis 9 auf.\n\nGroße Zahlen liest du in Dreiergruppen: Milliarden | Millionen | Tausender | Einer. Beispiel: 2 | 035 | 004 heißt zwei Millionen fünfunddreißigtausendvier. Eine leere Gruppe wird als 000 geschrieben und beim Sprechen ausgelassen.\nFür einen Zahlenstrahl wählst du selbst: Welche Zahlen sollen darauf passen? Wie viel Platz hast du? Alle gleich langen Schritte müssen denselben Zahlenabstand haben.\nEine Behauptung mit „immer“ ist schon durch ein Gegenbeispiel widerlegt: Du zeigst einen Fall, in dem sie nicht stimmt.",
       "activities": [
         {
           "title": "Deine Zahlengerade",
@@ -43,6 +43,21 @@
           "title": "Unendlich weiter",
           "prompt": "Jemand sagt: „Ich kenne die größte natürliche Zahl!“\nErkläre, wie du eine noch größere Zahl finden kannst.",
           "check": "Du kannst immer 1 dazuzählen. Deshalb gibt es keine größte natürliche Zahl."
+        },
+        {
+          "title": "Zahlwort-Werkstatt",
+          "prompt": "1. Teile ein Blatt in Milliarden | Millionen | Tausender | Einer.\n2. Vorschule: Trage 24 008 ein. Könner: 7 040 006. Streber: 2 005 000 031.\n3. Lies die Zahl laut und schreibe sie als Wort.\n4. Denke dir selbst eine Zahl mit einer leeren Gruppe aus. Eine andere Person soll sie nach deinem Zahlwort aufschreiben. Vergleicht.",
+          "check": "24 | 008: vierundzwanzigtausendacht.\n7 | 040 | 006: sieben Millionen vierzigtausendsechs.\n2 | 005 | 000 | 031: zwei Milliarden fünf Millionen einunddreißig.\nJede innere Gruppe hat drei Stellen, auch eine leere. Für deine eigene Zahl gibt es mehrere richtige Möglichkeiten."
+        },
+        {
+          "title": "Dein Maß für den Zahlenstrahl",
+          "prompt": "1. Wähle Zahlen: Vorschule 0, 20, 80, 100; Könner 0, 3 000, 9 000, 12 000; Streber −600, −200, 400, 1 000.\n2. Auf deinem Blatt sind höchstens 10 gleich lange Schritte möglich. Wähle Start, Ende und Schrittweite selbst.\n3. Zeichne und beschrifte die Striche. Markiere die Zahlen.\n4. Erkläre, warum deine Einteilung passt. Gibt es eine andere?",
+          "check": "Mögliche Lösungen: 0 bis 100 mit 10 je Schritt; 0 bis 12 000 mit 3 000 je Schritt; −600 bis 1 000 mit 200 je Schritt.\nPrüfe: gleiche Abstände, alle Zahlen an richtiger Stelle, höchstens 10 Schritte. Andere passende Einteilungen sind richtig."
+        },
+        {
+          "title": "Eine Behauptung knacken",
+          "prompt": "1. Vorschule: „Alle ganzen Zahlen sind positiv.“ Könner: „Gleicher Betrag bedeutet gleiche Zahl.“ Streber: „Je kleiner die Zahl, desto kleiner ihr Betrag.“\n2. Denke dir ein eigenes Gegenbeispiel aus. Zeichne die Zahlen auf einer Zahlengeraden.\n3. Schreibe: „Die Behauptung stimmt nicht immer, denn …“.\n4. Erkläre, warum ein Beispiel, bei dem die Behauptung stimmt, noch kein Beweis für „immer“ ist.",
+          "check": "Beispiele: −1 ist nicht positiv; −4 und 4 sind verschieden mit gleichem Betrag; −9 ist kleiner als 2, hat aber den größeren Betrag.\nDeine Zahlen dürfen anders sein. Beide Voraussetzungen und der Widerspruch müssen passen. Ein einziger falscher Fall reicht gegen „immer“."
         }
       ],
       "languageSequence": null
@@ -558,6 +573,255 @@
         "Ja, eine Milliarde.",
         "Nein, ich kann immer 1 addieren.",
         "Ja, eine Billion."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.word-to-number.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.1.1.word-to-number",
+      "prompt": "Schreibe die Zahl mit Ziffern: dreitausendvierzig.",
+      "answer": "3040",
+      "hint": "Drei Tausender, vier Zehner.",
+      "explanation": "3 000 + 40 = 3 040. Die Hunderter- und Einerstelle bleiben 0.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.word-to-number.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.1.1.word-to-number",
+      "prompt": "Schreibe die Zahl mit Ziffern: fünf Millionen zweihunderttausendsechs.",
+      "answer": "5200006",
+      "hint": "Schreibe Millionen, Tausender und Einer als Dreiergruppen.",
+      "explanation": "5 | 200 | 006 ergibt 5 200 006.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.word-to-number.streber.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.1.1.word-to-number",
+      "prompt": "Schreibe die Zahl mit Ziffern: drei Milliarden sieben Millionen vierzigtausendzwei.",
+      "answer": "3007040002",
+      "hint": "Nutze vier Gruppen: Milliarden | Millionen | Tausender | Einer.",
+      "explanation": "3 | 007 | 040 | 002 ergibt 3 007 040 002.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.read-number.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.1.1.read-number",
+      "prompt": "Wie liest du 12 050?",
+      "answer": "zwölftausendfünfzig",
+      "hint": "Lies erst die Tausender, dann die letzte Dreiergruppe.",
+      "explanation": "12 Tausender und 50 Einer heißen zwölftausendfünfzig.",
+      "options": [
+        "zwölftausendfünfzig",
+        "zwölftausendfünfhundert",
+        "eintausendzweihundertfünfzig"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.read-number.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.1.1.read-number",
+      "prompt": "Wie liest du 8 006 020?",
+      "answer": "acht Millionen sechstausendzwanzig",
+      "hint": "Trenne 8 | 006 | 020.",
+      "explanation": "8 Millionen + 6 Tausender + 20 Einer.",
+      "options": [
+        "acht Millionen sechzigtausendzwei",
+        "acht Millionen sechshundertzwanzig",
+        "acht Millionen sechstausendzwanzig"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.read-number.streber.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.1.1.read-number",
+      "prompt": "Wie liest du 12 030 000 004?",
+      "answer": "zwölf Milliarden dreißig Millionen vier",
+      "hint": "Die Tausendergruppe ist 000. Du sprichst sie nicht mit.",
+      "explanation": "12 Milliarden + 30 Millionen + 4 Einer.",
+      "options": [
+        "zwölf Millionen dreißigtausendvier",
+        "zwölf Milliarden dreißig Millionen vier",
+        "zwölf Milliarden dreihundert Millionen vier"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.word-zero-groups.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.1.1.word-zero-groups",
+      "prompt": "Eine Zahl besteht aus 9 Tausendern und 7 Einern.\nWie heißt sie?",
+      "answer": "9007",
+      "hint": "An der Hunderter- und Zehnerstelle steht 0.",
+      "explanation": "9 000 + 7 = 9 007.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.word-zero-groups.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.1.1.word-zero-groups",
+      "prompt": "Eine Zahl besteht aus 42 Millionen und 15 Einern.\nWie heißt sie?",
+      "answer": "42000015",
+      "hint": "Die ganze Tausendergruppe ist leer.",
+      "explanation": "42 | 000 | 015 ergibt 42 000 015.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.word-zero-groups.streber.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.1.1.word-zero-groups",
+      "prompt": "Eine Zahl besteht aus 6 Milliarden, 3 Tausendern und 80 Einern.\nWie heißt sie?",
+      "answer": "6000003080",
+      "hint": "Auch die Millionengruppe braucht drei Nullen.",
+      "explanation": "6 | 000 | 003 | 080 ergibt 6 000 003 080.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.choose-scale.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.1.1.choose-scale",
+      "prompt": "Dein Zahlenstrahl startet bei 0. Du hast Platz für 10 gleich lange Schritte.\nDie Zahl 100 soll genau am Ende liegen. Wie groß ist ein Schritt?",
+      "answer": "10",
+      "hint": "Teile den ganzen Zahlenabstand durch die Anzahl der Schritte.",
+      "explanation": "100 : 10 = 10. Beschrifte 0, 10, 20, …, 100.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.choose-scale.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.1.1.choose-scale",
+      "prompt": "Du möchtest 0, 2 000, 6 000 und 10 000 auf einem Zahlenstrahl markieren.\nDu hast Platz für höchstens 10 gleich lange Schritte. Welche Schrittweite passt zu allen Zahlen?",
+      "answer": "2 000",
+      "hint": "Alle gesuchten Zahlen sollen auf Strichen liegen.",
+      "explanation": "Mit 2 000 je Schritt brauchst du fünf Schritte. 500 braucht 20; bei 3 000 liegen nicht alle Zahlen auf Strichen.",
+      "options": [
+        "2 000",
+        "3 000",
+        "500"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.choose-scale.streber.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.1.1.choose-scale",
+      "prompt": "Du zeichnest eine Zahlengerade von −1 500 bis 2 500 mit 8 gleich langen Schritten.\nWie groß muss ein Schritt sein?",
+      "answer": "500",
+      "hint": "Rechne zuerst den Abstand der Endzahlen aus.",
+      "explanation": "2 500 − (−1 500) = 4 000. 4 000 : 8 = 500.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.build-counterexample.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.1.1.build-counterexample",
+      "prompt": "Jemand sagt: „Jede ganze Zahl ist größer als 0.“\nWelche Zahl zeigt, dass das nicht stimmt?",
+      "answer": "0",
+      "hint": "Du brauchst nur einen Fall, der nicht passt.",
+      "explanation": "0 ist eine ganze Zahl, aber nicht größer als 0. Ein Gegenbeispiel genügt.",
+      "options": [
+        "0",
+        "1",
+        "10"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.build-counterexample.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.1.1.build-counterexample",
+      "prompt": "Jemand sagt: „Zwei verschiedene ganze Zahlen haben immer verschiedene Abstände zur 0.“\nWelche zweite Zahl passt als Gegenbeispiel zu 6?",
+      "answer": "-6",
+      "hint": "Suche auf der anderen Seite der 0.",
+      "explanation": "6 und −6 sind verschieden. Beide haben den Betrag 6.",
+      "options": [],
+      "answerKind": "number",
+      "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
+      "legacy": false
+    },
+    {
+      "id": "by.math.5.numbers.build-counterexample.streber.v1",
+      "subject": "mathematics",
+      "topicId": "numbers",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.1.1.build-counterexample",
+      "prompt": "Jemand sagt: „Wenn a kleiner als b ist, dann ist auch der Betrag von a kleiner.“\nWähle ein Gegenbeispiel.",
+      "answer": "a = −8, b = 3",
+      "hint": "Prüfe beide Teile: Ist a kleiner? Ist sein Abstand zur 0 trotzdem größer?",
+      "explanation": "−8 < 3, aber 8 > 3. Damit stimmt die Behauptung nicht immer.",
+      "options": [
+        "a = 0, b = 5",
+        "a = −8, b = 3",
+        "a = 2, b = 7"
       ],
       "answerKind": "choice",
       "unit": null,
