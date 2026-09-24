@@ -414,7 +414,8 @@ export default function VocabularyPanel({
             </p>
             <p>
               Dein Stand bleibt auf diesem Gerät. Termine richten sich nach der
-              Geräteuhr. Insgesamt verdient: {state.wallet.totalEarned} Punkte.
+              Geräteuhr. Insgesamt verdient: {state.wallet.totalEarned}{' '}
+              {state.wallet.totalEarned === 1 ? 'Punkt' : 'Punkte'}.
             </p>
           </InfoPanel>
         </div>

@@ -223,7 +223,7 @@ export default function LearningPanel({
           {loading
             ? '…'
             : state
-              ? `${state.wallet.balance} Punkte`
+              ? `${state.wallet.balance} ${state.wallet.balance === 1 ? 'Punkt' : 'Punkte'}`
               : 'Nicht verfügbar'}
         </div>
       </div>
@@ -569,7 +569,8 @@ export default function LearningPanel({
             <h3>Deine Belohnungen</h3>
             <p>
               Tausche deine Punkte gegen Abzeichen für deine Sammlung. Insgesamt
-              verdient: {state.wallet.totalEarned} Punkte.
+              verdient: {state.wallet.totalEarned}{' '}
+              {state.wallet.totalEarned === 1 ? 'Punkt' : 'Punkte'}.
             </p>
             <div className="reward-grid">
               {state.wallet.rewards.map((reward) => (
@@ -602,7 +603,10 @@ export default function LearningPanel({
                   </button>
                   {!reward.owned && state.wallet.balance < reward.cost && (
                     <p className="sample-note">
-                      Noch {reward.cost - state.wallet.balance} Punkte
+                      Noch {reward.cost - state.wallet.balance}{' '}
+                      {reward.cost - state.wallet.balance === 1
+                        ? 'Punkt'
+                        : 'Punkte'}
                     </p>
                   )}
                 </article>
