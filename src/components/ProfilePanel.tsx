@@ -1,7 +1,7 @@
 import { useEffect, useState, type SubmitEvent } from 'react';
 import { desktop } from '../lib/desktop';
 
-export default function ProfilePanel() {
+export default function ProfilePanel({ onSaved }: { onSaved?: () => void }) {
   const [name, setName] = useState('');
   const [grade, setGrade] = useState(5);
   const [state, setState] = useState<
@@ -46,6 +46,7 @@ export default function ProfilePanel() {
       const profile = await desktop.saveProfile({ displayName: name, grade });
       setName(profile.displayName);
       setNotice('Dein Lernprofil wurde auf diesem Gerät gespeichert.');
+      onSaved?.();
     } catch (reason) {
       setError(
         reason instanceof Error

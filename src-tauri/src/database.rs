@@ -2,7 +2,7 @@ use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::{Deserialize, Serialize};
 use std::{path::Path, time::Duration};
 
-const SCHEMA_VERSION: i64 = 1;
+const SCHEMA_VERSION: i64 = 2;
 const DATABASE_ERROR: &str = "Die lokalen Lerndaten konnten nicht verarbeitet werden.";
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -67,10 +67,15 @@ fn migrate(connection: &mut Connection) -> Result<(), String> {
         transaction
             .execute_batch(include_str!("../migrations/001_initial.sql"))
             .map_err(database_error)?;
+    }
+    if version < 2 {
         transaction
-            .pragma_update(None, "user_version", SCHEMA_VERSION)
+            .execute_batch(include_str!("../migrations/002_points.sql"))
             .map_err(database_error)?;
     }
+    transaction
+        .pragma_update(None, "user_version", SCHEMA_VERSION)
+        .map_err(database_error)?;
     transaction.commit().map_err(database_error)
 }
 
@@ -281,7 +286,9 @@ mod tests {
         let mut connection = Connection::open_in_memory().unwrap();
         migrate(&mut connection).unwrap();
         let saved = save_profile(&connection, profile()).unwrap();
-        connection.pragma_update(None, "user_version", 2).unwrap();
+        connection
+            .pragma_update(None, "user_version", SCHEMA_VERSION + 1)
+            .unwrap();
         assert!(migrate(&mut connection)
             .unwrap_err()
             .contains("neuere Version"));
@@ -289,7 +296,7 @@ mod tests {
         let version: i64 = connection
             .pragma_query_value(None, "user_version", |row| row.get(0))
             .unwrap();
-        assert_eq!(version, 2);
+        assert_eq!(version, SCHEMA_VERSION + 1);
     }
 
     #[test]

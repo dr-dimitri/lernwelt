@@ -6,12 +6,25 @@ import { desktop } from './lib/desktop';
 import type { LearnerProfile } from './domain/learner';
 
 vi.mock('./lib/desktop', () => ({
-  desktop: { getProfile: vi.fn(), saveProfile: vi.fn() },
+  desktop: {
+    getProfile: vi.fn(),
+    saveProfile: vi.fn(),
+    getLearningState: vi.fn(),
+  },
 }));
 
 beforeEach(() => {
   vi.resetAllMocks();
   vi.mocked(desktop.getProfile).mockResolvedValue(null);
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    profileReady: false,
+    pointsPerAnswer: 10,
+    questions: [
+      { id: 'math', subject: 'mathematics', prompt: '17 + 25?', solved: false },
+      { id: 'english', subject: 'english', prompt: 'Katze?', solved: false },
+    ],
+    wallet: { balance: 0, totalEarned: 0, rewards: [] },
+  });
 });
 
 describe('Lernwelt', () => {
@@ -24,9 +37,7 @@ describe('Lernwelt', () => {
       'aria-pressed',
       'true',
     );
-    expect(
-      screen.getByText(/Übungen und Lehrplaninhalte werden/),
-    ).toBeVisible();
+    expect(screen.getByText(/Noch kein vollständiger Lehrplan/)).toBeVisible();
   });
 
   it('lädt das gespeicherte Profil', async () => {

@@ -35,7 +35,7 @@ Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale mac
 
 Das Lernprofil (Spitzname und Jahrgangsstufe 5–13) wird in `lernwelt.sqlite3` im Tauri-Anwendungsdatenverzeichnis `de.lernwelt.desktop` gespeichert. Auf macOS ist dies `~/Library/Application Support/de.lernwelt.desktop/`, auf Windows unter `%APPDATA%\\de.lernwelt.desktop\\`. Die Browser-Vorschau zeigt einen Hinweis statt Speicherung zu simulieren.
 
-Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Noch sind keine Übungen angeschlossen. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
+Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Vier eigene Beispielaufgaben sind zum Ausprobieren des Punktesystems angeschlossen. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
 
 ```sh
 cargo test --manifest-path src-tauri/Cargo.toml
@@ -54,3 +54,13 @@ Rust-Prüfungen benötigen `rustfmt` und `clippy`. In CI wird Rust 1.98.1 mit No
 Der CI-Workflow kontrolliert bei Pull Requests den Issue-Branch, die passende `Closes #…`-Verknüpfung und die Reviewdatei. Das ersetzt nicht den inhaltlichen Review. Branch Protection ist nicht automatisch eingerichtet.
 
 Details: [Architektur](docs/architecture.md), [Reviewnachweise](docs/reviews/).
+
+## Punkte und Abzeichen
+
+Nach dem Speichern eines Lernprofils können die Beispielaufgaben in Mathematik und Englisch beantwortet werden. Jede Aufgabe bringt bei der ersten korrekten Lösung **10 Punkte**. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
+
+Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Abzeichen **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Mit den vier Beispielaufgaben sind insgesamt 40 Punkte erreichbar. Weitere Aufgaben und Belohnungen lassen sich ergänzen.
+
+Antworten werden lokal im Rust-Backend geprüft. Gutschrift und Lernfortschritt werden gemeinsam gespeichert; Einlösen prüft das Guthaben und bucht atomar ab. Doppelte Requests erzeugen keine doppelten Buchungen. Das lokale System bietet keine manipulationssichere Währung und hat keinen Geldwert.
+
+Die Beispiele sind eigene Aufgaben ohne bestätigte Lehrplanzuordnung. Sie sind keine vollständigen Lerninhalte. Aufgaben- und Belohnungsregeln stehen in `src-tauri/src/learning.rs`.
