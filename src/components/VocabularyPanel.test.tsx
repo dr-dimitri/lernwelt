@@ -70,9 +70,65 @@ it('prüft die Eingabe per Enter, zeigt erst danach die Lösung und aktualisiert
   ).not.toBeInTheDocument();
   vi.mocked(desktop.getVocabularyState).mockResolvedValue(done);
   await user.click(screen.getByRole('button', { name: 'Nächste Karte' }));
-  expect(await screen.findByText('Für jetzt geschafft!')).toBeVisible();
+  expect(await screen.findByText('Für jetzt geschafft!')).toHaveFocus();
   expect(screen.getByText(/Nächste Wiederholung:/)).toBeVisible();
   expect(desktop.reviewVocabulary).toHaveBeenCalledTimes(1);
+});
+it('lässt nach der Rückmeldung und nächsten Karte direkt per Tastatur weiterüben', async () => {
+  const user = userEvent.setup();
+  const next: VocabularyState = {
+    ...initial,
+    card: {
+      ...initial.card!,
+      card: {
+        ...initial.card!.card,
+        id: 'goodbye',
+        english: 'goodbye',
+        german: 'auf Wiedersehen',
+      },
+    },
+  };
+  vi.mocked(desktop.getVocabularyState)
+    .mockResolvedValueOnce(initial)
+    .mockResolvedValue(next);
+  vi.mocked(desktop.reviewVocabulary)
+    .mockResolvedValueOnce({ ...success, state: next })
+    .mockResolvedValue(success);
+  render(<VocabularyPanel profileVersion={0} />);
+  await user.type(
+    await screen.findByLabelText('Deine englische Antwort'),
+    'hello{Enter}',
+  );
+  expect(
+    await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
+  ).toHaveFocus();
+  await user.tab();
+  expect(screen.getByRole('button', { name: 'Nächste Karte' })).toHaveFocus();
+  await user.keyboard('{Enter}');
+  expect(
+    await screen.findByRole('heading', { name: 'auf Wiedersehen' }),
+  ).toBeVisible();
+  expect(screen.getByLabelText('Deine englische Antwort')).toHaveFocus();
+  await user.keyboard('goodbye{Enter}');
+  expect(desktop.reviewVocabulary).toHaveBeenLastCalledWith(
+    expect.objectContaining({ cardId: 'goodbye', answer: 'goodbye' }),
+  );
+  expect(
+    await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
+  ).toHaveFocus();
+});
+it('behält Eingabe und bewusst gewählten Fokus bei unverändertem Zustand', async () => {
+  const user = userEvent.setup();
+  const { rerender } = render(<VocabularyPanel profileVersion={0} />);
+  const field = await screen.findByLabelText('Deine englische Antwort');
+  await user.type(field, 'helo{ArrowLeft}l');
+  expect(field).toHaveValue('hello');
+  expect(field).toHaveFocus();
+  await user.tab();
+  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toHaveFocus();
+  rerender(<VocabularyPanel profileVersion={0} />);
+  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toHaveFocus();
+  expect(field).toHaveValue('hello');
 });
 it('zeigt eine falsche Lösung ohne Punkte und erlaubt bewusstes Aufdecken ohne Antwort', async () => {
   const user = userEvent.setup();
