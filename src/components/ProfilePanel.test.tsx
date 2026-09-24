@@ -24,10 +24,45 @@ it('lädt nach einem vorübergehenden Fehler das vorhandene Profil ohne Neustart
   ).toBeDisabled();
   await user.click(screen.getByRole('button', { name: 'Profil erneut laden' }));
   expect(await screen.findByDisplayValue('Mia')).toBeEnabled();
-  expect(screen.getByLabelText('Jahrgangsstufe')).toHaveValue('6');
+  expect(screen.getByLabelText('Jahrgangsstufe')).toHaveValue('5');
+  expect(screen.getByLabelText('Jahrgangsstufe')).toHaveAccessibleDescription(
+    'In deinem Profil ist noch Klasse 6 gespeichert. Mit „Profil speichern“ wechselst du zu Klasse 5. Dein Lernfortschritt bleibt erhalten.',
+  );
   expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   expect(desktop.getProfile).toHaveBeenCalledTimes(2);
   expect(desktop.saveProfile).not.toHaveBeenCalled();
+});
+
+it('bietet nur Klasse 5 an und ändert eine ältere Profilklasse erst beim Speichern', async () => {
+  const user = userEvent.setup();
+  const onSaved = vi.fn();
+  vi.mocked(desktop.getProfile).mockResolvedValue({
+    displayName: 'Mia',
+    grade: 8,
+  });
+  vi.mocked(desktop.saveProfile).mockResolvedValue({
+    displayName: 'Mia',
+    grade: 5,
+  });
+  render(<ProfilePanel onSaved={onSaved} />);
+  await screen.findByDisplayValue('Mia');
+  expect(screen.getAllByRole('option')).toHaveLength(1);
+  expect(screen.getByRole('option', { name: 'Klasse 5' })).toBeInTheDocument();
+  expect(screen.getByText(/noch Klasse 8 gespeichert/)).toBeVisible();
+  expect(desktop.saveProfile).not.toHaveBeenCalled();
+  expect(onSaved).not.toHaveBeenCalled();
+
+  await user.click(screen.getByRole('button', { name: 'Profil speichern' }));
+
+  expect(desktop.saveProfile).toHaveBeenCalledExactlyOnceWith({
+    displayName: 'Mia',
+    grade: 5,
+  });
+  expect(await screen.findByRole('status')).toHaveTextContent('gespeichert');
+  expect(
+    screen.queryByText(/noch Klasse 8 gespeichert/),
+  ).not.toBeInTheDocument();
+  expect(onSaved).toHaveBeenCalledExactlyOnceWith();
 });
 
 it('sperrt das Formular während des erneuten Ladens und bietet nach erneutem Fehler wieder Wiederholen an', async () => {
@@ -91,6 +126,11 @@ it('verwirft einen verspäteten Retry nach Unmount und bewahrt Eingaben bei rein
   await user.click(screen.getByRole('button', { name: 'Profil speichern' }));
   expect(await screen.findByRole('alert')).toHaveTextContent('Schreibfehler');
   expect(screen.getByLabelText('Name oder Spitzname')).toHaveValue('Miachen');
+  expect(screen.getByText(/noch Klasse 6 gespeichert/)).toBeVisible();
+  expect(desktop.saveProfile).toHaveBeenCalledExactlyOnceWith({
+    displayName: 'Miachen',
+    grade: 5,
+  });
   expect(
     screen.queryByRole('button', { name: 'Profil erneut laden' }),
   ).not.toBeInTheDocument();

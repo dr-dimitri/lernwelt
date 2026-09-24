@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
@@ -36,12 +36,11 @@ describe('Lernwelt', () => {
     render(<App />);
     await user.click(screen.getByRole('button', { name: 'Englisch' }));
     expect(
-      screen.getByRole('heading', { name: 'Englisch · Klasse 5' }),
+      await screen.findByRole('heading', { name: 'Englisch · Klasse 5' }),
     ).toBeVisible();
-    expect(screen.getByRole('button', { name: 'Englisch' })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    );
+    expect(
+      screen.getByRole('heading', { name: 'Englisch', level: 1 }),
+    ).toHaveFocus();
     expect(screen.getByText(/12 Themen zum Entdecken/)).toBeVisible();
     await user.click(
       screen.getByText('Für Neugierige & Erwachsene: Englisch-Lerninhalte'),
@@ -49,7 +48,7 @@ describe('Lernwelt', () => {
     expect(screen.getByText(/automatische Aussprachebewertung/)).toBeVisible();
   });
 
-  it('lädt das gespeicherte Profil', async () => {
+  it('lädt ein älteres Profil ohne die gespeicherte Klasse automatisch zu ändern', async () => {
     vi.mocked(desktop.getProfile).mockResolvedValue({
       displayName: 'Alex',
       grade: 8,
@@ -57,14 +56,16 @@ describe('Lernwelt', () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: 'Dein Profil' }));
     expect(await screen.findByDisplayValue('Alex')).toBeVisible();
-    expect(screen.getByLabelText('Jahrgangsstufe')).toHaveValue('8');
+    expect(screen.getByLabelText('Jahrgangsstufe')).toHaveValue('5');
+    expect(screen.getByText(/noch Klasse 8 gespeichert/)).toBeVisible();
+    expect(desktop.saveProfile).not.toHaveBeenCalled();
   });
 
-  it('speichert Name und Jahrgangsstufe und bestätigt erst den Erfolg', async () => {
+  it('speichert Name und die einzige angebotene Klasse 5 und bestätigt erst den Erfolg', async () => {
     const user = userEvent.setup();
     vi.mocked(desktop.saveProfile).mockResolvedValue({
       displayName: 'Alex',
-      grade: 7,
+      grade: 5,
     });
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: 'Dein Profil' }));
@@ -72,13 +73,20 @@ describe('Lernwelt', () => {
       expect(screen.getByLabelText('Name oder Spitzname')).toBeEnabled(),
     );
     await user.type(screen.getByLabelText('Name oder Spitzname'), 'Alex');
-    await user.selectOptions(screen.getByLabelText('Jahrgangsstufe'), '7');
+    expect(
+      within(screen.getByLabelText('Jahrgangsstufe')).getAllByRole('option'),
+    ).toHaveLength(1);
+    expect(screen.getByLabelText('Jahrgangsstufe')).toHaveValue('5');
     await user.click(screen.getByRole('button', { name: 'Profil speichern' }));
     expect(desktop.saveProfile).toHaveBeenCalledWith({
       displayName: 'Alex',
-      grade: 7,
+      grade: 5,
     });
-    expect(await screen.findByRole('status')).toHaveTextContent('gespeichert');
+    expect(
+      await within(
+        screen.getByRole('region', { name: 'Dein Lernprofil' }),
+      ).findByRole('status'),
+    ).toHaveTextContent('gespeichert');
     await user.type(screen.getByLabelText('Name oder Spitzname'), 'a');
     expect(
       screen.queryByText(/wurde auf diesem Gerät gespeichert/),
@@ -159,7 +167,11 @@ describe('Lernwelt', () => {
       grade: 5,
     });
     await user.click(screen.getByRole('button', { name: 'Profil speichern' }));
-    expect(await screen.findByRole('status')).toHaveTextContent('gespeichert');
+    expect(
+      await within(
+        screen.getByRole('region', { name: 'Dein Lernprofil' }),
+      ).findByRole('status'),
+    ).toHaveTextContent('gespeichert');
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 });
@@ -183,14 +195,14 @@ it('lädt beim Rückweg aus der Spielhalle das gemeinsame Lernpunktekonto neu', 
     bestScores: [],
   });
   render(<App />);
+  await user.click(screen.getByRole('button', { name: 'Mathematik' }));
   expect(await screen.findByText('20 Punkte')).toBeVisible();
   await user.click(screen.getByRole('button', { name: 'Spielhalle' }));
   expect(
     await screen.findByText('10 Lernpunkte', { selector: '.arcade-balance' }),
   ).toBeVisible();
-  await user.click(
-    screen.getByRole('button', { name: 'Lernen & Punkte sammeln' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Meine Fächer' }));
+  await user.click(screen.getByRole('button', { name: 'Mathematik' }));
   expect(await screen.findByText('10 Punkte')).toBeVisible();
   expect(desktop.getLearningState).toHaveBeenCalledTimes(2);
 });
@@ -199,6 +211,7 @@ it('öffnet den separaten Vokabeltrainer und lädt beim Rückweg die gemeinsame 
   const user = userEvent.setup();
   vi.mocked(desktop.getVocabularyState).mockResolvedValue(vocabularyInitial);
   render(<App />);
+  await user.click(screen.getByRole('button', { name: 'Mathematik' }));
   await screen.findByText('Wie möchtest du heute üben?');
   await user.click(screen.getByRole('button', { name: 'Vokabeltrainer' }));
   expect(
@@ -208,9 +221,8 @@ it('öffnet den separaten Vokabeltrainer und lädt beim Rückweg die gemeinsame 
     ...initial,
     difficulty: 'streber',
   });
-  await user.click(
-    screen.getByRole('button', { name: 'Lernen & Punkte sammeln' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Meine Fächer' }));
+  await user.click(screen.getByRole('button', { name: 'Mathematik' }));
   expect(
     await screen.findByRole('button', { name: /Streber/ }),
   ).toHaveAttribute('aria-pressed', 'true');
@@ -223,6 +235,7 @@ it('öffnet den Einmaleins-Trainer neben dem Vokabeltrainer und lädt danach das
     multiplicationInitial,
   );
   render(<App />);
+  await user.click(screen.getByRole('button', { name: 'Mathematik' }));
   await screen.findByText('Wie möchtest du heute üben?');
   await user.click(screen.getByRole('button', { name: 'Einmaleins-Trainer' }));
   expect(
@@ -232,11 +245,69 @@ it('öffnet den Einmaleins-Trainer neben dem Vokabeltrainer und lädt danach das
     ...initial,
     wallet: { ...initial.wallet, balance: 11 },
   });
-  await user.click(
-    screen.getByRole('button', { name: 'Lernen & Punkte sammeln' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Meine Fächer' }));
+  await user.click(screen.getByRole('button', { name: 'Mathematik' }));
   expect(await screen.findByLabelText('Verfügbare Punkte')).toHaveTextContent(
     '11 Punkte',
   );
   expect(desktop.getLearningState).toHaveBeenCalledTimes(2);
+});
+
+it('führt durch Fächersuche, Fachwechsel und zurück zur Auswahl mit Tastaturfokus', async () => {
+  const user = userEvent.setup();
+  render(<App />);
+  expect(screen.getByRole('button', { name: 'Meine Fächer' })).toHaveAttribute(
+    'aria-current',
+    'page',
+  );
+  expect(desktop.getLearningState).not.toHaveBeenCalled();
+  await user.type(
+    screen.getByRole('searchbox', { name: 'Fach suchen' }),
+    'engl',
+  );
+  await user.click(screen.getByRole('button', { name: 'Englisch' }));
+  expect(
+    await screen.findByRole('heading', { name: 'Englisch · Klasse 5' }),
+  ).toBeVisible();
+  expect(
+    screen.getByRole('heading', { name: 'Englisch', level: 1 }),
+  ).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: '← Alle Fächer' }));
+  expect(screen.getByRole('heading', { level: 1 })).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Englisch' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await user.click(screen.getByRole('button', { name: 'Mathematik' }));
+  expect(
+    await screen.findByRole('heading', { name: 'Mathematik · Klasse 5' }),
+  ).toBeVisible();
+});
+
+it('schließt das kompakte Menü mit Escape und nach einer Bereichswahl', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getVocabularyState).mockResolvedValue(vocabularyInitial);
+  render(<App />);
+  await user.click(screen.getByRole('button', { name: 'Menü öffnen' }));
+  expect(
+    screen.getByRole('button', { name: 'Menü schließen' }),
+  ).toHaveAttribute('aria-expanded', 'true');
+  await user.keyboard('{Escape}');
+  expect(screen.getByRole('button', { name: 'Menü öffnen' })).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: 'Menü öffnen' }));
+  screen.getByRole('button', { name: 'Meine Fächer' }).focus();
+  await user.keyboard('{Escape}');
+  expect(screen.getByRole('button', { name: 'Menü öffnen' })).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: 'Menü öffnen' }));
+  await user.click(screen.getByRole('button', { name: 'Vokabeltrainer' }));
+  expect(screen.getByRole('button', { name: 'Menü öffnen' })).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
+  expect(
+    screen.getByRole('heading', { name: 'Vokabeltrainer', level: 1 }),
+  ).toHaveFocus();
+  expect(
+    await screen.findByRole('button', { name: 'Antwort prüfen' }),
+  ).toBeVisible();
 });
