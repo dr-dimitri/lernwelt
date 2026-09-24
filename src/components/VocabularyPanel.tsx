@@ -47,6 +47,9 @@ export default function VocabularyPanel({
   const revision = useRef(0);
   const inFlight = useRef(false);
   const feedbackHeading = useRef<HTMLHeadingElement>(null);
+  const answerField = useRef<HTMLInputElement>(null);
+  const completedHeading = useRef<HTMLHeadingElement>(null);
+  const focusNextCard = useRef(false);
 
   useEffect(() => {
     const current = ++revision.current;
@@ -138,8 +141,16 @@ export default function VocabularyPanel({
     }
   }
   useEffect(() => {
-    if (feedback && !busy) feedbackHeading.current?.focus();
-  }, [feedback, busy]);
+    if (busy) return;
+    const moveToCard = focusNextCard.current;
+    focusNextCard.current = false;
+    if (pending || error || !state?.profileReady) return;
+    if (feedback) feedbackHeading.current?.focus();
+    else if (moveToCard) {
+      if (state.card) answerField.current?.focus();
+      else completedHeading.current?.focus();
+    }
+  }, [feedback, busy, pending, error, state]);
 
   const presented = feedback?.presented ?? state?.card;
   const card = presented?.card;
@@ -308,6 +319,7 @@ export default function VocabularyPanel({
                       ? 'Deine deutsche Übersetzung'
                       : 'Deine englische Antwort'}
                     <input
+                      ref={answerField}
                       value={answer}
                       disabled={disabled}
                       maxLength={160}
@@ -370,7 +382,10 @@ export default function VocabularyPanel({
                   <button
                     className="primary-button"
                     disabled={busy}
-                    onClick={() => setReload((v) => v + 1)}
+                    onClick={() => {
+                      focusNextCard.current = true;
+                      setReload((v) => v + 1);
+                    }}
                   >
                     Nächste Karte
                   </button>
@@ -380,7 +395,9 @@ export default function VocabularyPanel({
           )}
           {state.profileReady && !card && (
             <div className="flashcard">
-              <h3>Für jetzt geschafft!</h3>
+              <h3 ref={completedHeading} tabIndex={-1}>
+                Für jetzt geschafft!
+              </h3>
               <p>
                 In diesem Thema ist gerade keine Karte fällig. Eine Pause gehört
                 zum Lernen dazu.
