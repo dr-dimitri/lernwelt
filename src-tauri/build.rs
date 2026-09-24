@@ -4,7 +4,9 @@ fn main() {
             "get_profile",
             "save_profile",
             "list_progress",
-            "record_attempt",
+            "get_learning_state",
+            "submit_answer",
+            "redeem_reward",
         ]),
     ))
     .expect("Tauri build configuration failed");

@@ -7,6 +7,8 @@
     "allow-get-profile",
     "allow-save-profile",
     "allow-list-progress",
-    "allow-record-attempt"
+    "allow-get-learning-state",
+    "allow-submit-answer",
+    "allow-redeem-reward"
   ]
 }

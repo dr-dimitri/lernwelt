@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import ProfilePanel from './components/ProfilePanel';
+import LearningPanel from './components/LearningPanel';
 import { subjects, type SubjectId } from './domain/subjects';
 
 export default function App() {
   const [selected, setSelected] = useState<SubjectId>('mathematics');
-  const subject = subjects.find((item) => item.id === selected)!;
+  const [profileVersion, setProfileVersion] = useState(0);
 
   return (
     <div className="app-shell">
@@ -56,15 +57,10 @@ export default function App() {
             ))}
           </div>
         </section>
-        <section className="detail-panel" aria-labelledby="detail-title">
-          <p className="eyebrow">AUSGEWÄHLTES FACH</p>
-          <h2 id="detail-title">{subject.name}</h2>
-          <p>
-            Hier entsteht dein Lernbereich. Übungen und Lehrplaninhalte werden
-            in den nächsten Ausbauschritten ergänzt.
-          </p>
-        </section>
-        <ProfilePanel />
+        <LearningPanel subject={selected} profileVersion={profileVersion} />
+        <ProfilePanel
+          onSaved={() => setProfileVersion((version) => version + 1)}
+        />
         <footer>
           Deine Lernwelt wächst. Dies ist die technische Grundversion.
         </footer>

@@ -1,6 +1,7 @@
 mod database;
+mod learning;
 
-use database::{Profile, Progress, Subject};
+use database::{Profile, Progress};
 use rusqlite::Connection;
 use std::sync::Mutex;
 use tauri::{Manager, State};
@@ -10,13 +11,13 @@ struct Storage(Mutex<Result<Connection, String>>);
 impl Storage {
     fn with_connection<T>(
         &self,
-        operation: impl FnOnce(&Connection) -> Result<T, String>,
+        operation: impl FnOnce(&mut Connection) -> Result<T, String>,
     ) -> Result<T, String> {
-        let guard = self
+        let mut guard = self
             .0
             .lock()
             .map_err(|_| "Die lokalen Lerndaten sind gerade nicht verfügbar.".to_owned())?;
-        match guard.as_ref() {
+        match guard.as_mut() {
             Ok(connection) => operation(connection),
             Err(message) => Err(message.clone()),
         }
@@ -25,7 +26,7 @@ impl Storage {
 
 #[tauri::command]
 fn get_profile(storage: State<'_, Storage>) -> Result<Option<Profile>, String> {
-    storage.with_connection(database::get_profile)
+    storage.with_connection(|connection| database::get_profile(connection))
 }
 
 #[tauri::command]
@@ -35,19 +36,32 @@ fn save_profile(storage: State<'_, Storage>, profile: Profile) -> Result<Profile
 
 #[tauri::command]
 fn list_progress(storage: State<'_, Storage>) -> Result<Vec<Progress>, String> {
-    storage.with_connection(database::list_progress)
+    storage.with_connection(|connection| database::list_progress(connection))
 }
 
 #[tauri::command]
-fn record_attempt(
+fn get_learning_state(storage: State<'_, Storage>) -> Result<learning::LearningState, String> {
+    storage.with_connection(learning::get_state)
+}
+
+#[tauri::command]
+fn submit_answer(
     storage: State<'_, Storage>,
-    subject: Subject,
-    competency_id: String,
-    correct: bool,
-) -> Result<(), String> {
+    request_id: String,
+    question_id: String,
+    answer: String,
+) -> Result<learning::AnswerResult, String> {
     storage.with_connection(|connection| {
-        database::record_attempt(connection, subject, &competency_id, correct)
+        learning::submit_answer(connection, &request_id, &question_id, &answer)
     })
+}
+
+#[tauri::command]
+fn redeem_reward(
+    storage: State<'_, Storage>,
+    reward_id: String,
+) -> Result<learning::Wallet, String> {
+    storage.with_connection(|connection| learning::redeem_reward(connection, &reward_id))
 }
 
 pub fn run() {
@@ -70,7 +84,9 @@ pub fn run() {
             get_profile,
             save_profile,
             list_progress,
-            record_attempt
+            get_learning_state,
+            submit_answer,
+            redeem_reward
         ])
         .run(tauri::generate_context!())
         .expect("Lernwelt konnte nicht gestartet werden");

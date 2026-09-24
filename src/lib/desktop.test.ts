@@ -27,13 +27,13 @@ describe('Desktop-Schnittstelle', () => {
     ).rejects.toThrow('Jahrgangsstufe');
   });
 
-  it('verwendet die vereinbarten Command-Argumente für Fortschritt', async () => {
+  it('übermittelt die Antwort statt eines vom Client behaupteten Ergebnisses', async () => {
     vi.mocked(invoke).mockResolvedValue(undefined);
-    await desktop.recordAttempt('english', 'by.english.7.example', true);
-    expect(invoke).toHaveBeenCalledWith('record_attempt', {
-      subject: 'english',
-      competencyId: 'by.english.7.example',
-      correct: true,
+    await desktop.submitAnswer('request-1', 'sample.english.cat.v1', 'cat');
+    expect(invoke).toHaveBeenCalledWith('submit_answer', {
+      requestId: 'request-1',
+      questionId: 'sample.english.cat.v1',
+      answer: 'cat',
     });
   });
 });
