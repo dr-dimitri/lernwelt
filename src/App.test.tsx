@@ -34,14 +34,15 @@ describe('Lernwelt', () => {
   it('wechselt das Fach und zeigt den tatsächlichen Ausbaustand', async () => {
     const user = userEvent.setup();
     render(<App />);
-    await user.click(screen.getByRole('button', { name: /Englisch/ }));
+    await user.click(
+      screen.getByRole('button', { name: 'Englisch', exact: true }),
+    );
     expect(
       screen.getByRole('heading', { name: 'Englisch · Klasse 5' }),
     ).toBeVisible();
-    expect(screen.getByRole('button', { name: /Englisch/ })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    );
+    expect(
+      screen.getByRole('button', { name: 'Englisch', exact: true }),
+    ).toHaveAttribute('aria-pressed', 'true');
     expect(screen.getByText(/12 Themen zum Entdecken/)).toBeVisible();
     await user.click(
       screen.getByText('Für Neugierige & Erwachsene: Englisch-Lerninhalte'),
@@ -55,6 +56,7 @@ describe('Lernwelt', () => {
       grade: 8,
     });
     render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: 'Dein Profil' }));
     expect(await screen.findByDisplayValue('Alex')).toBeVisible();
     expect(screen.getByLabelText('Jahrgangsstufe')).toHaveValue('8');
   });
@@ -66,6 +68,7 @@ describe('Lernwelt', () => {
       grade: 7,
     });
     render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: 'Dein Profil' }));
     await waitFor(() =>
       expect(screen.getByLabelText('Name oder Spitzname')).toBeEnabled(),
     );
@@ -93,6 +96,7 @@ describe('Lernwelt', () => {
         }),
     );
     render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: 'Dein Profil' }));
     await waitFor(() =>
       expect(screen.getByLabelText('Name oder Spitzname')).toBeEnabled(),
     );
@@ -119,6 +123,7 @@ describe('Lernwelt', () => {
       new Error('Datenbank nicht verfügbar'),
     );
     render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: 'Dein Profil' }));
     expect(await screen.findByRole('alert')).toHaveTextContent(
       'Datenbank nicht verfügbar',
     );
@@ -134,6 +139,7 @@ describe('Lernwelt', () => {
       new Error('Speichern fehlgeschlagen'),
     );
     render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: 'Dein Profil' }));
     await waitFor(() =>
       expect(screen.getByLabelText('Name oder Spitzname')).toBeEnabled(),
     );

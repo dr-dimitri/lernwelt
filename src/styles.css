@@ -1017,3 +1017,510 @@ summary {
     grid-template-columns: 1fr;
   }
 }
+
+/* Compact desktop workspace: the current task comes first, extras open as pages. */
+.app-shell {
+  max-width: 1440px;
+  padding: 0 20px;
+}
+.header {
+  min-height: 52px;
+  gap: 14px;
+}
+.brand {
+  font-size: 21px;
+}
+.brand-icon {
+  width: 30px;
+  height: 30px;
+}
+.header .local-badge {
+  margin-left: auto;
+}
+.view-switch {
+  margin: 10px 0;
+  gap: 8px;
+}
+.view-switch button {
+  padding: 9px 17px;
+  border-radius: 10px;
+  min-height: 42px;
+}
+footer {
+  padding: 7px 0;
+}
+.subject-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 6px 0;
+}
+.subject-bar > .section-heading {
+  margin: 0;
+}
+.subject-bar .section-heading span,
+.subject-description,
+.subject-action {
+  display: none;
+}
+.subject-grid {
+  display: flex;
+  gap: 8px;
+}
+.subject-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 10px;
+}
+.subject-symbol {
+  width: 26px;
+  height: 26px;
+  font-size: 20px;
+}
+.subject-name {
+  font-size: 16px;
+}
+.detail-panel,
+.arcade {
+  position: relative;
+  margin-top: 10px;
+  padding: 16px 20px;
+  border-radius: 18px;
+}
+.section-heading {
+  margin-bottom: 6px;
+}
+.detail-panel .eyebrow,
+.eyebrow {
+  margin-bottom: 5px;
+  font-size: 10px;
+}
+.detail-panel p:not(.eyebrow),
+.arcade p {
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 8px 0;
+}
+.points-balance,
+.arcade-balance {
+  font-size: 17px;
+  padding: 7px 14px;
+  display: inline-block;
+}
+.learning-workspace,
+.vocabulary-workspace {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  align-items: start;
+  gap: 14px 20px;
+  margin-top: 12px;
+}
+.level-section,
+.topic-section {
+  margin: 0 0 16px;
+}
+.level-section h3,
+.vocabulary-settings > h3 {
+  font-size: 15px;
+}
+.learning-settings .level-grid,
+.vocabulary-settings .level-grid {
+  grid-template-columns: 1fr;
+  gap: 6px;
+  margin-top: 8px;
+}
+.level-card {
+  min-height: 46px;
+  padding: 7px 10px;
+  gap: 3px 8px;
+  grid-template-columns: 22px 1fr;
+  border-radius: 10px;
+}
+.level-card > span {
+  font-size: 18px;
+  grid-row: 1 / 3;
+}
+.level-card strong {
+  font-size: 15px;
+}
+.level-card small {
+  grid-column: 2;
+  font-size: 12px;
+}
+.learning-settings .level-card small:first-of-type {
+  display: none;
+}
+.learning-settings .sample-note {
+  font-size: 12px;
+}
+.topic-section h3 {
+  font-size: 16px;
+}
+.topic-description {
+  font-size: 12px !important;
+}
+.topic-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.topic-card {
+  padding: 10px;
+  gap: 5px;
+}
+.topic-card > span:not(.topic-number) {
+  display: none;
+}
+.topic-number {
+  display: none;
+}
+.practice-area {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 14px;
+}
+.question-navigation {
+  margin: 8px 0;
+  gap: 8px;
+}
+input,
+select {
+  min-height: 38px;
+  padding: 8px 10px;
+}
+.primary-button,
+.secondary-button {
+  min-height: 38px;
+  padding: 8px 12px;
+}
+.answer-label {
+  margin: 8px 0;
+  font-size: 19px;
+  line-height: 1.4;
+}
+.answer-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin: 8px 0;
+}
+.answer-option {
+  min-height: 40px;
+  padding: 7px 10px;
+}
+.answer-feedback {
+  margin-top: 8px;
+  padding: 10px 12px;
+}
+.answer-feedback p {
+  margin-top: 5px !important;
+}
+.hint-panel,
+.activities,
+.lesson {
+  display: inline-block;
+  margin: 6px 8px 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.rewards-area,
+.source-note {
+  display: inline-block;
+  margin: 8px 8px 0 0;
+  padding: 0;
+  border: 0;
+  vertical-align: top;
+}
+.learning-panel > .source-note > button {
+  font-size: 12px;
+}
+.info-dialog {
+  width: min(820px, calc(100vw - 32px));
+  max-height: calc(100dvh - 40px);
+  border: 1px solid #d0d8e4;
+  border-radius: 18px;
+  padding: 20px;
+  color: #243b35;
+  background: #fcfcf7;
+  box-shadow: 0 20px 80px #18294655;
+}
+.info-dialog::backdrop {
+  background: #14293d75;
+  backdrop-filter: blur(3px);
+}
+.dialog-heading,
+.page-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.dialog-heading {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dae2da;
+}
+.dialog-heading h2 {
+  font-size: 19px;
+}
+.dialog-page {
+  padding: 10px 0;
+}
+.dialog-page p {
+  white-space: pre-line;
+  line-height: 1.55;
+}
+.page-controls {
+  padding-top: 12px;
+  border-top: 1px solid #dae2da;
+}
+.dialog-page .detail-panel {
+  margin: 0;
+}
+.dialog-page .source-note {
+  display: block;
+}
+.learning-table {
+  margin-block: 8px;
+}
+.learning-table th,
+.learning-table td {
+  padding: 7px 10px;
+}
+.reward-card {
+  padding: 14px;
+}
+.trainer-modes {
+  margin: 10px 0;
+  gap: 10px;
+}
+.trainer-modes .level-card {
+  grid-template-columns: 26px 1fr;
+  min-height: 60px;
+}
+.flashcard {
+  margin: 12px auto;
+  padding: 18px 22px;
+  max-width: 700px;
+}
+.flashcard label {
+  margin: 10px 0;
+  gap: 6px;
+}
+.flashcard h3 {
+  font-size: 27px;
+}
+.card-actions {
+  gap: 8px;
+  margin-top: 10px;
+}
+.card-answer {
+  margin-top: 8px;
+  padding-top: 4px;
+}
+.vocabulary-panel > .points-balance,
+.multiplication-panel > .points-balance {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+}
+.vocabulary-panel > p {
+  max-width: 85%;
+}
+.vocabulary-panel > .secondary-button {
+  margin-top: 4px;
+}
+.vocabulary-settings .info-panel {
+  margin: 8px 0;
+}
+.vocabulary-deck {
+  margin-top: 12px;
+}
+.vocabulary-boxes {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+.vocabulary-boxes li {
+  padding: 6px 4px;
+  font-size: 11px;
+  gap: 4px;
+  text-align: center;
+}
+.vocabulary-boxes small {
+  display: none;
+}
+.vocabulary-workspace .flashcard {
+  width: 100%;
+  margin: 0;
+}
+.vocabulary-workspace > .source-note {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+.multiplication-panel .flashcard h3 {
+  font-size: 40px;
+}
+.round-explainer {
+  max-width: 900px;
+}
+.arcade-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+.arcade-card {
+  padding: 12px;
+  border-radius: 14px;
+}
+.game-preview {
+  width: calc(100% + 24px);
+  margin: -12px -12px 12px;
+  border-radius: 13px 13px 0 0;
+}
+.arcade-card h3 {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+.arcade-card .info-panel {
+  margin: 8px 0;
+}
+.arcade-card > button {
+  margin-top: auto;
+}
+.arcade button {
+  min-height: 38px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+.arcade-card .best-score {
+  font-size: 12px;
+}
+.points-tip,
+.resume-round,
+.arcade-result {
+  margin: 12px 0;
+  padding: 12px;
+}
+.arcade-note {
+  margin-top: 0;
+}
+.game-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 190px;
+  gap: 10px 16px;
+  margin-top: 12px;
+}
+.game-stage > .section-heading {
+  grid-column: 1 / -1;
+}
+.game-instructions {
+  grid-column: 2;
+  grid-row: 2;
+}
+.game-hud {
+  grid-column: 2;
+  grid-row: 3;
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 12px;
+}
+.game-focus {
+  grid-column: 1;
+  grid-row: 2 / 6;
+  width: min(100%, calc((100dvh - 295px) * 1.6));
+  max-width: 740px;
+  border-radius: 12px;
+}
+.game-controls {
+  padding: 8px;
+  gap: 6px;
+}
+.game-controls button {
+  padding: 7px 9px;
+}
+.game-actions {
+  grid-column: 2;
+  grid-row: 4;
+  display: grid;
+  margin: 0;
+  gap: 8px;
+}
+.game-stage > .section-heading span {
+  font-size: 11px;
+}
+.is-playing:has(.arcade-result) .game-stage {
+  display: none;
+}
+.profile-panel .profile-fields {
+  gap: 12px;
+}
+@media (max-width: 900px), (max-height: 650px) {
+  .app-shell {
+    padding: 0 14px;
+  }
+  .header .local-badge {
+    display: none;
+  }
+  .header > .info-panel {
+    margin-left: auto;
+  }
+  .learning-workspace,
+  .vocabulary-workspace {
+    grid-template-columns: 1fr;
+  }
+  .learning-settings .level-grid,
+  .vocabulary-settings .level-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .arcade-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .game-stage {
+    display: block;
+  }
+  .game-focus {
+    width: 100%;
+  }
+  .game-hud,
+  .game-actions {
+    display: flex;
+    margin: 10px 0;
+  }
+}
+@media (max-width: 550px) {
+  .app-shell {
+    padding: 0 10px;
+  }
+  .view-switch {
+    gap: 5px;
+  }
+  .view-switch button {
+    font-size: 13px;
+    padding: 8px;
+  }
+  .subject-bar > .section-heading {
+    display: none;
+  }
+  .detail-panel,
+  .arcade {
+    padding: 12px;
+  }
+  .answer-options,
+  .arcade-grid,
+  .topic-grid {
+    grid-template-columns: 1fr;
+  }
+  .vocabulary-panel > .points-balance,
+  .multiplication-panel > .points-balance {
+    position: static;
+  }
+  .card-actions {
+    flex-direction: column;
+  }
+  .learning-settings .level-grid,
+  .vocabulary-settings .level-grid {
+    grid-template-columns: 1fr;
+  }
+}

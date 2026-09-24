@@ -1,3 +1,4 @@
+import InfoPanel from './InfoPanel';
 import { useEffect, useRef, useState } from 'react';
 import {
   games,
@@ -84,7 +85,10 @@ export default function ArcadePanel({
     }
   }
   return (
-    <section className="arcade" aria-labelledby="arcade-title">
+    <section
+      className={`arcade ${playing ? 'is-playing' : ''}`}
+      aria-labelledby="arcade-title"
+    >
       <div className="section-heading">
         <div>
           <p className="eyebrow">DEINE VERDIENTE SPIELPAUSE</p>
@@ -124,8 +128,8 @@ export default function ArcadePanel({
       {!state && !error && <p role="status">Deine Spielhalle wird geladen …</p>}
       {state && !state.profileReady && (
         <p>
-          Speichere zuerst dein Lernprofil unten. Dann kannst du beim Lernen
-          Punkte verdienen.
+          Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst du beim
+          Lernen Punkte verdienen.
         </p>
       )}
       {playing ? (
@@ -196,10 +200,10 @@ export default function ArcadePanel({
                     0}{' '}
                   Spielpunkte
                 </p>
-                <details>
+                <InfoPanel>
                   <summary>So geht’s</summary>
                   <p>{game.instructions}</p>
-                </details>
+                </InfoPanel>
                 <button
                   disabled={
                     !state?.profileReady ||
@@ -231,11 +235,14 @@ export default function ArcadePanel({
             )}
         </>
       )}
-      <p className="arcade-note">
-        Beim Verlassen pausiert dein Spiel. Eine offene bezahlte Runde kannst du
-        später kostenlos von vorn beginnen. Gespeichert werden der Eintritt und
-        deine abgeschlossenen Bestwerte, nicht die genaue Spielposition.
-      </p>
+      <InfoPanel className="arcade-note">
+        <summary>Pause & Spielstände</summary>
+        <p>
+          Beim Verlassen pausiert dein Spiel. Eine offene bezahlte Runde kannst
+          du später kostenlos von vorn beginnen. Gespeichert werden der Eintritt
+          und deine abgeschlossenen Bestwerte, nicht die genaue Spielposition.
+        </p>
+      </InfoPanel>
     </section>
   );
 }

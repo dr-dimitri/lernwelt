@@ -187,9 +187,7 @@ it('lässt ungültige Eingaben korrigieren und zeigt Profil- und Ladefehler', as
     task: null,
   });
   await user.click(screen.getByRole('button', { name: 'Trainer neu laden' }));
-  expect(
-    await screen.findByText(/Speichere zuerst unten dein Lernprofil/),
-  ).toBeVisible();
+  expect(await screen.findByText(/Speichere dein Lernprofil/)).toBeVisible();
   expect(screen.queryByLabelText('Dein Ergebnis')).not.toBeInTheDocument();
 });
 it('verwirft veraltete Lade- und Speicherantworten nach Profilaktualisierung', async () => {
@@ -220,7 +218,7 @@ it('verwirft veraltete Lade- und Speicherantworten nach Profilaktualisierung', a
     task: null,
   });
   rerender(<MultiplicationPanel profileVersion={2} />);
-  await screen.findByText(/Speichere zuerst unten/);
+  await screen.findByText(/Speichere dein Lernprofil/);
   await act(async () => save(success));
   expect(screen.queryByText('Richtig! +1 Punkt')).not.toBeInTheDocument();
 });
