@@ -224,8 +224,9 @@ export default function ArcadePanel({
             state.wallet.balance < state.entryCost &&
             !state.activeSession && (
               <p className="points-tip">
-                Deine nächste neue richtige Antwort bringt 10 Lernpunkte – genug
-                für eine Spielrunde.
+                Sammle beim Lernen weitere Punkte: Vorschule bringt 5, Könner 10
+                und Streber 15 Lernpunkte pro neuer richtiger Lösung. Eine
+                Spielrunde kostet 10 Lernpunkte.
               </p>
             )}
         </>

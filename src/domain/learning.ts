@@ -79,7 +79,7 @@ export interface LearningState {
   topics: Topic[];
   curriculumSource: string;
   curriculumVersion: string;
-  pointsPerAnswer: number;
+  pointsByDifficulty: Record<Difficulty, number>;
   questions: Question[];
   wallet: Wallet;
 }
