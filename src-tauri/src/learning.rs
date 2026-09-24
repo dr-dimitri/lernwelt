@@ -161,6 +161,31 @@ pub fn get_state(connection: &mut Connection) -> Result<LearningState, String> {
     Ok(state)
 }
 
+/// Shared first-solution rule for curriculum exercises and guided missions.
+/// The caller owns the transaction containing its answer receipt.
+pub(crate) fn record_exercise_result(
+    connection: &Connection,
+    question_id: &str,
+    subject: Subject,
+    competency_id: &str,
+    difficulty: Difficulty,
+    correct: bool,
+) -> Result<i64, String> {
+    database::record_attempt(connection, subject, competency_id, correct)?;
+    let points = if correct && !has_entry(connection, "answer", question_id)? {
+        points_for_difficulty(difficulty)
+    } else {
+        0
+    };
+    if points > 0 {
+        connection.execute(
+            "INSERT INTO point_entries (profile_id, kind, item_id, amount) VALUES (1, 'answer', ?1, ?2)",
+            params![question_id, points],
+        ).map_err(db_error)?;
+    }
+    Ok(points)
+}
+
 pub fn submit_answer(
     connection: &mut Connection,
     request_id: &str,
@@ -207,20 +232,14 @@ pub fn submit_answer(
         (correct, points)
     } else {
         let correct = content::is_correct(exercise, answer);
-        let points = if correct && !has_entry(&transaction, "answer", question_id)? {
-            points_for_difficulty(exercise.difficulty)
-        } else {
-            0
-        };
-        database::record_attempt(
+        let points = record_exercise_result(
             &transaction,
+            question_id,
             exercise.subject,
             &exercise.competency_id,
+            exercise.difficulty,
             correct,
         )?;
-        if points > 0 {
-            transaction.execute("INSERT INTO point_entries (profile_id, kind, item_id, amount) VALUES (1, 'answer', ?1, ?2)", params![question_id, points]).map_err(db_error)?;
-        }
         transaction.execute(
             "INSERT INTO answer_submissions (request_id, profile_id, question_id, answer, correct, points_awarded) VALUES (?1, 1, ?2, ?3, ?4, ?5)",
             params![request_id, question_id, answer, correct, points],

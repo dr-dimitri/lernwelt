@@ -33,7 +33,7 @@ Das erste Paket liegt in `src-tauri/content/curriculum-v1.json` und wird über `
 
 Die IPC-Projektion liefert Aufgaben ohne Lösungsschlüssel. Rust bewertet Zahlen über exakte Dezimalnormalisierung (keine Fließkomma-Rundung, kein `eval`), Text ohne ASCII-Großschreibung und Auswahlantworten exakt. Einheiten werden durch die Fragestellung vorgegeben. Antwort- und Requestvalidierung, Journal und Idempotenz gelten für alle Stufen. Die vier ursprünglichen Beispiel-IDs behalten ihre Antworten; die beiden Mathematikbeispiele werden in der neuen Themenauswahl nicht angezeigt, bleiben aber für alte Request-Replays erreichbar. Geänderte Antwortbedeutungen benötigen neue Aufgaben-IDs.
 
-Die UI wählt Thema und Stufe, zeigt Tipps, Rückmeldung und lösbare Teilaufgaben. Papieraktivitäten mit Selbstkontrolle ergänzen geometrische Konstruktionen und das Erklären von Rechenwegen; sie lösen keine Punktebuchung aus. Audio, adaptive Wiederholungsplanung und KI sind nicht enthalten.
+Die UI wählt Thema und Stufe, zeigt Tipps, Rückmeldung und lösbare Teilaufgaben. Papieraktivitäten mit Selbstkontrolle ergänzen geometrische Konstruktionen und das Erklären von Rechenwegen; sie lösen keine Punktebuchung aus. Die freie Themenauswahl hat keine adaptive Wiederholungsplanung. Die geführte Lernrunde ergänzt eine eigene begrenzte Planung (siehe unten). Audio und KI sind nicht enthalten.
 
 ## Fachübergreifende Stufe (Schema 3)
 
@@ -134,3 +134,17 @@ Zeitlimits: Blöcke 240 Sekunden, Hühner 90 Sekunden, Labyrinth 240 Sekunden. S
 `InfoPanel` verwendet native modale HTML-Dialoge mit Escape, Fokus-Rückgabe und optionaler Seitennavigation. Erklärungen/Mitmachaufgaben werden in getrennten Seiten angeboten; `LearningTable` zeigt acht Zeilen pro Abschnitt. Fehler beim Einlösen bleiben im geöffneten Belohnungsfenster sichtbar. Automatisch geöffnete Antwort-Rückmeldungen führen den Fokus nach Weitergehen zurück zur stabilen Übungsregion, auch wenn sich die Aufgabe ändert.
 
 Desktop-Layouts stellen Einstellungen und Übung nebeneinander und begrenzen die Canvasgröße anhand der Fensterhöhe. Keine globale Scrollsperre: kleine Fenster, Zoom und außergewöhnlich lange Fehler behalten einen zugänglichen Overflow-Fallback. Standardfenster 1100×750, bisherige Mindestgröße bleibt erhalten. Keine Änderung an Datenbank oder Commands durch die Layoutumstellung; Profilhinweise im Backend verweisen nun auf den oberen Profilknopf.
+
+## Geführte Lernrunde (Schema 13)
+
+`mission.rs` liest das offline eingebundene Inhaltspaket `mission-garden-v1.json`. Drei Stufen mit je drei Varianten bilden ein erstes Thema, den Rechteckumfang. Antwortschlüssel, Tipps vor ihrer Anforderung und Lösungswege vor der Rückmeldung bleiben im Backend. Das Frontend erhält die Metadaten, das Themenalbum, die Wiederholungsfälligkeit, das gemeinsame Guthaben und den aktuellen Schritt.
+
+Drei begrenzte Commands sind in Handler, Buildmanifest und Capability registriert: `get_mission_state`, `start_mission(input)` und `act_mission(input)`. Aktionen sind Antworten, Tipp, Aufdecken, Weiter und Überspringen der optionalen Mitmachaufgabe. Rust prüft Profil, globale Stufe, Session-ID, Schrittnummer, erlaubte Aktion und Antwort. Nur passende Übergänge sind möglich. Die UI behält bei einem unklaren Speicherfehler dieselbe Request-ID und Nutzlast für den Retry oder lädt ausdrücklich den bestätigten Stand neu.
+
+Migration 013 ergänzt vier Tabellen: `mission_progress` für beobachtete Selbstlösungen und Fälligkeiten, `mission_sessions` für den Rundenstand je Thema und Stufe, `mission_steps` für Hilfen und bestätigte Ergebnisse sowie `mission_requests` für idempotente Aktionsbelege. Ein Index erlaubt je Thema und Stufe nur eine offene Runde. Die bestehenden Tabellen und Buchungen werden nicht neu bewertet. Ein Stufenwechsel setzt die offene Runde der anderen Stufe nicht zurück.
+
+Jede Aktion, ihr Beleg, der Fortschritt und etwaige Punkte werden gemeinsam in einer Immediate-Transaktion gespeichert. Die gemeinsame Funktion `learning::record_exercise_result` erhält die Erstlösungsregel des bestehenden Punktejournals. Wiederholte Antworten auf dieselbe stabile Aufgaben-ID bringen keine zusätzlichen Punkte; ein identischer Request bucht weder einen weiteren Versuch noch einen weiteren Schritt. Derselbe Request mit abweichenden Argumenten wird abgewiesen. Der Replay liefert den aktuellen bestätigten Rundenstand, auch wenn inzwischen weitergearbeitet wurde.
+
+Die Runde beginnt mit einem Abruf vor dem Beispiel. Zeitversetzter Erfolg verlangt eine selbstständige erste Antwort auf eine andere Variante, eine frühere Selbstlösung und mindestens einen Tag Abstand zur letzten Lernaktion auf dieser Stufe. Tipps und Aufdecken werden gespeichert, bevor sie angezeigt werden. Ein bloßer Rundenabschluss oder eine Mitmach-Selbstauskunft ist kein automatischer Kompetenznachweis. Die Wiederholungsplanung nutzt die Gerätezeit; eine Manipulation der lokalen Uhr ist nicht abgesichert.
+
+Weitere Hinweise zu Inhalt, Bedienung und Forschungsgrenzen: [Geführte Lernrunde](learning-missions.md).

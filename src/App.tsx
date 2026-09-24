@@ -6,9 +6,12 @@ import ArcadePanel from './components/ArcadePanel';
 import ProfilePanel from './components/ProfilePanel';
 import LearningPanel from './components/LearningPanel';
 import SubjectLibrary from './components/SubjectLibrary';
+import MissionCard from './components/MissionCard';
+import MissionPanel from './components/MissionPanel';
 import { subjects, type SubjectId } from './domain/subjects';
 
-type View = 'subjects' | 'learn' | 'arcade' | 'vocabulary' | 'multiplication';
+type View =
+  'subjects' | 'learn' | 'mission' | 'arcade' | 'vocabulary' | 'multiplication';
 
 const destinations = [
   { id: 'subjects', label: 'Meine Fächer', icon: 'subjects' },
@@ -121,7 +124,9 @@ export default function App() {
       ? 'Meine Fächer'
       : view === 'learn'
         ? subject.name
-        : destinations.find((item) => item.id === view)!.label;
+        : view === 'mission'
+          ? 'Deine Lernrunde'
+          : destinations.find((item) => item.id === view)!.label;
 
   useEffect(() => {
     if (navigationRequested.current) {
@@ -190,7 +195,8 @@ export default function App() {
                 key={item.id}
                 aria-current={
                   view === item.id ||
-                  (item.id === 'subjects' && view === 'learn')
+                  (item.id === 'subjects' &&
+                    (view === 'learn' || view === 'mission'))
                     ? 'page'
                     : undefined
                 }
@@ -235,7 +241,7 @@ export default function App() {
             className={`page-heading ${view === 'subjects' ? 'discovery-heading' : ''}`}
           >
             <div>
-              {view === 'learn' && (
+              {(view === 'learn' || view === 'mission') && (
                 <button
                   className="back-button"
                   onClick={() => navigate('subjects')}
@@ -274,13 +280,21 @@ export default function App() {
             )}
           </div>
           {view === 'subjects' ? (
-            <SubjectLibrary
-              subjects={subjects}
-              selected={selected}
-              onSelect={(id) => navigate('learn', id)}
-            />
+            <>
+              <MissionCard
+                profileVersion={profileVersion}
+                onOpen={() => navigate('mission')}
+              />
+              <SubjectLibrary
+                subjects={subjects}
+                selected={selected}
+                onSelect={(id) => navigate('learn', id)}
+              />
+            </>
           ) : view === 'learn' ? (
             <LearningPanel subject={selected} profileVersion={profileVersion} />
+          ) : view === 'mission' ? (
+            <MissionPanel profileVersion={profileVersion} />
           ) : view === 'multiplication' ? (
             <MultiplicationPanel profileVersion={profileVersion} />
           ) : view === 'vocabulary' ? (

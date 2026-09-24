@@ -488,6 +488,7 @@ fn v10_upgrade_replaces_only_unanswered_squares_and_preserves_small_factor_repla
         [],
     )
     .unwrap();
+    c.execute_batch("DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress;").unwrap();
     c.pragma_update(None, "user_version", 10).unwrap();
     drop(c);
     let mut c = database::open(&d.path().join("test.db")).unwrap();

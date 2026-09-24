@@ -15,6 +15,9 @@ fn main() {
             "review_vocabulary",
             "get_multiplication_state",
             "answer_multiplication",
+            "get_mission_state",
+            "start_mission",
+            "act_mission",
         ]),
     ))
     .expect("Tauri build configuration failed");
