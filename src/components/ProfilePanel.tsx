@@ -9,17 +9,18 @@ export default function ProfilePanel({ onSaved }: { onSaved?: () => void }) {
   >('loading');
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  const [reload, setReload] = useState(0);
 
   useEffect(() => {
     let active = true;
+    setState('loading');
+    setError('');
     desktop
       .getProfile()
       .then((profile) => {
         if (!active) return;
-        if (profile) {
-          setName(profile.displayName);
-          setGrade(profile.grade);
-        }
+        setName(profile?.displayName ?? '');
+        setGrade(profile?.grade ?? 5);
         setState('ready');
       })
       .catch((reason: unknown) => {
@@ -34,7 +35,7 @@ export default function ProfilePanel({ onSaved }: { onSaved?: () => void }) {
     return () => {
       active = false;
     };
-  }, []);
+  }, [reload]);
 
   async function save(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -74,6 +75,17 @@ export default function ProfilePanel({ onSaved }: { onSaved?: () => void }) {
         <p className="error-message" role="alert">
           {error}
         </p>
+      )}
+      {state === 'unavailable' && (
+        <button
+          className="secondary-button"
+          onClick={() => {
+            setState('loading');
+            setReload((value) => value + 1);
+          }}
+        >
+          Profil erneut laden
+        </button>
       )}
       <form onSubmit={save}>
         <fieldset disabled={state !== 'ready'}>
