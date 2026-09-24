@@ -11,7 +11,7 @@ import { desktop } from '../lib/desktop';
 const modes = [
   {
     id: 'tables' as const,
-    name: '100er-Einmaleins',
+    name: '10er-Einmaleins',
     description: '1 × 1 bis 10 × 10 · Ergebnisse bis 100',
     symbol: '×',
     count: 100,
@@ -19,7 +19,7 @@ const modes = [
   {
     id: 'squares' as const,
     name: 'Quadratzahlen',
-    description: '1 × 1 bis 25 × 25 · dieselbe Zahl mal sich selbst',
+    description: '10 × 10 bis 25 × 25 · dieselbe Zahl mal sich selbst',
     symbol: '²',
     count: 20,
   },

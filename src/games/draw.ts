@@ -580,7 +580,7 @@ function space(b: Brushes, g: Game) {
     b.box(s.x - 3, s.y, 6, 12, s.enemy ? '#ff9fb5' : '#a5fff2', 3);
     b.box(s.x - 1, s.y + 2, 2, 7, '#fff5e6', 1);
   });
-  b.box(18, 15, 167, 32, '#0b183ce8', 12);
+  b.box(18, 15, 202, 32, '#0b183ce8', 12);
   b.text(`WELLE ${g.wave} / 6`, 32, 36, 14, '#b9fff0');
   for (let i = 0; i < 6; i++)
     b.oval(136 + i * 13, 31, 3, 3, i < g.wave ? '#ffe28e' : '#546285');

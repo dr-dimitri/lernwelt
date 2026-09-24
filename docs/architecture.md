@@ -116,6 +116,10 @@ Neue Quadratzahlenaufgaben tragen Inhaltsversion v2; die v1-Folge bleibt für hi
 
 Die letzte Antwort, ihr Punkt und die Vorbereitung der folgenden Runde werden gemeinsam atomar gespeichert. Bei einem Fehler wird alles zurückgerollt; die vorherige Aufgabe bleibt für Retry verfügbar. Bereits bestätigte Antworten erhalten bei Replay ihre ursprüngliche Lösung über den gespeicherten Faktor (v2) bzw. die v1-Permutation, ohne einen weiteren Punkt zu buchen. Alle bisher angebotenen v2-Aufgaben bleiben dafür gespeichert.
 
+## Quadratzahlen ab 10 (Schema 11)
+
+Neue Runden wählen fünf Faktoren aus 10–25. Migration 011 entfernt ausschließlich noch unbeantwortete Aufgabenpläne, sodass auch direkt nach dem Update keine alte offene Aufgabe unter 10 angeboten wird. Beantwortete Faktoren bleiben für Replays unverändert; Statistik und Guthaben bleiben erhalten. Die erste neu angelegte Runde startet nach der letzten beantworteten Sequenz mit einer neuen Rundennummer. Die sichtbare Bezeichnung des unveränderten kleinen Einmaleins lautet „10er-Einmaleins“.
+
 
 ## Sternenlabyrinth (Schema 12)
 

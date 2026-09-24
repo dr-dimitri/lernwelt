@@ -113,6 +113,11 @@ fn migrate(connection: &mut Connection) -> Result<(), String> {
             .execute_batch(include_str!("../migrations/010_square_rounds.sql"))
             .map_err(database_error)?;
     }
+    if version < 11 {
+        transaction
+            .execute_batch(include_str!("../migrations/011_squares_from_ten.sql"))
+            .map_err(database_error)?;
+    }
     if version < 12 {
         transaction
             .execute_batch(include_str!("../migrations/012_starlabyrinth.sql"))
