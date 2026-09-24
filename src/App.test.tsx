@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
 import { desktop } from './lib/desktop';
 import type { LearnerProfile } from './domain/learner';
+vi.mock('./components/GamePreview', () => ({ default: () => null }));
 
 import { vocabularyInitial } from './test/vocabulary-fixture';
 import { multiplicationInitial } from './test/multiplication-fixture';

@@ -7,6 +7,7 @@ import {
 } from '../domain/arcade';
 import { desktop } from '../lib/desktop';
 import GameStage from './GameStage';
+import GamePreview from './GamePreview';
 
 export default function ArcadePanel({
   profileVersion,
@@ -186,9 +187,7 @@ export default function ArcadePanel({
                 key={game.id}
                 className={`arcade-card arcade-${game.id}`}
               >
-                <span className="arcade-icon" aria-hidden="true">
-                  {game.icon}
-                </span>
+                <GamePreview gameId={game.id} />
                 <h3>{game.name}</h3>
                 <p>{game.description}</p>
                 <p className="best-score">
