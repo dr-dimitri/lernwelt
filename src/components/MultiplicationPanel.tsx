@@ -21,7 +21,7 @@ const modes = [
     name: 'Quadratzahlen',
     description: '1 × 1 bis 25 × 25 · dieselbe Zahl mal sich selbst',
     symbol: '²',
-    count: 25,
+    count: 20,
   },
 ];
 const message = (error: unknown) =>
@@ -195,12 +195,18 @@ export default function MultiplicationPanel({
           diesem Gerät.
         </p>
       )}
+      {mode === 'squares' && (
+        <p className="sample-note">
+          Pro Runde übst du 5 zufällig ausgewählte Quadratzahlen. Jede kommt
+          4-mal dran – gemischt in 20 Aufgaben. In der nächsten Runde werden
+          wieder 5 ausgewählt. Manche können dir erneut begegnen.
+        </p>
+      )}
       {task && (
         <article className="flashcard" aria-labelledby="multiplication-prompt">
           <p className="eyebrow">
-            {modeInfo.name} · RUNDE{' '}
-            {Math.floor(task.sequence / modeInfo.count) + 1} · AUFGABE{' '}
-            {(task.sequence % modeInfo.count) + 1} VON {modeInfo.count}
+            {modeInfo.name} · RUNDE {task.round} · AUFGABE {task.position} VON{' '}
+            {task.roundSize}
           </p>
           <p>
             {mode === 'squares'

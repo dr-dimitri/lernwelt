@@ -90,7 +90,15 @@ it('wechselt zu Quadratzahlen und entfernt Eingabe und Rückmeldung der alten Re
   vi.mocked(desktop.getMultiplicationState).mockResolvedValue({
     ...initial,
     mode: 'squares',
-    task: { id: '25x25', sequence: 24, left: 25, right: 25 },
+    task: {
+      id: '25x25',
+      sequence: 24,
+      left: 25,
+      right: 25,
+      round: 1,
+      position: 20,
+      roundSize: 20,
+    },
   });
   await user.click(screen.getByRole('button', { name: /Quadratzahlen/ }));
   expect(
@@ -99,7 +107,34 @@ it('wechselt zu Quadratzahlen und entfernt Eingabe und Rückmeldung der alten Re
   expect(desktop.getMultiplicationState).toHaveBeenLastCalledWith('squares');
   expect(screen.queryByText('Richtig! +1 Punkt')).not.toBeInTheDocument();
   expect(screen.getByLabelText('Dein Ergebnis')).toHaveValue('');
-  expect(screen.getByText(/RUNDE 1 · AUFGABE 25 VON 25/)).toBeVisible();
+  expect(screen.getByText(/RUNDE 1 · AUFGABE 20 VON 20/)).toBeVisible();
+  expect(
+    screen.getByText(/Pro Runde übst du 5 zufällig ausgewählte/),
+  ).toBeVisible();
+  const next: MultiplicationState = {
+    ...initial,
+    mode: 'squares',
+    task: {
+      id: '12x12',
+      sequence: 25,
+      left: 12,
+      right: 12,
+      round: 2,
+      position: 1,
+      roundSize: 20,
+    },
+  };
+  vi.mocked(desktop.answerMultiplication).mockResolvedValue({
+    ...success,
+    solution: 625,
+    state: next,
+  });
+  await user.type(screen.getByLabelText('Dein Ergebnis'), '625{Enter}');
+  await screen.findByText('Richtig! +1 Punkt');
+  expect(screen.getByText(/RUNDE 1 · AUFGABE 20 VON 20/)).toBeVisible();
+  vi.mocked(desktop.getMultiplicationState).mockResolvedValue(next);
+  await user.click(screen.getByRole('button', { name: 'Nächste Aufgabe' }));
+  expect(await screen.findByText(/RUNDE 2 · AUFGABE 1 VON 20/)).toBeVisible();
 });
 it('behält bei Speicherfehler die identische Antwort und sperrt parallele Änderungen', async () => {
   const user = userEvent.setup();

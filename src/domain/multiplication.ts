@@ -5,6 +5,9 @@ export interface MultiplicationTask {
   sequence: number;
   left: number;
   right: number;
+  round: number;
+  position: number;
+  roundSize: number;
 }
 export interface MultiplicationState {
   content: {
