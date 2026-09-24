@@ -1,3 +1,4 @@
+import InfoPanel from './InfoPanel';
 import { useEffect, useRef, useState } from 'react';
 import type {
   MultiplicationInput,
@@ -184,8 +185,8 @@ export default function MultiplicationPanel({
       )}
       {state && !state.profileReady && (
         <p>
-          Speichere zuerst unten dein Lernprofil. Dann kannst du losrechnen und
-          Punkte sammeln.
+          Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst du
+          losrechnen und Punkte sammeln.
         </p>
       )}
       {state?.profileReady && (
@@ -196,10 +197,9 @@ export default function MultiplicationPanel({
         </p>
       )}
       {mode === 'squares' && (
-        <p className="sample-note">
-          Pro Runde übst du 5 zufällig ausgewählte Quadratzahlen. Jede kommt
-          4-mal dran – gemischt in 20 Aufgaben. In der nächsten Runde werden
-          wieder 5 ausgewählt. Manche können dir erneut begegnen.
+        <p className="sample-note round-explainer">
+          Pro Runde übst du 5 zufällig ausgewählte Quadratzahlen, jede 4-mal: 20
+          gemischte Aufgaben.
         </p>
       )}
       {task && (
@@ -218,14 +218,17 @@ export default function MultiplicationPanel({
           </h3>
           {!feedback ? (
             <>
-              <details key={`${mode}-${task.sequence}`} className="source-note">
+              <InfoPanel
+                key={`${mode}-${task.sequence}`}
+                className="source-note"
+              >
                 <summary>Gib mir einen Rechentipp</summary>
                 <p>
                   {mode === 'squares'
                     ? 'Beide Zahlen sind gleich. Zerlege eine davon in Zehner und Einer. Rechne die beiden Malaufgaben aus und zähle die Ergebnisse zusammen.'
                     : `Du kannst ${task.right} mal die Zahl ${task.left} zusammenzählen. Oder nutze eine Malaufgabe, die du schon kennst, und zähle weiter.`}
                 </p>
-              </details>
+              </InfoPanel>
               <form
                 onSubmit={(event) => {
                   event.preventDefault();

@@ -38,9 +38,11 @@ it('sammelt Punkte und löst ein Abzeichen gegen das Guthaben ein', async () => 
   expect(screen.getByLabelText('Verfügbare Punkte')).toHaveTextContent(
     '10 Punkte',
   );
+  await user.click(screen.getByRole('button', { name: 'Deine Belohnungen' }));
   expect(
     screen.getByRole('button', { name: /Sternsammler für/ }),
   ).toBeDisabled();
+  await user.click(screen.getByRole('button', { name: 'Schließen' }));
   await user.type(screen.getByLabelText('Was ist 17 + 25?'), '42');
   await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
   expect(await screen.findByText('Richtig! +10 Punkte')).toBeVisible();
@@ -52,6 +54,7 @@ it('sammelt Punkte und löst ein Abzeichen gegen das Guthaben ein', async () => 
     totalEarned: 20,
     rewards: [{ ...initial.wallet.rewards[0], owned: true }],
   });
+  await user.click(screen.getByRole('button', { name: 'Deine Belohnungen' }));
   await user.click(screen.getByRole('button', { name: /Sternsammler für/ }));
   expect(
     await screen.findByText('„Sternsammler“ gehört jetzt zu deiner Sammlung.'),
@@ -161,6 +164,9 @@ it('zeigt Einlösefehler ohne falschen Besitz oder Punkteabzug', async () => {
     new Error('Einlösen fehlgeschlagen'),
   );
   render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await user.click(
+    await screen.findByRole('button', { name: 'Deine Belohnungen' }),
+  );
   await waitFor(() =>
     expect(
       screen.getByRole('button', { name: /Sternsammler für/ }),
@@ -183,7 +189,7 @@ it('aktiviert Aufgaben erst nach Anlage des Lernprofils', async () => {
   const { rerender } = render(
     <LearningPanel subject="mathematics" profileVersion={0} />,
   );
-  expect(await screen.findByText(/Speichere zuerst unten/)).toBeVisible();
+  expect(await screen.findByText(/Speichere dein Lernprofil/)).toBeVisible();
   expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
   rerender(<LearningPanel subject="mathematics" profileVersion={1} />);
   await waitFor(() =>
@@ -275,11 +281,13 @@ it('filtert nach Thema, zeigt Tipps und übermittelt ausgewählte Antworten', as
   });
   render(<LearningPanel subject="mathematics" profileVersion={0} />);
   await user.type(await screen.findByLabelText('Was ist 17 + 25?'), '42');
+  await user.click(screen.getByRole('button', { name: 'Thema wählen' }));
   await user.click(screen.getByRole('button', { name: /Geometrie-Werkstatt/ }));
   expect(screen.queryByLabelText('Was ist 17 + 25?')).not.toBeInTheDocument();
   expect(screen.getByRole('radio', { name: 'Strecke' })).not.toBeChecked();
   await user.click(screen.getByRole('button', { name: 'Gib mir einen Tipp' }));
   expect(screen.getByText('Verbinde zwei Punkte.')).toBeVisible();
+  await user.click(screen.getByRole('button', { name: 'Schließen' }));
   await user.click(screen.getByRole('radio', { name: 'Strecke' }));
   await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
   expect(desktop.submitAnswer).toHaveBeenCalledWith(
@@ -294,6 +302,7 @@ it('zeigt Mitmachaufgaben mit Selbstkontrolle ohne Punktebuchung', async () => {
   render(<LearningPanel subject="mathematics" profileVersion={0} />);
   await screen.findByLabelText('Was ist 17 + 25?');
   await user.click(screen.getByText('Stift raus! 1 Mitmachaufgaben'));
+  await user.click(screen.getByRole('button', { name: 'Weiter →' }));
   expect(screen.getByText('Erkläre deinen Weg.')).toBeVisible();
   await user.click(screen.getByText('So kannst du dich prüfen'));
   expect(screen.getByText('Viele Wege sind möglich.')).toBeVisible();
@@ -347,6 +356,7 @@ it('zeigt Einheitentafeln mit Spaltenüberschriften und Erklärung', async () =>
   render(<LearningPanel subject="mathematics" profileVersion={0} />);
   await screen.findByLabelText('Was ist 17 + 25?');
   await user.click(screen.getByText('So geht’s · kurz erklärt'));
+  await user.click(screen.getByRole('button', { name: 'Weiter →' }));
   expect(
     screen.getByRole('table', { name: 'Geld: Euro und Cent' }),
   ).toBeVisible();
@@ -399,4 +409,19 @@ it('zeigt nach Stufenwechsel 1, 2 und 3 Punkte und die tatsächliche Gutschrift'
       ),
     ).toBeVisible();
   }
+});
+
+it('öffnet die Rückmeldung kompakt und führt zurück zur nächsten Aufgabe', async () => {
+  const user = userEvent.setup();
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await user.type(await screen.findByLabelText('Was ist 17 + 25?'), '42');
+  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  expect(
+    await screen.findByRole('dialog', { name: 'Deine Rückmeldung' }),
+  ).toBeVisible();
+  await user.click(
+    screen.getByRole('button', { name: 'Weiter zur nächsten Aufgabe' }),
+  );
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.getByLabelText('Deine Übung')).toHaveFocus();
 });

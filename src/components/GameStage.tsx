@@ -1,3 +1,4 @@
+import InfoPanel from './InfoPanel';
 import { useEffect, useRef, useState } from 'react';
 import type { GameId } from '../domain/arcade';
 import { gameDefinition } from '../domain/arcade';
@@ -122,7 +123,6 @@ export default function GameStage({
     clearControls();
     setPaused(!paused);
     area.current?.focus({ preventScroll: true });
-    area.current?.scrollIntoView({ block: 'center' });
   }
   function end() {
     clearControls();
@@ -186,9 +186,12 @@ export default function GameStage({
         <h3 id="game-title">{definition.name}</h3>
         <span>Bezahlte Runde · kein weiterer Eintritt</span>
       </div>
-      <p id="game-instructions">
-        {definition.instructions} P pausiert das Spiel.
-      </p>
+      <InfoPanel className="game-instructions">
+        <summary>Steuerung & Spielziel</summary>
+        <p id="game-instructions">
+          {definition.instructions} P pausiert das Spiel.
+        </p>
+      </InfoPanel>
       <div className="game-hud">
         <strong>{hud.score} Spielpunkte</strong>
         {(gameId === 'runner' || gameId === 'space' || gameId === 'maze') && (
@@ -204,7 +207,7 @@ export default function GameStage({
         tabIndex={0}
         role="group"
         aria-label={`Spielfeld ${definition.name}`}
-        aria-describedby="game-instructions"
+
         onBlur={(event) => {
           if (
             !event.currentTarget.contains(event.relatedTarget as Node | null)

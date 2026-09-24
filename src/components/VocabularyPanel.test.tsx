@@ -205,9 +205,7 @@ it('zeigt Profilhinweis und lässt einen Ladefehler erneut versuchen', async () 
     card: null,
   });
   await user.click(screen.getByRole('button', { name: 'Karten neu laden' }));
-  expect(
-    await screen.findByText(/Speichere unten zuerst dein Lernprofil/),
-  ).toBeVisible();
+  expect(await screen.findByText(/Speichere dein Lernprofil/)).toBeVisible();
   expect(
     screen.queryByRole('button', { name: 'Antwort prüfen' }),
   ).not.toBeInTheDocument();

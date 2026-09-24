@@ -1,3 +1,4 @@
+import InfoPanel from './InfoPanel';
 import { useEffect, useRef, useState } from 'react';
 import { difficulties, type Difficulty } from '../domain/learning';
 import type {
@@ -159,9 +160,8 @@ export default function VocabularyPanel({
       aria-labelledby="vocabulary-title"
       aria-busy={busy}
     >
-      <p className="eyebrow">DEIN WÖRTERSCHATZ WÄCHST</p>
+      <p className="eyebrow">ENGLISCH · KLASSE 5 · 1. FREMDSPRACHE</p>
       <h2 id="vocabulary-title">Vokabeltrainer</h2>
-      <p>Englisch · Klasse 5 · 1. Fremdsprache</p>
       <p>
         Tippe deine Übersetzung ein. Jede richtige Antwort bringt 1 Punkt – auch
         wenn du ein Wort später wiederholst. Fehler kosten nichts.
@@ -197,76 +197,87 @@ export default function VocabularyPanel({
         {error ? 'Karten neu laden' : 'Fällige Karten laden'}
       </button>
       {state && (
-        <>
-          <h3>Wie möchtest du Wörter üben?</h3>
-          <div
-            className="level-grid"
-            aria-label="Schwierigkeitsgrad für alle Fächer"
-          >
-            {difficulties.map((level) => (
-              <button
-                key={level.id}
-                className="level-card"
-                aria-pressed={state.difficulty === level.id}
-                disabled={disabled}
-                onClick={() => void changeDifficulty(level.id)}
-              >
-                <span aria-hidden="true">{level.symbol}</span>
-                <strong>{level.name}</strong>
-                <small>{modes[level.id]}</small>
-              </button>
-            ))}
-          </div>
-          <p className="sample-note">
-            Deine Stufe gilt auch in den anderen Fächern. Wir merken uns deine
-            Wortkarten für jede Stufe getrennt. Hier gibt es in jeder Stufe 1
-            Punkt pro richtiger Antwort. Deine Punkte kannst du für Spiele und
-            Belohnungen verwenden.
-          </p>
-          <label className="vocabulary-deck">
-            Dein Wortthema
-            <select
-              value={deck}
-              disabled={disabled}
-              onChange={(event) => setDeck(event.target.value)}
+        <div className="vocabulary-workspace">
+          <div className="vocabulary-settings">
+            <h3>Wie möchtest du Wörter üben?</h3>
+            <div
+              className="level-grid"
+              aria-label="Schwierigkeitsgrad für alle Fächer"
             >
-              <option value="all">
-                Alle Themen · {state.decks.length} Wörterwelten
-              </option>
-              {state.decks.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.name}
-                </option>
+              {difficulties.map((level) => (
+                <button
+                  key={level.id}
+                  className="level-card"
+                  aria-pressed={state.difficulty === level.id}
+                  disabled={disabled}
+                  onClick={() => void changeDifficulty(level.id)}
+                >
+                  <span aria-hidden="true">{level.symbol}</span>
+                  <strong>{level.name}</strong>
+                  <small>{modes[level.id]}</small>
+                </button>
               ))}
-            </select>
-          </label>
-          <p>
-            {state.total} Karten im Thema · {state.newCount} neu ·{' '}
-            {state.dueCount} zum Wiederholen fällig
-          </p>
-          <ol className="vocabulary-boxes" aria-label="Deine fünf Karteifächer">
-            {state.boxes.map((count, index) => (
-              <li key={index}>
-                <strong>Fach {index + 1}</strong>
-                <span>
-                  {count} {count === 1 ? 'Karte' : 'Karten'}
-                </span>
-                <small>
-                  {
-                    ['Bald wieder', '1 Tag', '3 Tage', '7 Tage', '14 Tage'][
-                      index
-                    ]
-                  }
-                </small>
-              </li>
-            ))}
-          </ol>
-          {!state.profileReady && (
+            </div>
+            <InfoPanel>
+              <summary>Stufen & Punkte</summary>
+              <p className="sample-note">
+                Deine Stufe gilt auch in den anderen Fächern. Wir merken uns
+                deine Wortkarten für jede Stufe getrennt. Hier gibt es in jeder
+                Stufe 1 Punkt pro richtiger Antwort. Deine Punkte kannst du für
+                Spiele und Belohnungen verwenden.
+              </p>
+            </InfoPanel>
+            <label className="vocabulary-deck">
+              Dein Wortthema
+              <select
+                value={deck}
+                disabled={disabled}
+                onChange={(event) => setDeck(event.target.value)}
+              >
+                <option value="all">
+                  Alle Themen · {state.decks.length} Wörterwelten
+                </option>
+                {state.decks.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </label>
             <p>
-              Speichere unten zuerst dein Lernprofil. Dann kann sich Lernwelt
-              deine Wortkarten merken.
+              {state.total} Karten im Thema · {state.newCount} neu ·{' '}
+              {state.dueCount} zum Wiederholen fällig
             </p>
-          )}
+            <InfoPanel>
+              <summary>Deine fünf Karteifächer</summary>
+              <ol
+                className="vocabulary-boxes"
+                aria-label="Deine fünf Karteifächer"
+              >
+                {state.boxes.map((count, index) => (
+                  <li key={index}>
+                    <strong>Fach {index + 1}</strong>
+                    <span>
+                      {count} {count === 1 ? 'Karte' : 'Karten'}
+                    </span>
+                    <small>
+                      {
+                        ['Bald wieder', '1 Tag', '3 Tage', '7 Tage', '14 Tage'][
+                          index
+                        ]
+                      }
+                    </small>
+                  </li>
+                ))}
+              </ol>
+            </InfoPanel>
+            {!state.profileReady && (
+              <p>
+                Speichere dein Lernprofil über „Dein Profil“ oben. Dann kann
+                sich Lernwelt deine Wortkarten merken.
+              </p>
+            )}
+          </div>
           {card && presented && (
             <article className="flashcard" aria-labelledby="card-prompt">
               <p className="eyebrow">
@@ -383,7 +394,7 @@ export default function VocabularyPanel({
               <p>Du kannst auch ein anderes Wortthema wählen.</p>
             </div>
           )}
-          <details className="source-note">
+          <InfoPanel paginate className="source-note">
             <summary>So funktionieren deine Karteifächer</summary>
             <p>
               Richtig: 1 Punkt und ein Fach weiter, höchstens bis Fach 5. Falsch
@@ -405,8 +416,8 @@ export default function VocabularyPanel({
               Dein Stand bleibt auf diesem Gerät. Termine richten sich nach der
               Geräteuhr. Insgesamt verdient: {state.wallet.totalEarned} Punkte.
             </p>
-          </details>
-        </>
+          </InfoPanel>
+        </div>
       )}
     </section>
   );

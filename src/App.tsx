@@ -1,3 +1,4 @@
+import InfoPanel from './components/InfoPanel';
 import { useState } from 'react';
 import MultiplicationPanel from './components/MultiplicationPanel';
 import VocabularyPanel from './components/VocabularyPanel';
@@ -22,22 +23,15 @@ export default function App() {
           </span>
           Lernwelt
         </a>
-        <span className="local-badge">Lokal auf deinem Gerät</span>
+        <span className="local-badge">Dein Tempo. Dein Abenteuer.</span>
+        <InfoPanel>
+          <summary>Dein Profil</summary>
+          <ProfilePanel
+            onSaved={() => setProfileVersion((version) => version + 1)}
+          />
+        </InfoPanel>
       </header>
       <main id="main">
-        <section className="intro" aria-labelledby="welcome">
-          <p className="eyebrow">DEIN NÄCHSTES AHA!</p>
-          <h1 id="welcome">
-            Kleine Rätsel.
-            <br />
-            <span>Große Entdeckungen.</span>
-          </h1>
-          <p className="intro-text">
-            Mathematik und Englisch für das bayerische Gymnasium.
-            <br />
-            Wähle dein Thema, hol dir einen Tipp und sammle Punkte.
-          </p>
-        </section>
         <nav className="view-switch" aria-label="Lernwelt-Bereiche">
           <button
             aria-pressed={view === 'learn'}
@@ -66,7 +60,7 @@ export default function App() {
         </nav>
         {view === 'learn' ? (
           <>
-            <section aria-labelledby="subjects-title">
+            <section className="subject-bar" aria-labelledby="subjects-title">
               <div className="section-heading">
                 <h2 id="subjects-title">Deine Fächer</h2>
                 <span>Gymnasium · Bayern</span>
@@ -76,6 +70,7 @@ export default function App() {
                   <button
                     key={item.id}
                     className={`subject-card ${item.id}`}
+                    aria-label={item.name}
                     aria-pressed={selected === item.id}
                     onClick={() => setSelected(item.id)}
                   >
@@ -102,10 +97,6 @@ export default function App() {
         ) : (
           <ArcadePanel profileVersion={profileVersion} />
         )}
-        <ProfilePanel
-          onSaved={() => setProfileVersion((version) => version + 1)}
-        />
-        <footer>Dein Tempo zählt. Pausen gehören zum Lernen dazu.</footer>
       </main>
     </div>
   );

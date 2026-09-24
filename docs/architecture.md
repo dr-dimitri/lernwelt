@@ -128,3 +128,9 @@ Migration 012 erweitert die Spiel-IDs um `maze` und erhält sämtliche alten Ses
 Ein deterministisch gesetzter Zufallsgenerator erstellt pro neuem Spielstart ein verbundenes 15×15-Labyrinth mit zusätzlichen Rundwegen. Alle Sterne, Roboter und der Ausgang liegen auf erreichbaren freien Zellen; die Karte berechnet einen kürzesten Weg zum nächsten Stern. Die Engine validiert Kollisionen und Sichtlinien; Blasen treffen keine Roboter durch Wände. Der Canvas zeichnet Wände per Raycasting und verdeckt Sprites anhand der Wandtiefe. Eigene lokale Vektorgrafik, keine Bibliothek und keine Originalassets. Spielstände bleiben wie bisher nur als Eintritt/Abschluss gespeichert; ein wiederaufgenommenes Spiel beginnt mit neuer Welt.
 
 Zeitlimits: Blöcke 240 Sekunden, Hühner 90 Sekunden, Labyrinth 240 Sekunden. Sternenwache hat sechs statt drei Wellen, jedoch keine feste Zeitbegrenzung. Animation und Zeit laufen ausschließlich bei aktivem, fokussiertem Spiel.
+
+## Kompakte Ansichten
+
+`InfoPanel` verwendet native modale HTML-Dialoge mit Escape, Fokus-Rückgabe und optionaler Seitennavigation. Erklärungen/Mitmachaufgaben werden in getrennten Seiten angeboten; `LearningTable` zeigt acht Zeilen pro Abschnitt. Fehler beim Einlösen bleiben im geöffneten Belohnungsfenster sichtbar. Automatisch geöffnete Antwort-Rückmeldungen führen den Fokus nach Weitergehen zurück zur stabilen Übungsregion, auch wenn sich die Aufgabe ändert.
+
+Desktop-Layouts stellen Einstellungen und Übung nebeneinander und begrenzen die Canvasgröße anhand der Fensterhöhe. Keine globale Scrollsperre: kleine Fenster, Zoom und außergewöhnlich lange Fehler behalten einen zugänglichen Overflow-Fallback. Standardfenster 1100×750, bisherige Mindestgröße bleibt erhalten. Keine Änderung an Datenbank oder Commands durch die Layoutumstellung; Profilhinweise im Backend verweisen nun auf den oberen Profilknopf.
