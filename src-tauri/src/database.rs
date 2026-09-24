@@ -2,7 +2,7 @@ use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::{Deserialize, Serialize};
 use std::{path::Path, time::Duration};
 
-const SCHEMA_VERSION: i64 = 2;
+const SCHEMA_VERSION: i64 = 3;
 const DATABASE_ERROR: &str = "Die lokalen Lerndaten konnten nicht verarbeitet werden.";
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -12,7 +12,7 @@ pub struct Profile {
     pub grade: u8,
 }
 
-#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum Subject {
     Mathematics,
@@ -73,10 +73,40 @@ fn migrate(connection: &mut Connection) -> Result<(), String> {
             .execute_batch(include_str!("../migrations/002_points.sql"))
             .map_err(database_error)?;
     }
+    if version < 3 {
+        transaction
+            .execute_batch(include_str!("../migrations/003_difficulty.sql"))
+            .map_err(database_error)?;
+    }
     transaction
         .pragma_update(None, "user_version", SCHEMA_VERSION)
         .map_err(database_error)?;
     transaction.commit().map_err(database_error)
+}
+
+pub fn get_difficulty(connection: &Connection) -> Result<crate::content::Difficulty, String> {
+    let value: String = connection
+        .query_row(
+            "SELECT difficulty FROM learning_settings WHERE id = 1",
+            [],
+            |row| row.get(0),
+        )
+        .map_err(database_error)?;
+    crate::content::Difficulty::parse(&value)
+}
+
+pub fn set_difficulty(
+    connection: &Connection,
+    value: &str,
+) -> Result<crate::content::Difficulty, String> {
+    let difficulty = crate::content::Difficulty::parse(value)?;
+    connection
+        .execute(
+            "UPDATE learning_settings SET difficulty = ?1 WHERE id = 1",
+            [difficulty.as_str()],
+        )
+        .map_err(database_error)?;
+    Ok(difficulty)
 }
 
 pub fn get_profile(connection: &Connection) -> Result<Option<Profile>, String> {
@@ -297,6 +327,35 @@ mod tests {
             .pragma_query_value(None, "user_version", |row| row.get(0))
             .unwrap();
         assert_eq!(version, SCHEMA_VERSION + 1);
+    }
+
+    #[test]
+    fn failed_v3_upgrade_keeps_existing_v2_data_and_schema_version() {
+        let mut connection = Connection::open_in_memory().unwrap();
+        connection
+            .execute_batch(include_str!("../migrations/001_initial.sql"))
+            .unwrap();
+        connection
+            .execute_batch(include_str!("../migrations/002_points.sql"))
+            .unwrap();
+        connection.pragma_update(None, "user_version", 2).unwrap();
+        let saved = save_profile(&connection, profile()).unwrap();
+        connection.execute_batch("CREATE TABLE learning_settings (existing TEXT); INSERT INTO learning_settings VALUES ('preserve');").unwrap();
+        assert!(migrate(&mut connection).is_err());
+        assert_eq!(get_profile(&connection).unwrap(), Some(saved));
+        assert_eq!(
+            connection
+                .pragma_query_value::<i64, _>(None, "user_version", |row| row.get(0))
+                .unwrap(),
+            2
+        );
+        assert_eq!(
+            connection
+                .query_row::<String, _, _>("SELECT existing FROM learning_settings", [], |row| row
+                    .get(0))
+                .unwrap(),
+            "preserve"
+        );
     }
 
     #[test]

@@ -8,6 +8,7 @@
     "allow-save-profile",
     "allow-list-progress",
     "allow-get-learning-state",
+    "allow-set-difficulty",
     "allow-submit-answer",
     "allow-redeem-reward"
   ]

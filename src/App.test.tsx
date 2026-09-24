@@ -5,6 +5,8 @@ import App from './App';
 import { desktop } from './lib/desktop';
 import type { LearnerProfile } from './domain/learner';
 
+import { initial } from './test/learning-fixture';
+
 vi.mock('./lib/desktop', () => ({
   desktop: {
     getProfile: vi.fn(),
@@ -17,13 +19,8 @@ beforeEach(() => {
   vi.resetAllMocks();
   vi.mocked(desktop.getProfile).mockResolvedValue(null);
   vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...initial,
     profileReady: false,
-    pointsPerAnswer: 10,
-    questions: [
-      { id: 'math', subject: 'mathematics', prompt: '17 + 25?', solved: false },
-      { id: 'english', subject: 'english', prompt: 'Katze?', solved: false },
-    ],
-    wallet: { balance: 0, totalEarned: 0, rewards: [] },
   });
 });
 

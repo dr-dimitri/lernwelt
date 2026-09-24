@@ -8,6 +8,12 @@
 - Inhalte erhalten stabile IDs, Fach, Jahrgangsstufe, Kompetenzbezug, Quelle und Lehrplanstand. Englisch berücksichtigt die Fremdsprachenfolge. Beispielinhalte nie als vollständige Lehrplanabdeckung ausweisen.
 - Keine KI-Abhängigkeit für grundlegende Übungen oder Antwortprüfung.
 
+## Zielgruppe und Lernerlebnis
+- Zielgruppe sind Kinder der jeweiligen Jahrgangs- und Altersgruppe (Klasse 5 typischerweise 10–11 Jahre). Sie sollen mit Lernwelt gerne lernen: kurze verständliche Texte, überschaubare Schritte, gut bedienbare Elemente und einladende Themen statt einer Erwachsenen-Verwaltungsoberfläche.
+- Neugier, Ausprobieren und Erfolgserlebnisse fördern. Tipps, nachvollziehbare Lösungswege und ermutigende Rückmeldungen anbieten; kein Beschämen, Zeitdruck oder Punkteabzug für Fehler. Bewegung, Zeichnen und eigenes Erklären ergänzen Bildschirmaufgaben.
+- Die frei wählbaren Schwierigkeitsgrade **Vorschule**, **Könner**, **Streber** gelten fachübergreifend und werden lokal gespeichert. Die Namen sind spielerisch: leichter Einstieg, reguläres Üben, anspruchsvolles Knobeln innerhalb des Themas; keine Alterszuordnung oder Bewertung des Kindes.
+- Stufenwechsel jederzeit ermöglichen. Keine Sperren oder Belohnungsnachteile für leichtere Stufen. Lerninhalte, Sprache und Gestaltung auf altersgerechte Verständlichkeit und Freude am Lernen prüfen.
+
 ## Verbindlicher Issue-Ablauf
 1. Vor jeder Umsetzung ein GitHub-Issue mit Ziel und überprüfbaren Akzeptanzkriterien anlegen bzw. ein vorhandenes verwenden.
 2. Jedes Issue auf einem eigenen Branch von aktuellem `main` bearbeiten: `codex/issue-<nummer>-<kurzname>`. Keine Umsetzung direkt auf `main`; keine Vermischung unabhängiger Issues.

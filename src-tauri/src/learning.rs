@@ -1,53 +1,9 @@
+use crate::content::{self, AnswerKind, Difficulty, Topic};
 use crate::database::{self, Subject};
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::Serialize;
 
 const POINTS_PER_ANSWER: i64 = 10;
-
-// Deliberately small starter examples, not a complete curriculum package.
-struct Exercise {
-    id: &'static str,
-    subject: Subject,
-    competency_id: &'static str,
-    prompt: &'static str,
-    answer: &'static str,
-    explanation: &'static str,
-}
-
-const EXERCISES: &[Exercise] = &[
-    Exercise {
-        id: "sample.math.add.v1",
-        subject: Subject::Mathematics,
-        competency_id: "sample.math.arithmetic",
-        prompt: "Was ist 17 + 25?",
-        answer: "42",
-        explanation: "17 + 20 = 37 und 37 + 5 = 42.",
-    },
-    Exercise {
-        id: "sample.math.multiply.v1",
-        subject: Subject::Mathematics,
-        competency_id: "sample.math.arithmetic",
-        prompt: "Was ist 6 × 7?",
-        answer: "42",
-        explanation: "6 × 7 = 42.",
-    },
-    Exercise {
-        id: "sample.english.cat.v1",
-        subject: Subject::English,
-        competency_id: "sample.english.vocabulary",
-        prompt: "Wie heißt „Katze“ auf Englisch?",
-        answer: "cat",
-        explanation: "„Katze“ heißt auf Englisch „cat“.",
-    },
-    Exercise {
-        id: "sample.english.be.v1",
-        subject: Subject::English,
-        competency_id: "sample.english.grammar",
-        prompt: "Ergänze das fehlende Wort: She ___ my friend.",
-        answer: "is",
-        explanation: "Bei „she“ verwendest du „is“: She is my friend.",
-    },
-];
 
 const REWARDS: &[(&str, &str, &str, i64)] = &[
     (
@@ -71,6 +27,13 @@ pub struct Question {
     subject: Subject,
     prompt: &'static str,
     solved: bool,
+    topic_id: &'static str,
+    difficulty: Difficulty,
+    hint: &'static str,
+    options: &'static [String],
+    answer_kind: &'static AnswerKind,
+    unit: Option<&'static str>,
+    competency_id: &'static str,
 }
 
 #[derive(Debug, Serialize)]
@@ -95,6 +58,10 @@ pub struct Wallet {
 #[serde(rename_all = "camelCase")]
 pub struct LearningState {
     profile_ready: bool,
+    difficulty: Difficulty,
+    topics: &'static [Topic],
+    curriculum_source: &'static str,
+    curriculum_version: &'static str,
     points_per_answer: i64,
     questions: Vec<Question>,
     wallet: Wallet,
@@ -146,19 +113,33 @@ pub fn wallet(connection: &Connection) -> Result<Wallet, String> {
 
 pub fn get_state(connection: &mut Connection) -> Result<LearningState, String> {
     let transaction = connection.transaction().map_err(db_error)?;
-    let questions = EXERCISES
+    let catalog = content::catalog()?;
+    let questions = catalog
+        .exercises
         .iter()
+        .filter(|exercise| !exercise.legacy)
         .map(|exercise| {
             Ok(Question {
-                id: exercise.id,
+                id: &exercise.id,
                 subject: exercise.subject,
-                prompt: exercise.prompt,
-                solved: has_entry(&transaction, "answer", exercise.id)?,
+                prompt: &exercise.prompt,
+                solved: has_entry(&transaction, "answer", &exercise.id)?,
+                topic_id: &exercise.topic_id,
+                difficulty: exercise.difficulty,
+                hint: &exercise.hint,
+                options: &exercise.options,
+                answer_kind: &exercise.answer_kind,
+                unit: exercise.unit.as_deref(),
+                competency_id: &exercise.competency_id,
             })
         })
         .collect::<Result<Vec<_>, String>>()?;
     let state = LearningState {
         profile_ready: database::get_profile(&transaction)?.is_some(),
+        difficulty: database::get_difficulty(&transaction)?,
+        topics: &catalog.topics,
+        curriculum_source: &catalog.source,
+        curriculum_version: &catalog.curriculum_version,
         points_per_answer: POINTS_PER_ANSWER,
         questions,
         wallet: wallet(&transaction)?,
@@ -187,7 +168,8 @@ pub fn submit_answer(
     {
         return Err("Bitte gib eine Antwort mit 1 bis 120 Zeichen ein.".to_owned());
     }
-    let exercise = EXERCISES
+    let exercise = content::catalog()?
+        .exercises
         .iter()
         .find(|exercise| exercise.id == question_id)
         .ok_or("Diese Aufgabe ist nicht verfügbar.")?;
@@ -211,13 +193,7 @@ pub fn submit_answer(
         }
         (correct, points)
     } else {
-        // This first set uses integer values and case-insensitive English words.
-        let correct = match exercise.subject {
-            Subject::Mathematics => {
-                answer.trim().parse::<i64>().ok() == exercise.answer.parse::<i64>().ok()
-            }
-            Subject::English => answer.trim().eq_ignore_ascii_case(exercise.answer),
-        };
+        let correct = content::is_correct(exercise, answer);
         let points = if correct && !has_entry(&transaction, "answer", question_id)? {
             POINTS_PER_ANSWER
         } else {
@@ -226,7 +202,7 @@ pub fn submit_answer(
         database::record_attempt(
             &transaction,
             exercise.subject,
-            exercise.competency_id,
+            &exercise.competency_id,
             correct,
         )?;
         if points > 0 {
@@ -241,7 +217,7 @@ pub fn submit_answer(
     let result = AnswerResult {
         correct,
         points_awarded,
-        explanation: exercise.explanation,
+        explanation: &exercise.explanation,
         wallet: wallet(&transaction)?,
     };
     transaction.commit().map_err(db_error)?;
@@ -350,7 +326,7 @@ mod tests {
         let state = get_state(&mut reopened).unwrap();
         assert_eq!((state.wallet.balance, state.wallet.total_earned), (0, 20));
         assert!(state.wallet.rewards[0].owned);
-        assert!(state.questions[0].solved);
+        assert_eq!(database::list_progress(&reopened).unwrap()[0].correct, 2);
         assert_eq!(redeem_reward(&mut reopened, "star").unwrap().balance, 0);
     }
 
@@ -439,6 +415,118 @@ mod tests {
         assert_eq!(database::list_progress(&connection).unwrap()[0].correct, 1);
         drop(connection);
         assert_eq!(wallet(&database::open(&path).unwrap()).unwrap().balance, 0);
+    }
+
+    #[test]
+    fn new_questions_grade_decimals_choices_and_negative_numbers_with_persistent_progress() {
+        let (directory, mut connection) = setup();
+        for (id, question, answer) in [
+            ("decimal", "by.math.5.units.money.koenner.v1", "4.150"),
+            ("negative", "by.math.5.add.equations.koenner.v1", "−13"),
+            ("choice", "by.math.5.geometry.lines.vorschule.v1", "Strecke"),
+            ("large", "by.math.5.add.written.koenner.v1", "4 282 221"),
+        ] {
+            let result = submit_answer(&mut connection, id, question, answer).unwrap();
+            assert!(result.correct, "{question}");
+            assert_eq!(result.points_awarded, 10);
+        }
+        let wrong = submit_answer(
+            &mut connection,
+            "wrong-number",
+            "by.math.5.units.money.koenner.v1",
+            "415",
+        )
+        .unwrap();
+        assert!(!wrong.correct);
+        assert_eq!(wrong.wallet.balance, 40);
+        drop(connection);
+        let mut connection = database::open(&directory.path().join("test.sqlite3")).unwrap();
+        let state = get_state(&mut connection).unwrap();
+        assert_eq!(state.wallet.balance, 40);
+        assert_eq!(
+            state
+                .questions
+                .iter()
+                .filter(|question| question.solved)
+                .count(),
+            4
+        );
+        assert!(!serde_json::to_value(state).unwrap()["questions"][0]
+            .as_object()
+            .unwrap()
+            .contains_key("answer"));
+    }
+
+    #[test]
+    fn version_two_upgrade_preserves_wallet_reward_retries_and_global_difficulty() {
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("v2.sqlite3");
+        {
+            let mut old = Connection::open(&path).unwrap();
+            old.execute_batch(include_str!("../migrations/001_initial.sql"))
+                .unwrap();
+            old.execute_batch(include_str!("../migrations/002_points.sql"))
+                .unwrap();
+            old.pragma_update(None, "user_version", 2).unwrap();
+            database::save_profile(
+                &old,
+                Profile {
+                    display_name: "Existing".to_owned(),
+                    grade: 5,
+                },
+            )
+            .unwrap();
+            earn_twenty(&mut old);
+            redeem_reward(&mut old, "star").unwrap();
+        }
+        {
+            let mut connection = database::open(&path).unwrap();
+            assert_eq!(
+                database::get_difficulty(&connection).unwrap(),
+                Difficulty::Koenner
+            );
+            database::set_difficulty(&connection, "streber").unwrap();
+            assert!(database::set_difficulty(&connection, "invented").is_err());
+            database::save_profile(
+                &connection,
+                Profile {
+                    display_name: "Renamed".to_owned(),
+                    grade: 6,
+                },
+            )
+            .unwrap();
+            let replay = submit_answer(&mut connection, "one", "sample.math.add.v1", "42").unwrap();
+            assert!(replay.correct);
+            assert_eq!(
+                (
+                    replay.points_awarded,
+                    replay.wallet.balance,
+                    replay.wallet.total_earned
+                ),
+                (10, 0, 20)
+            );
+            assert!(replay.wallet.rewards[0].owned);
+            assert_eq!(database::list_progress(&connection).unwrap()[0].attempts, 2);
+        }
+        let mut reopened = database::open(&path).unwrap();
+        let state = get_state(&mut reopened).unwrap();
+        assert_eq!(state.difficulty, Difficulty::Streber);
+        assert!(state.wallet.rewards[0].owned);
+        assert_eq!(
+            database::get_profile(&reopened)
+                .unwrap()
+                .unwrap()
+                .display_name,
+            "Renamed"
+        );
+        assert!(state
+            .questions
+            .iter()
+            .any(|q| q.subject == Subject::English && q.difficulty == state.difficulty));
+        assert!(state
+            .questions
+            .iter()
+            .any(|q| q.subject == Subject::Mathematics && q.difficulty == state.difficulty));
     }
 
     #[test]

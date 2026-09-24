@@ -1,3 +1,4 @@
+mod content;
 mod database;
 mod learning;
 
@@ -45,6 +46,14 @@ fn get_learning_state(storage: State<'_, Storage>) -> Result<learning::LearningS
 }
 
 #[tauri::command]
+fn set_difficulty(
+    storage: State<'_, Storage>,
+    difficulty: String,
+) -> Result<content::Difficulty, String> {
+    storage.with_connection(|connection| database::set_difficulty(connection, &difficulty))
+}
+
+#[tauri::command]
 fn submit_answer(
     storage: State<'_, Storage>,
     request_id: String,
@@ -85,6 +94,7 @@ pub fn run() {
             save_profile,
             list_progress,
             get_learning_state,
+            set_difficulty,
             submit_answer,
             redeem_reward
         ])

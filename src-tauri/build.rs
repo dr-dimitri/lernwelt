@@ -5,6 +5,7 @@ fn main() {
             "save_profile",
             "list_progress",
             "get_learning_state",
+            "set_difficulty",
             "submit_answer",
             "redeem_reward",
         ]),
