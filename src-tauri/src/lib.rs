@@ -2,6 +2,7 @@ mod arcade;
 mod content;
 mod database;
 mod learning;
+mod vocabulary;
 
 use database::{Profile, Progress};
 use rusqlite::Connection;
@@ -95,6 +96,21 @@ fn finish_game(
     storage.with_connection(|connection| arcade::finish(connection, &session_id, score))
 }
 
+#[tauri::command]
+fn get_vocabulary_state(
+    storage: State<'_, Storage>,
+    deck_id: String,
+) -> Result<vocabulary::VocabularyState, String> {
+    storage.with_connection(|connection| vocabulary::get_state(connection, &deck_id))
+}
+#[tauri::command]
+fn review_vocabulary(
+    storage: State<'_, Storage>,
+    input: vocabulary::ReviewInput,
+) -> Result<vocabulary::ReviewResult, String> {
+    storage.with_connection(|connection| vocabulary::review(connection, input))
+}
+
 pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
@@ -121,7 +137,9 @@ pub fn run() {
             redeem_reward,
             get_arcade_state,
             start_game,
-            finish_game
+            finish_game,
+            get_vocabulary_state,
+            review_vocabulary
         ])
         .run(tauri::generate_context!())
         .expect("Lernwelt konnte nicht gestartet werden");

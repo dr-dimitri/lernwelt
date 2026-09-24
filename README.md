@@ -106,3 +106,13 @@ Eintritt, offene Runde und abgeschlossene Bestwerte werden lokal gespeichert. Na
 Grundlage: [LehrplanPLUS Englisch 5, erste Fremdsprache](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache). Thematische Orientierung: [öffentlicher Stoffverteilungsplan Green Line Bayern 1](https://assets.klett.de/assets/43500837/StoffverteilungsplanBd1.pdf), Bayern-Ausgabe ab 2017, ISBN 978-3-12-803010-4. Quellenstand 24.09.2026. Eigene Texte und Aufgaben; kein Klett-Lehrbuchimport und keine vom Verlag freigegebene Begleitsoftware.
 
 Sprechen, freies Schreiben und Hörverstehen werden durch angeleitete Aktivitäten mit Selbstkontrolle bzw. Vorleseperson geübt. Keine Audioaufnahmen, keine automatische Aussprache- oder Freitextbewertung. Das begrenzte Paket ist keine vollständige Abdeckung jedes Lehrbuchinhalts und keine vollständige Lernstandserhebung. Die Themen bleiben Klasse 5, auch bei einer anderen Profilklasse. [Inhaltsübersicht und Grenzen](docs/curriculum-english-5.md).
+
+## Vokabeltrainer
+
+Der eigene Bereich **Vokabeltrainer** enthält 120 selbst erstellte Wortkarten in zwölf Themen, mit deutscher Bedeutung und englischem Beispielsatz. Die Wortauswahl orientiert sich thematisch an Green Line Bayern 1 ab 2017, ist aber keine vollständige Buchwortliste. **Vorschule** fragt Englisch → Deutsch ab, **Könner** Deutsch → Englisch, **Streber** das englische Wort in einer Satzlücke mit deutscher Bedeutungshilfe. Jede Stufe hat ihren eigenen Kartenfortschritt; die Auswahl der Stufe bleibt fachübergreifend.
+
+Überlege erst oder tippe freiwillig eine Antwort ein, drehe dann die Karte um und wähle **Gewusst** oder **Noch üben**. Auch eine passende alternative Übersetzung darf als gewusst zählen. Die App bewertet diese freien Antworten nicht automatisch. Für Selbsteinschätzungen gibt es keine Punkte; die Englisch-Lernaufgaben vergeben weiterhin 5/10/15 Punkte.
+
+Fünf Karteifächer planen die Wiederholung: Bei „Gewusst“ wandert die Karte ein Fach weiter (höchstens Fach 5), mit 1, 3, 7 oder 14 Tagen Abstand. Bei „Noch üben“ geht sie zurück in Fach 1 und wird nach einer Minute wieder fällig. Bereits fällige Karten werden vor neuen Karten angeboten. Sind alle Karten des gewählten Themas für später geplant, zeigt die App den nächsten Termin. Über **Fällige Karten laden** wird die Auswahl aktualisiert; bei jeder Bewertung und jedem Themenwechsel ebenfalls. Kein Zeitdruck, keine automatische Benachrichtigung.
+
+Kartenstand und Wiederholungstermine bleiben lokal in SQLite gespeichert. Die Geräteuhr bestimmt die Termine. Neue Profilnamen oder Klassen ändern den vorhandenen Fortschritt nicht. Es gibt noch keinen Import eigener Karten, keine Ausspracheaufnahmen und keine Synchronisierung.

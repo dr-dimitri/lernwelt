@@ -5,6 +5,7 @@ import App from './App';
 import { desktop } from './lib/desktop';
 import type { LearnerProfile } from './domain/learner';
 
+import { vocabularyInitial } from './test/vocabulary-fixture';
 import { initial } from './test/learning-fixture';
 
 vi.mock('./lib/desktop', () => ({
@@ -13,6 +14,7 @@ vi.mock('./lib/desktop', () => ({
     saveProfile: vi.fn(),
     getLearningState: vi.fn(),
     getArcadeState: vi.fn(),
+    getVocabularyState: vi.fn(),
   },
 }));
 
@@ -182,5 +184,27 @@ it('lädt beim Rückweg aus der Spielhalle das gemeinsame Lernpunktekonto neu', 
     screen.getByRole('button', { name: 'Lernen & Punkte sammeln' }),
   );
   expect(await screen.findByText('10 Punkte')).toBeVisible();
+  expect(desktop.getLearningState).toHaveBeenCalledTimes(2);
+});
+
+it('öffnet den separaten Vokabeltrainer und lädt beim Rückweg die gemeinsame Stufe neu', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getVocabularyState).mockResolvedValue(vocabularyInitial);
+  render(<App />);
+  await screen.findByText('Wie möchtest du heute üben?');
+  await user.click(screen.getByRole('button', { name: 'Vokabeltrainer' }));
+  expect(
+    await screen.findByRole('button', { name: 'Karte umdrehen' }),
+  ).toBeVisible();
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...initial,
+    difficulty: 'streber',
+  });
+  await user.click(
+    screen.getByRole('button', { name: 'Lernen & Punkte sammeln' }),
+  );
+  expect(
+    await screen.findByRole('button', { name: /Streber/ }),
+  ).toHaveAttribute('aria-pressed', 'true');
   expect(desktop.getLearningState).toHaveBeenCalledTimes(2);
 });

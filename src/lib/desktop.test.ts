@@ -37,3 +37,21 @@ describe('Desktop-Schnittstelle', () => {
     });
   });
 });
+
+it('übermittelt bei Wortkarten nur Selbsteinschätzung und Versionsschutz, keine Fälligkeit', async () => {
+  vi.mocked(invoke).mockResolvedValue(undefined);
+  await desktop.getVocabularyState('family');
+  expect(invoke).toHaveBeenCalledWith('get_vocabulary_state', {
+    deckId: 'family',
+  });
+  const input = {
+    requestId: 'review-1',
+    cardId: 'word-1',
+    deckId: 'family',
+    difficulty: 'koenner' as const,
+    expectedReviews: 2,
+    known: false,
+  };
+  await desktop.reviewVocabulary(input);
+  expect(invoke).toHaveBeenCalledWith('review_vocabulary', { input });
+});

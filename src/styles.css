@@ -896,3 +896,76 @@ summary {
     font-size: 0.85rem;
   }
 }
+
+/* A small stack of cards, with a quiet overview of the five review boxes. */
+.vocabulary-panel > p {
+  max-width: 72ch;
+}
+.vocabulary-deck {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 32rem;
+  margin-top: 1.5rem;
+  font-weight: 700;
+}
+.vocabulary-boxes {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+}
+.vocabulary-boxes li {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.8rem;
+  border: 1px solid #d8e6d9;
+  border-radius: 1rem;
+  background: #f2f7ed;
+}
+.vocabulary-boxes small {
+  color: #4c6254;
+}
+.flashcard {
+  max-width: 42rem;
+  margin: 2rem auto;
+  padding: clamp(1rem, 4vw, 2rem);
+  border: 2px solid #d8cceb;
+  border-radius: 1.6rem;
+  background: #fbf8ff;
+  box-shadow: 0 8px 0 #ede6f5;
+}
+.flashcard h3 {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  overflow-wrap: anywhere;
+}
+.flashcard label {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1.2rem 0;
+}
+.card-answer {
+  border-top: 1px solid #d8cceb;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+}
+.card-answer strong {
+  font-size: 1.5rem;
+}
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.card-actions button {
+  flex: 1;
+}
+@media (max-width: 600px) {
+  .vocabulary-boxes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .view-switch {
+    flex-wrap: wrap;
+  }
+}

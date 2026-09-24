@@ -13,6 +13,8 @@
     "allow-redeem-reward",
     "allow-get-arcade-state",
     "allow-start-game",
-    "allow-finish-game"
+    "allow-finish-game",
+    "allow-get-vocabulary-state",
+    "allow-review-vocabulary"
   ]
 }
