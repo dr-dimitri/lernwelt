@@ -39,6 +39,15 @@ pub struct Activity {
 
 #[derive(Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
+pub struct LearningTable {
+    pub caption: String,
+    pub headers: Vec<String>,
+    pub rows: Vec<Vec<String>>,
+    pub note: String,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Topic {
     pub id: String,
     pub name: String,
@@ -47,6 +56,8 @@ pub struct Topic {
     pub curriculum_ref: String,
     pub description: String,
     pub lesson: String,
+    #[serde(default)]
+    pub tables: Vec<LearningTable>,
     pub activities: Vec<Activity>,
     pub language_sequence: Option<String>,
 }
@@ -111,6 +122,24 @@ impl Catalog {
         for topic in &self.topics {
             if !ids.insert(&topic.id) || topic.grade != 5 || topic.curriculum_ref.is_empty() {
                 return Err(invalid());
+            }
+        }
+        for topic in &self.topics {
+            let mut captions = HashSet::new();
+            for table in &topic.tables {
+                if table.caption.trim().is_empty()
+                    || !captions.insert(&table.caption)
+                    || table.headers.is_empty()
+                    || table.headers.iter().any(|h| h.trim().is_empty())
+                    || table.rows.is_empty()
+                    || table
+                        .rows
+                        .iter()
+                        .any(|row| row.len() != table.headers.len())
+                    || table.note.trim().is_empty()
+                {
+                    return Err(invalid());
+                }
             }
         }
         ids.clear();
@@ -300,6 +329,24 @@ mod tests {
             .unwrap();
         assert!(is_correct(zero, "0"));
         assert!(!is_correct(zero, "1"));
+    }
+
+    #[test]
+    fn learning_tables_keep_column_meaning_and_reject_broken_rows() {
+        let mut content: Catalog =
+            serde_json::from_str(include_str!("../content/curriculum-v1.json")).unwrap();
+        content.validate().unwrap();
+        let units = content.topics.iter_mut().find(|t| t.id == "units").unwrap();
+        assert_eq!(units.tables.len(), 4);
+        let table = units
+            .tables
+            .iter_mut()
+            .find(|t| t.caption == "Geld: Euro und Cent")
+            .unwrap();
+        assert_eq!(table.headers, ["€", "ct (2 Stellen)"]);
+        assert_eq!(table.rows[0], ["3", "05"]);
+        table.rows[0].pop();
+        assert!(content.validate().is_err());
     }
 
     #[test]

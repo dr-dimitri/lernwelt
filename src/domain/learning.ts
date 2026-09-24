@@ -35,6 +35,12 @@ export interface Topic {
   curriculumRef: string;
   description: string;
   lesson: string;
+  tables?: {
+    caption: string;
+    headers: string[];
+    rows: string[][];
+    note: string;
+  }[];
   languageSequence: string | null;
   activities: { title: string; prompt: string; check: string }[];
 }
