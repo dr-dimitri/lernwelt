@@ -29,13 +29,13 @@ npm run desktop:build -- --bundles app  # macOS .app
 npm run desktop:build -- --bundles nsis # Windows Installer, auf Windows ausführen
 ```
 
-Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale macOS-App ist noch nicht signiert oder notarisiert. Mathematik Klasse 5 enthält ein offline gebündeltes Übungspaket für alle sieben Lernbereiche; Englisch enthält weiterhin Beispiele.
+Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale macOS-App ist noch nicht signiert oder notarisiert. Mathematik Klasse 5 enthält ein offline gebündeltes Übungspaket für alle sieben Lernbereiche; Englisch Klasse 5 bietet zwölf eigene Themen für die erste Fremdsprache.
 
 ## Lokale Daten
 
 Das Lernprofil (Spitzname und Jahrgangsstufe 5–13) wird in `lernwelt.sqlite3` im Tauri-Anwendungsdatenverzeichnis `de.lernwelt.desktop` gespeichert. Auf macOS ist dies `~/Library/Application Support/de.lernwelt.desktop/`, auf Windows unter `%APPDATA%\\de.lernwelt.desktop\\`. Die Browser-Vorschau zeigt einen Hinweis statt Speicherung zu simulieren.
 
-Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Mathematikaufgaben und Englischbeispiele sind an das Punktesystem angeschlossen. Eine fachübergreifende Stufenauswahl wird ebenfalls lokal gespeichert. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
+Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Mathematik- und Englischaufgaben sind an das Punktesystem angeschlossen. Eine fachübergreifende Stufenauswahl wird ebenfalls lokal gespeichert. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
 
 ```sh
 cargo test --manifest-path src-tauri/Cargo.toml
@@ -63,7 +63,7 @@ Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die 
 
 Antworten werden lokal im Rust-Backend geprüft. Gutschrift und Lernfortschritt werden gemeinsam gespeichert; Einlösen prüft das Guthaben und bucht atomar ab. Doppelte Requests erzeugen keine doppelten Buchungen. Das lokale System bietet keine manipulationssichere Währung und hat keinen Geldwert.
 
-Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri/content/curriculum-v1.json`. Bestehende Aufgaben-IDs behalten ihre Bedeutung; alte Beispiel-Mathematikaufgaben bleiben für gespeicherte Buchungen und Wiederholungsrequests intern auflösbar.
+Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri/content/curriculum-v1.json`. Bestehende Aufgaben-IDs behalten ihre Bedeutung; alte Beispielaufgaben beider Fächer bleiben für gespeicherte Buchungen und Wiederholungsrequests intern auflösbar.
 
 
 ## Mathematik Klasse 5
@@ -80,7 +80,7 @@ Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri
 - Größen im Alltag: Geld, Längen, Massen, Zeit, Schätzen, Dreisatz und Maßstäbe.
 - Flächen-Abenteuer: Flächeninhalt, Umfang, Einheiten, zusammengesetzte Flächen und Quaderoberflächen.
 
-**Vorschule** bietet einen leichten Einstieg, **Könner** reguläre Übungen und **Streber** anspruchsvollere Knobelaufgaben. Es sind spielerische Bezeichnungen, keine Altersstufen. Die Wahl bleibt über Fachwechsel, Profiländerung und Neustart erhalten; Standard ist Könner. Für Englisch gibt es zwei ausdrücklich als Beispiele gekennzeichnete Aufgaben pro Stufe (1. Fremdsprache), noch keinen vollständigen Englischlehrplan. Die angebotene Mathematik bleibt Klasse 5, auch wenn im Profil eine andere Klasse steht.
+**Vorschule** bietet einen leichten Einstieg, **Könner** reguläre Übungen und **Streber** anspruchsvollere Knobelaufgaben. Es sind spielerische Bezeichnungen, keine Altersstufen. Die Wahl bleibt über Fachwechsel, Profiländerung und Neustart erhalten; Standard ist Könner. Englisch bietet ebenfalls alle drei Stufen (1. Fremdsprache). Die angebotene Mathematik bleibt Klasse 5, auch wenn im Profil eine andere Klasse steht.
 
 Jede Bildschirmaufgabe bietet einen Tipp und nach der Antwort einen erklärten Lösungsweg. Auswahlfragen, ganze Zahlen und exakte Dezimalzahlen werden im Backend bewertet. Komma oder Punkt gelten als Dezimaltrennzeichen, normale/geschützte Leerzeichen als Dreiergruppierung: `25 000` oder `25000`; `25.000` bedeutet 25. Einheiten stehen in der Frage und werden nicht mit eingegeben. Englischwörter werden ohne Beachtung der Großschreibung verglichen.
 
@@ -98,3 +98,11 @@ Verdiente Lernpunkte lassen sich für vier eigene Offline-Spiele einlösen. Eine
 Jedes Spiel bietet deutsche Anleitungen, Tastatur- und Bildschirmtasten, Pause und ein sichtbares Rundenende. Hühner können zusätzlich direkt angetippt werden. Beim Fokusverlust pausiert das Spiel. **Spielpunkte und Bestwerte sind getrennt von Lernpunkten** und bringen kein neues Guthaben. Keine automatische kostenpflichtige Wiederholung.
 
 Eintritt, offene Runde und abgeschlossene Bestwerte werden lokal gespeichert. Nach Verlassen oder App-Neustart lässt sich eine offene bezahlte Runde kostenlos von vorn starten; die genaue Spielposition wird nicht gespeichert. Erst nach Abschluss dieser Runde ist ein neues Spiel auswählbar. Ein Speicherfehler lässt sich ohne weitere Abbuchung erneut versuchen. Alle Grafiken entstehen lokal im Canvas; es werden keine Original-Assets der bekannten Spiele und keine neuen Bibliotheken eingebunden.
+
+## Englisch Klasse 5
+
+108 eigene Aufgaben in zwölf Themen, je drei pro Thema und Stufe, dazu 24 Mitmachaufgaben. Begrüßung, Familie, Wohnen, Schule, Tagesablauf, Freizeit, Einkaufen, Geburtstag, Vergangenheit, Lesen, Landeskunde und Lernstrategien verbinden Wortschatz mit Grammatik. Die Aufgaben sind kurz formuliert und enthalten Tipps und Erklärungen. Neue korrekte Lösungen bringen wie in Mathematik 5/10/15 Punkte.
+
+Grundlage: [LehrplanPLUS Englisch 5, erste Fremdsprache](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache). Thematische Orientierung: [öffentlicher Stoffverteilungsplan Green Line Bayern 1](https://assets.klett.de/assets/43500837/StoffverteilungsplanBd1.pdf), Bayern-Ausgabe ab 2017, ISBN 978-3-12-803010-4. Quellenstand 24.09.2026. Eigene Texte und Aufgaben; kein Klett-Lehrbuchimport und keine vom Verlag freigegebene Begleitsoftware.
+
+Sprechen, freies Schreiben und Hörverstehen werden durch angeleitete Aktivitäten mit Selbstkontrolle bzw. Vorleseperson geübt. Keine Audioaufnahmen, keine automatische Aussprache- oder Freitextbewertung. Das begrenzte Paket ist keine vollständige Abdeckung jedes Lehrbuchinhalts und keine vollständige Lernstandserhebung. Die Themen bleiben Klasse 5, auch bei einer anderen Profilklasse. [Inhaltsübersicht und Grenzen](docs/curriculum-english-5.md).

@@ -282,12 +282,14 @@ export default function LearningPanel({
           </div>
           <div className="topic-section">
             <h3>
-              {subject === 'mathematics' ? 'Mathematik · Klasse 5' : 'Englisch'}
+              {subject === 'mathematics'
+                ? 'Mathematik · Klasse 5'
+                : 'Englisch · Klasse 5'}
             </h3>
             <p>
               {subject === 'mathematics'
                 ? `${topics.length} Themenwelten. Wo beginnt dein nächstes Abenteuer?`
-                : 'Beispielaufgaben · Noch kein vollständiger Lehrplan · Englisch als 1. Fremdsprache'}
+                : '12 Themen zum Entdecken · Englisch als 1. Fremdsprache'}
             </p>
             <div className="topic-grid" aria-label="Themen">
               {topics.map((item, index) => {
@@ -498,7 +500,7 @@ export default function LearningPanel({
                 <>
                   <p>
                     Ein Tipp kann dir helfen. Du kannst auch den Lösungsweg
-                    anschauen und danach noch einmal rechnen.
+                    anschauen und danach noch einmal versuchen.
                   </p>
                   <details key={question.id}>
                     <summary>Lösungsweg anschauen</summary>
@@ -517,11 +519,17 @@ export default function LearningPanel({
           {topic.activities.length > 0 && (
             <details className="activities" key={`activities-${topic.id}`}>
               <summary>
-                Stift raus! {topic.activities.length} Mitmachaufgaben
+                {subject === 'english'
+                  ? 'Sprich, lies & entdecke!'
+                  : 'Stift raus!'}{' '}
+                {topic.activities.length} Mitmachaufgaben
               </summary>
               <p>
-                Für alle drei Stufen: Zeichne, probiere aus und erkläre deinen
-                Weg. Hier kontrollierst du selbst – ohne Punkte. Bei kniffligen
+                Für alle drei Stufen:{' '}
+                {subject === 'english'
+                  ? 'Sprich, schreibe und probiere die Sprache aus.'
+                  : 'Zeichne, probiere aus und erkläre deinen Weg.'}{' '}
+                Hier kontrollierst du selbst – ohne Punkte. Bei kniffligen
                 Fragen hilft dir eine erwachsene Person.
               </p>
               {topic.activities.map((activity) => (
@@ -585,6 +593,26 @@ export default function LearningPanel({
         </div>
       )}
       {notice && <p role="status">{notice}</p>}
+      {state && subject === 'english' && (
+        <details className="source-note">
+          <summary>Für Neugierige & Erwachsene: Englisch-Lerninhalte</summary>
+          <p>
+            108 eigene Übungen und 24 Mitmachaufgaben für Klasse 5, Englisch als
+            erste Fremdsprache. Themen nach LehrplanPLUS und zur Orientierung
+            nach Green Line Bayern 1, Ausgabe ab 2017. Kein Originalmaterial von
+            Klett und kein vollständiger Ersatz für Buch oder Unterricht.
+          </p>
+          <p>
+            Hörtexte werden von einer anderen Person vorgelesen. Sprechen und
+            freie Texte prüfst du mit den Hinweisen selbst; es gibt keine
+            Audioaufnahmen oder automatische Aussprachebewertung.
+          </p>
+          <p>
+            {topic?.curriculumVersion}. Themenbezug: {topic?.curriculumRef}.
+            Quelle: {topic?.source}. Alle Übungen funktionieren offline.
+          </p>
+        </details>
+      )}
       {state && subject === 'mathematics' && (
         <details className="source-note">
           <summary>Für Neugierige & Erwachsene: Lerninhalte</summary>

@@ -489,17 +489,6 @@
           "note": "Lies: 2,35 m² = 235 dm². Dann: 1,25 ha = 125 a = 12 500 m². Zuletzt: 3,50 cm² = 350 mm². Pro Schritt nach rechts mal 100, nach links geteilt durch 100. Eine leere Zweiergruppe wird 00."
         }
       ]
-    },
-    {
-      "id": "english-samples",
-      "name": "English warm-up",
-      "subject": "english",
-      "grade": 5,
-      "curriculumRef": "Beispiele ohne vollständige Lehrplanzuordnung",
-      "description": "Kleine Wort- und Satzrätsel zum Ausprobieren.",
-      "lesson": "Lies zuerst den ganzen Satz.\nTo be heißt „sein“: Bei I steht am, bei he/she/it steht is, bei you/we/they steht are.\nIn der Stufe Streber suchst du auch ein falsches Wort und verbesserst es.",
-      "languageSequence": "Englisch als 1. Fremdsprache · Beispiele",
-      "activities": []
     }
   ],
   "exercises": [
@@ -5973,7 +5962,7 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": true
     },
     {
       "id": "sample.english.be.v1",
@@ -5988,7 +5977,7 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": true
     },
     {
       "id": "sample.english.plural.v1",
@@ -6003,7 +5992,7 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": true
     },
     {
       "id": "sample.english.we.v1",
@@ -6018,7 +6007,7 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": true
     },
     {
       "id": "sample.english.negation.v1",
@@ -6033,7 +6022,7 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": true
     },
     {
       "id": "sample.english.repair.v1",
@@ -6048,7 +6037,7 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": true
     },
     {
       "id": "sample.math.add.v1",
