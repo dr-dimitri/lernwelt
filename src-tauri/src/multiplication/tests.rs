@@ -204,7 +204,7 @@ fn competing_connections_award_the_same_task_only_once() {
     let mut c = database::open(&d.path().join("test.db")).unwrap();
     assert_eq!(get_state(&mut c, Mode::Tables).unwrap().answered, 1);
 }
-fn old_v7(path: &std::path::Path) -> Connection {
+fn old_v8(path: &std::path::Path) -> Connection {
     let c = Connection::open(path).unwrap();
     for sql in [
         include_str!("../../migrations/001_initial.sql"),
@@ -214,10 +214,11 @@ fn old_v7(path: &std::path::Path) -> Connection {
         include_str!("../../migrations/005_difficulty_points.sql"),
         include_str!("../../migrations/006_vocabulary.sql"),
         include_str!("../../migrations/007_vocabulary_points.sql"),
+        include_str!("../../migrations/008_learning_points.sql"),
     ] {
         c.execute_batch(sql).unwrap();
     }
-    c.execute_batch("INSERT INTO learner_profile VALUES (1,'Bestehend',5); INSERT INTO point_entries (id,profile_id,kind,item_id,amount,created_at) VALUES (1,1,'answer','old',40,'2026-09-01'),(2,1,'reward','star',-20,'2026-09-02'),(3,1,'vocabulary','word',1,'2026-09-03'); UPDATE learning_settings SET difficulty='streber'; PRAGMA user_version=7;").unwrap();
+    c.execute_batch("INSERT INTO learner_profile VALUES (1,'Bestehend',5); INSERT INTO point_entries (id,profile_id,kind,item_id,amount,created_at) VALUES (1,1,'answer','old',40,'2026-09-01'),(2,1,'reward','star',-20,'2026-09-02'),(3,1,'vocabulary','word',1,'2026-09-03'); UPDATE learning_settings SET difficulty='streber'; PRAGMA user_version=8;").unwrap();
     database::record_attempt(&c, database::Subject::English, "old.skill", true).unwrap();
     c
 }
@@ -226,7 +227,7 @@ fn upgrade_preserves_old_journal_profile_and_progress_and_rolls_back_after_rebui
     for fail in [false, true] {
         let d = tempdir().unwrap();
         let path = d.path().join("old.db");
-        let old = old_v7(&path);
+        let old = old_v8(&path);
         if fail {
             old.execute_batch("CREATE TABLE multiplication_answers (collision TEXT);")
                 .unwrap();
@@ -238,7 +239,7 @@ fn upgrade_preserves_old_journal_profile_and_progress_and_rolls_back_after_rebui
             assert_eq!(
                 old.pragma_query_value(None, "user_version", |r| r.get::<_, i64>(0))
                     .unwrap(),
-                7
+                8
             );
             assert_eq!(learning::wallet(&old).unwrap().balance, 21);
             assert!(old.execute("INSERT INTO point_entries (profile_id,kind,item_id,amount) VALUES (1,'multiplication','tables-0',1)",[]).is_err());

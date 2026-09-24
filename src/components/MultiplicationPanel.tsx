@@ -190,8 +190,9 @@ export default function MultiplicationPanel({
       )}
       {state?.profileReady && (
         <p className="sample-note">
-          {state.answered} Antworten geübt · {state.correct} richtig in dieser
-          Rechenart. Dein Stand bleibt auf diesem Gerät.
+          {state.answered} {state.answered === 1 ? 'Aufgabe' : 'Aufgaben'} geübt
+          · {state.correct} richtig in dieser Rechenart. Dein Stand bleibt auf
+          diesem Gerät.
         </p>
       )}
       {task && (

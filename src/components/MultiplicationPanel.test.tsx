@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import MultiplicationPanel from './MultiplicationPanel';
@@ -23,7 +23,7 @@ it('prüft per Enter, vergibt einen Punkt und lädt die nächste Aufgabe bewusst
   const user = userEvent.setup();
   render(<MultiplicationPanel profileVersion={0} />);
   const input = await screen.findByLabelText('Dein Ergebnis');
-  expect(input).toHaveFocus();
+  await waitFor(() => expect(input).toHaveFocus());
   expect(screen.getByRole('heading', { name: '2 × 8 = ?' })).toBeVisible();
   expect(
     screen.queryByText('16', { selector: 'strong' }),
@@ -35,9 +35,11 @@ it('prüft per Enter, vergibt einen Punkt und lädt die nächste Aufgabe bewusst
     sequence: 0,
     answer: '16',
   });
-  expect(
-    await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Richtig! +1 Punkt' }),
+    ).toHaveFocus(),
+  );
   expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
     '10 Punkte',
   );
@@ -88,7 +90,7 @@ it('wechselt zu Quadratzahlen und entfernt Eingabe und Rückmeldung der alten Re
   vi.mocked(desktop.getMultiplicationState).mockResolvedValue({
     ...initial,
     mode: 'squares',
-    task: { sequence: 24, left: 25, right: 25 },
+    task: { id: '25x25', sequence: 24, left: 25, right: 25 },
   });
   await user.click(screen.getByRole('button', { name: /Quadratzahlen/ }));
   expect(

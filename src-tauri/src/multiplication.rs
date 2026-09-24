@@ -20,6 +20,7 @@ impl Mode {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Task {
+    pub id: String,
     pub sequence: i64,
     pub left: i64,
     pub right: i64,
@@ -38,6 +39,7 @@ fn task(mode: Mode, sequence: i64) -> Task {
         }
     };
     Task {
+        id: format!("by.math.5.trainer.{}.{}x{}.v1", mode.as_str(), left, right),
         sequence,
         left,
         right,
@@ -46,7 +48,18 @@ fn task(mode: Mode, sequence: i64) -> Task {
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
+pub struct ContentInfo {
+    subject: &'static str,
+    grade: u8,
+    competency_id: &'static str,
+    source: &'static str,
+    curriculum_version: &'static str,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct TrainerState {
+    pub content: ContentInfo,
     pub profile_ready: bool,
     pub mode: Mode,
     pub task: Option<Task>,
@@ -78,6 +91,11 @@ fn state(c: &Connection, mode: Mode) -> Result<TrainerState, String> {
         "SELECT COUNT(*), COALESCE(SUM(correct),0), COALESCE(MAX(sequence)+1,0) FROM multiplication_answers WHERE profile_id=1 AND mode=?1",
         [mode.as_str()], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?))).map_err(db_error)?;
     Ok(TrainerState {
+        content: ContentInfo {
+            subject: "mathematics", grade: 5, competency_id: "by.math.5.multiply.fluency.v1",
+            source: "Eigene Lernwelt-Rechenaufgaben; Bezug M5 3.1: https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+            curriculum_version: "LehrplanPLUS-Zuordnung 2026-09-24; Trainerinhalt v1",
+        },
         profile_ready,
         mode,
         task: profile_ready.then(|| task(mode, next)),
