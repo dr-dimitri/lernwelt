@@ -201,7 +201,7 @@ pub fn answer(c: &mut Connection, input: AnswerInput) -> Result<AnswerResult, St
         .transaction_with_behavior(TransactionBehavior::Immediate)
         .map_err(db_error)?;
     if database::get_profile(&tx)?.is_none() {
-        return Err("Speichere zuerst unten dein Lernprofil.".into());
+        return Err("Speichere zuerst dein Lernprofil über „Dein Profil“ oben.".into());
     }
     let previous: Option<(Option<String>, bool)> = tx.query_row(
         "SELECT answer,correct FROM multiplication_answers WHERE profile_id=1 AND mode=?1 AND sequence=?2",
@@ -215,9 +215,9 @@ pub fn answer(c: &mut Connection, input: AnswerInput) -> Result<AnswerResult, St
         }
     } else {
         let current = state(&tx, input.mode)?;
-        let question = current
-            .task
-            .ok_or_else(|| "Speichere zuerst unten dein Lernprofil.".to_owned())?;
+        let question = current.task.ok_or_else(|| {
+            "Speichere zuerst dein Lernprofil über „Dein Profil“ oben.".to_owned()
+        })?;
         if question.sequence != input.sequence {
             return Err("Diese Aufgabe ist nicht mehr aktuell. Lade den Trainer neu.".into());
         }

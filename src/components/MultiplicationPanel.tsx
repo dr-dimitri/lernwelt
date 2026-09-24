@@ -198,9 +198,8 @@ export default function MultiplicationPanel({
       )}
       {mode === 'squares' && (
         <p className="sample-note round-explainer">
-          Pro Runde übst du 5 zufällig ausgewählte Quadratzahlen. Jede kommt
-          4-mal dran – gemischt in 20 Aufgaben. In der nächsten Runde werden
-          wieder 5 ausgewählt. Manche können dir erneut begegnen.
+          Pro Runde übst du 5 zufällig ausgewählte Quadratzahlen, jede 4-mal: 20
+          gemischte Aufgaben.
         </p>
       )}
       {task && (

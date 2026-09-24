@@ -160,9 +160,8 @@ export default function VocabularyPanel({
       aria-labelledby="vocabulary-title"
       aria-busy={busy}
     >
-      <p className="eyebrow">DEIN WÖRTERSCHATZ WÄCHST</p>
+      <p className="eyebrow">ENGLISCH · KLASSE 5 · 1. FREMDSPRACHE</p>
       <h2 id="vocabulary-title">Vokabeltrainer</h2>
-      <p>Englisch · Klasse 5 · 1. Fremdsprache</p>
       <p>
         Tippe deine Übersetzung ein. Jede richtige Antwort bringt 1 Punkt – auch
         wenn du ein Wort später wiederholst. Fehler kosten nichts.
@@ -249,26 +248,29 @@ export default function VocabularyPanel({
               {state.total} Karten im Thema · {state.newCount} neu ·{' '}
               {state.dueCount} zum Wiederholen fällig
             </p>
-            <ol
-              className="vocabulary-boxes"
-              aria-label="Deine fünf Karteifächer"
-            >
-              {state.boxes.map((count, index) => (
-                <li key={index}>
-                  <strong>Fach {index + 1}</strong>
-                  <span>
-                    {count} {count === 1 ? 'Karte' : 'Karten'}
-                  </span>
-                  <small>
-                    {
-                      ['Bald wieder', '1 Tag', '3 Tage', '7 Tage', '14 Tage'][
-                        index
-                      ]
-                    }
-                  </small>
-                </li>
-              ))}
-            </ol>
+            <InfoPanel>
+              <summary>Deine fünf Karteifächer</summary>
+              <ol
+                className="vocabulary-boxes"
+                aria-label="Deine fünf Karteifächer"
+              >
+                {state.boxes.map((count, index) => (
+                  <li key={index}>
+                    <strong>Fach {index + 1}</strong>
+                    <span>
+                      {count} {count === 1 ? 'Karte' : 'Karten'}
+                    </span>
+                    <small>
+                      {
+                        ['Bald wieder', '1 Tag', '3 Tage', '7 Tage', '14 Tage'][
+                          index
+                        ]
+                      }
+                    </small>
+                  </li>
+                ))}
+              </ol>
+            </InfoPanel>
             {!state.profileReady && (
               <p>
                 Speichere dein Lernprofil über „Dein Profil“ oben. Dann kann

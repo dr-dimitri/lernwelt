@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
   type ReactNode,
+  type RefObject,
 } from 'react';
 
 /** Small, keyboard-accessible pages instead of expanding the current exercise. */
@@ -13,10 +14,14 @@ export default function InfoPanel({
   className = '',
   paginate = false,
   onOpenChange,
+  autoOpen = false,
+  returnFocusRef,
 }: {
   children: ReactNode;
   className?: string;
   paginate?: boolean;
+  autoOpen?: boolean;
+  returnFocusRef?: RefObject<HTMLElement | null>;
   onOpenChange?: (open: boolean) => void;
 }) {
   const parts = Children.toArray(children);
@@ -28,7 +33,7 @@ export default function InfoPanel({
     : 'Mehr erfahren';
   const contents = parts.filter((child) => child !== summary);
   const pages = paginate ? contents : [contents];
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(autoOpen);
   const [page, setPage] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
@@ -39,7 +44,9 @@ export default function InfoPanel({
     dialog.current?.close();
     setOpen(false);
     onOpenChange?.(false);
-    trigger.current?.focus({ preventScroll: true });
+    (returnFocusRef?.current ?? trigger.current)?.focus({
+      preventScroll: true,
+    });
   }
   return (
     <div className={`info-panel ${className}`}>

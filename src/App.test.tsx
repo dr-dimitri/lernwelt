@@ -34,15 +34,14 @@ describe('Lernwelt', () => {
   it('wechselt das Fach und zeigt den tatsächlichen Ausbaustand', async () => {
     const user = userEvent.setup();
     render(<App />);
-    await user.click(
-      screen.getByRole('button', { name: 'Englisch', exact: true }),
-    );
+    await user.click(screen.getByRole('button', { name: 'Englisch' }));
     expect(
       screen.getByRole('heading', { name: 'Englisch · Klasse 5' }),
     ).toBeVisible();
-    expect(
-      screen.getByRole('button', { name: 'Englisch', exact: true }),
-    ).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'Englisch' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
     expect(screen.getByText(/12 Themen zum Entdecken/)).toBeVisible();
     await user.click(
       screen.getByText('Für Neugierige & Erwachsene: Englisch-Lerninhalte'),

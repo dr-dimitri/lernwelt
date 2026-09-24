@@ -97,7 +97,7 @@ pub fn start(
         .transaction_with_behavior(TransactionBehavior::Immediate)
         .map_err(db_error)?;
     if database::get_profile(&transaction)?.is_none() {
-        return Err("Speichere zuerst dein Lernprofil unten auf dieser Seite.".into());
+        return Err("Speichere zuerst dein Lernprofil über „Dein Profil“ oben.".into());
     }
     let existing: Option<(String, Option<i64>)> = transaction
         .query_row(

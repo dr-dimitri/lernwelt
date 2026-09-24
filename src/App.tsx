@@ -97,7 +97,6 @@ export default function App() {
         ) : (
           <ArcadePanel profileVersion={profileVersion} />
         )}
-        <footer>Dein Tempo zählt. Pausen gehören zum Lernen dazu.</footer>
       </main>
     </div>
   );

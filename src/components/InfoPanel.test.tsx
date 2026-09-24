@@ -39,7 +39,7 @@ it('macht sämtliche Tabellenzeilen durch Blättern erreichbar', async () => {
       }}
     />,
   );
-  expect(screen.getByRole('cell', { name: '1', exact: true })).toBeVisible();
+  expect(screen.getByRole('cell', { name: '1' })).toBeVisible();
   for (let page = 0; page < 3; page++)
     await user.click(screen.getByRole('button', { name: 'Nächste Zeilen →' }));
   expect(screen.getByRole('cell', { name: '25' })).toBeVisible();

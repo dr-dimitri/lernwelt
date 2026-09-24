@@ -1524,3 +1524,70 @@ select {
     grid-template-columns: 1fr;
   }
 }
+.vocabulary-panel > .secondary-button {
+  position: absolute;
+  top: 54px;
+  right: 20px;
+  margin: 0;
+}
+.vocabulary-panel > p:not(.eyebrow) {
+  max-width: calc(100% - 200px);
+}
+.vocabulary-settings .vocabulary-boxes {
+  grid-template-columns: repeat(5, 1fr);
+}
+.dialog-page .vocabulary-boxes li {
+  padding: 12px;
+  font-size: 14px;
+}
+.dialog-page .vocabulary-boxes small {
+  display: block;
+}
+.multiplication-panel .flashcard {
+  position: relative;
+  padding: 14px 18px;
+  margin: 10px auto;
+}
+.multiplication-panel .flashcard > .source-note {
+  position: absolute;
+  top: 55px;
+  right: 18px;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .multiplication-panel .flashcard > .source-note,
+  .vocabulary-panel > .secondary-button {
+    position: static;
+  }
+  .vocabulary-panel > p:not(.eyebrow) {
+    max-width: 100%;
+  }
+}
+.is-playing > p,
+.is-playing > .section-heading .eyebrow {
+  display: none;
+}
+.game-focus {
+  width: min(100%, calc((100dvh - 355px) * 1.6));
+}
+@media (max-width: 900px), (max-height: 650px) {
+  .game-focus {
+    width: 100%;
+  }
+}
+.learning-panel {
+  padding: 12px 16px;
+}
+.learning-panel > .section-heading .eyebrow {
+  display: none;
+}
+.feedback-panel {
+  display: inline-block;
+  margin: 6px 8px 0 0;
+}
+.dialog-page .answer-feedback {
+  margin: 0;
+}
+.dialog-page .answer-feedback > button {
+  margin-top: 14px;
+}

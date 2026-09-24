@@ -283,11 +283,14 @@ export default function LearningPanel({
                     </button>
                   ))}
                 </div>
-                <p className="sample-note">
-                  Lustige Namen, keine Noten! „Vorschule“ ist der leichte
-                  Einstieg in dein Thema. Du kannst jederzeit wechseln. Deine
-                  Wahl gilt auch im anderen Fach.
-                </p>
+                <InfoPanel>
+                  <summary>Über die Stufen</summary>
+                  <p className="sample-note">
+                    Lustige Namen, keine Noten! „Vorschule“ ist der leichte
+                    Einstieg in dein Thema. Du kannst jederzeit wechseln. Deine
+                    Wahl gilt auch im anderen Fach.
+                  </p>
+                </InfoPanel>
               </div>
               <div className="topic-section">
                 <h3>
@@ -360,13 +363,7 @@ export default function LearningPanel({
                 · {solvedCount}/{questions.length} geschafft
               </span>
             </div>
-            <InfoPanel paginate className="lesson" key={topic.id}>
-              <summary>So geht’s · kurz erklärt</summary>
-              <p>{topic.lesson}</p>
-              {topic.tables?.map((table) => (
-                <LearningTable key={table.caption} table={table} />
-              ))}
-            </InfoPanel>
+
             <div className="question-navigation">
               <label htmlFor="question-picker">Deine Aufgabe</label>
               <select
@@ -459,6 +456,13 @@ export default function LearningPanel({
               <summary>Gib mir einen Tipp</summary>
               <p className="hint-box">{question.hint}</p>
             </InfoPanel>
+            <InfoPanel paginate className="lesson" key={topic.id}>
+              <summary>So geht’s · kurz erklärt</summary>
+              <p>{topic.lesson}</p>
+              {topic.tables?.map((table) => (
+                <LearningTable key={table.caption} table={table} />
+              ))}
+            </InfoPanel>
             {question.solved && (
               <p className="sample-note">
                 Die Punkte für diese Aufgabe hast du bereits gesammelt. Du
@@ -466,32 +470,54 @@ export default function LearningPanel({
               </p>
             )}
             {visibleResult && (
-              <div
-                className={`answer-feedback ${visibleResult.correct ? 'correct' : ''}`}
-                role="status"
+              <InfoPanel
+                autoOpen
+                returnFocusRef={practiceRef}
+                className="feedback-panel"
               >
-                <strong>
-                  {visibleResult.correct
-                    ? visibleResult.pointsAwarded > 0
-                      ? `Richtig! +${visibleResult.pointsAwarded} ${visibleResult.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
-                      : 'Richtig! Diese Aufgabe hast du bereits gelöst.'
-                    : 'Noch nicht richtig. Versuch es noch einmal!'}
-                </strong>
-                {visibleResult.correct ? (
-                  <p>{visibleResult.explanation}</p>
-                ) : (
-                  <>
-                    <p>
-                      Ein Tipp kann dir helfen. Du kannst auch den Lösungsweg
-                      anschauen und danach noch einmal versuchen.
-                    </p>
-                    <InfoPanel key={question.id}>
-                      <summary>Lösungsweg anschauen</summary>
-                      <p>{visibleResult.explanation}</p>
-                    </InfoPanel>
-                  </>
-                )}
-              </div>
+                <summary>Deine Rückmeldung</summary>
+                <div
+                  className={`answer-feedback ${visibleResult.correct ? 'correct' : ''}`}
+                  role="status"
+                >
+                  <strong>
+                    {visibleResult.correct
+                      ? visibleResult.pointsAwarded > 0
+                        ? `Richtig! +${visibleResult.pointsAwarded} ${visibleResult.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
+                        : 'Richtig! Diese Aufgabe hast du bereits gelöst.'
+                      : 'Noch nicht richtig. Versuch es noch einmal!'}
+                  </strong>
+                  {visibleResult.correct ? (
+                    <p>{visibleResult.explanation}</p>
+                  ) : (
+                    <>
+                      <p>
+                        Ein Tipp kann dir helfen. Du kannst auch den Lösungsweg
+                        anschauen und danach noch einmal versuchen.
+                      </p>
+                      <InfoPanel key={question.id}>
+                        <summary>Lösungsweg anschauen</summary>
+                        <p>{visibleResult.explanation}</p>
+                      </InfoPanel>
+                    </>
+                  )}
+                  <button
+                    className="primary-button"
+                    data-close-info
+                    onClick={() => {
+                      if (visibleResult.correct)
+                        selectQuestion(
+                          questions[(questionIndex + 1) % questions.length].id,
+                        );
+                      else setResult(null);
+                    }}
+                  >
+                    {visibleResult.correct
+                      ? 'Weiter zur nächsten Aufgabe'
+                      : 'Noch einmal versuchen'}
+                  </button>
+                </div>
+              </InfoPanel>
             )}
             {solvedCount === questions.length && (
               <p className="completion-message">

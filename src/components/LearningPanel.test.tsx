@@ -410,3 +410,18 @@ it('zeigt nach Stufenwechsel 1, 2 und 3 Punkte und die tatsächliche Gutschrift'
     ).toBeVisible();
   }
 });
+
+it('öffnet die Rückmeldung kompakt und führt zurück zur nächsten Aufgabe', async () => {
+  const user = userEvent.setup();
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await user.type(await screen.findByLabelText('Was ist 17 + 25?'), '42');
+  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  expect(
+    await screen.findByRole('dialog', { name: 'Deine Rückmeldung' }),
+  ).toBeVisible();
+  await user.click(
+    screen.getByRole('button', { name: 'Weiter zur nächsten Aufgabe' }),
+  );
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.getByLabelText('Deine Übung')).toHaveFocus();
+});
