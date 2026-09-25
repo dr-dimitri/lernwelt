@@ -18,6 +18,7 @@
     "allow-review-vocabulary",
     "allow-get-multiplication-state",
     "allow-answer-multiplication",
+    "allow-configure-multiplication",
     "allow-get-mission-state",
     "allow-start-mission",
     "allow-act-mission"

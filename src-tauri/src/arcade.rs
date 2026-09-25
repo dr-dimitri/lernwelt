@@ -396,7 +396,7 @@ mod labyrinth_tests {
             },
         )
         .unwrap();
-        c.execute_batch("DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress;").unwrap();
+        c.execute_batch("DROP TABLE multiplication_configurations; DROP TABLE multiplication_review_queue; DROP TABLE multiplication_tasks; DROP TABLE multiplication_cursors; DROP TABLE multiplication_robots; DROP TABLE multiplication_worlds; DROP TABLE multiplication_settings; DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress;").unwrap();
         c.execute_batch("INSERT INTO point_entries (profile_id,kind,item_id,amount) VALUES (1,'answer','fixture',30),(1,'game','old-runner',-10); INSERT INTO game_sessions VALUES ('old-runner',1,'runner',NULL,'2026-09-01'); PRAGMA user_version=11;").unwrap();
         drop(c);
         let mut c = database::open(&path).unwrap();

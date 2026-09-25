@@ -13,6 +13,33 @@ fn setup() -> (TempDir, Connection) {
     .unwrap();
     (d, c)
 }
+// Existing arithmetic tests explicitly continue the new eight-task stages.
+fn ready(c: &mut Connection, mode: Mode) -> Result<TrainerState, String> {
+    let state = get_state(c, mode)?;
+    let world = match state.adventure.world {
+        World::Workshop => &state.adventure.worlds.workshop,
+        World::Island => &state.adventure.worlds.island,
+    };
+    if world.awaiting_continue {
+        let a = state.adventure;
+        configure(
+            c,
+            Configuration {
+                request_id: format!("test-continue-{}", a.revision),
+                expected_revision: a.revision,
+                mode,
+                world: a.world,
+                design: a.design,
+                palette: a.palette,
+                table: a.table,
+                review: a.review,
+                continue_stage: true,
+            },
+        )
+    } else {
+        Ok(state)
+    }
+}
 fn input(mode: Mode, sequence: i64, answer: Option<String>) -> AnswerInput {
     AnswerInput {
         mode,
@@ -21,14 +48,16 @@ fn input(mode: Mode, sequence: i64, answer: Option<String>) -> AnswerInput {
     }
 }
 fn solve(c: &mut Connection, mode: Mode, sequence: i64) -> AnswerResult {
-    get_state(c, mode).unwrap();
-    let q = if mode == Mode::Squares {
-        saved_square(c, sequence)
-            .unwrap()
-            .unwrap_or_else(|| legacy_task(mode, sequence))
-    } else {
-        legacy_task(mode, sequence)
-    };
+    ready(c, mode).unwrap();
+    let q = stored_task(c, mode, sequence).unwrap().unwrap_or_else(|| {
+        if mode == Mode::Squares {
+            saved_square(c, sequence)
+                .unwrap()
+                .unwrap_or_else(|| legacy_task(mode, sequence))
+        } else {
+            legacy_task(mode, sequence)
+        }
+    });
     answer(
         c,
         input(mode, sequence, Some((q.left * q.right).to_string())),
@@ -41,7 +70,7 @@ fn covers_every_table_product_and_repeats_in_a_new_cycle() {
     for (mode, count) in [(Mode::Tables, 100)] {
         let mut pairs = std::collections::HashSet::new();
         for i in 0..count {
-            let q = get_state(&mut c, mode).unwrap().task.unwrap();
+            let q = ready(&mut c, mode).unwrap().task.unwrap();
             assert_eq!(q.sequence, i);
             pairs.insert((q.left, q.right));
             assert!((1..=10).contains(&q.left) && (1..=10).contains(&q.right));
@@ -74,19 +103,11 @@ fn awards_one_in_all_global_levels_and_preserves_retries_mode_progress_and_walle
     drop(c);
     let mut c = database::open(&d.path().join("test.db")).unwrap();
     assert_eq!(
-        get_state(&mut c, Mode::Tables)
-            .unwrap()
-            .task
-            .unwrap()
-            .sequence,
+        ready(&mut c, Mode::Tables).unwrap().task.unwrap().sequence,
         3
     );
     assert_eq!(
-        get_state(&mut c, Mode::Squares)
-            .unwrap()
-            .task
-            .unwrap()
-            .sequence,
+        ready(&mut c, Mode::Squares).unwrap().task.unwrap().sequence,
         1
     );
     assert_eq!(solve(&mut c, Mode::Tables, 0).state.wallet.balance, 4);
@@ -129,7 +150,7 @@ fn wrong_and_reveal_give_zero_and_typing_validation_never_consumes_a_task() {
     for seq in [-1, 3, 1_000_000_000] {
         assert!(answer(&mut c, input(Mode::Tables, seq, Some("1".into()))).is_err());
     }
-    assert_eq!(get_state(&mut c, Mode::Tables).unwrap().answered, 2);
+    assert_eq!(ready(&mut c, Mode::Tables).unwrap().answered, 2);
     let q = legacy_task(Mode::Tables, 2);
     assert!(
         answer(
@@ -152,7 +173,7 @@ fn wrong_and_reveal_give_zero_and_typing_validation_never_consumes_a_task() {
 fn missing_profile_and_failed_journal_write_never_leave_partial_progress() {
     let d = tempdir().unwrap();
     let mut c = database::open(&d.path().join("test.db")).unwrap();
-    let state = get_state(&mut c, Mode::Tables).unwrap();
+    let state = ready(&mut c, Mode::Tables).unwrap();
     assert!(!state.profile_ready);
     assert!(state.task.is_none());
     assert!(answer(&mut c, input(Mode::Tables, 0, Some("16".into()))).is_err());
@@ -166,7 +187,7 @@ fn missing_profile_and_failed_journal_write_never_leave_partial_progress() {
     .unwrap();
     c.execute_batch("CREATE TRIGGER fail_award BEFORE INSERT ON point_entries BEGIN SELECT RAISE(ABORT,'test'); END;").unwrap();
     assert!(answer(&mut c, input(Mode::Tables, 0, Some("16".into()))).is_err());
-    assert_eq!(get_state(&mut c, Mode::Tables).unwrap().answered, 0);
+    assert_eq!(ready(&mut c, Mode::Tables).unwrap().answered, 0);
     c.execute_batch("DROP TRIGGER fail_award;").unwrap();
     assert_eq!(solve(&mut c, Mode::Tables, 0).state.wallet.balance, 1);
 }
@@ -200,7 +221,7 @@ fn competing_connections_award_the_same_task_only_once() {
         assert_eq!(h.join().unwrap(), 1);
     }
     let mut c = database::open(&d.path().join("test.db")).unwrap();
-    assert_eq!(get_state(&mut c, Mode::Tables).unwrap().answered, 1);
+    assert_eq!(ready(&mut c, Mode::Tables).unwrap().answered, 1);
 }
 fn old_v8(path: &std::path::Path) -> Connection {
     let c = Connection::open(path).unwrap();
@@ -244,7 +265,7 @@ fn upgrade_preserves_old_journal_profile_and_progress_and_rolls_back_after_rebui
             continue;
         }
         let mut c = database::open(&path).unwrap();
-        let state = get_state(&mut c, Mode::Tables).unwrap();
+        let state = ready(&mut c, Mode::Tables).unwrap();
         assert_eq!(state.wallet.balance, 21);
         assert!(state.wallet.rewards[0].owned);
         assert_eq!(
@@ -274,7 +295,7 @@ fn square_rounds_use_five_factors_four_times_each_and_preserve_order_across_reop
     let (d, mut c) = setup();
     for round in 1..=3 {
         let start = (round - 1) * 20;
-        let first = get_state(&mut c, Mode::Squares).unwrap().task.unwrap();
+        let first = ready(&mut c, Mode::Squares).unwrap().task.unwrap();
         assert_eq!(
             (first.round, first.position, first.round_size),
             (round, 1, 20)
@@ -285,7 +306,7 @@ fn square_rounds_use_five_factors_four_times_each_and_preserve_order_across_reop
         let mut counts = std::collections::HashMap::new();
         for n in &plan {
             *counts.entry(n).or_insert(0) += 1;
-            assert!((10..=25).contains(n));
+            assert!((10..=20).contains(n));
         }
         assert_eq!(counts.len(), 5);
         assert!(counts.values().all(|count| *count == 4));
@@ -293,9 +314,9 @@ fn square_rounds_use_five_factors_four_times_each_and_preserve_order_across_reop
             let sequence = start + i;
             drop(c);
             c = database::open(&d.path().join("test.db")).unwrap();
-            let before = get_state(&mut c, Mode::Squares).unwrap().task.unwrap();
-            get_state(&mut c, Mode::Tables).unwrap();
-            let after = get_state(&mut c, Mode::Squares).unwrap().task.unwrap();
+            let before = ready(&mut c, Mode::Squares).unwrap().task.unwrap();
+            ready(&mut c, Mode::Tables).unwrap();
+            let after = ready(&mut c, Mode::Squares).unwrap().task.unwrap();
             assert_eq!(
                 (before.left, before.right, before.sequence),
                 (plan[i as usize], plan[i as usize], sequence)
@@ -312,20 +333,20 @@ fn square_rounds_use_five_factors_four_times_each_and_preserve_order_across_reop
             );
         }
     }
-    assert_eq!(get_state(&mut c, Mode::Squares).unwrap().answered, 60);
-    assert_eq!(get_state(&mut c, Mode::Tables).unwrap().answered, 0);
+    assert_eq!(ready(&mut c, Mode::Squares).unwrap().answered, 60);
+    assert_eq!(ready(&mut c, Mode::Tables).unwrap().answered, 0);
 }
 
 #[test]
 fn square_round_transition_and_points_rollback_together_and_invalid_inputs_do_not_advance() {
     let (_d, mut c) = setup();
-    let initial = get_state(&mut c, Mode::Squares).unwrap().task.unwrap();
+    let initial = ready(&mut c, Mode::Squares).unwrap().task.unwrap();
     for seq in [-1, 1, 20, 1_000_000_000] {
         assert!(answer(&mut c, input(Mode::Squares, seq, Some("1".into()))).is_err());
     }
     assert!(answer(&mut c, input(Mode::Squares, 0, Some("2+2".into()))).is_err());
     assert_eq!(
-        get_state(&mut c, Mode::Squares).unwrap().task.unwrap().left,
+        ready(&mut c, Mode::Squares).unwrap().task.unwrap().left,
         initial.left
     );
     assert_eq!(
@@ -344,13 +365,13 @@ fn square_round_transition_and_points_rollback_together_and_invalid_inputs_do_no
         solve(&mut c, Mode::Squares, seq);
     }
     c.execute_batch("CREATE TRIGGER fail_round BEFORE INSERT ON square_round_tasks WHEN NEW.sequence=27 BEGIN SELECT RAISE(ABORT,'test'); END;").unwrap();
-    let q = get_state(&mut c, Mode::Squares).unwrap().task.unwrap();
+    let q = ready(&mut c, Mode::Squares).unwrap().task.unwrap();
     assert!(answer(
         &mut c,
         input(Mode::Squares, 19, Some((q.left * q.right).to_string()))
     )
     .is_err());
-    let unchanged = get_state(&mut c, Mode::Squares).unwrap();
+    let unchanged = ready(&mut c, Mode::Squares).unwrap();
     assert_eq!(unchanged.answered, 19);
     assert_eq!(unchanged.wallet.balance, 17);
     assert_eq!(unchanged.task.unwrap().sequence, 19);
@@ -382,7 +403,7 @@ fn concurrent_square_loads_and_answers_share_one_saved_plan_and_one_award() {
             let barrier = barrier.clone();
             std::thread::spawn(move || {
                 barrier.wait();
-                let q = get_state(&mut c, Mode::Squares).unwrap().task.unwrap();
+                let q = ready(&mut c, Mode::Squares).unwrap().task.unwrap();
                 let factor = q.left;
                 barrier.wait();
                 // Both clients use the originally displayed attempt even if one finishes first.
@@ -437,7 +458,7 @@ fn v9_upgrade_keeps_historical_square_replays_and_starts_a_new_twenty_task_round
             continue;
         }
         let mut c = database::open(&path).unwrap();
-        let state = get_state(&mut c, Mode::Squares).unwrap();
+        let state = ready(&mut c, Mode::Squares).unwrap();
         let q = state.task.unwrap();
         assert_eq!(
             (q.sequence, q.round, q.position, q.round_size),
@@ -467,11 +488,7 @@ fn v9_upgrade_keeps_historical_square_replays_and_starts_a_new_twenty_task_round
         let mut c = database::open(&path).unwrap();
         assert_eq!(solve(&mut c, Mode::Squares, 27).state.wallet.balance, 49);
         assert_eq!(
-            get_state(&mut c, Mode::Squares)
-                .unwrap()
-                .task
-                .unwrap()
-                .position,
+            ready(&mut c, Mode::Squares).unwrap().task.unwrap().position,
             2
         );
     }
@@ -488,7 +505,7 @@ fn v10_upgrade_replaces_only_unanswered_squares_and_preserves_small_factor_repla
         [],
     )
     .unwrap();
-    c.execute_batch("DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress;").unwrap();
+    c.execute_batch("DROP TABLE multiplication_configurations; DROP TABLE multiplication_review_queue; DROP TABLE multiplication_tasks; DROP TABLE multiplication_cursors; DROP TABLE multiplication_robots; DROP TABLE multiplication_worlds; DROP TABLE multiplication_settings; DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress;").unwrap();
     c.pragma_update(None, "user_version", 10).unwrap();
     drop(c);
     let mut c = database::open(&d.path().join("test.db")).unwrap();
@@ -499,17 +516,13 @@ fn v10_upgrade_replaces_only_unanswered_squares_and_preserves_small_factor_repla
     assert_eq!((q.sequence, q.position, q.round_size), (1, 1, 20));
     for seq in 1..=20 {
         let task = saved_square(&c, seq).unwrap().unwrap();
-        assert!((10..=25).contains(&task.left));
+        assert!((10..=20).contains(&task.left));
     }
     assert_eq!(solve(&mut c, Mode::Squares, 1).state.wallet.balance, 2);
     drop(c);
     let mut c = database::open(&d.path().join("test.db")).unwrap();
     assert_eq!(
-        get_state(&mut c, Mode::Squares)
-            .unwrap()
-            .task
-            .unwrap()
-            .position,
+        ready(&mut c, Mode::Squares).unwrap().task.unwrap().position,
         2
     );
 }

@@ -2,7 +2,7 @@ use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::{Deserialize, Serialize};
 use std::{path::Path, time::Duration};
 
-const SCHEMA_VERSION: i64 = 13;
+const SCHEMA_VERSION: i64 = 14;
 const DATABASE_ERROR: &str = "Die lokalen Lerndaten konnten nicht verarbeitet werden.";
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -126,6 +126,13 @@ fn migrate(connection: &mut Connection) -> Result<(), String> {
     if version < 13 {
         transaction
             .execute_batch(include_str!("../migrations/013_missions.sql"))
+            .map_err(database_error)?;
+    }
+    if version < 14 {
+        transaction
+            .execute_batch(include_str!(
+                "../migrations/014_multiplication_adventures.sql"
+            ))
             .map_err(database_error)?;
     }
     transaction
