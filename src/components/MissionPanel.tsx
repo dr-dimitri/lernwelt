@@ -7,6 +7,7 @@ import type {
   MissionState,
 } from '../domain/mission';
 import { desktop } from '../lib/desktop';
+import { validateAnswerCharacters } from '../lib/answer-input';
 import InfoPanel from './InfoPanel';
 import { MissionAlbum, missionDate } from './MissionCard';
 import '../mission.css';
@@ -226,6 +227,13 @@ export default function MissionPanel({
     });
   }
   function submitAnswer() {
+    if (inFlight.current || pending) return;
+    const validationError = validateAnswerCharacters(answer);
+    if (validationError) {
+      setError(validationError);
+      field.current?.focus();
+      return;
+    }
     if (
       state?.session?.currentStep?.answerKind === 'number' &&
       !/^\+?[-−]?(?:\d+|\d{1,3}(?:[ \u00a0\u202f]\d{3})+)(?:[.,]\d*)?$/.test(

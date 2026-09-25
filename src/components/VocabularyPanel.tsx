@@ -7,6 +7,7 @@ import type {
   VocabularyReviewResult,
 } from '../domain/vocabulary';
 import { desktop } from '../lib/desktop';
+import { validateAnswerCharacters } from '../lib/answer-input';
 
 const modes: Record<Difficulty, string> = {
   vorschule: 'Englisch erkennen → Deutsch',
@@ -107,6 +108,14 @@ export default function VocabularyPanel({
     if (inFlight.current || !state?.card || !state.profileReady || feedback)
       return;
     if (value !== null && !value.trim() && !pending) return;
+    if (value !== null && !pending) {
+      const validationError = validateAnswerCharacters(value);
+      if (validationError) {
+        setError(validationError);
+        answerField.current?.focus();
+        return;
+      }
+    }
     const request = pending ?? {
       requestId: crypto.randomUUID(),
       cardId: state.card.card.id,

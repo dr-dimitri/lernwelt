@@ -199,6 +199,44 @@ it('behält nach Speicherfehler Antwort und Request und verhindert doppelte Punk
     '9 Punkte',
   );
 });
+it.each(['hello\t', 'he\u000blo', 'hello\u007f', 'hello\u0085', 'hello\u009f'])(
+  'lässt eingefügte Steuerzeichen vor dem Speichern korrigieren: %j',
+  async (pasted) => {
+    const user = userEvent.setup();
+    render(<VocabularyPanel profileVersion={0} />);
+    const field = await screen.findByLabelText('Deine englische Antwort');
+    await user.click(field);
+    await user.paste(pasted);
+    expect(field).toHaveValue(pasted);
+    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+
+    expect(desktop.reviewVocabulary).not.toHaveBeenCalled();
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'unsichtbares Sonderzeichen',
+    );
+    expect(field).toBeEnabled();
+    expect(field).toHaveFocus();
+    expect(field).toHaveValue(pasted);
+    expect(
+      screen.queryByRole('button', { name: 'Speichern erneut versuchen' }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('button', {
+        name: 'Weiß ich noch nicht · Lösung zeigen',
+      }),
+    ).toBeEnabled();
+
+    await user.clear(field);
+    await user.type(field, 'hello{Enter}');
+    expect(desktop.reviewVocabulary).toHaveBeenCalledExactlyOnceWith(
+      expect.objectContaining({ answer: 'hello' }),
+    );
+    expect(
+      await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
+    ).toHaveFocus();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  },
+);
 it('wechselt die Antwortrichtung und zeigt Satzlücken ohne alten Fortschritt oder Antwort', async () => {
   const user = userEvent.setup();
   render(<VocabularyPanel profileVersion={0} />);

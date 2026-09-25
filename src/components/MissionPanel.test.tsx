@@ -316,6 +316,47 @@ it('erlaubt Eingabekorrektur ohne Request und verliert beim Tippen oder Rerender
   expect(await screen.findByText(missionCorrect.explanation)).toBeVisible();
 });
 
+it.each(['22\t', '2\u000b2', '22\u007f', '22\u0085', '22\u009f'])(
+  'lässt eingefügte Steuerzeichen vor dem Speichern korrigieren: %j',
+  async (pasted) => {
+    const user = userEvent.setup();
+    vi.mocked(desktop.getMissionState).mockResolvedValue(missionActive);
+    vi.mocked(desktop.actMission).mockResolvedValue(
+      missionAt(0, missionCorrect),
+    );
+    render(<MissionPanel profileVersion={0} />);
+    const field = await screen.findByLabelText('Deine Antwort in m');
+    await user.click(field);
+    await user.paste(pasted);
+    expect(field).toHaveValue(pasted);
+    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+
+    expect(desktop.actMission).not.toHaveBeenCalled();
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'unsichtbares Sonderzeichen',
+    );
+    expect(field).toBeEnabled();
+    expect(field).toHaveFocus();
+    expect(field).toHaveValue(pasted);
+    expect(
+      screen.queryByRole('button', { name: 'Speichern erneut versuchen' }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Lösung ansehen' }),
+    ).toBeEnabled();
+
+    await user.clear(field);
+    await user.type(field, '22{Enter}');
+    expect(desktop.actMission).toHaveBeenCalledExactlyOnceWith(
+      expect.objectContaining({ answer: '22', action: 'answer' }),
+    );
+    expect(
+      await screen.findByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+    ).toHaveFocus();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  },
+);
+
 it('verwirft alte Lade- und Speicherantworten nach Profiländerung', async () => {
   const user = userEvent.setup();
   let load!: (value: MissionState) => void;
