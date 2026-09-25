@@ -9,6 +9,7 @@ vi.mock('./components/GamePreview', () => ({ default: () => null }));
 import { vocabularyInitial } from './test/vocabulary-fixture';
 import { multiplicationInitial } from './test/multiplication-fixture';
 import { initial } from './test/learning-fixture';
+import { natureInitial } from './test/nature-fixture';
 import {
   missionInitial,
   missionActive,
@@ -41,6 +42,29 @@ beforeEach(() => {
 });
 
 describe('Lernwelt', () => {
+  it('öffnet Natur und Technik aus der Suche und führt wieder zur Fächerübersicht', async () => {
+    const user = userEvent.setup();
+    vi.mocked(desktop.getLearningState).mockResolvedValue(natureInitial);
+    render(<App />);
+    await user.type(
+      screen.getByRole('searchbox', { name: 'Fach suchen' }),
+      'natur',
+    );
+    await user.click(screen.getByRole('button', { name: 'Natur und Technik' }));
+    expect(
+      await screen.findByRole('heading', {
+        name: 'Natur und Technik · Klasse 5',
+      }),
+    ).toBeVisible();
+    expect(
+      screen.getByRole('heading', { name: 'Natur und Technik', level: 1 }),
+    ).toHaveFocus();
+    await user.click(screen.getByRole('button', { name: /Alle Fächer/ }));
+    expect(
+      screen.getByRole('button', { name: 'Natur und Technik' }),
+    ).toBeVisible();
+  });
+
   it('wechselt das Fach und zeigt den tatsächlichen Ausbaustand', async () => {
     const user = userEvent.setup();
     render(<App />);

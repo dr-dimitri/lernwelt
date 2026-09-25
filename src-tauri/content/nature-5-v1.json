@@ -1,0 +1,2201 @@
+{
+  "version": 1,
+  "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+  "curriculumVersion": "LehrplanPLUS Bayern · Natur und Technik 5 · Quellenstand 25.09.2026",
+  "topics": [
+    {
+      "id": "nature-research",
+      "name": "Die Forscherwerkstatt",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 1.1; NT5 2.1",
+      "description": "Fragen stellen, fair vergleichen und Entdeckungen festhalten.",
+      "lesson": "Forschung beginnt mit einer Frage. Eine Hypothese ist eine Vermutung, die du prüfen kannst. Plane einen fairen Vergleich: Ändere nur die Sache, die du untersuchen willst. Miss sorgfältig und schreibe auch unerwartete Ergebnisse auf. Eine Beobachtung sagt, was du wahrnimmst. Eine Erklärung sagt, warum es so sein könnte. Ein Modell zeigt wichtige Teile vereinfacht. Es ist nie genau wie das Original. Im Forscherraum gilt: nichts probieren, unbekannte Stoffe nicht anfassen und Geräte nur nach Anleitung benutzen.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Papierbrücken testen",
+          "prompt": "1. Lege zwei Bücher mit 10 cm Abstand auf einen Tisch.\n2. Lege ein Blatt als Brücke darüber und dann ein gleich großes, ziehharmonikaartig gefaltetes Blatt.\n3. Lege jeweils gleiche Münzen einzeln auf die Mitte. Notiere, wie viele die Brücke trägt. Halte deine Füße aus dem Fallbereich.",
+          "check": "Gleiche Abstände, gleiche Blätter und gleiche Münzen machen den Vergleich fair. Nur die Form des Papiers ändert sich. Wiederhole den Versuch: Können die Ergebnisse etwas schwanken?"
+        },
+        {
+          "title": "Beobachtung oder Erklärung?",
+          "prompt": "1. Zeichne einen Eiswürfel auf einem Teller zu Beginn und nach zehn Minuten.\n2. Schreibe auf, was du wirklich siehst.\n3. Schreibe getrennt davon deine Erklärung. Nutze kein heißes Wasser.",
+          "check": "„Auf dem Teller liegt Wasser“ ist eine Beobachtung. „Das Eis nimmt Wärme auf und schmilzt“ ist eine Erklärung. Eine Zeichnung braucht einen Zeitpunkt oder eine Zeitangabe."
+        }
+      ]
+    },
+    {
+      "id": "nature-water",
+      "name": "Wasser auf Reisen",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 1.1; NT5 1.2 Wasser, Stoff-Teilchenkonzept",
+      "description": "Eis, Tropfen und Wasserdampf: Entdecke Wasser und seine Teilchen.",
+      "lesson": "Wasser kann fest, flüssig oder gasförmig sein. Diese Formen heißen Aggregatzustände. Eis schmilzt zu flüssigem Wasser; Wasser gefriert zu Eis. Beim Verdunsten gelangt Wasser als unsichtbarer Wasserdampf in die Luft. Kühlt Wasserdampf ab, können flüssige Tropfen entstehen: Das heißt Kondensieren. Das Teilchenmodell stellt Stoffe durch winzige Teilchen dar. Beim Lösen verteilt sich etwa Zucker zwischen den Wasserteilchen. Er verschwindet nicht. Wolken bestehen aus kleinen Wassertröpfchen oder Eiskristallen, nicht aus unsichtbarem Wasserdampf allein.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Wasser verschwindet?",
+          "prompt": "1. Stelle zwei gleiche flache Schälchen an denselben sicheren Ort.\n2. Fülle gleich viel Wasser ein. Decke eines ab.\n3. Markiere täglich den Wasserstand. Trinke das Versuchswasser nicht.",
+          "check": "Im offenen Schälchen kann mehr Wasser verdunsten. Notiere Ort und Zeit. Vergleiche die Wasserstände, statt nur „viel“ oder „wenig“ aufzuschreiben."
+        },
+        {
+          "title": "Teilchen auf Papier",
+          "prompt": "1. Zeichne 12 Punkte dicht und regelmäßig für Eis.\n2. Zeichne 12 Punkte dicht, aber unregelmäßig für Wasser.\n3. Zeichne 12 weit verteilte Punkte für Wasserdampf. Ergänze Bewegungspfeile.",
+          "check": "In diesem vereinfachten Modell bleiben die Teilchen erhalten. Im festen Stoff haben sie feste Plätze, in der Flüssigkeit bewegen sie sich aneinander vorbei, im Gas sind sie weit auseinander."
+        }
+      ]
+    },
+    {
+      "id": "nature-light-energy",
+      "name": "Licht und Energie entdecken",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 1.1; NT5 1.2 Licht, Energieumwandlungen",
+      "description": "Baue Schatten und folge der Energie von der Sonne bis zum Licht.",
+      "lesson": "Eine Lichtquelle sendet Licht aus, zum Beispiel eine Lampe. Ein undurchsichtiger Gegenstand hält Licht auf: Dahinter entsteht ein Schatten. Ein Spiegel wirft Licht zurück. Die Erde dreht sich; dadurch wechseln Tag und Nacht. Energie kann ihre Form ändern: Eine Solarzelle wandelt Lichtenergie in elektrische Energie um. Eine Lampe gibt Licht und Wärme ab. Energie wird dabei nicht aus dem Nichts erzeugt. Blicke nie direkt in die Sonne und richte Lampen oder Laser nicht auf Augen.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Schattentheater",
+          "prompt": "1. Richte eine kleine Taschenlampe auf eine freie Wand.\n2. Halte eine Papierfigur dazwischen.\n3. Bewege die Figur näher zur Lampe und wieder zurück. Zeichne zwei Schatten. Leuchte niemandem in die Augen.",
+          "check": "Bei gleichem Abstand zwischen Lampe und Wand wird der Schatten größer, wenn die Figur näher zur Lampe kommt. Beschreibe, was gleich blieb und was du verändert hast."
+        },
+        {
+          "title": "Tag und Nacht als Modell",
+          "prompt": "1. Klebe einen Punkt auf einen Ball.\n2. Eine Taschenlampe stellt die Sonne dar.\n3. Drehe den Ball langsam. Beobachte, wann dein Punkt beleuchtet ist.",
+          "check": "Der Punkt wechselt zwischen heller und dunkler Seite. Die Drehung steht für einen Tag. Das Modell zeigt Größen und Entfernungen im Weltall nicht maßstabsgetreu."
+        }
+      ]
+    },
+    {
+      "id": "nature-air-materials",
+      "name": "Luft, Boden und Stoffdetektive",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 1.1; NT5 1.2 Luft, Boden und Gestein, Stoffe und Materialien",
+      "description": "Unsichtbare Luft, verschiedene Stoffe und clevere Trennideen.",
+      "lesson": "Luft ist ein Gemisch aus Gasen, vor allem Stickstoff und Sauerstoff. Sie braucht Platz. Schall entsteht durch Schwingungen und kann sich durch Luft ausbreiten. Stoffe erkennst du an Eigenschaften, etwa ihrem Verhalten in Wasser oder gegenüber einem Magneten. Gemische lassen sich manchmal durch Sieben, Filtern oder einen Magneten trennen. Boden enthält unter anderem Gesteinskörnchen, Wasser, Luft und Reste von Lebewesen. Humus ist dunkles Material aus umgewandelten Resten. Nachweisversuche mit Feuer oder Chemikalien gehören unter Anleitung in den Unterricht.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Luft als Platzhalter",
+          "prompt": "1. Drücke ein kleines Stück Papier in den Boden eines bruchsicheren Bechers.\n2. Tauche den Becher mit der Öffnung gerade nach unten in eine Schüssel mit wenig Wasser.\n3. Ziehe ihn gerade wieder heraus. Arbeite auf einer wasserfesten Unterlage.",
+          "check": "Im Becher ist Luft. Sie nimmt Platz ein und hält das Wasser zunächst vom Papier fern. Wird der Becher gekippt, kann Luft als Blasen entweichen und Wasser nachrücken."
+        },
+        {
+          "title": "Boden unter der Lupe",
+          "prompt": "1. Betrachte mit einer erwachsenen Person etwas Erde in einer Schale.\n2. Zeichne erkennbare Steinchen, Pflanzenreste und Tiere.\n3. Bringe Tiere und Erde an den Fundort zurück und wasche die Hände.",
+          "check": "Boden besteht aus verschiedenen Bestandteilen. Kleine Tiere werden nicht verletzt. Nimm keine Erde von Straßenrändern oder verunreinigten Flächen; probiere nichts."
+        }
+      ]
+    },
+    {
+      "id": "nature-cells",
+      "name": "Die winzige Welt der Zellen",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 2.1; NT5 2.2",
+      "description": "Lebewesen erkennen und ihre kleinen Bausteine erforschen.",
+      "lesson": "Biologie erforscht Lebewesen. Sie wachsen, entwickeln sich, tauschen Stoffe mit ihrer Umwelt aus und reagieren auf Reize. Lebewesen bestehen aus Zellen. Im einfachen Zellmodell grenzt die Zellmembran das Zellplasma ab; der Zellkern enthält Erbinformation. Pflanzenzellen haben zusätzlich eine feste Zellwand und meist eine große Vakuole, einen mit Flüssigkeit gefüllten Raum. Grüne Pflanzenzellen besitzen Chloroplasten. Ein Lichtmikroskop macht kleine Strukturen sichtbar. Seine Linsen im Okular und im Objektiv vergrößern das Bild. Ein Zellmodell ist eine Vereinfachung.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Eine Zelle als Modell",
+          "prompt": "1. Zeichne eine Pflanzenzelle mit Zellwand, Zellmembran, Zellplasma, Zellkern und Vakuole.\n2. Ergänze Chloroplasten für eine grüne Blattzelle.\n3. Zeichne daneben eine Tierzelle. Beschrifte die Teile.",
+          "check": "Beide Modelle besitzen Zellmembran, Zellplasma und Zellkern. Die Tierzelle bekommt keine Zellwand und keine Chloroplasten. Nicht jede echte Zelle sieht genau wie dein Modell aus."
+        },
+        {
+          "title": "Leben oder Bewegung?",
+          "prompt": "1. Schreibe „Katze“, „Baum“ und „Spielzeugauto“ auf drei Karten.\n2. Überlege bei jeder Karte: Wächst sie? Tauscht sie Stoffe aus? Besteht sie aus Zellen?\n3. Erkläre, warum Bewegung allein nicht reicht.",
+          "check": "Auch ein Auto bewegt sich, ist aber kein Lebewesen. Ein Baum läuft nicht umher, ist aber lebendig. Mehrere Merkmale zusammen helfen beim Unterscheiden."
+        }
+      ]
+    },
+    {
+      "id": "nature-senses",
+      "name": "Sinne auf Entdeckungstour",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 2.3 Informationsaufnahme, Informationsverarbeitung und Reaktion; NT5 2.1",
+      "description": "Vom Reiz zur Reaktion: Was Augen, Ohren und Gehirn zusammen schaffen.",
+      "lesson": "Sinnesorgane nehmen Reize auf: Augen Licht, Ohren Schall, die Nase Duftstoffe. Auch Haut und Zunge besitzen Sinneszellen. Nerven leiten Informationen weiter. Das Gehirn verarbeitet viele dieser Informationen; über Nerven können Muskeln eine passende Reaktion ausführen. Diese Folge heißt Reiz-Reaktions-Kette. Reaktionszeiten können schwanken. Ein einzelner Versuch bewertet kein Kind. Sehr lauter Schall kann das Gehör schädigen. Schütze Augen vor grellem Licht und UV-Strahlung. Alkohol kann Wahrnehmung und Reaktion beeinträchtigen.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Reaktionskette zeichnen",
+          "prompt": "1. Zeichne eine rote Fußgängerampel.\n2. Ergänze Auge, Nerv, Gehirn, Nerv und Beinmuskeln.\n3. Verbinde sie mit Pfeilen und erkläre: Du siehst Rot und bleibst stehen.",
+          "check": "Deine Pfeile führen vom Reiz über Aufnahme und Verarbeitung zur Reaktion. Das Bild ist vereinfacht und zeigt nicht alle beteiligten Nerven."
+        },
+        {
+          "title": "Tastdetektive",
+          "prompt": "1. Lege drei sichere Gegenstände in einen undurchsichtigen Beutel, etwa Radiergummi, Löffel und Stoffstück.\n2. Ertaste einen Gegenstand ohne hineinzusehen.\n3. Beschreibe zuerst Form und Oberfläche, dann deine Vermutung.",
+          "check": "Rund, glatt oder weich sind Beobachtungen. Der Name des Gegenstands ist deine Deutung. Nutze keine spitzen, scharfen oder zerbrechlichen Dinge."
+        }
+      ]
+    },
+    {
+      "id": "nature-movement",
+      "name": "Knochen, Gelenke, Muskeln",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 2.3 Aktive Bewegung; NT5 1.2 Stoffe und Materialien",
+      "description": "Entdecke deinen beweglichen Körper und baue ein Arm-Modell.",
+      "lesson": "Das Skelett stützt den Körper und schützt wichtige Organe: Der Schädel schützt das Gehirn, der Brustkorb Herz und Lunge. Gelenke verbinden Knochen beweglich. Ein Scharniergelenk bewegt sich vor allem in einer Ebene, ein Kugelgelenk in viele Richtungen. Muskeln ziehen sich zusammen und ziehen über Sehnen an Knochen. Zum Beugen und Strecken arbeiten verschiedene Muskeln als Gegenspieler. Regelmäßige, passende Bewegung, Erholung und abwechslungsreiche Nahrung unterstützen den Körper. Bewegungen sollen nicht wehtun.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Gelenke entdecken",
+          "prompt": "1. Beuge und strecke deinen Arm langsam.\n2. Bewege den Oberarm vorsichtig im Schultergelenk in verschiedene Richtungen.\n3. Beschreibe den Unterschied. Stoppe, wenn etwas unangenehm ist.",
+          "check": "Am Ellenbogen fällt Beugen und Strecken auf. Die Schulter ermöglicht mehr Richtungen. Bewege nur so weit, wie es für dich angenehm ist."
+        },
+        {
+          "title": "Ein Arm aus Pappe",
+          "prompt": "1. Zeichne zwei Pappstreifen als Oberarm und Unterarm.\n2. Verbinde sie mit einer Musterbeutelklammer; lass dir beim Loch helfen.\n3. Zeichne zwei Schnüre als Gegenspieler ein und erkläre, welche beim Beugen und Strecken ziehen würde.",
+          "check": "Muskeln ziehen; sie drücken einen Knochen nicht aktiv zurück. Das Modell zeigt die Hebelbewegung, aber keine echte Muskelstruktur. Keine Schnüre um Körperteile binden."
+        }
+      ]
+    },
+    {
+      "id": "nature-nutrition",
+      "name": "Dem Essen auf der Spur",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 2.3 Stoffwechsel; NT5 1.1 Nachweisreaktionen; NT5 1.2 Umwelt und Leben",
+      "description": "Verfolge den Weg der Nahrung und lerne Nährstoffe kennen.",
+      "lesson": "Nahrung liefert Baustoffe und Energie. Kohlenhydrate und Fette können Energie liefern; Eiweiße werden unter anderem als Baustoffe gebraucht. Auch Wasser, Vitamine und Mineralstoffe sind wichtig. Beim Kauen wird Nahrung zerkleinert. Im Verdauungssystem zerlegen Verdauungssäfte große Nahrungsbestandteile in kleinere. Im Dünndarm gelangen viele dieser Stoffe ins Blut. Seine Falten und Zotten vergrößern die Austauschfläche. Abwechslungsreich essen ist sinnvoll. Kein einzelnes Lebensmittel kann alles liefern; diese Übungen machen keine persönlichen Ernährungspläne.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Der Weg eines Bissens",
+          "prompt": "1. Zeichne Mund, Speiseröhre, Magen, Dünndarm und Dickdarm als Stationen.\n2. Verbinde sie mit Pfeilen.\n3. Schreibe dazu, wo zerkleinert und wo viel ins Blut aufgenommen wird.",
+          "check": "Die richtige Reihenfolge beginnt im Mund. Viele verdaute Nährstoffbausteine werden im Dünndarm aufgenommen. Die Zeichnung zeigt den Weg vereinfacht."
+        },
+        {
+          "title": "Etiketten vergleichen",
+          "prompt": "1. Wähle mit einer erwachsenen Person zwei Lebensmittelverpackungen.\n2. Suche die Angaben zu Energie, Eiweiß, Fett und Kohlenhydraten je 100 g.\n3. Schreibe eine kleine Vergleichstabelle.",
+          "check": "Vergleiche dieselbe Menge, also 100 g mit 100 g. Eine höhere Energieangabe macht ein Lebensmittel nicht automatisch besser oder schlechter. Kein Wiegen des eigenen Körpers und kein Kalorienzählen nötig."
+        }
+      ]
+    },
+    {
+      "id": "nature-breathing",
+      "name": "Luft und Blut im Team",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 2.3 Stoffwechsel; NT5 1.2 Luft, Umwelt und Leben",
+      "description": "Reise von der Lunge über das Blut bis zu den Körperzellen.",
+      "lesson": "In den Lungenbläschen gelangt Sauerstoff aus der Luft ins Blut. Kohlenstoffdioxid nimmt den umgekehrten Weg und wird ausgeatmet. Das Herz pumpt Blut durch Gefäße. Arterien führen vom Herzen weg, Venen zum Herzen hin; feine Kapillaren ermöglichen den Stoffaustausch. Zellen nutzen bei der Zellatmung Traubenzucker und Sauerstoff. Dabei entstehen Kohlenstoffdioxid und Wasser; Energie wird für Körpervorgänge nutzbar. Die Lunge liefert den Sauerstoff, ist aber nicht der einzige Ort der Zellatmung. Bei Bewegung benötigen aktive Muskeln mehr Energie.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Die Transportkarte",
+          "prompt": "1. Zeichne Lunge, Herz und einen Muskel.\n2. Verbinde sie zu einem Kreislauf: Herz → Lunge → Herz → Körper → Herz.\n3. Zeichne Pfeile für Sauerstoff zur Muskelzelle und Kohlenstoffdioxid zurück.",
+          "check": "Deine Skizze ist ein vereinfachter Kreislauf. Das Herz ist die Pumpe, das Blut transportiert Stoffe, in Lunge und Körper findet Austausch statt."
+        },
+        {
+          "title": "Beispieldaten erkunden",
+          "prompt": "1. Übertrage diese erfundenen Atemzahlen in eine Tabelle: Sitzen 15 pro Minute, lockeres Gehen 21, nach Ruhe wieder 16.\n2. Zeichne drei Säulen.\n3. Erkläre, warum die Werte verschieden sein können.",
+          "check": "Aktive Muskeln brauchen mehr Energie und meist mehr Sauerstoff. Die Werte sind Übungsdaten und keine Vorgaben oder medizinischen Grenzwerte. Du musst keine eigenen Körperwerte messen."
+        }
+      ]
+    },
+    {
+      "id": "nature-development",
+      "name": "Wachsen und sich verändern",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 2.3 Fortpflanzung, Wachstum und Individualentwicklung",
+      "description": "Pubertät verstehen, Körperwissen sammeln und Grenzen achten.",
+      "lesson": "In der Pubertät verändern sich Körper und Gefühle. Zeitpunkt und Tempo sind verschieden. Körperbehaarung nimmt zu; häufig verändern sich Stimme, Brüste und Körperform. In Eierstöcken reifen Eizellen, in Hoden entstehen ab der Pubertät Spermienzellen. Bei der Befruchtung vereinigen sich eine Eizelle und eine Spermienzelle. Ein Embryo kann sich in der Gebärmutter entwickeln. Bei der Monatsblutung wird ein Teil der Gebärmutterschleimhaut abgegeben. Sie ist ein normaler Körpervorgang. Dein Körper gehört dir. Du darfst unerwünschte Berührungen ablehnen und dir Hilfe holen. Niemand ist schuld, wenn die eigene Grenze verletzt wird.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Wörter sachlich erklären",
+          "prompt": "1. Zeichne vier Wortkarten: Eizelle, Spermienzelle, Gebärmutter, Pubertät.\n2. Erkläre jedes Wort mit einem kurzen Satz.\n3. Vergleiche mit dem Lerntext. Du musst nichts über deinen eigenen Körper erzählen.",
+          "check": "Eizelle und Spermienzelle sind Keimzellen. In der Gebärmutter kann ein Embryo wachsen. Pubertät bezeichnet die Entwicklungsphase mit körperlichen und seelischen Veränderungen."
+        },
+        {
+          "title": "Grenzen respektieren",
+          "prompt": "1. Denke dir eine Geschichte aus: Alex möchte keine Umarmung.\n2. Formuliere einen Satz, mit dem Alex die Grenze zeigt.\n3. Ergänze eine respektvolle Antwort. Du darfst diese Aufgabe überspringen.",
+          "check": "Zum Beispiel: „Ich möchte das nicht.“ – „Okay.“ Ein Nein ist zu respektieren. Wer sich unwohl fühlt, darf eine vertraute erwachsene Person ansprechen und weiter Hilfe suchen, bis jemand hilft."
+        }
+      ]
+    },
+    {
+      "id": "nature-plants",
+      "name": "Das Geheimnis der Blüten",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 2.4; NT5 2.1",
+      "description": "Blütenteile, Bestäubung und Pflanzenfamilien erforschen.",
+      "lesson": "Wurzeln verankern Samenpflanzen und nehmen Wasser auf. Der Spross trägt Blätter und Blüten. In einer typischen Blüte schützen Kelchblätter die Knospe; Kronblätter können Tiere anlocken. Staubblätter bilden Pollen. Zur Bestäubung gelangt Pollen auf die Narbe eines passenden Fruchtblatts. Erst später vereinigen sich bei der Befruchtung Keimzellen. Aus Samenanlagen werden Samen. Windbestäubte Pflanzen bilden oft viel leichten Pollen; tierbestäubte locken etwa mit Duft und Nektar. Pflanzenfamilien teilen typische Baumerkmale. Ein Blütendiagramm stellt die Anordnung der Blütenteile vereinfacht von oben dar.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Eine Blüte zeichnen",
+          "prompt": "1. Betrachte eine bekannte, ungiftige Gartenblüte mit einer erwachsenen Person oder ein Bild davon.\n2. Zeichne Kelchblätter, Kronblätter, Staubblätter und Fruchtblatt, soweit erkennbar.\n3. Beschrifte die Teile. Geschützte Pflanzen bleiben stehen.",
+          "check": "Eine echte Blüte kann Teile verdecken oder anders aussehen als ein Schulmodell. Zeichne nur, was du erkennst. Unbekannte Pflanzen nicht essen oder in die Augen reiben; danach Hände waschen."
+        },
+        {
+          "title": "Familien vergleichen",
+          "prompt": "1. Zeichne ein einfaches Blütenmodell mit vier kreuzförmigen Kronblättern für einen Kreuzblütler.\n2. Zeichne daneben fünf Kronblätter als typisches Merkmal vieler Rosengewächse.\n3. Vergleiche die Anordnung und notiere eine Grenze.",
+          "check": "Die Modelle helfen beim Vergleichen, reichen allein aber nicht zur sicheren Bestimmung jeder Pflanze. Dafür braucht man weitere Merkmale, etwa Blätter, Staubblätter und Früchte."
+        }
+      ]
+    },
+    {
+      "id": "nature-grassland",
+      "name": "Expedition Wiese",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 2.5; NT5 2.1; NT5 1.2 Boden und Gestein, Umwelt und Leben",
+      "description": "Eine Wiese als Lebensraum kennenlernen und ihre Vielfalt schützen.",
+      "lesson": "Grünland sind von Gräsern und anderen krautigen Pflanzen geprägte Flächen, etwa Wiesen und Weiden. Eine Wiese wird gemäht, eine Weide von Tieren abgegrast. Lebensraum meint die Umweltbedingungen eines Ortes; Lebensgemeinschaft meint die dort lebenden Organismen. Zusammen bilden sie ein Ökosystem. Artenvielfalt ist die Vielfalt verschiedener Arten. Häufiges Mähen und starke Düngung können manche Arten begünstigen und andere verdrängen. Weniger intensive Nutzung kann vielen Arten helfen, liefert aber oft weniger Futter. Gute Entscheidungen berücksichtigen Natur und Landwirtschaft.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Wiesenforscher unterwegs",
+          "prompt": "1. Gehe mit einer erwachsenen Person an einen erlaubten Wiesenrand.\n2. Beobachte drei Pflanzen und beschreibe Blätter und Blüten, ohne sie zu pflücken.\n3. Prüfe Vermutungen in einem Bestimmungsbuch. Bleibe auf erlaubten Wegen.",
+          "check": "Ein Foto oder eine Zeichnung kann zum Vergleichen helfen. Ein einzelnes Merkmal reicht oft nicht. Keine unbekannten Pflanzen essen, Tiere nicht stören und genutzte Wiesen nicht zertreten."
+        },
+        {
+          "title": "Zwei Flächen vergleichen",
+          "prompt": "1. Zeichne zwei gleich große Untersuchungsflächen auf Papier.\n2. Nutze erfundene Daten: Fläche A hat 4 Pflanzenarten und wird oft gemäht; Fläche B hat 11 und wird seltener gemäht.\n3. Nenne eine mögliche Erklärung und eine offene Frage.",
+          "check": "Unterschiedliche Nutzung könnte die Vielfalt beeinflussen. Die Zahlen allein beweisen keine Ursache: Auch Boden, Wasser und Licht könnten verschieden sein. In echten Untersuchungen müssen solche Faktoren beachtet werden."
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "by.nature.5.research.1.v1",
+      "subject": "nature",
+      "topicId": "nature-research",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.research",
+      "prompt": "Du willst die Länge eines Blattes messen. Welches Gerät passt?",
+      "answer": "Lineal",
+      "hint": "Welches Gerät hat eine Skala in Zentimetern?",
+      "explanation": "Ein Lineal misst Längen. Lege den Anfang des Blattes an die Nullmarke.",
+      "options": ["Lineal", "Thermometer", "Stoppuhr"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.research.2.v1",
+      "subject": "nature",
+      "topicId": "nature-research",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.research",
+      "prompt": "Im Forscherraum steht eine unbekannte Flüssigkeit. Was ist richtig?",
+      "answer": "Ich frage die Lehrkraft und probiere nichts.",
+      "hint": "Unbekannte Stoffe können gefährlich sein.",
+      "explanation": "Unbekannte Stoffe werden nicht gekostet oder gemischt. Die Lehrkraft erklärt den sicheren Umgang.",
+      "options": [
+        "Ich koste einen kleinen Tropfen.",
+        "Ich frage die Lehrkraft und probiere nichts.",
+        "Ich mische sie mit einer anderen Flüssigkeit."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.research.3.v1",
+      "subject": "nature",
+      "topicId": "nature-research",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.research",
+      "prompt": "Welche Aussage ist eine Beobachtung?",
+      "answer": "Auf dem Glas sind Wassertropfen.",
+      "hint": "Eine Beobachtung beschreibt etwas, das du direkt wahrnimmst.",
+      "explanation": "Die sichtbaren Tropfen sind eine Beobachtung. Die Erklärung für ihre Entstehung kommt danach.",
+      "options": [
+        "Das Glas ist bestimmt verzaubert.",
+        "Die Tropfen entstehen wohl durch Abkühlung.",
+        "Auf dem Glas sind Wassertropfen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.research.4.v1",
+      "subject": "nature",
+      "topicId": "nature-research",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.research",
+      "prompt": "Mia prüft, ob Falten Papier stabiler macht. Was soll bei beiden Papierbrücken gleich bleiben?",
+      "answer": "Papiergröße und Abstand der Stützen",
+      "hint": "Nur die untersuchte Eigenschaft soll sich ändern.",
+      "explanation": "Mia verändert die Faltung. Papiergröße und Abstand bleiben gleich, damit sie den Unterschied sinnvoll vergleichen kann.",
+      "options": [
+        "Papiergröße und Abstand der Stützen",
+        "Nur die Farbe der Bücher",
+        "Die Form des Papiers"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.research.5.v1",
+      "subject": "nature",
+      "topicId": "nature-research",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.research",
+      "prompt": "Ein Messbecher zeigt 30 ml. Nach dem Eingießen zeigt er 70 ml. Wie viele Milliliter wurden hinzugefügt? Gib nur die Zahl ein.",
+      "answer": "40",
+      "hint": "Ziehe die erste Menge von der zweiten ab.",
+      "explanation": "70 ml − 30 ml = 40 ml. Es wurden 40 Milliliter hinzugefügt.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.research.6.v1",
+      "subject": "nature",
+      "topicId": "nature-research",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.research",
+      "prompt": "Welche Reihenfolge passt zu einer Untersuchung?",
+      "answer": "Frage → Vermutung → Versuch → Auswertung",
+      "hint": "Am Anfang steht etwas, das du herausfinden möchtest.",
+      "explanation": "Eine Frage führt zur prüfbaren Vermutung. Dann planst du den Versuch, sammelst Daten und wertest sie aus.",
+      "options": [
+        "Auswertung → Frage → Vermutung → Versuch",
+        "Versuch → Ergebnis erfinden → fertig",
+        "Frage → Vermutung → Versuch → Auswertung"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.research.7.v1",
+      "subject": "nature",
+      "topicId": "nature-research",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.research",
+      "prompt": "Drei gleiche Papierbrücken tragen 7, 8 und 7 Münzen. Was ist ein sinnvoller Bericht?",
+      "answer": "Ich notiere alle drei Ergebnisse.",
+      "hint": "Auch kleine Unterschiede gehören zu den Daten.",
+      "explanation": "Alle Messwerte gehören in den Bericht. Kleine Unterschiede können durch das Falten oder das Auflegen der Münzen entstehen.",
+      "options": [
+        "Ich notiere alle drei Ergebnisse.",
+        "Ich notiere nur 8, weil das schöner aussieht.",
+        "Ich ändere alle Zahlen auf 10."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.research.8.v1",
+      "subject": "nature",
+      "topicId": "nature-research",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.research",
+      "prompt": "Ein Lungenmodell besteht aus Flasche und Luftballons. Was kann es zeigen?",
+      "answer": "Wie sich ein Raum beim Atmen vergrößert und verkleinert",
+      "hint": "Ein Modell zeigt nur ausgewählte Eigenschaften.",
+      "explanation": "Das Modell macht Bewegung und Raumänderung sichtbar. Es besitzt keine echten Blutgefäße und zeigt nicht jeden Vorgang der Lunge.",
+      "options": [
+        "Alle Vorgänge einer echten Lunge",
+        "Wie sich ein Raum beim Atmen vergrößert und verkleinert",
+        "Wie Blut in echten Lungenbläschen fließt"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.research.9.v1",
+      "subject": "nature",
+      "topicId": "nature-research",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.research",
+      "prompt": "Ein neues, oft wiederholtes Experiment widerspricht einer alten Erklärung. Was sollten Forschende tun?",
+      "answer": "Die Ergebnisse prüfen und die Erklärung bei Bedarf ändern.",
+      "hint": "Wissenschaftliche Erklärungen müssen zu überprüfbaren Daten passen.",
+      "explanation": "Wissen kann sich ändern. Forschende prüfen zuerst die Untersuchung und verbessern ihre Erklärung, wenn die neuen Ergebnisse gut belegt sind.",
+      "options": [
+        "Die neuen Daten immer löschen.",
+        "Die alte Erklärung darf nie geändert werden.",
+        "Die Ergebnisse prüfen und die Erklärung bei Bedarf ändern."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.water.1.v1",
+      "subject": "nature",
+      "topicId": "nature-water",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.water",
+      "prompt": "Ein Eiswürfel wird auf dem Tisch zu Wasser. Wie heißt dieser Vorgang?",
+      "answer": "Schmelzen",
+      "hint": "Es geht von fest zu flüssig.",
+      "explanation": "Beim Schmelzen wird festes Eis zu flüssigem Wasser. Dazu nimmt es Wärme auf.",
+      "options": ["Schmelzen", "Gefrieren", "Kondensieren"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.water.2.v1",
+      "subject": "nature",
+      "topicId": "nature-water",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.water",
+      "prompt": "Welche Form hat Wasser in einer Pfütze?",
+      "answer": "Flüssig",
+      "hint": "Du kannst Pfützenwasser in einen Becher gießen.",
+      "explanation": "Pfützenwasser ist flüssig. Es passt seine Form dem Untergrund oder einem Gefäß an.",
+      "options": ["Fest", "Flüssig", "Gasförmig"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.water.3.v1",
+      "subject": "nature",
+      "topicId": "nature-water",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.water",
+      "prompt": "Zucker wird in Wasser gerührt. Die Körner sind nicht mehr zu sehen. Wo ist der Zucker?",
+      "answer": "Er ist im Wasser verteilt.",
+      "hint": "Nicht alles, was unsichtbar ist, ist weg.",
+      "explanation": "Der Zucker hat sich gelöst. Seine Teilchen sind im Wasser verteilt.",
+      "options": [
+        "Er ist vollständig verschwunden.",
+        "Er hat sich in Sand verwandelt.",
+        "Er ist im Wasser verteilt."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.water.4.v1",
+      "subject": "nature",
+      "topicId": "nature-water",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.water",
+      "prompt": "Nach Regen trocknet eine Pfütze, obwohl das Wasser nicht kocht. Was geschieht?",
+      "answer": "Wasser verdunstet.",
+      "hint": "Wasser kann auch ohne Kochen in die Luft gelangen.",
+      "explanation": "Beim Verdunsten verlassen Wasserteilchen die Oberfläche. Wasser muss dafür nicht sieden.",
+      "options": [
+        "Wasser verdunstet.",
+        "Das Wasser gefriert immer.",
+        "Alle Wasserteilchen werden zu Erde."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.water.5.v1",
+      "subject": "nature",
+      "topicId": "nature-water",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.water",
+      "prompt": "An der Außenseite eines kalten, dichten Glases entstehen Tropfen. Woher stammt das Wasser?",
+      "answer": "Aus Wasserdampf in der umgebenden Luft",
+      "hint": "Die Luft enthält Wasser, auch wenn du es nicht siehst.",
+      "explanation": "Wasserdampf aus der Luft kühlt an der Glaswand ab und kondensiert zu Tropfen.",
+      "options": [
+        "Es läuft durch das dichte Glas.",
+        "Aus Wasserdampf in der umgebenden Luft",
+        "Das Glas erzeugt neue Wasserteilchen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.water.6.v1",
+      "subject": "nature",
+      "topicId": "nature-water",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.water",
+      "prompt": "Wassermenge am Montag: 50 ml. Wassermenge am Dienstag: 42 ml. Wie viele Milliliter weniger sind es am Dienstag? Gib nur die Zahl ein.",
+      "answer": "8",
+      "hint": "Vergleiche die beiden Messwerte.",
+      "explanation": "50 ml − 42 ml = 8 ml. Am Dienstag sind 8 Milliliter weniger im Gefäß. Aus den Zahlen allein weißt du noch nicht, warum Wasser fehlt.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.water.7.v1",
+      "subject": "nature",
+      "topicId": "nature-water",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.water",
+      "prompt": "Ein Papierfilter hält Sand zurück. Was passiert mit gelöstem Salz im Salzwasser?",
+      "answer": "Es gelangt mit dem Wasser durch den Filter.",
+      "hint": "Gelöste Salzteilchen sind viel kleiner als Sandkörner.",
+      "explanation": "Ein gewöhnlicher Papierfilter trennt Sand von Wasser. Gelöstes Salz bleibt im Wasser und geht mit hindurch.",
+      "options": [
+        "Es gelangt mit dem Wasser durch den Filter.",
+        "Es bleibt wie grober Sand vollständig im Filter.",
+        "Es wird durch den Filter zu Zucker."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.water.8.v1",
+      "subject": "nature",
+      "topicId": "nature-water",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.water",
+      "prompt": "Welcher Weg passt zum Wasserkreislauf?",
+      "answer": "See → Verdunsten → Wolkentropfen → Regen → See",
+      "hint": "In der Luft kühlt Wasserdampf ab und bildet Tropfen.",
+      "explanation": "Sonnenwärme ermöglicht Verdunsten. Aus abgekühltem Wasserdampf entstehen Wolkentropfen. Niederschlag bringt Wasser zurück.",
+      "options": [
+        "See → Regen → Stein → Verdunsten → See",
+        "See → Verdunsten → Wolkentropfen → Regen → See",
+        "Wolke → Salz → Eis aus Zucker → See"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.water.9.v1",
+      "subject": "nature",
+      "topicId": "nature-water",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.water",
+      "prompt": "Im Teilchenmodell wird flüssiges Wasser zu Wasserdampf. Was ändert sich vor allem?",
+      "answer": "Die Abstände zwischen den Wasserteilchen werden größer.",
+      "hint": "Das Modell unterscheidet Teilchen und die Abstände dazwischen.",
+      "explanation": "Die Wasserteilchen bleiben Wasserteilchen. Im Gas liegen sie viel weiter auseinander als in der Flüssigkeit.",
+      "options": [
+        "Jedes Wasserteilchen wird zu einem riesigen Ball.",
+        "Alle Wasserteilchen werden zerstört.",
+        "Die Abstände zwischen den Wasserteilchen werden größer."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.light-energy.1.v1",
+      "subject": "nature",
+      "topicId": "nature-light-energy",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.light-energy",
+      "prompt": "Was ist eine Lichtquelle?",
+      "answer": "Eine eingeschaltete Taschenlampe",
+      "hint": "Eine Lichtquelle sendet selbst Licht aus.",
+      "explanation": "Die Taschenlampe sendet Licht aus. Spiegel und Papier können Licht zurückwerfen, erzeugen es dabei aber nicht selbst.",
+      "options": [
+        "Eine eingeschaltete Taschenlampe",
+        "Ein unbeleuchteter Spiegel",
+        "Ein Blatt Papier im Dunkeln"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.light-energy.2.v1",
+      "subject": "nature",
+      "topicId": "nature-light-energy",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.light-energy",
+      "prompt": "Du hältst eine Pappfigur vor eine Lampe. Was entsteht hinter der Figur?",
+      "answer": "Ein Schatten",
+      "hint": "Die Pappe lässt das Licht nicht hindurch.",
+      "explanation": "Hinter der undurchsichtigen Pappe kommt weniger Licht an. Dort entsteht ihr Schatten.",
+      "options": [
+        "Eine neue Sonne",
+        "Ein Schatten",
+        "Ein Magnetfeld aus Papier"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.light-energy.3.v1",
+      "subject": "nature",
+      "topicId": "nature-light-energy",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.light-energy",
+      "prompt": "Wie beobachtest du sonnige Tage sicher?",
+      "answer": "Ich schaue auf Schatten am Boden.",
+      "hint": "Sehr helles Sonnenlicht kann die Augen schädigen.",
+      "explanation": "Schatten lassen sich sicher am Boden betrachten. Direkt in die Sonne zu schauen gefährdet die Augen.",
+      "options": [
+        "Ich schaue direkt in die Sonne.",
+        "Ich schaue mit einer Lupe in die Sonne.",
+        "Ich schaue auf Schatten am Boden."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.light-energy.4.v1",
+      "subject": "nature",
+      "topicId": "nature-light-energy",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.light-energy",
+      "prompt": "Was macht ein Spiegel mit Licht?",
+      "answer": "Er wirft Licht zurück.",
+      "hint": "Du siehst im Spiegel Licht, das zurückkommt.",
+      "explanation": "Das Zurückwerfen von Licht heißt Reflexion. Deshalb kannst du ein Spiegelbild sehen.",
+      "options": [
+        "Er wirft Licht zurück.",
+        "Er speichert jedes Licht für immer.",
+        "Er verwandelt alles Licht in Wasser."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.light-energy.5.v1",
+      "subject": "nature",
+      "topicId": "nature-light-energy",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.light-energy",
+      "prompt": "Warum wird es an einem Ort auf der Erde Nacht?",
+      "answer": "Die Erdrotation dreht den Ort von der Sonne weg.",
+      "hint": "Rotation bedeutet Drehung.",
+      "explanation": "Die Erde dreht sich um ihre Achse. Auf der von der Sonne abgewandten Seite ist Nacht.",
+      "options": [
+        "Die Sonne wird jeden Abend ausgeschaltet.",
+        "Die Erdrotation dreht den Ort von der Sonne weg.",
+        "Der Mond verdeckt jede Nacht die ganze Sonne."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.light-energy.6.v1",
+      "subject": "nature",
+      "topicId": "nature-light-energy",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.light-energy",
+      "prompt": "Welche Energieumwandlung findet in einer Solarzelle statt?",
+      "answer": "Lichtenergie → elektrische Energie",
+      "hint": "Eine Solarzelle kann bei Licht Strom liefern.",
+      "explanation": "Eine Solarzelle wandelt einen Teil der eintreffenden Lichtenergie in elektrische Energie um.",
+      "options": [
+        "Schallenergie → Wasser",
+        "Elektrische Energie → neue Sonnen",
+        "Lichtenergie → elektrische Energie"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.light-energy.7.v1",
+      "subject": "nature",
+      "topicId": "nature-light-energy",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.light-energy",
+      "prompt": "Eine Solarzelle versorgt einen Motor, der ein Windradmodell dreht. Welche Kette passt?",
+      "answer": "Licht → elektrische Energie → Bewegung",
+      "hint": "Verfolge die Energie Schritt für Schritt.",
+      "explanation": "Die Solarzelle liefert elektrische Energie. Der Motor wandelt einen Teil davon in Bewegung um; auch Wärme entsteht.",
+      "options": [
+        "Licht → elektrische Energie → Bewegung",
+        "Bewegung → Licht → keine Energie",
+        "Licht → neue Materie → Wind"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.light-energy.8.v1",
+      "subject": "nature",
+      "topicId": "nature-light-energy",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.light-energy",
+      "prompt": "Eine Lampe leuchtet und wird warm. Welche Aussage passt?",
+      "answer": "Die elektrische Energie wird unter anderem zu Licht und Wärme.",
+      "hint": "Energie kann in mehreren Formen weitergegeben werden.",
+      "explanation": "Licht und Wärme sind Ergebnisse der Energieumwandlung. Die Lampe erzeugt keine Energie aus dem Nichts.",
+      "options": [
+        "Die Wärme ist ohne Energie entstanden.",
+        "Die elektrische Energie wird unter anderem zu Licht und Wärme.",
+        "Die Lampe erzeugt beliebig viel neue Energie."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.light-energy.9.v1",
+      "subject": "nature",
+      "topicId": "nature-light-energy",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.light-energy",
+      "prompt": "Lampe und Wand bleiben stehen. Eine kleine Figur rückt näher an die Lampe. Was passiert mit ihrem Schatten an der Wand?",
+      "answer": "Er wird größer.",
+      "hint": "Die Lichtstrahlen laufen von der kleinen Lichtquelle auseinander.",
+      "explanation": "Nahe an der Lampe hält die Figur einen größeren Teil des auseinanderlaufenden Lichtbündels auf. Ihr Schatten an der Wand wird größer.",
+      "options": [
+        "Er wird immer kleiner.",
+        "Er bleibt unter allen Umständen gleich groß.",
+        "Er wird größer."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.air-materials.1.v1",
+      "subject": "nature",
+      "topicId": "nature-air-materials",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.air-materials",
+      "prompt": "Ein leerer Becher steht auf dem Tisch. Was befindet sich normalerweise darin?",
+      "answer": "Luft",
+      "hint": "Auch unsichtbare Stoffe können Platz brauchen.",
+      "explanation": "Der Becher enthält Luft. „Leer“ bedeutet hier nur, dass wir keinen sichtbaren Inhalt hineingefüllt haben.",
+      "options": ["Luft", "Überhaupt kein Stoff", "Nur flüssiges Wasser"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.air-materials.2.v1",
+      "subject": "nature",
+      "topicId": "nature-air-materials",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.air-materials",
+      "prompt": "Was gehört zu den Hauptbestandteilen der Luft?",
+      "answer": "Stickstoff und Sauerstoff",
+      "hint": "Luft besteht aus mehreren Gasen.",
+      "explanation": "Luft ist ein Gasgemisch. Den größten Anteil hat Stickstoff, danach folgt Sauerstoff.",
+      "options": [
+        "Sand und Kies",
+        "Stickstoff und Sauerstoff",
+        "Zucker und Speiseöl"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.air-materials.3.v1",
+      "subject": "nature",
+      "topicId": "nature-air-materials",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.air-materials",
+      "prompt": "Du willst grobe Kiesel von feinem Sand trennen. Was eignet sich?",
+      "answer": "Ein passendes Sieb",
+      "hint": "Die Körner sind unterschiedlich groß.",
+      "explanation": "Feiner Sand fällt durch die passenden Öffnungen. Größere Kiesel bleiben im Sieb.",
+      "options": ["Eine Stoppuhr", "Ein Spiegel", "Ein passendes Sieb"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.air-materials.4.v1",
+      "subject": "nature",
+      "topicId": "nature-air-materials",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.air-materials",
+      "prompt": "Ein Gemisch enthält Eisennägel und Holzstücke. Was kann beim Trennen helfen?",
+      "answer": "Ein Magnet",
+      "hint": "Eisen und Holz verhalten sich gegenüber Magneten unterschiedlich.",
+      "explanation": "Ein Magnet zieht die Eisennägel an, Holz dagegen nicht. Diese Stoffeigenschaft hilft beim Trennen.",
+      "options": [
+        "Ein Magnet",
+        "Ein Thermometer",
+        "Ein Wolltuch ohne weitere Hilfsmittel"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.air-materials.5.v1",
+      "subject": "nature",
+      "topicId": "nature-air-materials",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.air-materials",
+      "prompt": "Eine Gitarrensaite klingt. Was erzeugt den Schall?",
+      "answer": "Die Saite schwingt.",
+      "hint": "Schwingen heißt: schnell hin und her bewegen.",
+      "explanation": "Die schwingende Saite bringt die umgebende Luft zum Schwingen. So gelangt Schall zu unseren Ohren.",
+      "options": [
+        "Die Saite muss dabei leuchten.",
+        "Die Saite schwingt.",
+        "Die Saite verliert ihre gesamte Masse."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.air-materials.6.v1",
+      "subject": "nature",
+      "topicId": "nature-air-materials",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.air-materials",
+      "prompt": "Was ist Humus im Boden?",
+      "answer": "Material aus umgewandelten Resten von Lebewesen",
+      "hint": "Denke an alte Blätter und andere Reste.",
+      "explanation": "Bodenlebewesen helfen, abgestorbene Reste umzuwandeln. Dabei entsteht unter anderem Humus.",
+      "options": [
+        "Eine Sorte Plastik",
+        "Nur blankes Metall",
+        "Material aus umgewandelten Resten von Lebewesen"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.air-materials.7.v1",
+      "subject": "nature",
+      "topicId": "nature-air-materials",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.air-materials",
+      "prompt": "Ein Gemisch enthält Sand und Salz in Wasser. Welche Reihenfolge trennt erst den Sand und gewinnt dann Salz zurück?",
+      "answer": "Filtern → Wasser verdunsten lassen",
+      "hint": "Sand ist ungelöst. Salz ist im Wasser gelöst.",
+      "explanation": "Der Filter hält den Sand zurück. Wenn das gefilterte Wasser verdunstet, bleibt Salz zurück. Erhitzen ist dafür nicht nötig.",
+      "options": [
+        "Filtern → Wasser verdunsten lassen",
+        "Nur sieben → fertig",
+        "Magnet benutzen → Sand schmilzt"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.air-materials.8.v1",
+      "subject": "nature",
+      "topicId": "nature-air-materials",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.air-materials",
+      "prompt": "Zwei gleich große Würfel haben unterschiedliche Massen: Holz 6 g, Metall 54 g. Was folgt aus diesen Daten?",
+      "answer": "Der Metallwürfel hat die größere Dichte.",
+      "hint": "Dichte vergleicht die Masse bei gleichem Volumen.",
+      "explanation": "Bei gleichem Volumen besitzt der Metallwürfel mehr Masse. Deshalb ist seine Dichte größer.",
+      "options": [
+        "Der Holzwürfel hat sicher das größere Volumen.",
+        "Der Metallwürfel hat die größere Dichte.",
+        "Beide müssen gleich schwer sein."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.air-materials.9.v1",
+      "subject": "nature",
+      "topicId": "nature-air-materials",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.air-materials",
+      "prompt": "Eine Lehrkraft führt eine Glimmspanprobe vor: Ein glimmendes Holzstäbchen flammt in einem Gas wieder auf. Welches Gas wird damit nachgewiesen?",
+      "answer": "Sauerstoff",
+      "hint": "Das gesuchte Gas unterstützt Verbrennung.",
+      "explanation": "Die Glimmspanprobe weist Sauerstoff nach. Weil Feuer beteiligt ist, wird sie nur unter fachkundiger Anleitung durchgeführt.",
+      "options": ["Stickstoff", "Kohlenstoffdioxid", "Sauerstoff"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.cells.1.v1",
+      "subject": "nature",
+      "topicId": "nature-cells",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Was untersucht die Biologie?",
+      "answer": "Lebewesen",
+      "hint": "„Bio“ begegnet dir auch bei Themen über Tiere und Pflanzen.",
+      "explanation": "Biologie ist die Wissenschaft von den Lebewesen. Dazu gehören zum Beispiel Tiere, Pflanzen und Pilze.",
+      "options": ["Lebewesen", "Nur Zahlen", "Nur Straßenkarten"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.cells.2.v1",
+      "subject": "nature",
+      "topicId": "nature-cells",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Woraus bestehen Tiere und Pflanzen?",
+      "answer": "Aus Zellen",
+      "hint": "Das gesuchte Wort bezeichnet winzige Bausteine des Lebens.",
+      "explanation": "Zellen sind die grundlegenden Bausteine von Lebewesen. Viele sind nur mit einem Mikroskop zu erkennen.",
+      "options": [
+        "Aus lauter Zahnrädern",
+        "Aus Zellen",
+        "Aus kleinen Glasperlen"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.cells.3.v1",
+      "subject": "nature",
+      "topicId": "nature-cells",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Welches Gerät hilft, sehr kleine Zellstrukturen zu betrachten?",
+      "answer": "Ein Mikroskop",
+      "hint": "Du brauchst ein stark vergrößertes Bild.",
+      "explanation": "Ein Lichtmikroskop vergrößert mit Linsen. So kannst du geeignete dünne Präparate betrachten.",
+      "options": ["Eine Küchenwaage", "Ein Kompass", "Ein Mikroskop"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.cells.4.v1",
+      "subject": "nature",
+      "topicId": "nature-cells",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Welcher Teil gibt einer Pflanzenzelle eine feste äußere Form?",
+      "answer": "Zellwand",
+      "hint": "Er liegt außerhalb der Zellmembran.",
+      "explanation": "Die feste Zellwand stützt die Pflanzenzelle. Tierzellen besitzen keine Zellwand.",
+      "options": ["Zellwand", "Zellkern", "Okular"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.cells.5.v1",
+      "subject": "nature",
+      "topicId": "nature-cells",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Was haben eine typische Tierzelle und eine typische Pflanzenzelle gemeinsam?",
+      "answer": "Zellmembran, Zellplasma und Zellkern",
+      "hint": "Suche Zellteile, die in beiden einfachen Modellen vorkommen.",
+      "explanation": "Beide Zelltypen besitzen in den üblichen Schulmodellen Membran, Plasma und Kern. Die Zellwand ist ein Unterschied.",
+      "options": [
+        "Zellwand und Chloroplasten",
+        "Zellmembran, Zellplasma und Zellkern",
+        "Blütenblätter und Wurzeln"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.cells.6.v1",
+      "subject": "nature",
+      "topicId": "nature-cells",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Ein Okular vergrößert 10-fach, ein Objektiv 4-fach. Die Vergrößerungen werden multipliziert. Wie groß ist die Gesamtvergrößerung? Gib nur die Zahl ein.",
+      "answer": "40",
+      "hint": "Rechne 10 · 4.",
+      "explanation": "10 · 4 = 40. Das Bild ist 40-fach vergrößert.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.cells.7.v1",
+      "subject": "nature",
+      "topicId": "nature-cells",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Ein Spielzeugroboter bewegt sich und reagiert auf Licht. Warum ist er trotzdem kein Lebewesen?",
+      "answer": "Er besteht nicht aus Zellen und hat keinen eigenen Stoffwechsel.",
+      "hint": "Ein einzelnes Lebensmerkmal reicht als Begründung nicht aus.",
+      "explanation": "Technische Geräte können einzelne Merkmale nachahmen. Ihnen fehlen andere grundlegende Eigenschaften lebender Organismen, etwa der Aufbau aus Zellen.",
+      "options": [
+        "Er besteht nicht aus Zellen und hat keinen eigenen Stoffwechsel.",
+        "Alles, was reagiert, ist ein Lebewesen.",
+        "Lebewesen dürfen sich nicht bewegen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.cells.8.v1",
+      "subject": "nature",
+      "topicId": "nature-cells",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Eine Wurzelzelle besitzt Zellwand und Vakuole, aber keine Chloroplasten. Welche Aussage passt?",
+      "answer": "Auch eine Pflanzenzelle kann ohne Chloroplasten vorkommen.",
+      "hint": "Wurzeln liegen meist im Dunkeln. Nicht jeder Pflanzenteil ist grün.",
+      "explanation": "Viele Wurzelzellen besitzen keine Chloroplasten. Zellwand und große Vakuole passen trotzdem zum Bau einer Pflanzenzelle.",
+      "options": [
+        "Dann muss es eine Tierzelle sein.",
+        "Auch eine Pflanzenzelle kann ohne Chloroplasten vorkommen.",
+        "Alle Wurzelzellen sind unbelebte Steine."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.cells.9.v1",
+      "subject": "nature",
+      "topicId": "nature-cells",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Eine Zellzeichnung zeigt nur Kreise und Linien. Welche Aussage beschreibt ihre Grenze?",
+      "answer": "Sie lässt viele Einzelheiten und Vorgänge weg.",
+      "hint": "Zeichnungen wählen wichtige Merkmale aus.",
+      "explanation": "Eine Zeichnung hilft, Zellteile zu ordnen. Sie zeigt weder jede Struktur noch alle Abläufe und ist oft künstlich eingefärbt.",
+      "options": [
+        "Sie ist in jedem Detail eine echte Zelle.",
+        "Ihre Farben müssen den echten Farben entsprechen.",
+        "Sie lässt viele Einzelheiten und Vorgänge weg."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.senses.1.v1",
+      "subject": "nature",
+      "topicId": "nature-senses",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.senses",
+      "prompt": "Mit welchem Sinnesorgan nimmst du Schall auf?",
+      "answer": "Mit den Ohren",
+      "hint": "Schall lässt dich zum Beispiel Musik wahrnehmen.",
+      "explanation": "Die Ohren nehmen Schall auf. Sinneszellen wandeln ihn in Signale für Nerven um.",
+      "options": ["Mit den Ohren", "Mit den Augen", "Mit den Knien"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.senses.2.v1",
+      "subject": "nature",
+      "topicId": "nature-senses",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.senses",
+      "prompt": "Du riechst an einer Blüte. Welches Sinnesorgan nimmt Duftstoffe auf?",
+      "answer": "Die Nase",
+      "hint": "Das Organ hilft beim Riechen.",
+      "explanation": "Sinneszellen in der Nase reagieren auf Duftstoffe. Die Information wird an das Gehirn weitergeleitet.",
+      "options": ["Der Ellenbogen", "Die Nase", "Die Zähne"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.senses.3.v1",
+      "subject": "nature",
+      "topicId": "nature-senses",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.senses",
+      "prompt": "Bei einer sehr lauten Veranstaltung: Was schützt dein Gehör?",
+      "answer": "Abstand, leisere Pausen und geeigneter Gehörschutz",
+      "hint": "Sehr lauter Schall kann Sinneszellen schädigen.",
+      "explanation": "Weniger Lärm und geeigneter Gehörschutz verringern die Belastung. Lautes Hören ist kein Wettbewerb.",
+      "options": [
+        "Noch näher an den Lautsprecher gehen",
+        "Die Musik extra lauter stellen",
+        "Abstand, leisere Pausen und geeigneter Gehörschutz"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.senses.4.v1",
+      "subject": "nature",
+      "topicId": "nature-senses",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.senses",
+      "prompt": "Du siehst einen Ball und fängst ihn. Was leitet Informationen vom Auge weiter?",
+      "answer": "Nerven",
+      "hint": "Der Körper besitzt Leitungsbahnen für Signale.",
+      "explanation": "Nerven leiten Signale weiter. Das Gehirn verarbeitet Informationen; weitere Nerven steuern die beteiligten Muskeln.",
+      "options": ["Nerven", "Knochen", "Haare"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.senses.5.v1",
+      "subject": "nature",
+      "topicId": "nature-senses",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.senses",
+      "prompt": "Welche Folge passt zum bewussten Greifen nach einem gesehenen Ball?",
+      "answer": "Auge → Nerven → Gehirn → Nerven → Muskeln",
+      "hint": "Erst wird der Reiz aufgenommen, dann verarbeitet, dann gehandelt.",
+      "explanation": "Die Reiz-Reaktions-Kette verbindet Wahrnehmung, Weiterleitung, Verarbeitung und Reaktion.",
+      "options": [
+        "Muskeln → Ball → Haare → Auge",
+        "Auge → Nerven → Gehirn → Nerven → Muskeln",
+        "Auge → Knochen → Zähne → Ball"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.senses.6.v1",
+      "subject": "nature",
+      "topicId": "nature-senses",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.senses",
+      "prompt": "Welche Aussage über Alkohol und Reaktion trifft zu?",
+      "answer": "Alkohol kann die Reaktion verlangsamen.",
+      "hint": "Die Verarbeitung von Informationen kann gestört werden.",
+      "explanation": "Alkohol beeinträchtigt unter anderem Gehirnfunktionen. Das kann Wahrnehmung, Einschätzung und Reaktion verschlechtern.",
+      "options": [
+        "Alkohol macht jede Reaktion sicherer.",
+        "Alkohol hat nie eine Wirkung auf das Gehirn.",
+        "Alkohol kann die Reaktion verlangsamen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.senses.7.v1",
+      "subject": "nature",
+      "topicId": "nature-senses",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.senses",
+      "prompt": "Bei drei Versuchen braucht dieselbe Person 240, 270 und 250 Millisekunden. Welche Aussage ist durch die Daten belegt?",
+      "answer": "Die gemessene Reaktionszeit schwankt.",
+      "hint": "Vergleiche nur das, was tatsächlich gemessen wurde.",
+      "explanation": "Die drei Werte sind verschieden. Einzelne Reaktionsmessungen erlauben kein Urteil über den Wert oder die Begabung einer Person.",
+      "options": [
+        "Die gemessene Reaktionszeit schwankt.",
+        "Die Person braucht immer genau 240 Millisekunden.",
+        "Die Daten zeigen ihre gesamte Begabung."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.senses.8.v1",
+      "subject": "nature",
+      "topicId": "nature-senses",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.senses",
+      "prompt": "Du siehst eine rote Ampel. Welche Aufgabe hat dabei vor allem das Gehirn?",
+      "answer": "Es verarbeitet die Information und hilft, die Reaktion zu steuern.",
+      "hint": "Aufnehmen, Weiterleiten und Verarbeiten sind verschiedene Aufgaben.",
+      "explanation": "Das Auge nimmt Licht auf. Nerven leiten Signale. Das Gehirn verarbeitet sie und beteiligt sich an der Entscheidung, stehen zu bleiben.",
+      "options": [
+        "Es erzeugt das rote Licht der Ampel.",
+        "Es verarbeitet die Information und hilft, die Reaktion zu steuern.",
+        "Es ersetzt alle Sinneszellen im Auge."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.senses.9.v1",
+      "subject": "nature",
+      "topicId": "nature-senses",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.senses",
+      "prompt": "Ein Versuch vergleicht Reaktionszeiten: Gruppe A ist ausgeruht, Gruppe B müde und stark abgelenkt. Warum lässt sich die Wirkung von Müdigkeit allein schlecht erkennen?",
+      "answer": "Müdigkeit und Ablenkung unterscheiden sich gleichzeitig.",
+      "hint": "Ein fairer Vergleich verändert möglichst nur einen untersuchten Faktor.",
+      "explanation": "Zwei Bedingungen wurden verändert. Deshalb ist unklar, welcher Anteil des Unterschieds mit Müdigkeit oder mit Ablenkung zusammenhängt.",
+      "options": [
+        "Weil bei Versuchen keine Zeiten vorkommen dürfen.",
+        "Weil Ablenkung niemals eine Rolle spielt.",
+        "Müdigkeit und Ablenkung unterscheiden sich gleichzeitig."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.movement.1.v1",
+      "subject": "nature",
+      "topicId": "nature-movement",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.movement",
+      "prompt": "Welcher Teil des Skeletts schützt das Gehirn?",
+      "answer": "Der Schädel",
+      "hint": "Denke an die feste Hülle deines Kopfes.",
+      "explanation": "Die Schädelknochen umgeben und schützen das Gehirn.",
+      "options": ["Der Schädel", "Die Fingerknochen", "Die Kniescheibe"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.movement.2.v1",
+      "subject": "nature",
+      "topicId": "nature-movement",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.movement",
+      "prompt": "Was verbindet Knochen so, dass Bewegung möglich ist?",
+      "answer": "Ein Gelenk",
+      "hint": "Du kannst es zum Beispiel am Knie bewegen.",
+      "explanation": "Gelenke verbinden Knochen beweglich. Ihre Form bestimmt mit, welche Bewegungen möglich sind.",
+      "options": ["Ein Haar", "Ein Gelenk", "Eine Zahnkrone"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.movement.3.v1",
+      "subject": "nature",
+      "topicId": "nature-movement",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.movement",
+      "prompt": "Was geschieht, wenn ein Skelettmuskel arbeitet?",
+      "answer": "Er kann sich zusammenziehen.",
+      "hint": "Zusammenziehen bedeutet kürzer werden.",
+      "explanation": "Ein Muskel kann sich anspannen und verkürzen. Über Sehnen zieht er dabei an Knochen.",
+      "options": [
+        "Er wird zu einem Knochen.",
+        "Er verschwindet für kurze Zeit.",
+        "Er kann sich zusammenziehen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.movement.4.v1",
+      "subject": "nature",
+      "topicId": "nature-movement",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.movement",
+      "prompt": "Welches Gelenk erlaubt am Oberarm Bewegungen in viele Richtungen?",
+      "answer": "Das Kugelgelenk der Schulter",
+      "hint": "Eine Kugel kann sich in ihrer Pfanne in verschiedene Richtungen bewegen.",
+      "explanation": "Das Schultergelenk ist ein Kugelgelenk. Es ermöglicht mehr Bewegungsrichtungen als ein einfaches Scharniergelenk.",
+      "options": [
+        "Das Kugelgelenk der Schulter",
+        "Ein fest verwachsener Schädelknochen",
+        "Eine Zahnwurzel"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.movement.5.v1",
+      "subject": "nature",
+      "topicId": "nature-movement",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.movement",
+      "prompt": "Was verbindet einen Muskel mit einem Knochen?",
+      "answer": "Eine Sehne",
+      "hint": "Der Muskel muss seine Zugkraft auf den Knochen übertragen.",
+      "explanation": "Sehnen übertragen die Zugkraft des Muskels auf Knochen. So kann eine Bewegung am Gelenk entstehen.",
+      "options": ["Ein Blutkörperchen", "Eine Sehne", "Eine Wimper"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.movement.6.v1",
+      "subject": "nature",
+      "topicId": "nature-movement",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.movement",
+      "prompt": "Was unterstützt deinen Bewegungsapparat im Alltag?",
+      "answer": "Passende Bewegung und regelmäßige Pausen",
+      "hint": "Der Körper braucht Bewegung und Erholung.",
+      "explanation": "Bewegung kräftigt den Körper. Pausen und wechselnde Haltungen helfen, einseitige Belastung zu vermeiden.",
+      "options": [
+        "Jeden Schmerz ignorieren und weitertrainieren",
+        "Den ganzen Tag starr sitzen",
+        "Passende Bewegung und regelmäßige Pausen"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.movement.7.v1",
+      "subject": "nature",
+      "topicId": "nature-movement",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.movement",
+      "prompt": "Warum braucht der Arm zum Beugen und Strecken Gegenspieler?",
+      "answer": "Muskeln können aktiv ziehen, aber nicht aktiv zurückdrücken.",
+      "hint": "Überlege, wie ein Zugseil eine Bewegung zurückholen kann.",
+      "explanation": "Ein Muskel zieht in eine Richtung. Für die entgegengesetzte Bewegung wirkt ein anderer Muskel als Gegenspieler.",
+      "options": [
+        "Muskeln können aktiv ziehen, aber nicht aktiv zurückdrücken.",
+        "Ein Muskel kann nur einmal im Leben arbeiten.",
+        "Knochen können sich selbst zusammenziehen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.movement.8.v1",
+      "subject": "nature",
+      "topicId": "nature-movement",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.movement",
+      "prompt": "Ein hohler Papierstab und ein flaches Blatt bestehen aus gleich viel Papier. Der Stab trägt mehr. Was zeigt der Versuch?",
+      "answer": "Die Form beeinflusst die Stabilität.",
+      "hint": "Materialmenge und Materialart bleiben gleich.",
+      "explanation": "Eine andere Form kann ein Bauteil stabiler machen. Auch in Natur und Technik sind Form und Funktion verbunden; der Papierstab ist nur ein vereinfachtes Modell.",
+      "options": [
+        "Jede Form trägt immer gleich viel.",
+        "Die Form beeinflusst die Stabilität.",
+        "Papier wird durch Rollen zu Metall."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.movement.9.v1",
+      "subject": "nature",
+      "topicId": "nature-movement",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.movement",
+      "prompt": "Beim Beugen des Arms wird der Beugemuskel kürzer. Was passiert im vereinfachten Gegenspielermodell mit dem Streckmuskel?",
+      "answer": "Er wird gedehnt und lässt die Bewegung zu.",
+      "hint": "Beide Gegenspieler sollen die Bewegung nicht blockieren.",
+      "explanation": "Im einfachen Modell zieht der Beuger, während der Strecker nachgibt und länger wird. Beim Strecken wechseln die Rollen.",
+      "options": [
+        "Er drückt den Knochen aktiv in dieselbe Richtung.",
+        "Er wird zu einer Sehne und verschwindet.",
+        "Er wird gedehnt und lässt die Bewegung zu."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nutrition.1.v1",
+      "subject": "nature",
+      "topicId": "nature-nutrition",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.nutrition",
+      "prompt": "Wo beginnt die mechanische Zerkleinerung der Nahrung?",
+      "answer": "Im Mund beim Kauen",
+      "hint": "Zähne helfen bei diesem Schritt.",
+      "explanation": "Die Zähne zerkleinern Nahrung. Dadurch wird sie leichter zu schlucken und bietet mehr Fläche für Verdauungssäfte.",
+      "options": ["Im Mund beim Kauen", "In der Lunge", "In der Schulter"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nutrition.2.v1",
+      "subject": "nature",
+      "topicId": "nature-nutrition",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.nutrition",
+      "prompt": "Welches Organ liegt auf dem Weg der Nahrung nach der Speiseröhre?",
+      "answer": "Der Magen",
+      "hint": "Nahrung und Atemluft nehmen verschiedene Wege.",
+      "explanation": "Die Speiseröhre transportiert Nahrung zum Magen. Das Herz pumpt Blut; die Luftröhre leitet Luft.",
+      "options": ["Das Herz", "Der Magen", "Die Luftröhre"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nutrition.3.v1",
+      "subject": "nature",
+      "topicId": "nature-nutrition",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.nutrition",
+      "prompt": "Wofür braucht der Körper Nahrung?",
+      "answer": "Für Energie und Baustoffe",
+      "hint": "Denke an Bewegen und Wachsen.",
+      "explanation": "Nahrung liefert Energie und Stoffe, die der Körper etwa für Wachstum und Erneuerung benötigt.",
+      "options": [
+        "Nur damit der Magen Geräusche macht",
+        "Damit Knochen keine Bewegung brauchen",
+        "Für Energie und Baustoffe"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nutrition.4.v1",
+      "subject": "nature",
+      "topicId": "nature-nutrition",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.nutrition",
+      "prompt": "Wo werden viele verdaute Nährstoffbausteine ins Blut aufgenommen?",
+      "answer": "Im Dünndarm",
+      "hint": "Die gesuchte Darmstrecke besitzt eine große innere Oberfläche.",
+      "explanation": "Im Dünndarm werden viele kleine Nährstoffbausteine durch die Darmwand aufgenommen und weitertransportiert.",
+      "options": ["Im Dünndarm", "In den Haaren", "Im Ohr"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nutrition.5.v1",
+      "subject": "nature",
+      "topicId": "nature-nutrition",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.nutrition",
+      "prompt": "Welche Nährstoffgruppe dient unter anderem als Baustoff für den Körper?",
+      "answer": "Eiweiße",
+      "hint": "Diese Nährstoffe heißen auch Proteine.",
+      "explanation": "Eiweiße, also Proteine, liefern Bausteine für viele Körperstrukturen. Der Körper braucht darüber hinaus weitere Nährstoffe.",
+      "options": ["Sandkörner", "Eiweiße", "Kunststofffasern"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nutrition.6.v1",
+      "subject": "nature",
+      "topicId": "nature-nutrition",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.nutrition",
+      "prompt": "Eine Lehrkraft gibt Iodlösung zu einer Probe. Eine blau-schwarze Färbung zeigt Stärke an. Welche Beobachtung spricht für Stärke?",
+      "answer": "Die Probe wird blau-schwarz.",
+      "hint": "Nutze die angegebene Nachweisregel.",
+      "explanation": "Die blau-schwarze Färbung ist bei diesem Versuch der Hinweis auf Stärke. Chemische Nachweise gehören unter fachkundige Anleitung.",
+      "options": [
+        "Die Probe bleibt unverändert hell.",
+        "Die Probe klingt beim Schütteln.",
+        "Die Probe wird blau-schwarz."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nutrition.7.v1",
+      "subject": "nature",
+      "topicId": "nature-nutrition",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.nutrition",
+      "prompt": "Warum hat die Innenwand des Dünndarms Falten und Zotten?",
+      "answer": "Sie vergrößern die Fläche für die Aufnahme von Stoffen.",
+      "hint": "Zotten sind kleine Ausstülpungen der Darmwand.",
+      "explanation": "Mehr innere Oberfläche bietet mehr Platz für Stoffaufnahme. Die Nahrung muss vorher in geeignete kleine Bausteine zerlegt werden.",
+      "options": [
+        "Sie vergrößern die Fläche für die Aufnahme von Stoffen.",
+        "Sie verringern die innere Fläche auf null.",
+        "Sie ersetzen die Zähne im Mund."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nutrition.8.v1",
+      "subject": "nature",
+      "topicId": "nature-nutrition",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.nutrition",
+      "prompt": "Eine erfundene Verpackung nennt 200 kJ je 100 g. Wie viele Kilojoule enthalten 200 g davon? Gib nur die Zahl ein.",
+      "answer": "400",
+      "hint": "200 g sind doppelt so viel wie 100 g.",
+      "explanation": "Die doppelte Menge enthält hier die doppelte Energie: 2 · 200 kJ = 400 kJ. Die Angabe ist ein Rechenbeispiel, keine Ernährungsempfehlung.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nutrition.9.v1",
+      "subject": "nature",
+      "topicId": "nature-nutrition",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.nutrition",
+      "prompt": "Ein Kind sagt: „Mein Lieblingsbrot liefert Energie, also brauche ich nur Brot.“ Was fehlt an dieser Begründung?",
+      "answer": "Der Körper braucht verschiedene Nährstoffe und Wasser.",
+      "hint": "Energie ist nur eine Aufgabe der Nahrung.",
+      "explanation": "Ein einzelnes Lebensmittel deckt nicht alle Bedürfnisse ab. Abwechslung hilft, unterschiedliche wichtige Stoffe aufzunehmen.",
+      "options": [
+        "Energie spielt im Körper nie eine Rolle.",
+        "Alle Lebensmittel enthalten immer genau dasselbe.",
+        "Der Körper braucht verschiedene Nährstoffe und Wasser."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.breathing.1.v1",
+      "subject": "nature",
+      "topicId": "nature-breathing",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.breathing",
+      "prompt": "Welches Organ pumpt das Blut?",
+      "answer": "Das Herz",
+      "hint": "Es arbeitet wie eine Pumpe im Kreislauf.",
+      "explanation": "Das Herz hält das Blut in Bewegung. So können Stoffe zu den Körperteilen und wieder zurück gelangen.",
+      "options": ["Das Herz", "Der Magen", "Das Knie"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.breathing.2.v1",
+      "subject": "nature",
+      "topicId": "nature-breathing",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.breathing",
+      "prompt": "Welches Gas nimmt das Blut in der Lunge aus der Atemluft auf?",
+      "answer": "Sauerstoff",
+      "hint": "Die Zellen benötigen dieses Gas für die Zellatmung.",
+      "explanation": "Sauerstoff gelangt aus den Lungenbläschen ins Blut. Das Blut transportiert ihn weiter zu den Zellen.",
+      "options": ["Nur Stickstoff", "Sauerstoff", "Sandstaub"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.breathing.3.v1",
+      "subject": "nature",
+      "topicId": "nature-breathing",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.breathing",
+      "prompt": "Was transportiert Sauerstoff von der Lunge zu vielen Körperzellen?",
+      "answer": "Das Blut",
+      "hint": "Das gesuchte Transportmittel fließt durch Gefäße.",
+      "explanation": "Blut transportiert unter anderem Sauerstoff. Das Herz treibt es durch den Kreislauf.",
+      "options": ["Die Haare", "Der Zahnschmelz", "Das Blut"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.breathing.4.v1",
+      "subject": "nature",
+      "topicId": "nature-breathing",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.breathing",
+      "prompt": "In welche Richtung führen Arterien?",
+      "answer": "Vom Herzen weg",
+      "hint": "Die Namen beschreiben die Richtung zum Herzen oder von ihm weg.",
+      "explanation": "Arterien führen vom Herzen weg. Venen führen zum Herzen hin. Der Name hängt nicht allein vom Sauerstoffgehalt ab.",
+      "options": [
+        "Vom Herzen weg",
+        "Immer nur zur Lunge zurück",
+        "Immer zum Herzen hin"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.breathing.5.v1",
+      "subject": "nature",
+      "topicId": "nature-breathing",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.breathing",
+      "prompt": "Welche Stoffe werden bei der Zellatmung benötigt?",
+      "answer": "Traubenzucker und Sauerstoff",
+      "hint": "Die Zelle nutzt einen energiereichen Nährstoff und ein Gas.",
+      "explanation": "Bei der Zellatmung werden Traubenzucker und Sauerstoff umgesetzt. Dabei entstehen Kohlenstoffdioxid und Wasser; Energie wird nutzbar.",
+      "options": [
+        "Nur Sand und Wasser",
+        "Traubenzucker und Sauerstoff",
+        "Nur Licht und Kunststoff"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.breathing.6.v1",
+      "subject": "nature",
+      "topicId": "nature-breathing",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.breathing",
+      "prompt": "Warum atmen wir bei passender körperlicher Bewegung meist schneller?",
+      "answer": "Aktive Muskeln brauchen mehr Sauerstoff für die Energieversorgung.",
+      "hint": "Muskeln arbeiten stärker und brauchen mehr Energie.",
+      "explanation": "Schnellere Atmung und ein stärker arbeitender Kreislauf unterstützen den Stofftransport zu aktiven Zellen.",
+      "options": [
+        "Damit die Knochen mit Luft gefüllt werden.",
+        "Weil das Blut bei Bewegung ganz stillsteht.",
+        "Aktive Muskeln brauchen mehr Sauerstoff für die Energieversorgung."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.breathing.7.v1",
+      "subject": "nature",
+      "topicId": "nature-breathing",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.breathing",
+      "prompt": "Welche Aussage über Lunge und Zellatmung stimmt?",
+      "answer": "Die Lunge tauscht Gase aus; Zellatmung findet in Körperzellen statt.",
+      "hint": "Atmen als Luftbewegung und Zellatmung sind nicht derselbe Vorgang.",
+      "explanation": "Lunge, Blutkreislauf und Körperzellen arbeiten zusammen. In den Zellen werden Nährstoffe mit Sauerstoff zur Energieversorgung umgesetzt.",
+      "options": [
+        "Die Lunge tauscht Gase aus; Zellatmung findet in Körperzellen statt.",
+        "Zellatmung findet ausschließlich in den Lungenbläschen statt.",
+        "Zellen brauchen keine Stoffe aus dem Blut."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.breathing.8.v1",
+      "subject": "nature",
+      "topicId": "nature-breathing",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.breathing",
+      "prompt": "Viele kleine Lungenbläschen bieten eine große Gesamtoberfläche. Welcher Vorteil entsteht?",
+      "answer": "Viel Fläche für den Austausch von Sauerstoff und Kohlenstoffdioxid",
+      "hint": "Vergleiche mit der großen inneren Fläche des Dünndarms.",
+      "explanation": "Die große Oberfläche unterstützt den Gasaustausch zwischen Luft und Blut. Dünne Wände und nahe Kapillaren gehören ebenfalls dazu.",
+      "options": [
+        "Die Lunge braucht dadurch kein Blut.",
+        "Viel Fläche für den Austausch von Sauerstoff und Kohlenstoffdioxid",
+        "Es kann überhaupt kein Gas mehr hindurch."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.breathing.9.v1",
+      "subject": "nature",
+      "topicId": "nature-breathing",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.breathing",
+      "prompt": "Warum ist Tabakrauch auch für Menschen in der Nähe problematisch?",
+      "answer": "Sie können schädliche Stoffe aus dem Rauch einatmen.",
+      "hint": "Stoffe in der Luft bleiben nicht nur bei der rauchenden Person.",
+      "explanation": "Tabakrauch enthält schädliche Stoffe, die auch andere einatmen können. Nikotin kann abhängig machen; rauchfreie Luft schützt alle.",
+      "options": [
+        "Rauch besteht nur aus sauberem Sauerstoff.",
+        "Rauch wird neben anderen Personen sofort unschädlich.",
+        "Sie können schädliche Stoffe aus dem Rauch einatmen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.development.1.v1",
+      "subject": "nature",
+      "topicId": "nature-development",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.development",
+      "prompt": "Zwei gleich alte Kinder entwickeln sich in der Pubertät verschieden schnell. Welche Aussage passt?",
+      "answer": "Das Tempo kann von Mensch zu Mensch verschieden sein.",
+      "hint": "Menschen haben keinen gemeinsamen Körperfahrplan.",
+      "explanation": "Der Beginn und das Tempo der Pubertät unterscheiden sich. Daraus lässt sich keine Bewertung eines Menschen ableiten.",
+      "options": [
+        "Das Tempo kann von Mensch zu Mensch verschieden sein.",
+        "Alle müssen sich am selben Geburtstag verändern.",
+        "Das langsamere Kind ist weniger wert."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.development.2.v1",
+      "subject": "nature",
+      "topicId": "nature-development",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.development",
+      "prompt": "Du möchtest gerade nicht umarmt werden. Was darfst du tun?",
+      "answer": "Nein sagen und Abstand wünschen",
+      "hint": "Deine Zustimmung zählt.",
+      "explanation": "Du darfst Berührungen ablehnen. Andere sollen deine Grenze respektieren; du kannst dir Unterstützung holen.",
+      "options": [
+        "Du musst jede Umarmung zulassen.",
+        "Nein sagen und Abstand wünschen",
+        "Du darfst deine Grenze niemals ändern."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.development.3.v1",
+      "subject": "nature",
+      "topicId": "nature-development",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.development",
+      "prompt": "Wie heißt die Entwicklungsphase mit vielen körperlichen Veränderungen und neuen Gefühlen?",
+      "answer": "Pubertät",
+      "hint": "Das Wort steht im Lerntext dieses Themas.",
+      "explanation": "Die Pubertät ist eine Entwicklungsphase. Veränderungen können zu verschiedenen Zeiten beginnen und sind bei Menschen unterschiedlich.",
+      "options": ["Verdunstung", "Bestäubung", "Pubertät"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.development.4.v1",
+      "subject": "nature",
+      "topicId": "nature-development",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.development",
+      "prompt": "Wo reifen beim Menschen Eizellen heran?",
+      "answer": "In den Eierstöcken",
+      "hint": "Die Namen von Organen helfen manchmal beim Erinnern.",
+      "explanation": "Eizellen reifen in den Eierstöcken heran. In den Hoden werden ab der Pubertät Spermienzellen gebildet.",
+      "options": ["In den Eierstöcken", "In der Lunge", "In den Hoden"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.development.5.v1",
+      "subject": "nature",
+      "topicId": "nature-development",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.development",
+      "prompt": "Was bedeutet Befruchtung beim Menschen?",
+      "answer": "Eine Eizelle und eine Spermienzelle vereinigen sich.",
+      "hint": "Bei diesem Vorgang kommen zwei Keimzellen zusammen.",
+      "explanation": "Bei der Befruchtung vereinigen sich Eizelle und Spermienzelle. Aus der befruchteten Eizelle kann sich durch Teilungen ein Embryo entwickeln.",
+      "options": [
+        "Eine Lunge nimmt Sauerstoff auf.",
+        "Eine Eizelle und eine Spermienzelle vereinigen sich.",
+        "Eine Haarwurzel wächst länger."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.development.6.v1",
+      "subject": "nature",
+      "topicId": "nature-development",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.development",
+      "prompt": "In welchem Organ kann sich ein menschlicher Embryo entwickeln?",
+      "answer": "In der Gebärmutter",
+      "hint": "Nahrung, Urin und Entwicklung eines Embryos gehören zu verschiedenen Organen.",
+      "explanation": "Der Embryo kann sich in der Gebärmutter entwickeln. Sie gehört zu den inneren Geschlechtsorganen.",
+      "options": ["Im Magen", "In der Harnblase", "In der Gebärmutter"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.development.7.v1",
+      "subject": "nature",
+      "topicId": "nature-development",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.development",
+      "prompt": "Was geschieht bei der Monatsblutung?",
+      "answer": "Ein Teil der Gebärmutterschleimhaut wird mit Blut abgegeben.",
+      "hint": "Die Schleimhaut ist die innere Auskleidung der Gebärmutter.",
+      "explanation": "Wenn keine Schwangerschaft entsteht, wird ein Teil der aufgebauten Schleimhaut abgegeben. Der Zyklus kann besonders anfangs unregelmäßig sein.",
+      "options": [
+        "Ein Teil der Gebärmutterschleimhaut wird mit Blut abgegeben.",
+        "Der Körper verliert jeden Monat einen Eierstock.",
+        "Der Magen gibt seine ganze Wand ab."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.development.8.v1",
+      "subject": "nature",
+      "topicId": "nature-development",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.development",
+      "prompt": "Eine Person sagt: „Verrate niemandem, dass ich deine Grenze verletzt habe.“ Was ist ein hilfreicher Schritt?",
+      "answer": "Mit einer vertrauten erwachsenen Person sprechen und Hilfe suchen",
+      "hint": "Ein belastendes Geheimnis darfst du weitererzählen.",
+      "explanation": "Du darfst Hilfe holen, auch wenn Schweigen verlangt wurde. Die Verantwortung liegt bei der Person, die Grenzen verletzt; nicht bei der betroffenen Person.",
+      "options": [
+        "Das Geheimnis muss auf jeden Fall bleiben.",
+        "Mit einer vertrauten erwachsenen Person sprechen und Hilfe suchen",
+        "Die betroffene Person ist selbst schuld."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.development.9.v1",
+      "subject": "nature",
+      "topicId": "nature-development",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.development",
+      "prompt": "Welche Aussage verbindet Körperpflege und Respekt sinnvoll?",
+      "answer": "Menschen brauchen passende Pflege und dürfen ihre Privatsphäre schützen.",
+      "hint": "Körper unterscheiden sich, und niemand soll dafür beschämt werden.",
+      "explanation": "Waschen und saubere Kleidung gehören zur Pflege. Persönliche Fragen oder Körpervergleiche dürfen abgelehnt werden. Respekt gilt unabhängig vom Entwicklungsstand.",
+      "options": [
+        "Wer anders schwitzt, darf ausgelacht werden.",
+        "Alle Körper müssen jederzeit gleich aussehen.",
+        "Menschen brauchen passende Pflege und dürfen ihre Privatsphäre schützen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.plants.1.v1",
+      "subject": "nature",
+      "topicId": "nature-plants",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.plants",
+      "prompt": "Welcher Pflanzenteil nimmt normalerweise Wasser aus dem Boden auf?",
+      "answer": "Die Wurzel",
+      "hint": "Der gesuchte Teil liegt meist im Boden.",
+      "explanation": "Wurzeln nehmen Wasser und gelöste Mineralstoffe auf. Sie verankern die Pflanze auch im Boden.",
+      "options": ["Die Wurzel", "Das Kronblatt", "Der Pollen"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.plants.2.v1",
+      "subject": "nature",
+      "topicId": "nature-plants",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.plants",
+      "prompt": "Wo entsteht bei einer Blüte der Pollen?",
+      "answer": "In den Staubblättern",
+      "hint": "Die Staubbeutel sind Teile dieses Blütenorgans.",
+      "explanation": "Die Staubbeutel der Staubblätter bilden Pollen. Er spielt bei der Fortpflanzung eine wichtige Rolle.",
+      "options": [
+        "In jedem Kieselstein",
+        "In den Staubblättern",
+        "Nur an den Wurzelspitzen"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.plants.3.v1",
+      "subject": "nature",
+      "topicId": "nature-plants",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.plants",
+      "prompt": "Welche Aufgabe können bunte Kronblätter haben?",
+      "answer": "Bestäubende Tiere anlocken",
+      "hint": "Bienen und andere Tiere bemerken Farben.",
+      "explanation": "Auffällige Kronblätter können Tiere zur Blüte locken. Auch Duft und Nektar können dabei helfen.",
+      "options": [
+        "Steine in Zucker verwandeln",
+        "Die Wurzeln ersetzen",
+        "Bestäubende Tiere anlocken"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.plants.4.v1",
+      "subject": "nature",
+      "topicId": "nature-plants",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.plants",
+      "prompt": "Was bedeutet Bestäubung bei einer Blütenpflanze?",
+      "answer": "Pollen gelangt auf die passende Narbe.",
+      "hint": "Bestäubung ist die Übertragung von Pollen.",
+      "explanation": "Pollen wird auf die Narbe eines passenden Fruchtblatts übertragen. Die Befruchtung ist ein späterer, anderer Vorgang.",
+      "options": [
+        "Pollen gelangt auf die passende Narbe.",
+        "Eine Wurzel nimmt Wasser auf.",
+        "Ein Blatt fällt auf den Boden."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.plants.5.v1",
+      "subject": "nature",
+      "topicId": "nature-plants",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.plants",
+      "prompt": "Eine Pflanze bildet viel leichten Pollen und unscheinbare Blüten. Welche Bestäubung passt dazu?",
+      "answer": "Windbestäubung",
+      "hint": "Leichter Pollen kann durch die Luft getragen werden.",
+      "explanation": "Windbestäubte Pflanzen müssen oft keinen auffälligen Blütenschmuck bilden. Viel Pollen erhöht die Chance, dass ein Teil passende Narben erreicht.",
+      "options": [
+        "Bestäubung durch schwimmende Fische",
+        "Windbestäubung",
+        "Gar keine mögliche Pollenübertragung"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.plants.6.v1",
+      "subject": "nature",
+      "topicId": "nature-plants",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.plants",
+      "prompt": "Ein einfaches Blütenmodell zeigt vier kreuzförmig angeordnete Kronblätter. Zu welcher Familie passt dieses typische Merkmal?",
+      "answer": "Kreuzblütler",
+      "hint": "Der Familienname beschreibt die Anordnung.",
+      "explanation": "Vier kreuzförmig angeordnete Kronblätter sind typisch für Kreuzblütler. Für eine echte Bestimmung prüft man weitere Merkmale.",
+      "options": [
+        "Rosengewächse mit typischer Fünferblüte",
+        "Es kann nie eine Pflanze sein.",
+        "Kreuzblütler"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.plants.7.v1",
+      "subject": "nature",
+      "topicId": "nature-plants",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.plants",
+      "prompt": "Was haben Befruchtung bei Samenpflanzen und beim Menschen gemeinsam?",
+      "answer": "Eine männliche und eine weibliche Keimzelle vereinigen sich.",
+      "hint": "Vergleiche den grundlegenden Vorgang, nicht die Organe.",
+      "explanation": "Bei beiden vereinigen sich Keimzellen. Die beteiligten Organe und der Weg dorthin unterscheiden sich.",
+      "options": [
+        "Eine männliche und eine weibliche Keimzelle vereinigen sich.",
+        "Beide brauchen immer eine Biene.",
+        "Beide finden in einem menschlichen Magen statt."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.plants.8.v1",
+      "subject": "nature",
+      "topicId": "nature-plants",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.plants",
+      "prompt": "Welcher Vergleich von Wind- und Tierbestäubung passt?",
+      "answer": "Windbestäubung braucht oft viel Pollen; Tierbestäubung kann Aufwand für Lockmittel brauchen.",
+      "hint": "Beide Wege haben Aufwand und Vorteile.",
+      "explanation": "Wind verteilt Pollen ungezielt. Tiere können passende Blüten gezielter besuchen; Duft, auffällige Blüten oder Nektar kosten die Pflanze Stoffe und Energie.",
+      "options": [
+        "Windbestäubung trifft immer jede Narbe ohne Verlust.",
+        "Windbestäubung braucht oft viel Pollen; Tierbestäubung kann Aufwand für Lockmittel brauchen.",
+        "Tierbestäubte Pflanzen benötigen niemals Blüten oder Pollen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.plants.9.v1",
+      "subject": "nature",
+      "topicId": "nature-plants",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.plants",
+      "prompt": "Ein Blütendiagramm zeigt die Blütenteile von oben als Symbole. Was lässt sich daraus gut ablesen?",
+      "answer": "Anzahl und Anordnung der dargestellten Blütenteile",
+      "hint": "Ein Modell zeigt ausgewählte Merkmale.",
+      "explanation": "Das Diagramm stellt den Bau übersichtlich dar. Duft, Größe oder dreidimensionale Form zeigt es nicht vollständig.",
+      "options": [
+        "Der genaue Duft der Blüte",
+        "Die genaue Lebensdauer jedes Pollenkorns",
+        "Anzahl und Anordnung der dargestellten Blütenteile"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.grassland.1.v1",
+      "subject": "nature",
+      "topicId": "nature-grassland",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.grassland",
+      "prompt": "Was unterscheidet eine Wiese von einer Weide?",
+      "answer": "Die Wiese wird gemäht, auf der Weide grasen Tiere.",
+      "hint": "Vergleiche, wie Menschen die Fläche nutzen.",
+      "explanation": "Wiesen dienen oft der Heugewinnung. Weiden werden von Tieren abgegrast. Beide gehören zum Grünland.",
+      "options": [
+        "Die Wiese wird gemäht, auf der Weide grasen Tiere.",
+        "Auf einer Wiese gibt es niemals Pflanzen.",
+        "Eine Weide besteht nur aus Wasser."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.grassland.2.v1",
+      "subject": "nature",
+      "topicId": "nature-grassland",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.grassland",
+      "prompt": "Welche Beobachtung beschreibt eine unbelebte Umweltbedingung einer Wiese?",
+      "answer": "Der Boden ist feucht.",
+      "hint": "Unbelebte Bedingungen sind etwa Licht, Temperatur oder Bodenfeuchte.",
+      "explanation": "Bodenfeuchte ist ein unbelebter Umweltfaktor. Hummeln und Grashüpfer gehören zu den Lebewesen der Lebensgemeinschaft.",
+      "options": [
+        "Dort leben drei Hummeln.",
+        "Der Boden ist feucht.",
+        "Ein Grashüpfer springt."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.grassland.3.v1",
+      "subject": "nature",
+      "topicId": "nature-grassland",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.grassland",
+      "prompt": "Wie beobachtest du eine unbekannte Wiesenpflanze vorsichtig?",
+      "answer": "Ich zeichne sie und lasse sie stehen.",
+      "hint": "Beobachten geht auch ohne Pflücken oder Kosten.",
+      "explanation": "Zeichnen und Vergleichen schonen die Pflanze. Unbekannte Pflanzen können giftig oder geschützt sein.",
+      "options": [
+        "Ich probiere sofort ihre Blätter.",
+        "Ich reiße alle Pflanzen daneben heraus.",
+        "Ich zeichne sie und lasse sie stehen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.grassland.4.v1",
+      "subject": "nature",
+      "topicId": "nature-grassland",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.grassland",
+      "prompt": "Was meint „Lebensgemeinschaft“ einer Wiese?",
+      "answer": "Die dort zusammenlebenden Lebewesen",
+      "hint": "Das Wort enthält „Leben“.",
+      "explanation": "Pflanzen, Tiere, Pilze und weitere Organismen bilden die Lebensgemeinschaft. Umweltbedingungen gehören zum Lebensraum.",
+      "options": [
+        "Die dort zusammenlebenden Lebewesen",
+        "Nur ihre Lufttemperatur",
+        "Nur die Steine unter der Wiese"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.grassland.5.v1",
+      "subject": "nature",
+      "topicId": "nature-grassland",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.grassland",
+      "prompt": "Auf Fläche A werden 6 Pflanzenarten, auf Fläche B 10 gefunden. Wie viele Arten mehr wurden auf B gefunden? Gib nur die Zahl ein.",
+      "answer": "4",
+      "hint": "Vergleiche die Artenzahlen, nicht die Anzahl einzelner Pflanzen.",
+      "explanation": "10 − 6 = 4. Auf Fläche B wurden vier Arten mehr gefunden. Die Daten sagen noch nicht, warum.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.grassland.6.v1",
+      "subject": "nature",
+      "topicId": "nature-grassland",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.grassland",
+      "prompt": "Welche Kombination beschreibt ein Ökosystem?",
+      "answer": "Lebensraum und Lebensgemeinschaft",
+      "hint": "Bedingungen und Lebewesen gehören zusammen.",
+      "explanation": "Ein Ökosystem umfasst einen Lebensraum mit seiner Lebensgemeinschaft und deren Wechselwirkungen.",
+      "options": [
+        "Nur ein einzelnes Tier",
+        "Nur eine Liste von Geräten",
+        "Lebensraum und Lebensgemeinschaft"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.grassland.7.v1",
+      "subject": "nature",
+      "topicId": "nature-grassland",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.grassland",
+      "prompt": "Eine Wiese wird seltener gemäht. Welche mögliche Folge hilft blütenbesuchenden Insekten?",
+      "answer": "Mehr Pflanzen können blühen und Nahrung anbieten.",
+      "hint": "Mähen entfernt auch Blüten.",
+      "explanation": "Längere Abstände zwischen dem Mähen können mehr Blüten ermöglichen. Die tatsächliche Wirkung hängt auch von Pflanzenarten und weiteren Bedingungen ab.",
+      "options": [
+        "Mehr Pflanzen können blühen und Nahrung anbieten.",
+        "Alle Pflanzen verschwinden sofort.",
+        "Insekten brauchen dann keinen Lebensraum mehr."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.grassland.8.v1",
+      "subject": "nature",
+      "topicId": "nature-grassland",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.grassland",
+      "prompt": "Zwei gleich große Wiesenflächen haben 3 und 12 Pflanzenarten. Was ist sicher aus diesen Zahlen abzulesen?",
+      "answer": "In der zweiten Fläche wurden mehr Pflanzenarten gefunden.",
+      "hint": "Artenzahl und Anzahl einzelner Pflanzen sind verschieden.",
+      "explanation": "Die Daten zeigen einen Unterschied in der gefundenen Artenvielfalt. Für Ursachen braucht es weitere Informationen und Untersuchungen.",
+      "options": [
+        "Düngung ist sicher die einzige Ursache.",
+        "In der zweiten Fläche wurden mehr Pflanzenarten gefunden.",
+        "Auf der zweiten Fläche leben genau 12 einzelne Pflanzen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.grassland.9.v1",
+      "subject": "nature",
+      "topicId": "nature-grassland",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.grassland",
+      "prompt": "Ein Hof möchte Futter gewinnen und Blütenbesucher schützen. Welche Idee berücksichtigt beide Ziele?",
+      "answer": "Teilflächen zeitlich versetzt mähen und Blühbereiche stehen lassen.",
+      "hint": "Nicht jede Fläche muss am selben Tag gleich behandelt werden.",
+      "explanation": "Gestaffeltes Mähen kann Futter liefern und zeitweise Blüten erhalten. Was vor Ort passt, hängt etwa von Wetter, Fläche und Futterbedarf ab.",
+      "options": [
+        "Alle Wiesen für immer zubetonieren.",
+        "Die Ziele ohne Prüfung für immer als unmöglich erklären.",
+        "Teilflächen zeitlich versetzt mähen und Blühbereiche stehen lassen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    }
+  ]
+}

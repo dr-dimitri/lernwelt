@@ -11,6 +11,14 @@ Lernwelt ist eine eigenständige Tauri-2-Anwendung. React, TypeScript und Vite s
 - `src-tauri/src/database.rs`: Validierung, parametrisierte Abfragen, Migration und Datenbanktests.
 - `src-tauri/migrations/`: versionierte SQL-Schemata.
 
+## Natur und Technik (Schema 15)
+
+Das dritte Fach verwendet die stabile Subject-ID `nature`. Das separate Paket `nature-5-v1.json` wird zusammen mit Mathematik und Englisch eingebettet und validiert. Jeder Themenbereich erhält die Quelle und den Lehrplanstand seines eigenen Pakets. Aufgaben verwenden die bestehende Rust-Antwortprüfung und dieselbe atomare Fortschritts- und Punktebuchung; neue Commands sind nicht erforderlich.
+
+Migration 015 erweitert die erlaubten Fächer in `learning_progress`, indem sie die Tabelle innerhalb der bestehenden Migrationstransaktion ersetzt und sämtliche bisherigen Zeilen einschließlich Zeitstempel unverändert übernimmt. Profil, Einstellungen und Punktejournale bleiben erhalten. Natur-Aufgaben vergeben einmalig 1/2/3 Punkte entsprechend ihrer Stufe; Request-Replays und wiederholte Lösungen buchen nichts zusätzlich.
+
+Die Fächerübersicht führt zu Fragen und drei frei zugänglichen Lernspielen. Die Lernspiele verwenden lokale SVG-Modelle und fachliche Daten in `src/domain/nature-games.ts`. Sie kosten keine Punkte und vergeben keine Lernpunkte. Der Rundenzustand lebt nur in der Oberfläche und wird beim Verlassen neu gestartet; die gespeicherte globale Stufe bestimmt die angebotenen Spielaufgaben. Das ist ausdrücklich keine gespeicherte Leistungsbewertung. Die üblichen Fachfragen speichern weiterhin ihre Antworten und Fortschritte in SQLite. [Inhaltsmatrix, Quellen und Grenzen](curriculum-nature-5.md).
+
 ## Einmaleins-Welten (Schema 14)
 
 Der Einmaleins-Trainer ergänzt den begrenzten Command `configure_multiplication` für Welt, Rechenart, einzelne Reihe, Robotermodell, Farbe, freiwillige Wiederholung und Etappenfortsetzung. Rust validiert Enumwerte, Reihenbereich, Request-ID und erwartete Revision. `get_multiplication_state` ohne Modus lädt die gespeicherte Auswahl. `answer_multiplication` prüft weiterhin die Ergebniszahl im Backend.

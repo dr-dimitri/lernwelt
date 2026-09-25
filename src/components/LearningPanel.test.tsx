@@ -476,3 +476,104 @@ it.each([
     );
   },
 );
+
+it('zeigt Natur-Fragen mit eigener Quelle und speichert die gewählte Antwort mit wiederholbarem Request', async () => {
+  const { natureInitial, natureTopic } = await import('../test/nature-fixture');
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState).mockResolvedValue(
+    structuredClone(natureInitial),
+  );
+  vi.mocked(desktop.submitAnswer)
+    .mockRejectedValueOnce(new Error('Speichern fehlgeschlagen'))
+    .mockResolvedValueOnce({ ...awarded, pointsAwarded: 2 });
+  render(<LearningPanel subject="nature" profileVersion={0} />);
+  expect(
+    await screen.findByRole('heading', {
+      name: 'Natur und Technik · Klasse 5',
+    }),
+  ).toBeVisible();
+  await user.click(
+    screen.getByRole('radio', { name: 'Nur die Wassermenge ändern' }),
+  );
+  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Speichern fehlgeschlagen',
+  );
+  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  expect(await screen.findByText('Richtig! +2 Punkte')).toBeVisible();
+  const calls = vi.mocked(desktop.submitAnswer).mock.calls;
+  expect(calls[0]).toEqual(calls[1]);
+  expect(calls[0].slice(1)).toEqual([
+    'by.nature.5.research.4.v1',
+    'Nur die Wassermenge ändern',
+  ]);
+  await user.click(
+    screen.getByRole('button', { name: 'Weiter zur nächsten Aufgabe' }),
+  );
+  await user.click(
+    screen.getByRole('button', {
+      name: 'Für Neugierige & Erwachsene: Natur und Technik',
+    }),
+  );
+  expect(
+    screen.getByText(
+      /Quelle: https:\/\/www.lehrplanplus.bayern.de\/fachlehrplan\/gymnasium\/5\/nt_gym/,
+    ),
+  ).toHaveTextContent(natureTopic.curriculumVersion!);
+  expect(
+    screen.getByText(/keine vollständige Lehrplanabdeckung/),
+  ).toBeVisible();
+});
+
+it('öffnet freie Natur-Lernspiele auch ohne Profil und verwendet die bestätigte globale Stufe', async () => {
+  const { natureInitial } = await import('../test/nature-fixture');
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...natureInitial,
+    profileReady: false,
+  });
+  vi.mocked(desktop.setDifficulty).mockResolvedValue('streber');
+  render(<LearningPanel subject="nature" profileVersion={0} />);
+  await user.click(
+    await screen.findByRole('button', { name: 'Lernspiele ausprobieren' }),
+  );
+  expect(
+    screen.queryByRole('button', { name: 'Antwort prüfen' }),
+  ).not.toBeInTheDocument();
+  expect(
+    screen.getByRole('button', { name: 'Lernspiele ausprobieren' }),
+  ).toHaveAttribute('aria-pressed', 'true');
+  await user.click(screen.getByRole('button', { name: /Streber/ }));
+  await waitFor(() =>
+    expect(screen.getByRole('button', { name: /Streber/ })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    ),
+  );
+  expect(desktop.setDifficulty).toHaveBeenCalledExactlyOnceWith('streber');
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
+  await user.click(screen.getByRole('button', { name: 'Fragen entdecken' }));
+  expect(screen.getByText('Was macht diesen Vergleich unfair?')).toBeVisible();
+  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+});
+
+it('behält bei fehlgeschlagenem Stufenwechsel die bisherigen Natur-Fragen', async () => {
+  const { natureInitial } = await import('../test/nature-fixture');
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState).mockResolvedValue(natureInitial);
+  vi.mocked(desktop.setDifficulty).mockRejectedValue(
+    new Error('Stufe nicht gespeichert'),
+  );
+  render(<LearningPanel subject="nature" profileVersion={0} />);
+  await user.click(await screen.findByRole('button', { name: /Streber/ }));
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Stufe nicht gespeichert',
+  );
+  expect(screen.getByRole('button', { name: /Könner/ })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  expect(
+    screen.getByText('Wie vergleichst du zwei Pflanzen fair?'),
+  ).toBeVisible();
+});

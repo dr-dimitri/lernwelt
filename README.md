@@ -1,6 +1,6 @@
 # Lernwelt
 
-Eine lokal laufende Desktop-Lernanwendung für Mathematik und Englisch am bayerischen Gymnasium.
+Eine lokal laufende Desktop-Lernanwendung für Mathematik, Englisch sowie Natur und Technik am bayerischen Gymnasium.
 
 ## Technische Richtung
 
@@ -41,7 +41,7 @@ Das Lernprofil (Spitzname und Klasse 5) wird in `lernwelt.sqlite3` im Tauri-Anwe
 
 In der Klassenauswahl steht ausschließlich Klasse 5 zur Verfügung. Ältere Profile mit einer anderen Klasse bleiben lesbar und werden beim Laden nicht verändert. Ein Hinweis erklärt die bisherige Klasse; erst **Profil speichern** stellt sie auf Klasse 5 um. Der Lernfortschritt bleibt erhalten.
 
-Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Mathematik- und Englischaufgaben sind an das Punktesystem angeschlossen. Eine fachübergreifende Stufenauswahl wird ebenfalls lokal gespeichert. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
+Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Aufgaben in allen drei Fächern sind an das Punktesystem angeschlossen. Eine fachübergreifende Stufenauswahl wird ebenfalls lokal gespeichert. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
 
 ```sh
 cargo test --manifest-path src-tauri/Cargo.toml
@@ -69,7 +69,7 @@ Die App plant Wiederholungen lokal und bietet drei geprüfte Varianten je Stufe.
 
 ## Punkte und Abzeichen
 
-Nach dem Speichern eines Lernprofils können die Aufgaben in Mathematik und Englisch beantwortet werden. Jede Lernaufgabe in den Themenbereichen bringt bei der ersten korrekten Lösung **1 Punkt in Vorschule**, **2 Punkte in Könner** oder **3 Punkte in Streber**. Maßgeblich ist die Stufe der Aufgabe. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
+Nach dem Speichern eines Lernprofils können die Aufgaben in Mathematik, Englisch sowie Natur und Technik beantwortet werden. Jede Lernaufgabe in den Themenbereichen bringt bei der ersten korrekten Lösung **1 Punkt in Vorschule**, **2 Punkte in Könner** oder **3 Punkte in Streber**. Maßgeblich ist die Stufe der Aufgabe. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
 
 Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Abzeichen **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Bereits gebuchte Punkte bleiben bei Regeländerungen erhalten; es gibt keine rückwirkende Neuberechnung. Weitere Belohnungen lassen sich ergänzen.
 
@@ -150,3 +150,19 @@ Welt, Rechenart, Gestaltung und bestätigte Antworten bleiben lokal gespeichert.
 Die Hauptansichten sind für ein Laptopfenster von 1100 × 750 Pixeln ausgelegt. Navigation, Stufenwahl und aktuelle Aufgabe stehen kompakt beieinander. **Dein Profil** ist oben erreichbar. Themenwahl, Tipps, Erklärungen, Abzeichen und Quellen öffnen eigene Fenster; Escape oder **Schließen** führt zurück. Umfangreiche Mitmachangebote und Tabellen lassen sich durchblättern. Die Rückmeldung erscheint nach einer Antwort direkt mit einem Knopf zum Weiterüben.
 
 Die Spielsteuerung und Pause stehen neben dem Spielfeld; nach dem Ende erscheint eine kompakte Ergebnisansicht. Auf kleineren Fenstern bzw. bei vergrößerter Schrift darf weiterhin gescrollt werden, damit keine Inhalte oder Bedienelemente abgeschnitten werden.
+
+## Natur und Technik Klasse 5
+
+**108 eigene Fragen in zwölf Themen**, je drei Aufgaben pro Stufe und Thema, sowie **24 Mitmachaufgaben** für Kinder von 10–12 Jahren. Die Inhalte orientieren sich am [LehrplanPLUS Natur und Technik 5, Gymnasium Bayern](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym), Quellenstand 25.09.2026. Naturwissenschaftliches Arbeiten und Biologie werden verbunden: Forschen, Wasser und Teilchen, Licht und Energie, Luft und Materialien, Zellen, Sinne, Bewegung, Ernährung, Atmung und Kreislauf, Entwicklung, Samenpflanzen und Grünland.
+
+Über **Meine Fächer → Natur und Technik** lassen sich Fragen und Lernspiele auswählen. Kurze Fragen mit Alltagssituationen, Beobachtungen und Messwerten bieten Tipps und erklärte Lösungen. Ein Blütenschnitt und Teilchenbilder helfen beim Verstehen; Mitmachaufgaben ergänzen Zeichnen, Beobachten und Erklären. Für neue richtige Fachantworten gelten dieselben gespeicherten **1/2/3 Lernpunkte** und dieselbe freie Stufenauswahl wie in den anderen Fächern.
+
+Drei lokal gezeichnete Lernspiele bieten zusätzlich freies Üben ohne Zeitdruck:
+
+- **Stoff-Labor:** Stoffzustände und Veränderungen mit Teilchenbildern verbinden.
+- **Pflanzen-Werkstatt:** Teile und Funktionen einer Blüte erkunden.
+- **Wiesen-Netz:** Nahrungsbeziehungen einer vereinfachten Wiesengemeinschaft aufbauen.
+
+Die Spiele sind kostenlos, vergeben keine Lernpunkte und funktionieren auch ohne gespeichertes Profil. Alle Aktionen sind per Tastatur möglich. Vorschule, Könner und Streber bieten unterschiedliche Aufgaben; beim Verlassen oder Stufenwechsel beginnt die lokale Spielrunde neu. Die Fragen speichern ihren Fortschritt dagegen dauerhaft in SQLite.
+
+Das Paket ist ein begrenztes Lernangebot zu ausgewählten Kompetenzen, **keine vollständige Lehrplanabdeckung**, keine amtlich freigegebene Lernsoftware und kein Ersatz für Unterricht. Praktische Fertigkeiten werden über Mitmachaufgaben mit Selbstkontrolle geübt. Quellenzuordnung, fachliche Grenzen und Hinweise zu den Modellen: [Inhaltsmatrix Natur und Technik](docs/curriculum-nature-5.md).

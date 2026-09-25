@@ -3,6 +3,9 @@ use crate::database::{self, Subject};
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::Serialize;
 
+#[cfg(test)]
+mod nature_tests;
+
 fn points_for_difficulty(difficulty: Difficulty) -> i64 {
     match difficulty {
         Difficulty::Vorschule => 1,
@@ -654,11 +657,12 @@ mod tests {
         assert_eq!(progress.iter().map(|p| p.correct).sum::<u32>(), 726);
     }
     #[test]
-    fn awards_one_two_three_in_both_subjects_independent_of_selected_level() {
+    fn awards_one_two_three_in_all_subjects_independent_of_selected_level() {
         let (directory, mut connection) = setup();
         for (subject, prefix) in [
             (Subject::Mathematics, "math"),
             (Subject::English, "english"),
+            (Subject::Nature, "nature"),
         ] {
             for (difficulty, expected) in [
                 (Difficulty::Vorschule, 1),
@@ -709,7 +713,7 @@ mod tests {
         drop(connection);
         let mut reopened = database::open(&directory.path().join("test.sqlite3")).unwrap();
         let state = get_state(&mut reopened).unwrap();
-        assert_eq!(state.wallet.balance, 12);
+        assert_eq!(state.wallet.balance, 18);
         let json = serde_json::to_value(state).unwrap();
         assert_eq!(
             json["pointsByDifficulty"],

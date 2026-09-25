@@ -1,5 +1,7 @@
 import InfoPanel from './InfoPanel';
 import LearningTable from './LearningTable';
+import NatureGames from './NatureGames';
+import { FlowerPicture, ParticlePicture } from './NatureArt';
 import { useEffect, useRef, useState, type SubmitEvent } from 'react';
 import {
   difficulties,
@@ -7,7 +9,7 @@ import {
   type AnswerResult,
   type LearningState,
 } from '../domain/learning';
-import type { SubjectId } from '../domain/subjects';
+import { subjects, type SubjectId } from '../domain/subjects';
 import { desktop } from '../lib/desktop';
 
 export default function LearningPanel({
@@ -25,6 +27,10 @@ export default function LearningPanel({
   const [rewardsOpen, setRewardsOpen] = useState(false);
   const [topicId, setTopicId] = useState('');
   const [questionId, setQuestionId] = useState('');
+  const [natureMode, setNatureMode] = useState<'questions' | 'games'>(
+    'questions',
+  );
+  const playingNature = subject === 'nature' && natureMode === 'games';
 
   const [answer, setAnswer] = useState('');
   const [result, setResult] = useState<{
@@ -74,6 +80,10 @@ export default function LearningPanel({
     setAnswer('');
     setResult(null);
     setNotice('');
+  }, [subject]);
+
+  useEffect(() => {
+    setNatureMode('questions');
   }, [subject]);
 
   const topics = state?.topics.filter((item) => item.subject === subject) ?? [];
@@ -218,7 +228,11 @@ export default function LearningPanel({
       <div className="section-heading">
         <div>
           <p className="eyebrow">LERNEN LOHNT SICH</p>
-          <h2 id="learning-title">Dein Lernabenteuer</h2>
+          <h2 id="learning-title">
+            {subject === 'nature'
+              ? 'Dein Forscherabenteuer'
+              : 'Dein Lernabenteuer'}
+          </h2>
         </div>
         <div className="points-balance" aria-label="Verfügbare Punkte">
           {loading
@@ -229,9 +243,11 @@ export default function LearningPanel({
         </div>
       </div>
       <p className="points-explainer">
-        {state
-          ? `Eine neue Aufgabe gelöst? +${state.pointsByDifficulty[state.difficulty]} ${state.pointsByDifficulty[state.difficulty] === 1 ? 'Punkt' : 'Punkte'}! `
-          : 'Löse neue Aufgaben und sammle Punkte. '}
+        {playingNature
+          ? 'Ausprobieren, entdecken und noch einmal spielen. '
+          : state
+            ? `Eine neue Aufgabe gelöst? +${state.pointsByDifficulty[state.difficulty]} ${state.pointsByDifficulty[state.difficulty] === 1 ? 'Punkt' : 'Punkte'}! `
+            : 'Löse neue Aufgaben und sammle Punkte. '}
         Du darfst so oft probieren, wie du magst. Fehler kosten nichts.
       </p>
       {loading && <p role="status">Dein Punktekonto wird geladen …</p>}
@@ -252,6 +268,26 @@ export default function LearningPanel({
           Speichere dein Lernprofil über „Dein Profil“ oben, um Punkte zu
           sammeln.
         </p>
+      )}
+      {state && subject === 'nature' && (
+        <div className="nature-mode" role="group" aria-label="Dein Forscherweg">
+          <button
+            className="secondary-button"
+            aria-pressed={!playingNature}
+            disabled={busy || loading}
+            onClick={() => setNatureMode('questions')}
+          >
+            Fragen entdecken
+          </button>
+          <button
+            className="secondary-button"
+            aria-pressed={playingNature}
+            disabled={busy || loading}
+            onClick={() => setNatureMode('games')}
+          >
+            Lernspiele ausprobieren
+          </button>
+        </div>
       )}
       <div className="learning-workspace">
         {state && (
@@ -275,7 +311,8 @@ export default function LearningPanel({
                       <strong>{level.name}</strong>
                       <small>{level.description}</small>
                       <small>
-                        +{state.pointsByDifficulty[level.id]}{' '}
+                        {playingNature ? 'Bei Fragen: ' : ''}+
+                        {state.pointsByDifficulty[level.id]}{' '}
                         {state.pointsByDifficulty[level.id] === 1
                           ? 'Punkt'
                           : 'Punkte'}{' '}
@@ -289,65 +326,69 @@ export default function LearningPanel({
                   <p className="sample-note">
                     Lustige Namen, keine Noten! „Vorschule“ ist der leichte
                     Einstieg in dein Thema. Du kannst jederzeit wechseln. Deine
-                    Wahl gilt auch im anderen Fach.
+                    Wahl gilt in allen Fächern.
                   </p>
                 </InfoPanel>
               </div>
-              <div className="topic-section">
-                <h3>
-                  {subject === 'mathematics'
-                    ? 'Mathematik · Klasse 5'
-                    : 'Englisch · Klasse 5'}
-                </h3>
-                <p className="topic-description">
-                  {subject === 'mathematics'
-                    ? `${topics.length} Themenwelten. Wo beginnt dein nächstes Abenteuer?`
-                    : '12 Themen zum Entdecken · Englisch als 1. Fremdsprache'}
-                </p>
-                <InfoPanel className="topic-picker">
-                  <summary>Thema wählen</summary>
-                  <div className="topic-grid" aria-label="Themen">
-                    {topics.map((item, index) => {
-                      const exercises = state.questions.filter(
-                        (q) =>
-                          q.topicId === item.id &&
-                          q.difficulty === state.difficulty,
-                      );
-                      const solved = exercises.filter((q) => q.solved).length;
-                      return (
-                        <button
-                          key={item.id}
-                          className="topic-card"
-                          data-close-info
-                          aria-pressed={item.id === topic?.id}
-                          disabled={busy || loading}
-                          onClick={() => {
-                            setTopicId(item.id);
-                            selectQuestion('');
-                            practiceRef.current?.focus();
-                          }}
-                        >
-                          <span className="topic-number" aria-hidden="true">
-                            {index + 1}
-                          </span>
-                          <strong>{item.name}</strong>
-                          <span>{item.description}</span>
-                          <small>
-                            {solved} von {exercises.length} gelöst{' '}
-                            {solved === exercises.length && solved > 0
-                              ? '✓'
-                              : ''}
-                          </small>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </InfoPanel>
-              </div>
+              {!playingNature && (
+                <div className="topic-section">
+                  <h3>
+                    {subjects.find((item) => item.id === subject)?.name} ·
+                    Klasse 5
+                  </h3>
+                  <p className="topic-description">
+                    {subject === 'english'
+                      ? '12 Themen zum Entdecken · Englisch als 1. Fremdsprache'
+                      : `${topics.length} Themenwelten. Wo beginnt dein nächstes Abenteuer?`}
+                  </p>
+                  <InfoPanel className="topic-picker">
+                    <summary>Thema wählen</summary>
+                    <div className="topic-grid" aria-label="Themen">
+                      {topics.map((item, index) => {
+                        const exercises = state.questions.filter(
+                          (q) =>
+                            q.topicId === item.id &&
+                            q.difficulty === state.difficulty,
+                        );
+                        const solved = exercises.filter((q) => q.solved).length;
+                        return (
+                          <button
+                            key={item.id}
+                            className="topic-card"
+                            data-close-info
+                            aria-pressed={item.id === topic?.id}
+                            disabled={busy || loading}
+                            onClick={() => {
+                              setTopicId(item.id);
+                              selectQuestion('');
+                              practiceRef.current?.focus();
+                            }}
+                          >
+                            <span className="topic-number" aria-hidden="true">
+                              {index + 1}
+                            </span>
+                            <strong>{item.name}</strong>
+                            <span>{item.description}</span>
+                            <small>
+                              {solved} von {exercises.length} gelöst{' '}
+                              {solved === exercises.length && solved > 0
+                                ? '✓'
+                                : ''}
+                            </small>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </InfoPanel>
+                </div>
+              )}
             </div>
           </>
         )}
-        {question && topic && (
+        {playingNature && state && (
+          <NatureGames key={state.difficulty} difficulty={state.difficulty} />
+        )}
+        {!playingNature && question && topic && (
           <div
             className="practice-area"
             ref={practiceRef}
@@ -460,6 +501,46 @@ export default function LearningPanel({
             <InfoPanel paginate className="lesson" key={topic.id}>
               <summary>So geht’s · kurz erklärt</summary>
               <p>{topic.lesson}</p>
+              {topic.id === 'nature-water' && (
+                <div>
+                  <h3>Wasser im Teilchenmodell</h3>
+                  <div className="nature-lesson-models">
+                    {(['solid', 'liquid', 'gas'] as const).map(
+                      (value, index) => (
+                        <figure key={value}>
+                          <ParticlePicture state={value} />
+                          <figcaption>
+                            {
+                              [
+                                'Eis · fest',
+                                'Wasser · flüssig',
+                                'Wasserdampf · gasförmig',
+                              ][index]
+                            }
+                          </figcaption>
+                        </figure>
+                      ),
+                    )}
+                  </div>
+                  <p>
+                    Die Punkte sind ein Modell für winzige Teilchen. Wir können
+                    sie nicht mit bloßem Auge sehen. Im Eis schwingen sie an
+                    festen Plätzen. Im flüssigen Wasser bewegen sie sich
+                    aneinander vorbei. Im Wasserdampf bewegen sie sich frei mit
+                    großen Abständen. Wasserdampf selbst ist unsichtbar.
+                  </p>
+                </div>
+              )}
+              {topic.id === 'nature-plants' && (
+                <figure className="nature-lesson-flower">
+                  <FlowerPicture />
+                  <figcaption>
+                    Ein Blick in eine Blüte: Staubblätter bilden Pollen. Auf der
+                    Narbe kann Pollen landen. Im Fruchtknoten liegen die
+                    Samenanlagen.
+                  </figcaption>
+                </figure>
+              )}
               {topic.tables?.map((table) => (
                 <LearningTable key={table.caption} table={table} />
               ))}
@@ -535,7 +616,9 @@ export default function LearningPanel({
                 <summary>
                   {subject === 'english'
                     ? 'Sprich, lies & entdecke!'
-                    : 'Stift raus!'}{' '}
+                    : subject === 'nature'
+                      ? 'Forschen & mitmachen!'
+                      : 'Stift raus!'}{' '}
                   {topic.activities.length} Mitmachaufgaben
                 </summary>
                 <p>
@@ -617,6 +700,29 @@ export default function LearningPanel({
         </InfoPanel>
       )}
       {notice && !rewardsOpen && <p role="status">{notice}</p>}
+      {state && subject === 'nature' && (
+        <InfoPanel className="source-note">
+          <summary>Für Neugierige & Erwachsene: Natur und Technik</summary>
+          <p>
+            Eigene Fragen, Lernspiele und Mitmachaufgaben für 10- bis
+            12-Jährige. Wir erkunden naturwissenschaftliches Arbeiten und
+            Biologie nach LehrplanPLUS für Klasse 5 am bayerischen Gymnasium.
+            Das ist ein begrenztes Übungspaket, keine vollständige
+            Lehrplanabdeckung und kein Ersatz für Unterricht.
+          </p>
+          <p>
+            Die Lernspiele sind kostenloses Ausprobieren ohne Lernpunkte. Die
+            Runden werden beim Verlassen oder Stufenwechsel neu gestartet. Die
+            Fragen speichern deinen Fortschritt und bringen für neue richtige
+            Lösungen die angezeigten Lernpunkte. Mitmachaufgaben prüfst du
+            selbst.
+          </p>
+          <p>
+            {topic?.curriculumVersion}. Themenbezug: {topic?.curriculumRef}.
+            Quelle: {topic?.source}. Alles funktioniert offline.
+          </p>
+        </InfoPanel>
+      )}
       {state && subject === 'english' && (
         <InfoPanel className="source-note">
           <summary>Für Neugierige & Erwachsene: Englisch-Lerninhalte</summary>

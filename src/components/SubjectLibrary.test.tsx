@@ -16,7 +16,7 @@ describe('Fächerbibliothek', () => {
       />,
     );
 
-    expect(screen.getByRole('status')).toHaveTextContent('2 Fächer für dich');
+    expect(screen.getByRole('status')).toHaveTextContent('3 Fächer für dich');
     expect(screen.getByRole('button', { name: 'Mathematik' })).toHaveAttribute(
       'aria-pressed',
       'true',
@@ -53,6 +53,27 @@ describe('Fächerbibliothek', () => {
     ).not.toBeInTheDocument();
     expect(screen.getByRole('status')).toHaveTextContent('1 Fach gefunden');
     expect(screen.getByRole('status')).toHaveAttribute('aria-live', 'polite');
+  });
+
+  it('findet Natur und Technik und öffnet es mit der Tastatur', async () => {
+    const user = userEvent.setup();
+    const onSelect = vi.fn();
+    render(
+      <SubjectLibrary
+        subjects={subjects}
+        selected="mathematics"
+        onSelect={onSelect}
+      />,
+    );
+    await user.type(
+      screen.getByRole('searchbox', { name: 'Fach suchen' }),
+      'Technik',
+    );
+    expect(screen.getByRole('status')).toHaveTextContent('1 Fach gefunden');
+    const nature = screen.getByRole('button', { name: 'Natur und Technik' });
+    nature.focus();
+    await user.keyboard('{Enter}');
+    expect(onSelect).toHaveBeenCalledExactlyOnceWith('nature');
   });
 
   it('hilft bei einer Suche ohne Treffer und zeigt nach dem Löschen wieder alle Fächer', async () => {
