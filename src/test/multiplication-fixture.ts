@@ -20,10 +20,37 @@ export const multiplicationInitial: MultiplicationState = {
     round: 1,
     position: 1,
     roundSize: 100,
+    review: false,
   },
   answered: 0,
   correct: 0,
   wallet: { balance: 9, totalEarned: 29, rewards: [] },
+  adventure: {
+    revision: 0,
+    world: 'workshop',
+    design: 'scout',
+    palette: 'mint',
+    table: null,
+    review: false,
+    reviewCount: 0,
+    stageSize: 8,
+    worlds: {
+      workshop: {
+        answered: 0,
+        completedStages: 0,
+        stageAnswered: 0,
+        awaitingContinue: false,
+      },
+      island: {
+        answered: 0,
+        completedStages: 0,
+        stageAnswered: 0,
+        awaitingContinue: false,
+      },
+    },
+    robots: [],
+    lastRobot: null,
+  },
 };
 export const multiplicationSuccess: MultiplicationResult = {
   correct: true,
@@ -39,9 +66,23 @@ export const multiplicationSuccess: MultiplicationResult = {
       round: 1,
       position: 2,
       roundSize: 100,
+      review: false,
     },
     answered: 1,
     correct: 1,
     wallet: { balance: 10, totalEarned: 30, rewards: [] },
+    adventure: {
+      ...multiplicationInitial.adventure,
+      revision: 1,
+      worlds: {
+        ...multiplicationInitial.adventure.worlds,
+        workshop: {
+          answered: 1,
+          completedStages: 0,
+          stageAnswered: 1,
+          awaitingContinue: false,
+        },
+      },
+    },
   },
 };

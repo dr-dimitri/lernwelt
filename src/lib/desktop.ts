@@ -1,6 +1,7 @@
 import type {
   MultiplicationMode,
   MultiplicationInput,
+  MultiplicationConfiguration,
   MultiplicationState,
   MultiplicationResult,
 } from '../domain/multiplication';
@@ -50,8 +51,10 @@ export const desktop = {
     callDesktop<MissionState>('start_mission', { input }),
   actMission: (input: MissionActionInput) =>
     callDesktop<MissionState>('act_mission', { input }),
-  getMultiplicationState: (mode: MultiplicationMode) =>
+  getMultiplicationState: (mode?: MultiplicationMode) =>
     callDesktop<MultiplicationState>('get_multiplication_state', { mode }),
+  configureMultiplication: (input: MultiplicationConfiguration) =>
+    callDesktop<MultiplicationState>('configure_multiplication', { input }),
   answerMultiplication: (input: MultiplicationInput) =>
     callDesktop<MultiplicationResult>('answer_multiplication', { input }),
   getVocabularyState: (deckId: string) =>

@@ -116,9 +116,16 @@ fn review_vocabulary(
 #[tauri::command]
 fn get_multiplication_state(
     storage: State<'_, Storage>,
-    mode: multiplication::Mode,
+    mode: Option<multiplication::Mode>,
 ) -> Result<multiplication::TrainerState, String> {
     storage.with_connection(|c| multiplication::get_state(c, mode))
+}
+#[tauri::command]
+fn configure_multiplication(
+    storage: State<'_, Storage>,
+    input: multiplication::Configuration,
+) -> Result<multiplication::TrainerState, String> {
+    storage.with_connection(|c| multiplication::configure(c, input))
 }
 #[tauri::command]
 fn answer_multiplication(
@@ -178,6 +185,7 @@ pub fn run() {
             review_vocabulary,
             get_multiplication_state,
             answer_multiplication,
+            configure_multiplication,
             get_mission_state,
             start_mission,
             act_mission

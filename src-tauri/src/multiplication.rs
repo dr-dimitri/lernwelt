@@ -27,6 +27,7 @@ pub struct Task {
     pub round: i64,
     pub position: i64,
     pub round_size: i64,
+    pub review: bool,
 }
 
 // Keep v1 reproducible for tables and historical square-answer replays.
@@ -49,6 +50,7 @@ fn legacy_task(mode: Mode, sequence: i64) -> Task {
         round: sequence / if mode == Mode::Tables { 100 } else { 25 } + 1,
         position: sequence % if mode == Mode::Tables { 100 } else { 25 } + 1,
         round_size: if mode == Mode::Tables { 100 } else { 25 },
+        review: false,
     }
 }
 
@@ -58,7 +60,7 @@ fn saved_square(c: &Connection, sequence: i64) -> Result<Option<Task>, String> {
         [sequence], |r| {
             let n: i64 = r.get(0)?;
             Ok(Task { id: format!("by.math.5.trainer.squares.{n}x{n}.v2"), sequence,
-                left: n, right: n, round: r.get(1)?, position: r.get(2)?, round_size: 20 })
+                left: n, right: n, round: r.get(1)?, position: r.get(2)?, round_size: 20, review:false })
         }).optional().map_err(db_error)
 }
 
@@ -74,7 +76,7 @@ fn square_task(c: &Connection, sequence: i64) -> Result<Task, String> {
             |r| r.get(0),
         )
         .map_err(db_error)?;
-    let mut select = c.prepare("WITH RECURSIVE numbers(n) AS (VALUES(10) UNION ALL SELECT n+1 FROM numbers WHERE n<25) SELECT n FROM numbers ORDER BY random() LIMIT 5").map_err(db_error)?;
+    let mut select = c.prepare("WITH RECURSIVE numbers(n) AS (VALUES(10) UNION ALL SELECT n+1 FROM numbers WHERE n<20) SELECT n FROM numbers ORDER BY random() LIMIT 5").map_err(db_error)?;
     let chosen = select
         .query_map([], |r| r.get::<_, i64>(0))
         .map_err(db_error)?
@@ -119,6 +121,7 @@ pub struct TrainerState {
     pub answered: i64,
     pub correct: i64,
     pub wallet: learning::Wallet,
+    pub adventure: Adventure,
 }
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -140,38 +143,40 @@ fn db_error(_: rusqlite::Error) -> String {
 }
 fn state(c: &Connection, mode: Mode) -> Result<TrainerState, String> {
     let profile_ready = database::get_profile(c)?.is_some();
-    let (answered, correct, next): (i64, i64, i64) = c.query_row(
-        "SELECT COUNT(*), COALESCE(SUM(correct),0), COALESCE(MAX(sequence)+1,0) FROM multiplication_answers WHERE profile_id=1 AND mode=?1",
-        [mode.as_str()], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?))).map_err(db_error)?;
-    let task = if !profile_ready {
-        None
+    let (answered, correct): (i64, i64) = c.query_row(
+        "SELECT COUNT(*), COALESCE(SUM(correct),0) FROM multiplication_answers WHERE profile_id=1 AND mode=?1",
+        [mode.as_str()], |r| Ok((r.get(0)?, r.get(1)?))).map_err(db_error)?;
+    let settings = settings(c)?;
+    let adventure = adventure(c, &settings, mode)?;
+    let current_world = match settings.world {
+        World::Workshop => &adventure.worlds.workshop,
+        World::Island => &adventure.worlds.island,
+    };
+    let task = if profile_ready && !current_world.awaiting_continue {
+        assigned_task(c, &settings, mode)?
     } else {
-        Some(match mode {
-            Mode::Tables => legacy_task(mode, next),
-            Mode::Squares => square_task(c, next)?,
-        })
+        None
     };
     Ok(TrainerState {
         content: ContentInfo {
-            subject: "mathematics", grade: 5, competency_id: "by.math.5.multiply.fluency.v1",
-            source: "Eigene Lernwelt-Rechenaufgaben; Bezug M5 3.1: https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
-            curriculum_version: "LehrplanPLUS-Zuordnung 2026-09-24; Trainerinhalt: Einmaleins v1 / Quadratzahlen v2",
+            subject: "mathematics", grade: 5, competency_id: "by.math.5.multiply.fluency.v3",
+            source: "Eigene Lernwelt-Rechenaufgaben; Bezug M5 3.1 (Einmaleins und Quadrate bis 400) und M5 3.2 (Zerlegen): https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+            curriculum_version: "LehrplanPLUS-Zuordnung 2026-09-25; Trainerinhalt v3; ergänzende Übungen, keine Lernstandsdiagnose",
         },
-        profile_ready,
-        mode,
-        task,
-        answered,
-        correct,
-        wallet: learning::wallet(c)?,
+        profile_ready,mode,task,answered,correct,wallet:learning::wallet(c)?,adventure,
     })
 }
-pub fn get_state(c: &mut Connection, mode: Mode) -> Result<TrainerState, String> {
+pub fn get_state(
+    c: &mut Connection,
+    mode: impl Into<Option<Mode>>,
+) -> Result<TrainerState, String> {
     let tx = c
         .transaction_with_behavior(TransactionBehavior::Immediate)
         .map_err(db_error)?;
-    let value = state(&tx, mode)?;
+    let mode = mode.into().unwrap_or(settings(&tx)?.mode);
+    let result = state(&tx, mode)?;
     tx.commit().map_err(db_error)?;
-    Ok(value)
+    Ok(result)
 }
 pub fn answer(c: &mut Connection, input: AnswerInput) -> Result<AnswerResult, String> {
     if !(0..1_000_000_000).contains(&input.sequence) {
@@ -207,7 +212,9 @@ pub fn answer(c: &mut Connection, input: AnswerInput) -> Result<AnswerResult, St
         "SELECT answer,correct FROM multiplication_answers WHERE profile_id=1 AND mode=?1 AND sequence=?2",
         params![input.mode.as_str(), input.sequence], |r| Ok((r.get(0)?,r.get(1)?))).optional().map_err(db_error)?;
     let question = if previous.is_some() {
-        if input.mode == Mode::Squares {
+        if let Some(task) = stored_task(&tx, input.mode, input.sequence)? {
+            task
+        } else if input.mode == Mode::Squares {
             saved_square(&tx, input.sequence)?
                 .unwrap_or_else(|| legacy_task(input.mode, input.sequence))
         } else {
@@ -215,9 +222,9 @@ pub fn answer(c: &mut Connection, input: AnswerInput) -> Result<AnswerResult, St
         }
     } else {
         let current = state(&tx, input.mode)?;
-        let question = current.task.ok_or_else(|| {
-            "Speichere zuerst dein Lernprofil über „Dein Profil“ oben.".to_owned()
-        })?;
+        let question = current
+            .task
+            .ok_or("Setze zuerst deine Etappe fort oder wähle neue Aufgaben.")?;
         if question.sequence != input.sequence {
             return Err("Diese Aufgabe ist nicht mehr aktuell. Lade den Trainer neu.".into());
         }
@@ -237,6 +244,7 @@ pub fn answer(c: &mut Connection, input: AnswerInput) -> Result<AnswerResult, St
         if correct {
             tx.execute("INSERT INTO point_entries (profile_id,kind,item_id,amount) VALUES (1,'multiplication',?1,1)", [format!("{}-{}", input.mode.as_str(), input.sequence)]).map_err(db_error)?;
         }
+        record_adventure_answer(&tx, input.mode, &question, correct)?;
         correct
     };
     let result = AnswerResult {
@@ -248,5 +256,12 @@ pub fn answer(c: &mut Connection, input: AnswerInput) -> Result<AnswerResult, St
     tx.commit().map_err(db_error)?;
     Ok(result)
 }
+mod adventure;
+use adventure::{
+    adventure, assigned_task, record_adventure_answer, settings, stored_task, Adventure, World,
+};
+pub use adventure::{configure, Configuration};
+#[cfg(test)]
+mod adventure_tests;
 #[cfg(test)]
 mod tests;

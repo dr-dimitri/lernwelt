@@ -11,6 +11,18 @@ Lernwelt ist eine eigenständige Tauri-2-Anwendung. React, TypeScript und Vite s
 - `src-tauri/src/database.rs`: Validierung, parametrisierte Abfragen, Migration und Datenbanktests.
 - `src-tauri/migrations/`: versionierte SQL-Schemata.
 
+## Einmaleins-Welten (Schema 14)
+
+Der Einmaleins-Trainer ergänzt den begrenzten Command `configure_multiplication` für Welt, Rechenart, einzelne Reihe, Robotermodell, Farbe, freiwillige Wiederholung und Etappenfortsetzung. Rust validiert Enumwerte, Reihenbereich, Request-ID und erwartete Revision. `get_multiplication_state` ohne Modus lädt die gespeicherte Auswahl. `answer_multiplication` prüft weiterhin die Ergebniszahl im Backend.
+
+`multiplication_settings`, `multiplication_worlds` und `multiplication_robots` speichern Auswahl, Bauetappen und Bauregal. Acht gespeicherte Antworten ergeben eine Etappe; richtige Antworten geben weiterhin je einen Punkt, alle Antworten einen Bauschritt. Am Etappenende bleibt die Welt gesperrt, bis das Kind bewusst weiterbaut. Einstellungen und beide Weltstände bleiben unabhängig von der globalen Schwierigkeit erhalten.
+
+`multiplication_tasks` ordnet jeden Versuch unveränderlich seinen Faktoren, seiner Welt und dem normalen Aufgabencursor oder Wiederholungsdurchlauf zu. Ein Einstellungswechsel legt eine neue Zuordnung an; alte offene Zuordnungen werden ungültig, ohne den normalen Cursor weiterzuschieben. `multiplication_cursors` verwaltet getrennte Positionen für gemischte Aufgaben, einzelne Reihen und Quadrate. `multiplication_review_queue` merkt falsche oder aufgedeckte Aufgaben pro Faktorenpaar vor. Jede erscheint einmal je freiwilligem Durchlauf; eine richtige Antwort entfernt sie. Das ist keine Planung mit Tagesabständen.
+
+Antwort, Punkteeintrag, Bauschritt, eventueller Regalzugang und Cursoränderung liegen in derselben Immediate-Transaktion. Das vorhandene Antwortjournal verhindert Doppelbuchungen. `multiplication_configurations` speichert Einstellungsrequests und deren Payload; Wiederholungen derselben Anfrage sind idempotent, abweichende Wiederverwendung und veraltete Revisionen werden abgewiesen.
+
+Migration 014 erhält historische Antworten und deren Faktorenpläne. Nur unbeantwortete alte Quadratzahlpläne werden ersetzt; neue Pläne verwenden Faktoren 10 bis 20. Historische Antworten bis 25² behalten ihre Lösung und ihre Punkte. Profile, Missionsdaten und bestehende Buchungsjournale werden nicht verändert. Die Oberfläche lädt ausschließlich lokal gebündelte Vektorgrafiken. [Spielregeln, Lehrplan und Grenzen](multiplication-adventures.md).
+
 ## Daten und Migrationen
 
 Ein lokales Profil mit stabiler ID 1; Name und Jahrgangsstufe können aktualisiert werden, ohne vorhandenen Fortschritt zu löschen. Fortschritt wird pro Fach und stabiler Kompetenz-ID mit Versuchs- und Trefferzahl gespeichert. `record_attempt` ist nur noch eine interne Datenbankfunktion. Die Oberfläche sendet Antworten über `submit_answer`; Antwortprüfung, Lernfortschritt und Punkte werden gemeinsam in einer Transaktion gespeichert.
