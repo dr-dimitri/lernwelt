@@ -445,6 +445,50 @@ main {
   background: #fdf0e7;
   color: #875038;
 }
+.nature {
+  background: #eaf3fa;
+  color: #285c72;
+}
+.subject-card.nature {
+  background: linear-gradient(120deg, #edf8fb, #fff);
+}
+.nature .subject-symbol {
+  background: #d3eaf0;
+  color: #285c72;
+}
+.nature-mode {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block: 14px;
+}
+.nature-mode [aria-pressed='true'] {
+  background: #e1f0f6;
+  border-color: #285c72;
+  color: #285c72;
+  box-shadow: inset 0 -3px #285c72;
+}
+.nature-lesson-models {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin-block: 16px;
+}
+.nature-lesson-models figure,
+.nature-lesson-flower {
+  margin: 0;
+}
+.nature-lesson-models svg,
+.nature-lesson-flower svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.nature-lesson-models figcaption,
+.nature-lesson-flower figcaption {
+  margin-top: 10px;
+  line-height: 1.5;
+}
 .subject-card.mathematics {
   background: linear-gradient(120deg, #f0f9f4, #fff);
 }

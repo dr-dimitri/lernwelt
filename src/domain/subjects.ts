@@ -1,4 +1,4 @@
-export type SubjectId = 'mathematics' | 'english';
+export type SubjectId = 'mathematics' | 'english' | 'nature';
 
 export interface Subject {
   id: SubjectId;
@@ -19,5 +19,11 @@ export const subjects: readonly Subject[] = [
     name: 'Englisch',
     symbol: 'Aa',
     description: 'Sprache entdecken. Mit jedem Schritt sicherer werden.',
+  },
+  {
+    id: 'nature',
+    name: 'Natur und Technik',
+    symbol: '⚘',
+    description: 'Forschen, staunen, ausprobieren. Entdecke deine Umwelt!',
   },
 ];

@@ -1,7 +1,7 @@
 # Lernwelt: Projektvorgaben
 
 ## Produkt und Architektur
-- Eigenständige, offline nutzbare Desktop-Anwendung für Mathematik und Englisch am bayerischen Gymnasium (LehrplanPLUS).
+- Eigenständige, offline nutzbare Desktop-Anwendung für Mathematik, Englisch sowie Natur und Technik am bayerischen Gymnasium (LehrplanPLUS).
 - Tauri 2, React, TypeScript und Vite; SQLite im betriebssystemspezifischen Anwendungsdatenverzeichnis.
 - Deutsche Oberfläche, Tastaturbedienbarkeit, verständliche Fehlerzustände. Keine extern geladenen Schriften, Tracking- oder Cloud-Dienste im Kernprodukt.
 - Fachlogik, Lerninhalte, UI und Persistenz getrennt halten. Rust besitzt die Datenbank; das Frontend nutzt typisierte, begrenzte Commands.

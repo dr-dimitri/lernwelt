@@ -107,31 +107,36 @@ pub fn catalog() -> Result<&'static Catalog, String> {
     static CONTENT: OnceLock<Result<Catalog, String>> = OnceLock::new();
     CONTENT
         .get_or_init(|| {
-            let mut packages = [
+            load_packages(&[
                 include_str!("../content/curriculum-v1.json"),
                 include_str!("../content/english-5-v1.json"),
-            ]
-            .into_iter()
-            .map(|json| {
-                let mut data: Catalog = serde_json::from_str(json)
-                    .map_err(|_| "Das Lernpaket konnte nicht gelesen werden.".to_owned())?;
-                data.validate()?;
-                for topic in &mut data.topics {
-                    topic.source = data.source.clone();
-                    topic.curriculum_version = data.curriculum_version.clone();
-                }
-                Ok(data)
-            })
-            .collect::<Result<Vec<_>, String>>()?;
-            let english = packages.pop().expect("two embedded packages");
-            let mut data = packages.pop().expect("two embedded packages");
-            data.topics.extend(english.topics);
-            data.exercises.extend(english.exercises);
-            data.validate()?;
-            Ok(data)
+                include_str!("../content/nature-5-v1.json"),
+            ])
         })
         .as_ref()
         .map_err(Clone::clone)
+}
+
+fn load_packages(packages: &[&str]) -> Result<Catalog, String> {
+    let mut combined: Option<Catalog> = None;
+    for json in packages {
+        let mut data: Catalog = serde_json::from_str(json)
+            .map_err(|_| "Das Lernpaket konnte nicht gelesen werden.".to_owned())?;
+        data.validate()?;
+        for topic in &mut data.topics {
+            topic.source = data.source.clone();
+            topic.curriculum_version = data.curriculum_version.clone();
+        }
+        if let Some(catalog) = &mut combined {
+            catalog.topics.extend(data.topics);
+            catalog.exercises.extend(data.exercises);
+        } else {
+            combined = Some(data);
+        }
+    }
+    let catalog = combined.ok_or("Es ist kein Lernpaket verfügbar.")?;
+    catalog.validate()?;
+    Ok(catalog)
 }
 
 impl Catalog {
@@ -264,10 +269,11 @@ mod tests {
         );
         for topic in &content.topics {
             assert!(!topic.lesson.is_empty());
-            if topic.subject == Subject::Mathematics {
-                assert!(!topic.activities.is_empty());
-            } else {
+            assert!(!topic.activities.is_empty());
+            if topic.subject == Subject::English {
                 assert!(topic.language_sequence.is_some());
+            } else {
+                assert!(topic.language_sequence.is_none());
             }
             for difficulty in [
                 Difficulty::Vorschule,
@@ -446,6 +452,43 @@ mod tests {
         content.exercises[0].answer = "NaN".to_owned();
         assert!(content.validate().is_err());
         assert!(Difficulty::parse("expert").is_err());
+    }
+
+    #[test]
+    fn merged_packages_reject_global_duplicate_ids_and_keep_each_source() {
+        let math = include_str!("../content/curriculum-v1.json");
+        let nature = include_str!("../content/nature-5-v1.json");
+        assert!(load_packages(&[]).is_err());
+        assert!(load_packages(&[math, math]).is_err());
+        assert!(load_packages(&[math, nature, nature]).is_err());
+        let data = catalog().unwrap();
+        let topics: Vec<_> = data
+            .topics
+            .iter()
+            .filter(|topic| topic.subject == Subject::Nature)
+            .collect();
+        assert!(topics.len() >= 10);
+        for topic in topics {
+            assert!(topic.source.ends_with("/nt_gym"));
+            assert!(topic.curriculum_version.contains("25.09.2026"));
+            assert!(topic.language_sequence.is_none());
+            assert!(!topic.activities.is_empty());
+            for difficulty in [
+                Difficulty::Vorschule,
+                Difficulty::Koenner,
+                Difficulty::Streber,
+            ] {
+                assert!(
+                    data.exercises
+                        .iter()
+                        .filter(|e| e.topic_id == topic.id
+                            && e.difficulty == difficulty
+                            && !e.legacy)
+                        .count()
+                        >= 3
+                );
+            }
+        }
     }
 }
 

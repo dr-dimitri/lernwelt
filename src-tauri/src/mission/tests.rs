@@ -594,7 +594,7 @@ fn migration_from_twelve_preserves_existing_data_and_does_not_infer_mastery() {
     assert_eq!(
         c.pragma_query_value(None, "user_version", |r| r.get::<_, i64>(0))
             .unwrap(),
-        14
+        15
     );
 }
 

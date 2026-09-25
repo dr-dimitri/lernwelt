@@ -2,7 +2,10 @@ use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::{Deserialize, Serialize};
 use std::{path::Path, time::Duration};
 
-const SCHEMA_VERSION: i64 = 14;
+#[cfg(test)]
+mod nature_tests;
+
+const SCHEMA_VERSION: i64 = 15;
 const DATABASE_ERROR: &str = "Die lokalen Lerndaten konnten nicht verarbeitet werden.";
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -17,6 +20,7 @@ pub struct Profile {
 pub enum Subject {
     Mathematics,
     English,
+    Nature,
 }
 
 impl Subject {
@@ -24,6 +28,7 @@ impl Subject {
         match self {
             Self::Mathematics => "mathematics",
             Self::English => "english",
+            Self::Nature => "nature",
         }
     }
 }
@@ -135,6 +140,11 @@ fn migrate(connection: &mut Connection) -> Result<(), String> {
             ))
             .map_err(database_error)?;
     }
+    if version < 15 {
+        transaction
+            .execute_batch(include_str!("../migrations/015_nature.sql"))
+            .map_err(database_error)?;
+    }
     transaction
         .pragma_update(None, "user_version", SCHEMA_VERSION)
         .map_err(database_error)?;
@@ -240,6 +250,7 @@ pub fn list_progress(connection: &Connection) -> Result<Vec<Progress>, String> {
             let subject = match subject.as_str() {
                 "mathematics" => Subject::Mathematics,
                 "english" => Subject::English,
+                "nature" => Subject::Nature,
                 _ => return Err(rusqlite::Error::InvalidQuery),
             };
             Ok(Progress {
