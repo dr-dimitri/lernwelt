@@ -240,3 +240,117 @@ it('steuert das Sternenlabyrinth mit WASD und pausiert ohne Zeitverlust bei Foku
   expect(renderedGame().elapsed).toBe(elapsed);
   expect(screen.getByLabelText('5 Herzen')).toBeVisible();
 });
+
+it.each([32, 112, 128])(
+  'verschiebt mit einem kurzen Pfeiltastendruck bei Spielzeit %i ms genau eine Spalte',
+  (startTime) => {
+    render(<GameStage gameId="blocks" onFinish={vi.fn()} />);
+    fireEvent.click(
+      screen.getByRole('button', { name: 'Losspielen / Weiter' }),
+    );
+    act(() => vi.advanceTimersByTime(startTime));
+    const field = screen.getByRole('group', {
+      name: 'Spielfeld Klötzchen-Kosmos',
+    });
+    const x = renderedGame().pieceX;
+    fireEvent.keyDown(field, { key: 'ArrowLeft' });
+    act(() => vi.advanceTimersByTime(55));
+    fireEvent.keyUp(field, { key: 'ArrowLeft' });
+    act(() => vi.advanceTimersByTime(160));
+    expect(renderedGame().pieceX).toBe(x - 1);
+  },
+);
+
+it.each(['Enter', ' ', 'assistive-click', 'pointer'])(
+  'führt kurze Bildschirmaktivierungen mit %s im Klötzchenspiel genau einmal aus',
+  (input) => {
+    render(<GameStage gameId="blocks" onFinish={vi.fn()} />);
+    fireEvent.click(
+      screen.getByRole('button', { name: 'Losspielen / Weiter' }),
+    );
+    act(() => vi.advanceTimersByTime(128));
+    const game = renderedGame();
+    for (const [label, axis, delta] of [
+      ['← Links', 'pieceX', -1],
+      ['↓ Senken', 'pieceY', 1],
+    ] as const) {
+      const button = screen.getByRole('button', { name: label });
+      act(() => button.focus());
+      const start = game[axis];
+      if (input === 'assistive-click') {
+        fireEvent.click(button, { detail: 0 });
+      } else if (input === 'pointer') {
+        button.setPointerCapture = vi.fn();
+        fireEvent.pointerDown(button, { pointerId: 1 });
+        act(() => vi.advanceTimersByTime(55));
+        fireEvent.pointerUp(button, { pointerId: 1 });
+      } else {
+        fireEvent.keyDown(button, { key: input });
+        fireEvent.keyUp(button, { key: input });
+      }
+      act(() => vi.advanceTimersByTime(160));
+      expect(game[axis]).toBe(start + delta);
+    }
+  },
+);
+
+it.each(['arrow', 'Enter', 'pointer'])(
+  'wiederholt nur beim wirklichen Halten mit %s und beginnt nach Loslassen neu',
+  (input) => {
+    render(<GameStage gameId="blocks" onFinish={vi.fn()} />);
+    fireEvent.click(
+      screen.getByRole('button', { name: 'Losspielen / Weiter' }),
+    );
+    act(() => vi.advanceTimersByTime(128));
+    const field = screen.getByRole('group', {
+      name: 'Spielfeld Klötzchen-Kosmos',
+    });
+    const button = screen.getByRole('button', { name: '← Links' });
+    button.setPointerCapture = vi.fn();
+    const target = input === 'arrow' ? field : button;
+    const key = input === 'arrow' ? 'ArrowLeft' : 'Enter';
+    act(() => target.focus());
+    const press = () =>
+      input === 'pointer'
+        ? fireEvent.pointerDown(button, { pointerId: 1 })
+        : fireEvent.keyDown(target, { key });
+    const release = () =>
+      input === 'pointer'
+        ? fireEvent.pointerUp(button, { pointerId: 1 })
+        : fireEvent.keyUp(target, { key });
+    const start = renderedGame().pieceX;
+    press();
+    act(() => vi.advanceTimersByTime(150));
+    expect(renderedGame().pieceX).toBe(start - 2);
+    release();
+    act(() => vi.advanceTimersByTime(160));
+    expect(renderedGame().pieceX).toBe(start - 2);
+    press();
+    act(() => vi.advanceTimersByTime(55));
+    release();
+    act(() => vi.advanceTimersByTime(160));
+    expect(renderedGame().pieceX).toBe(start - 3);
+  },
+);
+
+it('verwirft gehaltene Klötzchentasten beim Pausieren und bei Fokusverlust', () => {
+  render(<GameStage gameId="blocks" onFinish={vi.fn()} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Losspielen / Weiter' }));
+  act(() => vi.advanceTimersByTime(128));
+  const field = screen.getByRole('group', {
+    name: 'Spielfeld Klötzchen-Kosmos',
+  });
+  const x = renderedGame().pieceX;
+  fireEvent.keyDown(field, { key: 'ArrowLeft' });
+  fireEvent.keyDown(field, { key: 'p' });
+  act(() => vi.advanceTimersByTime(160));
+  fireEvent.click(screen.getByRole('button', { name: 'Losspielen / Weiter' }));
+  act(() => vi.advanceTimersByTime(160));
+  expect(renderedGame().pieceX).toBe(x - 1);
+  fireEvent.keyDown(field, { key: 'ArrowRight' });
+  fireEvent(window, new Event('blur'));
+  act(() => vi.advanceTimersByTime(160));
+  fireEvent.click(screen.getByRole('button', { name: 'Losspielen / Weiter' }));
+  act(() => vi.advanceTimersByTime(160));
+  expect(renderedGame().pieceX).toBe(x);
+});
