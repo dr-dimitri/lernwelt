@@ -26,17 +26,20 @@ export default function GameStage({
   const held = useRef(new Set<Action>());
   const taps = useRef(new Map<Action, ReturnType<typeof setTimeout>>());
   const keyboardStarted = useRef(new Map<Action, number>());
+  const repeatAt = useRef(new Map<Action, number>());
   function release(action: Action) {
     keyboardStarted.current.delete(action);
     clearTimeout(taps.current.get(action));
     taps.current.delete(action);
     held.current.delete(action);
+    repeatAt.current.delete(action);
   }
   function clearControls() {
     for (const timer of taps.current.values()) clearTimeout(timer);
     taps.current.clear();
     keyboardStarted.current.clear();
     held.current.clear();
+    repeatAt.current.clear();
   }
   const ended = useRef(false);
   const [paused, setPaused] = useState(true);
@@ -70,8 +73,7 @@ export default function GameStage({
   useEffect(() => {
     let frame = 0,
       previous = 0,
-      hudClock = 0,
-      repeatClock = 0;
+      hudClock = 0;
     const paint = () => {
       const context = canvas.current ? prepareCanvas(canvas.current) : null;
       if (context) drawGame(context, game);
@@ -81,12 +83,11 @@ export default function GameStage({
       previous = time;
       if (!paused && !game.over) {
         stepGame(game, dt, held.current);
-        repeatClock += dt;
-        if (gameId === 'blocks' && repeatClock >= 0.12) {
-          for (const action of held.current)
-            if (['left', 'right', 'down'].includes(action))
-              actGame(game, action);
-          repeatClock = 0;
+        for (const [action, nextRepeat] of repeatAt.current) {
+          if (time >= nextRepeat) {
+            actGame(game, action);
+            repeatAt.current.set(action, time + 120);
+          }
         }
       }
       paint();
@@ -118,6 +119,9 @@ export default function GameStage({
     release(action);
     held.current.add(action);
     actGame(game, action);
+    if (gameId === 'blocks' && ['left', 'right', 'down'].includes(action)) {
+      repeatAt.current.set(action, performance.now() + 120);
+    }
   }
   function togglePause() {
     clearControls();
@@ -235,7 +239,7 @@ export default function GameStage({
         }}
         onKeyUp={(event) => {
           const action = keyAction(event.key);
-          if (action) held.current.delete(action);
+          if (action) release(action);
         }}
       >
         <canvas
@@ -317,10 +321,10 @@ export default function GameStage({
                     const began = keyboardStarted.current.get(action);
                     keyboardStarted.current.delete(action);
                     const remaining =
-                      began === undefined
+                      gameId === 'blocks' || began === undefined
                         ? 0
                         : 120 - (performance.now() - began);
-                    // A quick tap must last long enough to reach an animation frame.
+                    // Continuous movement needs a frame; blocks already move in press().
                     if (remaining > 0 && held.current.has(action)) {
                       taps.current.set(
                         action,
@@ -333,10 +337,13 @@ export default function GameStage({
                     // Assistive technology may activate a button without key events.
                     if (event.detail === 0 && !paused && !game.over) {
                       press(action);
-                      taps.current.set(
-                        action,
-                        setTimeout(() => release(action), 120),
-                      );
+                      if (gameId === 'blocks') release(action);
+                      else {
+                        taps.current.set(
+                          action,
+                          setTimeout(() => release(action), 120),
+                        );
+                      }
                     }
                   }}
                 >
