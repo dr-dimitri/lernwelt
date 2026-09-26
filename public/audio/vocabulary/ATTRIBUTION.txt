@@ -1,0 +1,31 @@
+Lernwelt: English vocabulary audio, 2026-09-26
+
+740 locally generated MP3 files reading Lernwelt's own English vocabulary
+and example sentences. Voice: en_GB-cori-high (Piper), by Bryce Beattie.
+
+Original model publisher and license:
+https://brycebeattie.com/files/tts/
+Cori high is explicitly published as PUBLIC DOMAIN. The creator states
+that it was trained from scratch using public-domain LibriVox recordings.
+It was not fine-tuned from a research-only base model.
+
+Pinned model mirror and provenance:
+https://huggingface.co/rhasspy/piper-voices/tree/c10ece1aade47bb51c153c893d14e5bf8e5b7117/en/en_GB/cori/high
+The model card confirms the LibriVox/public-domain source.
+The model collection also declares MIT in its repository metadata.
+
+Changes: the Cori voice model was used to synthesize new Lernwelt texts;
+length scale 1.1, noise scales 0; converted to mono 64 kbit/s MP3.
+To the extent rights exist in these generated audio assets, Lernwelt
+releases them under CC0 1.0. See LICENSE-CC0-1.0.txt for full terms:
+https://creativecommons.org/publicdomain/zero/1.0/
+No endorsement by the original model creator is implied.
+No original audiobook texts, speech recordings, model or synthesizer
+are bundled with the app.
+
+Generation-only tools: Piper 1.8.0 (GPL-3.0), ONNX Runtime 1.30.0,
+FFmpeg 9.0.2 / libmp3lame. No tool or model is needed at app runtime.
+Generator, pinned dependencies and exact file hashes are in the repository:
+scripts/generate-vocabulary-audio.py
+scripts/audio-generation-requirements.txt
+src/content/vocabulary-audio.json
