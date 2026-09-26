@@ -174,3 +174,13 @@ Jede Aktion, ihr Beleg, der Fortschritt und etwaige Punkte werden gemeinsam in e
 Die Runde beginnt mit einem Abruf vor dem Beispiel. Zeitversetzter Erfolg verlangt eine selbstständige erste Antwort auf eine andere Variante, eine frühere Selbstlösung und mindestens einen Tag Abstand zur letzten Lernaktion auf dieser Stufe. Tipps und Aufdecken werden gespeichert, bevor sie angezeigt werden. Ein bloßer Rundenabschluss oder eine Mitmach-Selbstauskunft ist kein automatischer Kompetenznachweis. Die Wiederholungsplanung nutzt die Gerätezeit; eine Manipulation der lokalen Uhr ist nicht abgesichert.
 
 Weitere Hinweise zu Inhalt, Bedienung und Forschungsgrenzen: [Geführte Lernrunde](learning-missions.md).
+
+## Mehrere Lernrunden ohne Schemaänderung
+
+Drei eingebettete Pakete (`mission-garden-v1.json`, `mission-english-v1.json`, `mission-nature-v1.json`) nutzen dieselben Tabellen aus Schema 13; das aktuelle Schema 15 bleibt unverändert. Themen-ID und Stufe begrenzen alle Fortschritts- und Rundenzugriffe. Das Punktejournal erhält das tatsächliche Fach und die Kompetenz des Pakets. Der Loader prüft paketübergreifend eindeutige Themen-/Aufgaben-IDs, drei Varianten pro Stufe und bei Englisch die erste Fremdsprachenfolge. Die Garten-IDs und Antworten bleiben unverändert.
+
+`get_mission_state(topicId?)` liest das gewählte Thema und eine Übersicht aller drei Themen auf der globalen Stufe in einer gemeinsamen Lesetransaktion. Die Übersicht enthält Metadaten, offenen Schritt und Fälligkeit, keine Antworten. Eine fehlende Themen-ID wählt zur Kompatibilität den Garten. `start_mission` akzeptiert ebenfalls eine optionale Themen-ID. Das Feld wird bei fehlender Angabe nicht serialisiert: historische Start-Belege behalten damit ihre exakte Nutzlast und lassen sich erneut übertragen. Eine unbekannte Themen-ID oder eine geänderte Nutzlast mit alter Request-ID wird abgewiesen.
+
+`act_mission` ermittelt das Thema aus der gespeicherten Runde. Die Aktion muss zur neuesten Runde dieses Themas auf der globalen Stufe gehören. Replays liefern den aktuellen bestätigten Stand des betroffenen Themas, ohne erneut Punkte oder Schritte zu buchen. Themenwechsel verändern keine Runde und keine Fälligkeit. Die Oberfläche sperrt Themenwechsel bei einem unklaren Startfehler bis zum Retry oder ausdrücklichen Neuladen. Verspätete Antworten nach Wechsel/Unmount werden ignoriert.
+
+Die Persistenztests schließen alle Themen und Stufen mit vier Runden ab, prüfen die endlichen Varianten und Erstlösungspunkte sowie Wiederholungsfälligkeiten, parallele offene Themen, neue Verbindungen, alte Garten-Belege und ungültige Anfragen. Bestehende Migrationstests von Schema 12/13 und Rollbacktests bleiben aktiv.

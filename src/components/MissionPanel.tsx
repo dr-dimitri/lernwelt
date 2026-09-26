@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { difficulties, type Difficulty } from '../domain/learning';
+import { missionSubjects } from '../domain/mission';
 import type {
   MissionActionInput,
   MissionDiagram,
@@ -86,8 +87,10 @@ function GardenDiagram({ diagram }: { diagram: MissionDiagram }) {
 
 export default function MissionPanel({
   profileVersion,
+  topicId,
 }: {
   profileVersion: number;
+  topicId?: string;
 }) {
   const [state, setState] = useState<MissionState | null>(null);
   const [busy, setBusy] = useState(true);
@@ -118,7 +121,7 @@ export default function MissionPanel({
     setAnswer('');
     focus.current = null;
     void desktop
-      .getMissionState()
+      .getMissionState(topicId)
       .then((value) => {
         if (current !== revision.current) return;
         setState(value);
@@ -139,7 +142,7 @@ export default function MissionPanel({
     return () => {
       ++revision.current;
     };
-  }, [profileVersion, reload]);
+  }, [profileVersion, reload, topicId]);
 
   useEffect(() => {
     if (busy || pending || error) return;
@@ -206,7 +209,11 @@ export default function MissionPanel({
     if (!state?.profileReady || pending) return;
     void run({
       kind: 'start',
-      input: { requestId: crypto.randomUUID(), difficulty: state.difficulty },
+      input: {
+        requestId: crypto.randomUUID(),
+        difficulty: state.difficulty,
+        topicId: state.metadata.id,
+      },
     });
   }
   function act(
@@ -254,7 +261,7 @@ export default function MissionPanel({
     try {
       await desktop.setDifficulty(difficulty);
       if (current !== revision.current) return;
-      const next = await desktop.getMissionState();
+      const next = await desktop.getMissionState(topicId);
       if (current !== revision.current) return;
       setState(next);
       setAnswer('');
@@ -283,9 +290,15 @@ export default function MissionPanel({
     >
       <div className="mission-header">
         <div>
-          <p className="eyebrow">MATHEMATIK · KLASSE 5</p>
+          <p className="eyebrow">
+            {state ? missionSubjects[state.metadata.subject] : 'Lernrunde'} ·
+            KLASSE 5
+            {state?.metadata.foreignLanguageSequence === 1
+              ? ' · 1. Fremdsprache'
+              : ''}
+          </p>
           <h2 id="mission-title" ref={panelHeading} tabIndex={-1}>
-            {state?.metadata.title ?? 'Ein Zaun für unseren Garten'}
+            {state?.metadata.title ?? 'Dein Lernabenteuer'}
           </h2>
         </div>
         {state && (
@@ -350,7 +363,7 @@ export default function MissionPanel({
           {!state.profileReady ? (
             <p>
               Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst du
-              deine Gartenrunde starten.
+              deine Lernrunde starten.
             </p>
           ) : step ? (
             <>
@@ -538,13 +551,13 @@ export default function MissionPanel({
             <div className="mission-welcome">
               <h3 ref={stepHeading} tabIndex={-1}>
                 {state.session?.completed
-                  ? 'Deine Gartenrunde ist geschafft!'
-                  : 'Bereit für deinen Garten?'}
+                  ? 'Deine Lernrunde ist geschafft!'
+                  : 'Bereit für dein Lernabenteuer?'}
               </h3>
               <p>
                 {state.session?.completed
-                  ? 'Du hast den Rand auf verschiedenen Wegen entdeckt. Eine Pause gehört zum Lernen dazu.'
-                  : 'Erinnere dich, entdecke ein Beispiel und löse selbst. Danach wirst du zum Fehlerdetektiv. Zum Schluss kannst du mit einem Heft selbst messen.'}
+                  ? 'Du hast das Thema auf verschiedenen Wegen entdeckt. Eine Pause gehört zum Lernen dazu.'
+                  : 'Erinnere dich, entdecke ein Beispiel und löse selbst. Danach wirst du zum Fehlerdetektiv. Zum Schluss kannst du selbst etwas ausprobieren.'}
               </p>
               {state.dueAt && (
                 <p>
@@ -573,9 +586,8 @@ export default function MissionPanel({
           <InfoPanel>
             <summary>Über diese Lernrunde</summary>
             <p>
-              Ein erstes Thema: Rechteckumfang, mit{' '}
-              {state.metadata.variantCount} Aufgabenvarianten je Stufe. Noch
-              kein vollständiger Lehrgang.
+              Ein Thema mit {state.metadata.variantCount} Aufgabenvarianten je
+              Stufe. Noch kein vollständiger Lehrgang.
             </p>
             <p>
               „Ausprobiert“ heißt: Du hast begonnen. „Selbst gelöst“ heißt: Du

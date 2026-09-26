@@ -16,6 +16,8 @@ import {
   missionCorrect,
   missionCompleted,
   missionSteps,
+  englishMissionMetadata,
+  natureMissionMetadata,
 } from '../test/mission-fixture';
 import type { MissionState } from '../domain/mission';
 
@@ -126,7 +128,7 @@ it('führt durch alle fünf Schritte mit Rückmeldung, Begründungswahl, Selbstc
   await user.click(screen.getByRole('button', { name: 'Runde abschließen' }));
   expect(
     await screen.findByRole('heading', {
-      name: 'Deine Gartenrunde ist geschafft!',
+      name: 'Deine Lernrunde ist geschafft!',
     }),
   ).toHaveFocus();
   expect(screen.getByText(/Deine nächste Wiederholung wartet/)).toBeVisible();
@@ -290,7 +292,7 @@ it('überspringt die optionale Mitmachaufgabe ohne Antwort oder Selbstbewertung'
   );
   expect(
     await screen.findByRole('heading', {
-      name: 'Deine Gartenrunde ist geschafft!',
+      name: 'Deine Lernrunde ist geschafft!',
     }),
   ).toHaveFocus();
 });
@@ -374,7 +376,7 @@ it('verwirft alte Lade- und Speicherantworten nach Profiländerung', async () =>
   await screen.findByLabelText('Deine Antwort in m');
   await act(async () => load(missionCompleted));
   expect(
-    screen.queryByText('Deine Gartenrunde ist geschafft!'),
+    screen.queryByText('Deine Lernrunde ist geschafft!'),
   ).not.toBeInTheDocument();
   vi.mocked(desktop.actMission).mockImplementationOnce(
     () =>
@@ -455,7 +457,7 @@ it('fokussiert nach ausdrücklich erneutem Laden den gespeicherten Abschluss', a
   );
   expect(
     await screen.findByRole('heading', {
-      name: 'Deine Gartenrunde ist geschafft!',
+      name: 'Deine Lernrunde ist geschafft!',
     }),
   ).toHaveFocus();
 });
@@ -477,7 +479,100 @@ it('belässt den Seitenfokus beim ersten Laden und bei Profilaktualisierung', as
   expect(heading).toHaveFocus();
   rerender(view(1));
   await screen.findByRole('heading', {
-    name: 'Deine Gartenrunde ist geschafft!',
+    name: 'Deine Lernrunde ist geschafft!',
   });
   expect(heading).toHaveFocus();
+});
+
+it('lädt die gewählte Fremdsprachenmission und behält das Thema beim Stufenwechsel', async () => {
+  const user = userEvent.setup();
+  const english = { ...missionInitial, metadata: englishMissionMetadata };
+  vi.mocked(desktop.getMissionState).mockResolvedValue(english);
+  render(
+    <MissionPanel profileVersion={0} topicId={englishMissionMetadata.id} />,
+  );
+  expect(
+    await screen.findByRole('heading', { name: englishMissionMetadata.title }),
+  ).toBeVisible();
+  expect(
+    screen.getByText(/Englisch · KLASSE 5 · 1. Fremdsprache/),
+  ).toBeVisible();
+  expect(screen.getByText('Bereit für dein Lernabenteuer?')).toBeVisible();
+  await user.click(screen.getByRole('button', { name: /Streber/ }));
+  expect(desktop.getMissionState).toHaveBeenLastCalledWith(
+    englishMissionMetadata.id,
+  );
+  vi.mocked(desktop.startMission).mockResolvedValue({
+    ...missionActive,
+    metadata: englishMissionMetadata,
+  });
+  await user.click(screen.getByRole('button', { name: 'Lernrunde starten' }));
+  expect(desktop.startMission).toHaveBeenCalledWith(
+    expect.objectContaining({ topicId: englishMissionMetadata.id }),
+  );
+});
+it('ignoriert eine verspätete Themenantwort und kann das neue Thema nach Ladefehler erneut laden', async () => {
+  const user = userEvent.setup();
+  let finishOld!: (value: MissionState) => void;
+  vi.mocked(desktop.getMissionState)
+    .mockImplementationOnce(
+      () =>
+        new Promise((resolve) => {
+          finishOld = resolve;
+        }),
+    )
+    .mockRejectedValueOnce(new Error('Thema konnte nicht geladen werden'))
+    .mockResolvedValue({ ...missionInitial, metadata: natureMissionMetadata });
+  const { rerender } = render(
+    <MissionPanel profileVersion={0} topicId={englishMissionMetadata.id} />,
+  );
+  rerender(
+    <MissionPanel profileVersion={0} topicId={natureMissionMetadata.id} />,
+  );
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Thema konnte nicht geladen werden',
+  );
+  await act(async () =>
+    finishOld({ ...missionInitial, metadata: englishMissionMetadata }),
+  );
+  expect(
+    screen.queryByRole('heading', { name: englishMissionMetadata.title }),
+  ).not.toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Runde neu laden' }));
+  expect(
+    await screen.findByRole('heading', { name: natureMissionMetadata.title }),
+  ).toBeVisible();
+  expect(desktop.getMissionState).toHaveBeenLastCalledWith(
+    natureMissionMetadata.id,
+  );
+});
+
+it('schließt die Naturmission mit passendem Titel und fachneutraler Rückmeldung ab', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getMissionState).mockResolvedValue({
+    ...missionAt(4),
+    metadata: natureMissionMetadata,
+  });
+  vi.mocked(desktop.actMission).mockResolvedValue({
+    ...missionCompleted,
+    metadata: natureMissionMetadata,
+  });
+  render(
+    <MissionPanel profileVersion={0} topicId={natureMissionMetadata.id} />,
+  );
+  await user.click(
+    await screen.findByRole('button', { name: 'Heute überspringen' }),
+  );
+  expect(
+    await screen.findByRole('heading', {
+      name: 'Deine Lernrunde ist geschafft!',
+    }),
+  ).toHaveFocus();
+  expect(
+    screen.getByRole('heading', { name: natureMissionMetadata.title }),
+  ).toBeVisible();
+  expect(
+    screen.getByText(/Du hast das Thema auf verschiedenen Wegen entdeckt/),
+  ).toBeVisible();
+  expect(screen.queryByText(/Du hast den Rand/)).not.toBeInTheDocument();
 });

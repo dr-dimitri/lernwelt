@@ -1,0 +1,580 @@
+{
+  "id": "by.english.5.round.school.v1",
+  "title": "Ein Tag an unserer Schule",
+  "description": "Lies kurze englische Nachrichten und entdecke, wie du vom Schultag erzählst. Klasse 5, erste Fremdsprache.",
+  "subject": "english",
+  "grade": 5,
+  "competencyId": "by.english.5.round.school.reading-present",
+  "source": "Eigene Lernwelt-Aufgaben nach https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache · E5 1.1 Leseverstehen, E5 1.2 Grammatik, E5 5 Schule",
+  "curriculumVersion": "LehrplanPLUS Gymnasium Bayern · abgerufen 26.09.2026",
+  "variants": [
+    {
+      "difficulty": "vorschule",
+      "variant": 0,
+      "recall": {
+        "id": "by.english.5.round.school.recall.vorschule.a.v1",
+        "prompt": "Lina packt ihre Schultasche. Was bedeutet „a book“?",
+        "hint": "Denke an etwas, in dem du Geschichten liest.",
+        "answer": "ein Buch",
+        "explanation": "„A book“ heißt „ein Buch“. In „a book“ bedeutet „a“: ein oder eine.",
+        "answerKind": "choice",
+        "options": [
+          "ein Buch",
+          "ein Stift",
+          "ein Tisch"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.english.5.round.school.solve.vorschule.a.v1",
+        "prompt": "Lies: „My bag is blue.“ Welche Farbe hat die Tasche?",
+        "hint": "„Bag“ heißt Tasche. Suche das Farbwort nach „is“.",
+        "answer": "blau",
+        "explanation": "„Blue“ heißt blau. „My bag is blue“ bedeutet: Meine Tasche ist blau.",
+        "answerKind": "choice",
+        "options": [
+          "blau",
+          "rot",
+          "grün"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.english.5.round.school.detect.vorschule.a.v1",
+        "prompt": "Milo liest „a pen“ und sagt „ein Buch“. Welche Übersetzung passt wirklich?",
+        "hint": "Mit diesem Gegenstand kannst du schreiben.",
+        "answer": "ein Stift",
+        "explanation": "„A pen“ heißt „ein Stift“. „Ein Buch“ wäre „a book“.",
+        "answerKind": "choice",
+        "options": [
+          "ein Stift",
+          "ein Buch",
+          "ein Stuhl"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Eine Nachricht aus der Schule",
+        "text": "„My book is green.“ Das heißt: Mein Buch ist grün. „Book“ nennt den Gegenstand, „green“ seine Farbe. Lies erst den ganzen Satz. Suche dann die Information, nach der gefragt wird.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Deine Schultasche spricht",
+        "steps": [
+          "Lege ein Buch oder einen Stift vor dich.",
+          "Zeige darauf und sage „a book“ oder „a pen“.",
+          "Zeichne den Gegenstand und schreibe das englische Wort dazu."
+        ],
+        "check": "Buch = book; Stift = pen. Du kannst die Wörter mit dem Beispiel vergleichen. Dein Sprechen wird hier nicht automatisch geprüft."
+      }
+    },
+    {
+      "difficulty": "vorschule",
+      "variant": 1,
+      "recall": {
+        "id": "by.english.5.round.school.recall.vorschule.b.v1",
+        "prompt": "Noah geht zur Schule. Was bedeutet „a teacher“?",
+        "hint": "Diese Person hilft einer Klasse beim Lernen.",
+        "answer": "eine Lehrkraft",
+        "explanation": "„A teacher“ ist eine Lehrkraft, also ein Lehrer oder eine Lehrerin.",
+        "answerKind": "choice",
+        "options": [
+          "eine Tasche",
+          "ein Spiel",
+          "eine Lehrkraft"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.english.5.round.school.solve.vorschule.b.v1",
+        "prompt": "Lies: „I like music.“ Was mag das Kind?",
+        "hint": "„I like“ bedeutet „Ich mag“. Welches Wort folgt darauf?",
+        "answer": "Musik",
+        "explanation": "„Music“ heißt Musik. Das Kind sagt: Ich mag Musik.",
+        "answerKind": "choice",
+        "options": [
+          "Sport",
+          "Mathematik",
+          "Musik"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.english.5.round.school.detect.vorschule.b.v1",
+        "prompt": "Milo übersetzt „school“ mit „Stuhl“. Was bedeutet „school“ wirklich?",
+        "hint": "Achte auf das ganze Wort. Es bezeichnet einen Ort zum Lernen.",
+        "answer": "Schule",
+        "explanation": "„School“ heißt Schule. „Stuhl“ heißt „chair“. Ähnlich klingende Wörter können etwas anderes bedeuten.",
+        "answerKind": "choice",
+        "options": [
+          "Stuhl",
+          "Buch",
+          "Schule"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Eine Nachricht aus der Schule",
+        "text": "„My book is green.“ Das heißt: Mein Buch ist grün. „Book“ nennt den Gegenstand, „green“ seine Farbe. Lies erst den ganzen Satz. Suche dann die Information, nach der gefragt wird.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Deine Schultasche spricht",
+        "steps": [
+          "Lege ein Buch oder einen Stift vor dich.",
+          "Zeige darauf und sage „a book“ oder „a pen“.",
+          "Zeichne den Gegenstand und schreibe das englische Wort dazu."
+        ],
+        "check": "Buch = book; Stift = pen. Du kannst die Wörter mit dem Beispiel vergleichen. Dein Sprechen wird hier nicht automatisch geprüft."
+      }
+    },
+    {
+      "difficulty": "vorschule",
+      "variant": 2,
+      "recall": {
+        "id": "by.english.5.round.school.recall.vorschule.c.v1",
+        "prompt": "Emma sucht ihren Klassenraum. Was bedeutet „a door“?",
+        "hint": "Du öffnest sie, um in einen Raum zu gehen.",
+        "answer": "eine Tür",
+        "explanation": "„A door“ heißt „eine Tür“. „A“ kann auf Deutsch ein oder eine bedeuten.",
+        "answerKind": "choice",
+        "options": [
+          "ein Heft",
+          "eine Tür",
+          "ein Fenster"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.english.5.round.school.solve.vorschule.c.v1",
+        "prompt": "Lies: „My pencil is red.“ Welche Farbe hat der Bleistift?",
+        "hint": "„Pencil“ heißt Bleistift. „Red“ ist ein Farbwort.",
+        "answer": "rot",
+        "explanation": "„Red“ heißt rot. Der Satz bedeutet: Mein Bleistift ist rot.",
+        "answerKind": "choice",
+        "options": [
+          "gelb",
+          "rot",
+          "blau"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.english.5.round.school.detect.vorschule.c.v1",
+        "prompt": "Milo liest „a chair“ und zeigt auf ein Fenster. Worauf sollte er zeigen?",
+        "hint": "Auf diesem Gegenstand kannst du sitzen.",
+        "answer": "auf einen Stuhl",
+        "explanation": "„A chair“ heißt „ein Stuhl“. „Ein Fenster“ heißt „a window“.",
+        "answerKind": "choice",
+        "options": [
+          "auf eine Tasche",
+          "auf einen Stuhl",
+          "auf ein Fenster"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Eine Nachricht aus der Schule",
+        "text": "„My book is green.“ Das heißt: Mein Buch ist grün. „Book“ nennt den Gegenstand, „green“ seine Farbe. Lies erst den ganzen Satz. Suche dann die Information, nach der gefragt wird.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Deine Schultasche spricht",
+        "steps": [
+          "Lege ein Buch oder einen Stift vor dich.",
+          "Zeige darauf und sage „a book“ oder „a pen“.",
+          "Zeichne den Gegenstand und schreibe das englische Wort dazu."
+        ],
+        "check": "Buch = book; Stift = pen. Du kannst die Wörter mit dem Beispiel vergleichen. Dein Sprechen wird hier nicht automatisch geprüft."
+      }
+    },
+    {
+      "difficulty": "koenner",
+      "variant": 0,
+      "recall": {
+        "id": "by.english.5.round.school.recall.koenner.a.v1",
+        "prompt": "Ergänze: „Lina ___ to school every day.“ Welche Form von „walk“ passt?",
+        "hint": "„Lina“ kannst du durch „she“ ersetzen. Bei he, she und it bekommt das Verb im Simple Present meist ein -s.",
+        "answer": "walks",
+        "explanation": "„Lina walks to school every day.“ Simple Present beschreibt hier eine Gewohnheit. Bei she steht „walks“.",
+        "answerKind": "choice",
+        "options": [
+          "walks",
+          "walk",
+          "walking"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.english.5.round.school.solve.koenner.a.v1",
+        "prompt": "Lies: „Lina likes art. Ben likes music.“ Who likes music? (Wer mag Musik?)",
+        "hint": "Lies beide kurzen Sätze. Suche die Person direkt vor „likes music“.",
+        "answer": "Ben",
+        "explanation": "„Ben likes music“ heißt: Ben mag Musik. Lina mag Kunst.",
+        "answerKind": "choice",
+        "options": [
+          "Ben",
+          "Lina",
+          "Beide"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.english.5.round.school.detect.koenner.a.v1",
+        "prompt": "Milo schreibt: „She play football every Friday.“ Welcher Satz ist richtig?",
+        "hint": "„Every Friday“ heißt jeden Freitag. Bei „she“ braucht das Verb im Simple Present meist ein -s.",
+        "answer": "She plays football every Friday.",
+        "explanation": "Richtig ist „She plays football every Friday.“ Bei he, she und it steht hier „plays“.",
+        "answerKind": "choice",
+        "options": [
+          "She plays football every Friday.",
+          "She play football every Friday.",
+          "She playing football every Friday."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Was jeden Tag passiert",
+        "text": "„I read after school. Tom reads after school.“ Beide lesen nach der Schule. Für Gewohnheiten nutzen wir das Simple Present, die einfache Gegenwartsform. Bei he, she und it bekommt das Verb meist ein -s: Tom reads. „After school“ heißt nach der Schule.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Erzähl von deinem Schultag",
+        "steps": [
+          "Denke an eine Tätigkeit nach der Schule.",
+          "Sage zum Beispiel „I read after school.“",
+          "Erzähle dann von einer erfundenen Person: „Sam reads after school.“"
+        ],
+        "check": "Bei I heißt es read; bei Sam (he oder she) heißt es reads. Du kannst auch „I play / Sam plays“ verwenden. Freie Sätze werden hier nicht automatisch geprüft."
+      }
+    },
+    {
+      "difficulty": "koenner",
+      "variant": 1,
+      "recall": {
+        "id": "by.english.5.round.school.recall.koenner.b.v1",
+        "prompt": "Ergänze: „Noah ___ his bag in the morning.“ Welche Form von „pack“ passt?",
+        "hint": "„Noah“ kannst du durch „he“ ersetzen. Bei he, she und it bekommt das Verb im Simple Present meist ein -s.",
+        "answer": "packs",
+        "explanation": "„Noah packs his bag in the morning.“ Er packt seine Tasche am Morgen. Bei he steht „packs“.",
+        "answerKind": "choice",
+        "options": [
+          "pack",
+          "packing",
+          "packs"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.english.5.round.school.solve.koenner.b.v1",
+        "prompt": "Lies: „Noah reads at home. Mia reads at school.“ Who reads at school? (Wer liest in der Schule?)",
+        "hint": "„At home“ heißt zu Hause; „at school“ heißt in der Schule.",
+        "answer": "Mia",
+        "explanation": "„Mia reads at school“ heißt: Mia liest in der Schule. Noah liest zu Hause.",
+        "answerKind": "choice",
+        "options": [
+          "Noah",
+          "Beide",
+          "Mia"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.english.5.round.school.detect.koenner.b.v1",
+        "prompt": "Milo schreibt: „He like art.“ Welcher Satz ist richtig?",
+        "hint": "Bei „he“ braucht das Verb im Simple Present meist ein -s.",
+        "answer": "He likes art.",
+        "explanation": "Richtig ist „He likes art.“ Der Satz bedeutet: Er mag Kunst.",
+        "answerKind": "choice",
+        "options": [
+          "He like art.",
+          "He liking art.",
+          "He likes art."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Was jeden Tag passiert",
+        "text": "„I read after school. Tom reads after school.“ Beide lesen nach der Schule. Für Gewohnheiten nutzen wir das Simple Present, die einfache Gegenwartsform. Bei he, she und it bekommt das Verb meist ein -s: Tom reads. „After school“ heißt nach der Schule.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Erzähl von deinem Schultag",
+        "steps": [
+          "Denke an eine Tätigkeit nach der Schule.",
+          "Sage zum Beispiel „I read after school.“",
+          "Erzähle dann von einer erfundenen Person: „Sam reads after school.“"
+        ],
+        "check": "Bei I heißt es read; bei Sam (he oder she) heißt es reads. Du kannst auch „I play / Sam plays“ verwenden. Freie Sätze werden hier nicht automatisch geprüft."
+      }
+    },
+    {
+      "difficulty": "koenner",
+      "variant": 2,
+      "recall": {
+        "id": "by.english.5.round.school.recall.koenner.c.v1",
+        "prompt": "Ergänze: „Emma ___ a book after school.“ Welche Form von „read“ passt?",
+        "hint": "„Emma“ kannst du durch „she“ ersetzen. Bei he, she und it bekommt das Verb im Simple Present meist ein -s.",
+        "answer": "reads",
+        "explanation": "„Emma reads a book after school.“ Sie liest nach der Schule ein Buch. Bei she steht „reads“.",
+        "answerKind": "choice",
+        "options": [
+          "reading",
+          "reads",
+          "read"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.english.5.round.school.solve.koenner.c.v1",
+        "prompt": "Lies: „Emma plays tennis on Monday. Sam plays tennis on Friday.“ Who plays on Friday? (Wer spielt am Freitag?)",
+        "hint": "„Monday“ heißt Montag; „Friday“ heißt Freitag.",
+        "answer": "Sam",
+        "explanation": "Sam spielt am Freitag Tennis. Emma spielt am Montag.",
+        "answerKind": "choice",
+        "options": [
+          "Beide",
+          "Sam",
+          "Emma"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.english.5.round.school.detect.koenner.c.v1",
+        "prompt": "Milo schreibt: „She walk to school.“ Welcher Satz ist richtig?",
+        "hint": "Bei „she“ braucht das Verb im Simple Present meist ein -s.",
+        "answer": "She walks to school.",
+        "explanation": "Richtig ist „She walks to school.“ Der Satz bedeutet: Sie geht zu Fuß zur Schule.",
+        "answerKind": "choice",
+        "options": [
+          "She walking to school.",
+          "She walks to school.",
+          "She walk to school."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Was jeden Tag passiert",
+        "text": "„I read after school. Tom reads after school.“ Beide lesen nach der Schule. Für Gewohnheiten nutzen wir das Simple Present, die einfache Gegenwartsform. Bei he, she und it bekommt das Verb meist ein -s: Tom reads. „After school“ heißt nach der Schule.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Erzähl von deinem Schultag",
+        "steps": [
+          "Denke an eine Tätigkeit nach der Schule.",
+          "Sage zum Beispiel „I read after school.“",
+          "Erzähle dann von einer erfundenen Person: „Sam reads after school.“"
+        ],
+        "check": "Bei I heißt es read; bei Sam (he oder she) heißt es reads. Du kannst auch „I play / Sam plays“ verwenden. Freie Sätze werden hier nicht automatisch geprüft."
+      }
+    },
+    {
+      "difficulty": "streber",
+      "variant": 0,
+      "recall": {
+        "id": "by.english.5.round.school.recall.streber.a.v1",
+        "prompt": "Ergänze: „Lina does not ___ football.“ Welche Form von „play“ passt?",
+        "hint": "„Does not“ verneint den Satz: nicht. Danach steht das Verb in seiner Grundform, also wie im Wörterbuch.",
+        "answer": "play",
+        "explanation": "„Lina does not play football.“ Nach „does not“ steht die Grundform „play“ ohne -s.",
+        "answerKind": "choice",
+        "options": [
+          "play",
+          "plays",
+          "playing"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.english.5.round.school.solve.streber.a.v1",
+        "prompt": "Lies: „Lina likes music. She does not like football. Her club meets on Tuesday.“ Welcher Satz passt zum Text? „Club“ heißt hier Gruppe; „meets“ heißt trifft sich.",
+        "hint": "Prüfe jede Aussage am Text. „Tuesday“ heißt Dienstag; „does not“ heißt nicht.",
+        "answer": "Linas Gruppe trifft sich am Dienstag.",
+        "explanation": "„Her club meets on Tuesday“ nennt den Dienstag. Lina mag Musik und mag Fußball nicht.",
+        "answerKind": "choice",
+        "options": [
+          "Linas Gruppe trifft sich am Dienstag.",
+          "Lina mag Fußball.",
+          "Linas Gruppe trifft sich am Freitag."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.english.5.round.school.detect.streber.a.v1",
+        "prompt": "Milo schreibt: „She does not likes art.“ Welcher Satz ist richtig?",
+        "hint": "Nach „does not“ steht die Grundform. Bei „like“ ist das die Form ohne -s.",
+        "answer": "She does not like art.",
+        "explanation": "Richtig ist „She does not like art.“ „Does“ trägt bereits die Form für she; „like“ bleibt ohne -s.",
+        "answerKind": "choice",
+        "options": [
+          "She does not like art.",
+          "She does not likes art.",
+          "She do not likes art."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Genau lesen: auch das kleine „not“ zählt",
+        "text": "„Tom likes art. He does not like tennis.“ Tom mag Kunst, aber kein Tennis. „Does not“ macht die Aussage negativ. Danach steht die Grundform: like ohne -s. Bei kurzen Texten prüfst du jede Aussage am passenden Satz.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Zwei Sätze über eine erfundene Person",
+        "steps": [
+          "Wähle eine erfundene Person und zwei Schulfächer.",
+          "Schreibe einen Satz mit likes und einen mit does not like.",
+          "Lies die Sätze laut und erkläre auf Deutsch, was die Person mag."
+        ],
+        "check": "Beispiel: „Kim likes music. Kim does not like art.“ Nach does not steht like ohne -s. Freie Sätze und Aussprache werden hier nicht automatisch geprüft."
+      }
+    },
+    {
+      "difficulty": "streber",
+      "variant": 1,
+      "recall": {
+        "id": "by.english.5.round.school.recall.streber.b.v1",
+        "prompt": "Ergänze: „Noah does not ___ to school.“ Welche Form von „walk“ passt?",
+        "hint": "Nach „does not“ steht das Verb in seiner Grundform, also wie im Wörterbuch.",
+        "answer": "walk",
+        "explanation": "„Noah does not walk to school.“ Er geht nicht zu Fuß zur Schule. Nach „does not“ steht „walk“. ",
+        "answerKind": "choice",
+        "options": [
+          "walks",
+          "walking",
+          "walk"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.english.5.round.school.solve.streber.b.v1",
+        "prompt": "Lies: „Noah goes to school by bus. His sister walks. They both like art.“ Welcher Satz passt zum Text? „By bus“ heißt mit dem Bus; „both“ heißt beide.",
+        "hint": "Achte darauf, auf wen sich jeder Satz bezieht. „His sister“ heißt seine Schwester.",
+        "answer": "Noah und seine Schwester mögen Kunst.",
+        "explanation": "„They both like art“ sagt, dass beide Kunst mögen. Noah fährt mit dem Bus; seine Schwester geht zu Fuß.",
+        "answerKind": "choice",
+        "options": [
+          "Noah geht zu Fuß zur Schule.",
+          "Seine Schwester fährt mit dem Bus.",
+          "Noah und seine Schwester mögen Kunst."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.english.5.round.school.detect.streber.b.v1",
+        "prompt": "Milo schreibt: „He does not reads at school.“ Welcher Satz ist richtig?",
+        "hint": "Nach „does not“ steht die Grundform des Verbs.",
+        "answer": "He does not read at school.",
+        "explanation": "Richtig ist „He does not read at school.“ Nach „does not“ steht „read“ ohne -s.",
+        "answerKind": "choice",
+        "options": [
+          "He does not reads at school.",
+          "He do not reads at school.",
+          "He does not read at school."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Genau lesen: auch das kleine „not“ zählt",
+        "text": "„Tom likes art. He does not like tennis.“ Tom mag Kunst, aber kein Tennis. „Does not“ macht die Aussage negativ. Danach steht die Grundform: like ohne -s. Bei kurzen Texten prüfst du jede Aussage am passenden Satz.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Zwei Sätze über eine erfundene Person",
+        "steps": [
+          "Wähle eine erfundene Person und zwei Schulfächer.",
+          "Schreibe einen Satz mit likes und einen mit does not like.",
+          "Lies die Sätze laut und erkläre auf Deutsch, was die Person mag."
+        ],
+        "check": "Beispiel: „Kim likes music. Kim does not like art.“ Nach does not steht like ohne -s. Freie Sätze und Aussprache werden hier nicht automatisch geprüft."
+      }
+    },
+    {
+      "difficulty": "streber",
+      "variant": 2,
+      "recall": {
+        "id": "by.english.5.round.school.recall.streber.c.v1",
+        "prompt": "Ergänze: „Emma does not ___ her bag at night.“ Welche Form von „pack“ passt?",
+        "hint": "Nach „does not“ steht das Verb in seiner Grundform. „At night“ heißt nachts.",
+        "answer": "pack",
+        "explanation": "„Emma does not pack her bag at night.“ Nach „does not“ steht „pack“ ohne -s.",
+        "answerKind": "choice",
+        "options": [
+          "packing",
+          "pack",
+          "packs"
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.english.5.round.school.solve.streber.c.v1",
+        "prompt": "Lies: „Emma reads on Monday. She plays tennis on Friday. Her friend Jo does not play tennis.“ Welcher Satz passt zum Text?",
+        "hint": "„Monday“ heißt Montag; „Friday“ heißt Freitag. Ordne jeder Person ihre Tätigkeit zu.",
+        "answer": "Emma spielt am Freitag Tennis.",
+        "explanation": "Im zweiten Satz steht: Sie spielt am Freitag Tennis. „She“ meint Emma. Jo spielt kein Tennis.",
+        "answerKind": "choice",
+        "options": [
+          "Emma liest am Freitag.",
+          "Emma spielt am Freitag Tennis.",
+          "Jo spielt Tennis."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.english.5.round.school.detect.streber.c.v1",
+        "prompt": "Milo schreibt: „She does not walks home.“ Welcher Satz ist richtig?",
+        "hint": "Nach „does not“ steht die Grundform des Verbs.",
+        "answer": "She does not walk home.",
+        "explanation": "Richtig ist „She does not walk home.“ „Walk“ bleibt nach „does not“ ohne -s.",
+        "answerKind": "choice",
+        "options": [
+          "She do not walks home.",
+          "She does not walk home.",
+          "She does not walks home."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Genau lesen: auch das kleine „not“ zählt",
+        "text": "„Tom likes art. He does not like tennis.“ Tom mag Kunst, aber kein Tennis. „Does not“ macht die Aussage negativ. Danach steht die Grundform: like ohne -s. Bei kurzen Texten prüfst du jede Aussage am passenden Satz.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Zwei Sätze über eine erfundene Person",
+        "steps": [
+          "Wähle eine erfundene Person und zwei Schulfächer.",
+          "Schreibe einen Satz mit likes und einen mit does not like.",
+          "Lies die Sätze laut und erkläre auf Deutsch, was die Person mag."
+        ],
+        "check": "Beispiel: „Kim likes music. Kim does not like art.“ Nach does not steht like ohne -s. Freie Sätze und Aussprache werden hier nicht automatisch geprüft."
+      }
+    }
+  ],
+  "foreignLanguageSequence": 1
+}

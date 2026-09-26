@@ -112,6 +112,7 @@ function DiscoveryArt() {
 
 export default function App() {
   const [view, setView] = useState<View>('subjects');
+  const [missionTopic, setMissionTopic] = useState<string>();
   const [selected, setSelected] = useState<SubjectId>('mathematics');
   const [profileVersion, setProfileVersion] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -283,7 +284,10 @@ export default function App() {
             <>
               <MissionCard
                 profileVersion={profileVersion}
-                onOpen={() => navigate('mission')}
+                onOpen={(topicId) => {
+                  setMissionTopic(topicId);
+                  navigate('mission');
+                }}
               />
               <SubjectLibrary
                 subjects={subjects}
@@ -294,7 +298,10 @@ export default function App() {
           ) : view === 'learn' ? (
             <LearningPanel subject={selected} profileVersion={profileVersion} />
           ) : view === 'mission' ? (
-            <MissionPanel profileVersion={profileVersion} />
+            <MissionPanel
+              profileVersion={profileVersion}
+              topicId={missionTopic}
+            />
           ) : view === 'multiplication' ? (
             <MultiplicationPanel profileVersion={profileVersion} />
           ) : view === 'vocabulary' ? (

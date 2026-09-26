@@ -1,0 +1,579 @@
+{
+  "id": "by.nature.5.round.research.v1",
+  "title": "Auf Forschertour: genau hinschauen",
+  "description": "Beobachte Pflanzen, vergleiche Messwerte und plane faire Versuche auf Papier.",
+  "subject": "nature",
+  "grade": 5,
+  "competencyId": "by.nature.5.round.research.methods",
+  "source": "Eigene Lernwelt-Aufgaben nach https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym · NT5 2.1 Naturwissenschaftlicher Erkenntnisweg und Arbeitsweisen",
+  "curriculumVersion": "LehrplanPLUS Gymnasium Bayern · abgerufen 26.09.2026",
+  "variants": [
+    {
+      "difficulty": "vorschule",
+      "variant": 0,
+      "recall": {
+        "id": "by.nature.5.round.research.recall.vorschule.a.v1",
+        "prompt": "Du siehst auf einem Blatt drei braune Flecken. Welcher Satz beschreibt nur deine Beobachtung?",
+        "hint": "Eine Beobachtung nennt, was du tatsächlich siehst oder misst. Eine Erklärung ist erst eine Vermutung.",
+        "answer": "Das Blatt hat drei braune Flecken.",
+        "explanation": "Drei braune Flecken kannst du sehen und zählen. Warum sie da sind, weißt du damit noch nicht.",
+        "answerKind": "choice",
+        "options": [
+          "Das Blatt hat drei braune Flecken.",
+          "Dem Blatt geht es schlecht.",
+          "Das Blatt braucht bestimmt Wasser."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.nature.5.round.research.solve.vorschule.a.v1",
+        "prompt": "Lina misst eine Pflanze: am Montag 4 cm, am Freitag 7 cm. Was zeigen ihre Messwerte?",
+        "hint": "Vergleiche die Höhe am Anfang mit der Höhe am Ende.",
+        "answer": "Die Pflanze ist 3 cm höher geworden.",
+        "explanation": "7 cm − 4 cm = 3 cm. Die gemessene Höhe hat um 3 cm zugenommen.",
+        "answerKind": "choice",
+        "options": [
+          "Die Pflanze ist 3 cm höher geworden.",
+          "Die Pflanze ist 7 cm höher geworden.",
+          "Die Pflanze ist kleiner geworden."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.nature.5.round.research.detect.vorschule.a.v1",
+        "prompt": "Milo sieht ein gelbes Blatt und sagt: „Die Pflanze hat sicher zu wenig Wasser.“ Was weiß er bisher sicher?",
+        "hint": "Die Farbe kann Milo sehen. Die Ursache müsste er erst untersuchen.",
+        "answer": "Das Blatt ist gelb.",
+        "explanation": "Sicher beobachtet ist die gelbe Farbe. Wassermangel ist nur eine mögliche Erklärung.",
+        "answerKind": "choice",
+        "options": [
+          "Das Blatt ist gelb.",
+          "Die Pflanze hat zu wenig Wasser.",
+          "Die Pflanze bekommt zu viel Licht."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Erst beobachten, dann erklären",
+        "text": "„Die Pflanze ist 8 cm hoch“ ist eine Messbeobachtung. „Sie ist wegen des Wassers gewachsen“ ist eine Erklärung, die wir erst prüfen müssen. Notiere genau, was du siehst oder misst. Eine Vermutung ist eine mögliche Erklärung, die noch untersucht wird.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Dein Forscherblick",
+        "steps": [
+          "Betrachte ein bereits abgefallenes Blatt oder eine Zimmerpflanze, ohne sie zu beschädigen.",
+          "Zeichne, was du siehst. Schreibe zwei Beobachtungen dazu, etwa Farbe und Zahl der Blätter.",
+          "Erkläre jemandem, was du beobachtet hast und was du nur vermutest."
+        ],
+        "check": "Eine Beobachtung ist zum Beispiel „Das Blatt hat zwei braune Flecken“. „Es ist krank“ wäre eine Vermutung. Deine Zeichnung wird hier nicht automatisch bewertet."
+      }
+    },
+    {
+      "difficulty": "vorschule",
+      "variant": 1,
+      "recall": {
+        "id": "by.nature.5.round.research.recall.vorschule.b.v1",
+        "prompt": "Du zählst an einem Zweig fünf Blätter. Welcher Satz beschreibt nur deine Beobachtung?",
+        "hint": "Eine Beobachtung nennt etwas, das du sehen, zählen oder messen kannst.",
+        "answer": "Am Zweig sind fünf Blätter.",
+        "explanation": "Fünf Blätter kannst du zählen. Gefühle und „am besten“ hast du damit nicht beobachtet.",
+        "answerKind": "choice",
+        "options": [
+          "Der Baum ist glücklich.",
+          "Der Baum wächst am besten.",
+          "Am Zweig sind fünf Blätter."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.nature.5.round.research.solve.vorschule.b.v1",
+        "prompt": "Noah misst einen Keimling: am Montag 2 cm, am Freitag 6 cm. Was zeigen seine Messwerte? Ein Keimling ist eine junge Pflanze.",
+        "hint": "Ziehe die Anfangshöhe von der Endhöhe ab.",
+        "answer": "Der Keimling ist 4 cm höher geworden.",
+        "explanation": "6 cm − 2 cm = 4 cm. Der Keimling ist nach diesen Messungen 4 cm höher.",
+        "answerKind": "choice",
+        "options": [
+          "Der Keimling ist 6 cm höher geworden.",
+          "Der Keimling ist gleich hoch geblieben.",
+          "Der Keimling ist 4 cm höher geworden."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.nature.5.round.research.detect.vorschule.b.v1",
+        "prompt": "Milo zählt zwei geöffnete Blüten und sagt: „Die Pflanze mag diesen Platz.“ Was hat er wirklich beobachtet?",
+        "hint": "Trenne das, was du siehst, von deiner Erklärung.",
+        "answer": "Zwei Blüten sind geöffnet.",
+        "explanation": "Die geöffneten Blüten sind sichtbar und zählbar. Daraus folgt nicht, dass dieser Platz für jede Pflanze am besten ist.",
+        "answerKind": "choice",
+        "options": [
+          "Die Pflanze mag den Platz.",
+          "Der Platz ist für jede Pflanze am besten.",
+          "Zwei Blüten sind geöffnet."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Erst beobachten, dann erklären",
+        "text": "„Die Pflanze ist 8 cm hoch“ ist eine Messbeobachtung. „Sie ist wegen des Wassers gewachsen“ ist eine Erklärung, die wir erst prüfen müssen. Notiere genau, was du siehst oder misst. Eine Vermutung ist eine mögliche Erklärung, die noch untersucht wird.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Dein Forscherblick",
+        "steps": [
+          "Betrachte ein bereits abgefallenes Blatt oder eine Zimmerpflanze, ohne sie zu beschädigen.",
+          "Zeichne, was du siehst. Schreibe zwei Beobachtungen dazu, etwa Farbe und Zahl der Blätter.",
+          "Erkläre jemandem, was du beobachtet hast und was du nur vermutest."
+        ],
+        "check": "Eine Beobachtung ist zum Beispiel „Das Blatt hat zwei braune Flecken“. „Es ist krank“ wäre eine Vermutung. Deine Zeichnung wird hier nicht automatisch bewertet."
+      }
+    },
+    {
+      "difficulty": "vorschule",
+      "variant": 2,
+      "recall": {
+        "id": "by.nature.5.round.research.recall.vorschule.c.v1",
+        "prompt": "Du misst ein Blatt mit dem Lineal: 6 cm lang. Welcher Satz ist eine Messbeobachtung?",
+        "hint": "Eine Messbeobachtung enthält eine gemessene Größe, hier die Länge in cm.",
+        "answer": "Das Blatt ist 6 cm lang.",
+        "explanation": "6 cm ist eine gemessene Länge. „Schön“ ist ein Urteil; was ein Blatt will, lässt sich so nicht messen.",
+        "answerKind": "choice",
+        "options": [
+          "Das Blatt will größer werden.",
+          "Das Blatt ist 6 cm lang.",
+          "Das Blatt ist sehr schön."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.nature.5.round.research.solve.vorschule.c.v1",
+        "prompt": "Emma misst eine Pflanze: am Montag 5 cm, am Freitag 9 cm. Was zeigen ihre Messwerte?",
+        "hint": "Ziehe die kleinere Höhe von der größeren ab.",
+        "answer": "Die Pflanze ist 4 cm höher geworden.",
+        "explanation": "9 cm − 5 cm = 4 cm. Addieren würde nicht zeigen, wie viel die Höhe zugenommen hat.",
+        "answerKind": "choice",
+        "options": [
+          "Die Pflanze ist 14 cm höher geworden.",
+          "Die Pflanze ist 4 cm höher geworden.",
+          "Die Pflanze ist 9 cm höher geworden."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.nature.5.round.research.detect.vorschule.c.v1",
+        "prompt": "Milo sieht Wassertropfen auf einem Blatt und sagt: „Es hat geregnet.“ Was hat er direkt beobachtet?",
+        "hint": "Tropfen kannst du sehen. Woher sie kommen, ist damit noch offen.",
+        "answer": "Auf dem Blatt sind Wassertropfen.",
+        "explanation": "Direkt sichtbar sind die Wassertropfen. Regen und Gießen sind mögliche Erklärungen, aber keine sichere Beobachtung.",
+        "answerKind": "choice",
+        "options": [
+          "Jemand hat die Pflanze gegossen.",
+          "Auf dem Blatt sind Wassertropfen.",
+          "Es hat geregnet."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Erst beobachten, dann erklären",
+        "text": "„Die Pflanze ist 8 cm hoch“ ist eine Messbeobachtung. „Sie ist wegen des Wassers gewachsen“ ist eine Erklärung, die wir erst prüfen müssen. Notiere genau, was du siehst oder misst. Eine Vermutung ist eine mögliche Erklärung, die noch untersucht wird.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Dein Forscherblick",
+        "steps": [
+          "Betrachte ein bereits abgefallenes Blatt oder eine Zimmerpflanze, ohne sie zu beschädigen.",
+          "Zeichne, was du siehst. Schreibe zwei Beobachtungen dazu, etwa Farbe und Zahl der Blätter.",
+          "Erkläre jemandem, was du beobachtet hast und was du nur vermutest."
+        ],
+        "check": "Eine Beobachtung ist zum Beispiel „Das Blatt hat zwei braune Flecken“. „Es ist krank“ wäre eine Vermutung. Deine Zeichnung wird hier nicht automatisch bewertet."
+      }
+    },
+    {
+      "difficulty": "koenner",
+      "variant": 0,
+      "recall": {
+        "id": "by.nature.5.round.research.recall.koenner.a.v1",
+        "prompt": "Du willst prüfen, ob Licht das Wachstum beeinflusst. Zwei gleich große Pflanzen derselben Art stehen gleich warm und bekommen gleich viel Wasser. Was soll sich unterscheiden?",
+        "hint": "Bei einem fairen Vergleich änderst du nur den Einfluss, den du untersuchen willst.",
+        "answer": "Die Lichtmenge.",
+        "explanation": "Die Lichtmenge ist die untersuchte Bedingung. Die anderen Bedingungen bleiben möglichst gleich.",
+        "answerKind": "choice",
+        "options": [
+          "Die Lichtmenge.",
+          "Die Pflanzenart und das Wasser.",
+          "Die Topfgröße und die Wärme."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.nature.5.round.research.solve.koenner.a.v1",
+        "prompt": "Zwei anfangs gleich hohe Pflanzen werden verglichen. A wächst um 3 cm, B um 1 cm. Welche Aussage passt zu den Messwerten?",
+        "hint": "Vergleiche den Zuwachs: 3 cm und 1 cm.",
+        "answer": "A ist 2 cm mehr gewachsen als B.",
+        "explanation": "3 cm − 1 cm = 2 cm. Das ist der Unterschied im gemessenen Zuwachs.",
+        "answerKind": "choice",
+        "options": [
+          "A ist 2 cm mehr gewachsen als B.",
+          "A ist 4 cm mehr gewachsen als B.",
+          "B ist mehr gewachsen als A."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.nature.5.round.research.detect.koenner.a.v1",
+        "prompt": "Milo vergleicht eine Pflanze hell und warm mit einer Pflanze dunkel und kühl. Er sagt: „Der Unterschied kommt nur vom Licht.“ Was ist das Problem?",
+        "hint": "Für den Einfluss von Licht sollten die anderen Bedingungen möglichst gleich bleiben.",
+        "answer": "Licht und Temperatur sind verschieden.",
+        "explanation": "Auch die Temperatur unterscheidet sich. Deshalb kann Milo den Unterschied nicht allein dem Licht zuordnen.",
+        "answerKind": "choice",
+        "options": [
+          "Licht und Temperatur sind verschieden.",
+          "Beide Pflanzen haben Blätter.",
+          "Er hat zwei Pflanzen benutzt."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Ein fairer Vergleich",
+        "text": "Wir wollen wissen, ob Licht das Wachstum beeinflusst. Wir vergleichen gleich große Pflanzen derselben Art. Licht ist verschieden; Wasser, Wärme, Erde und Messzeit bleiben möglichst gleich. Wir messen die Höhe vorher und nachher. Der Zuwachs ist Endhöhe minus Anfangshöhe.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Plane auf Papier",
+        "steps": [
+          "Zeichne zwei gleich große Pflanzen derselben Art.",
+          "Plane einen Vergleich zur Lichtmenge. Schreibe auf, was verschieden und was gleich bleiben soll.",
+          "Erkläre, wann und in welcher Einheit du die Höhe messen würdest. Du musst keinen Versuch durchführen."
+        ],
+        "check": "Nur die Lichtmenge soll verschieden sein. Wasser, Temperatur, Erde und Messzeiten sollen möglichst gleich sein. Miss die Höhe vorher und nachher in cm. Dein Plan wird hier nicht automatisch bewertet."
+      }
+    },
+    {
+      "difficulty": "koenner",
+      "variant": 1,
+      "recall": {
+        "id": "by.nature.5.round.research.recall.koenner.b.v1",
+        "prompt": "Du willst prüfen, ob die Wassermenge das Wachstum beeinflusst. Zwei gleich große Pflanzen derselben Art stehen gleich hell und warm. Was soll sich unterscheiden?",
+        "hint": "Ändere nur die Bedingung, deren Einfluss du untersuchen willst.",
+        "answer": "Die Wassermenge.",
+        "explanation": "Die Wassermenge ist die untersuchte Bedingung. Pflanzenart, Licht und Wärme bleiben möglichst gleich.",
+        "answerKind": "choice",
+        "options": [
+          "Die Pflanzenart und das Licht.",
+          "Das Licht und die Wärme.",
+          "Die Wassermenge."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.nature.5.round.research.solve.koenner.b.v1",
+        "prompt": "Zwei anfangs gleich hohe Pflanzen werden verglichen. A wächst um 2 cm, B um 5 cm. Welche Aussage passt zu den Messwerten?",
+        "hint": "Vergleiche den Zuwachs von B mit dem von A.",
+        "answer": "B ist 3 cm mehr gewachsen als A.",
+        "explanation": "5 cm − 2 cm = 3 cm. B hat einen um 3 cm größeren Zuwachs.",
+        "answerKind": "choice",
+        "options": [
+          "A ist mehr gewachsen als B.",
+          "B ist 7 cm mehr gewachsen als A.",
+          "B ist 3 cm mehr gewachsen als A."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.nature.5.round.research.detect.koenner.b.v1",
+        "prompt": "Milo gibt einer Bohne viel Wasser und einer Kresse wenig Wasser. Er will nur die Wassermenge vergleichen. Was ist das Problem?",
+        "hint": "Bohne und Kresse können unterschiedlich wachsen. Für den Vergleich soll nur die Wassermenge verschieden sein.",
+        "answer": "Auch die Pflanzenarten sind verschieden.",
+        "explanation": "Die Pflanzenart ist ein weiterer Unterschied. Milo kann das Ergebnis nicht allein der Wassermenge zuordnen.",
+        "answerKind": "choice",
+        "options": [
+          "Beide Pflanzen bekommen Wasser.",
+          "Er notiert die Wassermenge.",
+          "Auch die Pflanzenarten sind verschieden."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Ein fairer Vergleich",
+        "text": "Wir wollen wissen, ob Licht das Wachstum beeinflusst. Wir vergleichen gleich große Pflanzen derselben Art. Licht ist verschieden; Wasser, Wärme, Erde und Messzeit bleiben möglichst gleich. Wir messen die Höhe vorher und nachher. Der Zuwachs ist Endhöhe minus Anfangshöhe.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Plane auf Papier",
+        "steps": [
+          "Zeichne zwei gleich große Pflanzen derselben Art.",
+          "Plane einen Vergleich zur Lichtmenge. Schreibe auf, was verschieden und was gleich bleiben soll.",
+          "Erkläre, wann und in welcher Einheit du die Höhe messen würdest. Du musst keinen Versuch durchführen."
+        ],
+        "check": "Nur die Lichtmenge soll verschieden sein. Wasser, Temperatur, Erde und Messzeiten sollen möglichst gleich sein. Miss die Höhe vorher und nachher in cm. Dein Plan wird hier nicht automatisch bewertet."
+      }
+    },
+    {
+      "difficulty": "koenner",
+      "variant": 2,
+      "recall": {
+        "id": "by.nature.5.round.research.recall.koenner.c.v1",
+        "prompt": "Du willst prüfen, ob die Temperatur das Wachstum beeinflusst. Zwei gleich große Pflanzen derselben Art bekommen gleich viel Licht und Wasser. Was soll sich unterscheiden?",
+        "hint": "Temperatur beschreibt, wie warm oder kalt es ist. Ändere nur diese Bedingung.",
+        "answer": "Die Temperatur.",
+        "explanation": "Nur die Temperatur soll verschieden sein. So lässt sich ihr möglicher Einfluss besser untersuchen.",
+        "answerKind": "choice",
+        "options": [
+          "Das Wasser und die Erde.",
+          "Die Temperatur.",
+          "Die Pflanzenart und das Licht."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.nature.5.round.research.solve.koenner.c.v1",
+        "prompt": "Zwei anfangs gleich hohe Pflanzen werden verglichen. A wächst um 6 cm, B um 2 cm. Welche Aussage passt zu den Messwerten?",
+        "hint": "Vergleiche den Zuwachs von A mit dem von B.",
+        "answer": "A ist 4 cm mehr gewachsen als B.",
+        "explanation": "6 cm − 2 cm = 4 cm. A hat einen um 4 cm größeren Zuwachs.",
+        "answerKind": "choice",
+        "options": [
+          "B ist 4 cm mehr gewachsen als A.",
+          "A ist 4 cm mehr gewachsen als B.",
+          "A ist 8 cm mehr gewachsen als B."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.nature.5.round.research.detect.koenner.c.v1",
+        "prompt": "Milo stellt eine Pflanze warm und gießt sie täglich. Die andere steht kühl und bekommt selten Wasser. Er will nur die Temperatur vergleichen. Was ist das Problem?",
+        "hint": "Suche neben der Temperatur noch eine veränderte Bedingung.",
+        "answer": "Auch die Wassermenge ist verschieden.",
+        "explanation": "Wärme und Wassermenge unterscheiden sich. Der Wachstumsunterschied lässt sich nicht allein der Temperatur zuordnen.",
+        "answerKind": "choice",
+        "options": [
+          "Er misst die Höhe.",
+          "Auch die Wassermenge ist verschieden.",
+          "Er benutzt Pflanzen derselben Art."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Ein fairer Vergleich",
+        "text": "Wir wollen wissen, ob Licht das Wachstum beeinflusst. Wir vergleichen gleich große Pflanzen derselben Art. Licht ist verschieden; Wasser, Wärme, Erde und Messzeit bleiben möglichst gleich. Wir messen die Höhe vorher und nachher. Der Zuwachs ist Endhöhe minus Anfangshöhe.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Plane auf Papier",
+        "steps": [
+          "Zeichne zwei gleich große Pflanzen derselben Art.",
+          "Plane einen Vergleich zur Lichtmenge. Schreibe auf, was verschieden und was gleich bleiben soll.",
+          "Erkläre, wann und in welcher Einheit du die Höhe messen würdest. Du musst keinen Versuch durchführen."
+        ],
+        "check": "Nur die Lichtmenge soll verschieden sein. Wasser, Temperatur, Erde und Messzeiten sollen möglichst gleich sein. Miss die Höhe vorher und nachher in cm. Dein Plan wird hier nicht automatisch bewertet."
+      }
+    },
+    {
+      "difficulty": "streber",
+      "variant": 0,
+      "recall": {
+        "id": "by.nature.5.round.research.recall.streber.a.v1",
+        "prompt": "Zwei Pflanzen sollen den Einfluss von Licht zeigen. Sie bekommen verschieden viel Licht und Wasser. Warum reicht dieser Vergleich nicht?",
+        "hint": "Für eine klare Zuordnung soll möglichst nur die untersuchte Bedingung verschieden sein.",
+        "answer": "Zwei Bedingungen ändern sich zugleich.",
+        "explanation": "Licht und Wasser können beide Einfluss haben. Der Vergleich trennt ihre Einflüsse nicht.",
+        "answerKind": "choice",
+        "options": [
+          "Zwei Bedingungen ändern sich zugleich.",
+          "Licht kann man nie untersuchen.",
+          "Pflanzen kann man nicht messen."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.nature.5.round.research.solve.streber.a.v1",
+        "prompt": "Eine Pflanze wächst bei viel Licht um 3 cm, eine andere bei wenig Licht um 5 cm. Alle übrigen Bedingungen sind möglichst gleich. Was zeigen diese Messwerte?",
+        "hint": "Unterscheide die Beobachtung in diesem Versuch von einer Regel für alle Pflanzen.",
+        "answer": "In diesem Versuch wuchs die zweite Pflanze stärker.",
+        "explanation": "Die zweite Pflanze hat den größeren gemessenen Zuwachs. Zwei Pflanzen belegen keine allgemeine Regel für alle Arten und Bedingungen.",
+        "answerKind": "choice",
+        "options": [
+          "In diesem Versuch wuchs die zweite Pflanze stärker.",
+          "Wenig Licht ist für jede Pflanze immer besser.",
+          "Licht hat auf Pflanzen nie einen Einfluss."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.nature.5.round.research.detect.streber.a.v1",
+        "prompt": "Milo misst eine Pflanze morgens und die andere erst drei Tage später. Er will ihren Zuwachs in derselben Zeit vergleichen. Was muss er ändern?",
+        "hint": "Ein fairer Vergleich braucht hier den gleichen Beginn und das gleiche Ende der Messzeit.",
+        "answer": "Beide über denselben Zeitraum messen.",
+        "explanation": "Der Zuwachs muss über gleich lange Zeiträume mit gemeinsamem Beginn und Ende bestimmt werden. Sonst kann die zusätzliche Zeit den Unterschied erklären.",
+        "answerKind": "choice",
+        "options": [
+          "Beide über denselben Zeitraum messen.",
+          "Bei jeder Pflanze eine andere Einheit verwenden.",
+          "Nur die größere Pflanze messen."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Was zeigt ein Versuch wirklich?",
+        "text": "Ein Vergleich prüft eine Vermutung. Wir ändern möglichst nur die untersuchte Bedingung und notieren alle Messwerte. Ein Ergebnis gilt zunächst für diesen Versuch. Wiederholungen mit mehreren Pflanzen machen es verlässlicher. Ein unerwartetes Ergebnis wird geprüft und bleibt im Protokoll, also in unseren Aufzeichnungen.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Prüfe einen Versuchsplan",
+        "steps": [
+          "Schreibe die Frage auf: Beeinflusst die Wassermenge den Zuwachs?",
+          "Zeichne zwei Gruppen mit jeweils mehreren gleich großen Pflanzen derselben Art. Plane gleiche Erde, Licht, Wärme und Messzeiten.",
+          "Notiere, dass nur die Wassermenge verschieden ist. Erkläre, warum du auch unerwartete Messwerte aufschreiben würdest. Es bleibt bei einem Plan auf Papier."
+        ],
+        "check": "Mehrere Pflanzen und Wiederholungen helfen, einzelne Unterschiede zu erkennen. Du brauchst Anfangs- und Endhöhen. Unerwartete Werte bleiben dokumentiert und werden geprüft. Dein Plan wird hier nicht automatisch bewertet."
+      }
+    },
+    {
+      "difficulty": "streber",
+      "variant": 1,
+      "recall": {
+        "id": "by.nature.5.round.research.recall.streber.b.v1",
+        "prompt": "Zwei Pflanzen sollen den Einfluss von Wasser zeigen. Sie bekommen verschieden viel Wasser und stehen verschieden warm. Warum reicht dieser Vergleich nicht?",
+        "hint": "Suche alle veränderten Bedingungen, nicht nur die Wassermenge.",
+        "answer": "Wasser und Temperatur unterscheiden sich.",
+        "explanation": "Der Vergleich ändert Wasser und Wärme zugleich. Ein Unterschied lässt sich nicht allein dem Wasser zuordnen.",
+        "answerKind": "choice",
+        "options": [
+          "Mit zwei Pflanzen darf man nie vergleichen.",
+          "Temperatur lässt sich nicht messen.",
+          "Wasser und Temperatur unterscheiden sich."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.nature.5.round.research.solve.streber.b.v1",
+        "prompt": "Lina untersucht zwei gleich große Bohnenpflanzen. Mit mehr Wasser wächst A um 4 cm, B mit weniger Wasser um 2 cm. Alles andere ist möglichst gleich. Was zeigen diese Messwerte?",
+        "hint": "Die Messung beschreibt diese beiden Pflanzen unter diesen Bedingungen.",
+        "answer": "A hatte in diesem Versuch den größeren Zuwachs.",
+        "explanation": "A wuchs um 4 cm, B um 2 cm. Die Messung zeigt keine allgemeine Regel für jede Wassermenge oder jede Pflanze.",
+        "answerKind": "choice",
+        "options": [
+          "Mehr Wasser ist in jeder Menge immer besser.",
+          "Jede Bohnenpflanze wächst genau 4 cm.",
+          "A hatte in diesem Versuch den größeren Zuwachs."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.nature.5.round.research.detect.streber.b.v1",
+        "prompt": "Milo sagt nach einem Versuch mit zwei Bohnenpflanzen: „Für alle Pflanzen gilt mein Ergebnis.“ Was wäre ein sinnvoller nächster Schritt?",
+        "hint": "Einzelne Pflanzen können verschieden wachsen. Weitere Vergleiche helfen, das Ergebnis zu prüfen.",
+        "answer": "Mit mehreren Pflanzen wiederholen und Ergebnisse vergleichen.",
+        "explanation": "Wiederholungen zeigen, ob das Ergebnis erneut auftritt. Selbst dann muss man vorsichtig sein, bevor man es auf andere Arten überträgt.",
+        "answerKind": "choice",
+        "options": [
+          "Das Ergebnis ohne Prüfung für alle Pflanzen übernehmen.",
+          "Alle Messwerte weglassen.",
+          "Mit mehreren Pflanzen wiederholen und Ergebnisse vergleichen."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Was zeigt ein Versuch wirklich?",
+        "text": "Ein Vergleich prüft eine Vermutung. Wir ändern möglichst nur die untersuchte Bedingung und notieren alle Messwerte. Ein Ergebnis gilt zunächst für diesen Versuch. Wiederholungen mit mehreren Pflanzen machen es verlässlicher. Ein unerwartetes Ergebnis wird geprüft und bleibt im Protokoll, also in unseren Aufzeichnungen.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Prüfe einen Versuchsplan",
+        "steps": [
+          "Schreibe die Frage auf: Beeinflusst die Wassermenge den Zuwachs?",
+          "Zeichne zwei Gruppen mit jeweils mehreren gleich großen Pflanzen derselben Art. Plane gleiche Erde, Licht, Wärme und Messzeiten.",
+          "Notiere, dass nur die Wassermenge verschieden ist. Erkläre, warum du auch unerwartete Messwerte aufschreiben würdest. Es bleibt bei einem Plan auf Papier."
+        ],
+        "check": "Mehrere Pflanzen und Wiederholungen helfen, einzelne Unterschiede zu erkennen. Du brauchst Anfangs- und Endhöhen. Unerwartete Werte bleiben dokumentiert und werden geprüft. Dein Plan wird hier nicht automatisch bewertet."
+      }
+    },
+    {
+      "difficulty": "streber",
+      "variant": 2,
+      "recall": {
+        "id": "by.nature.5.round.research.recall.streber.c.v1",
+        "prompt": "Zwei Pflanzen sollen den Einfluss der Temperatur zeigen. Sie stehen verschieden warm und bekommen unterschiedlich viel Erde. Warum reicht dieser Vergleich nicht?",
+        "hint": "Für den Einfluss der Temperatur sollen andere Bedingungen möglichst gleich bleiben.",
+        "answer": "Temperatur und Erdmenge unterscheiden sich.",
+        "explanation": "Neben der Temperatur kann auch die verfügbare Erdmenge eine Rolle spielen. Beide wurden geändert.",
+        "answerKind": "choice",
+        "options": [
+          "Man darf keine Höhe messen.",
+          "Temperatur und Erdmenge unterscheiden sich.",
+          "Pflanzen wachsen nie unterschiedlich."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "solve": {
+        "id": "by.nature.5.round.research.solve.streber.c.v1",
+        "prompt": "Zwei gleich große Pflanzen stehen verschieden warm, sonst unter möglichst gleichen Bedingungen. A wächst um 2 cm, B ebenfalls um 2 cm. Welche Aussage passt?",
+        "hint": "Gleiche Messwerte in einem Versuch sind noch keine Regel für alle Temperaturen und Pflanzen.",
+        "answer": "Der gemessene Zuwachs war in diesem Versuch gleich.",
+        "explanation": "Beide Pflanzen wuchsen um 2 cm. Daraus folgt nicht, dass Temperatur allgemein keinen Einfluss hat.",
+        "answerKind": "choice",
+        "options": [
+          "Beide Pflanzen sind nicht gewachsen.",
+          "Der gemessene Zuwachs war in diesem Versuch gleich.",
+          "Temperatur hat auf keine Pflanze einen Einfluss."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "detect": {
+        "id": "by.nature.5.round.research.detect.streber.c.v1",
+        "prompt": "Milo findet einen unerwarteten Messwert. Er will ihn löschen, damit alle Zahlen zu seiner Vermutung passen. Was sollte er tun?",
+        "hint": "Eine Vermutung muss zu den Beobachtungen geprüft werden. Die Zahlen dürfen nicht passend gemacht werden.",
+        "answer": "Messwert behalten, Messung prüfen und erneut messen.",
+        "explanation": "Der Wert bleibt dokumentiert. Eine erneute Messung kann einen Messfehler aufdecken; auch eine falsche Vermutung ist möglich.",
+        "answerKind": "choice",
+        "options": [
+          "Einen passenden Wert erfinden.",
+          "Messwert behalten, Messung prüfen und erneut messen.",
+          "Jeden unerwarteten Wert sofort löschen."
+        ],
+        "unit": null,
+        "diagram": null
+      },
+      "discovery": {
+        "title": "Was zeigt ein Versuch wirklich?",
+        "text": "Ein Vergleich prüft eine Vermutung. Wir ändern möglichst nur die untersuchte Bedingung und notieren alle Messwerte. Ein Ergebnis gilt zunächst für diesen Versuch. Wiederholungen mit mehreren Pflanzen machen es verlässlicher. Ein unerwartetes Ergebnis wird geprüft und bleibt im Protokoll, also in unseren Aufzeichnungen.",
+        "diagram": null
+      },
+      "activity": {
+        "title": "Prüfe einen Versuchsplan",
+        "steps": [
+          "Schreibe die Frage auf: Beeinflusst die Wassermenge den Zuwachs?",
+          "Zeichne zwei Gruppen mit jeweils mehreren gleich großen Pflanzen derselben Art. Plane gleiche Erde, Licht, Wärme und Messzeiten.",
+          "Notiere, dass nur die Wassermenge verschieden ist. Erkläre, warum du auch unerwartete Messwerte aufschreiben würdest. Es bleibt bei einem Plan auf Papier."
+        ],
+        "check": "Mehrere Pflanzen und Wiederholungen helfen, einzelne Unterschiede zu erkennen. Du brauchst Anfangs- und Endhöhen. Unerwartete Werte bleiben dokumentiert und werden geprüft. Dein Plan wird hier nicht automatisch bewertet."
+      }
+    }
+  ]
+}

@@ -7,6 +7,9 @@ import {
   missionInitial,
   missionActive,
   missionCompleted,
+  missionOverview,
+  englishMissionMetadata,
+  natureMissionMetadata,
 } from '../test/mission-fixture';
 import type { MissionState } from '../domain/mission';
 vi.mock('../lib/desktop', () => ({
@@ -127,4 +130,58 @@ it('behält beim ersten Laden und Profilaktualisieren den Seitenfokus', async ()
   rerender(view(1));
   await screen.findByRole('button', { name: 'Runde fortsetzen' });
   expect(heading).toHaveFocus();
+});
+
+it('zeigt Themen und Fälligkeiten gemeinsam und setzt das gewählte Thema fort', async () => {
+  const user = userEvent.setup();
+  const onOpen = vi.fn();
+  vi.mocked(desktop.getMissionState).mockResolvedValue(missionOverview);
+  render(<MissionCard profileVersion={0} onOpen={onOpen} />);
+  expect(
+    await screen.findByRole('button', {
+      name: /Natur und Technik.*Wiederholung fällig/,
+    }),
+  ).toBeVisible();
+  await user.click(
+    screen.getByRole('button', { name: /Englisch.*Schritt 3 fortsetzen/ }),
+  );
+  expect(
+    screen.getByRole('heading', { name: englishMissionMetadata.title }),
+  ).toBeVisible();
+  await user.click(screen.getByRole('button', { name: 'Runde fortsetzen' }));
+  expect(onOpen).toHaveBeenCalledWith(englishMissionMetadata.id);
+  expect(desktop.startMission).not.toHaveBeenCalled();
+});
+it('behält das gewählte Thema beim fehlgeschlagenen Start und lädt den bestätigten Stand', async () => {
+  const user = userEvent.setup();
+  const onOpen = vi.fn();
+  vi.mocked(desktop.getMissionState).mockResolvedValue(missionOverview);
+  vi.mocked(desktop.startMission).mockRejectedValueOnce(
+    new Error('Speicherfehler'),
+  );
+  render(<MissionCard profileVersion={0} onOpen={onOpen} />);
+  const nature = await screen.findByRole('button', {
+    name: /Natur und Technik.*Wiederholung fällig/,
+  });
+  await user.click(nature);
+  await user.click(screen.getByRole('button', { name: 'Jetzt wiederholen' }));
+  expect(await screen.findByRole('alert')).toHaveTextContent('Speicherfehler');
+  expect(desktop.startMission).toHaveBeenCalledWith(
+    expect.objectContaining({ topicId: natureMissionMetadata.id }),
+  );
+  expect(
+    screen.getByRole('button', { name: /Englisch.*Schritt 3/ }),
+  ).toBeDisabled();
+  vi.mocked(desktop.getMissionState).mockResolvedValue({
+    ...missionOverview,
+    topics: missionOverview.topics.map((t) =>
+      t.metadata.id === natureMissionMetadata.id ? { ...t, activeStep: 0 } : t,
+    ),
+  });
+  await user.click(screen.getByRole('button', { name: 'Runde neu laden' }));
+  await user.click(
+    await screen.findByRole('button', { name: 'Runde fortsetzen' }),
+  );
+  expect(onOpen).toHaveBeenCalledWith(natureMissionMetadata.id);
+  expect(desktop.startMission).toHaveBeenCalledTimes(1);
 });

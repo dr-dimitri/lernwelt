@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import type { MissionStartInput, MissionState } from '../domain/mission';
+import {
+  missionSubjects,
+  type MissionStartInput,
+  type MissionState,
+} from '../domain/mission';
 import { desktop } from '../lib/desktop';
+import { difficulties } from '../domain/learning';
 import '../mission.css';
 
 export function missionDate(seconds: number) {
@@ -39,9 +44,10 @@ export default function MissionCard({
   onOpen,
 }: {
   profileVersion: number;
-  onOpen: () => void;
+  onOpen: (topicId: string) => void;
 }) {
   const [state, setState] = useState<MissionState | null>(null);
+  const [topicId, setTopicId] = useState<string>();
   const [busy, setBusy] = useState(true);
   const [error, setError] = useState('');
   const [reload, setReload] = useState(0);
@@ -94,15 +100,35 @@ export default function MissionCard({
     }
   }, [busy, state]);
 
+  const topics = state
+    ? [
+        {
+          metadata: state.metadata,
+          activeStep:
+            state.session && !state.session.completed
+              ? (state.session.currentStep?.index ?? 0)
+              : null,
+          dueAt: state.dueAt,
+          due: state.due,
+        },
+        ...state.topics.filter(
+          (topic) => topic.metadata.id !== state.metadata.id,
+        ),
+      ]
+    : [];
+  const selected =
+    topics.find((topic) => topic.metadata.id === topicId) ?? topics[0];
+  const active = selected?.activeStep != null;
   async function open() {
-    if (inFlight.current || !state) return;
-    if (!state.profileReady || (state.session && !state.session.completed)) {
-      onOpen();
+    if (inFlight.current || !state || !selected) return;
+    if (!state.profileReady || active) {
+      onOpen(selected.metadata.id);
       return;
     }
     const input = pending ?? {
       requestId: crypto.randomUUID(),
       difficulty: state.difficulty,
+      topicId: selected.metadata.id,
     };
     const current = revision.current;
     inFlight.current = true;
@@ -114,7 +140,7 @@ export default function MissionCard({
       if (current !== revision.current) return;
       setState(value);
       setPending(null);
-      onOpen();
+      onOpen(value.metadata.id);
     } catch (reason) {
       if (current === revision.current)
         setError(
@@ -129,32 +155,68 @@ export default function MissionCard({
       }
     }
   }
-  const active = state?.session && !state.session.completed;
   return (
     <section
-      className="mission-card"
+      className="mission-card mission-chooser"
       aria-labelledby="mission-card-title"
       aria-busy={busy}
     >
-      <div className="mission-card-icon" aria-hidden="true">
-        ▱<span>✿</span>
+      <div className="mission-topic-heading">
+        <p className="eyebrow">
+          DEINE LERNRUNDEN · KLASSE 5
+          {state
+            ? ` · ${difficulties.find((level) => level.id === state.difficulty)?.name}`
+            : ''}
+        </p>
+        <fieldset className="mission-topic-list" disabled={busy || !!pending}>
+          <legend>Thema wählen</legend>
+          {topics.map((topic) => (
+            <button
+              type="button"
+              className="secondary-button mission-topic"
+              key={topic.metadata.id}
+              aria-pressed={selected?.metadata.id === topic.metadata.id}
+              onClick={() => setTopicId(topic.metadata.id)}
+            >
+              <span>{missionSubjects[topic.metadata.subject]}</span>
+              <strong>{topic.metadata.title}</strong>
+              <small>
+                {topic.activeStep != null
+                  ? `Schritt ${topic.activeStep + 1} fortsetzen`
+                  : topic.due
+                    ? 'Wiederholung fällig'
+                    : topic.dueAt
+                      ? `Wiederholen ab ${missionDate(topic.dueAt)}`
+                      : 'Neu entdecken'}
+              </small>
+              {topic.activeStep != null && topic.due && (
+                <small>Wiederholung fällig</small>
+              )}
+            </button>
+          ))}
+        </fieldset>
       </div>
       <div className="mission-card-copy">
-        <p className="eyebrow">DEINE LERNRUNDE · MATHEMATIK</p>
+        <p className="eyebrow">
+          {selected
+            ? missionSubjects[selected.metadata.subject]
+            : 'DEINE LERNRUNDE'}
+        </p>
         <h2 id="mission-card-title">
-          {state?.metadata.title ?? 'Ein Zaun für unseren Garten'}
+          {selected?.metadata.title ?? 'Wähle dein Lernabenteuer'}
         </h2>
         <p>
-          Einmal außen herum: Entdecke den Umfang in fünf kleinen Schritten.
+          {selected?.metadata.description ??
+            'Fünf kleine Schritte. In deinem Tempo.'}
         </p>
         <p className="mission-small">
           {active
-            ? `Weiter bei Schritt ${(state.session?.currentStep?.index ?? 0) + 1} von 5.`
-            : state?.due
+            ? `Weiter bei Schritt ${(selected.activeStep ?? 0) + 1} von 5.`
+            : selected?.due
               ? 'Deine Wiederholung wartet auf dich.'
-              : state?.dueAt
-                ? `Wiederholung ab ${missionDate(state.dueAt)}. Du kannst auch vorher üben.`
-                : 'Ein erstes Thema für Klasse 5. In deinem Tempo.'}
+              : selected?.dueAt
+                ? `Wiederholung ab ${missionDate(selected.dueAt)}. Du kannst auch vorher üben.`
+                : 'Fünf Schritte für Klasse 5. In deinem Tempo.'}
         </p>
         {busy && <p role="status">Lernrunde wird geladen …</p>}
         {error && (
@@ -168,14 +230,14 @@ export default function MissionCard({
           <button
             ref={openButton}
             className="primary-button"
-            disabled={busy}
+            disabled={busy || !selected}
             onClick={() => void open()}
           >
             {pending
               ? 'Start erneut versuchen'
               : active
                 ? 'Runde fortsetzen'
-                : state.due
+                : selected?.due
                   ? 'Jetzt wiederholen'
                   : 'Lernrunde starten'}
           </button>

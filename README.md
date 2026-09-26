@@ -63,9 +63,11 @@ Details: [Architektur](docs/architecture.md), [Reviewnachweise](docs/reviews/).
 
 ## Deine Lernrunde
 
-Auf **Meine Fächer** führt die Karte **Deine Lernrunde** zum ersten Lernabenteuer über den Rechteckumfang: **Ein Zaun für unseren Garten**. Fünf kurze Schritte verbinden Erinnern, ein anschauliches Beispiel, eigenes Lösen, Fehlerdetektiv und eine freiwillige Mitmachaufgabe. Alle drei Stufen sind wählbar; bestätigte Schritte bleiben bei Unterbrechung und Neustart erhalten.
+Auf **Meine Fächer** zeigt **Deine Lernrunden** drei Themen: **Ein Zaun für unseren Garten** (Mathematik), **Ein Tag an unserer Schule** (Englisch, erste Fremdsprache) und **Auf Forschertour: genau hinschauen** (Natur und Technik). Die Auswahl zeigt für jedes Thema auf der gewählten Stufe offene Schritte und fällige Wiederholungen. Fünf kurze Schritte verbinden Erinnern, ein anschauliches Beispiel, eigenes Lösen, Fehlerdetektiv und eine freiwillige Mitmachaufgabe.
 
-Die App plant Wiederholungen lokal und bietet drei geprüfte Varianten je Stufe. Tipps, Aufdecken und selbstständige erste Antworten werden unterschieden. Der Themenfortschritt zeigt **ausprobiert**, **selbst gelöst** und **später wieder geschafft**. Neue automatisch geprüfte Erstlösungen erhalten die üblichen 1/2/3 Punkte; Beispiele und Mitmachen vergeben keine Punkte. Es gibt kein Zeitlimit. Das erste Thema ist ein begrenztes Angebot, keine vollständige Lernstandsdiagnose. [Ablauf, Forschungsbezug und Grenzen](docs/learning-missions.md).
+Alle drei Stufen sind frei wählbar. Jedes Thema und jede Stufe behalten ihre eigene offene Runde, auch nach Themenwechsel und Neustart. Die App plant Wiederholungen lokal und bietet drei geprüfte Varianten je Thema und Stufe. Englisch übt Wortschatz, kurze Lesetexte und Simple Present; Natur und Technik verbindet Beobachtungen, Messwerte und die Planung fairer Vergleiche. Die neuen Pakete enthalten jeweils 27 eigene automatisch prüfbare Aufgaben plus Beispiele und Mitmachaufträge.
+
+Tipps, Aufdecken und selbstständige erste Antworten werden unterschieden. Der Themenfortschritt zeigt **ausprobiert**, **selbst gelöst** und **später wieder geschafft**. Neue automatisch geprüfte Erstlösungen erhalten die üblichen 1/2/3 Punkte; Beispiele und Mitmachen vergeben keine Punkte. Es gibt kein Zeitlimit. Die drei Themen sind ein begrenztes Angebot, keine vollständige Lehrplanabdeckung oder Lernstandsdiagnose. Garteninhalte, vorhandene Runden und Punkte bleiben erhalten. [Ablauf, Inhalte, Quellen und Grenzen](docs/learning-missions.md).
 
 ## Punkte und Abzeichen
 
