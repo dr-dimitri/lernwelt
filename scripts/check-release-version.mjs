@@ -6,7 +6,7 @@ const cargo = readFileSync('src-tauri/Cargo.toml', 'utf8').match(
   /^version = "([^"]+)"/m,
 )?.[1];
 const cargoLock = readFileSync('src-tauri/Cargo.lock', 'utf8').match(
-  /name = "lernwelt"\nversion = "([^"]+)"/,
+  /name = "lernwelt"\r?\nversion = "([^"]+)"/,
 )?.[1];
 if (
   ![
