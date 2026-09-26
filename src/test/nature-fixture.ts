@@ -28,6 +28,9 @@ const natureQuestion: Question = {
   competencyId: 'by.nature.5.research.fair-test',
   prompt: 'Wie vergleichst du zwei Pflanzen fair?',
   hint: 'Nur eine Bedingung ist anders.',
+  furtherHints: [
+    'Halte Licht und Erde gleich. Vergleiche nur die Wassermenge.',
+  ],
   options: ['Nur die Wassermenge ändern', 'Alles gleichzeitig ändern'],
   answerKind: 'choice',
   unit: null,

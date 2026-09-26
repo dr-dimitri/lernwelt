@@ -8,6 +8,7 @@ export const mathQuestion: Question = {
   competencyId: 'math.add',
   prompt: 'Was ist 17 + 25?',
   hint: 'Ergänze zuerst um 20.',
+  furtherHints: ['Jetzt fehlen noch die 5 Einer. Zähle sie dazu.'],
   options: [],
   answerKind: 'number',
   unit: 'Nur die Zahl eingeben.',

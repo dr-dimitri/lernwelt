@@ -56,6 +56,7 @@ export interface Question {
   competencyId: string;
   prompt: string;
   hint: string;
+  furtherHints: string[];
   options: string[];
   answerKind: 'number' | 'text' | 'choice';
   unit: string | null;
@@ -92,5 +93,6 @@ export interface AnswerResult {
   correct: boolean;
   pointsAwarded: number;
   explanation: string;
+  mistakeHint: string | null;
   wallet: Wallet;
 }

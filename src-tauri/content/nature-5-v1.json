@@ -282,7 +282,10 @@
       "options": ["Lineal", "Thermometer", "Stoppuhr"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Für eine Länge vergleichst du zwei Endpunkte mit einer Skala. Eine Waage misst dagegen Masse."
+      ]
     },
     {
       "id": "by.nature.5.research.2.v1",
@@ -301,7 +304,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Wähle eine Handlung, bei der du den unbekannten Stoff weder berührst noch kostest und Unterstützung bekommst."
+      ]
     },
     {
       "id": "by.nature.5.research.3.v1",
@@ -320,7 +326,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, ob du die Aussage direkt sehen kannst. Ein vermuteter Grund ist schon eine Erklärung."
+      ]
     },
     {
       "id": "by.nature.5.research.4.v1",
@@ -339,7 +348,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nur die Faltung soll sich ändern. Unterschiedliche Blattgrößen oder Stützenabstände würden den Vergleich zusätzlich verändern."
+      ]
     },
     {
       "id": "by.nature.5.research.5.v1",
@@ -354,7 +366,16 @@
       "options": [],
       "answerKind": "number",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 70 − 30. Die 30 ml waren schon vorher im Becher."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["70"],
+          "hint": "70 ml ist die neue Gesamtmenge. Die schon vorhandenen 30 ml gehören nicht zur hinzugegossenen Menge."
+        }
+      ]
     },
     {
       "id": "by.nature.5.research.6.v1",
@@ -373,7 +394,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Du brauchst erst eine Frage und eine Vermutung. Die Versuchsergebnisse kannst du erst danach auswerten."
+      ]
     },
     {
       "id": "by.nature.5.research.7.v1",
@@ -392,7 +416,16 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Alle drei Messwerte gehören zum Versuch. Nur den größten Wert auszuwählen würde zwei Beobachtungen verstecken."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Ich notiere nur 8, weil das schöner aussieht."],
+          "hint": "Die anderen beiden Messwerte sind ebenfalls Beobachtungen. Ein Bericht soll auch diese Daten zeigen."
+        }
+      ]
     },
     {
       "id": "by.nature.5.research.8.v1",
@@ -411,7 +444,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche die Bewegung des Luftballons mit dem Atmen. Echte Organe und Blut fehlen dem einfachen Modell."
+      ]
     },
     {
       "id": "by.nature.5.research.9.v1",
@@ -430,7 +466,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche alte Erklärung und neue Daten. Prüfe zuerst, ob die Ergebnisse zuverlässig wiederholbar sind."
+      ]
     },
     {
       "id": "by.nature.5.water.1.v1",
@@ -445,7 +484,10 @@
       "options": ["Schmelzen", "Gefrieren", "Kondensieren"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beim Erstarren wird Flüssiges fest. Hier läuft die Veränderung in die andere Richtung."
+      ]
     },
     {
       "id": "by.nature.5.water.2.v1",
@@ -460,7 +502,10 @@
       "options": ["Fest", "Flüssig", "Gasförmig"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche mit Eis und Wasserdampf: Pfützenwasser fließt und bildet Tropfen."
+      ]
     },
     {
       "id": "by.nature.5.water.3.v1",
@@ -479,7 +524,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denke an den süßen Geschmack von Zuckerwasser. Die unsichtbaren Teilchen sind weiterhin vorhanden."
+      ]
     },
     {
       "id": "by.nature.5.water.4.v1",
@@ -498,7 +546,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das Wasser gelangt von der Oberfläche in die Luft. Dafür muss nicht die ganze Pfütze kochen."
+      ]
     },
     {
       "id": "by.nature.5.water.5.v1",
@@ -517,7 +568,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das Glas ist dicht. Suche die Quelle deshalb außerhalb des Glases und denke an das Abkühlen der Luft am Glas."
+      ]
     },
     {
       "id": "by.nature.5.water.6.v1",
@@ -532,7 +586,16 @@
       "options": [],
       "answerKind": "number",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ziehe die spätere Menge 42 von der früheren Menge 50 ab."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["92"],
+          "hint": "Addieren ergibt die Summe beider Messungen. Gefragt ist, um wie viel die Menge abgenommen hat."
+        }
+      ]
     },
     {
       "id": "by.nature.5.water.7.v1",
@@ -551,7 +614,16 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche die winzigen gelösten Salzteilchen mit den Öffnungen im Filter. Sandkörner sind viel größer."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Es bleibt wie grober Sand vollständig im Filter."],
+          "hint": "Gelöstes Salz besteht aus viel kleineren verteilten Teilchen als Sand. Ein Papierfilter hält es deshalb nicht wie Sand zurück."
+        }
+      ]
     },
     {
       "id": "by.nature.5.water.8.v1",
@@ -570,7 +642,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Verfolge ein Wasserteilchen aus dem See in die Luft und mit dem Regen zurück. Die Reihenfolge muss zusammenpassen."
+      ]
     },
     {
       "id": "by.nature.5.water.9.v1",
@@ -589,7 +664,16 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Wasserteilchen bleiben Wasserteilchen. Vergleiche, wie viel Platz zwischen ihnen im Gas ist."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Jedes Wasserteilchen wird zu einem riesigen Ball."],
+          "hint": "Das Modell zeigt größere Zwischenräume. Die einzelnen Teilchen werden dabei nicht zu riesigen Kugeln."
+        }
+      ]
     },
     {
       "id": "by.nature.5.light-energy.1.v1",
@@ -608,7 +692,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, ob der Gegenstand auch selbst leuchtet. Ein Spiegel lenkt vorhandenes Licht nur um."
+      ]
     },
     {
       "id": "by.nature.5.light-energy.2.v1",
@@ -627,7 +714,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Hinter der Pappe kommt weniger Licht von der Lampe an. Wie heißt dieser dunkle Bereich?"
+      ]
     },
     {
       "id": "by.nature.5.light-energy.3.v1",
@@ -646,7 +736,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Beobachtung soll ohne Blick in die Sonne gelingen. Schatten zeigen dir die Richtung des Sonnenlichts."
+      ]
     },
     {
       "id": "by.nature.5.light-energy.4.v1",
@@ -665,7 +758,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Verfolge einen Lichtstrahl bis zum Spiegel. Er wird dort in eine andere Richtung zurückgeschickt."
+      ]
     },
     {
       "id": "by.nature.5.light-energy.5.v1",
@@ -684,7 +780,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stell dir die Erde als drehenden Ball neben einer Lampe vor. Ein markierter Ort gelangt auf die unbeleuchtete Seite."
+      ]
     },
     {
       "id": "by.nature.5.light-energy.6.v1",
@@ -703,7 +802,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Am Anfang trifft Licht auf die Zelle. Am Ausgang kann sie ein elektrisches Gerät versorgen."
+      ]
     },
     {
       "id": "by.nature.5.light-energy.7.v1",
@@ -722,7 +824,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beginne beim Licht. Überlege dann, was die Solarzelle liefert und was der Motor daraus macht."
+      ]
     },
     {
       "id": "by.nature.5.light-energy.8.v1",
@@ -741,7 +846,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Achte auf beide Beobachtungen: Die Lampe ist hell und ihre Oberfläche wird wärmer."
+      ]
     },
     {
       "id": "by.nature.5.light-energy.9.v1",
@@ -760,7 +868,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne Strahlen von der Lampe an den Figurenrändern vorbei zur Wand. Nähere die Figur gedanklich der Lampe."
+      ]
     },
     {
       "id": "by.nature.5.air-materials.1.v1",
@@ -775,7 +886,10 @@
       "options": ["Luft", "Überhaupt kein Stoff", "Nur flüssiges Wasser"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beim Eingießen von Wasser muss etwas Unsichtbares aus dem Becher ausweichen. Es ist auch um dich herum."
+      ]
     },
     {
       "id": "by.nature.5.air-materials.2.v1",
@@ -794,7 +908,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gesucht sind Gase, die in großen Anteilen in normaler Luft vorkommen. Wasserdampf allein beschreibt Luft nicht."
+      ]
     },
     {
       "id": "by.nature.5.air-materials.3.v1",
@@ -809,7 +926,10 @@
       "options": ["Eine Stoppuhr", "Ein Spiegel", "Ein passendes Sieb"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Öffnungen müssen Sand durchlassen und die größeren Kiesel zurückhalten."
+      ]
     },
     {
       "id": "by.nature.5.air-materials.4.v1",
@@ -828,7 +948,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, welches Hilfsmittel die Nägel anzieht, die Holzstücke aber liegen lässt."
+      ]
     },
     {
       "id": "by.nature.5.air-materials.5.v1",
@@ -847,7 +970,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stell dir die Saite vergrößert vor: Nach dem Zupfen bewegt sie sich um ihre Ruhelage hin und her."
+      ]
     },
     {
       "id": "by.nature.5.air-materials.6.v1",
@@ -866,7 +992,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Verfolge, was mit abgestorbenen Blättern im Boden passiert. Kleine Lebewesen zersetzen und verändern sie."
+      ]
     },
     {
       "id": "by.nature.5.air-materials.7.v1",
@@ -885,7 +1014,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Entferne zuerst die festen Sandkörner. Danach muss das Wasser verschwinden, während das Salz zurückbleibt."
+      ]
     },
     {
       "id": "by.nature.5.air-materials.8.v1",
@@ -904,7 +1036,16 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beide Würfel brauchen gleich viel Platz. Vergleiche deshalb direkt ihre Massen 6 g und 54 g."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Der Holzwürfel hat sicher das größere Volumen."],
+          "hint": "In der Aufgabe sind beide Würfel gleich groß. Der Unterschied liegt in der Masse bei gleichem Volumen."
+        }
+      ]
     },
     {
       "id": "by.nature.5.air-materials.9.v1",
@@ -919,7 +1060,10 @@
       "options": ["Stickstoff", "Kohlenstoffdioxid", "Sauerstoff"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Probe zeigt ein Gas, das ein vorhandenes Glimmen verstärkt. Kohlenstoffdioxid würde die Verbrennung nicht so unterstützen."
+      ]
     },
     {
       "id": "by.nature.5.cells.1.v1",
@@ -934,7 +1078,10 @@
       "options": ["Lebewesen", "Nur Zahlen", "Nur Straßenkarten"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Frage, was Tiere, Pflanzen und Pilze gemeinsam haben. Biologie beschäftigt sich mit dieser Gruppe."
+      ]
     },
     {
       "id": "by.nature.5.cells.2.v1",
@@ -953,7 +1100,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denk an einen Körper als Bauwerk aus vielen winzigen lebenden Einheiten. Gesucht ist ihr Fachwort."
+      ]
     },
     {
       "id": "by.nature.5.cells.3.v1",
@@ -968,7 +1118,10 @@
       "options": ["Eine Küchenwaage", "Ein Kompass", "Ein Mikroskop"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein Lineal misst Länge, eine Waage Masse. Gesucht ist ein Gerät, durch das du winzige Einzelheiten stark vergrößert siehst."
+      ]
     },
     {
       "id": "by.nature.5.cells.4.v1",
@@ -983,7 +1136,10 @@
       "options": ["Zellwand", "Zellkern", "Okular"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Zellmembran gibt es auch bei Tierzellen. Gesucht ist die zusätzliche feste Hülle einer Pflanzenzelle."
+      ]
     },
     {
       "id": "by.nature.5.cells.5.v1",
@@ -1002,7 +1158,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Streiche Teile, die im einfachen Modell nur Pflanzenzellen haben. Suche dann die drei gemeinsamen Grundbestandteile."
+      ]
     },
     {
       "id": "by.nature.5.cells.6.v1",
@@ -1017,7 +1176,16 @@
       "options": [],
       "answerKind": "number",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nimm die zehnfache Vergrößerung viermal. Die beiden Zahlen werden nicht addiert."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["14"],
+          "hint": "Die beiden Vergrößerungen werden hintereinander angewendet. Deshalb multiplizierst du 10 und 4, statt sie zu addieren."
+        }
+      ]
     },
     {
       "id": "by.nature.5.cells.7.v1",
@@ -1036,7 +1204,16 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bewegung allein genügt nicht. Prüfe auch den Aufbau aus Zellen und die Verarbeitung von Stoffen im Körper."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Alles, was reagiert, ist ein Lebewesen."],
+          "hint": "Auch technische Geräte können reagieren. Prüfe weitere Merkmale wie Zellen und Stoffwechsel."
+        }
+      ]
     },
     {
       "id": "by.nature.5.cells.8.v1",
@@ -1055,7 +1232,16 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Chloroplasten dienen der Fotosynthese bei Licht. Eine Zelle im dunklen Boden braucht sie nicht für diese Aufgabe."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Dann muss es eine Tierzelle sein."],
+          "hint": "Nicht jede Pflanzenzelle hat Chloroplasten. Die Zellwand und die Vakuole passen weiterhin zu einer Pflanzenzelle."
+        }
+      ]
     },
     {
       "id": "by.nature.5.cells.9.v1",
@@ -1074,7 +1260,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche eine lebende Zelle mit einer einfachen Zeichnung. Bewegungen und viele winzige Strukturen fehlen auf dem Papier."
+      ]
     },
     {
       "id": "by.nature.5.senses.1.v1",
@@ -1089,7 +1278,10 @@
       "options": ["Mit den Ohren", "Mit den Augen", "Mit den Knien"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denke daran, womit du einem Lied zuhörst. Die Augen nehmen dagegen Licht auf."
+      ]
     },
     {
       "id": "by.nature.5.senses.2.v1",
@@ -1104,7 +1296,10 @@
       "options": ["Der Ellenbogen", "Die Nase", "Die Zähne"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Du atmest die Duftstoffe ein. Welches Organ liegt dabei direkt über dem Mund?"
+      ]
     },
     {
       "id": "by.nature.5.senses.3.v1",
@@ -1123,7 +1318,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Suche eine Kombination, die die Lautstärke am Ohr verringert und dem Ohr Erholung gibt."
+      ]
     },
     {
       "id": "by.nature.5.senses.4.v1",
@@ -1138,7 +1336,10 @@
       "options": ["Nerven", "Knochen", "Haare"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das Auge nimmt Licht auf. Ein Signal muss von dort zum Gehirn gelangen; gesucht ist seine Leitungsbahn."
+      ]
     },
     {
       "id": "by.nature.5.senses.5.v1",
@@ -1157,7 +1358,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beginne beim Auge und ende bei den Muskeln. Dazwischen muss das Gehirn die Information verarbeiten."
+      ]
     },
     {
       "id": "by.nature.5.senses.6.v1",
@@ -1176,7 +1380,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Wenn Informationen langsamer verarbeitet werden, kommt auch die passende Bewegung später."
+      ]
     },
     {
       "id": "by.nature.5.senses.7.v1",
@@ -1195,7 +1402,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche 240, 270 und 250. Alle stammen von derselben Person; eine Aussage über alle Menschen wäre zu weitgehend."
+      ]
     },
     {
       "id": "by.nature.5.senses.8.v1",
@@ -1214,7 +1424,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das Auge meldet die Farbe. Das Gehirn verbindet sie mit ihrer Bedeutung und einer passenden Handlung."
+      ]
     },
     {
       "id": "by.nature.5.senses.9.v1",
@@ -1233,7 +1446,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle die Unterschiede zwischen den Gruppen. Mehr als ein Unterschied erschwert es, eine einzelne Ursache zu bestimmen."
+      ]
     },
     {
       "id": "by.nature.5.movement.1.v1",
@@ -1248,7 +1464,10 @@
       "options": ["Der Schädel", "Die Fingerknochen", "Die Kniescheibe"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Fühle gedanklich die feste Knochenhülle um das Gehirn. Rippen schützen einen anderen Körperbereich."
+      ]
     },
     {
       "id": "by.nature.5.movement.2.v1",
@@ -1263,7 +1482,10 @@
       "options": ["Ein Haar", "Ein Gelenk", "Eine Zahnkrone"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Am Knie treffen beweglich verbundene Knochen aufeinander. Gesucht ist der Name dieser Verbindung."
+      ]
     },
     {
       "id": "by.nature.5.movement.3.v1",
@@ -1282,7 +1504,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein Muskel übt Zug aus. Überlege, ob er dabei länger oder kürzer wird."
+      ]
     },
     {
       "id": "by.nature.5.movement.4.v1",
@@ -1301,7 +1526,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche Schulter und Knie. An der Schulter lässt sich der Arm auch seitlich und kreisend bewegen."
+      ]
     },
     {
       "id": "by.nature.5.movement.5.v1",
@@ -1316,7 +1544,10 @@
       "options": ["Ein Blutkörperchen", "Eine Sehne", "Eine Wimper"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gesucht ist das feste Verbindungsstück am Muskelende. Ein Gelenk verbindet dagegen Knochen beweglich miteinander."
+      ]
     },
     {
       "id": "by.nature.5.movement.6.v1",
@@ -1335,7 +1566,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Achte darauf, dass Bewegung und Erholung beide vorkommen. Dauernd stillzusitzen übt die Muskeln nicht."
+      ]
     },
     {
       "id": "by.nature.5.movement.7.v1",
@@ -1354,7 +1588,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stell dir zwei Zugseile an gegenüberliegenden Seiten vor. Für die Rückbewegung zieht das andere Seil."
+      ]
     },
     {
       "id": "by.nature.5.movement.8.v1",
@@ -1373,7 +1610,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die beiden Versuche nutzen gleich viel vom selben Papier. Suche die Eigenschaft, die trotzdem verschieden ist."
+      ]
     },
     {
       "id": "by.nature.5.movement.9.v1",
@@ -1392,7 +1632,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Wenn der Beuger zieht, muss sein Gegenspieler nachgeben. Würden beide starr ziehen, wäre die Bewegung blockiert."
+      ]
     },
     {
       "id": "by.nature.5.nutrition.1.v1",
@@ -1407,7 +1650,10 @@
       "options": ["Im Mund beim Kauen", "In der Lunge", "In der Schulter"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Verfolge einen Bissen ab dem ersten Kontakt mit den Zähnen. Die Frage meint Zerkleinern durch Bewegung."
+      ]
     },
     {
       "id": "by.nature.5.nutrition.2.v1",
@@ -1422,7 +1668,10 @@
       "options": ["Das Herz", "Der Magen", "Die Luftröhre"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gehe den Weg des Bissens weiter: Mund, Speiseröhre und danach das nächste Verdauungsorgan."
+      ]
     },
     {
       "id": "by.nature.5.nutrition.3.v1",
@@ -1441,7 +1690,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beim Bewegen wird Energie gebraucht. Beim Wachsen wird zusätzlich neues Körpermaterial aufgebaut."
+      ]
     },
     {
       "id": "by.nature.5.nutrition.4.v1",
@@ -1456,7 +1708,10 @@
       "options": ["Im Dünndarm", "In den Haaren", "Im Ohr"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Speiseröhre transportiert nur weiter. Gesucht ist der Darmabschnitt, dessen Wand viele Nährstoffe aufnimmt."
+      ]
     },
     {
       "id": "by.nature.5.nutrition.5.v1",
@@ -1471,7 +1726,10 @@
       "options": ["Sandkörner", "Eiweiße", "Kunststofffasern"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche die Namen in den Antworten mit dem Wort Proteine. Gesucht ist dessen anderer deutscher Name."
+      ]
     },
     {
       "id": "by.nature.5.nutrition.6.v1",
@@ -1490,7 +1748,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Suche genau die Farbe aus der angegebenen Regel. Eine andere Farbänderung würde diese Regel nicht erfüllen."
+      ]
     },
     {
       "id": "by.nature.5.nutrition.7.v1",
@@ -1509,7 +1770,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche ein glattes Blatt mit einem gefalteten. Falten bringen auf engem Raum mehr Oberfläche unter."
+      ]
     },
     {
       "id": "by.nature.5.nutrition.8.v1",
@@ -1524,7 +1788,16 @@
       "options": [],
       "answerKind": "number",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Masse wurde von 100 g auf 200 g verdoppelt. Nimm deshalb auch die angegebene Energie zweimal."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["200"],
+          "hint": "200 kJ gehören zu 100 g. Die abgefragte Portion ist doppelt so groß."
+        }
+      ]
     },
     {
       "id": "by.nature.5.nutrition.9.v1",
@@ -1543,7 +1816,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Überlege, ob das Brot jede Aufgabe der Ernährung allein erfüllen kann. Energie und Baustoffe sind verschiedene Bedürfnisse."
+      ]
     },
     {
       "id": "by.nature.5.breathing.1.v1",
@@ -1558,7 +1834,10 @@
       "options": ["Das Herz", "Der Magen", "Das Knie"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Blut wird von einem kräftigen Muskel in die Gefäße gedrückt. Seine Schläge kannst du als Puls wahrnehmen."
+      ]
     },
     {
       "id": "by.nature.5.breathing.2.v1",
@@ -1573,7 +1852,10 @@
       "options": ["Nur Stickstoff", "Sauerstoff", "Sandstaub"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Sauerstoff wird für die Energiegewinnung in Zellen gebraucht. Kohlenstoffdioxid entsteht dabei und wird ausgeatmet."
+      ]
     },
     {
       "id": "by.nature.5.breathing.3.v1",
@@ -1588,7 +1870,10 @@
       "options": ["Die Haare", "Der Zahnschmelz", "Das Blut"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gesucht ist eine Flüssigkeit im Körper, die Stoffe mitnimmt. Atemluft bleibt auf den Atemwegen."
+      ]
     },
     {
       "id": "by.nature.5.breathing.4.v1",
@@ -1607,7 +1892,16 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stell dir den Weg nach einem Herzschlag vor. Die Arterie führt das gerade hinausgepumpte Blut weiter."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Immer zum Herzen hin"],
+          "hint": "Zum Herzen führen Venen. Prüfe für Arterien die entgegengesetzte Richtung."
+        }
+      ]
     },
     {
       "id": "by.nature.5.breathing.5.v1",
@@ -1626,7 +1920,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Eine Zelle braucht einen energiereichen Ausgangsstoff und das eingeatmete Gas. Kohlenstoffdioxid ist dagegen ein Ergebnis."
+      ]
     },
     {
       "id": "by.nature.5.breathing.6.v1",
@@ -1645,7 +1942,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Verbinde die stärkere Muskelarbeit mit der Zellatmung. Für mehr Energie muss auch mehr des benötigten Gases ankommen."
+      ]
     },
     {
       "id": "by.nature.5.breathing.7.v1",
@@ -1664,7 +1964,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Trenne zwei Orte: den Gasaustausch in der Lunge und die Energiegewinnung in den einzelnen Zellen."
+      ]
     },
     {
       "id": "by.nature.5.breathing.8.v1",
@@ -1683,7 +1986,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Mehr Oberfläche bedeutet mehr Kontakt zwischen Luft und Blut. Überlege, welche Stoffe diese Grenze passieren."
+      ]
     },
     {
       "id": "by.nature.5.breathing.9.v1",
@@ -1702,7 +2008,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Menschen in der Nähe atmen dieselbe Luft. Darin verteilen sich auch Bestandteile des Rauchs."
+      ]
     },
     {
       "id": "by.nature.5.development.1.v1",
@@ -1721,7 +2030,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gleiches Alter bedeutet nicht, dass alle Körper zur selben Zeit dieselben Veränderungen zeigen."
+      ]
     },
     {
       "id": "by.nature.5.development.2.v1",
@@ -1740,7 +2052,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Eine Umarmung braucht deine Zustimmung. Überlege, welche Antwort deine Grenze klar ausdrückt."
+      ]
     },
     {
       "id": "by.nature.5.development.3.v1",
@@ -1755,7 +2070,10 @@
       "options": ["Verdunstung", "Bestäubung", "Pubertät"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gemeint ist der Übergang vom Kind zum Erwachsenwerden. Das gesuchte Wort beginnt mit P."
+      ]
     },
     {
       "id": "by.nature.5.development.4.v1",
@@ -1770,7 +2088,10 @@
       "options": ["In den Eierstöcken", "In der Lunge", "In den Hoden"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gesucht sind die Organe für Eizellen. Die Gebärmutter hat später eine andere Aufgabe."
+      ]
     },
     {
       "id": "by.nature.5.development.5.v1",
@@ -1789,7 +2110,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche die beiden Keimzellen: eine stammt aus dem Eierstock, die andere ist eine Spermienzelle."
+      ]
     },
     {
       "id": "by.nature.5.development.6.v1",
@@ -1804,7 +2128,10 @@
       "options": ["Im Magen", "In der Harnblase", "In der Gebärmutter"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Der Embryo braucht einen geschützten Entwicklungsraum. Magen und Harnblase erfüllen andere Aufgaben."
+      ]
     },
     {
       "id": "by.nature.5.development.7.v1",
@@ -1823,7 +2150,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Schleimhaut liegt an der Innenwand. Es wird ein Teil dieser Auskleidung abgegeben, nicht das ganze Organ."
+      ]
     },
     {
       "id": "by.nature.5.development.8.v1",
@@ -1842,7 +2172,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Du musst mit einer verletzten Grenze nicht allein bleiben. Wähle Unterstützung durch eine Person, der du vertraust."
+      ]
     },
     {
       "id": "by.nature.5.development.9.v1",
@@ -1861,7 +2194,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, ob die Aussage Pflege unterstützt und zugleich persönliche Grenzen achtet. Vergleiche sollen niemanden beschämen."
+      ]
     },
     {
       "id": "by.nature.5.plants.1.v1",
@@ -1876,7 +2212,10 @@
       "options": ["Die Wurzel", "Das Kronblatt", "Der Pollen"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Verfolge den Weg des Wassers vom Boden in die Pflanze. Er beginnt an den unterirdischen Teilen."
+      ]
     },
     {
       "id": "by.nature.5.plants.2.v1",
@@ -1895,7 +2234,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Suche das Blütenorgan mit Staubbeuteln. In diesen Beuteln wird der Pollen gebildet."
+      ]
     },
     {
       "id": "by.nature.5.plants.3.v1",
@@ -1914,7 +2256,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Auffällige Blüten können Tiere zur Blüte führen. Überlege, wie das beim Transport von Pollen hilft."
+      ]
     },
     {
       "id": "by.nature.5.plants.4.v1",
@@ -1933,7 +2278,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Verfolge den Weg vom Staubbeutel zur Narbe. Die Vereinigung von Keimzellen ist erst ein anderer Vorgang."
+      ]
     },
     {
       "id": "by.nature.5.plants.5.v1",
@@ -1952,7 +2300,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Blüten müssen keine Tiere mit Farben anlocken. Welcher andere Transportweg trägt den leichten Pollen?"
+      ]
     },
     {
       "id": "by.nature.5.plants.6.v1",
@@ -1971,7 +2322,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne die vier Kronblätter wie ein Kreuz. Dieses Bild steckt im Familiennamen."
+      ]
     },
     {
       "id": "by.nature.5.plants.7.v1",
@@ -1990,7 +2344,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lass die unterschiedlichen Organe weg. Suche das Ereignis, an dem bei beiden zwei Keimzellen beteiligt sind."
+      ]
     },
     {
       "id": "by.nature.5.plants.8.v1",
@@ -2009,7 +2366,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Wind trifft die passende Blüte nicht gezielt. Tiere können gezielter besuchen, brauchen aber oft einen Anreiz."
+      ]
     },
     {
       "id": "by.nature.5.plants.9.v1",
@@ -2028,7 +2388,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle die Symbole und vergleiche ihre Lage zueinander. Duft oder echte Größe lassen sich daraus nicht sicher ablesen."
+      ]
     },
     {
       "id": "by.nature.5.grassland.1.v1",
@@ -2047,7 +2410,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche eine Fläche, deren Gras geschnitten wird, mit einer Fläche, auf der Tiere direkt fressen."
+      ]
     },
     {
       "id": "by.nature.5.grassland.2.v1",
@@ -2066,7 +2432,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Suche eine Eigenschaft von Boden oder Wetter. Eine Pflanze oder ein Tier wäre ein Lebewesen."
+      ]
     },
     {
       "id": "by.nature.5.grassland.3.v1",
@@ -2085,7 +2454,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Wähle eine Handlung, die keine Pflanzenteile in den Mund bringt und die Pflanze unbeschädigt lässt."
+      ]
     },
     {
       "id": "by.nature.5.grassland.4.v1",
@@ -2104,7 +2476,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gemeinschaft meint hier die Lebewesen zusammen. Bodenfeuchte und Temperatur gehören dagegen zum Lebensraum."
+      ]
     },
     {
       "id": "by.nature.5.grassland.5.v1",
@@ -2119,7 +2494,16 @@
       "options": [],
       "answerKind": "number",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 10 − 6. Jede gezählte Einheit steht für eine Art, nicht für eine einzelne Pflanze."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["16"],
+          "hint": "Du hast die Artenzahlen zusammengezählt. Gefragt ist der Unterschied zwischen 10 und 6."
+        }
+      ]
     },
     {
       "id": "by.nature.5.grassland.6.v1",
@@ -2138,7 +2522,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Verbinde die belebte Seite mit den unbelebten Bedingungen. Erst zusammen bilden sie das ganze System."
+      ]
     },
     {
       "id": "by.nature.5.grassland.7.v1",
@@ -2157,7 +2544,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bleiben Blüten länger stehen, können Insekten sie länger besuchen. Überlege, was die Blüten anbieten."
+      ]
     },
     {
       "id": "by.nature.5.grassland.8.v1",
@@ -2176,7 +2566,22 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Daten zählen Arten. Über die Anzahl aller einzelnen Pflanzen sagen diese beiden Zahlen nichts aus."
+      ],
+      "commonMistakes": [
+        {
+          "answers": [
+            "Auf der zweiten Fläche leben genau 12 einzelne Pflanzen."
+          ],
+          "hint": "12 zählt die verschiedenen Arten. Von jeder Art können mehrere einzelne Pflanzen dort stehen."
+        },
+        {
+          "answers": ["Düngung ist sicher die einzige Ursache."],
+          "hint": "Die Daten nennen nur Artenzahlen. Welche Ursache den Unterschied erklärt, wurde hier nicht untersucht."
+        }
+      ]
     },
     {
       "id": "by.nature.5.grassland.9.v1",
@@ -2195,7 +2600,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Suche einen Plan, bei dem Futter geerntet wird und gleichzeitig auf anderen Teilflächen noch Blüten bleiben."
+      ]
     }
   ]
 }

@@ -66,6 +66,7 @@ const state: LearningState = {
 };
 const correct: AnswerResult = {
   correct: true,
+  mistakeHint: null,
   pointsAwarded: 2,
   explanation: 'Sieben Zehnerschritte ergeben 70.',
   wallet: { ...initial.wallet, balance: 12, totalEarned: 12 },

@@ -155,6 +155,14 @@ impl NumberLine {
     }
 }
 
+/// Exact, author-written responses to a small set of known wrong answers.
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct CommonMistake {
+    pub answers: Vec<String>,
+    pub hint: String,
+}
+
 // Answers stay inside Rust; Question is the explicitly limited IPC projection.
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -167,6 +175,10 @@ pub struct Exercise {
     pub prompt: String,
     pub answer: String,
     pub hint: String,
+    #[serde(default)]
+    pub further_hints: Vec<String>,
+    #[serde(default)]
+    pub common_mistakes: Vec<CommonMistake>,
     pub explanation: String,
     pub options: Vec<String>,
     pub answer_kind: AnswerKind,
@@ -273,6 +285,9 @@ impl Catalog {
             {
                 return Err(invalid());
             }
+            if !exercise.valid_help() {
+                return Err(invalid());
+            }
             match exercise.answer_kind {
                 AnswerKind::Number if canonical_number(&exercise.answer).is_none() => {
                     return Err(invalid());
@@ -287,6 +302,76 @@ impl Catalog {
             }
         }
         Ok(())
+    }
+}
+
+impl Exercise {
+    fn valid_help(&self) -> bool {
+        let valid_text = |text: &str| {
+            !text.trim().is_empty()
+                && text.chars().count() <= 500
+                && !text.chars().any(|c| c.is_control() && c != '\n')
+        };
+        if (!self.legacy && !valid_text(&self.hint))
+            || (!self.legacy && !(1..=2).contains(&self.further_hints.len()))
+            || self.further_hints.len() > 2
+            || self.common_mistakes.len() > 4
+        {
+            return false;
+        }
+        let mut hints = HashSet::from([self.hint.as_str()]);
+        if self.further_hints.iter().any(|hint| {
+            !valid_text(hint) || !hints.insert(hint.as_str()) || hint == &self.explanation
+        }) {
+            return false;
+        }
+        let mut answers = HashSet::new();
+        for mistake in &self.common_mistakes {
+            if !valid_text(&mistake.hint) || !(1..=4).contains(&mistake.answers.len()) {
+                return false;
+            }
+            for answer in &mistake.answers {
+                if answer.trim().is_empty()
+                    || answer.chars().count() > 120
+                    || answer.chars().any(char::is_control)
+                    || is_correct(self, answer)
+                    || (matches!(self.answer_kind, AnswerKind::Choice)
+                        && !self.options.contains(answer))
+                {
+                    return false;
+                }
+                let Some(normalized) = normalized_answer(&self.answer_kind, answer) else {
+                    return false;
+                };
+                if !answers.insert(normalized) {
+                    return false;
+                }
+            }
+        }
+        true
+    }
+
+    pub fn mistake_hint(&self, answer: &str) -> Option<&str> {
+        if is_correct(self, answer) {
+            return None;
+        }
+        let actual = normalized_answer(&self.answer_kind, answer)?;
+        self.common_mistakes
+            .iter()
+            .find(|mistake| {
+                mistake.answers.iter().any(|expected| {
+                    normalized_answer(&self.answer_kind, expected).as_ref() == Some(&actual)
+                })
+            })
+            .map(|mistake| mistake.hint.as_str())
+    }
+}
+
+fn normalized_answer(kind: &AnswerKind, answer: &str) -> Option<String> {
+    match kind {
+        AnswerKind::Number => canonical_number(answer),
+        AnswerKind::Text => Some(answer.trim().to_ascii_lowercase()),
+        AnswerKind::Choice => Some(answer.trim().to_owned()),
     }
 }
 
@@ -591,3 +676,6 @@ mod coverage_tests;
 
 #[cfg(test)]
 mod number_line_tests;
+
+#[cfg(test)]
+mod help_tests;

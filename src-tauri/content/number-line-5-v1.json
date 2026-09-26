@@ -52,18 +52,17 @@
         "min": 0,
         "max": 10,
         "step": 1,
-        "labels": [
-          0,
-          5,
-          10
-        ],
+        "labels": [0, 5, 10],
         "markers": [
           {
             "label": "A",
             "value": 3
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Starte bei 0 und zähle beim ersten Strich rechts davon 1. Zähle bis A weiter."
+      ]
     },
     {
       "id": "by.math.5.number-line.2.vorschule.v1",
@@ -85,13 +84,12 @@
         "min": 0,
         "max": 10,
         "step": 1,
-        "labels": [
-          0,
-          5,
-          10
-        ],
+        "labels": [0, 5, 10],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Zähle von 5 aus: Der erste Nachbar rechts ist 6. Wähle den nächsten Strich."
+      ]
     },
     {
       "id": "by.math.5.number-line.3.vorschule.v1",
@@ -113,18 +111,23 @@
         "min": 0,
         "max": 20,
         "step": 2,
-        "labels": [
-          0,
-          10,
-          20
-        ],
+        "labels": [0, 10, 20],
         "markers": [
           {
             "label": "A",
             "value": 14
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Beginne beim beschrifteten Strich 10. Zähle für jede Lücke bis A noch 2 dazu."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["12"],
+          "hint": "Von 10 bis A sind es zwei kleine Abstände. Jeder davon zählt 2, nicht 1."
+        }
+      ]
     },
     {
       "id": "by.math.5.number-line.4.vorschule.v1",
@@ -146,13 +149,12 @@
         "min": 0,
         "max": 20,
         "step": 2,
-        "labels": [
-          0,
-          10,
-          20
-        ],
+        "labels": [0, 10, 20],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Jede Lücke zählt 2. Prüfe beim Markieren, ob drei Lücken zusammen die gesuchte Zahl ergeben."
+      ]
     },
     {
       "id": "by.math.5.number-line.5.vorschule.v1",
@@ -174,13 +176,12 @@
         "min": 0,
         "max": 50,
         "step": 5,
-        "labels": [
-          0,
-          25,
-          50
-        ],
+        "labels": [0, 25, 50],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Gesucht ist die Größe einer Lücke, nicht die Zahl der Striche. Prüfe dein Ergebnis fünfmal hintereinander."
+      ]
     },
     {
       "id": "by.math.5.number-line.6.vorschule.v1",
@@ -202,10 +203,7 @@
         "min": 0,
         "max": 10,
         "step": 1,
-        "labels": [
-          0,
-          10
-        ],
+        "labels": [0, 10],
         "markers": [
           {
             "label": "A",
@@ -216,7 +214,10 @@
             "value": 8
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Zähle den Start bei A noch nicht mit. Erst der Schritt zum Nachbarstrich zählt als 1."
+      ]
     },
     {
       "id": "by.math.5.number-line.7.vorschule.v1",
@@ -238,13 +239,12 @@
         "min": 0,
         "max": 50,
         "step": 5,
-        "labels": [
-          0,
-          25,
-          50
-        ],
+        "labels": [0, 25, 50],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Zähle rechts von 25 zuerst 30. Gehe dann noch einen kleinen Abstand weiter."
+      ]
     },
     {
       "id": "by.math.5.number-line.8.vorschule.v1",
@@ -266,10 +266,7 @@
         "min": 0,
         "max": 10,
         "step": 1,
-        "labels": [
-          0,
-          10
-        ],
+        "labels": [0, 10],
         "markers": [
           {
             "label": "A",
@@ -280,7 +277,16 @@
             "value": 7
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Fahre mit dem Finger von A zu B und zähle jedes übersprungene Zwischenstück genau einmal."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["6"],
+          "hint": "Zähle die Lücken, nicht beide Randstriche mit. Der Startstrich ist noch kein zurückgelegter Abstand."
+        }
+      ]
     },
     {
       "id": "by.math.5.number-line.9.vorschule.v1",
@@ -302,18 +308,17 @@
         "min": 0,
         "max": 100,
         "step": 10,
-        "labels": [
-          0,
-          50,
-          100
-        ],
+        "labels": [0, 50, 100],
         "markers": [
           {
             "label": "A",
             "value": 40
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Suche den beschrifteten Strich 50. Ziehe für den Nachbarstrich links einen Zehner ab."
+      ]
     },
     {
       "id": "by.math.5.number-line.10.vorschule.v1",
@@ -335,13 +340,12 @@
         "min": 0,
         "max": 100,
         "step": 10,
-        "labels": [
-          0,
-          50,
-          100
-        ],
+        "labels": [0, 50, 100],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Starte bei 50. Zähle 60, 70 und weiter, bis du die gesuchte Zahl erreichst."
+      ]
     },
     {
       "id": "by.math.5.number-line.11.vorschule.v1",
@@ -363,11 +367,7 @@
         "min": 0,
         "max": 100,
         "step": 10,
-        "labels": [
-          0,
-          50,
-          100
-        ],
+        "labels": [0, 50, 100],
         "markers": [
           {
             "label": "A",
@@ -378,7 +378,10 @@
             "value": 70
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Suche den rechten der beiden Punkte. Zähle dort die Zehnerschritte ab 0, um die Zahl zu lesen."
+      ]
     },
     {
       "id": "by.math.5.number-line.12.vorschule.v1",
@@ -400,18 +403,17 @@
         "min": 0,
         "max": 20,
         "step": 2,
-        "labels": [
-          0,
-          10,
-          20
-        ],
+        "labels": [0, 10, 20],
         "markers": [
           {
             "label": "A",
             "value": 4
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Lies A als 4. Addiere für jeden der drei Schritte noch 2."
+      ]
     },
     {
       "id": "by.math.5.number-line.1.koenner.v1",
@@ -433,18 +435,17 @@
         "min": 0,
         "max": 100,
         "step": 10,
-        "labels": [
-          0,
-          50,
-          100
-        ],
+        "labels": [0, 50, 100],
         "markers": [
           {
             "label": "A",
             "value": 70
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Zwischen 0 und 50 sind fünf Lücken. Teile durch 5 und addiere zwei solche Schritte zur 50."
+      ]
     },
     {
       "id": "by.math.5.number-line.2.koenner.v1",
@@ -466,13 +467,12 @@
         "min": 0,
         "max": 200,
         "step": 20,
-        "labels": [
-          0,
-          100,
-          200
-        ],
+        "labels": [0, 100, 200],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Ein Abstand ist 100 : 5. Gehe mit dieser Schrittgröße von 100 bis 140."
+      ]
     },
     {
       "id": "by.math.5.number-line.3.koenner.v1",
@@ -494,13 +494,12 @@
         "min": 0,
         "max": 200,
         "step": 20,
-        "labels": [
-          0,
-          100,
-          200
-        ],
+        "labels": [0, 100, 200],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Teile den Zahlenunterschied 100 durch die fünf Lücken. Die sechs Randstriche zählst du dabei nicht."
+      ]
     },
     {
       "id": "by.math.5.number-line.4.koenner.v1",
@@ -522,18 +521,23 @@
         "min": -5,
         "max": 5,
         "step": 1,
-        "labels": [
-          -5,
-          0,
-          5
-        ],
+        "labels": [-5, 0, 5],
         "markers": [
           {
             "label": "A",
             "value": -3
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Zähle den Abstand von A bis 0. Weil A links liegt, braucht seine Zahl ein Minus."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["3"],
+          "hint": "Der Abstand zur 0 passt. A liegt links von 0, deshalb braucht die Zahl ein Minus."
+        }
+      ]
     },
     {
       "id": "by.math.5.number-line.5.koenner.v1",
@@ -555,13 +559,12 @@
         "min": -10,
         "max": 10,
         "step": 2,
-        "labels": [
-          -10,
-          0,
-          10
-        ],
+        "labels": [-10, 0, 10],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Zähle links von 0 in Zweierschritten: −2, −4 und weiter bis zur gesuchten Zahl."
+      ]
     },
     {
       "id": "by.math.5.number-line.6.koenner.v1",
@@ -583,11 +586,7 @@
         "min": -10,
         "max": 10,
         "step": 2,
-        "labels": [
-          -10,
-          0,
-          10
-        ],
+        "labels": [-10, 0, 10],
         "markers": [
           {
             "label": "A",
@@ -598,7 +597,16 @@
             "value": 4
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Zähle erst von −6 bis 0 und danach von 0 bis 4. Addiere beide Wege."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["2"],
+          "hint": "Der Weg führt von −6 über 0 bis 4. Addiere die beiden Teilabstände zur 0."
+        }
+      ]
     },
     {
       "id": "by.math.5.number-line.7.koenner.v1",
@@ -620,18 +628,23 @@
         "min": 100,
         "max": 200,
         "step": 10,
-        "labels": [
-          100,
-          150,
-          200
-        ],
+        "labels": [100, 150, 200],
         "markers": [
           {
             "label": "A",
             "value": 170
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Starte beim beschrifteten Strich 150. Jede Lücke rechts davon zählt weitere 10."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["70"],
+          "hint": "Die sichtbare Skala beginnt bei 100. Starte beim Ablesen nicht mit 0."
+        }
+      ]
     },
     {
       "id": "by.math.5.number-line.8.koenner.v1",
@@ -653,13 +666,12 @@
         "min": 1000,
         "max": 2000,
         "step": 100,
-        "labels": [
-          1000,
-          1500,
-          2000
-        ],
+        "labels": [1000, 1500, 2000],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Ein Abstand ist 500 : 5. Zähle mit dieser Schrittgröße ab 1000 weiter."
+      ]
     },
     {
       "id": "by.math.5.number-line.9.koenner.v1",
@@ -681,11 +693,7 @@
         "min": 0,
         "max": 100,
         "step": 10,
-        "labels": [
-          0,
-          50,
-          100
-        ],
+        "labels": [0, 50, 100],
         "markers": [
           {
             "label": "A",
@@ -696,7 +704,16 @@
             "value": 80
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Die Zahlen unterscheiden sich um 60. Teile durch die Schrittweite 10, um die Lücken zu zählen."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["60"],
+          "hint": "60 ist der Unterschied der Zahlen. Gefragt ist die Zahl kleiner Abstände von jeweils 10."
+        }
+      ]
     },
     {
       "id": "by.math.5.number-line.10.koenner.v1",
@@ -718,11 +735,7 @@
         "min": -20,
         "max": 0,
         "step": 2,
-        "labels": [
-          -20,
-          -10,
-          0
-        ],
+        "labels": [-20, -10, 0],
         "markers": [
           {
             "label": "A",
@@ -733,7 +746,10 @@
             "value": -14
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Der kürzere Weg zur 0 entscheidet. Lies danach die Zahl am gewählten Punkt mitsamt Minuszeichen ab."
+      ]
     },
     {
       "id": "by.math.5.number-line.11.koenner.v1",
@@ -755,13 +771,12 @@
         "min": -10,
         "max": 10,
         "step": 2,
-        "labels": [
-          -10,
-          0,
-          10
-        ],
+        "labels": [-10, 0, 10],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Von 0 bis 10 sind fünf Lücken. Teile durch 5 und zähle rechts von 0 weiter."
+      ]
     },
     {
       "id": "by.math.5.number-line.12.koenner.v1",
@@ -783,18 +798,17 @@
         "min": -10,
         "max": 10,
         "step": 2,
-        "labels": [
-          -10,
-          0,
-          10
-        ],
+        "labels": [-10, 0, 10],
         "markers": [
           {
             "label": "A",
             "value": -6
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Vier Schritte von je 2 bedeuten insgesamt +8. Addiere sie zu −6."
+      ]
     },
     {
       "id": "by.math.5.number-line.1.streber.v1",
@@ -816,18 +830,17 @@
         "min": -200,
         "max": 200,
         "step": 50,
-        "labels": [
-          -200,
-          0,
-          200
-        ],
+        "labels": [-200, 0, 200],
         "markers": [
           {
             "label": "A",
             "value": -150
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Teile 200 durch die vier Lücken bis 0. Addiere eine solche Schrittweite zu −200."
+      ]
     },
     {
       "id": "by.math.5.number-line.2.streber.v1",
@@ -849,13 +862,12 @@
         "min": -100,
         "max": 100,
         "step": 25,
-        "labels": [
-          -100,
-          0,
-          100
-        ],
+        "labels": [-100, 0, 100],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Ein Abstand ist 100 : 4. Gehe von −100 einen Schritt in Richtung 0."
+      ]
     },
     {
       "id": "by.math.5.number-line.3.streber.v1",
@@ -877,12 +889,12 @@
         "min": 1000,
         "max": 2000,
         "step": 100,
-        "labels": [
-          1200,
-          1800
-        ],
+        "labels": [1200, 1800],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Ziehe 1200 von 1800 ab. Teile den Unterschied durch die sechs Lücken dazwischen."
+      ]
     },
     {
       "id": "by.math.5.number-line.4.streber.v1",
@@ -904,13 +916,12 @@
         "min": -400,
         "max": 400,
         "step": 100,
-        "labels": [
-          -400,
-          0,
-          400
-        ],
+        "labels": [-400, 0, 400],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Ein Abstand ist 400 : 4. Zähle rechts von 0, bis du bei 300 ankommst."
+      ]
     },
     {
       "id": "by.math.5.number-line.5.streber.v1",
@@ -932,11 +943,7 @@
         "min": -300,
         "max": 200,
         "step": 50,
-        "labels": [
-          -300,
-          0,
-          200
-        ],
+        "labels": [-300, 0, 200],
         "markers": [
           {
             "label": "A",
@@ -947,7 +954,16 @@
             "value": 150
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Lies die beiden Entfernungen zur 0 als 250 und 150. Beide gehören zum gesamten Weg."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["100"],
+          "hint": "A und B liegen auf verschiedenen Seiten von 0. Addiere ihre Abstände zur 0, statt sie zu subtrahieren."
+        }
+      ]
     },
     {
       "id": "by.math.5.number-line.6.streber.v1",
@@ -969,11 +985,7 @@
         "min": -200,
         "max": 200,
         "step": 50,
-        "labels": [
-          -200,
-          0,
-          200
-        ],
+        "labels": [-200, 0, 200],
         "markers": [
           {
             "label": "A",
@@ -984,7 +996,16 @@
             "value": 100
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Der Unterschied der Zahlen beträgt 250. Teile ihn durch die Schrittweite 50."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["250"],
+          "hint": "250 ist der Zahlenunterschied. Teile ihn durch die Schrittweite 50, um die Lücken zu zählen."
+        }
+      ]
     },
     {
       "id": "by.math.5.number-line.7.streber.v1",
@@ -1006,18 +1027,17 @@
         "min": 0,
         "max": 1000000,
         "step": 100000,
-        "labels": [
-          0,
-          500000,
-          1000000
-        ],
+        "labels": [0, 500000, 1000000],
         "markers": [
           {
             "label": "A",
             "value": 700000
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Von 0 bis 500000 sind fünf Lücken. Gehe zwei dieser Lücken rechts von 500000 weiter."
+      ]
     },
     {
       "id": "by.math.5.number-line.8.streber.v1",
@@ -1039,13 +1059,12 @@
         "min": 0,
         "max": 1000000,
         "step": 100000,
-        "labels": [
-          0,
-          500000,
-          1000000
-        ],
+        "labels": [0, 500000, 1000000],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Zwischen 500000 und 1000000 liegen fünf Lücken. Zähle vom rechten beschrifteten Strich eine zurück."
+      ]
     },
     {
       "id": "by.math.5.number-line.9.streber.v1",
@@ -1067,18 +1086,17 @@
         "min": 975,
         "max": 1025,
         "step": 5,
-        "labels": [
-          975,
-          1000,
-          1025
-        ],
+        "labels": [975, 1000, 1025],
         "markers": [
           {
             "label": "A",
             "value": 1015
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Von 1000 bis 1025 sind fünf Lücken. Bestimme einen Schritt und zähle drei davon ab 1000."
+      ]
     },
     {
       "id": "by.math.5.number-line.10.streber.v1",
@@ -1100,18 +1118,17 @@
         "min": -50,
         "max": 50,
         "step": 10,
-        "labels": [
-          -50,
-          0,
-          50
-        ],
+        "labels": [-50, 0, 50],
         "markers": [
           {
             "label": "A",
             "value": -30
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "Vier Schritte rechts und zwei zurück ergeben zusammen zwei Schritte rechts. Starte bei −30."
+      ]
     },
     {
       "id": "by.math.5.number-line.11.streber.v1",
@@ -1133,11 +1150,7 @@
         "min": -30,
         "max": 30,
         "step": 10,
-        "labels": [
-          -30,
-          0,
-          30
-        ],
+        "labels": [-30, 0, 30],
         "markers": [
           {
             "label": "A",
@@ -1148,7 +1161,10 @@
             "value": 20
           }
         ]
-      }
+      },
+      "furtherHints": [
+        "A liegt bei −20. Beim Spiegeln an 0 bleibt der Abstand gleich und das Vorzeichen wechselt."
+      ]
     },
     {
       "id": "by.math.5.number-line.12.streber.v1",
@@ -1170,13 +1186,12 @@
         "min": -1000,
         "max": 0,
         "step": 100,
-        "labels": [
-          -1000,
-          -500,
-          0
-        ],
+        "labels": [-1000, -500, 0],
         "markers": []
-      }
+      },
+      "furtherHints": [
+        "Ein Schritt zählt 100. Addiere fünf Hunderter zum Ausgangswert −700."
+      ]
     }
   ]
 }

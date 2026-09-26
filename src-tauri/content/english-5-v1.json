@@ -279,14 +279,13 @@
       "answer": "Hello!",
       "hint": "Suche eine Begrüßung.",
       "explanation": "Hello! ist eine freundliche Begrüßung.",
-      "options": [
-        "Goodbye!",
-        "Hello!",
-        "Good night!"
-      ],
+      "options": ["Goodbye!", "Hello!", "Good night!"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Überlege, ob du die Person gerade begrüßt oder dich verabschiedest. Du kommst hier gerade an."
+      ]
     },
     {
       "id": "by.english.5.hello.2.v1",
@@ -301,7 +300,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche „I“ mit „he“ und „you“: Jede dieser Personen hat eine eigene Form von be. Für I beginnt sie mit a."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["is"],
+          "hint": "Is passt zu he, she und it. Bei I brauchst du eine andere Form von be."
+        }
+      ]
     },
     {
       "id": "by.english.5.hello.3.v1",
@@ -313,14 +321,13 @@
       "answer": "11",
       "hint": "Ten ist 10. Eleven kommt direkt danach.",
       "explanation": "Eleven bedeutet elf.",
-      "options": [
-        "7",
-        "11",
-        "12"
-      ],
+      "options": ["7", "11", "12"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle von zehn noch eine Zahl weiter. Schreibe das Ergebnis als Ziffern."
+      ]
     },
     {
       "id": "by.english.5.hello.4.v1",
@@ -335,7 +342,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Setze gedanklich mehrere Freunde ein: „You ___ my friends.“ Dieselbe Form passt auch zu einer angesprochenen Person."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["is"],
+          "hint": "You verwendet dieselbe Form von be wie we und they."
+        }
+      ]
     },
     {
       "id": "by.english.5.hello.5.v1",
@@ -350,7 +366,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche die Lücke mit „Ben ___ twelve“. Für eine einzelne Person brauchst du die kurze Form mit zwei Buchstaben."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["are"],
+          "hint": "Are passt unter anderem zu you und they. Hier geht es um eine einzelne Person: she."
+        }
+      ]
     },
     {
       "id": "by.english.5.hello.6.v1",
@@ -362,14 +387,13 @@
       "answer": "See you!",
       "hint": "Du verabschiedest dich.",
       "explanation": "See you! bedeutet Bis dann!",
-      "options": [
-        "See you!",
-        "I am ten.",
-        "Good morning!"
-      ],
+      "options": ["See you!", "I am ten.", "Good morning!"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, welcher Ausdruck ein Wiedersehen ankündigt. Eine Begrüßung passt beim Weggehen nicht."
+      ]
     },
     {
       "id": "by.english.5.hello.7.v1",
@@ -384,7 +408,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gesucht ist eine Sache, nämlich der Name. Ein Wort für „wo“ würde nach einem Ort fragen."
+      ]
     },
     {
       "id": "by.english.5.hello.8.v1",
@@ -396,14 +423,19 @@
       "answer": "Yes, I am.",
       "hint": "Die Frage beginnt mit einer Form von be.",
       "explanation": "Die kurze Antwort wiederholt be: Yes, I am.",
-      "options": [
-        "Yes, I do.",
-        "Yes, I am.",
-        "Yes, I can."
-      ],
+      "options": ["Yes, I do.", "Yes, I am.", "Yes, I can."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Antworte aus deiner Sicht mit I. Wiederhole die zu I passende Form von be."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Yes, I do."],
+          "hint": "Die Frage verwendet be, nicht do. Antworte mit der zu I passenden Form von be."
+        }
+      ]
     },
     {
       "id": "by.english.5.hello.9.v1",
@@ -415,14 +447,13 @@
       "answer": "I speak English.",
       "hint": "Sprachen und das Wort I schreibt man groß.",
       "explanation": "English ist ein Sprachname und wird großgeschrieben.",
-      "options": [
-        "i speak english.",
-        "I speak English.",
-        "I speak english."
-      ],
+      "options": ["i speak english.", "I speak English.", "I speak english."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe zwei Stellen: das Wort für „ich“ und den Namen der Sprache."
+      ]
     },
     {
       "id": "by.english.5.family.1.v1",
@@ -434,14 +465,13 @@
       "answer": "Schwester",
       "hint": "Es ist ein Familienwort.",
       "explanation": "Sister heißt Schwester.",
-      "options": [
-        "Bruder",
-        "Schwester",
-        "Oma"
-      ],
+      "options": ["Bruder", "Schwester", "Oma"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche brother und sister: Beide sind Geschwister, aber sister bezeichnet das weibliche Geschwister."
+      ]
     },
     {
       "id": "by.english.5.family.2.v1",
@@ -456,7 +486,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lass book vollständig stehen. Hänge die normale Mehrzahlendung an."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["book"],
+          "hint": "Two meint mehr als ein Buch. Ergänze die normale Mehrzahlendung."
+        }
+      ]
     },
     {
       "id": "by.english.5.family.3.v1",
@@ -471,7 +510,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Person spricht mit I von sich selbst. Das Besitzwort muss zu I passen."
+      ]
     },
     {
       "id": "by.english.5.family.4.v1",
@@ -483,14 +525,19 @@
       "answer": "Ben’s dog",
       "hint": "Bei einer Person markiert ’s den Besitz.",
       "explanation": "Ben’s dog heißt Bens Hund.",
-      "options": [
-        "Ben dog",
-        "Ben’s dog",
-        "Bens dog"
-      ],
+      "options": ["Ben dog", "Ben’s dog", "Bens dog"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe erst den Besitzer Ben. Der Hund steht danach; dazwischen brauchst du das Besitzzeichen."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Bens dog"],
+          "hint": "Beim Besitz einer Person fehlt hier der Apostroph vor dem s."
+        }
+      ]
     },
     {
       "id": "by.english.5.family.5.v1",
@@ -505,7 +552,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bei child reicht angehängtes s nicht. Die besondere Mehrzahl beginnt mit childr-."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["childs"],
+          "hint": "Child hat eine besondere Mehrzahl. Ein angehängtes s reicht bei diesem Wort nicht."
+        }
+      ]
     },
     {
       "id": "by.english.5.family.6.v1",
@@ -520,7 +576,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "We bedeutet wir. Suche das Besitzwort für etwas, das unserer Gruppe gehört."
+      ]
     },
     {
       "id": "by.english.5.family.7.v1",
@@ -539,7 +598,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beginne mit der Tür. Verbinde sie mit dem Haus durch das Wort of."
+      ]
     },
     {
       "id": "by.english.5.family.8.v1",
@@ -554,7 +616,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die beiden o in foot werden in der Mehrzahl durch zwei e ersetzt."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["foots"],
+          "hint": "Foot bildet die Mehrzahl durch einen Vokalwechsel, nicht mit angehängtem s."
+        }
+      ]
     },
     {
       "id": "by.english.5.family.9.v1",
@@ -569,7 +640,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ersetze Leo and Ava durch they. Das Besitzwort muss zu dieser Mehrzahl passen."
+      ]
     },
     {
       "id": "by.english.5.home.1.v1",
@@ -581,14 +655,13 @@
       "answer": "Küche",
       "hint": "Dort wird gekocht.",
       "explanation": "Kitchen heißt Küche.",
-      "options": [
-        "Garten",
-        "Küche",
-        "Schlafzimmer"
-      ],
+      "options": ["Garten", "Küche", "Schlafzimmer"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denke an Herd und Kühlschrank. Wie heißt der Raum dafür auf Deutsch?"
+      ]
     },
     {
       "id": "by.english.5.home.2.v1",
@@ -603,7 +676,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein einzelnes Bett braucht die Einzahl von be. Vergleiche „It is a bed“."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["are"],
+          "hint": "A bed ist genau ein Bett. Dafür brauchst du die Einzahlform von be."
+        }
+      ]
     },
     {
       "id": "by.english.5.home.3.v1",
@@ -618,7 +700,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stell dir den Ball tiefer als die Tischplatte vor. „On“ würde oben auf der Platte bedeuten."
+      ]
     },
     {
       "id": "by.english.5.home.4.v1",
@@ -633,7 +718,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zwei Stühle kannst du durch they ersetzen. Verwende die dazu passende Form von be."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["is"],
+          "hint": "Two chairs sind mehrere Stühle. Wähle die Mehrzahlform von be."
+        }
+      ]
     },
     {
       "id": "by.english.5.home.5.v1",
@@ -645,14 +739,19 @@
       "answer": "This",
       "hint": "Ein Gegenstand ganz nah.",
       "explanation": "This bezeichnet eine einzelne Sache in der Nähe.",
-      "options": [
-        "Those",
-        "This",
-        "These"
-      ],
+      "options": ["Those", "This", "These"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe beides: nur ein Buch und direkt bei dir. Das Wort für etwas weiter Entferntes passt nicht."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["These"],
+          "hint": "These zeigt auf mehrere Dinge in der Nähe. Hier hältst du nur ein Buch."
+        }
+      ]
     },
     {
       "id": "by.english.5.home.6.v1",
@@ -664,14 +763,13 @@
       "answer": "These",
       "hint": "Mehrzahl und ganz nah.",
       "explanation": "These heißt diese hier.",
-      "options": [
-        "That",
-        "This",
-        "These"
-      ],
+      "options": ["That", "This", "These"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Schuhe sind mehrere Dinge. Gesucht ist die Mehrzahlform von this."
+      ]
     },
     {
       "id": "by.english.5.home.7.v1",
@@ -683,14 +781,13 @@
       "answer": "That",
       "hint": "Einzahl und weiter weg.",
       "explanation": "That tree heißt jener Baum dort.",
-      "options": [
-        "Those",
-        "That",
-        "These"
-      ],
+      "options": ["Those", "That", "These"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Es geht um einen Baum in der Ferne. This würde auf einen Baum direkt bei dir zeigen."
+      ]
     },
     {
       "id": "by.english.5.home.8.v1",
@@ -709,7 +806,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bilde drei Bausteine: Wer tut etwas? Wo? Wann? Ordne den Garten und den Schulschluss dem passenden Baustein zu."
+      ]
     },
     {
       "id": "by.english.5.home.9.v1",
@@ -721,14 +821,13 @@
       "answer": "Those",
       "hint": "Mehrzahl und weit weg.",
       "explanation": "Those bezeichnet mehrere Dinge dort drüben.",
-      "options": [
-        "This",
-        "That",
-        "Those"
-      ],
+      "options": ["This", "That", "Those"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Fahrräder sind mehrere Dinge in der Ferne. Gesucht ist die Mehrzahlform von that."
+      ]
     },
     {
       "id": "by.english.5.school.1.v1",
@@ -740,13 +839,13 @@
       "answer": "a",
       "hint": "Book beginnt mit einem Konsonantenlaut.",
       "explanation": "Es heißt a book.",
-      "options": [
-        "an",
-        "a"
-      ],
+      "options": ["an", "a"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Sprich book laut: Der Anfang ist ein b-Laut. An steht vor einem Vokallaut."
+      ]
     },
     {
       "id": "by.english.5.school.2.v1",
@@ -758,13 +857,13 @@
       "answer": "an",
       "hint": "Apple beginnt mit einem Vokallaut.",
       "explanation": "Es heißt an apple.",
-      "options": [
-        "a",
-        "an"
-      ],
+      "options": ["a", "an"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Sprich apple laut. Der erste Laut ist ein Vokal; dafür brauchst du den Artikel mit n."
+      ]
     },
     {
       "id": "by.english.5.school.3.v1",
@@ -776,14 +875,13 @@
       "answer": "Öffne dein Buch.",
       "hint": "Open heißt öffnen.",
       "explanation": "Das ist eine kurze Aufforderung.",
-      "options": [
-        "Öffne dein Buch.",
-        "Schließe die Tür.",
-        "Setz dich."
-      ],
+      "options": ["Öffne dein Buch.", "Schließe die Tür.", "Setz dich."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Your book ist dein Buch. Die Aufforderung sagt dir, was du damit machen sollst."
+      ]
     },
     {
       "id": "by.english.5.school.4.v1",
@@ -798,7 +896,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche „I have got“ mit „She … got“. Bei he, she und it braucht have seine besondere Form."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["have"],
+          "hint": "Bei he, she und it wird have zu seiner besonderen Form."
+        }
+      ]
     },
     {
       "id": "by.english.5.school.5.v1",
@@ -813,7 +920,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denke an „We ___ got a cat“. Bei I bleibt das Verb ebenfalls in seiner Grundform."
+      ]
     },
     {
       "id": "by.english.5.school.6.v1",
@@ -828,7 +938,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Frage prüft eine Fähigkeit. In der kurzen Antwort nutzt du dasselbe Wort wie am Anfang der Frage."
+      ]
     },
     {
       "id": "by.english.5.school.7.v1",
@@ -840,14 +953,13 @@
       "answer": "the",
       "hint": "Beide wissen, welches Buch gemeint ist.",
       "explanation": "The ist der bestimmte Artikel.",
-      "options": [
-        "an",
-        "the",
-        "a an"
-      ],
+      "options": ["an", "the", "a an"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "A oder an meint irgendein Exemplar. Hier ist genau das bekannte Buch auf dem Tisch gemeint."
+      ]
     },
     {
       "id": "by.english.5.school.8.v1",
@@ -866,7 +978,16 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Baue aus „He has got a pen“ eine Frage. Tausche dazu he und has."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Have he got a pen?"],
+          "hint": "Die Reihenfolge der Frage passt. Das Verb muss aber zur einzelnen Person he passen."
+        }
+      ]
     },
     {
       "id": "by.english.5.school.9.v1",
@@ -885,7 +1006,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Frage soll nach der Bedeutung des Wortes fragen. Sie soll nicht nach seinem Namen oder Preis fragen."
+      ]
     },
     {
       "id": "by.english.5.day.1.v1",
@@ -897,14 +1021,13 @@
       "answer": "nie",
       "hint": "Es passiert kein einziges Mal.",
       "explanation": "Never heißt nie.",
-      "options": [
-        "oft",
-        "nie",
-        "immer"
-      ],
+      "options": ["oft", "nie", "immer"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche always und never: Always heißt immer. Gesucht ist das andere Ende dieser Häufigkeit."
+      ]
     },
     {
       "id": "by.english.5.day.2.v1",
@@ -919,7 +1042,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "I ist nicht he, she oder it. Deshalb musst du an play hier kein s anhängen."
+      ]
     },
     {
       "id": "by.english.5.day.3.v1",
@@ -931,14 +1057,13 @@
       "answer": "8:00",
       "hint": "O’clock bezeichnet eine volle Stunde.",
       "explanation": "Eight o’clock ist acht Uhr.",
-      "options": [
-        "8:00",
-        "8:30",
-        "9:00"
-      ],
+      "options": ["8:00", "8:30", "9:00"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Es sind acht volle Stunden. Die Minuten stehen bei o’clock auf 00."
+      ]
     },
     {
       "id": "by.english.5.day.4.v1",
@@ -953,7 +1078,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Aussage erzählt von einer regelmäßigen Tätigkeit von she. Hänge an play die passende Endung an."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["play"],
+          "hint": "Bei einer bejahten Aussage mit she braucht das Verb im simple present ein s."
+        }
+      ]
     },
     {
       "id": "by.english.5.day.5.v1",
@@ -968,7 +1102,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bei you brauchst du die Grundform des Fragehilfsverbs. Does gehört zu he, she und it."
+      ]
     },
     {
       "id": "by.english.5.day.6.v1",
@@ -983,7 +1120,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Does trägt bereits die Endung für he. Like bekommt deshalb keine zweite Endung."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["likes"],
+          "hint": "Das s steckt bereits in does. Dahinter bleibt das Tätigkeitsverb in der Grundform."
+        }
+      ]
     },
     {
       "id": "by.english.5.day.7.v1",
@@ -998,7 +1144,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Es ist dieselbe Frageform wie bei „Does he …?“. Walk bleibt unverändert."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Do"],
+          "hint": "Die Frage handelt von she. Das Hilfsverb braucht die Form für he, she und it."
+        }
+      ]
     },
     {
       "id": "by.english.5.day.8.v1",
@@ -1010,14 +1165,13 @@
       "answer": "No, he does not.",
       "hint": "Benutze in der kurzen Antwort das Hilfsverb aus der Frage.",
       "explanation": "Does passt zu he; die Verneinung lautet does not.",
-      "options": [
-        "No, he is not.",
-        "No, he does not.",
-        "No, he have not."
-      ],
+      "options": ["No, he is not.", "No, he does not.", "No, he have not."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Antwort beginnt mit einer Verneinung und nennt danach die Person. Wiederhole dann das Fragehilfsverb und verneine es."
+      ]
     },
     {
       "id": "by.english.5.day.9.v1",
@@ -1036,7 +1190,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Setze often zwischen die Person I und ihre Tätigkeit read. In bed bleibt am Ende."
+      ]
     },
     {
       "id": "by.english.5.friends.1.v1",
@@ -1048,14 +1205,13 @@
       "answer": "Where",
       "hint": "Du fragst nach einem Ort.",
       "explanation": "Where fragt nach einem Ort.",
-      "options": [
-        "Why",
-        "Where",
-        "When"
-      ],
+      "options": ["Why", "Where", "When"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Eine passende Antwort wäre „in the garden“. Du suchst also das Fragewort für einen Ort."
+      ]
     },
     {
       "id": "by.english.5.friends.2.v1",
@@ -1067,14 +1223,19 @@
       "answer": "swimming",
       "hint": "Nach like kannst du eine Tätigkeit mit -ing nennen.",
       "explanation": "I like swimming heißt Ich schwimme gern.",
-      "options": [
-        "swims",
-        "swimming",
-        "swam"
-      ],
+      "options": ["swims", "swimming", "swam"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vor der Endung -ing wird das letzte m von swim verdoppelt."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["swims"],
+          "hint": "Swims ist die Form für he, she und it. Nach like steht hier die Tätigkeit als -ing-Form."
+        }
+      ]
     },
     {
       "id": "by.english.5.friends.3.v1",
@@ -1086,14 +1247,13 @@
       "answer": "Me too!",
       "hint": "Du stimmst einer positiven Aussage zu.",
       "explanation": "Me too! bedeutet Ich auch!",
-      "options": [
-        "Me too!",
-        "Not either!",
-        "Good night!"
-      ],
+      "options": ["Me too!", "Not either!", "Good night!"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Du möchtest sagen „Ich auch!“. Gesucht ist eine kurze Zustimmung, keine Frage."
+      ]
     },
     {
       "id": "by.english.5.friends.4.v1",
@@ -1108,7 +1268,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ava’s nennt die Besitzerin. Das Fragewort muss nach dem Besitzer fragen."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Who"],
+          "hint": "Who fragt nach einer Person. Hier wird gefragt, wem das Fahrrad gehört."
+        }
+      ]
     },
     {
       "id": "by.english.5.friends.5.v1",
@@ -1123,7 +1292,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Antwort erklärt einen Grund. Frage nach dem Warum und nicht nach Ort oder Zeit."
+      ]
     },
     {
       "id": "by.english.5.friends.6.v1",
@@ -1142,7 +1314,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, ob die Bitte einen Wunsch ausdrückt und please enthält. Ein bloßer Befehl wirkt weniger freundlich."
+      ]
     },
     {
       "id": "by.english.5.friends.7.v1",
@@ -1161,7 +1336,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Who ersetzt hier die Person vor plays. Du brauchst keine zusätzliche Person hinter einem Hilfsverb."
+      ]
     },
     {
       "id": "by.english.5.friends.8.v1",
@@ -1176,7 +1354,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "You ist schon die handelnde Person. Vor you brauchst du das übliche Fragehilfsverb im simple present."
+      ]
     },
     {
       "id": "by.english.5.friends.9.v1",
@@ -1191,7 +1372,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zwischen der Person you und der Tätigkeit help steht hier ein kurzes Verbindungswort mit t."
+      ]
     },
     {
       "id": "by.english.5.shopping.1.v1",
@@ -1203,14 +1387,13 @@
       "answer": "Apfel",
       "hint": "Es ist eine Frucht.",
       "explanation": "Apple heißt Apfel.",
-      "options": [
-        "Birne",
-        "Apfel",
-        "Brot"
-      ],
+      "options": ["Birne", "Apfel", "Brot"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denke an das Obst, aus dem Apfelsaft gemacht wird. Welches deutsche Wort passt?"
+      ]
     },
     {
       "id": "by.english.5.shopping.2.v1",
@@ -1222,13 +1405,19 @@
       "answer": "many",
       "hint": "Äpfel kann man einzeln zählen.",
       "explanation": "Bei zählbarer Mehrzahl steht many.",
-      "options": [
-        "much",
-        "many"
-      ],
+      "options": ["much", "many"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Du kannst one apple, two apples zählen. Much benutzt du bei nicht einzeln gezählten Mengen."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["much"],
+          "hint": "Äpfel sind einzeln zählbar. Much verwendest du bei nicht einzeln gezählten Mengen."
+        }
+      ]
     },
     {
       "id": "by.english.5.shopping.3.v1",
@@ -1243,7 +1432,10 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das -ing steht schon bei eating. Ergänze davor die Form von be für I."
+      ]
     },
     {
       "id": "by.english.5.shopping.4.v1",
@@ -1255,13 +1447,19 @@
       "answer": "much",
       "hint": "Water wird hier als Menge betrachtet.",
       "explanation": "Bei water steht much.",
-      "options": [
-        "many",
-        "much"
-      ],
+      "options": ["many", "much"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Hier zählst du keine Flaschen, sondern fragst nach der Wassermenge. Many wäre für zählbare Dinge."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["many"],
+          "hint": "Hier ist Wasser als Menge gemeint. Es werden keine einzelnen Flaschen oder Gläser gezählt."
+        }
+      ]
     },
     {
       "id": "by.english.5.shopping.5.v1",
@@ -1273,13 +1471,13 @@
       "answer": "some",
       "hint": "Das ist ein bejahter Aussagesatz.",
       "explanation": "We have some apples heißt Wir haben einige Äpfel.",
-      "options": [
-        "some",
-        "any"
-      ],
+      "options": ["some", "any"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Der Satz sagt, dass Äpfel vorhanden sind. Er ist weder verneint noch eine offene Frage."
+      ]
     },
     {
       "id": "by.english.5.shopping.6.v1",
@@ -1291,13 +1489,13 @@
       "answer": "any",
       "hint": "Du weißt noch nicht, ob Milch da ist.",
       "explanation": "In dieser offenen Frage ist any die passende Wahl.",
-      "options": [
-        "some",
-        "any"
-      ],
+      "options": ["some", "any"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Frage ist offen: Vielleicht ist Milch da, vielleicht nicht. Wähle die übliche Form für diese offene Frage."
+      ]
     },
     {
       "id": "by.english.5.shopping.7.v1",
@@ -1309,14 +1507,13 @@
       "answer": "is eating",
       "hint": "Die Handlung läuft gerade.",
       "explanation": "Is eating ist die Verlaufsform für eine Handlung jetzt.",
-      "options": [
-        "eats every day",
-        "is eating",
-        "eat"
-      ],
+      "options": ["eats every day", "is eating", "eat"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ben ist eine Person, also he. Verbinde seine Form von be mit eating."
+      ]
     },
     {
       "id": "by.english.5.shopping.8.v1",
@@ -1328,14 +1525,19 @@
       "answer": "a lot of homework",
       "hint": "Homework ist nicht zählbar.",
       "explanation": "Homework bekommt hier kein Mehrzahl-s.",
-      "options": [
-        "many homeworks",
-        "a lot of homework",
-        "a homework many"
-      ],
+      "options": ["many homeworks", "a lot of homework", "a homework many"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Homework bekommt keine Mehrzahlendung. Suche einen Ausdruck, der ohne diese Endung eine große Menge nennt."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["many homeworks"],
+          "hint": "Homework ist nicht zählbar und bekommt hier kein s. Suche einen Ausdruck für eine große Menge."
+        }
+      ]
     },
     {
       "id": "by.english.5.shopping.9.v1",
@@ -1347,14 +1549,13 @@
       "answer": "drinks",
       "hint": "Every morning meint regelmäßig.",
       "explanation": "Für Gewohnheiten steht das simple present: Mia drinks tea.",
-      "options": [
-        "is drinking now",
-        "drink",
-        "drinks"
-      ],
+      "options": ["is drinking now", "drink", "drinks"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Mia ist she. Für eine Gewohnheit steht das simple present mit der Endung für she."
+      ]
     },
     {
       "id": "by.english.5.party.1.v1",
@@ -1366,14 +1567,13 @@
       "answer": "Monday",
       "hint": "Wochentage schreibt man groß.",
       "explanation": "Monday heißt Montag.",
-      "options": [
-        "Sunday",
-        "Monday",
-        "Friday"
-      ],
+      "options": ["Sunday", "Monday", "Friday"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denke an den Beginn der Schulwoche nach Sunday. Das gesuchte englische Wort beginnt mit Mon-."
+      ]
     },
     {
       "id": "by.english.5.party.2.v1",
@@ -1385,14 +1585,13 @@
       "answer": "first",
       "hint": "One ist die Zahl, gesucht ist die Reihenfolge.",
       "explanation": "First heißt erste oder erster.",
-      "options": [
-        "one",
-        "first",
-        "three"
-      ],
+      "options": ["one", "first", "three"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bei einem Rennen steht die Person auf Platz eins. Dafür braucht Englisch eine besondere Ordnungszahl."
+      ]
     },
     {
       "id": "by.english.5.party.3.v1",
@@ -1411,7 +1610,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stop bedeutet anhalten. Must sagt, dass du dabei keine Wahl hast."
+      ]
     },
     {
       "id": "by.english.5.party.4.v1",
@@ -1423,14 +1625,19 @@
       "answer": "mustn’t",
       "hint": "Gesucht ist ein Verbot.",
       "explanation": "Mustn’t bedeutet nicht dürfen.",
-      "options": [
-        "needn’t",
-        "mustn’t",
-        "can"
-      ],
+      "options": ["needn’t", "mustn’t", "can"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Mustn’t verbietet etwas; needn’t lässt es frei. Hier soll das Rennen ausdrücklich verboten sein."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["needn’t"],
+          "hint": "Needn’t bedeutet „du musst nicht“. Hier ist jedoch ein Verbot gemeint."
+        }
+      ]
     },
     {
       "id": "by.english.5.party.5.v1",
@@ -1442,14 +1649,19 @@
       "answer": "needn’t",
       "hint": "Es ist freiwillig, nicht verboten.",
       "explanation": "Needn’t heißt nicht müssen.",
-      "options": [
-        "mustn’t",
-        "needn’t",
-        "must"
-      ],
+      "options": ["mustn’t", "needn’t", "must"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Du darfst ein Geschenk mitbringen, musst es aber nicht. Ein Verbot wäre eine andere Aussage."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["mustn’t"],
+          "hint": "Mustn’t wäre ein Verbot. Ein Geschenk ist hier erlaubt, aber freiwillig."
+        }
+      ]
     },
     {
       "id": "by.english.5.party.6.v1",
@@ -1468,7 +1680,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "3 pm liegt drei Stunden nach 12 Uhr mittags. Wandle es in die 24-Stunden-Schreibweise um."
+      ]
     },
     {
       "id": "by.english.5.party.7.v1",
@@ -1487,7 +1702,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, ob du die Sache trotzdem tun darfst. Needn’t nimmt die Pflicht weg, verbietet aber nichts."
+      ]
     },
     {
       "id": "by.english.5.party.8.v1",
@@ -1506,7 +1724,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe den Anfangsbuchstaben des Monatsnamens. Die übrigen Wörter mitten im Satz bleiben klein."
+      ]
     },
     {
       "id": "by.english.5.party.9.v1",
@@ -1525,7 +1746,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gesucht ist Erlaubnis. Eine Aussage mit must würde eine Pflicht daraus machen."
+      ]
     },
     {
       "id": "by.english.5.past.1.v1",
@@ -1540,7 +1764,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lass play stehen und hänge die regelmäßige Vergangenheitsendung an."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["play"],
+          "hint": "Yesterday zeigt Vergangenheit. Bei diesem regelmäßigen Verb fehlt noch die Vergangenheitsendung."
+        }
+      ]
     },
     {
       "id": "by.english.5.past.2.v1",
@@ -1552,14 +1785,13 @@
       "answer": "yesterday",
       "hint": "Today heißt heute.",
       "explanation": "Yesterday heißt gestern.",
-      "options": [
-        "tomorrow",
-        "yesterday",
-        "today"
-      ],
+      "options": ["tomorrow", "yesterday", "today"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gesucht ist der Tag vor today. Das Wort beginnt mit yester-."
+      ]
     },
     {
       "id": "by.english.5.past.3.v1",
@@ -1571,13 +1803,13 @@
       "answer": "was",
       "hint": "Die Vergangenheit von I am lautet I was.",
       "explanation": "Bei I steht was.",
-      "options": [
-        "were",
-        "was"
-      ],
+      "options": ["were", "was"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Wähle die Form, die zur einzelnen Person I passt. Were verwendest du unter anderem bei we und they."
+      ]
     },
     {
       "id": "by.english.5.past.4.v1",
@@ -1592,7 +1824,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bei go darfst du nicht einfach -ed anhängen. Die besondere Form beginnt mit w."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["goed"],
+          "hint": "Go ist unregelmäßig. Seine Vergangenheit entsteht nicht durch angehängtes -ed."
+        }
+      ]
     },
     {
       "id": "by.english.5.past.5.v1",
@@ -1604,13 +1845,13 @@
       "answer": "were",
       "hint": "They ist Mehrzahl.",
       "explanation": "Die Vergangenheit von they are lautet they were.",
-      "options": [
-        "was",
-        "were"
-      ],
+      "options": ["was", "were"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ersetze they gedanklich durch mehrere Kinder. Dafür brauchst du die Mehrzahlform der Vergangenheit von be."
+      ]
     },
     {
       "id": "by.english.5.past.6.v1",
@@ -1625,7 +1866,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das Verb bekommt hier weder eine Endung noch seine besondere Vergangenheitsform. Did zeigt schon, wann es passiert ist."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["saw"],
+          "hint": "Did zeigt schon die Vergangenheit. Das folgende Verb steht deshalb in der Grundform."
+        }
+      ]
     },
     {
       "id": "by.english.5.past.7.v1",
@@ -1640,7 +1890,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nach did not kommt die Grundform. Das besondere went wäre hier eine doppelte Markierung der Vergangenheit."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["went"],
+          "hint": "Die Vergangenheit steckt bereits in did not. Dahinter brauchst du die Grundform von go."
+        }
+      ]
     },
     {
       "id": "by.english.5.past.8.v1",
@@ -1655,7 +1914,16 @@
       "options": [],
       "answerKind": "text",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Vergangenheit von have endet auf d. Schreibe die kurze besondere Form."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["haved"],
+          "hint": "Have ist unregelmäßig. Die Vergangenheitsform ist kürzer und wird nicht mit -ed angehängt."
+        }
+      ]
     },
     {
       "id": "by.english.5.past.9.v1",
@@ -1667,14 +1935,19 @@
       "answer": "Yes, she did.",
       "hint": "Die Antwort nutzt dasselbe Hilfsverb.",
       "explanation": "Bei dieser Vergangenheitsfrage heißt es Yes, she did.",
-      "options": [
-        "Yes, she does.",
-        "Yes, she was.",
-        "Yes, she did."
-      ],
+      "options": ["Yes, she does.", "Yes, she was.", "Yes, she did."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Antworte mit Yes, she. Wiederhole das Vergangenheits-Hilfsverb vom Anfang der Frage."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["Yes, she does."],
+          "hint": "Does gehört zur Gegenwart. Die Frage mit did steht in der Vergangenheit."
+        }
+      ]
     },
     {
       "id": "by.english.5.stories.1.v1",
@@ -1686,14 +1959,13 @@
       "answer": "rot",
       "hint": "Suche das Farbwort.",
       "explanation": "Red heißt rot.",
-      "options": [
-        "blau",
-        "rot",
-        "grün"
-      ],
+      "options": ["blau", "rot", "grün"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bike ist das Fahrrad. Das Wort direkt davor nennt seine Farbe."
+      ]
     },
     {
       "id": "by.english.5.stories.2.v1",
@@ -1705,14 +1977,13 @@
       "answer": "Ava",
       "hint": "Suche likes music.",
       "explanation": "Im ersten Satz steht Ava likes music.",
-      "options": [
-        "Ava",
-        "ihr Bruder",
-        "beide"
-      ],
+      "options": ["Ava", "ihr Bruder", "beide"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lies nur den Satz mit likes music. Die Person vor likes ist gesucht."
+      ]
     },
     {
       "id": "by.english.5.stories.3.v1",
@@ -1724,14 +1995,13 @@
       "answer": "nichts",
       "hint": "Es ist das Gegenteil von etwas.",
       "explanation": "Nothing heißt nichts.",
-      "options": [
-        "alles",
-        "nichts",
-        "jemand"
-      ],
+      "options": ["alles", "nichts", "jemand"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Something bedeutet etwas. Nothing sagt, dass gar keine Sache vorhanden ist."
+      ]
     },
     {
       "id": "by.english.5.stories.4.v1",
@@ -1743,13 +2013,13 @@
       "answer": "because",
       "hint": "Die Frage dazu lautet Warum?",
       "explanation": "Because heißt weil und nennt hier den Grund.",
-      "options": [
-        "when",
-        "because"
-      ],
+      "options": ["when", "because"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Es wird nicht nach dem Zeitpunkt gefragt. Der Regen erklärt den Grund fürs Drinnenbleiben."
+      ]
     },
     {
       "id": "by.english.5.stories.5.v1",
@@ -1761,14 +2031,13 @@
       "answer": "einen Bleistift",
       "hint": "Suche die Anweisung mit Bring.",
       "explanation": "Pencil heißt Bleistift.",
-      "options": [
-        "einen Ball",
-        "einen Bleistift",
-        "ein Getränk"
-      ],
+      "options": ["einen Ball", "einen Bleistift", "ein Getränk"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die gesuchte Sache steht direkt nach Bring a. Der Wochentag beantwortet eine andere Frage."
+      ]
     },
     {
       "id": "by.english.5.stories.6.v1",
@@ -1780,14 +2049,13 @@
       "answer": "Somebody",
       "hint": "Es geht um eine Person.",
       "explanation": "Somebody bedeutet jemand.",
-      "options": [
-        "Something",
-        "Somebody",
-        "Nothing"
-      ],
+      "options": ["Something", "Somebody", "Nothing"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Eine Person steht vor der Tür, aber ihr Name ist unbekannt. Ein Wort mit -thing würde eine Sache meinen."
+      ]
     },
     {
       "id": "by.english.5.stories.7.v1",
@@ -1799,14 +2067,13 @@
       "answer": "Nobody",
       "hint": "Gesucht ist niemand.",
       "explanation": "Nobody bedeutet niemand; der Satz braucht kein zusätzliches not.",
-      "options": [
-        "Nobody",
-        "Anything",
-        "Something"
-      ],
+      "options": ["Nobody", "Anything", "Something"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Es ist keine einzige Person da. Somebody würde behaupten, dass jemand da ist."
+      ]
     },
     {
       "id": "by.english.5.stories.8.v1",
@@ -1818,14 +2085,13 @@
       "answer": "that",
       "hint": "Gesucht ist dass.",
       "explanation": "That leitet ein, was du denkst.",
-      "options": [
-        "whose",
-        "that",
-        "who"
-      ],
+      "options": ["whose", "that", "who"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Der zweite Satzteil nennt den Gedanken: „die Geschichte ist lustig“. Verbinde ihn mit dem englischen Wort für dass."
+      ]
     },
     {
       "id": "by.english.5.stories.9.v1",
@@ -1837,14 +2103,13 @@
       "answer": "Nein",
       "hint": "Before heißt vor.",
       "explanation": "Er kam vor der Unterrichtsstunde an. Den Bus zu verpassen heißt hier nicht, zu spät zu sein.",
-      "options": [
-        "Ja",
-        "Nein",
-        "Das steht nicht im Text."
-      ],
+      "options": ["Ja", "Nein", "Das steht nicht im Text."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche arrived before the lesson mit „nach Unterrichtsbeginn“. Entscheidend ist seine Ankunft, nicht der verpasste Bus."
+      ]
     },
     {
       "id": "by.english.5.travel.1.v1",
@@ -1856,14 +2121,13 @@
       "answer": "London",
       "hint": "Sie liegt in England.",
       "explanation": "London ist die Hauptstadt des Vereinigten Königreichs.",
-      "options": [
-        "London",
-        "Paris",
-        "Berlin"
-      ],
+      "options": ["London", "Paris", "Berlin"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die gesuchte Stadt liegt an der Themse; dort steht der bekannte Uhrturm mit Big Ben."
+      ]
     },
     {
       "id": "by.english.5.travel.2.v1",
@@ -1875,14 +2139,13 @@
       "answer": "Excuse me.",
       "hint": "Das bedeutet Entschuldigung.",
       "explanation": "Excuse me ist ein freundlicher Anfang für eine Frage.",
-      "options": [
-        "Go away!",
-        "Excuse me.",
-        "Stop talking!"
-      ],
+      "options": ["Go away!", "Excuse me.", "Stop talking!"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Du möchtest höflich die Aufmerksamkeit einer fremden Person bekommen. Thank you wäre erst ein Dank."
+      ]
     },
     {
       "id": "by.english.5.travel.3.v1",
@@ -1894,14 +2157,13 @@
       "answer": "Danke",
       "hint": "So bedankst du dich.",
       "explanation": "Thank you heißt Danke.",
-      "options": [
-        "Bitte",
-        "Danke",
-        "Gute Nacht"
-      ],
+      "options": ["Bitte", "Danke", "Gute Nacht"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Worte passen, nachdem dir jemand geholfen hat. Wie bedankst du dich auf Deutsch?"
+      ]
     },
     {
       "id": "by.english.5.travel.4.v1",
@@ -1920,7 +2182,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe alle vier Landesteile. Die Republik Irland und Nordirland sind dabei nicht dasselbe."
+      ]
     },
     {
       "id": "by.english.5.travel.5.v1",
@@ -1939,7 +2204,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Open würde geöffnet bedeuten. Closed sagt das Gegenteil über den Eingang oder das Geschäft."
+      ]
     },
     {
       "id": "by.english.5.travel.6.v1",
@@ -1951,14 +2219,13 @@
       "answer": "Washington, D.C.",
       "hint": "Die Hauptstadt ist nicht New York.",
       "explanation": "Washington, D.C. ist die Hauptstadt der USA.",
-      "options": [
-        "Los Angeles",
-        "New York",
-        "Washington, D.C."
-      ],
+      "options": ["Los Angeles", "New York", "Washington, D.C."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gesucht ist der Regierungssitz mit dem Weißen Haus. Der Stadtname trägt den Zusatz D.C."
+      ]
     },
     {
       "id": "by.english.5.travel.7.v1",
@@ -1970,13 +2237,13 @@
       "answer": "Nein",
       "hint": "Under 12 heißt jünger als 12.",
       "explanation": "Kim ist elf und darf deshalb kostenlos hinein.",
-      "options": [
-        "Ja",
-        "Nein"
-      ],
+      "options": ["Ja", "Nein"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche Kims Alter 11 mit der Grenze 12. Free entry bedeutet, dass der Eintritt nichts kostet."
+      ]
     },
     {
       "id": "by.english.5.travel.8.v1",
@@ -1988,14 +2255,13 @@
       "answer": "Hier anstellen.",
       "hint": "Queue ist eine Warteschlange.",
       "explanation": "Please queue here heißt Bitte hier anstellen.",
-      "options": [
-        "Hier rennen.",
-        "Hier anstellen.",
-        "Hier essen."
-      ],
+      "options": ["Hier rennen.", "Hier anstellen.", "Hier essen."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Hier sollst du warten, bis du an der Reihe bist. Überlege, was man dafür hinter anderen Menschen bildet."
+      ]
     },
     {
       "id": "by.english.5.travel.9.v1",
@@ -2007,14 +2273,13 @@
       "answer": "16 Uhr",
       "hint": "Return meint Rückfahrt, pm die Zeit nach Mittag.",
       "explanation": "4 pm ist 16 Uhr.",
-      "options": [
-        "4 Uhr morgens",
-        "10 Uhr",
-        "16 Uhr"
-      ],
+      "options": ["4 Uhr morgens", "10 Uhr", "16 Uhr"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Rückfahrt ist vier Stunden nach Mittag. Addiere zur 4 die zwölf Stunden bis Mittag."
+      ]
     },
     {
       "id": "by.english.5.words.1.v1",
@@ -2026,14 +2291,13 @@
       "answer": "aufstehen",
       "hint": "Das passt zum Morgen.",
       "explanation": "Get up ist ein Wortpaar und bedeutet aufstehen.",
-      "options": [
-        "aufstehen",
-        "essen",
-        "schlafen"
-      ],
+      "options": ["aufstehen", "essen", "schlafen"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denke an den Schritt nach dem Aufwachen: Du verlässt das Bett."
+      ]
     },
     {
       "id": "by.english.5.words.2.v1",
@@ -2052,7 +2316,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Übersetze die angebotenen Wörter gedanklich. Kleidung oder Tiere gehören nicht in die Essensgruppe."
+      ]
     },
     {
       "id": "by.english.5.words.3.v1",
@@ -2071,7 +2338,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, ob du das Wort ohne sichtbare Lösung aus dem Gedächtnis nennen kannst."
+      ]
     },
     {
       "id": "by.english.5.words.4.v1",
@@ -2083,14 +2353,13 @@
       "answer": "werden",
       "hint": "Achtung: Es heißt nicht bekommen.",
       "explanation": "Become ist ein Stolperwort: Es bedeutet werden.",
-      "options": [
-        "bekommen",
-        "werden",
-        "behalten"
-      ],
+      "options": ["bekommen", "werden", "behalten"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denke an den Satz „A caterpillar becomes a butterfly“. Gesucht ist ein deutsches Wort für diese Veränderung."
+      ]
     },
     {
       "id": "by.english.5.words.5.v1",
@@ -2102,14 +2371,13 @@
       "answer": "Was meinst du?",
       "hint": "Mean heißt hier meinen.",
       "explanation": "What do you mean? fragt, was jemand meint.",
-      "options": [
-        "Was bekommst du?",
-        "Was meinst du?",
-        "Wo wohnst du?"
-      ],
+      "options": ["Was bekommst du?", "Was meinst du?", "Wo wohnst du?"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Person bittet um eine Erklärung dessen, was du sagen möchtest. Sie fragt nicht nach einem Ort oder nach einem Wunsch."
+      ]
     },
     {
       "id": "by.english.5.words.6.v1",
@@ -2121,14 +2389,13 @@
       "answer": "some information",
       "hint": "Information ist nicht zählbar.",
       "explanation": "Man sagt some information, ohne Mehrzahl-s.",
-      "options": [
-        "three informations",
-        "an information",
-        "some information"
-      ],
+      "options": ["three informations", "an information", "some information"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Information bekommt hier kein s. Suche eine Wortgruppe mit unverändertem information."
+      ]
     },
     {
       "id": "by.english.5.words.7.v1",
@@ -2140,14 +2407,13 @@
       "answer": "/iː/",
       "hint": "Die zwei Punkte zeigen die Länge.",
       "explanation": "/iː/ steht für den langen Laut wie in sheep.",
-      "options": [
-        "/ɪ/",
-        "/iː/",
-        "/æ/"
-      ],
+      "options": ["/ɪ/", "/iː/", "/æ/"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Suche das i und direkt danach das Zeichen für einen langen Laut. Ein einzelnes i ohne Längenzeichen reicht nicht."
+      ]
     },
     {
       "id": "by.english.5.words.8.v1",
@@ -2166,7 +2432,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Suche im Text Hinweise darauf, wer handelt und was passiert. Die Nachbarsätze können das unbekannte Wort erklären."
+      ]
     },
     {
       "id": "by.english.5.words.9.v1",
@@ -2185,7 +2454,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche, welche Wörter du oft vergisst und welche du sicher abrufst. Beide brauchen Wiederholung, aber in verschiedenen Abständen."
+      ]
     }
   ]
 }
