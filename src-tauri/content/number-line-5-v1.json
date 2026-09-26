@@ -866,7 +866,7 @@
         "markers": []
       },
       "furtherHints": [
-        "Ein Abstand ist 100 : 4. Gehe von −100 einen Schritt in Richtung 0."
+        "Ein Abstand ist 100 : 4. Zähle mit dieser Schrittweite von −100 in Richtung 0, bis du die gesuchte Zahl erreichst."
       ]
     },
     {
@@ -1063,7 +1063,7 @@
         "markers": []
       },
       "furtherHints": [
-        "Zwischen 500000 und 1000000 liegen fünf Lücken. Zähle vom rechten beschrifteten Strich eine zurück."
+        "Zwischen 500000 und 1000000 liegen fünf Lücken. Bestimme die Schrittweite und zähle ab einer beschrifteten Zahl bis zur gesuchten Zahl."
       ]
     },
     {

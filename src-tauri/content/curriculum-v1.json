@@ -1905,7 +1905,7 @@
       "unit": null,
       "legacy": false,
       "furtherHints": [
-        "Lege die kurze Seite deines Geodreiecks auf die Gerade. Die Höhe zeigt den kürzesten Weg."
+        "Lege die lange Kante deines Geodreiecks auf die Gerade. Seine Mittellinie zeigt die senkrechte Richtung."
       ]
     },
     {
@@ -2405,7 +2405,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne eine Linie durch das Kreisinnere. Sie trifft beim Eintreten und beim Austreten auf den Rand."
+        "Zeichne die Gerade mit dem angegebenen Abstand zum Mittelpunkt. Markiere alle gemeinsamen Punkte von Gerade und Kreislinie. Zähle sie anschließend."
       ]
     },
     {
@@ -2441,7 +2441,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Die Kreise überlappen. Suche einen Schnittpunkt oberhalb und einen unterhalb der Verbindung ihrer Mittelpunkte."
+        "Markiere in deiner Zeichnung alle Stellen, an denen beide Kreislinien durch denselben Punkt laufen. Zähle dann die markierten Stellen."
       ]
     },
     {
@@ -3717,7 +3717,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 2 Reihen mit je 2 Punkten. Zähle zuerst 1 Reihen und dann die restlichen 1."
+        "Zeichne 2 Reihen mit je 2 Punkten. Zähle zuerst die Punkte in der ersten Reihe. Zähle die Punkte in der übrigen Reihe dazu."
       ]
     },
     {
@@ -3771,7 +3771,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 3 Reihen mit je 3 Punkten. Zähle zuerst 2 Reihen und dann die restlichen 1."
+        "Zeichne 3 Reihen mit je 3 Punkten. Zähle zuerst die Punkte in den ersten 2 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
       ]
     },
     {
@@ -3831,7 +3831,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 4 Reihen mit je 4 Punkten. Zähle zuerst 3 Reihen und dann die restlichen 1."
+        "Zeichne 4 Reihen mit je 4 Punkten. Zähle zuerst die Punkte in den ersten 3 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
       ]
     },
     {
@@ -3891,7 +3891,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 5 Reihen mit je 5 Punkten. Zähle zuerst 4 Reihen und dann die restlichen 1."
+        "Zeichne 5 Reihen mit je 5 Punkten. Zähle zuerst die Punkte in den ersten 4 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
       ]
     },
     {
@@ -3951,7 +3951,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 6 Reihen mit je 6 Punkten. Zähle zuerst 5 Reihen und dann die restlichen 1."
+        "Zeichne 6 Reihen mit je 6 Punkten. Zähle zuerst die Punkte in den ersten 5 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
       ]
     },
     {
@@ -4011,7 +4011,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 7 Reihen mit je 7 Punkten. Zähle zuerst 6 Reihen und dann die restlichen 1."
+        "Zeichne 7 Reihen mit je 7 Punkten. Zähle zuerst die Punkte in den ersten 6 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
       ]
     },
     {
@@ -4071,7 +4071,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 8 Reihen mit je 8 Punkten. Zähle zuerst 7 Reihen und dann die restlichen 1."
+        "Zeichne 8 Reihen mit je 8 Punkten. Zähle zuerst die Punkte in den ersten 7 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
       ]
     },
     {
@@ -4131,7 +4131,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 9 Reihen mit je 9 Punkten. Zähle zuerst 8 Reihen und dann die restlichen 1."
+        "Zeichne 9 Reihen mit je 9 Punkten. Zähle zuerst die Punkte in den ersten 8 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
       ]
     },
     {
@@ -4191,7 +4191,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 10 Reihen mit je 10 Punkten. Zähle zuerst 9 Reihen und dann die restlichen 1."
+        "Zeichne 10 Reihen mit je 10 Punkten. Zähle zuerst die Punkte in den ersten 9 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
       ]
     },
     {
@@ -4251,7 +4251,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 11 Reihen mit je 11 Punkten. Zähle zuerst 10 Reihen und dann die restlichen 1."
+        "Zeichne 11 Reihen mit je 11 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
       ]
     },
     {
@@ -4311,7 +4311,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 12 Reihen mit je 12 Punkten. Zähle zuerst 10 Reihen und dann die restlichen 2."
+        "Zeichne 12 Reihen mit je 12 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
       ]
     },
     {
@@ -4371,7 +4371,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 13 Reihen mit je 13 Punkten. Zähle zuerst 10 Reihen und dann die restlichen 3."
+        "Zeichne 13 Reihen mit je 13 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
       ]
     },
     {
@@ -4431,7 +4431,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 14 Reihen mit je 14 Punkten. Zähle zuerst 10 Reihen und dann die restlichen 4."
+        "Zeichne 14 Reihen mit je 14 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
       ]
     },
     {
@@ -4491,7 +4491,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 15 Reihen mit je 15 Punkten. Zähle zuerst 10 Reihen und dann die restlichen 5."
+        "Zeichne 15 Reihen mit je 15 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
       ]
     },
     {
@@ -4551,7 +4551,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 16 Reihen mit je 16 Punkten. Zähle zuerst 10 Reihen und dann die restlichen 6."
+        "Zeichne 16 Reihen mit je 16 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
       ]
     },
     {
@@ -4611,7 +4611,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 17 Reihen mit je 17 Punkten. Zähle zuerst 10 Reihen und dann die restlichen 7."
+        "Zeichne 17 Reihen mit je 17 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
       ]
     },
     {
@@ -4671,7 +4671,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 18 Reihen mit je 18 Punkten. Zähle zuerst 10 Reihen und dann die restlichen 8."
+        "Zeichne 18 Reihen mit je 18 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
       ]
     },
     {
@@ -4731,7 +4731,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 19 Reihen mit je 19 Punkten. Zähle zuerst 10 Reihen und dann die restlichen 9."
+        "Zeichne 19 Reihen mit je 19 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
       ]
     },
     {
@@ -4791,7 +4791,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zeichne 20 Reihen mit je 20 Punkten. Zähle zuerst 10 Reihen und dann die restlichen 10."
+        "Zeichne 20 Reihen mit je 20 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
       ]
     },
     {
@@ -5123,7 +5123,7 @@
       "unit": null,
       "legacy": false,
       "furtherHints": [
-        "Schreibe 50 zuerst. Rechts vom Minus steht die ganze Malrechnung 3 × 8."
+        "Prüfe jede angebotene Rechnung: Klammern zuerst, dann Punkt vor Strich. Wird zuerst das Produkt berechnet und danach von der Ausgangszahl abgezogen?"
       ]
     },
     {
@@ -5369,7 +5369,7 @@
       "unit": null,
       "legacy": false,
       "furtherHints": [
-        "Drei Hefte kosten zusammen 3 × 2. Der Stift kommt als einzelner Euro dazu."
+        "Welche Kosten wiederholen sich dreimal? Welche kommen nur einmal hinzu? Verbinde beide Teile in einer Rechnung."
       ]
     },
     {
@@ -6773,7 +6773,7 @@
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
       "legacy": false,
       "furtherHints": [
-        "Zehn Hektarquadrate passen in eine Reihe. Zähle zehn Reihen."
+        "Zehn Hektarquadrate passen in eine Reihe. Zähle alle Hektarquadrate in zehn solchen Reihen."
       ]
     },
     {
