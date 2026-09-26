@@ -49,7 +49,7 @@ Die Datenbank ist nicht verschlüsselt. Es gibt noch keine Mehrbenutzerverwaltun
 
 ## Offline und Schnittstellen
 
-Zehn explizite Commands sind für das lokale Hauptfenster erlaubt: `get_profile`, `save_profile`, `list_progress`, `get_learning_state`, `submit_answer`, `redeem_reward`, `set_difficulty`, `get_arcade_state`, `start_game`, `finish_game`. Ein vom Frontend geliefertes `correct`-Flag wird nicht als Antwortbewertung akzeptiert. Auch Vokabeln werden anhand der eingetippten Antwort im Backend geprüft. Rust prüft Eingaben auch dann, wenn das Frontend bereits geprüft hat. Es gibt keinen beliebigen SQL-, Shell- oder Dateisystemzugriff aus der Oberfläche und keine Netzwerk-Plugins. Produktions-CSP und lokal gebündelte Assets vermeiden externe Ressourcen. Die Entwicklungs-CSP erlaubt nur zusätzlich Vite/HMR auf der Loopback-Adresse.
+Zehn explizite Commands sind für das lokale Hauptfenster erlaubt: `get_profile`, `save_profile`, `list_progress`, `get_learning_state`, `submit_answer`, `redeem_reward`, `set_difficulty`, `get_arcade_state`, `start_game`, `finish_game`. Ein vom Frontend geliefertes `correct`-Flag wird nicht als Antwortbewertung akzeptiert. Auch Vokabeln werden anhand der eingetippten Antwort im Backend geprüft. Rust prüft Eingaben auch dann, wenn das Frontend bereits geprüft hat. Es gibt keinen beliebigen SQL-, Shell- oder Dateisystemzugriff aus der Oberfläche. Das begrenzte Updater-Plugin lädt Versionsinformationen und signierte App-Pakete vom konfigurierten Release-Endpunkt. Produktions-CSP und lokal gebündelte Assets vermeiden externe Ressourcen. Die Entwicklungs-CSP erlaubt nur zusätzlich Vite/HMR auf der Loopback-Adresse.
 
 ## Lehrplaninhalte ergänzen
 
@@ -174,3 +174,7 @@ Jede Aktion, ihr Beleg, der Fortschritt und etwaige Punkte werden gemeinsam in e
 Die Runde beginnt mit einem Abruf vor dem Beispiel. Zeitversetzter Erfolg verlangt eine selbstständige erste Antwort auf eine andere Variante, eine frühere Selbstlösung und mindestens einen Tag Abstand zur letzten Lernaktion auf dieser Stufe. Tipps und Aufdecken werden gespeichert, bevor sie angezeigt werden. Ein bloßer Rundenabschluss oder eine Mitmach-Selbstauskunft ist kein automatischer Kompetenznachweis. Die Wiederholungsplanung nutzt die Gerätezeit; eine Manipulation der lokalen Uhr ist nicht abgesichert.
 
 Weitere Hinweise zu Inhalt, Bedienung und Forschungsgrenzen: [Geführte Lernrunde](learning-missions.md).
+
+## Signierte App-Updates
+
+`AppUpdates` bleibt über Ansichtswechsel hinweg aktiv. Es prüft einmal beim Start, sofern die lokal in der Webview gespeicherte Einstellung das erlaubt. `lib/updater.ts` kapselt die offiziellen Tauri-Updater-/Process-APIs, begrenzt Prüfungen auf 15 Sekunden und Downloads auf drei Minuten. Die feste HTTPS-URL und der öffentliche Signaturschlüssel liegen in `tauri.conf.json`. Downloads/Installation und Neustart benötigen ausdrückliche Bedienaktionen; der Lernbetrieb funktioniert ohne Netzwerk. Profil, SQLite-Daten und Lernantworten werden nicht übertragen. Der Release-Workflow veröffentlicht erst nach drei erfolgreichen Plattformbuilds ein vollständiges Manifest. [Ablauf und Grenzen](app-updates.md).

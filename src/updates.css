@@ -1,0 +1,30 @@
+.update-content {
+  display: grid;
+  gap: 1rem;
+}
+.update-content p {
+  margin: 0;
+}
+.update-preference {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.update-preference input {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+}
+.release-notes {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 14rem;
+  overflow: auto;
+  padding: 0.75rem 0;
+}
+.update-dialog progress {
+  width: min(100%, 20rem);
+}
+.app-updates {
+  flex-shrink: 0;
+}

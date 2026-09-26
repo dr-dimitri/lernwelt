@@ -35,6 +35,12 @@ Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale mac
 
 Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Eine feste Seitennavigation führt zu Fächern, Trainern und Spielhalle; im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
 
+## App aktualisieren
+
+Über **App aktualisieren** oben im Fenster kannst du neue Versionen prüfen, herunterladen und installieren. Lernwelt prüft standardmäßig einmal beim Start; diese Prüfung ist abschaltbar und bleibt lokal gespeichert. Die Installation startet erst nach deinem Klick. Neue Pakete werden vor der Installation mit einer Signatur geprüft. Der Lernbetrieb funktioniert weiterhin offline; Profile und Antworten werden nicht übertragen.
+
+Die erste Installation einer Version mit Updater erfolgt über den GitHub-Release. Die bisherige Version 0.1.0 kann sich noch nicht selbst aktualisieren. macOS (Apple Silicon und Intel) sowie Windows x64 erhalten eigene Pakete. Die Pakete sind für den Updater signiert, haben aber noch keine Apple-Notarisierung oder Windows-Herausgebersignatur. [Bedienung und Release-Prozess](docs/app-updates.md).
+
 ## Lokale Daten
 
 Das Lernprofil (Spitzname und Klasse 5) wird in `lernwelt.sqlite3` im Tauri-Anwendungsdatenverzeichnis `de.lernwelt.desktop` gespeichert. Auf macOS ist dies `~/Library/Application Support/de.lernwelt.desktop/`, auf Windows unter `%APPDATA%\\de.lernwelt.desktop\\`. Die Browser-Vorschau zeigt einen Hinweis statt Speicherung zu simulieren.
