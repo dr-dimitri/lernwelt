@@ -15,6 +15,8 @@ import {
   missionActive,
   missionAt,
   missionCorrect,
+  missionOverview,
+  englishMissionMetadata,
 } from './test/mission-fixture';
 
 vi.mock('./lib/desktop', () => ({
@@ -389,4 +391,33 @@ it('startet die Lernrunde, setzt bestätigte Rückmeldung nach Navigation fort u
   expect(await screen.findByLabelText('Verfügbare Punkte')).toHaveTextContent(
     '10 Punkte',
   );
+});
+
+it('öffnet das gewählte Missionsthema und findet seine offene Runde nach Rückkehr wieder', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getMissionState).mockImplementation(async (topic) =>
+    topic === englishMissionMetadata.id
+      ? { ...missionActive, metadata: englishMissionMetadata }
+      : missionOverview,
+  );
+  render(<App />);
+  await user.click(
+    await screen.findByRole('button', {
+      name: /Englisch.*Schritt 3 fortsetzen/,
+    }),
+  );
+  await user.click(screen.getByRole('button', { name: 'Runde fortsetzen' }));
+  expect(
+    await screen.findByRole('heading', { name: englishMissionMetadata.title }),
+  ).toBeVisible();
+  expect(desktop.getMissionState).toHaveBeenLastCalledWith(
+    englishMissionMetadata.id,
+  );
+  expect(desktop.startMission).not.toHaveBeenCalled();
+  await user.click(screen.getByRole('button', { name: '← Alle Fächer' }));
+  expect(
+    await screen.findByRole('button', {
+      name: /Englisch.*Schritt 3 fortsetzen/,
+    }),
+  ).toBeVisible();
 });

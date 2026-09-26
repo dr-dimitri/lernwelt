@@ -136,8 +136,11 @@ fn answer_multiplication(
 }
 
 #[tauri::command]
-fn get_mission_state(storage: State<'_, Storage>) -> Result<mission::MissionState, String> {
-    storage.with_connection(mission::get_state)
+fn get_mission_state(
+    storage: State<'_, Storage>,
+    topic_id: Option<String>,
+) -> Result<mission::MissionState, String> {
+    storage.with_connection(|c| mission::get_state(c, topic_id.as_deref()))
 }
 #[tauri::command]
 fn start_mission(

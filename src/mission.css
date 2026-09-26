@@ -317,3 +317,44 @@
     scroll-behavior: auto;
   }
 }
+
+.mission-chooser {
+  flex-wrap: wrap;
+}
+.mission-topic-heading {
+  flex: 1 1 100%;
+}
+.mission-topic-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  border: 0;
+  margin: 8px 0 0;
+  padding: 0;
+  min-width: 0;
+}
+.mission-topic-list legend {
+  margin-bottom: 8px;
+  font-weight: 650;
+}
+.mission-topic {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  text-align: left;
+  white-space: normal;
+}
+.mission-topic span,
+.mission-topic small {
+  font-size: 12px;
+  font-weight: 400;
+}
+.mission-topic[aria-pressed='true'] {
+  border-color: #147565;
+  background: #d6ecdf;
+}
+@media (max-width: 650px) {
+  .mission-topic-list {
+    grid-template-columns: 1fr;
+  }
+}

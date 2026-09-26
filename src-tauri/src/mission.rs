@@ -38,7 +38,7 @@ struct Exercise {
 struct Discovery {
     title: String,
     text: String,
-    diagram: Diagram,
+    diagram: Option<Diagram>,
 }
 #[derive(Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -67,28 +67,58 @@ struct Catalog {
     subject: database::Subject,
     grade: u8,
     competency_id: String,
+    #[serde(default)]
+    foreign_language_sequence: Option<u8>,
     source: String,
     curriculum_version: String,
     variants: Vec<Variant>,
 }
-fn catalog() -> Result<&'static Catalog, String> {
-    static CATALOG: OnceLock<Result<Catalog, String>> = OnceLock::new();
-    CATALOG
+const GARDEN_TOPIC: &str = "by.math.5.round.garden.v1";
+fn catalogs() -> Result<&'static [Catalog], String> {
+    static CATALOGS: OnceLock<Result<Vec<Catalog>, String>> = OnceLock::new();
+    CATALOGS
         .get_or_init(|| {
-            let catalog: Catalog =
-                serde_json::from_str(include_str!("../content/mission-garden-v1.json"))
+            let mut catalogs = Vec::new();
+            let mut ids = HashSet::new();
+            for source in [
+                include_str!("../content/mission-garden-v1.json"),
+                include_str!("../content/mission-english-v1.json"),
+                include_str!("../content/mission-nature-v1.json"),
+            ] {
+                let catalog: Catalog = serde_json::from_str(source)
                     .map_err(|_| "Die Inhalte der Lernrunde sind nicht verfügbar.".to_owned())?;
-            validate_catalog(&catalog)?;
-            Ok(catalog)
+                validate_catalog(&catalog)?;
+                if !ids.insert(catalog.id.clone()) {
+                    return Err("Eine Lernrunde ist doppelt vorhanden.".to_owned());
+                }
+                for v in &catalog.variants {
+                    for e in [&v.recall, &v.solve, &v.detect] {
+                        if !ids.insert(e.id.clone()) {
+                            return Err("Eine Lernaufgabe ist doppelt vorhanden.".to_owned());
+                        }
+                    }
+                }
+                catalogs.push(catalog);
+            }
+            Ok(catalogs)
         })
-        .as_ref()
+        .as_deref()
         .map_err(Clone::clone)
+}
+fn catalog(topic_id: &str) -> Result<&'static Catalog, String> {
+    catalogs()?
+        .iter()
+        .find(|c| c.id == topic_id)
+        .ok_or_else(|| "Diese Lernrunde ist nicht verfügbar. Wähle ein anderes Thema.".to_owned())
 }
 fn validate_catalog(catalog: &Catalog) -> Result<(), String> {
     let invalid = || "Die Inhalte der Lernrunde sind nicht vollständig.".to_owned();
     if catalog.variants.len() != 9
         || catalog.grade != 5
-        || catalog.subject != database::Subject::Mathematics
+        || (catalog.subject == database::Subject::English
+            && catalog.foreign_language_sequence != Some(1))
+        || (catalog.subject != database::Subject::English
+            && catalog.foreign_language_sequence.is_some())
         || [
             &catalog.id,
             &catalog.title,
@@ -125,7 +155,8 @@ fn validate_catalog(catalog: &Catalog) -> Result<(), String> {
                 || (e.answer_kind == "choice"
                     && (!e.options.contains(&e.answer)
                         || e.options.len() < 2
-                        || e.options.len() > 4))
+                        || e.options.len() > 4
+                        || e.options.iter().collect::<HashSet<_>>().len() != e.options.len()))
                 || !matches!(e.answer_kind.as_str(), "number" | "choice")
             {
                 return Err(invalid());
@@ -144,9 +175,32 @@ struct Metadata {
     subject: database::Subject,
     grade: u8,
     competency_id: &'static str,
+    foreign_language_sequence: Option<u8>,
     source: &'static str,
     curriculum_version: &'static str,
     variant_count: u8,
+}
+fn metadata(catalog: &'static Catalog) -> Metadata {
+    Metadata {
+        id: &catalog.id,
+        title: &catalog.title,
+        description: &catalog.description,
+        subject: catalog.subject,
+        grade: catalog.grade,
+        competency_id: &catalog.competency_id,
+        foreign_language_sequence: catalog.foreign_language_sequence,
+        source: &catalog.source,
+        curriculum_version: &catalog.curriculum_version,
+        variant_count: 3,
+    }
+}
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+struct TopicSummary {
+    metadata: Metadata,
+    active_step: Option<u8>,
+    due_at: Option<i64>,
+    due: bool,
 }
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -195,6 +249,7 @@ pub struct MissionState {
     profile_ready: bool,
     difficulty: Difficulty,
     metadata: Metadata,
+    topics: Vec<TopicSummary>,
     progress: Progress,
     due_at: Option<i64>,
     due: bool,
@@ -206,6 +261,9 @@ pub struct MissionState {
 pub struct StartInput {
     pub request_id: String,
     pub difficulty: Difficulty,
+    // Omission preserves the exact serialized payload of historical garden requests.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub topic_id: Option<String>,
 }
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
@@ -228,6 +286,7 @@ pub struct ActionInput {
 #[derive(Debug)]
 struct StoredSession {
     id: String,
+    topic_id: String,
     difficulty: Difficulty,
     round: i64,
     variant: u8,
@@ -263,8 +322,12 @@ fn now() -> Result<i64, String> {
 fn valid_id(id: &str) -> bool {
     !id.is_empty() && id.len() <= 80 && id.bytes().all(|b| b.is_ascii_alphanumeric() || b == b'-')
 }
-fn progress(connection: &Connection, difficulty: Difficulty) -> Result<StoredProgress, String> {
-    connection.query_row("SELECT independent_at, independent_variant, recalled_later_at, last_practiced_at, due_at, interval_days FROM mission_progress WHERE profile_id = 1 AND topic_id = ?1 AND difficulty = ?2", params![catalog()?.id, difficulty.as_str()], |r| Ok(StoredProgress { independent_at:r.get(0)?, independent_variant:r.get(1)?, recalled_later_at:r.get(2)?, last_practiced_at:r.get(3)?, due_at:r.get(4)?, interval_days:r.get(5)? })).optional().map(|p| p.unwrap_or(StoredProgress { interval_days:1, ..Default::default() })).map_err(db_error)
+fn progress(
+    connection: &Connection,
+    difficulty: Difficulty,
+    topic_id: &str,
+) -> Result<StoredProgress, String> {
+    connection.query_row("SELECT independent_at, independent_variant, recalled_later_at, last_practiced_at, due_at, interval_days FROM mission_progress WHERE profile_id = 1 AND topic_id = ?1 AND difficulty = ?2", params![topic_id, difficulty.as_str()], |r| Ok(StoredProgress { independent_at:r.get(0)?, independent_variant:r.get(1)?, recalled_later_at:r.get(2)?, last_practiced_at:r.get(3)?, due_at:r.get(4)?, interval_days:r.get(5)? })).optional().map(|p| p.unwrap_or(StoredProgress { interval_days:1, ..Default::default() })).map_err(db_error)
 }
 fn stored_step(connection: &Connection, session_id: &str, index: u8) -> Result<StoredStep, String> {
     connection.query_row("SELECT hinted, outcome, points_awarded, independent FROM mission_steps WHERE session_id = ?1 AND step_index = ?2", params![session_id,index], |r| Ok(StoredStep { hinted:r.get(0)?, outcome:r.get(1)?, points:r.get(2)?, independent:r.get(3)? })).optional().map(|s| s.unwrap_or_default()).map_err(db_error)
@@ -278,16 +341,18 @@ fn session_from_row(r: &rusqlite::Row<'_>) -> rusqlite::Result<StoredSession> {
         variant: r.get(3)?,
         current_step: r.get(4)?,
         recall_eligible: r.get(5)?,
+        topic_id: r.get(6)?,
     })
 }
 fn latest_session(
     connection: &Connection,
     difficulty: Difficulty,
+    topic_id: &str,
 ) -> Result<Option<StoredSession>, String> {
-    connection.query_row("SELECT id,difficulty,round,variant,current_step,recall_eligible FROM mission_sessions WHERE profile_id = 1 AND topic_id = ?1 AND difficulty = ?2 ORDER BY round DESC LIMIT 1", params![catalog()?.id,difficulty.as_str()], session_from_row).optional().map_err(db_error)
+    connection.query_row("SELECT id,difficulty,round,variant,current_step,recall_eligible,topic_id FROM mission_sessions WHERE profile_id = 1 AND topic_id = ?1 AND difficulty = ?2 ORDER BY round DESC LIMIT 1", params![topic_id,difficulty.as_str()], session_from_row).optional().map_err(db_error)
 }
 fn variant(session: &StoredSession) -> Result<&'static Variant, String> {
-    catalog()?
+    catalog(&session.topic_id)?
         .variants
         .iter()
         .find(|v| v.difficulty == session.difficulty && v.variant == session.variant)
@@ -347,9 +412,9 @@ fn project_step(connection: &Connection, session: &StoredSession) -> Result<Opti
         });
     } else if session.current_step == 1 {
         step.prompt = &v.discovery.text;
-        step.diagram = Some(&v.discovery.diagram);
+        step.diagram = v.discovery.diagram.as_ref();
     } else {
-        step.prompt = "Probiere es mit einem echten Gegenstand aus. Diese Aufgabe ist freiwillig.";
+        step.prompt = "Jetzt kannst du selbst etwas ausprobieren. Diese Aufgabe ist freiwillig.";
         step.instructions = &v.activity.steps;
         step.feedback = s.outcome.map(|_| Feedback {
             correct: None,
@@ -361,11 +426,11 @@ fn project_step(connection: &Connection, session: &StoredSession) -> Result<Opti
     }
     Ok(Some(step))
 }
-fn state(connection: &Connection, now: i64) -> Result<MissionState, String> {
-    let catalog = catalog()?;
+fn state(connection: &Connection, topic_id: &str, now: i64) -> Result<MissionState, String> {
+    let catalog = catalog(topic_id)?;
     let difficulty = database::get_difficulty(connection)?;
-    let p = progress(connection, difficulty)?;
-    let latest = latest_session(connection, difficulty)?;
+    let p = progress(connection, difficulty, topic_id)?;
+    let latest = latest_session(connection, difficulty, topic_id)?;
     let completed_rounds = connection.query_row("SELECT COUNT(*) FROM mission_sessions WHERE profile_id = 1 AND topic_id = ?1 AND difficulty = ?2 AND completed_at IS NOT NULL", params![catalog.id,difficulty.as_str()], |r| r.get(0)).map_err(db_error)?;
     let tried = latest.is_some();
     let session = latest
@@ -382,17 +447,22 @@ fn state(connection: &Connection, now: i64) -> Result<MissionState, String> {
     Ok(MissionState {
         profile_ready: database::get_profile(connection)?.is_some(),
         difficulty,
-        metadata: Metadata {
-            id: &catalog.id,
-            title: &catalog.title,
-            description: &catalog.description,
-            subject: catalog.subject,
-            grade: catalog.grade,
-            competency_id: &catalog.competency_id,
-            source: &catalog.source,
-            curriculum_version: &catalog.curriculum_version,
-            variant_count: 3,
-        },
+        metadata: metadata(catalog),
+        topics: catalogs()?
+            .iter()
+            .map(|topic| {
+                let p = progress(connection, difficulty, &topic.id)?;
+                let active = latest_session(connection, difficulty, &topic.id)?;
+                Ok(TopicSummary {
+                    metadata: metadata(topic),
+                    active_step: active
+                        .filter(|s| s.current_step < 5)
+                        .map(|s| s.current_step),
+                    due_at: p.due_at,
+                    due: p.due_at.is_some_and(|due| due <= now),
+                })
+            })
+            .collect::<Result<_, String>>()?,
         progress: Progress {
             tried,
             solved_independently: p.independent_at.is_some(),
@@ -405,12 +475,19 @@ fn state(connection: &Connection, now: i64) -> Result<MissionState, String> {
         session,
     })
 }
-pub fn get_state(connection: &mut Connection) -> Result<MissionState, String> {
-    get_state_at(connection, now()?)
+pub fn get_state(
+    connection: &mut Connection,
+    topic_id: Option<&str>,
+) -> Result<MissionState, String> {
+    get_state_at(connection, topic_id.unwrap_or(GARDEN_TOPIC), now()?)
 }
-fn get_state_at(connection: &mut Connection, now: i64) -> Result<MissionState, String> {
+fn get_state_at(
+    connection: &mut Connection,
+    topic_id: &str,
+    now: i64,
+) -> Result<MissionState, String> {
     let tx = connection.transaction().map_err(db_error)?;
-    let result = state(&tx, now)?;
+    let result = state(&tx, topic_id, now)?;
     tx.commit().map_err(db_error)?;
     Ok(result)
 }
@@ -463,6 +540,8 @@ fn start_at(
     if !valid_id(&input.request_id) {
         return Err("Die Anfrage-ID ist ungültig.".to_owned());
     }
+    let topic_id = input.topic_id.as_deref().unwrap_or(GARDEN_TOPIC);
+    let catalog = catalog(topic_id)?;
     let payload = format!(
         "start:{}",
         serde_json::to_string(&input).map_err(|_| ERROR)?
@@ -475,20 +554,20 @@ fn start_at(
         if database::get_difficulty(&tx)? != input.difficulty {
             return Err("Die Stufe hat sich geändert. Lade die Lernrunde neu.".to_owned());
         }
-        let latest = latest_session(&tx, input.difficulty)?;
+        let latest = latest_session(&tx, input.difficulty, topic_id)?;
         if latest.as_ref().is_none_or(|s| s.current_step == 5) {
             let round = latest.map_or(1, |s| s.round + 1);
             let variant = ((round - 1) % 3) as u8;
-            let p = progress(&tx, input.difficulty)?;
+            let p = progress(&tx, input.difficulty, topic_id)?;
             let eligible = p.independent_at.is_some_and(|at| now >= at + DAY)
                 && now >= p.last_practiced_at + DAY
                 && p.independent_variant != Some(variant);
-            tx.execute("INSERT INTO mission_sessions(id,profile_id,topic_id,difficulty,round,variant,recall_eligible,started_at) VALUES(?1,1,?2,?3,?4,?5,?6,?7)",params![input.request_id,catalog()?.id,input.difficulty.as_str(),round,variant,eligible,now]).map_err(db_error)?;
-            tx.execute("INSERT INTO mission_progress(profile_id,topic_id,difficulty,last_practiced_at) VALUES(1,?1,?2,?3) ON CONFLICT(profile_id,topic_id,difficulty) DO UPDATE SET last_practiced_at=excluded.last_practiced_at",params![catalog()?.id,input.difficulty.as_str(),now]).map_err(db_error)?;
+            tx.execute("INSERT INTO mission_sessions(id,profile_id,topic_id,difficulty,round,variant,recall_eligible,started_at) VALUES(?1,1,?2,?3,?4,?5,?6,?7)",params![input.request_id,catalog.id,input.difficulty.as_str(),round,variant,eligible,now]).map_err(db_error)?;
+            tx.execute("INSERT INTO mission_progress(profile_id,topic_id,difficulty,last_practiced_at) VALUES(1,?1,?2,?3) ON CONFLICT(profile_id,topic_id,difficulty) DO UPDATE SET last_practiced_at=excluded.last_practiced_at",params![catalog.id,input.difficulty.as_str(),now]).map_err(db_error)?;
         }
         store_request(&tx, &input.request_id, &payload, now)?;
     }
-    let result = state(&tx, now)?;
+    let result = state(&tx, topic_id, now)?;
     tx.commit().map_err(db_error)?;
     Ok(result)
 }
@@ -519,8 +598,18 @@ fn act_at(
         .transaction_with_behavior(TransactionBehavior::Immediate)
         .map_err(db_error)?;
     require_profile(&tx)?;
+    let topic_id: String = tx
+        .query_row(
+            "SELECT topic_id FROM mission_sessions WHERE id=?1 AND profile_id=1",
+            [&input.session_id],
+            |r| r.get(0),
+        )
+        .optional()
+        .map_err(db_error)?
+        .ok_or("Starte zuerst eine Lernrunde.")?;
+    catalog(&topic_id)?;
     if !request_replayed(&tx, &input.request_id, &payload)? {
-        let current = latest_session(&tx, database::get_difficulty(&tx)?)?
+        let current = latest_session(&tx, database::get_difficulty(&tx)?, &topic_id)?
             .ok_or("Starte zuerst eine Lernrunde.")?;
         if current.id != input.session_id || current.current_step != input.step_index {
             return Err("Die Lernrunde ist schon weiter oder die Stufe wurde gewechselt. Lade den aktuellen Stand.".to_owned());
@@ -528,7 +617,7 @@ fn act_at(
         apply_action(&tx, &current, &input, now)?;
         store_request(&tx, &input.request_id, &payload, now)?;
     }
-    let result = state(&tx, now)?;
+    let result = state(&tx, &topic_id, now)?;
     tx.commit().map_err(db_error)?;
     Ok(result)
 }
@@ -538,6 +627,7 @@ fn apply_action(
     input: &ActionInput,
     now: i64,
 ) -> Result<(), String> {
+    let catalog = catalog(&session.topic_id)?;
     let v = variant(session)?;
     let exercise = exercise(v, session.current_step);
     let stored = stored_step(connection, &session.id, session.current_step)?;
@@ -581,8 +671,8 @@ fn apply_action(
                     learning::record_exercise_result(
                         connection,
                         &e.id,
-                        database::Subject::Mathematics,
-                        &catalog()?.competency_id,
+                        catalog.subject,
+                        &catalog.competency_id,
                         session.difficulty,
                         correct,
                     )?
@@ -604,7 +694,7 @@ fn apply_action(
             connection.execute("INSERT INTO mission_steps(session_id,step_index,hinted,outcome,answer,independent,points_awarded) VALUES(?1,?2,?3,?4,?5,?6,?7) ON CONFLICT(session_id,step_index) DO UPDATE SET outcome=excluded.outcome,answer=excluded.answer,independent=excluded.independent,points_awarded=excluded.points_awarded",params![session.id,session.current_step,stored.hinted,outcome,input.answer,independent,points]).map_err(db_error)?;
             if independent {
                 let delayed = session.current_step == 0 && session.recall_eligible;
-                connection.execute("UPDATE mission_progress SET independent_at=COALESCE(independent_at,?1), independent_variant=?2, recalled_later_at=CASE WHEN ?3 THEN COALESCE(recalled_later_at,?1) ELSE recalled_later_at END WHERE profile_id=1 AND topic_id=?4 AND difficulty=?5",params![now,session.variant,delayed,catalog()?.id,session.difficulty.as_str()]).map_err(db_error)?;
+                connection.execute("UPDATE mission_progress SET independent_at=COALESCE(independent_at,?1), independent_variant=?2, recalled_later_at=CASE WHEN ?3 THEN COALESCE(recalled_later_at,?1) ELSE recalled_later_at END WHERE profile_id=1 AND topic_id=?4 AND difficulty=?5",params![now,session.variant,delayed,catalog.id,session.difficulty.as_str()]).map_err(db_error)?;
             }
         }
         Action::Next | Action::Skip => {
@@ -617,7 +707,7 @@ fn apply_action(
             let completed = session.current_step == 4;
             connection.execute("UPDATE mission_sessions SET current_step=current_step+1,completed_at=?1 WHERE id=?2",params![completed.then_some(now),session.id]).map_err(db_error)?;
             if completed {
-                let p = progress(connection, session.difficulty)?;
+                let p = progress(connection, session.difficulty, &session.topic_id)?;
                 let recall = stored_step(connection, &session.id, 0)?;
                 let days = if session.recall_eligible && recall.independent {
                     match p.interval_days {
@@ -636,13 +726,15 @@ fn apply_action(
                     .due_at
                     .filter(|due| *due > now)
                     .map_or(next_due, |due| due.min(next_due));
-                connection.execute("UPDATE mission_progress SET due_at=?1,interval_days=?2 WHERE profile_id=1 AND topic_id=?3 AND difficulty=?4",params![due,days,catalog()?.id,session.difficulty.as_str()]).map_err(db_error)?;
+                connection.execute("UPDATE mission_progress SET due_at=?1,interval_days=?2 WHERE profile_id=1 AND topic_id=?3 AND difficulty=?4",params![due,days,catalog.id,session.difficulty.as_str()]).map_err(db_error)?;
             }
         }
     }
-    connection.execute("UPDATE mission_progress SET last_practiced_at=?1 WHERE profile_id=1 AND topic_id=?2 AND difficulty=?3",params![now,catalog()?.id,session.difficulty.as_str()]).map_err(db_error)?;
+    connection.execute("UPDATE mission_progress SET last_practiced_at=?1 WHERE profile_id=1 AND topic_id=?2 AND difficulty=?3",params![now,catalog.id,session.difficulty.as_str()]).map_err(db_error)?;
     Ok(())
 }
 
 #[cfg(test)]
 mod tests;
+#[cfg(test)]
+mod topics_tests;

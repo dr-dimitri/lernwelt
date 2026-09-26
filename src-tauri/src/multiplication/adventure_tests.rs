@@ -381,6 +381,7 @@ fn migration_retains_factor_twenty_five_replays_and_missions_but_new_tasks_stop_
         &mut c,
         crate::mission::StartInput {
             request_id: "saved-mission".into(),
+            topic_id: None,
             difficulty: crate::content::Difficulty::Koenner,
         },
     )

@@ -7,13 +7,15 @@ import type {
 export const missionInitial: MissionState = {
   profileReady: true,
   difficulty: 'koenner',
+  topics: [],
   metadata: {
-    id: 'garden',
+    id: 'by.math.5.round.garden.v1',
     title: 'Ein Zaun für unseren Garten',
     description: 'Eigene Lernwelt-Aufgaben zum Umfang eines Rechtecks.',
     subject: 'mathematics',
     grade: 5,
     competencyId: 'by.math.5.area.perimeter',
+    foreignLanguageSequence: null,
     source:
       'https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik',
     curriculumVersion: 'LehrplanPLUS Gymnasium Bayern · abgerufen 24.09.2026',
@@ -159,4 +161,45 @@ export const missionCompleted: MissionState = {
     completed: true,
     currentStep: null,
   },
+};
+
+export const englishMissionMetadata = {
+  ...missionInitial.metadata,
+  id: 'by.english.5.round.school.v1',
+  title: 'Ein Tag an unserer Schule',
+  description: 'Lies kurze englische Nachrichten und entdecke deinen Schultag.',
+  subject: 'english' as const,
+  foreignLanguageSequence: 1,
+  competencyId: 'by.english.5.round.school.reading-present',
+};
+export const natureMissionMetadata = {
+  ...missionInitial.metadata,
+  id: 'by.nature.5.round.research.v1',
+  title: 'Auf Forschertour: genau hinschauen',
+  description: 'Beobachte Pflanzen und plane einen fairen Versuch.',
+  subject: 'nature' as const,
+  competencyId: 'by.nature.5.round.research.methods',
+};
+export const missionOverview: MissionState = {
+  ...missionInitial,
+  topics: [
+    {
+      metadata: missionInitial.metadata,
+      activeStep: null,
+      dueAt: null,
+      due: false,
+    },
+    {
+      metadata: englishMissionMetadata,
+      activeStep: 2,
+      dueAt: null,
+      due: false,
+    },
+    {
+      metadata: natureMissionMetadata,
+      activeStep: null,
+      dueAt: 1_800_000_000,
+      due: true,
+    },
+  ],
 };

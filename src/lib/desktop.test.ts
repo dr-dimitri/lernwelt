@@ -66,3 +66,21 @@ it('übermittelt beim Einmaleins nur Rechenart, Aufgabenstand und Antwort', asyn
   await desktop.answerMultiplication(input);
   expect(invoke).toHaveBeenCalledWith('answer_multiplication', { input });
 });
+
+it('übermittelt die Themenwahl der Lernrunde und lässt alte Gartenstarts ohne Thema zu', async () => {
+  await desktop.getMissionState('by.english.5.round.school.v1');
+  expect(invoke).toHaveBeenCalledWith('get_mission_state', {
+    topicId: 'by.english.5.round.school.v1',
+  });
+  const input = {
+    requestId: 'mission-1',
+    difficulty: 'koenner' as const,
+    topicId: 'by.nature.5.round.research.v1',
+  };
+  await desktop.startMission(input);
+  expect(invoke).toHaveBeenCalledWith('start_mission', { input });
+  await desktop.startMission({ requestId: 'legacy', difficulty: 'koenner' });
+  expect(invoke).toHaveBeenCalledWith('start_mission', {
+    input: { requestId: 'legacy', difficulty: 'koenner' },
+  });
+});
