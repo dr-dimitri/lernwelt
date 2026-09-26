@@ -6,7 +6,7 @@ Eine verfügbare Version erscheint am Knopf. Herunterladen und Installieren begi
 
 ## Offline und Daten
 
-Die Versionsprüfung nutzt ausschließlich den festen HTTPS-Endpunkt `https://github.com/dr-dimitri/lernwelt/releases/latest/download/latest.json`. GitHub erhält die technisch erforderliche Verbindungsinformation (unter anderem IP-Adresse), keine Lernprofile oder Antworten. Ohne Netz bleibt das Lernen verfügbar. Die Update-Prüfung läuft höchstens 15 Sekunden. SQLite und lokale Lernstände werden nicht exportiert oder ersetzt.
+Die Versionsprüfung nutzt ausschließlich den festen HTTPS-Endpunkt `https://github.com/dr-dimitri/lernwelt/releases/latest/download/latest.json`. GitHub erhält die technisch erforderliche Verbindungsinformation (unter anderem IP-Adresse), keine Lernprofile oder Antworten. Ohne Netz bleibt das Lernen verfügbar. Die Update-Prüfung läuft höchstens 15 Sekunden, ein Download höchstens drei Minuten; danach ist ein erneuter Versuch möglich. SQLite und lokale Lernstände werden nicht exportiert oder ersetzt.
 
 Die offiziellen Tauri-Plugins prüfen vor der Installation die kryptografische Signatur des Updatepakets gegen den mitgelieferten öffentlichen Schlüssel. Eine ungültige Signatur bricht die Installation ab. Im Frontend gibt es keine freie Datei-, Shell- oder HTTP-Schnittstelle; die Capability erlaubt nur Version, Updateprüfung, Installation, Freigabe nativer Ressourcen und Neustart.
 

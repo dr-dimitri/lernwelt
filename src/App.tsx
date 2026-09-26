@@ -219,7 +219,7 @@ export default function App() {
           </div>
           <p className="offline-note">
             <span aria-hidden="true" />
-            Alles bleibt auf deinem Gerät
+            Deine Lerndaten bleiben auf deinem Gerät
           </p>
         </div>
       </aside>
