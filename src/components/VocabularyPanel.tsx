@@ -1,4 +1,6 @@
 import InfoPanel from './InfoPanel';
+import VocabularyAudio from './VocabularyAudio';
+import VocabularyListening from './VocabularyListening';
 import { useEffect, useRef, useState } from 'react';
 import { difficulties, type Difficulty } from '../domain/learning';
 import type {
@@ -37,6 +39,7 @@ export default function VocabularyPanel({
 }: {
   profileVersion: number;
 }) {
+  const [mode, setMode] = useState<'write' | 'listen'>('write');
   const [state, setState] = useState<VocabularyState | null>(null);
   const [deck, setDeck] = useState('all');
   const [reload, setReload] = useState(0);
@@ -183,9 +186,30 @@ export default function VocabularyPanel({
       <p className="eyebrow">ENGLISCH · KLASSE 5 · 1. FREMDSPRACHE</p>
       <h2 id="vocabulary-title">Vokabeltrainer</h2>
       <p>
-        Tippe deine Übersetzung ein. Jede richtige Antwort bringt 1 Punkt – auch
-        wenn du ein Wort später wiederholst. Fehler kosten nichts.
+        {mode === 'write'
+          ? 'Tippe deine Übersetzung ein. Jede richtige Antwort bringt 1 Punkt – auch wenn du ein Wort später wiederholst. Fehler kosten nichts.'
+          : 'Mach eine kurze Pause vom Schreiben und entdecke englische Wörter mit deinen Ohren.'}
       </p>
+      <div className="card-actions" role="group" aria-label="Übungsart">
+        <button
+          type="button"
+          className="secondary-button"
+          aria-pressed={mode === 'write'}
+          disabled={disabled}
+          onClick={() => setMode('write')}
+        >
+          Wörter schreiben
+        </button>
+        <button
+          type="button"
+          className="secondary-button"
+          aria-pressed={mode === 'listen'}
+          disabled={disabled || !state}
+          onClick={() => setMode('listen')}
+        >
+          3 Wörter hören
+        </button>
+      </div>
       {state && (
         <div className="points-balance" aria-label="Verfügbare Lernpunkte">
           {state.wallet.balance}{' '}
@@ -209,14 +233,23 @@ export default function VocabularyPanel({
           )}
         </div>
       )}
-      <button
-        className="secondary-button"
-        disabled={busy}
-        onClick={() => setReload((v) => v + 1)}
-      >
-        {error ? 'Karten neu laden' : 'Fällige Karten laden'}
-      </button>
-      {state && (
+      {mode === 'write' && (
+        <button
+          className="secondary-button"
+          disabled={busy}
+          onClick={() => setReload((v) => v + 1)}
+        >
+          {error ? 'Karten neu laden' : 'Fällige Karten laden'}
+        </button>
+      )}
+      {state && mode === 'listen' && (
+        <VocabularyListening
+          key={profileVersion}
+          decks={state.decks}
+          initialDeck={deck}
+        />
+      )}
+      {state && mode === 'write' && (
         <div className="vocabulary-workspace">
           <div className="vocabulary-settings">
             <h3>Wie möchtest du Wörter üben?</h3>
@@ -315,6 +348,14 @@ export default function VocabularyPanel({
               </h3>
               {!feedback && difficulty === 'vorschule' && (
                 <p lang="en">{card.example}</p>
+              )}
+              {feedback || difficulty === 'vorschule' ? (
+                <VocabularyAudio cardId={card.id} disabled={disabled} />
+              ) : (
+                <p className="sample-note">
+                  Nach deiner Antwort kannst du das englische Wort und den
+                  Beispielsatz anhören.
+                </p>
               )}
               {!feedback ? (
                 <form
@@ -446,6 +487,27 @@ export default function VocabularyPanel({
           </InfoPanel>
         </div>
       )}
+      <InfoPanel className="source-note">
+        <summary>Über die Audios</summary>
+        <p>
+          Alle 370 Wörter und ihre Beispielsätze sind in der App gespeichert. Du
+          brauchst kein Internet und kein Mikrofon. Eine künstlich erzeugte
+          britische Stimme liest vor.
+        </p>
+        <p>
+          Stimme: Piper Cori high von Bryce Beattie, aus frei verfügbaren
+          LibriVox-Aufnahmen neu trainiert (Public Domain). Quelle:
+          https://brycebeattie.com/files/tts/. Die für Lernwelt neu erzeugten
+          Audios stehen unter CC0 1.0
+          (https://creativecommons.org/publicdomain/zero/1.0/).
+        </p>
+        <p>
+          Für Lernwelt wurden eigene Texte neu eingesprochen und als MP3
+          gespeichert. Keine Empfehlung oder Freigabe durch die Urheber. Die
+          Hörübungen geben keine Punkte; deine schriftlichen Wortkarten behalten
+          ihre gewohnten Regeln.
+        </p>
+      </InfoPanel>
     </section>
   );
 }

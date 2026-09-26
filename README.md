@@ -35,6 +35,12 @@ Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale mac
 
 Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Eine feste Seitennavigation führt zu Fächern, Trainern und Spielhalle; im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
 
+## App aktualisieren
+
+Über **App aktualisieren** oben im Fenster kannst du neue Versionen prüfen, herunterladen und installieren. Lernwelt prüft standardmäßig einmal beim Start; diese Prüfung ist abschaltbar und bleibt lokal gespeichert. Die Installation startet erst nach deinem Klick. Neue Pakete werden vor der Installation mit einer Signatur geprüft. Der Lernbetrieb funktioniert weiterhin offline; Profile und Antworten werden nicht übertragen.
+
+Die erste Installation einer Version mit Updater erfolgt über den GitHub-Release. Die bisherige Version 0.1.0 kann sich noch nicht selbst aktualisieren. macOS (Apple Silicon und Intel) sowie Windows x64 erhalten eigene Pakete. Die Pakete sind für den Updater signiert, haben aber noch keine Apple-Notarisierung oder Windows-Herausgebersignatur. [Bedienung und Release-Prozess](docs/app-updates.md).
+
 ## Lokale Daten
 
 Das Lernprofil (Spitzname und Klasse 5) wird in `lernwelt.sqlite3` im Tauri-Anwendungsdatenverzeichnis `de.lernwelt.desktop` gespeichert. Auf macOS ist dies `~/Library/Application Support/de.lernwelt.desktop/`, auf Windows unter `%APPDATA%\\de.lernwelt.desktop\\`. Die Browser-Vorschau zeigt einen Hinweis statt Speicherung zu simulieren.
@@ -122,7 +128,7 @@ Eintritt, offene Runde und abgeschlossene Bestwerte werden lokal gespeichert. Na
 
 Grundlage: [LehrplanPLUS Englisch 5, erste Fremdsprache](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache). Thematische Orientierung: [öffentlicher Stoffverteilungsplan Green Line Bayern 1](https://assets.klett.de/assets/43500837/StoffverteilungsplanBd1.pdf), Bayern-Ausgabe ab 2017, ISBN 978-3-12-803010-4. Quellenstand 24.09.2026. Eigene Texte und Aufgaben; kein Klett-Lehrbuchimport und keine vom Verlag freigegebene Begleitsoftware.
 
-Sprechen, freies Schreiben und Hörverstehen werden durch angeleitete Aktivitäten mit Selbstkontrolle bzw. Vorleseperson geübt. Keine Audioaufnahmen, keine automatische Aussprache- oder Freitextbewertung. Das begrenzte Paket ist keine vollständige Abdeckung jedes Lehrbuchinhalts und keine vollständige Lernstandserhebung. Die Themen bleiben Klasse 5, auch wenn ein älteres Profil noch eine andere Klasse enthält. [Inhaltsübersicht und Grenzen](docs/curriculum-english-5.md).
+Sprechen und freies Schreiben werden durch angeleitete Aktivitäten mit Selbstkontrolle bzw. Vorleseperson geübt. Der Vokabeltrainer ergänzt gebündelte englische Audios und kurze Hörübungen. Keine Mikrofonaufnahmen, keine automatische Aussprache- oder Freitextbewertung. Das begrenzte Paket ist keine vollständige Abdeckung jedes Lehrbuchinhalts und keine vollständige Lernstandserhebung. Die Themen bleiben Klasse 5, auch wenn ein älteres Profil noch eine andere Klasse enthält. [Inhaltsübersicht und Grenzen](docs/curriculum-english-5.md).
 
 ## Vokabeltrainer
 
@@ -136,7 +142,15 @@ Fünf Karteifächer planen die Wiederholung: Bei einer richtigen Antwort wandert
 
 Neu hinzugekommen sind unter anderem Tiere, Kleidung, Körper, Wetter, Kalender und Zahlen. Alle ursprünglichen 120 Karten behalten ihre IDs und Inhalte; ergänzt wurden 250 Karten und Antwortvarianten. [Wortschatzumfang und Prüfung](docs/vocabulary-5.md).
 
-Kartenstand und Wiederholungstermine bleiben lokal in SQLite gespeichert. Die Geräteuhr bestimmt die Termine. Neue Profilnamen oder das Umstellen eines älteren Profils auf Klasse 5 ändern den vorhandenen Fortschritt nicht. Es gibt noch keinen Import eigener Karten, keine Ausspracheaufnahmen und keine Synchronisierung.
+Kartenstand und Wiederholungstermine bleiben lokal in SQLite gespeichert. Die Geräteuhr bestimmt die Termine. Neue Profilnamen oder das Umstellen eines älteren Profils auf Klasse 5 ändern den vorhandenen Fortschritt nicht. Es gibt noch keinen Import eigener Karten und keine Synchronisierung.
+
+### Wörter hören
+
+Alle **370 englischen Wörter und ihre Beispielsätze** lassen sich offline anhören. In Vorschule sind **Wort anhören** und **Beispielsatz anhören** sofort verfügbar; in Könner und Streber erst nach einer geprüften Antwort oder dem bestätigten Aufdecken, damit die Lösung vorher verborgen bleibt. **Audio stoppen** beendet die Wiedergabe; auch beim Karten-, Themen-, Stufen- und Ansichtswechsel stoppt sie. Fehler werden angezeigt und lassen sich erneut versuchen.
+
+**3 Wörter hören** startet eine freiwillige Runde: Wort anhören und die deutsche Bedeutung auswählen. Nach drei Wörtern kannst du aufhören oder eine neue Runde beginnen. Kein Zeitlimit; beliebig oft anhören oder die Lösung zeigen. Die Hörrunde vergibt keine Punkte und ändert weder Karteifächer noch Wiederholungstermine. Zurück zu **Wörter schreiben** bleiben die bisherigen Regeln unverändert.
+
+Die britische Stimme Cori wurde vorab synthetisch erzeugt. Alle 740 MP3s sind Teil der App; keine Cloud, keine Mikrofonaufnahme und keine Sprachsynthese zur Laufzeit. Quelle und Lizenz (Public-Domain-Stimme, Audios unter CC0), Erzeugung und Prüfgrenzen: [Offline-Audios](docs/vocabulary-audio.md).
 
 ## Einmaleins-Trainer: Werkstatt und Insel
 

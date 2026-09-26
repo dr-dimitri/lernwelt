@@ -18,7 +18,7 @@
 
 ## Datenhaltung und Bewertung
 
-Ein struktureller Vergleich aller vier Inhaltspakete mit dem Ausgangsstand `fc8c77f` bestätigte unabhängig: Nach Entfernen der neuen Felder `furtherHints` und `commonMistakes` waren alle bisherigen Felder identisch. Aufgaben-IDs, Antworten und Punktebedeutung bleiben erhalten. Bereits auf `main` ergänzte Änderungen aus anderen Issues werden beim Abgleich übernommen.
+Ein struktureller Vergleich aller vier Inhaltspakete mit dem Ausgangsstand `fc8c77f` bestätigte unabhängig: Nach Entfernen der neuen Felder `furtherHints` und `commonMistakes` waren alle bisherigen Felder identisch. Aufgaben-IDs, Antworten und Punktebedeutung bleiben erhalten. Der Abgleich mit `main` bei `0e244d5` übernahm Updater, Offline-Audio und die 2²-Tippkorrektur. Der einzige Mergekonflikt betraf die am Dokumentende ergänzten Architekturabschnitte; beide Abschnitte wurden erhalten. Der strukturelle Vergleich aller vier Inhaltspakete wurde danach gegen dieses aktuelle `main` erfolgreich wiederholt.
 
 Die bestehenden Commands liefern zusätzliche typisierte Felder. Lösungsschlüssel und Fehlerantwortlisten bleiben im Backend. Richtig/falsch, Fortschrittsbuchung und Erstlösungspunkte ändern sich nicht. Tipps öffnen löst keinen Schreibbefehl aus. Keine neue Migration, Abhängigkeit, Netzwerkverbindung oder Capability.
 

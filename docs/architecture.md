@@ -49,7 +49,7 @@ Die Datenbank ist nicht verschlüsselt. Es gibt noch keine Mehrbenutzerverwaltun
 
 ## Offline und Schnittstellen
 
-Zehn explizite Commands sind für das lokale Hauptfenster erlaubt: `get_profile`, `save_profile`, `list_progress`, `get_learning_state`, `submit_answer`, `redeem_reward`, `set_difficulty`, `get_arcade_state`, `start_game`, `finish_game`. Ein vom Frontend geliefertes `correct`-Flag wird nicht als Antwortbewertung akzeptiert. Auch Vokabeln werden anhand der eingetippten Antwort im Backend geprüft. Rust prüft Eingaben auch dann, wenn das Frontend bereits geprüft hat. Es gibt keinen beliebigen SQL-, Shell- oder Dateisystemzugriff aus der Oberfläche und keine Netzwerk-Plugins. Produktions-CSP und lokal gebündelte Assets vermeiden externe Ressourcen. Die Entwicklungs-CSP erlaubt nur zusätzlich Vite/HMR auf der Loopback-Adresse.
+Zehn explizite Commands sind für das lokale Hauptfenster erlaubt: `get_profile`, `save_profile`, `list_progress`, `get_learning_state`, `submit_answer`, `redeem_reward`, `set_difficulty`, `get_arcade_state`, `start_game`, `finish_game`. Ein vom Frontend geliefertes `correct`-Flag wird nicht als Antwortbewertung akzeptiert. Auch Vokabeln werden anhand der eingetippten Antwort im Backend geprüft. Rust prüft Eingaben auch dann, wenn das Frontend bereits geprüft hat. Es gibt keinen beliebigen SQL-, Shell- oder Dateisystemzugriff aus der Oberfläche. Das begrenzte Updater-Plugin lädt Versionsinformationen und signierte App-Pakete vom konfigurierten Release-Endpunkt. Produktions-CSP und lokal gebündelte Assets vermeiden externe Ressourcen. Die Entwicklungs-CSP erlaubt nur zusätzlich Vite/HMR auf der Loopback-Adresse.
 
 ## Lehrplaninhalte ergänzen
 
@@ -182,3 +182,7 @@ Weitere Hinweise zu Inhalt, Bedienung und Forschungsgrenzen: [Geführte Lernrund
 `Question` gibt erste und weitere Tipps aus, aber keine Lösungsschlüssel, Erklärungen oder Fehlerlisten. `AnswerResult` enthält nach Prüfung zusätzlich einen optionalen `mistakeHint`. Die Zuordnung nutzt die bestehende exakte Zahlen-/Textnormalisierung und wird auch beim Request-Replay für die gespeicherte Antwort bestimmt. `is_correct`, Punktebuchung und Journal bleiben unverändert.
 
 `LearningHints` zeigt weitere Tipps einzeln auf Wunsch; seine Komponentenidentität ist an die Aufgaben-ID gebunden. Themen-, Stufen- und Fachwechsel führen deshalb zu einem frischen Tippzustand. Dieser Ansichtsstand ist nicht Teil des gespeicherten Lernfortschritts. Keine neue IPC-Aktion, Capability, Migration oder Abhängigkeit. [Inhalte und Grenzen](learning-hints.md).
+
+## Signierte App-Updates
+
+`AppUpdates` bleibt über Ansichtswechsel hinweg aktiv. Es prüft einmal beim Start, sofern die lokal in der Webview gespeicherte Einstellung das erlaubt. `lib/updater.ts` kapselt die offiziellen Tauri-Updater-/Process-APIs, begrenzt Prüfungen auf 15 Sekunden und Downloads auf drei Minuten. Die feste HTTPS-URL und der öffentliche Signaturschlüssel liegen in `tauri.conf.json`. Downloads/Installation und Neustart benötigen ausdrückliche Bedienaktionen; der Lernbetrieb funktioniert ohne Netzwerk. Profil, SQLite-Daten und Lernantworten werden nicht übertragen. Der Release-Workflow veröffentlicht erst nach drei erfolgreichen Plattformbuilds ein vollständiges Manifest. [Ablauf und Grenzen](app-updates.md).

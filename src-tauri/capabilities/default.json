@@ -1,9 +1,14 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "main-window",
-  "description": "Lokales Hauptfenster ohne Dateisystem-, Shell- oder Netzwerk-Plugins.",
+  "description": "Lokales Hauptfenster mit signierten App-Updates; ohne freien Datei-, Shell- oder Netzwerkzugriff.",
   "windows": ["main"],
   "permissions": [
+    "core:app:allow-version",
+    "core:resources:allow-close",
+    "updater:allow-check",
+    "updater:allow-download-and-install",
+    "process:allow-restart",
     "allow-get-profile",
     "allow-save-profile",
     "allow-list-progress",

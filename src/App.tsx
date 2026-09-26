@@ -8,6 +8,7 @@ import LearningPanel from './components/LearningPanel';
 import SubjectLibrary from './components/SubjectLibrary';
 import MissionCard from './components/MissionCard';
 import MissionPanel from './components/MissionPanel';
+import AppUpdates from './components/AppUpdates';
 import { subjects, type SubjectId } from './domain/subjects';
 
 type View =
@@ -218,7 +219,7 @@ export default function App() {
           </div>
           <p className="offline-note">
             <span aria-hidden="true" />
-            Alles bleibt auf deinem Gerät
+            Deine Lerndaten bleiben auf deinem Gerät
           </p>
         </div>
       </aside>
@@ -229,6 +230,7 @@ export default function App() {
             <strong>{title}</strong>
           </div>
           <span className="grade-badge">Klasse 5</span>
+          <AppUpdates />
           <InfoPanel>
             <summary>Dein Profil</summary>
             <ProfilePanel
