@@ -59,7 +59,7 @@ Das erste Paket liegt in `src-tauri/content/curriculum-v1.json` und wird über `
 
 Die IPC-Projektion liefert Aufgaben ohne Lösungsschlüssel. Rust bewertet Zahlen über exakte Dezimalnormalisierung (keine Fließkomma-Rundung, kein `eval`), Text ohne ASCII-Großschreibung und Auswahlantworten exakt. Einheiten werden durch die Fragestellung vorgegeben. Antwort- und Requestvalidierung, Journal und Idempotenz gelten für alle Stufen. Die vier ursprünglichen Beispiel-IDs behalten ihre Antworten; die beiden Mathematikbeispiele werden in der neuen Themenauswahl nicht angezeigt, bleiben aber für alte Request-Replays erreichbar. Geänderte Antwortbedeutungen benötigen neue Aufgaben-IDs.
 
-Die UI wählt Thema und Stufe, zeigt Tipps, Rückmeldung und lösbare Teilaufgaben. Papieraktivitäten mit Selbstkontrolle ergänzen geometrische Konstruktionen und das Erklären von Rechenwegen; sie lösen keine Punktebuchung aus. Die freie Themenauswahl hat keine adaptive Wiederholungsplanung. Die geführte Lernrunde ergänzt eine eigene begrenzte Planung (siehe unten). Audio und KI sind nicht enthalten.
+Die UI wählt Thema und Stufe, zeigt Tipps, Rückmeldung und lösbare Teilaufgaben. Papieraktivitäten mit Selbstkontrolle ergänzen geometrische Konstruktionen und das Erklären von Rechenwegen; sie lösen keine Punktebuchung aus. Die freie Themenauswahl hat keine adaptive Wiederholungsplanung. Die geführte Lernrunde ergänzt eine eigene begrenzte Planung (siehe unten). Der Vokabeltrainer bietet lokal gebündelte Audios und freiwillige Hörrunden. Die Antwortprüfung benötigt keine KI.
 
 ## Fachübergreifende Stufe (Schema 3)
 
