@@ -12,6 +12,7 @@ Der Implementierer `/root` führte zusätzlich einen ausdrücklich als Selbstrev
 
 - Der erste Release-Lauf für v0.2.0 scheiterte unter Windows schon vor dem Build an `Package, Tauri and Cargo versions differ.` Alle tatsächlichen Werte waren 0.2.0; der Regex übersah `version` nach einem CRLF-Zeilenende. Der Fehler wurde lokal reproduziert, indem ausschließlich die Cargo-Lockdatei in einer isolierten Fixture auf CRLF umgestellt wurde.
 - Derselbe Zeilenendenunterschied ließ die erstmals im Windows-Release verwendete Prettier-Prüfung scheitern: identischer Skripttext bestand mit LF und scheiterte mit CRLF. `.gitattributes` legt deshalb LF für Textdateien fest. Explizite Binärregeln schützen die gebündelten Audios und Icons.
+- Die Desktop-PR-CI führt nun `npm run check` statt nur `npm run build` aus. Damit werden Formatierung und die neuen CLI-Regressionstests bereits vor dem Merge auch unter Windows geprüft; bisher liefen diese Prüfungen dort erst im Release.
 - Der alte Tag v0.2.0 bleibt unverändert. Da kein vollständiger Release veröffentlicht wurde, erscheint das Funktionspaket erstmals als 0.2.1. Release Notes und README verweisen auf diese Version.
 - Keine Lerninhalte oder bestehenden Nutzerdaten werden durch den Fix verändert.
 
