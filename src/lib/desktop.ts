@@ -46,7 +46,8 @@ async function callDesktop<T>(
 }
 
 export const desktop = {
-  getMissionState: () => callDesktop<MissionState>('get_mission_state'),
+  getMissionState: (topicId?: string) =>
+    callDesktop<MissionState>('get_mission_state', { topicId }),
   startMission: (input: MissionStartInput) =>
     callDesktop<MissionState>('start_mission', { input }),
   actMission: (input: MissionActionInput) =>

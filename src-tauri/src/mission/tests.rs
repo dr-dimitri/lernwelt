@@ -1,8 +1,8 @@
 use super::*;
 use tempfile::{tempdir, TempDir};
 
-const TIME: i64 = 1_000_000;
-fn setup() -> (TempDir, Connection) {
+pub(super) const TIME: i64 = 1_000_000;
+pub(super) fn setup() -> (TempDir, Connection) {
     let dir = tempdir().unwrap();
     let c = database::open(&dir.path().join("mission.db")).unwrap();
     database::save_profile(
@@ -15,13 +15,14 @@ fn setup() -> (TempDir, Connection) {
     .unwrap();
     (dir, c)
 }
-fn start_request(id: &str, difficulty: Difficulty) -> StartInput {
+pub(super) fn start_request(id: &str, difficulty: Difficulty) -> StartInput {
     StartInput {
         request_id: id.into(),
         difficulty,
+        topic_id: None,
     }
 }
-fn request(
+pub(super) fn request(
     id: &str,
     session: &str,
     index: u8,
@@ -37,7 +38,7 @@ fn request(
     }
 }
 fn answer_current(c: &mut Connection, id: &str, time: i64) -> MissionState {
-    let s = latest_session(c, database::get_difficulty(c).unwrap())
+    let s = latest_session(c, database::get_difficulty(c).unwrap(), GARDEN_TOPIC)
         .unwrap()
         .unwrap();
     let answer = &exercise(variant(&s).unwrap(), s.current_step)
@@ -52,12 +53,12 @@ fn answer_current(c: &mut Connection, id: &str, time: i64) -> MissionState {
 }
 fn finish(c: &mut Connection, session: &str, time: i64) -> MissionState {
     loop {
-        let s = latest_session(c, database::get_difficulty(c).unwrap())
+        let s = latest_session(c, database::get_difficulty(c).unwrap(), GARDEN_TOPIC)
             .unwrap()
             .unwrap();
         assert_eq!(s.id, session);
         if s.current_step == 5 {
-            return get_state_at(c, time).unwrap();
+            return get_state_at(c, GARDEN_TOPIC, time).unwrap();
         }
         let step = stored_step(c, session, s.current_step).unwrap();
         if exercise(variant(&s).unwrap(), s.current_step).is_some() && step.outcome.is_none() {
@@ -87,7 +88,7 @@ fn finish(c: &mut Connection, session: &str, time: i64) -> MissionState {
 #[test]
 fn content_is_bounded_and_ipc_hides_unearned_hints_and_answers() {
     let (_dir, mut c) = setup();
-    assert_eq!(catalog().unwrap().variants.len(), 9);
+    assert_eq!(catalog(GARDEN_TOPIC).unwrap().variants.len(), 9);
     let s = start_at(&mut c, start_request("round", Difficulty::Koenner), TIME).unwrap();
     let json = serde_json::to_value(&s).unwrap();
     let step = &json["session"]["currentStep"];
@@ -96,7 +97,7 @@ fn content_is_bounded_and_ipc_hides_unearned_hints_and_answers() {
     assert!(step.get("answer").is_none());
     assert!(step.get("explanation").is_none());
     assert!(json.get("variants").is_none());
-    for v in &catalog().unwrap().variants {
+    for v in &catalog(GARDEN_TOPIC).unwrap().variants {
         for e in [&v.recall, &v.solve] {
             let d = e.diagram.as_ref().unwrap();
             assert_eq!(d.width.is_none(), v.difficulty == Difficulty::Streber);
@@ -122,7 +123,11 @@ fn content_is_bounded_and_ipc_hides_unearned_hints_and_answers() {
 fn profile_and_commands_reject_invalid_inputs_without_writes() {
     let d = tempdir().unwrap();
     let mut c = database::open(&d.path().join("none.db")).unwrap();
-    assert!(!get_state_at(&mut c, TIME).unwrap().profile_ready);
+    assert!(
+        !get_state_at(&mut c, GARDEN_TOPIC, TIME)
+            .unwrap()
+            .profile_ready
+    );
     assert!(start_at(&mut c, start_request("start", Difficulty::Koenner), TIME).is_err());
     database::save_profile(
         &c,
@@ -179,7 +184,7 @@ fn committed_feedback_and_hint_survive_reopen_retries_and_stale_calls() {
     assert!(!s.progress.solved_independently);
     drop(c);
     let mut c = database::open(&dir.path().join("mission.db")).unwrap();
-    assert!(get_state_at(&mut c, TIME)
+    assert!(get_state_at(&mut c, GARDEN_TOPIC, TIME)
         .unwrap()
         .session
         .unwrap()
@@ -371,7 +376,10 @@ fn difficulty_switch_preserves_sessions_and_rejects_old_level_actions() {
     start_at(&mut c, start_request("koenner", Difficulty::Koenner), TIME).unwrap();
     answer_current(&mut c, "answer", TIME);
     database::set_difficulty(&c, "streber").unwrap();
-    assert!(get_state_at(&mut c, TIME).unwrap().session.is_none());
+    assert!(get_state_at(&mut c, GARDEN_TOPIC, TIME)
+        .unwrap()
+        .session
+        .is_none());
     assert!(act_at(
         &mut c,
         request("stale", "koenner", 0, Action::Next, None),
@@ -406,7 +414,11 @@ fn schedule_requires_delayed_unassisted_recall_and_caps_at_fourteen_days() {
         assert_eq!(s.progress.recalled_later, round > 1);
         assert_eq!(s.due_at, Some(time + days * DAY));
         assert!(!s.due);
-        assert!(get_state_at(&mut c, time + days * DAY).unwrap().due);
+        assert!(
+            get_state_at(&mut c, GARDEN_TOPIC, time + days * DAY)
+                .unwrap()
+                .due
+        );
         time += days * DAY;
     }
     start_at(&mut c, start_request("hinted", Difficulty::Koenner), time).unwrap();
@@ -462,7 +474,10 @@ fn answer_and_start_receipt_failures_roll_back_every_effect_and_retry() {
     let (_dir, mut c) = setup();
     c.execute_batch("CREATE TRIGGER fail_receipt BEFORE INSERT ON mission_requests BEGIN SELECT RAISE(ABORT,'disk full'); END;").unwrap();
     assert!(start_at(&mut c, start_request("round", Difficulty::Koenner), TIME).is_err());
-    assert!(get_state_at(&mut c, TIME).unwrap().session.is_none());
+    assert!(get_state_at(&mut c, GARDEN_TOPIC, TIME)
+        .unwrap()
+        .session
+        .is_none());
     c.execute_batch("DROP TRIGGER fail_receipt;").unwrap();
     start_at(&mut c, start_request("round", Difficulty::Koenner), TIME).unwrap();
     c.execute_batch("CREATE TRIGGER fail_receipt BEFORE INSERT ON mission_requests BEGIN SELECT RAISE(ABORT,'disk full'); END;").unwrap();
@@ -476,7 +491,7 @@ fn answer_and_start_receipt_failures_roll_back_every_effect_and_retry() {
     assert!(database::list_progress(&c).unwrap().is_empty());
     assert!(stored_step(&c, "round", 0).unwrap().outcome.is_none());
     assert!(
-        !get_state_at(&mut c, TIME)
+        !get_state_at(&mut c, GARDEN_TOPIC, TIME)
             .unwrap()
             .progress
             .solved_independently
@@ -513,7 +528,7 @@ fn second_connection_can_replay_but_not_overwrite_committed_answer() {
     )
     .unwrap();
     assert_eq!(
-        get_state_at(&mut second, TIME)
+        get_state_at(&mut second, GARDEN_TOPIC, TIME)
             .unwrap()
             .session
             .unwrap()
@@ -560,7 +575,7 @@ fn migration_from_twelve_preserves_existing_data_and_does_not_infer_mastery() {
     let progress_count = database::list_progress(&c).unwrap().len();
     drop(c);
     let mut c = database::open(&dir.path().join("mission.db")).unwrap();
-    let state = get_state_at(&mut c, TIME).unwrap();
+    let state = get_state_at(&mut c, GARDEN_TOPIC, TIME).unwrap();
     assert_eq!(state.wallet.balance, balance);
     assert_eq!(state.difficulty, Difficulty::Streber);
     assert!(!state.progress.tried);
@@ -731,7 +746,7 @@ fn failed_completion_does_not_lose_activity_or_create_a_review_date() {
         TIME
     )
     .is_err());
-    let current = get_state_at(&mut c, TIME).unwrap();
+    let current = get_state_at(&mut c, GARDEN_TOPIC, TIME).unwrap();
     assert_eq!(current.session.unwrap().current_step.unwrap().index, 4);
     assert_eq!(current.progress.completed_rounds, 0);
     assert_eq!(current.due_at, None);

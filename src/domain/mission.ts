@@ -10,9 +10,10 @@ export interface MissionMetadata {
   id: string;
   title: string;
   description: string;
-  subject: 'mathematics';
+  subject: 'mathematics' | 'english' | 'nature';
   grade: number;
   competencyId: string;
+  foreignLanguageSequence: number | null;
   source: string;
   curriculumVersion: string;
   variantCount: number;
@@ -48,10 +49,24 @@ export interface MissionSession {
   currentStep: MissionStep | null;
 }
 
+export interface MissionTopic {
+  metadata: MissionMetadata;
+  activeStep: number | null;
+  dueAt: number | null;
+  due: boolean;
+}
+
+export const missionSubjects = {
+  mathematics: 'Mathematik',
+  english: 'Englisch',
+  nature: 'Natur und Technik',
+} as const;
+
 export interface MissionState {
   profileReady: boolean;
   difficulty: Difficulty;
   metadata: MissionMetadata;
+  topics: MissionTopic[];
   progress: {
     tried: boolean;
     solvedIndependently: boolean;
@@ -66,6 +81,7 @@ export interface MissionState {
 
 export interface MissionStartInput {
   requestId: string;
+  topicId?: string;
   difficulty: Difficulty;
 }
 
