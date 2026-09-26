@@ -80,7 +80,7 @@ Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri
 
 ## Mathematik Klasse 5
 
-363 eigene Aufgaben nach [LehrplanPLUS Gymnasium Bayern, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik), Quellenstand 24.09.2026. Zu allen 39 Kompetenzerwartungen gibt es in acht Themen konkrete Lernangebote aus Bildschirmübungen und angeleiteten Tätigkeiten. Die Inhaltsmatrix belegt jede Zuordnung und benennt Grenzen der automatischen Bewertung.
+399 eigene Aufgaben nach [LehrplanPLUS Gymnasium Bayern, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik), Quellenstand des Grundpakets 24.09.2026, Zahlenstrahl-Ergänzung 26.09.2026. Zu allen 39 Kompetenzerwartungen gibt es in neun Themen konkrete Lernangebote aus Bildschirmübungen und angeleiteten Tätigkeiten. Die Inhaltsmatrix belegt jede Zuordnung und benennt Grenzen der automatischen Bewertung.
 
 - Mengen & Zahlenmengen: Elemente, Mengenschreibweise, ∈/∉ und natürliche/ganze Zahlen.
 
@@ -91,12 +91,15 @@ Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri
 - Rechentricks & Terme: Rechenreihenfolge, Klammern, Rechengesetze, Termstruktur und Sachaufgaben.
 - Größen im Alltag: Geld, Längen, Massen, Zeit, Schätzen, Dreisatz und Maßstäbe.
 - Flächen-Abenteuer: Flächeninhalt, Umfang, Einheiten, zusammengesetzte Flächen und Quaderoberflächen.
+- Zahlenstrahl-Werkstatt: Zahlen ablesen und markieren, Skalen erkennen, Abstände und Schritte untersuchen.
+
+Die **Zahlenstrahl-Werkstatt** bietet 36 zusätzliche Übungen, zwölf pro Stufe. Über **Mathematik → Thema wählen → Zahlenstrahl-Werkstatt** erscheinen beschriftete Zahlenstrahlen und Zahlengeraden. Zum Markieren einen Teilstrich anklicken oder per Tab erreichen und mit den Pfeiltasten wählen; Pos1/Ende wählen den ersten/letzten Teilstrich. Erst **Antwort prüfen** bewertet die Auswahl. Ohne Zeitlimit, mit Tipps, Lösungswegen und Textbeschreibung zur Grafik. Auf schmalen Fenstern lässt sich die Achse seitlich verschieben. Die gewohnte Punktevergabe und der gespeicherte Fortschritt gelten auch hier. [Inhalte, Lehrplanbezug und Grenzen](docs/curriculum-number-line-5.md).
 
 **Vorschule** bietet einen leichten Einstieg, **Könner** reguläre Übungen und **Streber** anspruchsvollere Knobelaufgaben. Es sind spielerische Bezeichnungen, keine Altersstufen. Die Wahl bleibt über Fachwechsel, Profiländerung und Neustart erhalten; Standard ist Könner. Englisch bietet ebenfalls alle drei Stufen (1. Fremdsprache). Die angebotene Mathematik bleibt Klasse 5, auch wenn ein älteres Profil noch eine andere Klasse enthält.
 
 Jede Bildschirmaufgabe bietet einen Tipp und nach der Antwort einen erklärten Lösungsweg. Auswahlfragen, ganze Zahlen und exakte Dezimalzahlen werden im Backend bewertet. Komma oder Punkt gelten als Dezimaltrennzeichen, normale/geschützte Leerzeichen als Dreiergruppierung: `25 000` oder `25000`; `25.000` bedeutet 25. Einheiten stehen in der Frage und werden nicht mit eingegeben. Englischwörter werden ohne Beachtung der Großschreibung verglichen.
 
-51 Mitmachaufgaben ergänzen Zeichnen, Messen, Schätzen und Begründen mit Selbstkontrollhinweisen. Sie gelten für alle Stufen, vergeben keine Punkte und werden nicht automatisch bewertet. Einheitentafeln für Geld, Länge, Masse und Fläche sowie die vollständige Quadratzahlreihe bis 400 ergänzen die Übungen. Das Paket enthält Lernangebote zu allen Kompetenzerwartungen, ist aber kein unbegrenzter Aufgabengenerator, keine vollständige Lernstandserhebung und kein Ersatz für Unterricht. Es gibt keine amtliche Freigabe. Weitere Hinweise und die Inhaltsmatrix stehen in [docs/curriculum-math-5.md](docs/curriculum-math-5.md).
+54 Mitmachaufgaben ergänzen Zeichnen, Messen, Schätzen und Begründen mit Selbstkontrollhinweisen. Sie gelten für alle Stufen, vergeben keine Punkte und werden nicht automatisch bewertet. Einheitentafeln für Geld, Länge, Masse und Fläche sowie die vollständige Quadratzahlreihe bis 400 ergänzen die Übungen. Das Paket enthält Lernangebote zu allen Kompetenzerwartungen, ist aber kein unbegrenzter Aufgabengenerator, keine vollständige Lernstandserhebung und kein Ersatz für Unterricht. Es gibt keine amtliche Freigabe. Weitere Hinweise und die Inhaltsmatrix stehen in [docs/curriculum-math-5.md](docs/curriculum-math-5.md).
 
 ## Spielhalle
 

@@ -11,6 +11,12 @@ Lernwelt ist eine eigenständige Tauri-2-Anwendung. React, TypeScript und Vite s
 - `src-tauri/src/database.rs`: Validierung, parametrisierte Abfragen, Migration und Datenbanktests.
 - `src-tauri/migrations/`: versionierte SQL-Schemata.
 
+## Zahlenstrahl-Werkstatt (ohne Schemaänderung)
+
+`number-line-5-v1.json` ergänzt die drei bisherigen Pakete um ein eigenes Mathematikthema mit 36 stabilen Aufgaben-IDs. `content.rs` validiert das optionale `numberLine`-Modell: Achsenart, Ablese- oder Markiermodus, ganzzahlige Grenzen und Schrittweite, höchstens zehn Intervalle sowie eindeutige Beschriftungen und Marker auf dem Raster. Ein Zahlenstrahl beginnt bei 0; Zahlengeraden dürfen auch Ausschnitte zeigen. Die Lösung bleibt Teil der bestehenden numerischen Antwortprüfung im Backend.
+
+`get_learning_state` liefert die Diagrammdaten über die vorhandene typisierte Schnittstelle, ohne Antwortschlüssel oder vorweggenommene Lösungserklärung. Die lokal gezeichnete Grafik und die Punktwahl liegen in `NumberLine`; `LearningPanel` hält die unbewertete Antwort und verwendet weiterhin `submit_answer`. Maus, Touch und Pfeiltasten ändern nur die Auswahl. Erst die ausdrückliche Prüfung speichert den Versuch und gegebenenfalls 1/2/3 Punkte. Aufgabenwechsel leeren die Auswahl; bereits bestätigte Lösungen und Request-Replays bleiben durch dieselben Journalregeln geschützt. Keine neue Migration, Berechtigung oder Abhängigkeit. [Inhaltsmatrix](curriculum-number-line-5.md).
+
 ## Natur und Technik (Schema 15)
 
 Das dritte Fach verwendet die stabile Subject-ID `nature`. Das separate Paket `nature-5-v1.json` wird zusammen mit Mathematik und Englisch eingebettet und validiert. Jeder Themenbereich erhält die Quelle und den Lehrplanstand seines eigenen Pakets. Aufgaben verwenden die bestehende Rust-Antwortprüfung und dieselbe atomare Fortschritts- und Punktebuchung; neue Commands sind nicht erforderlich.

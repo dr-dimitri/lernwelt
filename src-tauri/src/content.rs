@@ -74,6 +74,87 @@ pub enum AnswerKind {
     Choice,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize, Serialize)]
+#[serde(rename_all = "lowercase")]
+pub enum NumberLineKind {
+    Ray,
+    Line,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize, Serialize)]
+#[serde(rename_all = "lowercase")]
+pub enum NumberLineMode {
+    Read,
+    Place,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct NumberLineMarker {
+    pub label: String,
+    pub value: i64,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct NumberLine {
+    pub kind: NumberLineKind,
+    pub mode: NumberLineMode,
+    pub min: i64,
+    pub max: i64,
+    pub step: i64,
+    pub labels: Vec<i64>,
+    pub markers: Vec<NumberLineMarker>,
+}
+
+impl NumberLine {
+    fn valid_for(&self, exercise: &Exercise) -> bool {
+        let bounded = |value| (-1_000_000..=1_000_000).contains(&value);
+        if !bounded(self.min)
+            || !bounded(self.max)
+            || !(1..=1_000_000).contains(&self.step)
+            || self.min >= self.max
+            || (self.kind == NumberLineKind::Ray && self.min != 0)
+            || !matches!(exercise.answer_kind, AnswerKind::Number)
+            || exercise.subject != Subject::Mathematics
+            || !exercise.options.is_empty()
+        {
+            return false;
+        }
+        let span = self.max - self.min;
+        let on_grid =
+            |value| (self.min..=self.max).contains(&value) && (value - self.min) % self.step == 0;
+        if span % self.step != 0
+            || span / self.step > 10
+            || self.labels.len() < 2
+            || self.labels.iter().any(|&label| !on_grid(label))
+            || self.labels.windows(2).any(|pair| pair[0] >= pair[1])
+        {
+            return false;
+        }
+        let mut marker_labels = HashSet::new();
+        let mut marker_positions = HashSet::new();
+        for marker in &self.markers {
+            if !(1..=3).contains(&marker.label.len())
+                || !marker.label.bytes().all(|byte| byte.is_ascii_alphabetic())
+                || !marker_labels.insert(marker.label.to_ascii_uppercase())
+                || !marker_positions.insert(marker.value)
+                || !on_grid(marker.value)
+                || self.labels.contains(&marker.value)
+            {
+                return false;
+            }
+        }
+        // Read tasks may ask for a scale or a distance outside the shown range.
+        // Placement tasks always require a coordinate on the displayed grid.
+        let Ok(answer) = exercise.answer.parse::<i64>() else {
+            return false;
+        };
+        bounded(answer)
+            && (self.mode != NumberLineMode::Place || (self.markers.is_empty() && on_grid(answer)))
+    }
+}
+
 // Answers stay inside Rust; Question is the explicitly limited IPC projection.
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -91,6 +172,8 @@ pub struct Exercise {
     pub answer_kind: AnswerKind,
     pub unit: Option<String>,
     pub legacy: bool,
+    #[serde(default)]
+    pub number_line: Option<NumberLine>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -111,6 +194,7 @@ pub fn catalog() -> Result<&'static Catalog, String> {
                 include_str!("../content/curriculum-v1.json"),
                 include_str!("../content/english-5-v1.json"),
                 include_str!("../content/nature-5-v1.json"),
+                include_str!("../content/number-line-5-v1.json"),
             ])
         })
         .as_ref()
@@ -179,6 +263,13 @@ impl Catalog {
                     && !self.topics.iter().any(|topic| {
                         topic.id == exercise.topic_id && topic.subject == exercise.subject
                     }))
+            {
+                return Err(invalid());
+            }
+            if exercise
+                .number_line
+                .as_ref()
+                .is_some_and(|number_line| !number_line.valid_for(exercise))
             {
                 return Err(invalid());
             }
@@ -265,7 +356,10 @@ mod tests {
             math.iter()
                 .map(|t| t.curriculum_ref.as_str())
                 .collect::<Vec<_>>(),
-            ["M5 1.1", "M5 1.1", "M5 1.2", "M5 2", "M5 3.1", "M5 3.2", "M5 4.1", "M5 4.2"]
+            [
+                "M5 1.1", "M5 1.1", "M5 1.2", "M5 2", "M5 3.1", "M5 3.2", "M5 4.1", "M5 4.2",
+                "M5 1.1"
+            ]
         );
         for topic in &content.topics {
             assert!(!topic.lesson.is_empty());
@@ -494,3 +588,6 @@ mod tests {
 
 #[cfg(test)]
 mod coverage_tests;
+
+#[cfg(test)]
+mod number_line_tests;

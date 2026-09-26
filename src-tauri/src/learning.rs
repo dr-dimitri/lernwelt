@@ -1,10 +1,13 @@
-use crate::content::{self, AnswerKind, Difficulty, Topic};
+use crate::content::{self, AnswerKind, Difficulty, NumberLine, Topic};
 use crate::database::{self, Subject};
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::Serialize;
 
 #[cfg(test)]
 mod nature_tests;
+
+#[cfg(test)]
+mod number_line_tests;
 
 fn points_for_difficulty(difficulty: Difficulty) -> i64 {
     match difficulty {
@@ -43,6 +46,8 @@ pub struct Question {
     answer_kind: &'static AnswerKind,
     unit: Option<&'static str>,
     competency_id: &'static str,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    number_line: Option<&'static NumberLine>,
 }
 
 #[derive(Debug, Serialize)]
@@ -140,6 +145,7 @@ pub fn get_state(connection: &mut Connection) -> Result<LearningState, String> {
                 answer_kind: &exercise.answer_kind,
                 unit: exercise.unit.as_deref(),
                 competency_id: &exercise.competency_id,
+                number_line: exercise.number_line.as_ref(),
             })
         })
         .collect::<Result<Vec<_>, String>>()?;
@@ -607,7 +613,7 @@ mod tests {
             .iter()
             .filter(|e| !e.legacy && e.subject == Subject::Mathematics)
             .collect();
-        assert_eq!(exercises.len(), 363);
+        assert_eq!(exercises.len(), 399);
         for (i, exercise) in exercises.iter().enumerate() {
             let wrong = submit_answer(
                 &mut connection,
@@ -645,8 +651,8 @@ mod tests {
         drop(connection);
         let mut connection = database::open(&directory.path().join("test.sqlite3")).unwrap();
         let state = get_state(&mut connection).unwrap();
-        assert_eq!(state.wallet.balance, 726);
-        assert_eq!(state.questions.iter().filter(|q| q.solved).count(), 363);
+        assert_eq!(state.wallet.balance, 798);
+        assert_eq!(state.questions.iter().filter(|q| q.solved).count(), 399);
         for question in serde_json::to_value(&state).unwrap()["questions"]
             .as_array()
             .unwrap()
@@ -654,7 +660,7 @@ mod tests {
             assert!(question.get("answer").is_none());
         }
         let progress = database::list_progress(&connection).unwrap();
-        assert_eq!(progress.iter().map(|p| p.correct).sum::<u32>(), 726);
+        assert_eq!(progress.iter().map(|p| p.correct).sum::<u32>(), 798);
     }
     #[test]
     fn awards_one_two_three_in_all_subjects_independent_of_selected_level() {

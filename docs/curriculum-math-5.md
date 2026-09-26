@@ -8,6 +8,8 @@ Zusätzliche offizielle Erläuterung: [Mengenbegriff zu M5 1.1](https://www.lehr
 
 ## Umfang und Bedienung
 
+Die folgende Tabelle beschreibt das Grundpaket. Seit 26.09.2026 ergänzt die [Zahlenstrahl-Werkstatt](curriculum-number-line-5.md) dieses um ein neuntes Thema mit 36 grafischen Übungen (zwölf je Stufe). Zusammen stehen damit 399 Mathematikaufgaben zur Verfügung. Bestehende IDs und Inhalte des Grundpakets bleiben erhalten.
+
 | Thema | Lehrplanbezug | Bildschirmaufgaben | Mitmachaufgaben |
 | --- | --- | ---: | ---: |
 | Mengen & Zahlenmengen (`sets`) | M5 1.1 | 21 | 2 |

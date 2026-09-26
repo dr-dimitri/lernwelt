@@ -1,4 +1,5 @@
 import type { SubjectId } from './subjects';
+import type { NumberLineDiagram } from './number-line';
 
 export type Difficulty = 'vorschule' | 'koenner' | 'streber';
 export const difficulties: {
@@ -58,6 +59,7 @@ export interface Question {
   options: string[];
   answerKind: 'number' | 'text' | 'choice';
   unit: string | null;
+  numberLine?: NumberLineDiagram | null;
   solved: boolean;
 }
 
