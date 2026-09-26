@@ -42,6 +42,7 @@ pub struct Question {
     topic_id: &'static str,
     difficulty: Difficulty,
     hint: &'static str,
+    further_hints: &'static [String],
     options: &'static [String],
     answer_kind: &'static AnswerKind,
     unit: Option<&'static str>,
@@ -87,6 +88,7 @@ pub struct AnswerResult {
     pub correct: bool,
     pub points_awarded: i64,
     pub explanation: &'static str,
+    pub mistake_hint: Option<&'static str>,
     pub wallet: Wallet,
 }
 
@@ -141,6 +143,7 @@ pub fn get_state(connection: &mut Connection) -> Result<LearningState, String> {
                 topic_id: &exercise.topic_id,
                 difficulty: exercise.difficulty,
                 hint: &exercise.hint,
+                further_hints: &exercise.further_hints,
                 options: &exercise.options,
                 answer_kind: &exercise.answer_kind,
                 unit: exercise.unit.as_deref(),
@@ -259,6 +262,11 @@ pub fn submit_answer(
         correct,
         points_awarded,
         explanation: &exercise.explanation,
+        mistake_hint: if correct {
+            None
+        } else {
+            exercise.mistake_hint(answer)
+        },
         wallet: wallet(&transaction)?,
     };
     transaction.commit().map_err(db_error)?;
@@ -933,3 +941,6 @@ mod tests {
         }
     }
 }
+
+#[cfg(test)]
+mod help_tests;

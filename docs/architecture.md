@@ -175,6 +175,14 @@ Die Runde beginnt mit einem Abruf vor dem Beispiel. Zeitversetzter Erfolg verlan
 
 Weitere Hinweise zu Inhalt, Bedienung und Forschungsgrenzen: [Geführte Lernrunde](learning-missions.md).
 
+## Gestufte Fachhilfen (ohne Schemaänderung)
+
+`Exercise` ergänzt die vorhandenen Pakete um begrenzte `furtherHints` und optionale `commonMistakes`. Das Backend validiert alle sichtbaren Aufgaben auf einen bis zwei zusätzliche Tipps; historische Aufgaben bleiben unverändert lesbar. Fehlerregeln enthalten konkrete falsche Antworten, keine ausführbaren Ausdrücke. Doppelte normalisierte Antworten, richtige Antworten in Fehlerregeln und unbekannte Auswahloptionen werden abgewiesen.
+
+`Question` gibt erste und weitere Tipps aus, aber keine Lösungsschlüssel, Erklärungen oder Fehlerlisten. `AnswerResult` enthält nach Prüfung zusätzlich einen optionalen `mistakeHint`. Die Zuordnung nutzt die bestehende exakte Zahlen-/Textnormalisierung und wird auch beim Request-Replay für die gespeicherte Antwort bestimmt. `is_correct`, Punktebuchung und Journal bleiben unverändert.
+
+`LearningHints` zeigt weitere Tipps einzeln auf Wunsch; seine Komponentenidentität ist an die Aufgaben-ID gebunden. Themen-, Stufen- und Fachwechsel führen deshalb zu einem frischen Tippzustand. Dieser Ansichtsstand ist nicht Teil des gespeicherten Lernfortschritts. Keine neue IPC-Aktion, Capability, Migration oder Abhängigkeit. [Inhalte und Grenzen](learning-hints.md).
+
 ## Mehrere Lernrunden ohne Schemaänderung
 
 Drei eingebettete Pakete (`mission-garden-v1.json`, `mission-english-v1.json`, `mission-nature-v1.json`) nutzen dieselben Tabellen aus Schema 13; das aktuelle Schema 15 bleibt unverändert. Themen-ID und Stufe begrenzen alle Fortschritts- und Rundenzugriffe. Das Punktejournal erhält das tatsächliche Fach und die Kompetenz des Pakets. Der Loader prüft paketübergreifend eindeutige Themen-/Aufgaben-IDs, drei Varianten pro Stufe und bei Englisch die erste Fremdsprachenfolge. Die Garten-IDs und Antworten bleiben unverändert.

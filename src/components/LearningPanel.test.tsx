@@ -24,6 +24,7 @@ vi.mock('../lib/desktop', () => ({
 
 const awarded: AnswerResult = {
   correct: true,
+  mistakeHint: null,
   pointsAwarded: 10,
   explanation: '17 + 25 = 42.',
   wallet: { ...initial.wallet, balance: 20, totalEarned: 20 },
@@ -576,4 +577,131 @@ it('behält bei fehlgeschlagenem Stufenwechsel die bisherigen Natur-Fragen', asy
   expect(
     screen.getByText('Wie vergleichst du zwei Pflanzen fair?'),
   ).toBeVisible();
+});
+
+it('öffnet Tipps einzeln, behält sie beim Schließen und verändert keine Punkte', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...initial,
+    questions: [
+      {
+        ...mathQuestion,
+        furtherHints: [
+          'Zähle jetzt die Einer dazu.',
+          'Prüfe das Ergebnis mit der Umkehraufgabe.',
+        ],
+      },
+    ],
+  });
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await user.click(
+    await screen.findByRole('button', { name: 'Gib mir einen Tipp' }),
+  );
+  expect(screen.getByText(mathQuestion.hint)).toBeVisible();
+  expect(
+    screen.queryByText('Zähle jetzt die Einer dazu.'),
+  ).not.toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Nächster Tipp' }));
+  expect(screen.getByText('Zähle jetzt die Einer dazu.')).toBeVisible();
+  expect(
+    screen.queryByText('Prüfe das Ergebnis mit der Umkehraufgabe.'),
+  ).not.toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Nächster Tipp' }));
+  expect(
+    screen.getByText('Prüfe das Ergebnis mit der Umkehraufgabe.'),
+  ).toBeVisible();
+  expect(
+    screen.queryByRole('button', { name: 'Nächster Tipp' }),
+  ).not.toBeInTheDocument();
+  const dialog = screen.getByRole('dialog', { name: 'Gib mir einen Tipp' });
+  fireEvent(dialog, new Event('cancel', { cancelable: true }));
+  expect(
+    screen.getByRole('button', { name: 'Gib mir einen Tipp' }),
+  ).toHaveFocus();
+  await user.keyboard('{Enter}');
+  expect(
+    screen.getByText('Prüfe das Ergebnis mit der Umkehraufgabe.'),
+  ).toBeVisible();
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
+  expect(desktop.setDifficulty).not.toHaveBeenCalled();
+  expect(screen.getByLabelText('Verfügbare Punkte')).toHaveTextContent(
+    '10 Punkte',
+  );
+});
+
+it('beginnt nach Aufgaben-, Themen-, Stufen- und Fachwechsel wieder mit Tipp 1', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.setDifficulty).mockImplementation(async (value) => value);
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...initial,
+    topics: [
+      ...initial.topics,
+      { ...mathTopic, id: 'other-topic', name: 'Anderes Thema' },
+    ],
+    questions: [
+      ...initial.questions,
+      { ...mathQuestion, id: 'second', prompt: 'Zweite Aufgabe' },
+      { ...mathQuestion, id: 'other', topicId: 'other-topic' },
+      {
+        ...mathQuestion,
+        id: 'easy',
+        topicId: 'other-topic',
+        difficulty: 'vorschule',
+      },
+      { ...initial.questions[1], id: 'easy-english', difficulty: 'vorschule' },
+    ],
+  });
+  const { rerender } = render(
+    <LearningPanel subject="mathematics" profileVersion={0} />,
+  );
+  await screen.findByLabelText(mathQuestion.prompt);
+  async function openFreshHints() {
+    await user.click(
+      screen.getByRole('button', { name: 'Gib mir einen Tipp' }),
+    );
+    expect(screen.getByText('Tipp 1')).toBeVisible();
+    expect(screen.queryByText('Tipp 2')).not.toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Nächster Tipp' }));
+    expect(screen.getByText('Tipp 2')).toBeVisible();
+    await user.click(screen.getByRole('button', { name: 'Schließen' }));
+  }
+  await openFreshHints();
+  await user.click(screen.getByRole('button', { name: 'Nächste Aufgabe →' }));
+  await openFreshHints();
+  await user.click(screen.getByRole('button', { name: 'Thema wählen' }));
+  await user.click(screen.getByRole('button', { name: /Anderes Thema/ }));
+  await openFreshHints();
+  await user.click(screen.getByRole('button', { name: /Vorschule/ }));
+  await openFreshHints();
+  rerender(<LearningPanel subject="english" profileVersion={0} />);
+  await openFreshHints();
+});
+
+it('zeigt den passenden Backend-Fehlerhinweis und hält den Lösungsweg zunächst verborgen', async () => {
+  const user = userEvent.setup();
+  const mistakeHint = 'Prüfe noch einmal den Übertrag bei den Einern.';
+  vi.mocked(desktop.submitAnswer).mockResolvedValue({
+    ...awarded,
+    correct: false,
+    pointsAwarded: 0,
+    wallet: initial.wallet,
+    mistakeHint,
+  });
+  const { rerender } = render(
+    <LearningPanel subject="mathematics" profileVersion={0} />,
+  );
+  await user.type(await screen.findByLabelText(mathQuestion.prompt), '32');
+  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  expect(await screen.findByText(mistakeHint)).toBeVisible();
+  expect(screen.queryByText(awarded.explanation)).not.toBeInTheDocument();
+  await user.click(
+    screen.getByRole('button', { name: 'Lösungsweg anschauen' }),
+  );
+  expect(screen.getByText(awarded.explanation)).toBeVisible();
+  rerender(<LearningPanel subject="english" profileVersion={0} />);
+  expect(screen.queryByText(mistakeHint)).not.toBeInTheDocument();
+  expect(screen.queryByText(awarded.explanation)).not.toBeInTheDocument();
+  expect(screen.getByLabelText('Verfügbare Punkte')).toHaveTextContent(
+    '10 Punkte',
+  );
 });

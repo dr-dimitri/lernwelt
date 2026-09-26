@@ -304,91 +304,37 @@
       "tables": [
         {
           "caption": "Geld: Euro und Cent",
-          "headers": [
-            "€",
-            "ct (2 Stellen)"
-          ],
+          "headers": ["€", "ct (2 Stellen)"],
           "rows": [
-            [
-              "3",
-              "05"
-            ],
-            [
-              "0",
-              "75"
-            ]
+            ["3", "05"],
+            ["0", "75"]
           ],
           "note": "Lies: 3 € 05 ct = 3,05 € = 305 ct. Darunter: 0,75 € = 75 ct. Von € zu ct mal 100, zurück geteilt durch 100."
         },
         {
           "caption": "Länge: von km bis mm",
-          "headers": [
-            "km",
-            "m (3 Stellen)",
-            "dm",
-            "cm",
-            "mm"
-          ],
+          "headers": ["km", "m (3 Stellen)", "dm", "cm", "mm"],
           "rows": [
-            [
-              "0",
-              "002",
-              "3",
-              "4",
-              "0"
-            ],
-            [
-              "1",
-              "234",
-              "5",
-              "6",
-              "7"
-            ]
+            ["0", "002", "3", "4", "0"],
+            ["1", "234", "5", "6", "7"]
           ],
           "note": "Erste Zeile: 2 m 3 dm 4 cm = 2,34 m = 234 cm. Zweite Zeile: 1 234,567 m. Zwischen km und m liegen drei Stellen (mal 1 000); danach jeweils eine (mal 10). Lies die Einerstelle an der gewünschten Einheit ab."
         },
         {
           "caption": "Masse: von t bis mg",
-          "headers": [
-            "t",
-            "kg (3 Stellen)",
-            "g (3 Stellen)",
-            "mg (3 Stellen)"
-          ],
+          "headers": ["t", "kg (3 Stellen)", "g (3 Stellen)", "mg (3 Stellen)"],
           "rows": [
-            [
-              "0",
-              "003",
-              "045",
-              "000"
-            ],
-            [
-              "0",
-              "000",
-              "004",
-              "005"
-            ]
+            ["0", "003", "045", "000"],
+            ["0", "000", "004", "005"]
           ],
           "note": "Erste Zeile: 3 kg 45 g = 3,045 kg = 3 045 g. Zweite Zeile: 4 g 5 mg = 4,005 g = 4 005 mg. Jeder Schritt zur kleineren Gruppe bedeutet mal 1 000; zurück geteilt durch 1 000."
         },
         {
           "caption": "Zeit: Stunden, Minuten, Sekunden",
-          "headers": [
-            "h",
-            "min",
-            "s"
-          ],
+          "headers": ["h", "min", "s"],
           "rows": [
-            [
-              "1",
-              "02",
-              "03"
-            ],
-            [
-              "0",
-              "90",
-              "00"
-            ]
+            ["1", "02", "03"],
+            ["0", "90", "00"]
           ],
           "note": "Erste Zeile: 1 h 2 min 3 s = 3 723 s. Zweite Zeile: 90 min = 1 h 30 min. Minuten und Sekunden werden bei 60 gebündelt. Diese Übersicht ist keine Dezimal-Stellenwerttafel."
         }
@@ -458,33 +404,9 @@
             "mm² (2)"
           ],
           "rows": [
-            [
-              "0",
-              "00",
-              "00",
-              "02",
-              "35",
-              "00",
-              "00"
-            ],
-            [
-              "0",
-              "01",
-              "25",
-              "00",
-              "00",
-              "00",
-              "00"
-            ],
-            [
-              "0",
-              "00",
-              "00",
-              "00",
-              "00",
-              "03",
-              "50"
-            ]
+            ["0", "00", "00", "02", "35", "00", "00"],
+            ["0", "01", "25", "00", "00", "00", "00"],
+            ["0", "00", "00", "00", "00", "03", "50"]
           ],
           "note": "Lies: 2,35 m² = 235 dm². Dann: 1,25 ha = 125 a = 12 500 m². Zuletzt: 3,50 cm² = 350 mm². Pro Schritt nach rechts mal 100, nach links geteilt durch 100. Eine leere Zweiergruppe wird 00."
         }
@@ -505,7 +427,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lege 352 in eine Tabelle mit Hundertern, Zehnern und Einern. Die linke Ziffer gehört zu den Hundertern."
+      ]
     },
     {
       "id": "by.math.5.numbers.place-value.koenner.v1",
@@ -520,7 +445,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe die 7 mit so vielen Nullen, wie Ziffern rechts von ihr stehen."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["7"],
+          "hint": "Du hast die Ziffer genannt. Gesucht ist ihr Wert an der Hunderttausenderstelle."
+        }
+      ]
     },
     {
       "id": "by.math.5.numbers.place-value.streber.v1",
@@ -535,7 +469,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Streiche beim Teilen durch 1 000 drei Nullen. Die übrigen Nullen bleiben stehen."
+      ]
     },
     {
       "id": "by.math.5.numbers.roman.vorschule.v1",
@@ -550,7 +487,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das I steht hinter dem V. Deshalb zählst du seinen Wert dazu."
+      ]
     },
     {
       "id": "by.math.5.numbers.roman.koenner.v1",
@@ -565,7 +505,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege XLIV in die Paare XL und IV. Berechne beide Werte und zähle sie zusammen."
+      ]
     },
     {
       "id": "by.math.5.numbers.roman.streber.v1",
@@ -584,7 +527,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "In 12 steht die 1 für zehn, in 21 für eins. Prüfe, ob ein römisches I auch seinen Wert durch die Stelle ändert."
+      ]
     },
     {
       "id": "by.math.5.numbers.rounding.vorschule.v1",
@@ -599,7 +545,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["47 liegt zwischen 40 und 50. Welcher Zehner ist näher?"]
     },
     {
       "id": "by.math.5.numbers.rounding.koenner.v1",
@@ -614,7 +561,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die 4 rechts neben der Rundungsstelle ist kleiner als 5. Die folgenden Stellen werden zu Nullen."
+      ]
     },
     {
       "id": "by.math.5.numbers.rounding.streber.v1",
@@ -626,13 +576,13 @@
       "answer": "Nein",
       "hint": "Eine Schätzung darf keine fehlenden Plätze verstecken.",
       "explanation": "49 ist größer als 48. Beim Planen der Plätze zählt die genaue Kinderzahl.",
-      "options": [
-        "Ja",
-        "Nein"
-      ],
+      "options": ["Ja", "Nein"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche 49 Kinder einzeln mit 48 Plätzen. Wie viele Kinder bleiben beim Zuordnen übrig?"
+      ]
     },
     {
       "id": "by.math.5.numbers.number-line.vorschule.v1",
@@ -647,7 +597,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Zähle ab 20 noch einen Zehnerschritt weiter."]
     },
     {
       "id": "by.math.5.numbers.number-line.koenner.v1",
@@ -662,7 +613,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 1 000 : 5. Prüfe dein Ergebnis, indem du es fünfmal addierst."
+      ]
     },
     {
       "id": "by.math.5.numbers.number-line.streber.v1",
@@ -677,7 +631,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Der Abstand ist 1 200. Nach dem Teilen durch 8 addierst du drei solcher Schritte zu −600."
+      ]
     },
     {
       "id": "by.math.5.numbers.ordering.vorschule.v1",
@@ -689,13 +646,13 @@
       "answer": "−3 °C",
       "hint": "Auf der Zahlengeraden ist links kleiner.",
       "explanation": "−3 liegt links von 2. −3 °C ist kälter.",
-      "options": [
-        "2 °C",
-        "−3 °C"
-      ],
+      "options": ["2 °C", "−3 °C"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stell dir das Thermometer vor: Gehst du von 0 nach unten, wird es kälter."
+      ]
     },
     {
       "id": "by.math.5.numbers.ordering.koenner.v1",
@@ -707,14 +664,13 @@
       "answer": "−2",
       "hint": "Bei negativen Zahlen ist näher an Null größer.",
       "explanation": "−2 liegt rechts von −12 und −20.",
-      "options": [
-        "−20",
-        "−2",
-        "−12"
-      ],
+      "options": ["−20", "−2", "−12"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne die drei negativen Zahlen links von 0. Wähle die am weitesten rechts."
+      ]
     },
     {
       "id": "by.math.5.numbers.ordering.streber.v1",
@@ -726,14 +682,13 @@
       "answer": "−12 > −3",
       "hint": "Vergleiche die Lage auf der Zahlengeraden.",
       "explanation": "−12 liegt links von −3. Richtig wäre −12 < −3.",
-      "options": [
-        "−12 > −3",
-        "0 > −8",
-        "−2 < 1"
-      ],
+      "options": ["−12 > −3", "0 > −8", "−2 < 1"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe besonders die negativen Zahlen: Weiter links bedeutet kleiner, auch bei einer größeren Ziffer."
+      ]
     },
     {
       "id": "by.math.5.numbers.absolute.vorschule.v1",
@@ -748,7 +703,14 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Zähle die Schritte von −4 über −3, −2 und −1 bis 0."],
+      "commonMistakes": [
+        {
+          "answers": ["-4"],
+          "hint": "Der Punkt liegt bei −4, aber gefragt ist sein Abstand zur 0. Ein Abstand ist nicht negativ."
+        }
+      ]
     },
     {
       "id": "by.math.5.numbers.absolute.koenner.v1",
@@ -763,7 +725,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Spiegle die positive 9 an der 0. Das Vorzeichen unterscheidet die beiden Zahlen."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["9"],
+          "hint": "9 hat den passenden Abstand. Gesucht ist aber die Zahl auf der anderen Seite der 0."
+        }
+      ]
     },
     {
       "id": "by.math.5.numbers.absolute.streber.v1",
@@ -775,14 +746,13 @@
       "answer": "−8 und 3",
       "hint": "Suche eine kleinere Zahl, die weiter von 0 entfernt ist. Der Abstand zur 0 heißt Betrag.",
       "explanation": "−8 hat Betrag 8 und damit mehr als 3. Trotzdem gilt −8 < 3.",
-      "options": [
-        "2 und 5",
-        "−8 und 3",
-        "0 und 1"
-      ],
+      "options": ["2 und 5", "−8 und 3", "0 und 1"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe ein Paar mit einer negativen Zahl: Vergleiche erst die Zahlen, dann ihre Abstände zur 0."
+      ]
     },
     {
       "id": "by.math.5.numbers.successor.vorschule.v1",
@@ -797,7 +767,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bei 999 sind Einer, Zehner und Hunderter voll. Tausche beim Weiterzählen in die nächste Stelle."
+      ]
     },
     {
       "id": "by.math.5.numbers.successor.koenner.v1",
@@ -812,7 +785,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Links von −10 werden die Zahlen kleiner. Der Abstand zur 0 wächst um 1."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["-9"],
+          "hint": "−9 ist der Nachfolger. Für den Vorgänger gehst du von −10 einen Schritt nach links."
+        }
+      ]
     },
     {
       "id": "by.math.5.numbers.successor.streber.v1",
@@ -831,7 +813,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nimm eine beliebig große natürliche Zahl und zähle 1 dazu. Kann sie dann die größte gewesen sein?"
+      ]
     },
     {
       "id": "by.math.5.numbers.word-to-number.vorschule.v1",
@@ -846,7 +831,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe zuerst 3 000. Füge dann 40 hinzu und behalte leere Stellen als 0."
+      ]
     },
     {
       "id": "by.math.5.numbers.word-to-number.koenner.v1",
@@ -861,7 +849,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die letzte Gruppe hat drei Stellen. Die 6 steht ganz rechts, davor stehen zwei Nullen."
+      ]
     },
     {
       "id": "by.math.5.numbers.word-to-number.streber.v1",
@@ -876,7 +867,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Jede Gruppe außer der ersten hat drei Stellen. Ergänze fehlende Stellen links mit Nullen."
+      ]
     },
     {
       "id": "by.math.5.numbers.read-number.vorschule.v1",
@@ -895,7 +889,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die 050 in der letzten Gruppe bedeutet fünfzig, nicht fünfhundert."
+      ]
     },
     {
       "id": "by.math.5.numbers.read-number.koenner.v1",
@@ -914,7 +911,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Gruppe 006 steht bei den Tausendern. Die Gruppe 020 steht bei den Einern."
+      ]
     },
     {
       "id": "by.math.5.numbers.read-number.streber.v1",
@@ -933,7 +933,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lies die Gruppen als Milliarden, Millionen, Tausender und Einer. Lass die leere Gruppe aus."
+      ]
     },
     {
       "id": "by.math.5.numbers.word-zero-groups.vorschule.v1",
@@ -948,7 +951,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 9 an die Tausenderstelle und 7 an die Einerstelle. Fülle die Lücke mit Nullen."
+      ]
     },
     {
       "id": "by.math.5.numbers.word-zero-groups.koenner.v1",
@@ -963,7 +969,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nach 42 folgen zwei Dreiergruppen: erst die leeren Tausender, dann die Einer."
+      ]
     },
     {
       "id": "by.math.5.numbers.word-zero-groups.streber.v1",
@@ -978,7 +987,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe die Gruppen Milliarden, Millionen, Tausender, Einer. Die Gruppe mit 80 braucht vorne eine Null."
+      ]
     },
     {
       "id": "by.math.5.numbers.choose-scale.vorschule.v1",
@@ -993,7 +1005,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Gesucht ist eine Zahl, die zehnmal addiert 100 ergibt."]
     },
     {
       "id": "by.math.5.numbers.choose-scale.koenner.v1",
@@ -1005,14 +1018,13 @@
       "answer": "2 000",
       "hint": "Alle gesuchten Zahlen sollen auf Strichen liegen.",
       "explanation": "Mit 2 000 je Schritt brauchst du fünf Schritte. 500 braucht 20; bei 3 000 liegen nicht alle Zahlen auf Strichen.",
-      "options": [
-        "2 000",
-        "3 000",
-        "500"
-      ],
+      "options": ["2 000", "3 000", "500"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Teile 10 000 durch jede angebotene Schrittweite. Prüfe dann, ob auch 2 000 auf einem Strich liegt."
+      ]
     },
     {
       "id": "by.math.5.numbers.choose-scale.streber.v1",
@@ -1027,7 +1039,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bis 0 sind es 1 500, danach noch 2 500. Teile die Summe durch 8."
+      ]
     },
     {
       "id": "by.math.5.numbers.build-counterexample.vorschule.v1",
@@ -1039,14 +1054,13 @@
       "answer": "0",
       "hint": "Du brauchst nur einen Fall, der nicht passt.",
       "explanation": "0 ist eine ganze Zahl, aber nicht größer als 0. Ein Gegenbeispiel genügt.",
-      "options": [
-        "0",
-        "1",
-        "10"
-      ],
+      "options": ["0", "1", "10"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, ob die angebotene Zahl gleich 0 oder kleiner ist."
+      ]
     },
     {
       "id": "by.math.5.numbers.build-counterexample.koenner.v1",
@@ -1061,7 +1075,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die gesuchte Zahl liegt links von 0 und ist genauso weit entfernt wie 6."
+      ]
     },
     {
       "id": "by.math.5.numbers.build-counterexample.streber.v1",
@@ -1073,14 +1090,13 @@
       "answer": "a = −8, b = 3",
       "hint": "Prüfe beide Teile: Ist a kleiner? Ist sein Abstand zur 0 trotzdem größer?",
       "explanation": "−8 < 3, aber 8 > 3. Damit stimmt die Behauptung nicht immer.",
-      "options": [
-        "a = 0, b = 5",
-        "a = −8, b = 3",
-        "a = 2, b = 7"
-      ],
+      "options": ["a = 0, b = 5", "a = −8, b = 3", "a = 2, b = 7"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche bei jedem Paar getrennt: a < b und Abstand von a größer als Abstand von b."
+      ]
     },
     {
       "id": "by.math.5.add.written.vorschule.v1",
@@ -1095,7 +1111,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Nach dem Ergänzen um 30 fehlen von den 35 noch 5."]
     },
     {
       "id": "by.math.5.add.written.koenner.v1",
@@ -1110,7 +1127,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beginne rechts mit 8 + 3. Ein voller Zehner wird in die nächste Spalte übertragen."
+      ]
     },
     {
       "id": "by.math.5.add.written.streber.v1",
@@ -1125,7 +1145,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ziehe zuerst 3 Millionen ab. Danach fehlen noch die 876 543, die ebenfalls wegmüssen."
+      ]
     },
     {
       "id": "by.math.5.add.estimate.vorschule.v1",
@@ -1137,14 +1160,13 @@
       "answer": "80",
       "hint": "Runde beide Zahlen auf Zehner.",
       "explanation": "50 + 30 = 80 liegt nahe am genauen Ergebnis 81.",
-      "options": [
-        "8",
-        "80",
-        "800"
-      ],
+      "options": ["8", "80", "800"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "49 liegt nahe bei 50, 32 nahe bei 30. Addiere diese beiden Zehner."
+      ]
     },
     {
       "id": "by.math.5.add.estimate.koenner.v1",
@@ -1156,14 +1178,13 @@
       "answer": "3 000 000",
       "hint": "Runde beide Zahlen auf Millionen.",
       "explanation": "5 000 000 − 2 000 000 = 3 000 000.",
-      "options": [
-        "300 000",
-        "3 000 000",
-        "7 000 000"
-      ],
+      "options": ["300 000", "3 000 000", "7 000 000"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ziehe die gerundeten Millionen voneinander ab. Die Stellen darunter brauchst du beim Überschlag nicht."
+      ]
     },
     {
       "id": "by.math.5.add.estimate.streber.v1",
@@ -1182,7 +1203,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Runde den ersten Summanden auf 8 Millionen. Vergleiche die gerundete Summe mit den behaupteten 9 Millionen."
+      ]
     },
     {
       "id": "by.math.5.add.signed.vorschule.v1",
@@ -1197,7 +1221,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nach zwei Schritten bist du bei 0. Wie viele von den fünf Schritten bleiben noch?"
+      ]
     },
     {
       "id": "by.math.5.add.signed.koenner.v1",
@@ -1212,7 +1239,20 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Neun Schritte reichen von −17 aus noch nicht bis 0. Das Ergebnis bleibt negativ."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["26"],
+          "hint": "Bei −17 + 9 gehst du nach rechts in Richtung 0. Die Abstände werden hier nicht addiert."
+        },
+        {
+          "answers": ["-26"],
+          "hint": "Du bist nach links gegangen. Das Plus 9 führt von −17 aus nach rechts."
+        }
+      ]
     },
     {
       "id": "by.math.5.add.signed.streber.v1",
@@ -1227,7 +1267,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe die Rechnung als −24 + 17 − 8. Gehe danach von links nach rechts."
+      ]
     },
     {
       "id": "by.math.5.add.equations.vorschule.v1",
@@ -1242,7 +1285,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Starte bei 7 und zähle bis 12. Wie viele Schritte brauchst du?"
+      ]
     },
     {
       "id": "by.math.5.add.equations.koenner.v1",
@@ -1257,7 +1303,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Von 18 bis 31 fehlen 13. Welches Vorzeichen braucht die abgezogene Zahl, damit du nach rechts gehst?"
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["13"],
+          "hint": "Mit +13 würde 18 − 13 kleiner werden. Gesucht ist eine abgezogene Zahl, durch die das Ergebnis größer wird."
+        }
+      ]
     },
     {
       "id": "by.math.5.add.equations.streber.v1",
@@ -1272,7 +1327,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["In x + 28 = −15 machst du +28 mit −28 rückgängig."]
     },
     {
       "id": "by.math.5.add.strategy.vorschule.v1",
@@ -1287,7 +1343,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Rechne erst 19 + 1. Addiere danach die noch übrige 6."]
     },
     {
       "id": "by.math.5.add.strategy.koenner.v1",
@@ -1302,7 +1359,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das Paar 275 und 725 ergibt einen vollen Tausender. Die 48 kommt anschließend dazu."
+      ]
     },
     {
       "id": "by.math.5.add.strategy.streber.v1",
@@ -1317,7 +1377,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Streiche −125 und +125 als Paar. Rechne nur noch 78 − 178."
+      ]
     },
     {
       "id": "by.math.5.add.terms.vorschule.v1",
@@ -1329,14 +1392,13 @@
       "answer": "Summe",
       "hint": "Denke an das Pluszeichen.",
       "explanation": "Die Zahlen heißen Summanden, das Ergebnis heißt Summe.",
-      "options": [
-        "Produkt",
-        "Summe",
-        "Quotient"
-      ],
+      "options": ["Produkt", "Summe", "Quotient"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bei 2 + 3 heißen 2 und 3 Summanden. Gesucht ist das verwandte Wort für das Ergebnis."
+      ]
     },
     {
       "id": "by.math.5.add.terms.koenner.v1",
@@ -1348,14 +1410,13 @@
       "answer": "Subtrahend",
       "hint": "Gesucht ist der Name der Zahl, die abgezogen wird.",
       "explanation": "48 heißt Minuend: Von dieser Zahl ziehst du etwas ab.\n19 heißt Subtrahend: Diese Zahl ziehst du ab.\nDas Ergebnis 29 heißt Differenz.",
-      "options": [
-        "Minuend",
-        "Summe",
-        "Subtrahend"
-      ],
+      "options": ["Minuend", "Summe", "Subtrahend"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das Wort für die abgezogene Zahl beginnt wie „Subtraktion“. „Differenz“ bezeichnet das Ergebnis."
+      ]
     },
     {
       "id": "by.math.5.add.terms.streber.v1",
@@ -1367,14 +1428,13 @@
       "answer": "Subtraktion",
       "hint": "Die Klammer wird zuerst berechnet.",
       "explanation": "Zuerst rechnest du 12 + 9 = 21.\nDanach rechnest du 80 − 21.\nZuletzt kommt also die Subtraktion, eine Minusrechnung.",
-      "options": [
-        "Addition",
-        "Subtraktion",
-        "Multiplikation"
-      ],
+      "options": ["Addition", "Subtraktion", "Multiplikation"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ersetze die Klammer durch ein Kästchen. Welches Rechenzeichen steht zwischen 80 und diesem Kästchen?"
+      ]
     },
     {
       "id": "by.math.5.add.context.vorschule.v1",
@@ -1389,7 +1449,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nimm von den 15 zuerst 5 weg. Danach musst du noch eine Murmel abgeben."
+      ]
     },
     {
       "id": "by.math.5.add.context.koenner.v1",
@@ -1404,7 +1467,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Von −3 bis 0 brauchst du drei Etagen. Wie viele von den acht Etagen bleiben danach noch?"
+      ]
     },
     {
       "id": "by.math.5.add.context.streber.v1",
@@ -1419,7 +1485,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vor der Ausgabe waren 30 Münzen da. Rechne den Weg von −35 über 0 bis 30."
+      ]
     },
     {
       "id": "by.math.5.add.sign-or-operation.vorschule.v1",
@@ -1438,7 +1507,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein Rechenzeichen verbindet zwei Zahlen. Prüfe, ob das Minus hier zwei Zahlen verbindet."
+      ]
     },
     {
       "id": "by.math.5.add.sign-or-operation.koenner.v1",
@@ -1457,7 +1529,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lass die eingeklammerten Zahlen als zwei Pakete stehen. Welches Zeichen verbindet sie?"
+      ]
     },
     {
       "id": "by.math.5.add.sign-or-operation.streber.v1",
@@ -1469,14 +1544,13 @@
       "answer": "(−12) + (−5)",
       "hint": "Die Gegenzahl von +5 ist −5.",
       "explanation": "a − b = a + (−b). Hier: −12 − 5 = −12 + (−5) = −17.",
-      "options": [
-        "(−12) + (+5)",
-        "(−12) + (−5)",
-        "(+12) + (−5)"
-      ],
+      "options": ["(−12) + (+5)", "(−12) + (−5)", "(+12) + (−5)"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die erste Zahl bleibt −12. Nur das Abziehen von +5 wird durch Addieren der Gegenzahl ersetzt."
+      ]
     },
     {
       "id": "by.math.5.add.written-carry.vorschule.v1",
@@ -1491,7 +1565,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Teile 15 Einer in volle Zehner und übrige Einer auf."]
     },
     {
       "id": "by.math.5.add.written-carry.koenner.v1",
@@ -1506,7 +1581,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 5 + 8 + 1. Schreibe nur die Einerziffer dieser Summe an die Zehnerstelle."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["3"],
+          "hint": "Zu 5 + 8 kommt der Übertrag 1 aus der Einerstelle hinzu."
+        }
+      ]
     },
     {
       "id": "by.math.5.add.written-carry.streber.v1",
@@ -1521,7 +1605,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 9 + 2 + 1. Die zweite Ziffer der Summe steht bei den Millionen."
+      ]
     },
     {
       "id": "by.math.5.add.written-exchange.vorschule.v1",
@@ -1536,7 +1623,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die 2 Einer bleiben erhalten. Addiere die 10 eingetauschten Einer."
+      ]
     },
     {
       "id": "by.math.5.add.written-exchange.koenner.v1",
@@ -1551,7 +1641,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Auch nach dem Tauschen über mehrere Nullstellen bleiben die ursprünglichen 2 Einer erhalten."
+      ]
     },
     {
       "id": "by.math.5.add.written-exchange.streber.v1",
@@ -1566,7 +1659,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nach dem Tauschen rechnest du bei den Einern 12 − 9. Arbeite dann Spalte für Spalte nach links."
+      ]
     },
     {
       "id": "by.math.5.add.sum-difference-structure.vorschule.v1",
@@ -1578,14 +1674,13 @@
       "answer": "30 − 10",
       "hint": "Die ganze Klammer wird durch ihren Wert ersetzt.",
       "explanation": "6 + 4 = 10. Dann: 30 − 10 = 20.",
-      "options": [
-        "30 − 10",
-        "24 + 4",
-        "30 + 10"
-      ],
+      "options": ["30 − 10", "24 + 4", "30 + 10"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 6 + 4 aus. Schreibe diesen Wert anstelle der Klammer hinter 30 −."
+      ]
     },
     {
       "id": "by.math.5.add.sum-difference-structure.koenner.v1",
@@ -1597,14 +1692,13 @@
       "answer": "Die Summe 18 + 7",
       "hint": "Betrachte die letzte Rechenart und ihre beiden Teile.",
       "explanation": "Die letzte Rechenart ist Minus. Minuend: 60. Subtrahend: die ganze Summe 18 + 7.",
-      "options": [
-        "Nur die Zahl 18",
-        "Die Zahl 60",
-        "Die Summe 18 + 7"
-      ],
+      "options": ["Nur die Zahl 18", "Die Zahl 60", "Die Summe 18 + 7"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Der Subtrahend steht vollständig rechts vom äußeren Minus. Die Klammer gehört als Ganzes dazu."
+      ]
     },
     {
       "id": "by.math.5.add.sum-difference-structure.streber.v1",
@@ -1619,7 +1713,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Setze den Klammerwert −3 ein. Ziehst du eine negative Zahl ab, gehst du nach rechts."
+      ]
     },
     {
       "id": "by.math.5.add.debt-reasoning.vorschule.v1",
@@ -1634,7 +1731,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vom Guthaben von 9 € bezahlst du die 4 €. Welche Minusrechnung passt?"
+      ]
     },
     {
       "id": "by.math.5.add.debt-reasoning.koenner.v1",
@@ -1649,7 +1749,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gehe von −6 vier Schritte nach rechts. Du erreichst dabei noch nicht 0."
+      ]
     },
     {
       "id": "by.math.5.add.debt-reasoning.streber.v1",
@@ -1664,7 +1767,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne erst −15 + 23. Ziehe erst vom neuen Zwischenstand 12 ab."
+      ]
     },
     {
       "id": "by.math.5.geometry.coordinates.vorschule.v1",
@@ -1679,7 +1785,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lies das Zahlenpaar von links nach rechts. Die zweite Zahl wird erst beim Weg nach oben gebraucht."
+      ]
     },
     {
       "id": "by.math.5.geometry.coordinates.koenner.v1",
@@ -1694,7 +1803,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beide Punkte haben dieselbe Höhe. Du brauchst nur die Differenz ihrer ersten Koordinaten."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["10"],
+          "hint": "Die zweite Koordinate gibt nur die gemeinsame Höhe an. Zähle den waagerechten Abstand von 2 bis 7."
+        }
+      ]
     },
     {
       "id": "by.math.5.geometry.coordinates.streber.v1",
@@ -1706,14 +1824,13 @@
       "answer": "D(−2 ; 3)",
       "hint": "D liegt senkrecht über A und waagerecht neben C.",
       "explanation": "D übernimmt x = −2 von A und y = 3 von C.",
-      "options": [
-        "D(−2 ; 3)",
-        "D(3 ; −2)",
-        "D(4 ; −2)"
-      ],
+      "options": ["D(−2 ; 3)", "D(3 ; −2)", "D(4 ; −2)"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe für D zuerst die erste Koordinate von A und danach die zweite von C auf."
+      ]
     },
     {
       "id": "by.math.5.geometry.lines.vorschule.v1",
@@ -1725,14 +1842,13 @@
       "answer": "Strecke",
       "hint": "Stell dir eine Verbindung von A nach B vor.",
       "explanation": "Eine Strecke endet an ihren beiden Endpunkten. Eine Gerade ist unbegrenzt.",
-      "options": [
-        "Gerade",
-        "Strecke",
-        "Kreis"
-      ],
+      "options": ["Gerade", "Strecke", "Kreis"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche: Eine Halbgerade hat einen Anfang, eine Gerade keinen Endpunkt. Was bleibt?"
+      ]
     },
     {
       "id": "by.math.5.geometry.lines.koenner.v1",
@@ -1744,14 +1860,13 @@
       "answer": "Parallel",
       "hint": "Zeichne eine waagerechte Gerade. Zeichne darauf zwei Geraden mit jeweils einem rechten Winkel.",
       "explanation": "In der Ebene sind die beiden Geraden parallel.",
-      "options": [
-        "Parallel",
-        "Senkrecht",
-        "Sie müssen sich schneiden."
-      ],
+      "options": ["Parallel", "Senkrecht", "Sie müssen sich schneiden."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne die beiden rechten Winkel an verschiedenen Stellen der waagerechten Linie. Verlängere die neuen Linien."
+      ]
     },
     {
       "id": "by.math.5.geometry.lines.streber.v1",
@@ -1766,7 +1881,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne ein Kreuz aus zwei Geraden. Prüfe, ob sich dieselben Geraden noch ein zweites Mal treffen könnten."
+      ]
     },
     {
       "id": "by.math.5.geometry.distance.vorschule.v1",
@@ -1785,7 +1903,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lege die lange Kante deines Geodreiecks auf die Gerade. Seine Mittellinie zeigt die senkrechte Richtung."
+      ]
     },
     {
       "id": "by.math.5.geometry.distance.koenner.v1",
@@ -1800,7 +1921,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ziehe die Höhe 2 von der Höhe 7 ab. Die erste Koordinate bleibt gleich."
+      ]
     },
     {
       "id": "by.math.5.geometry.distance.streber.v1",
@@ -1819,7 +1943,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stelle einen Zirkel auf 4 cm ein und drehe ihn mit der Spitze in M."
+      ]
     },
     {
       "id": "by.math.5.geometry.circles.vorschule.v1",
@@ -1834,7 +1961,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein Durchmesser besteht aus einem Radius bis zur Mitte und einem weiteren bis zum anderen Rand."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["3"],
+          "hint": "3 cm ist der Radius. Der Durchmesser besteht aus zwei Radien."
+        }
+      ]
     },
     {
       "id": "by.math.5.geometry.circles.koenner.v1",
@@ -1849,7 +1985,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne eine Gerade, die gerade noch an den Kreis stößt. Zähle nur die Berührstelle."
+      ]
     },
     {
       "id": "by.math.5.geometry.circles.streber.v1",
@@ -1864,7 +2003,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne die Verbindung der Mittelpunkte. Beide Radien reichen auf dieser Linie genau bis zur Mitte."
+      ]
     },
     {
       "id": "by.math.5.geometry.angle-types.vorschule.v1",
@@ -1876,14 +2018,13 @@
       "answer": "Rechter Winkel",
       "hint": "Denke an eine Ecke eines Quadrats.",
       "explanation": "Ein rechter Winkel ist genau 90° groß.",
-      "options": [
-        "Spitzer Winkel",
-        "Rechter Winkel",
-        "Stumpfer Winkel"
-      ],
+      "options": ["Spitzer Winkel", "Rechter Winkel", "Stumpfer Winkel"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein spitzer Winkel ist kleiner als 90°, ein stumpfer größer. Gesucht ist genau der Grenzwert."
+      ]
     },
     {
       "id": "by.math.5.geometry.angle-types.koenner.v1",
@@ -1895,14 +2036,13 @@
       "answer": "Stumpfer Winkel",
       "hint": "135° liegt zwischen 90° und 180°.",
       "explanation": "Winkel zwischen 90° und 180° heißen stumpf.",
-      "options": [
-        "Spitzer Winkel",
-        "Stumpfer Winkel",
-        "Überstumpfer Winkel"
-      ],
+      "options": ["Spitzer Winkel", "Stumpfer Winkel", "Überstumpfer Winkel"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "135° ist größer als eine Vierteldrehung, aber kleiner als eine halbe Drehung."
+      ]
     },
     {
       "id": "by.math.5.geometry.angle-types.streber.v1",
@@ -1921,7 +2061,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Eine halbe Drehung hat 180°. Hier geht die Drehung noch darüber hinaus."
+      ]
     },
     {
       "id": "by.math.5.geometry.angles.vorschule.v1",
@@ -1936,7 +2079,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zwei gleich große halbe Drehungen ergeben zusammen 360°. Welche Zahl passt zweimal hinein?"
+      ]
     },
     {
       "id": "by.math.5.geometry.angles.koenner.v1",
@@ -1951,7 +2097,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 180 − 65. Prüfe danach, ob deine Antwort plus 65 wieder 180 ergibt."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["245"],
+          "hint": "Die Winkel ergeben zusammen 180°. Ziehe den bekannten Winkel ab, statt ihn hinzuzuzählen."
+        }
+      ]
     },
     {
       "id": "by.math.5.geometry.angles.streber.v1",
@@ -1966,7 +2121,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Addiere zuerst 85 und 120. Ziehe diese Summe von 360 ab."
+      ]
     },
     {
       "id": "by.math.5.geometry.quadrilaterals.vorschule.v1",
@@ -1978,14 +2136,13 @@
       "answer": "Quadrat",
       "hint": "Denke an ein Schachbrettfeld.",
       "explanation": "Ein Quadrat erfüllt beide Eigenschaften.",
-      "options": [
-        "Quadrat",
-        "Beliebiges Trapez",
-        "Jedes Drachenviereck"
-      ],
+      "options": ["Quadrat", "Beliebiges Trapez", "Jedes Drachenviereck"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein Rechteck hat vier rechte Winkel. Welche besondere Form hat zusätzlich vier gleich lange Seiten?"
+      ]
     },
     {
       "id": "by.math.5.geometry.quadrilaterals.koenner.v1",
@@ -1997,14 +2154,13 @@
       "answer": "Parallelogramm",
       "hint": "Parallel heißt: Die Seiten würden sich auch verlängert nie treffen.",
       "explanation": "Beim Parallelogramm sind beide Paare gegenüberliegender Seiten parallel.",
-      "options": [
-        "Jedes Drachenviereck",
-        "Parallelogramm",
-        "Jedes Trapez"
-      ],
+      "options": ["Jedes Drachenviereck", "Parallelogramm", "Jedes Trapez"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche beide Paare gegenüberliegender Seiten. Ein einziges paralleles Paar reicht hier nicht."
+      ]
     },
     {
       "id": "by.math.5.geometry.quadrilaterals.streber.v1",
@@ -2023,7 +2179,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, ob jedes Quadrat die Definition einer Raute erfüllt. Für die Umkehrung müssten rechte Winkel garantiert sein."
+      ]
     },
     {
       "id": "by.math.5.geometry.short-notation.vorschule.v1",
@@ -2035,14 +2194,13 @@
       "answer": "Bei A und B",
       "hint": "Eine Strecke hat genau zwei Endpunkte.",
       "explanation": "[AB] verbindet A mit B und endet an diesen Punkten.",
-      "options": [
-        "Bei A und B",
-        "Sie hat keine Endpunkte",
-        "Nur bei A"
-      ],
+      "options": ["Bei A und B", "Sie hat keine Endpunkte", "Nur bei A"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Buchstaben in [AB] benennen die beiden Endpunkte. Die Linie geht dort nicht weiter."
+      ]
     },
     {
       "id": "by.math.5.geometry.short-notation.koenner.v1",
@@ -2061,7 +2219,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne die Linie zunächst von A nach B. Verlängere sie dann über beide Punkte hinaus."
+      ]
     },
     {
       "id": "by.math.5.geometry.short-notation.streber.v1",
@@ -2080,7 +2241,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ist der Abstand eines Punktes kleiner als der Radius, erreicht er den Kreisrand noch nicht."
+      ]
     },
     {
       "id": "by.math.5.geometry.point-line.vorschule.v1",
@@ -2095,7 +2259,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Du musst dich vom Punkt aus gar nicht bewegen, um g zu erreichen."
+      ]
     },
     {
       "id": "by.math.5.geometry.point-line.koenner.v1",
@@ -2107,14 +2274,13 @@
       "answer": "P(−3 ; 2)",
       "hint": "Die zweite Koordinate gibt die Höhe an.",
       "explanation": "P hat Höhe 2 und liegt deshalb auf g.",
-      "options": [
-        "Q(2 ; −3)",
-        "R(2 ; 4)",
-        "P(−3 ; 2)"
-      ],
+      "options": ["Q(2 ; −3)", "R(2 ; 4)", "P(−3 ; 2)"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche nur die Zahlen hinter dem Strichpunkt. Gesucht ist dieselbe Höhe wie g."
+      ]
     },
     {
       "id": "by.math.5.geometry.point-line.streber.v1",
@@ -2129,7 +2295,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Von 3 bis 0 sind es drei Kästchen. Danach gehst du noch bis −2."
+      ]
     },
     {
       "id": "by.math.5.geometry.line-cases.vorschule.v1",
@@ -2141,14 +2310,13 @@
       "answer": "parallel",
       "hint": "Denke an gerade Schienen.",
       "explanation": "Verschiedene parallele Geraden haben keinen gemeinsamen Punkt.",
-      "options": [
-        "parallel",
-        "senkrecht",
-        "deckungsgleich"
-      ],
+      "options": ["parallel", "senkrecht", "deckungsgleich"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denke an zwei gerade Linien, die beim Verlängern immer denselben Abstand behalten."
+      ]
     },
     {
       "id": "by.math.5.geometry.line-cases.koenner.v1",
@@ -2160,14 +2328,13 @@
       "answer": "senkrecht",
       "hint": "Ein rechter Winkel hat 90°.",
       "explanation": "Senkrechte Geraden schneiden sich im rechten Winkel.",
-      "options": [
-        "parallel",
-        "deckungsgleich",
-        "senkrecht"
-      ],
+      "options": ["parallel", "deckungsgleich", "senkrecht"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, ob du die Ecke eines Quadrats genau in den Schnittwinkel legen kannst."
+      ]
     },
     {
       "id": "by.math.5.geometry.line-cases.streber.v1",
@@ -2179,14 +2346,13 @@
       "answer": "Unendlich viele",
       "hint": "Durch zwei verschiedene Punkte geht genau eine Gerade.",
       "explanation": "Die beiden Geraden liegen ganz aufeinander. Jeder ihrer Punkte ist gemeinsam.",
-      "options": [
-        "Unendlich viele",
-        "Keinen",
-        "Genau zwei"
-      ],
+      "options": ["Unendlich viele", "Keinen", "Genau zwei"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne erst eine Gerade durch A und B. Kann eine zweite durch beide Punkte einen anderen Weg nehmen?"
+      ]
     },
     {
       "id": "by.math.5.geometry.circle-line-cases.vorschule.v1",
@@ -2201,7 +2367,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle nur tatsächliche Punkte auf beiden Linien. Ein freier Zwischenraum zählt nicht."
+      ]
     },
     {
       "id": "by.math.5.geometry.circle-line-cases.koenner.v1",
@@ -2213,14 +2382,13 @@
       "answer": "Tangente",
       "hint": "Die Gerade erreicht die Kreislinie gerade noch.",
       "explanation": "Sie berührt die Kreislinie in einem Punkt. Das ist eine Tangente.",
-      "options": [
-        "Sekante",
-        "Passante",
-        "Tangente"
-      ],
+      "options": ["Sekante", "Passante", "Tangente"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche die drei Fälle: vorbeilaufen, genau berühren, durch den Kreis laufen."
+      ]
     },
     {
       "id": "by.math.5.geometry.circle-line-cases.streber.v1",
@@ -2235,7 +2403,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne die Gerade mit dem angegebenen Abstand zum Mittelpunkt. Markiere alle gemeinsamen Punkte von Gerade und Kreislinie. Zähle sie anschließend."
+      ]
     },
     {
       "id": "by.math.5.geometry.circle-circle-cases.vorschule.v1",
@@ -2250,7 +2421,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Radien reichen zusammen nur 4 cm weit. Vergleiche das mit den 7 cm zwischen den Mittelpunkten."
+      ]
     },
     {
       "id": "by.math.5.geometry.circle-circle-cases.koenner.v1",
@@ -2265,7 +2439,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Markiere in deiner Zeichnung alle Stellen, an denen beide Kreislinien durch denselben Punkt laufen. Zähle dann die markierten Stellen."
+      ]
     },
     {
       "id": "by.math.5.geometry.circle-circle-cases.streber.v1",
@@ -2277,14 +2454,13 @@
       "answer": "Unendlich viele",
       "hint": "Was passiert, wenn du beide Kreise zeichnest?",
       "explanation": "Die Kreislinien liegen ganz aufeinander. Alle Punkte sind gemeinsam.",
-      "options": [
-        "Unendlich viele",
-        "Keinen",
-        "Genau zwei"
-      ],
+      "options": ["Unendlich viele", "Keinen", "Genau zwei"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Eine zweite Zeichnung mit denselben Zirkeleinstellungen fährt genau die erste Linie nach."
+      ]
     },
     {
       "id": "by.math.5.geometry.nested-circles.vorschule.v1",
@@ -2299,7 +2475,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Der Abstand zwischen den Kreislinien bleibt rundherum gleich. Sie kommen sich nirgends näher."
+      ]
     },
     {
       "id": "by.math.5.geometry.nested-circles.koenner.v1",
@@ -2314,7 +2493,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Der kleine Kreis reicht auf einer Seite bis zum großen Kreisrand, auf der anderen Seite bleibt Abstand."
+      ]
     },
     {
       "id": "by.math.5.geometry.nested-circles.streber.v1",
@@ -2333,7 +2515,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche die größte Entfernung 4 cm mit dem großen Radius 5 cm. Bleibt noch eine Lücke?"
+      ]
     },
     {
       "id": "by.math.5.geometry.distance-conditions.vorschule.v1",
@@ -2352,7 +2537,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Drehe eine 3 m lange gedachte Schnur um M. Das Ende zeigt alle möglichen Plätze."
+      ]
     },
     {
       "id": "by.math.5.geometry.distance-conditions.koenner.v1",
@@ -2371,7 +2559,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle von Höhe 0 vier Schritte nach oben und vier nach unten. Beide Richtungen sind erlaubt."
+      ]
     },
     {
       "id": "by.math.5.geometry.distance-conditions.streber.v1",
@@ -2383,14 +2574,13 @@
       "answer": "(0 ; 4)",
       "hint": "Prüfe bei jeder Stelle den Abstand zur Straße und den Abstand zum Baum.",
       "explanation": "(0 ; 4) hat 4 m Abstand zur Straße und zum Baum. (0 ; 2) ist zu nah an der Straße; (0 ; 6) außerhalb des Schattens.",
-      "options": [
-        "(0 ; 6)",
-        "(0 ; 4)",
-        "(0 ; 2)"
-      ],
+      "options": ["(0 ; 6)", "(0 ; 4)", "(0 ; 2)"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bei den angebotenen Punkten mit erster Koordinate 0 zählt die Höhe für beide Abstände. Sie muss mindestens 3 und höchstens 5 sein."
+      ]
     },
     {
       "id": "by.math.5.geometry.quadrilaterals-around-us.vorschule.v1",
@@ -2409,7 +2599,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe zuerst die vier rechten Winkel. Prüfe dann, ob wirklich alle vier Seiten gleich lang sind."
+      ]
     },
     {
       "id": "by.math.5.geometry.quadrilaterals-around-us.koenner.v1",
@@ -2428,7 +2621,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein Quadrat braucht zusätzlich rechte Winkel. Prüfe, welche Eigenschaft hier ausdrücklich fehlt."
+      ]
     },
     {
       "id": "by.math.5.geometry.quadrilaterals-around-us.streber.v1",
@@ -2447,7 +2643,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Suche die Vierecksart, bei der schon ein paralleles Seitenpaar reicht."
+      ]
     },
     {
       "id": "by.math.5.geometry.mental-quadrilaterals.vorschule.v1",
@@ -2466,7 +2665,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche Seitenlängen und Winkel vor und nach dem Drehen. Die Lage auf dem Blatt ist dafür egal."
+      ]
     },
     {
       "id": "by.math.5.geometry.mental-quadrilaterals.koenner.v1",
@@ -2485,7 +2687,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein rechter Winkel legt hier alle vier Winkel fest. Über gleiche Seitenlängen ist noch nichts gesagt."
+      ]
     },
     {
       "id": "by.math.5.geometry.mental-quadrilaterals.streber.v1",
@@ -2504,7 +2709,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stell dir vor, du klappst eine Hälfte über die Faltlinie. Vergleiche ihre Seiten mit denen der anderen Hälfte."
+      ]
     },
     {
       "id": "by.math.5.multiply.written.vorschule.v1",
@@ -2519,7 +2727,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Addiere 28 zu 28. Das ist dieselbe Zahl wie sieben Achtergruppen."
+      ]
     },
     {
       "id": "by.math.5.multiply.written.koenner.v1",
@@ -2534,7 +2745,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 234 mal 100, mal 20 und mal 3 getrennt. Addiere die drei Teilprodukte."
+      ]
     },
     {
       "id": "by.math.5.multiply.written.streber.v1",
@@ -2549,7 +2763,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "123 passt zweimal in 287. Ziehe 246 ab und hole dann die nächste Ziffer herunter."
+      ]
     },
     {
       "id": "by.math.5.multiply.divisibility.vorschule.v1",
@@ -2561,14 +2778,13 @@
       "answer": "35",
       "hint": "Schau auf die letzte Ziffer.",
       "explanation": "Zahlen mit Endziffer 0 oder 5 sind durch 5 teilbar.",
-      "options": [
-        "32",
-        "35",
-        "38"
-      ],
+      "options": ["32", "35", "38"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bei Vielfachen von 5 wechseln die Endziffern: 5, 0, 5, 0, …"
+      ]
     },
     {
       "id": "by.math.5.multiply.divisibility.koenner.v1",
@@ -2580,14 +2796,13 @@
       "answer": "120",
       "hint": "Eine Zahl mit letzter Ziffer 0 ist durch 2, 5 und 10 teilbar. Addiere die Ziffern: Diese Summe heißt Quersumme. Ist sie durch 3 teilbar?",
       "explanation": "120 endet auf 0. Daher ist 120 durch 2, 5 und 10 teilbar.\nDie Quersumme ist 1 + 2 + 0 = 3. Deshalb ist 120 auch durch 3 teilbar.",
-      "options": [
-        "120",
-        "125",
-        "130"
-      ],
+      "options": ["120", "125", "130"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Streiche alle Zahlen ohne Endziffer 0. Prüfe bei den übrigen die Quersumme auf Teilbarkeit durch 3."
+      ]
     },
     {
       "id": "by.math.5.multiply.divisibility.streber.v1",
@@ -2602,7 +2817,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die bekannten Ziffern ergeben zusammen 6. Probiere die fehlenden Ziffern von der kleinsten zur größten."
+      ]
     },
     {
       "id": "by.math.5.multiply.prime.vorschule.v1",
@@ -2614,14 +2832,13 @@
       "answer": "7",
       "hint": "Eine Primzahl ist größer als 1. Sie lässt sich ohne Rest nur durch 1 und durch sich selbst teilen.",
       "explanation": "7 ist nur durch 1 und 7 teilbar. 6 und 9 haben weitere Teiler.",
-      "options": [
-        "6",
-        "7",
-        "9"
-      ],
+      "options": ["6", "7", "9"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe, ob du die Zahl als Malrechnung mit zwei kleineren Zahlen größer als 1 schreiben kannst."
+      ]
     },
     {
       "id": "by.math.5.multiply.prime.koenner.v1",
@@ -2633,14 +2850,13 @@
       "answer": "2 × 2 × 3 × 5",
       "hint": "Eine Primzahl lässt sich ohne Rest nur durch 1 und sich selbst teilen. 4, 6 und 10 sind keine Primzahlen.",
       "explanation": "2 × 2 × 3 × 5 = 60.\nJede Zahl in dieser Malrechnung ist eine Primzahl. Deshalb ist das eine Primfaktorzerlegung.",
-      "options": [
-        "6 × 10",
-        "2 × 2 × 3 × 5",
-        "3 × 4 × 5"
-      ],
+      "options": ["6 × 10", "2 × 2 × 3 × 5", "3 × 4 × 5"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege jeden zusammengesetzten Faktor weiter. Zum Beispiel wird aus 4 die Rechnung 2 × 2."
+      ]
     },
     {
       "id": "by.math.5.multiply.prime.streber.v1",
@@ -2655,7 +2871,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe zuerst 2 × 2 × 2 und 3 × 3. Multipliziere danach die beiden Ergebnisse."
+      ]
     },
     {
       "id": "by.math.5.multiply.counting.vorschule.v1",
@@ -2670,7 +2889,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne zwei Mützen. Verbinde jede mit allen drei Schals und zähle die Verbindungen."
+      ]
     },
     {
       "id": "by.math.5.multiply.counting.koenner.v1",
@@ -2685,7 +2907,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle drei Möglichkeiten für jede der vier Sorten. Addiere diese vier Dreiergruppen."
+      ]
     },
     {
       "id": "by.math.5.multiply.counting.streber.v1",
@@ -2700,7 +2925,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nach den ersten beiden Stellen gibt es 3 × 3 Möglichkeiten. Zu jeder kommen drei letzte Ziffern."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["9"],
+          "hint": "3 × 3 zählt erst zwei Stellen. Für die dritte Stelle gibt es noch einmal drei Möglichkeiten."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.signs.vorschule.v1",
@@ -2715,7 +2949,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne zuerst 3 × 4 ohne Vorzeichen. Setze anschließend das passende Vorzeichen davor."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["12"],
+          "hint": "Der Betrag passt. Bei einem negativen und einem positiven Faktor ist das Ergebnis negativ."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.signs.koenner.v1",
@@ -2730,7 +2973,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe mit der Umkehraufgabe: Welche Zahl mal −8 ergibt −72?"
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["-9"],
+          "hint": "Beim Teilen haben beide Zahlen dasselbe Vorzeichen. Das Ergebnis ist deshalb positiv."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.signs.streber.v1",
@@ -2745,7 +2997,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die ersten beiden negativen Faktoren ergeben etwas Positives. Der dritte Faktor macht das Ergebnis wieder negativ."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["60"],
+          "hint": "Die ersten zwei Minuszeichen ergeben Plus. Der dritte negative Faktor verändert das Vorzeichen noch einmal."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.powers.vorschule.v1",
@@ -2760,7 +3021,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Denke an vier Reihen mit jeweils vier Punkten und zähle alle Punkte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["8"],
+          "hint": "Du hast 4 mal 2 gerechnet. Das hochgestellte 2 bedeutet zwei gleiche Faktoren 4."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.powers.koenner.v1",
@@ -2775,7 +3045,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege beide Faktoren in 2 × 10. Multipliziere die Zweien und danach die Zehner."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["40"],
+          "hint": "Das hochgestellte 2 verdoppelt die Zahl nicht. Multipliziere 20 mit sich selbst."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.powers.streber.v1",
@@ -2790,7 +3069,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zwei negative Faktoren bilden ein positives Paar. Bei fünf Faktoren bleibt ein negativer Faktor übrig."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["32"],
+          "hint": "Die Größe passt. Bei fünf negativen Faktoren bleibt nach dem Bilden von Paaren ein Minus übrig."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.growth.vorschule.v1",
@@ -2805,7 +3093,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne erst 10 × 10. Multipliziere das Zwischenergebnis noch einmal mit 10."
+      ]
     },
     {
       "id": "by.math.5.multiply.growth.koenner.v1",
@@ -2820,7 +3111,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe vier Pfeile ab 3. An jedem Pfeil verdoppelst du den vorherigen Wert."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["24"],
+          "hint": "Nach drei Verdopplungen sind es 24. Die Aufgabe verlangt vier Runden."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.growth.streber.v1",
@@ -2832,14 +3132,13 @@
       "answer": "2¹⁰",
       "hint": "Berechne beide Potenzen.",
       "explanation": "2¹⁰ = 1 024 und 10³ = 1 000. Also ist 2¹⁰ größer.",
-      "options": [
-        "2¹⁰",
-        "10³",
-        "Beide sind gleich."
-      ],
+      "options": ["2¹⁰", "10³", "Beide sind gleich."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "2⁵ ist 32. Verdopple danach noch fünfmal und vergleiche mit 1 000."
+      ]
     },
     {
       "id": "by.math.5.multiply.equations.vorschule.v1",
@@ -2854,7 +3153,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gehe die Sechserreihe bis 42 durch und zähle die Schritte."
+      ]
     },
     {
       "id": "by.math.5.multiply.equations.koenner.v1",
@@ -2869,7 +3171,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein positives Ergebnis beim Teilen durch eine negative Zahl braucht einen negativen Ausgangswert."
+      ]
     },
     {
       "id": "by.math.5.multiply.equations.streber.v1",
@@ -2884,7 +3189,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "12 × x muss −96 ergeben. Bestimme erst die Größe von x und danach sein Vorzeichen."
+      ]
     },
     {
       "id": "by.math.5.multiply.division-steps.vorschule.v1",
@@ -2899,7 +3207,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Verteile acht Zehner gleich auf vier Gruppen. Zähle die Zehner in einer Gruppe."
+      ]
     },
     {
       "id": "by.math.5.multiply.division-steps.koenner.v1",
@@ -2914,7 +3225,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Überspringe die Stelle nicht: Auch eine Gruppe mit keinem vollen Zwölfer braucht eine Ziffer."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["6"],
+          "hint": "Die 6 entsteht erst nach dem Herunterholen der nächsten Ziffer. Für die 7 muss vorher eine eigene Ergebnisstelle geschrieben werden."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.division-steps.streber.v1",
@@ -2929,7 +3249,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Berechne erst 2 × 123. Ziehe das Ergebnis von 287 ab, bevor du eine Ziffer herunterholst."
+      ]
     },
     {
       "id": "by.math.5.multiply.factor-uniqueness.vorschule.v1",
@@ -2941,14 +3264,13 @@
       "answer": "2 × 3 × 3",
       "hint": "9 ist noch durch 3 teilbar.",
       "explanation": "18 = 2 × 9 = 2 × 3 × 3. Alle drei Faktoren sind Primzahlen.",
-      "options": [
-        "2 × 3 × 3",
-        "2 × 9",
-        "1 × 18"
-      ],
+      "options": ["2 × 3 × 3", "2 × 9", "1 × 18"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe jeden Faktor: Ist er selbst noch in kleinere Faktoren größer als 1 zerlegbar?"
+      ]
     },
     {
       "id": "by.math.5.multiply.factor-uniqueness.koenner.v1",
@@ -2967,7 +3289,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Sortiere beide Listen der Faktoren der Größe nach und vergleiche sie."
+      ]
     },
     {
       "id": "by.math.5.multiply.factor-uniqueness.streber.v1",
@@ -2986,7 +3311,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere 84 als 6 × 14 und als 4 × 21. Zerlege alle vier Faktoren weiter."
+      ]
     },
     {
       "id": "by.math.5.multiply.counting-limits.vorschule.v1",
@@ -3001,7 +3329,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Für die erste Brotsorte gibt es drei Möglichkeiten. Zähle die für die zweite dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.counting-limits.koenner.v1",
@@ -3016,7 +3347,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle die erlaubten Bestellungen für jede Eissorte getrennt und addiere sie."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["4"],
+          "hint": "Nicht jede Eissorte hat zwei Soßen zur Wahl. Zähle die erlaubten Kombinationen für beide Sorten getrennt."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.counting-limits.streber.v1",
@@ -3031,7 +3371,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Multipliziere die Anzahl der noch freien Stühle bei jeder der drei Entscheidungen."
+      ]
     },
     {
       "id": "by.math.5.multiply.sign-pattern.vorschule.v1",
@@ -3046,7 +3389,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nach zwei Zweierschritten bist du bei −4. Gehe noch einmal zwei nach links."
+      ]
     },
     {
       "id": "by.math.5.multiply.sign-pattern.koenner.v1",
@@ -3061,7 +3407,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche −8 zu −4 und −4 zu 0. Gehe von 0 denselben Schritt weiter."
+      ]
     },
     {
       "id": "by.math.5.multiply.sign-pattern.streber.v1",
@@ -3076,7 +3425,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gesucht ist die Gegenzahl zu −15: Beide Zahlen zusammen sollen 0 ergeben."
+      ]
     },
     {
       "id": "by.math.5.multiply.division-sign-reason.vorschule.v1",
@@ -3091,7 +3443,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 12 : 3 ohne Vorzeichen. Überlege dann, welches Vorzeichen beim Malnehmen mit 3 nötig ist."
+      ]
     },
     {
       "id": "by.math.5.multiply.division-sign-reason.koenner.v1",
@@ -3106,7 +3461,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zwei negative Faktoren ergäben etwas Positives. Hier soll das Ergebnis aber negativ bleiben."
+      ]
     },
     {
       "id": "by.math.5.multiply.division-sign-reason.streber.v1",
@@ -3118,14 +3476,13 @@
       "answer": "(−4) × (−6) = 24",
       "hint": "Quotient mal Divisor muss den Dividend ergeben.",
       "explanation": "Der Quotient ist −4. Die Probe (−4) × (−6) = 24 erklärt das Vorzeichen.",
-      "options": [
-        "(−4) × 6 = 24",
-        "(−4) × (−6) = 24",
-        "4 × (−6) = 24"
-      ],
+      "options": ["(−4) × 6 = 24", "(−4) × (−6) = 24", "4 × (−6) = 24"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Multipliziere die vorgeschlagene Zahl jeweils mit −6. Nur ein Produkt ist +24."
+      ]
     },
     {
       "id": "by.math.5.multiply.ten-powers-context.vorschule.v1",
@@ -3140,7 +3497,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle zehn Zehnergruppen. Jede Gruppe steht für ein Fach."
+      ]
     },
     {
       "id": "by.math.5.multiply.ten-powers-context.koenner.v1",
@@ -3155,7 +3515,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 10, 100, 1 000 und weiter. Jede Multiplikation mit 10 erhöht den Exponenten um 1."
+      ]
     },
     {
       "id": "by.math.5.multiply.ten-powers-context.streber.v1",
@@ -3170,7 +3533,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Teile die Zahl der Fotos durch 1 000 000. Das Ergebnis zählt die Millionen."
+      ]
     },
     {
       "id": "by.math.5.multiply.written-product-steps.vorschule.v1",
@@ -3185,7 +3551,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Aus 2 Zehnern werden 2 Hunderter; aus 3 Einern werden 3 Zehner."
+      ]
     },
     {
       "id": "by.math.5.multiply.written-product-steps.koenner.v1",
@@ -3200,7 +3569,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne zuerst 234 × 2. Multipliziere dieses Ergebnis noch mit 10."
+      ]
     },
     {
       "id": "by.math.5.multiply.written-product-steps.streber.v1",
@@ -3219,7 +3591,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bilde je ein Produkt mit 200 und mit 5. Die Null bei den Zehnern liefert kein zusätzliches Teilprodukt."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-00.vorschule.v1",
@@ -3234,7 +3609,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne keine Gruppen mit Punkten. Wie viele Punkte gibt es dann insgesamt?"
+      ]
     },
     {
       "id": "by.math.5.multiply.square-00.koenner.v1",
@@ -3249,7 +3627,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Stell dir ein Quadrat ohne Reihen und ohne Punkte vor."]
     },
     {
       "id": "by.math.5.multiply.square-00.streber.v1",
@@ -3264,7 +3643,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Jede positive ganze Zahl ergibt mit sich selbst ein positives Ergebnis. Prüfe die verbleibende Zahl."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-01.vorschule.v1",
@@ -3279,7 +3661,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne eine Reihe mit einem Punkt und zähle ihre Punkte."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-01.koenner.v1",
@@ -3294,7 +3679,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein Quadrat mit Seitenlänge 1 enthält eine Reihe mit einem Feld."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-01.streber.v1",
@@ -3309,7 +3697,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beginne mit der kleinsten positiven ganzen Zahl und prüfe ihre Malrechnung."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-02.vorschule.v1",
@@ -3324,7 +3715,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 2 Reihen mit je 2 Punkten. Zähle zuerst die Punkte in der ersten Reihe. Zähle die Punkte in der übrigen Reihe dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-02.koenner.v1",
@@ -3339,7 +3733,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 2 × 1 + 2 × 1. Addiere die beiden Teilprodukte."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-02.streber.v1",
@@ -3354,7 +3751,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 0 und 4. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-03.vorschule.v1",
@@ -3369,7 +3769,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 3 Reihen mit je 3 Punkten. Zähle zuerst die Punkte in den ersten 2 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-03.koenner.v1",
@@ -3384,7 +3787,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 3 × 2 + 3 × 1. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["6"],
+          "hint": "Du hast 3 verdoppelt. Das hochgestellte 2 bedeutet aber 3 × 3."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-03.streber.v1",
@@ -3399,7 +3811,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 1 und 5. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-04.vorschule.v1",
@@ -3414,7 +3829,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 4 Reihen mit je 4 Punkten. Zähle zuerst die Punkte in den ersten 3 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-04.koenner.v1",
@@ -3429,7 +3847,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 4 × 3 + 4 × 1. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["8"],
+          "hint": "Du hast 4 verdoppelt. Das hochgestellte 2 bedeutet aber 4 × 4."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-04.streber.v1",
@@ -3444,7 +3871,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 2 und 6. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-05.vorschule.v1",
@@ -3459,7 +3889,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 5 Reihen mit je 5 Punkten. Zähle zuerst die Punkte in den ersten 4 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-05.koenner.v1",
@@ -3474,7 +3907,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 5 × 4 + 5 × 1. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["10"],
+          "hint": "Du hast 5 verdoppelt. Das hochgestellte 2 bedeutet aber 5 × 5."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-05.streber.v1",
@@ -3489,7 +3931,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 3 und 7. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-06.vorschule.v1",
@@ -3504,7 +3949,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 6 Reihen mit je 6 Punkten. Zähle zuerst die Punkte in den ersten 5 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-06.koenner.v1",
@@ -3519,7 +3967,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 6 × 5 + 6 × 1. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["12"],
+          "hint": "Du hast 6 verdoppelt. Das hochgestellte 2 bedeutet aber 6 × 6."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-06.streber.v1",
@@ -3534,7 +3991,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 4 und 8. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-07.vorschule.v1",
@@ -3549,7 +4009,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 7 Reihen mit je 7 Punkten. Zähle zuerst die Punkte in den ersten 6 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-07.koenner.v1",
@@ -3564,7 +4027,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 7 × 6 + 7 × 1. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["14"],
+          "hint": "Du hast 7 verdoppelt. Das hochgestellte 2 bedeutet aber 7 × 7."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-07.streber.v1",
@@ -3579,7 +4051,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 5 und 9. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-08.vorschule.v1",
@@ -3594,7 +4069,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 8 Reihen mit je 8 Punkten. Zähle zuerst die Punkte in den ersten 7 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-08.koenner.v1",
@@ -3609,7 +4087,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 8 × 7 + 8 × 1. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["16"],
+          "hint": "Du hast 8 verdoppelt. Das hochgestellte 2 bedeutet aber 8 × 8."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-08.streber.v1",
@@ -3624,7 +4111,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 6 und 10. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-09.vorschule.v1",
@@ -3639,7 +4129,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 9 Reihen mit je 9 Punkten. Zähle zuerst die Punkte in den ersten 8 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-09.koenner.v1",
@@ -3654,7 +4147,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 9 × 8 + 9 × 1. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["18"],
+          "hint": "Du hast 9 verdoppelt. Das hochgestellte 2 bedeutet aber 9 × 9."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-09.streber.v1",
@@ -3669,7 +4171,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 7 und 11. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-10.vorschule.v1",
@@ -3684,7 +4189,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 10 Reihen mit je 10 Punkten. Zähle zuerst die Punkte in den ersten 9 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-10.koenner.v1",
@@ -3699,7 +4207,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 10 × 9 + 10 × 1. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["20"],
+          "hint": "Du hast 10 verdoppelt. Das hochgestellte 2 bedeutet aber 10 × 10."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-10.streber.v1",
@@ -3714,7 +4231,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 8 und 12. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-11.vorschule.v1",
@@ -3729,7 +4249,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 11 Reihen mit je 11 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in der übrigen Reihe dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-11.koenner.v1",
@@ -3744,7 +4267,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 11 × 10 + 11 × 1. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["22"],
+          "hint": "Du hast 11 verdoppelt. Das hochgestellte 2 bedeutet aber 11 × 11."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-11.streber.v1",
@@ -3759,7 +4291,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 9 und 13. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-12.vorschule.v1",
@@ -3774,7 +4309,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 12 Reihen mit je 12 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-12.koenner.v1",
@@ -3789,7 +4327,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 12 × 10 + 12 × 2. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["24"],
+          "hint": "Du hast 12 verdoppelt. Das hochgestellte 2 bedeutet aber 12 × 12."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-12.streber.v1",
@@ -3804,7 +4351,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 10 und 14. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-13.vorschule.v1",
@@ -3819,7 +4369,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 13 Reihen mit je 13 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-13.koenner.v1",
@@ -3834,7 +4387,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 13 × 10 + 13 × 3. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["26"],
+          "hint": "Du hast 13 verdoppelt. Das hochgestellte 2 bedeutet aber 13 × 13."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-13.streber.v1",
@@ -3849,7 +4411,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 11 und 15. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-14.vorschule.v1",
@@ -3864,7 +4429,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 14 Reihen mit je 14 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-14.koenner.v1",
@@ -3879,7 +4447,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 14 × 10 + 14 × 4. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["28"],
+          "hint": "Du hast 14 verdoppelt. Das hochgestellte 2 bedeutet aber 14 × 14."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-14.streber.v1",
@@ -3894,7 +4471,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 12 und 16. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-15.vorschule.v1",
@@ -3909,7 +4489,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 15 Reihen mit je 15 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-15.koenner.v1",
@@ -3924,7 +4507,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 15 × 10 + 15 × 5. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["30"],
+          "hint": "Du hast 15 verdoppelt. Das hochgestellte 2 bedeutet aber 15 × 15."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-15.streber.v1",
@@ -3939,7 +4531,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 13 und 17. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-16.vorschule.v1",
@@ -3954,7 +4549,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 16 Reihen mit je 16 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-16.koenner.v1",
@@ -3969,7 +4567,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 16 × 10 + 16 × 6. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["32"],
+          "hint": "Du hast 16 verdoppelt. Das hochgestellte 2 bedeutet aber 16 × 16."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-16.streber.v1",
@@ -3984,7 +4591,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 14 und 18. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-17.vorschule.v1",
@@ -3999,7 +4609,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 17 Reihen mit je 17 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-17.koenner.v1",
@@ -4014,7 +4627,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 17 × 10 + 17 × 7. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["34"],
+          "hint": "Du hast 17 verdoppelt. Das hochgestellte 2 bedeutet aber 17 × 17."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-17.streber.v1",
@@ -4029,7 +4651,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 15 und 19. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-18.vorschule.v1",
@@ -4044,7 +4669,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 18 Reihen mit je 18 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-18.koenner.v1",
@@ -4059,7 +4687,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 18 × 10 + 18 × 8. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["36"],
+          "hint": "Du hast 18 verdoppelt. Das hochgestellte 2 bedeutet aber 18 × 18."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-18.streber.v1",
@@ -4074,7 +4711,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 16 und 20. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-19.vorschule.v1",
@@ -4089,7 +4729,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 19 Reihen mit je 19 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-19.koenner.v1",
@@ -4104,7 +4747,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 19 × 10 + 19 × 9. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["38"],
+          "hint": "Du hast 19 verdoppelt. Das hochgestellte 2 bedeutet aber 19 × 19."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-19.streber.v1",
@@ -4119,7 +4771,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 17 und 21. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-20.vorschule.v1",
@@ -4134,7 +4789,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zeichne 20 Reihen mit je 20 Punkten. Zähle zuerst die Punkte in den ersten 10 Reihen. Zähle die Punkte in den übrigen Reihen dazu."
+      ]
     },
     {
       "id": "by.math.5.multiply.square-20.koenner.v1",
@@ -4149,7 +4807,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege einen Faktor: 20 × 10 + 20 × 10. Addiere die beiden Teilprodukte."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["40"],
+          "hint": "Du hast 20 verdoppelt. Das hochgestellte 2 bedeutet aber 20 × 20."
+        }
+      ]
     },
     {
       "id": "by.math.5.multiply.square-20.streber.v1",
@@ -4164,7 +4831,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Probiere gleiche Faktoren zwischen 18 und 22. Multipliziere jede mögliche Zahl mit sich selbst."
+      ]
     },
     {
       "id": "by.math.5.terms.precedence.vorschule.v1",
@@ -4179,7 +4849,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lass die 3 stehen und berechne zunächst nur 4 × 2. Addiere danach."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["14"],
+          "hint": "Du hast offenbar zuerst 3 + 4 zusammengefasst. Ohne Klammern kommt hier 4 × 2 zuerst."
+        }
+      ]
     },
     {
       "id": "by.math.5.terms.precedence.koenner.v1",
@@ -4194,7 +4873,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Teile zuerst 36 durch 6. Multipliziere erst dieses Ergebnis mit 2."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["3"],
+          "hint": "Mal und Geteilt sind gleichrangig. Teile zuerst 36 durch 6 und multipliziere danach mit 2."
+        }
+      ]
     },
     {
       "id": "by.math.5.terms.precedence.streber.v1",
@@ -4209,7 +4897,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nach der Potenz steht 50 − 3 × 8 + 6. Rechne erst das Produkt, dann von links nach rechts."
+      ]
     },
     {
       "id": "by.math.5.terms.brackets.vorschule.v1",
@@ -4224,7 +4915,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ersetze nur 3 + 4 durch seinen Wert. Das Mal 2 bleibt rechts daneben stehen."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["11"],
+          "hint": "Hier steht 3 + 4 in einer Klammer. Berechne diese Summe vor der Multiplikation."
+        }
+      ]
     },
     {
       "id": "by.math.5.terms.brackets.koenner.v1",
@@ -4239,7 +4939,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "In der Klammer wird zuerst 2 × 4 zu 8. Danach ziehst du 8 von 18 ab."
+      ]
     },
     {
       "id": "by.math.5.terms.brackets.streber.v1",
@@ -4254,7 +4957,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ersetze 7 − 4 durch 3. Du teilst also durch 2 × 3. Die −9 bleibt bis zum Schluss."
+      ]
     },
     {
       "id": "by.math.5.terms.distribute.vorschule.v1",
@@ -4269,7 +4975,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Berechne 4 × 10 und 4 × 1. Addiere die Ergebnisse."]
     },
     {
       "id": "by.math.5.terms.distribute.koenner.v1",
@@ -4284,7 +4991,14 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Berechne 7 × 100. Ziehe davon zweimal 7 ab."],
+      "commonMistakes": [
+        {
+          "answers": ["698"],
+          "hint": "Bei 7 × (100 − 2) musst du auch die 2 mit 7 multiplizieren, bevor du abziehst."
+        }
+      ]
     },
     {
       "id": "by.math.5.terms.distribute.streber.v1",
@@ -4299,7 +5013,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Klammere 24 aus: (37 + 63) × 24. Berechne zuerst die Summe."
+      ]
     },
     {
       "id": "by.math.5.terms.associate.vorschule.v1",
@@ -4314,7 +5031,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Ersetze 2 × 5 durch 10. Der Faktor 3 bleibt stehen."]
     },
     {
       "id": "by.math.5.terms.associate.koenner.v1",
@@ -4329,7 +5047,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Vertausche 17 und 4. Berechne zuerst das Paar 25 × 4."]
     },
     {
       "id": "by.math.5.terms.associate.streber.v1",
@@ -4341,13 +5060,13 @@
       "answer": "Nein, die Ergebnisse sind verschieden.",
       "hint": "Rechne beide Seiten getrennt aus. Beginne jeweils mit der Klammer.",
       "explanation": "Links: 6 : 2 = 3, dann 24 : 3 = 8.\nRechts: 24 : 6 = 4, dann 4 : 2 = 2.\nDie Ergebnisse sind verschieden. Bei Geteiltrechnungen darfst du Klammern nicht einfach verschieben.",
-      "options": [
-        "Ja, immer.",
-        "Nein, die Ergebnisse sind verschieden."
-      ],
+      "options": ["Ja, immer.", "Nein, die Ergebnisse sind verschieden."],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Links teilst du 24 durch den Klammerwert. Rechts teilst du den Klammerwert noch durch 2."
+      ]
     },
     {
       "id": "by.math.5.terms.structure.vorschule.v1",
@@ -4359,14 +5078,13 @@
       "answer": "Produkt",
       "hint": "Die Zahlen, die du miteinander malnimmst, heißen Faktoren.",
       "explanation": "Faktor mal Faktor ergibt ein Produkt.",
-      "options": [
-        "Summe",
-        "Produkt",
-        "Differenz"
-      ],
+      "options": ["Summe", "Produkt", "Differenz"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bei 2 × 3 heißen 2 und 3 Faktoren. Gesucht ist der Name der 6 als Ergebnis."
+      ]
     },
     {
       "id": "by.math.5.terms.structure.koenner.v1",
@@ -4385,7 +5103,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das äußere Zeichen ist Geteilt. Eine Summe in der ersten Klammer wird durch 3 geteilt."
+      ]
     },
     {
       "id": "by.math.5.terms.structure.streber.v1",
@@ -4397,14 +5118,13 @@
       "answer": "50 − 3 × 8",
       "hint": "Das Ergebnis von 3 mal 8 heißt Produkt. Dieses Produkt ziehst du von 50 ab.",
       "explanation": "Zuerst das Produkt 3 × 8, dann die Differenz zu 50.",
-      "options": [
-        "(50 − 3) × 8",
-        "3 × 8 − 50",
-        "50 − 3 × 8"
-      ],
+      "options": ["(50 − 3) × 8", "3 × 8 − 50", "50 − 3 × 8"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe jede angebotene Rechnung: Klammern zuerst, dann Punkt vor Strich. Wird zuerst das Produkt berechnet und danach von der Ausgangszahl abgezogen?"
+      ]
     },
     {
       "id": "by.math.5.terms.reverse.vorschule.v1",
@@ -4419,7 +5139,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Starte beim Ergebnis 9. Nimm die dazugezählten 4 wieder weg."
+      ]
     },
     {
       "id": "by.math.5.terms.reverse.koenner.v1",
@@ -4434,7 +5157,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nach 40 − 7 teilst du durch 3, um das Malnehmen rückgängig zu machen."
+      ]
     },
     {
       "id": "by.math.5.terms.reverse.streber.v1",
@@ -4449,7 +5175,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Starte mit 15 − 6. Multipliziere dann mit 4 und addiere erst am Ende 8."
+      ]
     },
     {
       "id": "by.math.5.terms.model.vorschule.v1",
@@ -4464,7 +5193,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe für jedes Kind eine 4 auf. Zähle die drei Vierergruppen zusammen."
+      ]
     },
     {
       "id": "by.math.5.terms.model.koenner.v1",
@@ -4479,7 +5211,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 24 × 3 + 18. Der Ball wird nur einmal addiert."
+      ]
     },
     {
       "id": "by.math.5.terms.model.streber.v1",
@@ -4494,7 +5229,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Berechne getrennt die Einnahmen 28 × 12 und die Kosten 250 + 70. Bilde ihre Differenz."
+      ]
     },
     {
       "id": "by.math.5.terms.describe-structure.vorschule.v1",
@@ -4513,7 +5251,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ersetze die Klammer durch ein Kästchen: Kästchen × 3. Welche Teile sind die beiden Faktoren?"
+      ]
     },
     {
       "id": "by.math.5.terms.describe-structure.koenner.v1",
@@ -4532,7 +5273,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das Minus wird zuletzt gerechnet. Die 50 bleibt links, das ganze Produkt bleibt rechts davon."
+      ]
     },
     {
       "id": "by.math.5.terms.describe-structure.streber.v1",
@@ -4544,14 +5288,13 @@
       "answer": "Division",
       "hint": "Die beiden Klammern sind die Teile der letzten Rechnung.",
       "explanation": "Ein Quotient: Dividend ist die Differenz 60−12, Divisor die Summe 5+3. Erst beide Klammern, dann teilen.",
-      "options": [
-        "Division",
-        "Addition",
-        "Subtraktion"
-      ],
+      "options": ["Division", "Addition", "Subtraktion"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ersetze jede Klammer durch ein Kästchen. Welches Zeichen verbindet die Kästchen?"
+      ]
     },
     {
       "id": "by.math.5.terms.equal-calculation-lines.vorschule.v1",
@@ -4570,7 +5313,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Berechne den Wert jedes Teils zwischen zwei Gleichheitszeichen. Die Werte müssen übereinstimmen."
+      ]
     },
     {
       "id": "by.math.5.terms.equal-calculation-lines.koenner.v1",
@@ -4585,7 +5331,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ersetze zuerst 2 + 4 durch 6. Lass dabei 40 − 3 × stehen."
+      ]
     },
     {
       "id": "by.math.5.terms.equal-calculation-lines.streber.v1",
@@ -4600,7 +5349,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Das Produkt zweier negativer Zahlen ist positiv; 18 : (−3) ist negativ. Addiere danach beide Werte."
+      ]
     },
     {
       "id": "by.math.5.terms.explain-model.vorschule.v1",
@@ -4612,14 +5364,13 @@
       "answer": "3 × 2 + 1",
       "hint": "Der Stift wird nur einmal gekauft.",
       "explanation": "3×2 € + 1 € = 7 €. Der Faktor 3 zählt die Hefte.",
-      "options": [
-        "3 × 2 + 1",
-        "3 × (2 + 1)",
-        "3 + 2 + 1"
-      ],
+      "options": ["3 × 2 + 1", "3 × (2 + 1)", "3 + 2 + 1"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Welche Kosten wiederholen sich dreimal? Welche kommen nur einmal hinzu? Verbinde beide Teile in einer Rechnung."
+      ]
     },
     {
       "id": "by.math.5.terms.explain-model.koenner.v1",
@@ -4634,7 +5385,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Berechne 24 × 4 und ziehe diesen Betrag von 120 ab."]
     },
     {
       "id": "by.math.5.terms.explain-model.streber.v1",
@@ -4653,7 +5405,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "28 mal 12 ist nur wenig mehr als 320. Prüfe, ob nach dem Abziehen noch 160 übrig sein können."
+      ]
     },
     {
       "id": "by.math.5.units.money.vorschule.v1",
@@ -4668,7 +5423,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Zähle für jede der zwei Euromünzen 100 Cent."]
     },
     {
       "id": "by.math.5.units.money.koenner.v1",
@@ -4683,7 +5439,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 275 + 140 in Cent. Teile das Ergebnis anschließend durch 100."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["415"],
+          "hint": "Das ist der Betrag in Cent. Gefragt ist der Betrag in Euro; 100 Cent ergeben einen Euro."
+        }
+      ]
     },
     {
       "id": "by.math.5.units.money.streber.v1",
@@ -4698,7 +5463,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ziehe den Preis aller drei Karten von 10 € ab, nicht nur den Preis einer Karte."
+      ]
     },
     {
       "id": "by.math.5.units.length.vorschule.v1",
@@ -4713,7 +5481,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Drei Meter sind drei Gruppen mit je 100 Zentimetern."]
     },
     {
       "id": "by.math.5.units.length.koenner.v1",
@@ -4728,7 +5497,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege in 2 km und 0,35 km. Rechne beide Teile in Meter um."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["235"],
+          "hint": "Ein Kilometer hat 1 000 Meter. Die Umrechnung braucht den Faktor 1 000."
+        }
+      ]
     },
     {
       "id": "by.math.5.units.length.streber.v1",
@@ -4743,7 +5521,14 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Ziehe von 200 cm die Gesamtlänge 7 × 18 cm ab."],
+      "commonMistakes": [
+        {
+          "answers": ["126"],
+          "hint": "126 cm ist die abgeschnittene Länge. Gefragt ist, was von 200 cm übrig bleibt."
+        }
+      ]
     },
     {
       "id": "by.math.5.units.mass.vorschule.v1",
@@ -4758,7 +5543,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Zwei Kilogramm sind zwei Gruppen mit je 1 000 Gramm."]
     },
     {
       "id": "by.math.5.units.mass.koenner.v1",
@@ -4773,7 +5559,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege in eine ganze Tonne und eine Vierteltonne. Rechne beide in Kilogramm um."
+      ]
     },
     {
       "id": "by.math.5.units.mass.streber.v1",
@@ -4788,7 +5577,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Berechne erst 8 × 2,5 g. Wandle erst diese Gesamtmasse in Milligramm um."
+      ]
     },
     {
       "id": "by.math.5.units.time.vorschule.v1",
@@ -4803,7 +5595,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle 60 Minuten für die erste und 60 für die zweite Stunde."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["200"],
+          "hint": "Eine Stunde hat 60 Minuten, nicht 100. Rechne mit zwei Sechzigergruppen."
+        }
+      ]
     },
     {
       "id": "by.math.5.units.time.koenner.v1",
@@ -4815,14 +5616,13 @@
       "answer": "17:20 Uhr",
       "hint": "95 Minuten sind 1 Stunde und 35 Minuten.",
       "explanation": "15:45 + 1 Stunde = 16:45; plus 35 Minuten = 17:20 Uhr.",
-      "options": [
-        "16:40 Uhr",
-        "17:20 Uhr",
-        "17:40 Uhr"
-      ],
+      "options": ["16:40 Uhr", "17:20 Uhr", "17:40 Uhr"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Gehe von 16:45 zuerst bis 17:00. Wie viele der 35 Minuten fehlen dann noch?"
+      ]
     },
     {
       "id": "by.math.5.units.time.streber.v1",
@@ -4837,7 +5637,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 4 × 60 + 35 − 48. Rechne erst die gesamte Zeit des ersten Laufs aus."
+      ]
     },
     {
       "id": "by.math.5.units.estimate.vorschule.v1",
@@ -4849,14 +5652,13 @@
       "answer": "18 cm",
       "hint": "Denke an einen Stift in deinem Mäppchen.",
       "explanation": "Ein Bleistift ist ungefähr eine Handspanne lang, etwa 18 cm.",
-      "options": [
-        "18 km",
-        "18 cm",
-        "18 m"
-      ],
+      "options": ["18 km", "18 cm", "18 m"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche die angebotenen Längen mit der Breite deiner Hand und der Höhe einer Tür."
+      ]
     },
     {
       "id": "by.math.5.units.estimate.koenner.v1",
@@ -4868,14 +5670,13 @@
       "answer": "1 kg",
       "hint": "Vergleiche mit einem Kilogramm Mehl.",
       "explanation": "Das Wasser wiegt ungefähr 1 kg; die Flasche kommt noch dazu.",
-      "options": [
-        "1 mg",
-        "1 kg",
-        "1 t"
-      ],
+      "options": ["1 mg", "1 kg", "1 t"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe die Größenordnung: Ist die Flasche eher so schwer wie eine Büroklammer oder ein volles Mehlpaket?"
+      ]
     },
     {
       "id": "by.math.5.units.estimate.streber.v1",
@@ -4887,13 +5688,13 @@
       "answer": "Nein",
       "hint": "Das wären in jeder Sekunde 50 m.",
       "explanation": "100 m in 2 s bedeutet 50 m pro Sekunde. Das schafft ein Kind zu Fuß nicht.",
-      "options": [
-        "Ja",
-        "Nein"
-      ],
+      "options": ["Ja", "Nein"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stell dir eine Strecke von 50 m vor. Könntest du diese Strecke in nur einer Sekunde laufen?"
+      ]
     },
     {
       "id": "by.math.5.units.unitary.vorschule.v1",
@@ -4908,7 +5709,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Verteile 6 € gleichmäßig auf zwei Hefte."]
     },
     {
       "id": "by.math.5.units.unitary.koenner.v1",
@@ -4923,7 +5725,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Teile 4,50 € durch 3. Multipliziere diesen Einzelpreis anschließend mit 5."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["22.5"],
+          "hint": "4,50 € ist der Preis für drei Hefte. Bestimme erst den Einzelpreis, bevor du mit fünf multiplizierst."
+        }
+      ]
     },
     {
       "id": "by.math.5.units.unitary.streber.v1",
@@ -4938,7 +5749,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Teile 1 800 g durch 6. Nimm die Masse einer Packung dann vierzehnmal."
+      ]
     },
     {
       "id": "by.math.5.units.scale.vorschule.v1",
@@ -4953,7 +5767,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bei 1 : 100 gehört zur 1 auf dem Plan die 100 in Wirklichkeit. Beide Angaben haben dieselbe Einheit."
+      ]
     },
     {
       "id": "by.math.5.units.scale.koenner.v1",
@@ -4968,7 +5785,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nach 4 × 25 000 ist das Ergebnis noch in Zentimetern. Für Meter teilst du durch 100."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["100000"],
+          "hint": "Das ist die wirkliche Länge in Zentimetern. Die Frage verlangt Meter."
+        }
+      ]
     },
     {
       "id": "by.math.5.units.scale.streber.v1",
@@ -4983,7 +5809,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Aus 1,5 km werden 150 000 cm. Verteile diese wirkliche Länge auf die drei Zentimeter der Karte."
+      ]
     },
     {
       "id": "by.math.5.units.small-lengths.vorschule.v1",
@@ -4998,7 +5827,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Zähle vier Zehnergruppen von Millimetern."]
     },
     {
       "id": "by.math.5.units.small-lengths.koenner.v1",
@@ -5013,7 +5843,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 3 dm und einen halben dm getrennt in Zentimeter um."
+      ]
     },
     {
       "id": "by.math.5.units.small-lengths.streber.v1",
@@ -5028,7 +5861,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Addiere erst, wenn beide Längen in Zentimetern stehen: 20 + 3,5."
+      ]
     },
     {
       "id": "by.math.5.units.money-table.vorschule.v1",
@@ -5043,7 +5879,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Wandle zuerst die 2 € um. Zähle dann die 5 ct dazu."]
     },
     {
       "id": "by.math.5.units.money-table.koenner.v1",
@@ -5058,7 +5895,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Lies nur die beiden Stellen rechts vom Komma. Die 7 ganzen Euro gehören nicht zur Centgruppe."
+      ]
     },
     {
       "id": "by.math.5.units.money-table.streber.v1",
@@ -5073,7 +5913,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ziehe 85 von 1 209 Cent ab. Setze erst danach das Euro-Komma zwei Stellen von rechts."
+      ]
     },
     {
       "id": "by.math.5.units.length-table.vorschule.v1",
@@ -5088,7 +5931,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 200 cm für die Meter und 30 cm für die Dezimeter. Addiere auch die 4 cm."
+      ]
     },
     {
       "id": "by.math.5.units.length-table.koenner.v1",
@@ -5103,7 +5949,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die 025 stehen für 25 Meter. Die ganze 1 vor dem Komma zählt als 1 000 Meter."
+      ]
     },
     {
       "id": "by.math.5.units.length-table.streber.v1",
@@ -5118,7 +5967,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 4 cm als 0,04 m und 5 mm als 0,005 m. Addiere beide zur 2."
+      ]
     },
     {
       "id": "by.math.5.units.mass-table.vorschule.v1",
@@ -5133,7 +5985,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Addiere zu den 1 000 g die noch übrigen 250 g."]
     },
     {
       "id": "by.math.5.units.mass-table.koenner.v1",
@@ -5148,7 +6001,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne zuerst die 3 t in 3 000 kg um. Die 45 kg kommen dazu."
+      ]
     },
     {
       "id": "by.math.5.units.mass-table.streber.v1",
@@ -5163,7 +6019,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "5 mg sind fünf Tausendstel Gramm. Schreibe die 5 an die dritte Stelle nach dem Komma."
+      ]
     },
     {
       "id": "by.math.5.units.time-is-different.vorschule.v1",
@@ -5178,7 +6037,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 60 + 60 für die beiden Stunden. Stunden werden mit 60 umgerechnet."
+      ]
     },
     {
       "id": "by.math.5.units.time-is-different.koenner.v1",
@@ -5193,7 +6055,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Addiere eine ganze Stunde mit 60 Minuten und eine halbe Stunde."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["150"],
+          "hint": "Zeit wird hier mit 60 umgerechnet. Eine halbe Stunde sind 30 Minuten."
+        }
+      ]
     },
     {
       "id": "by.math.5.units.time-is-different.streber.v1",
@@ -5208,7 +6079,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Eine Stunde liefert 60 × 60 Sekunden. Addiere 2 × 60 und die einzelnen 3 Sekunden."
+      ]
     },
     {
       "id": "by.math.5.units.add-quantities.vorschule.v1",
@@ -5223,7 +6097,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Addiere 30 zu 40 und danach die restlichen 5."]
     },
     {
       "id": "by.math.5.units.add-quantities.koenner.v1",
@@ -5238,7 +6113,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe die Beträge untereinander mit Komma unter Komma: 2,35 und 0,85."
+      ]
     },
     {
       "id": "by.math.5.units.add-quantities.streber.v1",
@@ -5253,7 +6131,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 1,250 + 0,375. Die angehängte Null ändert die Masse nicht."
+      ]
     },
     {
       "id": "by.math.5.units.subtract-quantities.vorschule.v1",
@@ -5268,7 +6149,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ziehe zuerst 20 von 90 ab. Ziehe dann noch die übrigen 5 ab."
+      ]
     },
     {
       "id": "by.math.5.units.subtract-quantities.koenner.v1",
@@ -5283,7 +6167,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 2,50 − 0,75. Komma und Stellenwerte stehen untereinander."
+      ]
     },
     {
       "id": "by.math.5.units.subtract-quantities.streber.v1",
@@ -5298,7 +6185,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe 3,200 − 0,875. Ergänzte Nullen helfen dir beim schriftlichen Rechnen."
+      ]
     },
     {
       "id": "by.math.5.units.multiply-quantities.vorschule.v1",
@@ -5313,7 +6203,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne zuerst 4 × 2. Hänge die beiden Nullen der Hunderter an."
+      ]
     },
     {
       "id": "by.math.5.units.multiply-quantities.koenner.v1",
@@ -5328,7 +6221,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Eine Runde hat 2 × 60 + 15 Sekunden. Nimm diese Zeit dreimal."
+      ]
     },
     {
       "id": "by.math.5.units.multiply-quantities.streber.v1",
@@ -5343,7 +6239,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne 6 × 125. Das Ergebnis ist schon in der gefragten Einheit Zentimeter."
+      ]
     },
     {
       "id": "by.math.5.units.divide-quantities.vorschule.v1",
@@ -5358,7 +6257,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Verteile die 12 Euro in drei gleich große Gruppen und zähle eine davon."
+      ]
     },
     {
       "id": "by.math.5.units.divide-quantities.koenner.v1",
@@ -5373,7 +6275,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Nach dem Umwandeln verteilst du 1 500 g auf sechs gleich große Gruppen."
+      ]
     },
     {
       "id": "by.math.5.units.divide-quantities.streber.v1",
@@ -5388,7 +6293,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Wandle das Band in 240 cm um. Wie oft passen 30 cm in diese Länge?"
+      ]
     },
     {
       "id": "by.math.5.area.squares.vorschule.v1",
@@ -5403,7 +6311,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Addiere 4 + 4 + 4. Jede 4 steht für eine Reihe."]
     },
     {
       "id": "by.math.5.area.squares.koenner.v1",
@@ -5418,7 +6327,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Stell dir sieben Reihen mit je neun Zentimeterquadraten vor."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["32"],
+          "hint": "32 cm beschreibt den Rand des Rechtecks. Gesucht ist die Innenfläche in Quadratzentimetern."
+        }
+      ]
     },
     {
       "id": "by.math.5.area.squares.streber.v1",
@@ -5433,7 +6351,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Teile die Fläche 96 durch die bekannte Länge 12. Prüfe die Breite anschließend mit einer Malrechnung."
+      ]
     },
     {
       "id": "by.math.5.area.perimeter.vorschule.v1",
@@ -5448,7 +6369,14 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Schreibe für den Weg außen herum 5 + 5 + 5 + 5."],
+      "commonMistakes": [
+        {
+          "answers": ["25"],
+          "hint": "5 × 5 berechnet die Fläche. Für den Umfang zählst du die Längen aller vier Seiten zusammen."
+        }
+      ]
     },
     {
       "id": "by.math.5.area.perimeter.koenner.v1",
@@ -5463,7 +6391,20 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Es gibt zwei Seiten mit 8 cm und zwei mit 3 cm. Jede Seite zählt genau einmal."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["24"],
+          "hint": "8 × 3 berechnet die Fläche. Gesucht ist die Länge des Randes mit vier Seiten."
+        },
+        {
+          "answers": ["11"],
+          "hint": "8 + 3 ist erst der halbe Rand. Die beiden gegenüberliegenden Seiten gehören ebenfalls dazu."
+        }
+      ]
     },
     {
       "id": "by.math.5.area.perimeter.streber.v1",
@@ -5478,7 +6419,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Halbiere 30 und ziehe von diesem halben Rand die Breite 4 ab."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["26"],
+          "hint": "30 cm ist der gesamte Rand. Halbiere ihn zuerst, um Länge plus Breite zu erhalten."
+        }
+      ]
     },
     {
       "id": "by.math.5.area.conversion.vorschule.v1",
@@ -5493,7 +6443,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zehn kleine Quadrate passen in eine Reihe. Du brauchst zehn solche Reihen."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["10"],
+          "hint": "1 dm sind 10 cm in der Länge. Die Fläche besteht aber aus zehn Reihen mit je zehn Quadraten."
+        }
+      ]
     },
     {
       "id": "by.math.5.area.conversion.koenner.v1",
@@ -5508,7 +6467,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Rechne erst 100 × 100 für einen Quadratmeter. Nimm diese Zahl dann 2,5-mal."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["250"],
+          "hint": "Von m² zu cm² verändern sich Länge und Breite jeweils um den Faktor 100. Für die Fläche zählen beide Faktoren."
+        }
+      ]
     },
     {
       "id": "by.math.5.area.conversion.streber.v1",
@@ -5523,7 +6491,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Berechne 100 × 100. Nimm davon drei Hundertstel."]
     },
     {
       "id": "by.math.5.area.land.vorschule.v1",
@@ -5538,7 +6507,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Berechne die Fläche des Quadrats aus 10 m mal 10 m."]
     },
     {
       "id": "by.math.5.area.land.koenner.v1",
@@ -5553,7 +6523,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ein ganzer Hektar und ein halber Hektar werden getrennt in Quadratmeter umgerechnet."
+      ]
     },
     {
       "id": "by.math.5.area.land.streber.v1",
@@ -5568,7 +6541,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Multipliziere 2,4 mit 100. Die kleinere Einheit führt zu einer größeren Maßzahl."
+      ]
     },
     {
       "id": "by.math.5.area.compare.vorschule.v1",
@@ -5580,13 +6556,13 @@
       "answer": "Umfang",
       "hint": "Der Zaun steht am Rand.",
       "explanation": "Die Länge am Rand ist der Umfang. Die Fläche brauchst du etwa für Rasensamen.",
-      "options": [
-        "Flächeninhalt",
-        "Umfang"
-      ],
+      "options": ["Flächeninhalt", "Umfang"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Überlege, ob du Meter entlang einer Linie oder Quadrate für die ganze Innenfläche zählst."
+      ]
     },
     {
       "id": "by.math.5.area.compare.koenner.v1",
@@ -5598,14 +6574,13 @@
       "answer": "cm²",
       "hint": "Flächen werden mit Quadraten gemessen.",
       "explanation": "6 cm × 6 cm = 36 cm².",
-      "options": [
-        "cm",
-        "cm²",
-        "kg"
-      ],
+      "options": ["cm", "cm²", "kg"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Einheit muss das kleine hochgestellte Zeichen für ein Quadrat enthalten."
+      ]
     },
     {
       "id": "by.math.5.area.compare.streber.v1",
@@ -5624,7 +6599,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche erst 2 × (8 + 2) mit 2 × (6 + 4), dann 8 × 2 mit 6 × 4."
+      ]
     },
     {
       "id": "by.math.5.area.compound.vorschule.v1",
@@ -5639,7 +6617,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle die beiden Flächen 12 und 8 zusammen. Weil sie sich nicht überdecken, zählst du nichts doppelt."
+      ]
     },
     {
       "id": "by.math.5.area.compound.koenner.v1",
@@ -5654,7 +6635,14 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Ziehe die Fläche 3 × 2 von der Fläche 8 × 6 ab."],
+      "commonMistakes": [
+        {
+          "answers": ["48"],
+          "hint": "48 cm² ist das ganze Rechteck. Die abgeschnittene Ecke muss noch abgezogen werden."
+        }
+      ]
     },
     {
       "id": "by.math.5.area.compound.streber.v1",
@@ -5669,7 +6657,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ziehe das innere Rechteck mit Seiten 8 m und 6 m von der gesamten Gartenfläche ab."
+      ]
     },
     {
       "id": "by.math.5.area.surface.vorschule.v1",
@@ -5684,7 +6675,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bilde Paare: Deckel und Boden, vorne und hinten, links und rechts. Zähle die Flächen aller Paare."
+      ]
     },
     {
       "id": "by.math.5.area.surface.koenner.v1",
@@ -5699,7 +6693,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Berechne 4 × 3, 4 × 2 und 3 × 2. Jede dieser Flächen kommt zweimal vor."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["26"],
+          "hint": "Du hast von jeder Rechteckgröße erst eine Fläche gezählt. Jede kommt an der Schachtel zweimal vor."
+        }
+      ]
     },
     {
       "id": "by.math.5.area.surface.streber.v1",
@@ -5714,7 +6717,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Berechne zuerst die Fläche eines kleinen Quadrats. Multipliziere sie mit der Zahl der sichtbaren Außenflächen."
+      ]
     },
     {
       "id": "by.math.5.area.square-unit-reason.vorschule.v1",
@@ -5729,7 +6735,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Eine Reihe besteht aus zehn kleinen Quadraten. Addiere zehn solche Reihen."
+      ]
     },
     {
       "id": "by.math.5.area.square-unit-reason.koenner.v1",
@@ -5744,7 +6753,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beide Seiten des Quadrats sind 100 m lang. Multipliziere die beiden Maßzahlen."
+      ]
     },
     {
       "id": "by.math.5.area.square-unit-reason.streber.v1",
@@ -5759,7 +6771,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zehn Hektarquadrate passen in eine Reihe. Zähle alle Hektarquadrate in zehn solchen Reihen."
+      ]
     },
     {
       "id": "by.math.5.area.area-table.vorschule.v1",
@@ -5774,7 +6789,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Wandle die zwei ganzen Quadratmeter um. Die 35 dm² kommen zusätzlich dazu."
+      ]
     },
     {
       "id": "by.math.5.area.area-table.koenner.v1",
@@ -5789,7 +6807,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Teile 1,25 ha in 1 ha und ein Viertel Hektar. Wandle beide Teile in Quadratmeter um."
+      ]
     },
     {
       "id": "by.math.5.area.area-table.streber.v1",
@@ -5804,7 +6825,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Addiere zu 3 cm² einen halben Quadratzentimeter."]
     },
     {
       "id": "by.math.5.area.decimal-area-conversion.vorschule.v1",
@@ -5819,7 +6841,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zwei Quadratdezimeter sind zwei Gruppen mit je 100 Quadratzentimetern."
+      ]
     },
     {
       "id": "by.math.5.area.decimal-area-conversion.koenner.v1",
@@ -5834,7 +6859,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zerlege 350 dm² in 300 und 50 dm². Rechne beide Teile in Quadratmeter um."
+      ]
     },
     {
       "id": "by.math.5.area.decimal-area-conversion.streber.v1",
@@ -5849,7 +6877,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Von km² zu ha wird die Maßzahl hundertmal so groß. Verschiebe das Komma zwei Stellen nach rechts."
+      ]
     },
     {
       "id": "by.math.5.area.approximate-area.vorschule.v1",
@@ -5864,7 +6895,16 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Bilde aus den vier halben Kästchen ganze Paare. Addiere sie zu den sechs ganzen Kästchen."
+      ],
+      "commonMistakes": [
+        {
+          "answers": ["10"],
+          "hint": "Die vier Randkästchen sind nur ungefähr halb bedeckt. Je zwei davon zählen wie ein ganzes."
+        }
+      ]
     },
     {
       "id": "by.math.5.area.approximate-area.koenner.v1",
@@ -5879,7 +6919,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Stell dir vier Reihen mit je sechs Quadratmetern vor."]
     },
     {
       "id": "by.math.5.area.approximate-area.streber.v1",
@@ -5894,7 +6935,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Du kannst erst die Längen 3 + 5 + 4 addieren und ihre Summe mit der gemeinsamen Breite 2 multiplizieren."
+      ]
     },
     {
       "id": "by.math.5.area.area-bounds.vorschule.v1",
@@ -5913,7 +6957,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Die Randstücke können Fläche hinzufügen. Sie können die fünf bereits bedeckten Kästchen nicht wegnehmen."
+      ]
     },
     {
       "id": "by.math.5.area.area-bounds.koenner.v1",
@@ -5928,7 +6975,8 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Berechne die Fläche des ganzen Rechtecks mit 8 × 5."]
     },
     {
       "id": "by.math.5.area.area-bounds.streber.v1",
@@ -5940,14 +6988,13 @@
       "answer": "22 m²",
       "hint": "Die echte Fläche liegt zwischen unterer und oberer Grenze.",
       "explanation": "18 ≤ Fläche ≤ 26. 22 m² liegt dazwischen. Es bleibt eine mögliche Schätzung, kein bewiesener genauer Wert.",
-      "options": [
-        "28 m²",
-        "16 m²",
-        "22 m²"
-      ],
+      "options": ["28 m²", "16 m²", "22 m²"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe bei jedem Vorschlag beide Grenzen: mindestens 18 und höchstens 26."
+      ]
     },
     {
       "id": "sample.english.cat.v1",
@@ -6079,14 +7126,13 @@
       "answer": "Birne",
       "hint": "Suche ein Obst aus der Liste.",
       "explanation": "Die Birne steht in der Liste. Sie ist ein Element dieser Menge.",
-      "options": [
-        "Birne",
-        "Kirsche",
-        "Pflaume"
-      ],
+      "options": ["Birne", "Kirsche", "Pflaume"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche jedes angebotene Obst mit den drei Namen Apfel, Birne und Banane."
+      ]
     },
     {
       "id": "by.math.5.sets.elements.koenner.v1",
@@ -6101,7 +7147,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Setze bei jeder Zahl zwischen den Klammern einen Zählstrich."
+      ]
     },
     {
       "id": "by.math.5.sets.elements.streber.v1",
@@ -6113,13 +7162,13 @@
       "answer": "Ja",
       "hint": "Bei einer Menge ist die Reihenfolge egal.",
       "explanation": "In beiden Mengen stehen genau 2, 4 und 6. Eine andere Reihenfolge ändert die Menge nicht.",
-      "options": [
-        "Ja",
-        "Nein"
-      ],
+      "options": ["Ja", "Nein"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Hake jede Zahl aus A ab, sobald du sie auch in B gefunden hast."
+      ]
     },
     {
       "id": "by.math.5.sets.notation.vorschule.v1",
@@ -6131,14 +7180,13 @@
       "answer": "A = {1; 2; 3}",
       "hint": "Die geschweiften Klammern fassen die Zahlen zusammen.",
       "explanation": "A ist der Name. In den Klammern stehen die drei Elemente 1, 2 und 3.",
-      "options": [
-        "A = {1; 2; 3}",
-        "A = {1; 3}",
-        "A = {2; 3; 4}"
-      ],
+      "options": ["A = {1; 2; 3}", "A = {1; 3}", "A = {2; 3; 4}"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Der Mengenname steht links vom Gleichheitszeichen. Die Elemente stehen gemeinsam in geschweiften Klammern."
+      ]
     },
     {
       "id": "by.math.5.sets.notation.koenner.v1",
@@ -6150,14 +7198,13 @@
       "answer": "{2; 4; 6; 8}",
       "hint": "Gerade Zahlen kannst du ohne Rest durch 2 teilen.",
       "explanation": "Von 2 bis 8 sind die geraden Zahlen 2, 4, 6 und 8.",
-      "options": [
-        "{1; 3; 5; 7}",
-        "{2; 4; 8}",
-        "{2; 4; 6; 8}"
-      ],
+      "options": ["{1; 3; 5; 7}", "{2; 4; 8}", "{2; 4; 6; 8}"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beginne mit 2 und zähle in Zweierschritten, bis du 8 erreichst."
+      ]
     },
     {
       "id": "by.math.5.sets.notation.streber.v1",
@@ -6169,14 +7216,13 @@
       "answer": "{−2; −1; 0; 1}",
       "hint": "Die Grenzen −3 und 2 gehören nicht dazu.",
       "explanation": "Zwischen −3 und 2 liegen die ganzen Zahlen −2, −1, 0 und 1.",
-      "options": [
-        "{−2; −1; 1}",
-        "{−3; −2; −1; 0; 1; 2}",
-        "{−2; −1; 0; 1}"
-      ],
+      "options": ["{−2; −1; 1}", "{−3; −2; −1; 0; 1; 2}", "{−2; −1; 0; 1}"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Beginne einen Schritt rechts von −3. Höre einen Schritt links von 2 auf."
+      ]
     },
     {
       "id": "by.math.5.sets.belongs.vorschule.v1",
@@ -6188,13 +7234,11 @@
       "answer": "Ja",
       "hint": "Schau nach, ob 4 in der Liste steht.",
       "explanation": "4 steht in A. Dafür schreibt man 4 ∈ A. Das heißt: 4 gehört zu A.",
-      "options": [
-        "Ja",
-        "Nein"
-      ],
+      "options": ["Ja", "Nein"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": ["Prüfe die drei Elemente einzeln und suche genau die 4."]
     },
     {
       "id": "by.math.5.sets.belongs.koenner.v1",
@@ -6206,13 +7250,13 @@
       "answer": "∈",
       "hint": "Suche die 3 zwischen den Klammern.",
       "explanation": "3 steht in der Menge A. Also ist 3 ∈ A richtig.",
-      "options": [
-        "∉",
-        "∈"
-      ],
+      "options": ["∉", "∈"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Ist die gesuchte Zahl in der Liste, brauchst du das Zeichen ohne Durchstrich."
+      ]
     },
     {
       "id": "by.math.5.sets.belongs.streber.v1",
@@ -6224,14 +7268,13 @@
       "answer": "100 ∈ A",
       "hint": "Auch Zahlen nach den Punkten können dazugehören.",
       "explanation": "100 ist gerade und wird beim Zählen in Zweierschritten erreicht. 101 und 103 sind ungerade.",
-      "options": [
-        "103 ∈ A",
-        "100 ∈ A",
-        "101 ∈ A"
-      ],
+      "options": ["103 ∈ A", "100 ∈ A", "101 ∈ A"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle gedanklich in Zweierschritten weiter. Auch große gerade Zahlen werden erreicht."
+      ]
     },
     {
       "id": "by.math.5.sets.not-belongs.vorschule.v1",
@@ -6243,14 +7286,13 @@
       "answer": "4",
       "hint": "Vergleiche jede Antwort mit der Liste.",
       "explanation": "4 steht nicht in A. Dafür schreibt man 4 ∉ A.",
-      "options": [
-        "1",
-        "2",
-        "4"
-      ],
+      "options": ["1", "2", "4"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Streiche die Antwortmöglichkeiten 1, 2 und 3, wenn sie vorkommen. Welche Zahl bleibt?"
+      ]
     },
     {
       "id": "by.math.5.sets.not-belongs.koenner.v1",
@@ -6262,13 +7304,13 @@
       "answer": "∉",
       "hint": "Ist die 12 in der Liste zu finden?",
       "explanation": "12 steht nicht in A. Daher gilt 12 ∉ A.",
-      "options": [
-        "∈",
-        "∉"
-      ],
+      "options": ["∈", "∉"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Vergleiche 12 mit jedem der drei Elemente. Es reicht nicht, dass 12 zwischen zwei Elementen liegt."
+      ]
     },
     {
       "id": "by.math.5.sets.not-belongs.streber.v1",
@@ -6280,14 +7322,13 @@
       "answer": "3 ∉ A",
       "hint": "Prüfe, welche Zahl nicht in der Liste steht.",
       "explanation": "3 steht nicht in A. −1 und 0 stehen dagegen in A.",
-      "options": [
-        "3 ∉ A",
-        "−1 ∉ A",
-        "0 ∉ A"
-      ],
+      "options": ["3 ∉ A", "−1 ∉ A", "0 ∉ A"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe die Zahl jeder Aussage zuerst in der Liste. Erst danach wählst du ∈ oder ∉."
+      ]
     },
     {
       "id": "by.math.5.sets.natural.vorschule.v1",
@@ -6299,14 +7340,13 @@
       "answer": "7",
       "hint": "Das sind die Zahlen, mit denen du bei 1 beginnend zählst.",
       "explanation": "7 kommt beim Zählen vor. −2 ist negativ und 0 ist in dieser Schreibweise ausgeschlossen.",
-      "options": [
-        "7",
-        "−2",
-        "0"
-      ],
+      "options": ["7", "−2", "0"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Streiche die negative Zahl und die ausdrücklich ausgeschlossene 0."
+      ]
     },
     {
       "id": "by.math.5.sets.natural.koenner.v1",
@@ -6321,7 +7361,10 @@
       "options": [],
       "answerKind": "number",
       "unit": "Schreibe nur die Zahl. Ein Komma ist erlaubt.",
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Suche die Zahl, die nur am Anfang der zweiten Liste steht."
+      ]
     },
     {
       "id": "by.math.5.sets.natural.streber.v1",
@@ -6333,14 +7376,13 @@
       "answer": "0 ∉ ℕ und 0 ∈ ℕ₀",
       "hint": "Schau auf den Anfang beider Listen.",
       "explanation": "In unserer Schreibweise beginnt ℕ bei 1. ℕ₀ enthält auch 0.",
-      "options": [
-        "−1 ∈ ℕ₀",
-        "0 ∈ ℕ und 0 ∉ ℕ₀",
-        "0 ∉ ℕ und 0 ∈ ℕ₀"
-      ],
+      "options": ["−1 ∈ ℕ₀", "0 ∈ ℕ und 0 ∉ ℕ₀", "0 ∉ ℕ und 0 ∈ ℕ₀"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Achte darauf, ob die Aussage ℕ oder ℕ₀ nennt. Die kleine 0 im Namen macht den Unterschied."
+      ]
     },
     {
       "id": "by.math.5.sets.integers.vorschule.v1",
@@ -6352,14 +7394,13 @@
       "answer": "−4",
       "hint": "Das Minuszeichen steht vor einer negativen Zahl.",
       "explanation": "−4 ist negativ. Auch negative Zahlen gehören zu den ganzen Zahlen.",
-      "options": [
-        "−4",
-        "0",
-        "4"
-      ],
+      "options": ["−4", "0", "4"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Prüfe die Zeichen vor den Zahlen. Eine Zahl unter 0 braucht hier ein Minus."
+      ]
     },
     {
       "id": "by.math.5.sets.integers.koenner.v1",
@@ -6371,13 +7412,13 @@
       "answer": "Ja",
       "hint": "Die Punkte zeigen: Auch nach links geht es weiter.",
       "explanation": "−8 ist eine negative ganze Zahl. Deshalb gilt −8 ∈ ℤ.",
-      "options": [
-        "Ja",
-        "Nein"
-      ],
+      "options": ["Ja", "Nein"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle links von −2 weiter: −3, −4 und so fort. Erreichst du dabei −8?"
+      ]
     },
     {
       "id": "by.math.5.sets.integers.streber.v1",
@@ -6396,7 +7437,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Eine Temperatur unter dem Nullpunkt liegt auf der negativen Seite des Thermometers."
+      ]
     },
     {
       "id": "by.math.5.sets.infinite.vorschule.v1",
@@ -6415,7 +7459,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Schreibe nach 3 die nächsten drei Zahlen auf. Überlege, ob du danach wieder weiterzählen kannst."
+      ]
     },
     {
       "id": "by.math.5.sets.infinite.koenner.v1",
@@ -6427,14 +7474,13 @@
       "answer": "1000",
       "hint": "Finde eine natürliche Zahl, die größer als 999 ist.",
       "explanation": "1 000 ist größer als 999. Damit ist die Behauptung falsch.",
-      "options": [
-        "999",
-        "1000",
-        "998"
-      ],
+      "options": ["999", "1000", "998"],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Zähle zu 999 noch 1 dazu. Das neue Ergebnis muss größer sein."
+      ]
     },
     {
       "id": "by.math.5.sets.infinite.streber.v1",
@@ -6453,7 +7499,10 @@
       ],
       "answerKind": "choice",
       "unit": null,
-      "legacy": false
+      "legacy": false,
+      "furtherHints": [
+        "Welche Rechnung vergrößert jede natürliche Zahl um genau einen Schritt?"
+      ]
     }
   ]
 }

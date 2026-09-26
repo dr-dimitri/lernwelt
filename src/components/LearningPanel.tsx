@@ -1,4 +1,5 @@
 import InfoPanel from './InfoPanel';
+import LearningHints from './LearningHints';
 import LearningTable from './LearningTable';
 import NatureGames from './NatureGames';
 import NumberLine from './NumberLine';
@@ -525,10 +526,7 @@ export default function LearningPanel({
                 )}
               </fieldset>
             </form>
-            <InfoPanel className="hint-panel">
-              <summary>Gib mir einen Tipp</summary>
-              <p className="hint-box">{question.hint}</p>
-            </InfoPanel>
+            <LearningHints key={question.id} question={question} />
             <InfoPanel paginate className="lesson" key={topic.id}>
               <summary>So geht’s · kurz erklärt</summary>
               <p>{topic.lesson}</p>
@@ -604,9 +602,13 @@ export default function LearningPanel({
                     <p>{visibleResult.explanation}</p>
                   ) : (
                     <>
+                      {visibleResult.mistakeHint && (
+                        <p className="hint-box">{visibleResult.mistakeHint}</p>
+                      )}
                       <p>
-                        Ein Tipp kann dir helfen. Du kannst auch den Lösungsweg
-                        anschauen und danach noch einmal versuchen.
+                        Die Tipps helfen dir Schritt für Schritt. Du kannst auch
+                        den Lösungsweg anschauen und danach noch einmal
+                        versuchen.
                       </p>
                       <InfoPanel key={question.id}>
                         <summary>Lösungsweg anschauen</summary>
