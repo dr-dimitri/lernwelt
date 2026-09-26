@@ -49,7 +49,7 @@ Die Datenbank ist nicht verschlüsselt. Es gibt noch keine Mehrbenutzerverwaltun
 
 ## Offline und Schnittstellen
 
-Zehn explizite Commands sind für das lokale Hauptfenster erlaubt: `get_profile`, `save_profile`, `list_progress`, `get_learning_state`, `submit_answer`, `redeem_reward`, `set_difficulty`, `get_arcade_state`, `start_game`, `finish_game`. Ein vom Frontend geliefertes `correct`-Flag wird nicht als Antwortbewertung akzeptiert. Auch Vokabeln werden anhand der eingetippten Antwort im Backend geprüft. Rust prüft Eingaben auch dann, wenn das Frontend bereits geprüft hat. Es gibt keinen beliebigen SQL-, Shell- oder Dateisystemzugriff aus der Oberfläche und keine Netzwerk-Plugins. Produktions-CSP und lokal gebündelte Assets vermeiden externe Ressourcen. Die Entwicklungs-CSP erlaubt nur zusätzlich Vite/HMR auf der Loopback-Adresse.
+Zehn explizite Commands sind für das lokale Hauptfenster erlaubt: `get_profile`, `save_profile`, `list_progress`, `get_learning_state`, `submit_answer`, `redeem_reward`, `set_difficulty`, `get_arcade_state`, `start_game`, `finish_game`. Ein vom Frontend geliefertes `correct`-Flag wird nicht als Antwortbewertung akzeptiert. Auch Vokabeln werden anhand der eingetippten Antwort im Backend geprüft. Rust prüft Eingaben auch dann, wenn das Frontend bereits geprüft hat. Es gibt keinen beliebigen SQL-, Shell- oder Dateisystemzugriff aus der Oberfläche. Das begrenzte Updater-Plugin lädt Versionsinformationen und signierte App-Pakete vom konfigurierten Release-Endpunkt. Produktions-CSP und lokal gebündelte Assets vermeiden externe Ressourcen. Die Entwicklungs-CSP erlaubt nur zusätzlich Vite/HMR auf der Loopback-Adresse.
 
 ## Lehrplaninhalte ergänzen
 
@@ -184,3 +184,7 @@ Drei eingebettete Pakete (`mission-garden-v1.json`, `mission-english-v1.json`, `
 `act_mission` ermittelt das Thema aus der gespeicherten Runde. Die Aktion muss zur neuesten Runde dieses Themas auf der globalen Stufe gehören. Replays liefern den aktuellen bestätigten Stand des betroffenen Themas, ohne erneut Punkte oder Schritte zu buchen. Themenwechsel verändern keine Runde und keine Fälligkeit. Die Oberfläche sperrt Themenwechsel bei einem unklaren Startfehler bis zum Retry oder ausdrücklichen Neuladen. Verspätete Antworten nach Wechsel/Unmount werden ignoriert.
 
 Die Persistenztests schließen alle Themen und Stufen mit vier Runden ab, prüfen die endlichen Varianten und Erstlösungspunkte sowie Wiederholungsfälligkeiten, parallele offene Themen, neue Verbindungen, alte Garten-Belege und ungültige Anfragen. Bestehende Migrationstests von Schema 12/13 und Rollbacktests bleiben aktiv.
+
+## Signierte App-Updates
+
+`AppUpdates` bleibt über Ansichtswechsel hinweg aktiv. Es prüft einmal beim Start, sofern die lokal in der Webview gespeicherte Einstellung das erlaubt. `lib/updater.ts` kapselt die offiziellen Tauri-Updater-/Process-APIs, begrenzt Prüfungen auf 15 Sekunden und Downloads auf drei Minuten. Die feste HTTPS-URL und der öffentliche Signaturschlüssel liegen in `tauri.conf.json`. Downloads/Installation und Neustart benötigen ausdrückliche Bedienaktionen; der Lernbetrieb funktioniert ohne Netzwerk. Profil, SQLite-Daten und Lernantworten werden nicht übertragen. Der Release-Workflow veröffentlicht erst nach drei erfolgreichen Plattformbuilds ein vollständiges Manifest. [Ablauf und Grenzen](app-updates.md).

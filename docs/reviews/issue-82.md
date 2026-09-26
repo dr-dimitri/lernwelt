@@ -31,3 +31,9 @@ Nach den folgenden Korrekturen gibt es keine offenen blockierenden Befunde. Der 
 ## Grenzen
 
 Windows wurde lokal nicht ausgeführt; die Plattformprüfung erfolgt in CI. Der lokale native Smoke-Test prüft Build und Prozessstart, keine vollständige manuelle Bedienung aller Missionen. Die Themenabläufe sind durch Frontend-/Backendtests geprüft; eine Prüfung mit Kindern oder eine Messung des Lernerfolgs wurde nicht durchgeführt. Die Geräteuhr bestimmt lokale Wiederholungsfälligkeiten. Das Paket ist endlich; bereits gelöste stabile Aufgaben-IDs geben auch in späteren Runden keine weiteren Punkte.
+
+## Nachprüfung nach Integration von Issue #85
+
+Am 26.09.2026 wurde `origin/main` (Commit `0c269ac`, signierte App-Updates) in den Issue-82-Branch gemergt. Der einzige Konflikt betraf zwei am Ende von `docs/architecture.md` ergänzte Abschnitte. Beide Abschnitte wurden vollständig erhalten. `App.tsx` und `lib.rs` wurden automatisch konfliktfrei zusammengeführt; Updater-Komponente/Plugins und Missionsthemenwahl/IPC sind gemeinsam vorhanden.
+
+Unabhängige Nachprüfung durch `/root`: Konfliktlösung, Architekturabschnitte und integriertes Routing/IPC ohne Befund. Der anschließende integrierte Lauf `npm run check:all` ist vollständig bestanden: 187 Frontendtests, fünf Node-Skripttests, 110 Rusttests sowie Formatierung, TypeScript, Vite-Build und Clippy. Der separate Bugfix-Branch für Issue #87 wurde nicht verändert.
