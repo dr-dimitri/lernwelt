@@ -1,0 +1,144 @@
+.number-line {
+  margin: 16px 0;
+  min-width: 0;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid #c3dacf;
+  border-radius: 16px;
+  background: #f0f8f3;
+}
+
+.number-line-instruction {
+  color: #365c51;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.number-line-scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-color: #78a493 #e1ece7;
+}
+
+.number-line-canvas {
+  position: relative;
+  width: 100%;
+  height: 148px;
+}
+
+.number-line-picture {
+  display: block;
+  width: 100%;
+  height: 148px;
+  overflow: visible;
+}
+
+.number-line-axis,
+.number-line-tick {
+  stroke: #365c51;
+  stroke-width: 2;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.number-line-label {
+  fill: #243a43;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.number-line-marker line {
+  stroke: #a73a0b;
+  stroke-width: 2;
+}
+
+.number-line-marker circle,
+.number-line-marker text {
+  fill: #a73a0b;
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.number-line-point {
+  position: absolute;
+  top: 48px;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #124d3f;
+  touch-action: manipulation;
+}
+
+.number-line-point:hover:not(:disabled) {
+  background: #c6e6d8;
+}
+
+.number-line-point:focus-visible {
+  outline: 3px solid #207cbe;
+  outline-offset: -2px;
+  background: #deeff9;
+}
+
+.number-line-point-dot {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #376856;
+  border-radius: 50%;
+  background: #f0f8f3;
+}
+
+.number-line-point[aria-checked='true'] .number-line-point-dot {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fff;
+  outline: 2px solid #147565;
+  background: #147565;
+}
+
+.number-line-point-label {
+  position: absolute;
+  bottom: 43px;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 6px;
+  background: #d1eadd;
+  padding: 3px 5px;
+}
+
+.number-line-point:first-of-type .number-line-point-label {
+  left: 8px;
+}
+
+.number-line-point:last-of-type .number-line-point-label {
+  right: 8px;
+}
+
+.number-line-selection {
+  margin: 0 0 10px;
+  color: #365c51;
+  font-size: 14px;
+}
+
+.number-line-description {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.number-line-description summary {
+  width: fit-content;
+  padding: 7px 0;
+  cursor: pointer;
+  color: #265b4b;
+  font-weight: 600;
+}
+
+.number-line-description p {
+  margin: 8px 0 0;
+}

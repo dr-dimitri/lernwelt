@@ -1,6 +1,7 @@
 import InfoPanel from './InfoPanel';
 import LearningTable from './LearningTable';
 import NatureGames from './NatureGames';
+import NumberLine from './NumberLine';
 import { FlowerPicture, ParticlePicture } from './NatureArt';
 import { useEffect, useRef, useState, type SubmitEvent } from 'react';
 import {
@@ -151,7 +152,7 @@ export default function LearningPanel({
 
   async function submit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!question || !enabled || inFlight.current) return;
+    if (!question || !enabled || inFlight.current || !answer.trim()) return;
     inFlight.current = true;
     setBusy(true);
     setError('');
@@ -435,7 +436,28 @@ export default function LearningPanel({
             </div>
             <form onSubmit={submit}>
               <fieldset disabled={!enabled}>
-                {question.answerKind === 'choice' ? (
+                {question.numberLine?.mode === 'place' ? (
+                  <>
+                    <legend className="answer-label">{question.prompt}</legend>
+                    <NumberLine
+                      key={question.id}
+                      diagram={question.numberLine}
+                      value={answer}
+                      disabled={!enabled}
+                      onChange={(value) => {
+                        setAnswer(value);
+                        setResult(null);
+                      }}
+                    />
+                    <button
+                      className="primary-button"
+                      type="submit"
+                      disabled={!answer}
+                    >
+                      {busy ? 'Bitte warten …' : 'Antwort prüfen'}
+                    </button>
+                  </>
+                ) : question.answerKind === 'choice' ? (
                   <>
                     <legend className="answer-label">{question.prompt}</legend>
                     <div className="answer-options">
@@ -465,6 +487,15 @@ export default function LearningPanel({
                     <label className="answer-label" htmlFor="practice-answer">
                       {question.prompt}
                     </label>
+                    {question.numberLine && (
+                      <NumberLine
+                        key={question.id}
+                        diagram={question.numberLine}
+                        value={answer}
+                        onChange={setAnswer}
+                        disabled={!enabled}
+                      />
+                    )}
                     {question.unit && (
                       <p id="answer-format" className="sample-note">
                         {question.unit} Große Zahlen ohne Punkte schreiben, z.
@@ -754,8 +785,10 @@ export default function LearningPanel({
             für Unterricht oder eine vollständige Lernstandserhebung.
           </p>
           <p>
-            {state.curriculumVersion}. Themenbezug: {topic?.curriculumRef}.
-            Quelle: {state.curriculumSource}. Zum Üben ist kein Internet nötig.
+            {topic?.curriculumVersion ?? state.curriculumVersion}. Themenbezug:{' '}
+            {topic?.curriculumRef}. Quelle:{' '}
+            {topic?.source ?? state.curriculumSource}. Zum Üben ist kein
+            Internet nötig.
           </p>
         </InfoPanel>
       )}

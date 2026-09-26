@@ -1,0 +1,1182 @@
+{
+  "version": 1,
+  "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+  "curriculumVersion": "LehrplanPLUS Bayern · Mathematik 5 · Quellenstand 26.09.2026",
+  "topics": [
+    {
+      "id": "number-line",
+      "name": "Zahlenstrahl-Werkstatt",
+      "subject": "mathematics",
+      "grade": 5,
+      "curriculumRef": "M5 1.1",
+      "description": "Zahlen ablesen, Punkte setzen und Sprünge entdecken.",
+      "lesson": "Ein Zahlenstrahl beginnt bei 0 und geht nach rechts immer weiter. Eine Zahlengerade geht in beide Richtungen weiter; im Bild siehst du nur einen Ausschnitt. Links von 0 liegen negative Zahlen, rechts positive. Nach rechts werden die Zahlen größer. Gleiche Abstände zwischen Strichen stehen immer für gleich große Zahlenunterschiede. Ein Zahlenschritt ist ein Schritt um 1. Die Skalierung sagt, für wie viel ein kleiner Abstand steht. Zähle zwischen zwei beschrifteten Zahlen die Abstände, nicht die Striche. Teile den Unterschied der Zahlen durch die Anzahl der Abstände. Der Betrag einer Zahl ist ihr Abstand zur 0 und nie negativ. Tippe zum Markieren auf einen Strich. Mit der Tastatur kannst du die Pfeiltasten nutzen.",
+      "languageSequence": null,
+      "activities": [
+        {
+          "title": "Dein eigener Zahlenstrahl",
+          "prompt": "1. Zeichne einen Zahlenstrahl von 0 bis 100.\n2. Zeichne zehn gleich große Abstände.\n3. Beschrifte 0, 50 und 100 und markiere 30.",
+          "check": "Jeder Abstand steht für 10. Die 30 liegt drei Abstände rechts von 0. Prüfe mit dem Lineal, ob die Abstände gleich groß sind."
+        },
+        {
+          "title": "Auf der Zahlengeraden laufen",
+          "prompt": "1. Lege elf kleine Zettel mit den Zahlen −5 bis 5 der Reihe nach auf den Tisch.\n2. Stelle eine Spielfigur auf −3.\n3. Gehe fünf Zahlen nach rechts und erkläre deinen Weg.",
+          "check": "Du kommst bei 2 an. Die Figur geht über −2, −1, 0 und 1 zu 2. Nach rechts werden die Zahlen größer."
+        },
+        {
+          "title": "Gleicher Weg, andere Skala",
+          "prompt": "1. Zeichne zwei Linien mit je fünf gleich großen Abständen.\n2. Beschrifte die erste von 0 bis 50 und die zweite von 0 bis 500.\n3. Markiere jeweils den dritten Strich rechts von 0. Erkläre, warum dort verschiedene Zahlen stehen.",
+          "check": "Auf der ersten Linie steht jeder Abstand für 10; du markierst 30. Auf der zweiten steht jeder Abstand für 100; du markierst 300. Die Skala bestimmt den Zahlenunterschied je kleinem Abstand."
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "by.math.5.number-line.1.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.read",
+      "prompt": "Welche Zahl zeigt A auf dem Zahlenstrahl?",
+      "answer": "3",
+      "hint": "Jeder kleine Abstand steht für 1. Zähle von der 0 nach rechts.",
+      "explanation": "A liegt drei kleine Abstände rechts von 0. A zeigt die Zahl 3.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "labels": [
+          0,
+          5,
+          10
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.2.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere die Zahl 7 auf dem Zahlenstrahl.",
+      "answer": "7",
+      "hint": "Suche zuerst die 5. Gehe von dort zwei kleine Abstände nach rechts.",
+      "explanation": "Ein kleiner Abstand steht für 1. Zwei Abstände rechts von 5 liegt die 7.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "place",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "labels": [
+          0,
+          5,
+          10
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.3.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.read",
+      "prompt": "Welche Zahl zeigt A?",
+      "answer": "14",
+      "hint": "Von 0 bis 10 sind es fünf kleine Abstände. Jeder steht für 2.",
+      "explanation": "A liegt zwei kleine Abstände rechts von 10. Rechne 10 + 2 + 2 = 14.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 20,
+        "step": 2,
+        "labels": [
+          0,
+          10,
+          20
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 14
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.4.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere die Zahl 6 auf dem Zahlenstrahl.",
+      "answer": "6",
+      "hint": "Zähle von der 0 aus in Zweierschritten.",
+      "explanation": "Nach drei kleinen Abständen steht dort 2 + 2 + 2 = 6.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "place",
+        "min": 0,
+        "max": 20,
+        "step": 2,
+        "labels": [
+          0,
+          10,
+          20
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.5.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.scale",
+      "prompt": "Für welche Zahl steht ein kleiner Abstand zwischen zwei Strichen?",
+      "answer": "5",
+      "hint": "Zwischen 0 und 25 liegen fünf gleich große Abstände. Teile 25 durch 5.",
+      "explanation": "Fünf Abstände stehen zusammen für 25. Ein Abstand steht für 25 : 5 = 5.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 50,
+        "step": 5,
+        "labels": [
+          0,
+          25,
+          50
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.6.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.distance",
+      "prompt": "Wie groß ist der Abstand von A zu B in Zahlenschritten?",
+      "answer": "6",
+      "hint": "Ein Zahlenschritt bedeutet 1. Ein kleiner Abstand steht für 1. Zähle die Abstände zwischen A und B.",
+      "explanation": "A zeigt 2 und B zeigt 8. Der Abstand ist 8 − 2 = 6 Zahlenschritte.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "labels": [
+          0,
+          10
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 2
+          },
+          {
+            "label": "B",
+            "value": 8
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.7.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere die Zahl 35 auf dem Zahlenstrahl.",
+      "answer": "35",
+      "hint": "Jeder kleine Abstand steht für 5. Beginne bei 25.",
+      "explanation": "Zwei kleine Abstände rechts von 25 liegt 25 + 5 + 5 = 35.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "place",
+        "min": 0,
+        "max": 50,
+        "step": 5,
+        "labels": [
+          0,
+          25,
+          50
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.8.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.steps",
+      "prompt": "Wie viele kleine Abstände liegen zwischen A und B?",
+      "answer": "5",
+      "hint": "Zähle die Lücken zwischen den Strichen. Zähle den Startstrich nicht mit.",
+      "explanation": "Von 2 bis 7 gehst du über fünf kleine Abstände. Die Antwort ist 5.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "labels": [
+          0,
+          10
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 2
+          },
+          {
+            "label": "B",
+            "value": 7
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.9.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.read",
+      "prompt": "Welche Zahl zeigt A?",
+      "answer": "40",
+      "hint": "Zwischen 0 und 50 liegen fünf gleich große Abstände. Zähle in Zehnerschritten.",
+      "explanation": "A liegt einen kleinen Abstand links von 50. Daher zeigt A die Zahl 50 − 10 = 40.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 100,
+        "step": 10,
+        "labels": [
+          0,
+          50,
+          100
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.10.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere die Zahl 80 auf dem Zahlenstrahl.",
+      "answer": "80",
+      "hint": "Zähle ab 50 in Zehnerschritten weiter.",
+      "explanation": "Drei kleine Abstände rechts von 50 liegt die 80: 50 + 30 = 80.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "place",
+        "min": 0,
+        "max": 100,
+        "step": 10,
+        "labels": [
+          0,
+          50,
+          100
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.11.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.compare",
+      "prompt": "A und B zeigen zwei Zahlen. Welche der beiden Zahlen ist größer?",
+      "answer": "70",
+      "hint": "Die größere Zahl liegt weiter rechts. Lies dort die Zahl ab.",
+      "explanation": "A zeigt 20, B zeigt 70. B liegt weiter rechts, also ist 70 die größere Zahl.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 100,
+        "step": 10,
+        "labels": [
+          0,
+          50,
+          100
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 20
+          },
+          {
+            "label": "B",
+            "value": 70
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.12.vorschule.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "vorschule",
+      "competencyId": "by.math.5.number-line.move",
+      "prompt": "Starte bei A und gehe drei kleine Abstände nach rechts. Welche Zahl erreichst du?",
+      "answer": "10",
+      "hint": "Lies zuerst die Zahl bei A ab. Jeder kleine Abstand steht für 2.",
+      "explanation": "A zeigt 4. Drei Abstände nach rechts ergeben 4 + 2 + 2 + 2 = 10.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 20,
+        "step": 2,
+        "labels": [
+          0,
+          10,
+          20
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.1.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.read",
+      "prompt": "Welche Zahl zeigt A auf dem Zahlenstrahl?",
+      "answer": "70",
+      "hint": "Bestimme zuerst, wie viel ein kleiner Abstand bedeutet.",
+      "explanation": "Fünf Abstände stehen für 50, also einer für 10. A liegt bei 50 + 20 = 70.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 100,
+        "step": 10,
+        "labels": [
+          0,
+          50,
+          100
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 70
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.2.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere die Zahl 140 auf dem Zahlenstrahl.",
+      "answer": "140",
+      "hint": "Von 0 bis 100 liegen fünf kleine Abstände.",
+      "explanation": "Ein kleiner Abstand steht für 20. Zwei Abstände rechts von 100 liegt 100 + 40 = 140.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "place",
+        "min": 0,
+        "max": 200,
+        "step": 20,
+        "labels": [
+          0,
+          100,
+          200
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.3.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.scale",
+      "prompt": "Für welche Zahl steht ein kleiner Abstand zwischen zwei Strichen?",
+      "answer": "20",
+      "hint": "Zähle die kleinen Abstände zwischen 0 und 100.",
+      "explanation": "Zwischen 0 und 100 liegen fünf Abstände. Jeder steht für 100 : 5 = 20.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 200,
+        "step": 20,
+        "labels": [
+          0,
+          100,
+          200
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.4.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.read",
+      "prompt": "Welche ganze Zahl zeigt A auf der Zahlengeraden?",
+      "answer": "-3",
+      "hint": "Links von 0 liegen negative Zahlen. Zähle die kleinen Abstände bis zur 0.",
+      "explanation": "A liegt drei kleine Abstände links von 0. Ein Abstand steht für 1, also zeigt A −3.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": -5,
+        "max": 5,
+        "step": 1,
+        "labels": [
+          -5,
+          0,
+          5
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": -3
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.5.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere die Zahl −6 auf der Zahlengeraden.",
+      "answer": "-6",
+      "hint": "Ein kleiner Abstand steht für 2. Negative Zahlen liegen links von 0.",
+      "explanation": "Drei kleine Abstände links von 0 liegt −6: 0 − 2 − 2 − 2 = −6.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "place",
+        "min": -10,
+        "max": 10,
+        "step": 2,
+        "labels": [
+          -10,
+          0,
+          10
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.6.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.distance",
+      "prompt": "Wie groß ist der Abstand von A zu B in Zahlenschritten?",
+      "answer": "10",
+      "hint": "Ein Zahlenschritt bedeutet 1. Bestimme die Zahlen bei A und B. Der Weg führt über die 0.",
+      "explanation": "A zeigt −6, B zeigt 4. Bis zur 0 sind es 6 Zahlenschritte und dann weitere 4. Der Abstand ist 10.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": -10,
+        "max": 10,
+        "step": 2,
+        "labels": [
+          -10,
+          0,
+          10
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": -6
+          },
+          {
+            "label": "B",
+            "value": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.7.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.read",
+      "prompt": "Die Zahlengerade zeigt einen Ausschnitt. Welche Zahl zeigt A?",
+      "answer": "170",
+      "hint": "Der linke beschriftete Strich zeigt 100, nicht 0.",
+      "explanation": "Ein kleiner Abstand steht für 10. A liegt zwei Abstände rechts von 150, also bei 170.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": 100,
+        "max": 200,
+        "step": 10,
+        "labels": [
+          100,
+          150,
+          200
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 170
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.8.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere 1300 in diesem Ausschnitt der Zahlengeraden.",
+      "answer": "1300",
+      "hint": "Fünf kleine Abstände führen von 1000 zu 1500.",
+      "explanation": "Jeder kleine Abstand steht für 100. Drei Abstände rechts von 1000 liegt die 1300.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "place",
+        "min": 1000,
+        "max": 2000,
+        "step": 100,
+        "labels": [
+          1000,
+          1500,
+          2000
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.9.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.steps",
+      "prompt": "Wie viele kleine Abstände liegen zwischen A und B?",
+      "answer": "6",
+      "hint": "Ein Abstand steht für 10. Gesucht ist die Anzahl der Abstände.",
+      "explanation": "A zeigt 20 und B zeigt 80. Dazwischen liegen 60 Zahlenschritte. Bei 10 je kleinem Abstand sind das 60 : 10 = 6 Abstände.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 100,
+        "step": 10,
+        "labels": [
+          0,
+          50,
+          100
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 20
+          },
+          {
+            "label": "B",
+            "value": 80
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.10.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.compare",
+      "prompt": "Welche der beiden markierten Zahlen liegt näher bei 0?",
+      "answer": "-4",
+      "hint": "Vergleiche die Wege von A und B zur 0. Gib die Zahl mit ihrem Vorzeichen an.",
+      "explanation": "A zeigt −4 und ist 4 von 0 entfernt. B zeigt −14 und ist 14 von 0 entfernt. Daher liegt −4 näher bei 0.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": -20,
+        "max": 0,
+        "step": 2,
+        "labels": [
+          -20,
+          -10,
+          0
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": -4
+          },
+          {
+            "label": "B",
+            "value": -14
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.11.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere die Zahl 4 auf der Zahlengeraden.",
+      "answer": "4",
+      "hint": "Positive Zahlen liegen rechts von 0. Prüfe die Größe eines kleinen Abstands.",
+      "explanation": "Ein kleiner Abstand steht für 2. Zwei Abstände rechts von 0 liegt 4.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "place",
+        "min": -10,
+        "max": 10,
+        "step": 2,
+        "labels": [
+          -10,
+          0,
+          10
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.12.koenner.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "koenner",
+      "competencyId": "by.math.5.number-line.move",
+      "prompt": "Starte bei A und gehe vier kleine Abstände nach rechts. Welche Zahl erreichst du?",
+      "answer": "2",
+      "hint": "Lies A ab. Jeder kleine Abstand nach rechts vergrößert die Zahl um 2.",
+      "explanation": "A zeigt −6. Vier Abstände nach rechts vergrößern die Zahl um 8. Du erreichst −6 + 8 = 2.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": -10,
+        "max": 10,
+        "step": 2,
+        "labels": [
+          -10,
+          0,
+          10
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": -6
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.1.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.read",
+      "prompt": "Welche Zahl zeigt A auf der Zahlengeraden?",
+      "answer": "-150",
+      "hint": "Zwischen −200 und 0 liegen vier gleich große Abstände.",
+      "explanation": "Ein kleiner Abstand steht für 200 : 4 = 50. A liegt einen Abstand rechts von −200, also bei −150.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": -200,
+        "max": 200,
+        "step": 50,
+        "labels": [
+          -200,
+          0,
+          200
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": -150
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.2.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere die Zahl −75 auf der Zahlengeraden.",
+      "answer": "-75",
+      "hint": "Vier kleine Abstände führen von −100 bis 0.",
+      "explanation": "Jeder kleine Abstand steht für 25. Die Zahl −75 liegt einen Abstand rechts von −100: −100 + 25 = −75.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "place",
+        "min": -100,
+        "max": 100,
+        "step": 25,
+        "labels": [
+          -100,
+          0,
+          100
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.3.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.scale",
+      "prompt": "Für welche Zahl steht ein kleiner Abstand zwischen zwei Strichen?",
+      "answer": "100",
+      "hint": "Zwischen den beschrifteten Zahlen liegen mehrere gleich große Abstände. Zähle sie.",
+      "explanation": "Von 1200 bis 1800 beträgt der Unterschied 600. Dazwischen liegen sechs kleine Abstände. Einer steht für 600 : 6 = 100.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": 1000,
+        "max": 2000,
+        "step": 100,
+        "labels": [
+          1200,
+          1800
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.4.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere die Zahl 300 auf der Zahlengeraden.",
+      "answer": "300",
+      "hint": "Nutze die 0 und die 400, um die Größe eines Abstands zu bestimmen.",
+      "explanation": "Vier Abstände stehen für 400. Jeder steht für 100. Die 300 liegt drei Abstände rechts von 0.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "place",
+        "min": -400,
+        "max": 400,
+        "step": 100,
+        "labels": [
+          -400,
+          0,
+          400
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.5.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.distance",
+      "prompt": "Wie groß ist der Abstand von A zu B in Zahlenschritten?",
+      "answer": "400",
+      "hint": "Ein Zahlenschritt bedeutet 1. Der Weg von A zu B führt über 0. Addiere die beiden Teilabstände.",
+      "explanation": "A zeigt −250 und B zeigt 150. Bis 0 sind es 250, danach weitere 150 Zahlenschritte. Der Abstand ist 400.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": -300,
+        "max": 200,
+        "step": 50,
+        "labels": [
+          -300,
+          0,
+          200
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": -250
+          },
+          {
+            "label": "B",
+            "value": 150
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.6.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.steps",
+      "prompt": "Wie viele kleine Abstände liegen zwischen A und B?",
+      "answer": "5",
+      "hint": "Unterscheide die Anzahl kleiner Abstände vom Unterschied der Zahlen.",
+      "explanation": "Von −150 bis 100 beträgt der Unterschied 250. Ein kleiner Abstand steht für 50. Es sind 250 : 50 = 5 Abstände.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": -200,
+        "max": 200,
+        "step": 50,
+        "labels": [
+          -200,
+          0,
+          200
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": -150
+          },
+          {
+            "label": "B",
+            "value": 100
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.7.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.read",
+      "prompt": "Welche Zahl zeigt A auf dem Zahlenstrahl?",
+      "answer": "700000",
+      "hint": "Große Zahlen ändern die Regel nicht: Gleiche Abstände bedeuten gleiche Zahlenunterschiede.",
+      "explanation": "Ein kleiner Abstand steht für 100000. A liegt zwei Abstände rechts von 500000, also bei 700000.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "read",
+        "min": 0,
+        "max": 1000000,
+        "step": 100000,
+        "labels": [
+          0,
+          500000,
+          1000000
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 700000
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.8.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.place",
+      "prompt": "Markiere 900000 auf dem Zahlenstrahl.",
+      "answer": "900000",
+      "hint": "Bestimme den Abstand zwischen zwei benachbarten Strichen.",
+      "explanation": "Jeder kleine Abstand steht für 100000. Einen Abstand links von 1000000 liegt die 900000.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "ray",
+        "mode": "place",
+        "min": 0,
+        "max": 1000000,
+        "step": 100000,
+        "labels": [
+          0,
+          500000,
+          1000000
+        ],
+        "markers": []
+      }
+    },
+    {
+      "id": "by.math.5.number-line.9.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.read",
+      "prompt": "Welche Zahl zeigt A in diesem Ausschnitt der Zahlengeraden?",
+      "answer": "1015",
+      "hint": "Die Skala beginnt im Bild bei 975. Bestimme zuerst die Größe eines Abstands.",
+      "explanation": "Zwischen 1000 und 1025 liegen fünf kleine Abstände. Jeder steht für 5. A liegt drei Abstände rechts von 1000, also bei 1015.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": 975,
+        "max": 1025,
+        "step": 5,
+        "labels": [
+          975,
+          1000,
+          1025
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": 1015
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.10.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.move",
+      "prompt": "Starte bei A. Gehe vier kleine Abstände nach rechts und zwei nach links. Welche Zahl erreichst du?",
+      "answer": "-10",
+      "hint": "Finde zuerst A. Ein kleiner Abstand steht für 10. Rechne die beiden Bewegungen nacheinander.",
+      "explanation": "A zeigt −30. Vier Abstände nach rechts führen zu 10. Zwei nach links führen von dort zu −10.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": -50,
+        "max": 50,
+        "step": 10,
+        "labels": [
+          -50,
+          0,
+          50
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": -30
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.11.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.compare",
+      "prompt": "B liegt genauso weit rechts von 0 wie A links. Welche Zahl zeigt B?",
+      "answer": "20",
+      "hint": "Lies A ab und suche die Zahl auf der anderen Seite mit gleichem Abstand zur 0.",
+      "explanation": "A zeigt −20. Die Zahl 20 liegt genauso weit rechts von 0. Daher zeigt B die Zahl 20.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "read",
+        "min": -30,
+        "max": 30,
+        "step": 10,
+        "labels": [
+          -30,
+          0,
+          30
+        ],
+        "markers": [
+          {
+            "label": "A",
+            "value": -20
+          },
+          {
+            "label": "B",
+            "value": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "by.math.5.number-line.12.streber.v1",
+      "subject": "mathematics",
+      "topicId": "number-line",
+      "difficulty": "streber",
+      "competencyId": "by.math.5.number-line.move",
+      "prompt": "Starte bei −700. Gehe fünf kleine Abstände nach rechts. Markiere die Zahl, die du erreichst.",
+      "answer": "-200",
+      "hint": "Nach rechts werden Zahlen größer. Prüfe, für wie viel ein kleiner Abstand steht.",
+      "explanation": "Ein kleiner Abstand steht für 100. Fünf Abstände nach rechts vergrößern die Zahl um 500. Du erreichst −700 + 500 = −200.",
+      "options": [],
+      "answerKind": "number",
+      "unit": null,
+      "legacy": false,
+      "numberLine": {
+        "kind": "line",
+        "mode": "place",
+        "min": -1000,
+        "max": 0,
+        "step": 100,
+        "labels": [
+          -1000,
+          -500,
+          0
+        ],
+        "markers": []
+      }
+    }
+  ]
+}
