@@ -62,6 +62,7 @@ function NavIcon({ name }: { name: string }) {
 
 export default function App() {
   const [view, setView] = useState<View>('subjects');
+  const [vocabularyDeck, setVocabularyDeck] = useState('all');
   const [multiplicationMode, setMultiplicationMode] = useState<'squares'>();
   const [missionTopic, setMissionTopic] = useState<string>();
   const [selected, setSelected] = useState<SubjectId>('mathematics');
@@ -91,6 +92,7 @@ export default function App() {
   function navigate(next: View, subjectId?: SubjectId) {
     navigationRequested.current =
       next !== view || (subjectId !== undefined && subjectId !== selected);
+    if (next === 'vocabulary') setVocabularyDeck('all');
     if (next === 'multiplication') setMultiplicationMode(undefined);
     if (subjectId) setSelected(subjectId);
     setView(next);
@@ -256,6 +258,8 @@ export default function App() {
                   navigate('mission');
                 } else {
                   navigate(link.kind);
+                  if (link.kind === 'vocabulary')
+                    setVocabularyDeck(link.target);
                   if (link.kind === 'multiplication')
                     setMultiplicationMode('squares');
                 }
@@ -272,7 +276,11 @@ export default function App() {
               initialMode={multiplicationMode}
             />
           ) : view === 'vocabulary' ? (
-            <VocabularyPanel profileVersion={profileVersion} />
+            <VocabularyPanel
+              key={vocabularyDeck}
+              profileVersion={profileVersion}
+              initialDeck={vocabularyDeck}
+            />
           ) : (
             <ArcadePanel profileVersion={profileVersion} />
           )}

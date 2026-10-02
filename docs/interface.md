@@ -33,3 +33,7 @@ Das Klassenfeld bietet nur Klasse 5 an. Bestehende Profile anderer Klassen werde
 ## Prüfung und Grenzen
 
 Für die Neugestaltung wurden Startseite, Such-Leerzustand, Fachaufgaben, Rückmeldungen, Trainer, Spielhalle, Lernrunde und Profildialog im Browser geprüft. Isolierte Testdaten erlauben die visuelle Prüfung von Desktop-Zuständen ohne Veränderungen an Lerndaten. Die reguläre Browser-Vorschau weist weiterhin ehrlich auf die fehlende Desktop-Persistenz hin. Fensterbreiten von 360, 760, 1024 und 1440 CSS-Pixeln werden beim Review berücksichtigt. Automatisierte Regressionstests prüfen unter anderem Suche, Tastaturbedienung, Dialoge und Speicherfehler. Dies ist keine Verständlichkeitsprüfung mit Kindern oder vollständige Barrierefreiheitszertifizierung. Der Reviewnachweis steht in [Issue 96](reviews/issue-96.md).
+
+## Umfang hinter kurzen Runden (Issue #101)
+
+87 Unterthemen zeigen Lernziel und Aufgabenanzahl der gewählten Stufe. Eine Runde enthält weiterhin höchstens sechs Aufgaben; die umfangreiche Bank erscheint nicht als lange Aufgabenliste. Die Suche findet auch Wörter aus den Wortschatz-Themen. Hörübungen bieten „Wort anhören“ und „Beispielsatz anhören“ direkt bei der Frage, ohne automatische Wiedergabe. Stoppen, Wechseln und erneutes Abspielen nach einem Fehler bleiben erreichbar. Die Quellenansicht benennt den tatsächlichen Aufgabenbestand; sie beansprucht keine vollständige Lehrplanbeherrschung.

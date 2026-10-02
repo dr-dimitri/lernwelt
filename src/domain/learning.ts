@@ -62,6 +62,7 @@ export interface Question {
   answerKind: 'number' | 'text' | 'choice';
   unit: string | null;
   numberLine?: NumberLineDiagram | null;
+  audioCardId?: string;
   solved: boolean;
 }
 

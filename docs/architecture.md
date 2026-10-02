@@ -202,3 +202,11 @@ Die Persistenztests schließen alle Themen und Stufen mit vier Runden ab, prüfe
 `study.rs` lädt `study-catalog-v1.json` als eigene Navigations- und Inhaltsmatrix. Der Loader prüft Bereiche, Unterthemen, Fach und Klasse, erste Fremdsprache bei Englisch, Quellen, Links und sämtliche Aufgaben-IDs. Jede sichtbare Fachaufgabe gehört genau zu einem Unterthema; Legacy-Aufgaben bleiben intern verfügbar. `get_learning_state` liefert zusätzlich die antwortfreie `studyCatalog`-Projektion. Es gibt keine zusätzlichen Commands, Berechtigungen oder Nutzerdatenmigrationen.
 
 `StudyBrowser` zeigt jeweils einen Lernbereich oder Suchtreffer. `LearningPanel` hält den freiwilligen, nicht gespeicherten Rundenstand mit höchstens sechs Aufgaben; bestätigt gespeicherte Antworten verwenden weiterhin `submit_answer` und das bestehende Erstlösungsjournal. Themenwechsel löschen nur unbestätigte UI-Eingaben. Eine bestätigte Änderung der globalen Stufe stellt die Runde zusammen; ein fehlgeschlagener Wechsel erhält bisherige Aufgabe und Eingabe. Nur isolierte ältere Fixtures ohne Katalog verwenden den bisherigen Themenpicker. Produktion liefert stets den validierten Katalog. [Inhaltsmatrix](study-catalog.md).
+
+## Themenpakete und lokale Hörübungen (Issue #101)
+
+`topic-practice-v1.json` ergänzt die vier unveränderten Inhaltsgrundpakete um eine endliche Übungsbank. `study-catalog-v1.json` ordnet jede sichtbare Aufgabe genau einem Unterthema zu. Die Rust-Validierung prüft globale IDs, gültige Themen, Hilfen, Antwortschlüssel und die Katalogzuordnung; Tests fordern mindestens zwölf Aufgaben pro Stufe und Unterthema. Historische IDs und Antwortjournale behalten ihre Bedeutung. Eine Datenbankmigration ist nicht erforderlich.
+
+Die optionale `audioCardId` einer Englischaufgabe darf ausschließlich auf eine Karte des gebündelten Audio-Manifests verweisen. Die Lernzustandsprojektion liefert diese ID, aber keine Antwort oder Lösungserklärung. Das Frontend verwendet daraus nur die bekannten lokalen Wort- und Satzdateien. Es gibt keinen frei wählbaren Audio-Pfad, neuen Command oder neue Berechtigung. Aufgaben-, Stufen- und Ansichtswechsel stoppen die Wiedergabe.
+
+Wortschatz-Ergänzungslinks besitzen ein geprüftes Ziel aus den 18 bekannten Deck-IDs bzw. `all`. Der Trainer startet im Zieldeck und behält seine eigene Auswahl und unveränderten Punkte-/Wiederholungsregeln.

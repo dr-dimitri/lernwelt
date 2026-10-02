@@ -338,3 +338,15 @@ it('zeigt nach fehlgeschlagenem Stufenwechsel keine veraltete Karte als aktuell'
     await screen.findByRole('button', { name: 'Antwort prüfen' }),
   ).toBeVisible();
 });
+
+it('öffnet das verknüpfte Wortthema und erlaubt danach eine eigene Auswahl', async () => {
+  const user = userEvent.setup();
+  render(<VocabularyPanel profileVersion={0} initialDeck="hello" />);
+  await screen.findByLabelText('Deine englische Antwort');
+  expect(desktop.getVocabularyState).toHaveBeenCalledWith('hello');
+  expect(screen.getByLabelText('Dein Wortthema')).toHaveValue('hello');
+  await user.selectOptions(screen.getByLabelText('Dein Wortthema'), 'all');
+  await waitFor(() =>
+    expect(desktop.getVocabularyState).toHaveBeenLastCalledWith('all'),
+  );
+});

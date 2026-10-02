@@ -1,5 +1,7 @@
 # Zahlenstrahl-Werkstatt – Mathematik 5
 
+**Erweiterung vom 02.10.2026:** Einschließlich der neuen Themenpakete stehen 1.767 Mathematik-Fachaufgaben zur Verfügung. Die [aktuelle Unterthemenmatrix](study-catalog.md) zeigt den Umfang je Stufe. Die folgenden Paketangaben beschreiben den unveränderten ursprünglichen Bestand; IDs, Antworten und Fortschritt bleiben erhalten.
+
 Die Werkstatt ergänzt 36 eigene Bildschirmaufgaben und drei Mitmachaufgaben für Klasse 5. Jede Stufe enthält zwölf Aufgaben, darunter vier Aufgaben zum Markieren einer Zahl. Die Stufen sind frei wählbar; Vorschule, Könner und Streber bezeichnen den Schwierigkeitsgrad innerhalb des Themas.
 
 Grundlage ist der [LehrplanPLUS Bayern, Gymnasium, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik), abgerufen am 26.09.2026. M5 1.1 umfasst das Ablesen und Darstellen natürlicher Zahlen mit geeigneter Skalierung sowie das Ordnen und Darstellen ganzer Zahlen an der Zahlengeraden. Aufgaben zu Bewegungen nach links und rechts unterstützen zusätzlich das Veranschaulichen von Addition und Subtraktion nach M5 1.2. Die Aufgaben sind selbst erstellt; es werden keine Originalaufgaben übernommen.

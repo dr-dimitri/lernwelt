@@ -1,3 +1,4 @@
+import VocabularyAudio from './VocabularyAudio';
 import StudyBrowser from './StudyBrowser';
 import {
   studyRound,
@@ -599,6 +600,13 @@ export default function LearningPanel({
                 Nächste Aufgabe →
               </button>
             </div>
+            {question.audioCardId && (
+              <VocabularyAudio
+                key={`audio-${question.id}`}
+                cardId={question.audioCardId}
+                disabled={busy || loading}
+              />
+            )}
             <form onSubmit={submit}>
               <fieldset disabled={!enabled}>
                 {question.numberLine?.mode === 'place' ? (
@@ -946,7 +954,8 @@ export default function LearningPanel({
         <InfoPanel className="source-note">
           <summary>Für Neugierige & Erwachsene: Englisch-Lerninhalte</summary>
           <p>
-            108 eigene Übungen und 24 Mitmachaufgaben für Klasse 5, Englisch als
+            {state.questions.filter((q) => q.subject === 'english').length}{' '}
+            eigene Übungen und 24 Mitmachaufgaben für Klasse 5, Englisch als
             erste Fremdsprache. Themen nach LehrplanPLUS und zur Orientierung
             nach Green Line Bayern 1, Ausgabe ab 2017. Kein Originalmaterial von
             Klett und kein vollständiger Ersatz für Buch oder Unterricht.
