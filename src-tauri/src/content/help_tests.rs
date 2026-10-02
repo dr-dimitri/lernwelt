@@ -38,7 +38,7 @@ fn every_visible_exercise_has_incremental_help_and_rules_match_only_wrong_answer
             }
         }
     }
-    assert_eq!(visible, 615);
+    assert_eq!(visible, 3675);
     assert!(rules >= 100);
 }
 

@@ -1,5 +1,7 @@
 # Mathematik 5 · Inhaltsstand 24.09.2026
 
+**Erweiterung vom 02.10.2026:** Einschließlich der neuen Themenpakete stehen 1.767 Mathematik-Fachaufgaben zur Verfügung. Die [aktuelle Unterthemenmatrix](study-catalog.md) zeigt den Umfang je Stufe. Die folgenden Paketangaben beschreiben den unveränderten ursprünglichen Bestand; IDs, Antworten und Fortschritt bleiben erhalten.
+
 Grundlage: [LehrplanPLUS Bayern, Gymnasium, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik), am 24.09.2026 erneut gelesen. Eigene Aufgaben und didaktische Zuordnung, keine amtliche Freigabe. Alle Inhalte werden offline mit der Anwendung ausgeliefert.
 
 **Stand nach Issue #17: Zu allen 39 Kompetenzerwartungen liegen konkrete Lernangebote vor.** Die zuvor dokumentierten Inhaltslücken wurden in #18–#24 durch Erklärungen, Bildschirmaufgaben und angeleitete Tätigkeiten geschlossen. Die Tabelle unten belegt die Zuordnung einzeln. Sie belegt die angebotenen Lerninhalte, nicht die Beherrschung durch ein Kind oder eine unabhängige fachpädagogische Zertifizierung.

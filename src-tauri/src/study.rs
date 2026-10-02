@@ -125,7 +125,31 @@ impl StudyCatalog {
                     "multiplication" => {
                         unit.subject == Subject::Mathematics && link.target == "squares"
                     }
-                    "vocabulary" => unit.subject == Subject::English && link.target == "all",
+                    "vocabulary" => {
+                        unit.subject == Subject::English
+                            && matches!(
+                                link.target.as_str(),
+                                "all"
+                                    | "hello"
+                                    | "family"
+                                    | "home"
+                                    | "school"
+                                    | "day"
+                                    | "friends"
+                                    | "shopping"
+                                    | "party"
+                                    | "past"
+                                    | "stories"
+                                    | "travel"
+                                    | "words"
+                                    | "animals"
+                                    | "clothes"
+                                    | "body"
+                                    | "weather"
+                                    | "calendar"
+                                    | "numbers"
+                            )
+                    }
                     "mission" => matches!(
                         (unit.subject, link.target.as_str()),
                         (Subject::Mathematics, "by.math.5.round.garden.v1")
@@ -161,7 +185,7 @@ mod tests {
         let content = crate::content::catalog().unwrap();
         let study = catalog(content).unwrap();
         assert_eq!(study.areas.len(), 17);
-        assert_eq!(study.units.len(), 69);
+        assert_eq!(study.units.len(), 87);
         study.validate(content).unwrap();
         let projection = serde_json::to_value(study).unwrap();
         assert!(projection["units"][0].get("answer").is_none());
