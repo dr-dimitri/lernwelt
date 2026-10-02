@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import LearningPanel from './LearningPanel';
@@ -167,4 +167,31 @@ it('öffnet verknüpfte Angebote mit dem konkreten Ziel', async () => {
   );
   await user.click(screen.getByRole('button', { name: 'Trainer öffnen' }));
   expect(open).toHaveBeenCalledWith(unit.supplements[0]);
+});
+
+it('behält den Eingabefokus, wenn ein später Animationsframe ausgeführt wird', async () => {
+  const frames: FrameRequestCallback[] = [];
+  const raf = vi
+    .spyOn(window, 'requestAnimationFrame')
+    .mockImplementation((callback) => {
+      frames.push(callback);
+      return frames.length;
+    });
+  try {
+    const user = userEvent.setup();
+    render(<LearningPanel subject="mathematics" profileVersion={0} />);
+    await start(user);
+    expect(screen.getByRole('generic', { name: 'Deine Übung' })).toHaveFocus();
+    const input = screen.getByLabelText('Wandle Länge 0 um.');
+    await user.type(input, '4');
+    expect(input).toHaveFocus();
+    act(() => {
+      frames.splice(0).forEach((callback) => callback(0));
+    });
+    expect(input).toHaveFocus();
+    await user.keyboard('2');
+    expect(input).toHaveValue('42');
+  } finally {
+    raf.mockRestore();
+  }
 });
