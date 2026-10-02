@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { actGame, createGame, stepGame } from './engine';
 import { mazeRoute, moveMaze, visible, wallAt } from './maze';
+import { gameProgress } from './progress';
 
 describe('Sternenlabyrinth', () => {
   it('erzeugt verschiedene, reproduzierbare Welten mit erreichbaren Sternen und Portal', () => {
@@ -100,10 +101,13 @@ describe('Sternenlabyrinth', () => {
       stepGame(g, 0.01);
     }
     expect(g.score).toBe(500);
+    expect(gameProgress(g).value).toBe(5);
+    expect(g.feedback.text).toBe('Alle Sterne da! Zum grünen Portal!');
     m.x = m.exit.x;
     m.y = m.exit.y;
     stepGame(g, 0.01);
     expect(g.won).toBe(true);
+    expect(gameProgress(g).detail).toContain('Portal gefunden');
     expect(g.score).toBe(1000);
     stepGame(g, 0.04);
     expect(g.score).toBe(1000);

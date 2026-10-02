@@ -6,6 +6,8 @@ import NatureGames from './NatureGames';
 it('erlaubt falsche Versuche, erklärt richtige Zuordnungen und schließt das Stoff-Labor ab', async () => {
   const user = userEvent.setup();
   render(<NatureGames difficulty="koenner" />);
+  const progress = screen.getByRole('progressbar', { name: 'Entdeckungen' });
+  expect(progress).toHaveAttribute('value', '0');
   expect(screen.getByRole('button', { name: 'Fest' })).toBeDisabled();
   await user.click(
     screen.getByRole('button', { name: 'Weit verteilt und frei beweglich' }),
@@ -13,6 +15,7 @@ it('erlaubt falsche Versuche, erklärt richtige Zuordnungen und schließt das St
   await user.click(screen.getByRole('button', { name: 'Fest' }));
   expect(screen.getByRole('status')).toHaveTextContent('Das passt noch nicht');
   expect(screen.getByText('0 von 3 entdeckt')).toBeVisible();
+  expect(progress).toHaveAttribute('value', '0');
   await user.click(screen.getByRole('button', { name: 'Gasförmig' }));
   expect(screen.getByRole('status')).toHaveTextContent(
     'Die Teilchen haben viel Abstand',
@@ -33,10 +36,12 @@ it('erlaubt falsche Versuche, erklärt richtige Zuordnungen und schließt das St
     screen.getByRole('heading', { name: 'Alles entdeckt!' }),
   ).toHaveFocus();
   expect(screen.getByText('3 von 3 entdeckt')).toBeVisible();
+  expect(progress).toHaveAttribute('value', '3');
   await user.click(
     screen.getByRole('button', { name: 'Noch einmal erforschen' }),
   );
   expect(screen.getByText('0 von 3 entdeckt')).toBeVisible();
+  expect(progress).toHaveAttribute('value', '0');
   expect(screen.queryByText('Alles entdeckt!')).not.toBeInTheDocument();
   expect(
     screen.getByRole('button', { name: 'Weit verteilt und frei beweglich' }),

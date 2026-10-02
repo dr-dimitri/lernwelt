@@ -12,6 +12,7 @@ import {
 } from '../games/engine';
 import { drawGame } from '../games/draw';
 import { prepareCanvas } from '../games/canvas';
+import { gameProgress } from '../games/progress';
 
 export default function GameStage({
   gameId,
@@ -43,17 +44,33 @@ export default function GameStage({
   }
   const ended = useRef(false);
   const [paused, setPaused] = useState(true);
-  const [hud, setHud] = useState({
-    score: 0,
+  const [started, setStarted] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(
+    () =>
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false,
+  );
+  const snapshot = () => ({
+    score: game.score,
     lives: game.lives,
-    over: false,
-    won: false,
+    over: game.over,
+    won: game.won,
+    progress: gameProgress(game),
+    feedback: game.feedback.ttl > 0 ? game.feedback.text : '',
+    feedbackSerial: game.feedback.serial,
+    chickenHits: [...game.chickenHits],
   });
+  const [hud, setHud] = useState(snapshot);
   const definition = gameDefinition(gameId);
   const finishRef = useRef(onFinish);
   useEffect(() => {
     finishRef.current = onFinish;
   }, [onFinish]);
+  useEffect(() => {
+    const preference = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(preference?.matches ?? false);
+    preference?.addEventListener('change', update);
+    return () => preference?.removeEventListener('change', update);
+  }, []);
   useEffect(() => {
     const pause = () => {
       clearControls();
@@ -76,7 +93,7 @@ export default function GameStage({
       hudClock = 0;
     const paint = () => {
       const context = canvas.current ? prepareCanvas(canvas.current) : null;
-      if (context) drawGame(context, game);
+      if (context) drawGame(context, game, reducedMotion);
     };
     const tick = (time: number) => {
       const dt = previous ? Math.min((time - previous) / 1000, 0.04) : 0;
@@ -93,12 +110,7 @@ export default function GameStage({
       paint();
       hudClock += dt;
       if (paused || hudClock >= 0.1 || game.over) {
-        setHud({
-          score: game.score,
-          lives: game.lives,
-          over: game.over,
-          won: game.won,
-        });
+        setHud(snapshot());
         hudClock = 0;
       }
       if (game.over && !ended.current) {
@@ -113,7 +125,7 @@ export default function GameStage({
       cancelAnimationFrame(frame);
       window.removeEventListener('resize', paint);
     };
-  }, [game, gameId, paused]);
+  }, [game, gameId, paused, reducedMotion]);
   function press(action: Action) {
     if (paused || game.over) return;
     release(action);
@@ -125,13 +137,14 @@ export default function GameStage({
   }
   function togglePause() {
     clearControls();
+    setStarted(true);
     setPaused(!paused);
     area.current?.focus({ preventScroll: true });
   }
   function end() {
     clearControls();
     game.over = true;
-    setHud({ score: game.score, lives: game.lives, over: true, won: false });
+    setHud(snapshot());
     if (!ended.current) {
       ended.current = true;
       finishRef.current(game.score);
@@ -185,10 +198,21 @@ export default function GameStage({
               ['right', 'Rechts →'],
             ];
   return (
-    <section className="game-stage" aria-labelledby="game-title">
+    <section
+      className={`game-stage arcade-${gameId}`}
+      aria-labelledby="game-title"
+    >
       <div className="section-heading">
-        <h3 id="game-title">{definition.name}</h3>
-        <span>Bezahlte Runde · kein weiterer Eintritt</span>
+        <div className="game-heading">
+          <span className="game-emblem" aria-hidden="true">
+            {definition.icon}
+          </span>
+          <div>
+            <p className="eyebrow">{definition.theme}</p>
+            <h3 id="game-title">{definition.name}</h3>
+          </div>
+        </div>
+        <span className="game-paid-note">Deine Runde ist bezahlt</span>
       </div>
       <InfoPanel className="game-instructions">
         <summary>Steuerung & Spielziel</summary>
@@ -203,6 +227,25 @@ export default function GameStage({
             {'♥'.repeat(Math.max(0, hud.lives))}
           </span>
         )}
+        <div className="game-progress">
+          <span>{hud.progress.label}</span>
+          <progress
+            aria-label={hud.progress.label}
+            value={hud.progress.value}
+            max={hud.progress.max}
+          />
+          <p>{hud.progress.detail}</p>
+        </div>
+        <div
+          className="game-feedback"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <span key={hud.feedbackSerial}>
+            {hud.feedback || 'Jeder Versuch zählt. Viel Spaß!'}
+          </span>
+        </div>
         <span>Spielpunkte sind keine Lernpunkte.</span>
       </div>
       <div
@@ -211,7 +254,6 @@ export default function GameStage({
         tabIndex={0}
         role="group"
         aria-label={`Spielfeld ${definition.name}`}
-
         onBlur={(event) => {
           if (
             !event.currentTarget.contains(event.relatedTarget as Node | null)
@@ -242,42 +284,60 @@ export default function GameStage({
           if (action) release(action);
         }}
       >
-        <canvas
-          ref={canvas}
-          width={640}
-          height={400}
-          aria-label={definition.name}
-          onPointerDown={(event) => {
-            area.current?.focus();
-            if (paused || game.over || gameId !== 'chickens') return;
-            const bounds = event.currentTarget.getBoundingClientRect();
-            pointAt(
-              game,
-              ((event.clientX - bounds.left) * 640) / bounds.width,
-              ((event.clientY - bounds.top) * 400) / bounds.height,
-            );
-          }}
-        >
-          Dein Gerät kann das Spielfeld nicht anzeigen.
-        </canvas>
-        {(paused || hud.over) && (
-          <div className="game-overlay">
-            <div className="game-dialog">
-              {hud.over ? (
-                <>
-                  <h3>{hud.won ? 'Runde geschafft!' : 'Gut gespielt!'}</h3>
-                  <p>{hud.score} Spielpunkte gesammelt.</p>
-                </>
-              ) : (
-                <>
-                  <h3>Zeit für dein Spiel!</h3>
-                  <p>Bereit? Du kannst jederzeit pausieren.</p>
-                  <button onClick={togglePause}>Losspielen / Weiter</button>
-                </>
-              )}
+        <div className="game-scene">
+          <canvas
+            ref={canvas}
+            width={640}
+            height={400}
+            aria-label={definition.name}
+            onPointerDown={(event) => {
+              area.current?.focus();
+              if (paused || game.over || gameId !== 'chickens') return;
+              const bounds = event.currentTarget.getBoundingClientRect();
+              pointAt(
+                game,
+                ((event.clientX - bounds.left) * 640) / bounds.width,
+                ((event.clientY - bounds.top) * 400) / bounds.height,
+              );
+            }}
+          >
+            Dein Gerät kann das Spielfeld nicht anzeigen.
+          </canvas>
+          {(paused || hud.over) && (
+            <div className="game-overlay">
+              <div className="game-dialog">
+                {hud.over ? (
+                  <>
+                    <h3>{hud.won ? 'Runde geschafft!' : 'Gut gespielt!'}</h3>
+                    <p>{hud.score} Spielpunkte gesammelt.</p>
+                    <p>{hud.progress.detail}</p>
+                  </>
+                ) : (
+                  <>
+                    <span className="game-dialog-icon" aria-hidden="true">
+                      {started ? 'Ⅱ' : definition.icon}
+                    </span>
+                    <h3>{started ? 'Deine Pause' : definition.name}</h3>
+                    <p>
+                      {started
+                        ? 'Alles wartet auf dich. Spiele in deinem Tempo weiter.'
+                        : definition.goal}
+                    </p>
+                    {!started && (
+                      <p className="game-quick-controls">
+                        {definition.controlsHint}
+                        <br />
+                        oder die Tasten unter dem Spielfeld
+                      </p>
+                    )}
+                    <button onClick={togglePause}>Losspielen / Weiter</button>
+                    <small>P = Pause · Du kannst jederzeit aufhören.</small>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
         <div className="game-controls" aria-label="Spielsteuerung">
           {gameId === 'chickens'
             ? [1, 2, 3, 4, 5].map((number) => (
@@ -289,6 +349,12 @@ export default function GameStage({
                     area.current?.focus();
                   }}
                 >
+                  <span
+                    className={`chicken-control-mark ${hud.chickenHits[number - 1] ? 'is-greeted' : ''}`}
+                    aria-hidden="true"
+                  >
+                    {hud.chickenHits[number - 1] ? '✓' : number}
+                  </span>
                   Huhn {number}
                 </button>
               ))
@@ -364,6 +430,14 @@ export default function GameStage({
           Runde beenden
         </button>
       </div>
+      <label className="game-motion-choice">
+        <input
+          type="checkbox"
+          checked={reducedMotion}
+          onChange={(event) => setReducedMotion(event.target.checked)}
+        />
+        Weniger Bewegung
+      </label>
     </section>
   );
 }

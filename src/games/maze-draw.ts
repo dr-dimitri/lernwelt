@@ -1,7 +1,11 @@
 import type { Game } from './engine';
 import { mazeRoute, wallAt } from './maze';
 
-export function drawMaze(c: CanvasRenderingContext2D, g: Game) {
+export function drawMaze(
+  c: CanvasRenderingContext2D,
+  g: Game,
+  reducedMotion = false,
+) {
   const m = g.maze;
   if (!m) return;
   const themes = [
@@ -105,7 +109,9 @@ export function drawMaze(c: CanvasRenderingContext2D, g: Game) {
     if (s.z < 0.1) continue;
     const x = 320 + (s.lateral / s.z) * (320 / Math.tan(fov / 2));
     const size = Math.min(650, 270 / s.z),
-      y = 200 + Math.sin(g.elapsed * 3 + s.x) * size * 0.035;
+      y =
+        200 +
+        (reducedMotion ? 0 : Math.sin(g.elapsed * 3 + s.x) * size * 0.035);
     c.save();
     c.beginPath();
     for (

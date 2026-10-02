@@ -144,10 +144,14 @@ export default function ArcadePanel({
           />
           {result !== null && (
             <div className="arcade-result" role="status">
+              <span className="arcade-result-icon" aria-hidden="true">
+                ✦
+              </span>
+              <h3>{gameDefinition(playing.gameId).name}: gut gespielt!</h3>
               <strong>{result} Spielpunkte</strong>
               <p>
                 {saved
-                  ? 'Dein Ergebnis ist gespeichert. Lust auf eine Lernpause von der Spielpause?'
+                  ? 'Dein Ergebnis ist gespeichert. Entdecke ein anderes Spiel oder sammle beim Lernen neue Punkte.'
                   : busy
                     ? 'Dein Ergebnis wird gespeichert …'
                     : 'Bitte speichere dein Ergebnis erneut. Es werden keine Lernpunkte abgezogen.'}
@@ -193,9 +197,13 @@ export default function ArcadePanel({
                 key={game.id}
                 className={`arcade-card arcade-${game.id}`}
               >
-                <GamePreview gameId={game.id} />
+                <div className="arcade-card-scene">
+                  <GamePreview gameId={game.id} />
+                  <span className="arcade-theme">{game.theme}</span>
+                </div>
                 <h3>{game.name}</h3>
-                <p>{game.description}</p>
+                <p className="arcade-card-goal">{game.goal}</p>
+                <p className="arcade-controls-hint">{game.controlsHint}</p>
                 <p className="best-score">
                   Bestwert:{' '}
                   {state?.bestScores.find((b) => b.gameId === game.id)?.score ??

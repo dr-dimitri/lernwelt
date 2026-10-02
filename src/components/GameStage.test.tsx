@@ -15,6 +15,68 @@ beforeEach(() => {
 afterEach(() => {
   vi.useRealTimers();
   vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
+it('erklärt das Ziel vor dem Start und zeigt Hühnerfortschritt mit angekündigtem Treffer', () => {
+  render(<GameStage gameId="chickens" onFinish={vi.fn()} />);
+  expect(
+    screen.getByText('Begrüße jedes der 5 Hühner mit Konfetti.'),
+  ).toBeVisible();
+  expect(
+    screen.getByRole('progressbar', { name: 'Deine Hühnerparty' }),
+  ).toHaveAttribute('value', '0');
+  fireEvent.click(screen.getByRole('button', { name: 'Losspielen / Weiter' }));
+  act(() => vi.advanceTimersByTime(32));
+  fireEvent.click(screen.getByRole('button', { name: 'Huhn 1' }));
+  act(() => vi.advanceTimersByTime(120));
+  expect(screen.getByRole('status')).toHaveTextContent(
+    'Konfetti für Huhn 1! +50',
+  );
+  expect(
+    screen.getByRole('progressbar', { name: 'Deine Hühnerparty' }),
+  ).toHaveAttribute('value', '1');
+  expect(screen.getByRole('button', { name: 'Huhn 1' })).toHaveTextContent('✓');
+  fireEvent.click(screen.getByRole('button', { name: 'Pause' }));
+  expect(screen.getByRole('heading', { name: 'Deine Pause' })).toBeVisible();
+});
+
+it('übernimmt reduzierte Bewegung vom System und erlaubt den Wechsel in der Runde ohne Neubeginn', () => {
+  const preference = {
+    matches: true,
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+  };
+  vi.stubGlobal(
+    'matchMedia',
+    vi.fn(() => preference),
+  );
+  const finish = vi.fn();
+  const view = render(<GameStage gameId="chickens" onFinish={finish} />);
+  act(() => vi.advanceTimersByTime(32));
+  expect(
+    screen.getByRole('checkbox', { name: 'Weniger Bewegung' }),
+  ).toBeChecked();
+  expect(vi.mocked(drawGame).mock.lastCall![2]).toBe(true);
+  fireEvent.click(screen.getByRole('button', { name: 'Losspielen / Weiter' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Huhn 1' }));
+  act(() => vi.advanceTimersByTime(120));
+  const game = renderedGame();
+  fireEvent.click(screen.getByRole('checkbox', { name: 'Weniger Bewegung' }));
+  act(() => vi.advanceTimersByTime(32));
+  expect(renderedGame()).toBe(game);
+  expect(game.score).toBe(50);
+  expect(finish).not.toHaveBeenCalled();
+  expect(vi.mocked(drawGame).mock.lastCall![2]).toBe(false);
+  preference.matches = true;
+  act(() => preference.addEventListener.mock.calls[0][1]());
+  expect(
+    screen.getByRole('checkbox', { name: 'Weniger Bewegung' }),
+  ).toBeChecked();
+  view.unmount();
+  expect(preference.removeEventListener).toHaveBeenCalledWith(
+    'change',
+    preference.addEventListener.mock.calls[0][1],
+  );
 });
 it('zeichnet auf Retina scharf und trifft Hühner bei verkleinerter Anzeige weiterhin an der richtigen Position', () => {
   vi.spyOn(window, 'devicePixelRatio', 'get').mockReturnValue(2);

@@ -1338,7 +1338,7 @@ main {
 }
 
 /* Adapt to available space, including large text and narrow desktop windows. */
-@media (min-width: 1050px) {
+@media (min-width: 1600px) {
   .arcade-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -1735,5 +1735,329 @@ main {
 @media (max-width: 520px) {
   .learning-workspace:has(.study-browser) .level-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Each local game has its own invitation and a calm, readable cockpit. */
+.arcade-blocks {
+  --game-accent: #6541a4;
+  --game-soft: #eee7fb;
+}
+.arcade-maze {
+  --game-accent: #22686b;
+  --game-soft: #e3f3ee;
+}
+.arcade-space {
+  --game-accent: #3659a4;
+  --game-soft: #e8edfc;
+}
+.arcade-chickens,
+.arcade-runner {
+  --game-accent: #8a4a26;
+  --game-soft: #fff0dd;
+}
+.arcade-grid {
+  gap: 22px;
+}
+.arcade-card {
+  background: linear-gradient(155deg, white 55%, var(--game-soft));
+  border-color: var(--game-soft);
+  box-shadow: 0 8px 24px #2834520d;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+.arcade-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px #28345218;
+}
+.arcade-card-scene {
+  position: relative;
+  width: calc(100% + 36px);
+  margin: -18px -18px 18px;
+  overflow: hidden;
+  border-radius: 17px 17px 0 0;
+}
+.arcade-card-scene .game-preview {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+}
+.arcade-theme {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  max-width: calc(100% - 24px);
+  padding: 6px 10px;
+  border: 1px solid #ffffff55;
+  border-radius: 20px;
+  background: #15233aeb;
+  color: #fff5d4;
+  font-size: 12px;
+  font-weight: 650;
+}
+.arcade-card h3 {
+  color: var(--game-accent);
+  font-size: 22px;
+  letter-spacing: -0.5px;
+}
+.arcade-card .arcade-card-goal {
+  margin-bottom: 10px;
+  color: #354457;
+}
+.arcade-card .arcade-controls-hint {
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: var(--game-soft);
+  color: var(--game-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.arcade-card > button,
+.arcade-card > button:hover:not(:disabled) {
+  border-color: var(--game-accent);
+  background: var(--game-accent);
+}
+.arcade-card > button:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+.game-stage {
+  grid-template-columns: minmax(0, 1fr) 210px;
+}
+.game-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.game-heading h3 {
+  font-size: 22px;
+  color: var(--game-accent);
+}
+.game-heading .eyebrow {
+  margin: 0 0 4px;
+  color: var(--game-accent);
+  font-size: 11px;
+}
+.game-emblem {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border-radius: 16px;
+  background: var(--game-soft);
+  color: var(--game-accent);
+  font-size: 30px;
+}
+.game-paid-note {
+  color: #596475;
+  font-size: 12px;
+}
+.game-hud {
+  background: linear-gradient(150deg, white, var(--game-soft));
+  border-color: var(--game-soft);
+  padding: 14px;
+}
+.game-hud > strong {
+  font-size: 22px;
+  color: var(--game-accent);
+}
+.game-progress {
+  width: 100%;
+  font-size: 13px;
+}
+.game-progress > span {
+  font-weight: 700;
+}
+.game-progress progress {
+  display: block;
+  width: 100%;
+  height: 9px;
+  margin: 9px 0;
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  accent-color: var(--game-accent);
+}
+.game-progress progress::-webkit-progress-bar {
+  border-radius: 20px;
+  background: #dfe4ed;
+}
+.game-progress progress::-webkit-progress-value {
+  border-radius: 20px;
+  background: var(--game-accent);
+}
+.arcade .game-progress p {
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0;
+}
+.game-feedback {
+  min-height: 56px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fff8e5;
+  color: #624621;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+.game-scene {
+  position: relative;
+}
+.game-scene:has(.game-overlay) {
+  min-height: 330px;
+}
+.game-overlay {
+  inset: 0;
+  aspect-ratio: auto;
+  background: #111d3e85;
+  backdrop-filter: blur(4px);
+}
+.game-dialog {
+  width: min(100%, 420px);
+  padding: clamp(12px, 2vw, 22px);
+  background: linear-gradient(145deg, #1a2c4df5, #152039fa);
+}
+.game-dialog-icon {
+  display: block;
+  color: #ffe19b;
+  font-size: 34px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.game-dialog small {
+  display: block;
+  color: #c9d8ec;
+  font-size: 11px;
+  margin-top: 10px;
+}
+.arcade .game-dialog .game-quick-controls {
+  color: #cee9ec;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.game-controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  font-size: 13px;
+  padding: 10px 12px;
+}
+.chicken-control-mark {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #d5dff2;
+  color: #253958;
+}
+.chicken-control-mark.is-greeted {
+  background: #c5edc5;
+  color: #286448;
+}
+.game-motion-choice {
+  grid-column: 2;
+  grid-row: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #44536a;
+  cursor: pointer;
+  min-height: 44px;
+}
+.game-motion-choice input {
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  accent-color: var(--game-accent);
+}
+.arcade-result {
+  text-align: center;
+  background: radial-gradient(ellipse at top, #fff4c8, #f1eafc);
+  padding: 28px;
+  border: 1px solid #e5d8ae;
+}
+.arcade-result h3 {
+  font-size: 22px;
+  margin: 10px 0;
+}
+.arcade-result > strong {
+  font-size: 30px;
+  color: #624394;
+}
+.arcade-result-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 22px;
+  background: #fff9df;
+  color: #825c18;
+  font-size: 44px;
+  box-shadow: 0 5px 0 #dbc38e;
+}
+@media (max-width: 1000px), (max-height: 650px) {
+  .game-stage {
+    display: block;
+  }
+  .game-hud {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 12px 0;
+  }
+  .game-progress {
+    flex: 1 1 180px;
+  }
+  .game-feedback {
+    flex: 1 1 160px;
+    min-height: 0;
+  }
+  .game-focus {
+    width: min(100%, 800px);
+  }
+  .game-actions {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+  .game-motion-choice {
+    margin: 12px 0;
+    min-height: 44px;
+  }
+}
+@media (max-width: 560px) {
+  .game-scene:has(.game-overlay) {
+    min-height: 0;
+  }
+  .game-scene:has(.game-overlay) canvas {
+    display: none;
+  }
+  .game-overlay {
+    position: relative;
+    min-height: 240px;
+    padding: 14px;
+  }
+  .game-dialog {
+    padding: 16px;
+  }
+  .game-dialog h3 {
+    font-size: 20px;
+  }
+  .game-heading h3 {
+    font-size: 19px;
+  }
+  .game-paid-note {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arcade-card:hover {
+    transform: none;
   }
 }
