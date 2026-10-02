@@ -186,6 +186,8 @@ pub struct Exercise {
     pub legacy: bool,
     #[serde(default)]
     pub number_line: Option<NumberLine>,
+    #[serde(default)]
+    pub audio_card_id: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -202,12 +204,19 @@ pub fn catalog() -> Result<&'static Catalog, String> {
     static CONTENT: OnceLock<Result<Catalog, String>> = OnceLock::new();
     CONTENT
         .get_or_init(|| {
-            load_packages(&[
+            let mut content = load_packages(&[
                 include_str!("../content/curriculum-v1.json"),
                 include_str!("../content/english-5-v1.json"),
                 include_str!("../content/nature-5-v1.json"),
                 include_str!("../content/number-line-5-v1.json"),
-            ])
+            ])?;
+            let additional: Vec<Exercise> = serde_json::from_str(include_str!(
+                "../content/topic-practice-v1.json"
+            ))
+            .map_err(|_| "Die zusätzlichen Übungen konnten nicht gelesen werden.".to_owned())?;
+            content.exercises.extend(additional);
+            content.validate()?;
+            Ok(content)
         })
         .as_ref()
         .map_err(Clone::clone)
@@ -279,6 +288,13 @@ impl Catalog {
                 return Err(invalid());
             }
             if exercise
+                .audio_card_id
+                .as_ref()
+                .is_some_and(|id| exercise.subject != Subject::English || !valid_audio_id(id))
+            {
+                return Err(invalid());
+            }
+            if exercise
                 .number_line
                 .as_ref()
                 .is_some_and(|number_line| !number_line.valid_for(exercise))
@@ -303,6 +319,22 @@ impl Catalog {
         }
         Ok(())
     }
+}
+
+fn valid_audio_id(id: &str) -> bool {
+    static IDS: OnceLock<HashSet<String>> = OnceLock::new();
+    IDS.get_or_init(|| {
+        let manifest: serde_json::Value =
+            serde_json::from_str(include_str!("../../src/content/vocabulary-audio.json"))
+                .expect("bundled audio manifest");
+        manifest["cards"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .filter_map(|c| c["id"].as_str().map(String::from))
+            .collect()
+    })
+    .contains(id)
 }
 
 impl Exercise {
@@ -506,7 +538,8 @@ mod tests {
                         .iter()
                         .filter(|e| e.topic_id == topic.id
                             && e.difficulty == difficulty
-                            && !e.legacy)
+                            && !e.legacy
+                            && !e.id.contains(".focus."))
                         .count(),
                     3
                 );
@@ -679,3 +712,6 @@ mod number_line_tests;
 
 #[cfg(test)]
 mod help_tests;
+
+#[cfg(test)]
+mod practice_tests;

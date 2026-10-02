@@ -49,6 +49,8 @@ pub struct Question {
     competency_id: &'static str,
     #[serde(skip_serializing_if = "Option::is_none")]
     number_line: Option<&'static NumberLine>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    audio_card_id: Option<&'static str>,
 }
 
 #[derive(Debug, Serialize)]
@@ -150,6 +152,7 @@ pub fn get_state(connection: &mut Connection) -> Result<LearningState, String> {
                 unit: exercise.unit.as_deref(),
                 competency_id: &exercise.competency_id,
                 number_line: exercise.number_line.as_ref(),
+                audio_card_id: exercise.audio_card_id.as_deref(),
             })
         })
         .collect::<Result<Vec<_>, String>>()?;
@@ -623,7 +626,7 @@ mod tests {
             .iter()
             .filter(|e| !e.legacy && e.subject == Subject::Mathematics)
             .collect();
-        assert_eq!(exercises.len(), 399);
+        assert_eq!(exercises.len(), 1767);
         for (i, exercise) in exercises.iter().enumerate() {
             let wrong = submit_answer(
                 &mut connection,
@@ -661,8 +664,8 @@ mod tests {
         drop(connection);
         let mut connection = database::open(&directory.path().join("test.sqlite3")).unwrap();
         let state = get_state(&mut connection).unwrap();
-        assert_eq!(state.wallet.balance, 798);
-        assert_eq!(state.questions.iter().filter(|q| q.solved).count(), 399);
+        assert_eq!(state.wallet.balance, 3534);
+        assert_eq!(state.questions.iter().filter(|q| q.solved).count(), 1767);
         for question in serde_json::to_value(&state).unwrap()["questions"]
             .as_array()
             .unwrap()
@@ -670,7 +673,7 @@ mod tests {
             assert!(question.get("answer").is_none());
         }
         let progress = database::list_progress(&connection).unwrap();
-        assert_eq!(progress.iter().map(|p| p.correct).sum::<u32>(), 798);
+        assert_eq!(progress.iter().map(|p| p.correct).sum::<u32>(), 3534);
     }
     #[test]
     fn awards_one_two_three_in_all_subjects_independent_of_selected_level() {
@@ -946,3 +949,6 @@ mod tests {
 
 #[cfg(test)]
 mod help_tests;
+
+#[cfg(test)]
+mod practice_tests;

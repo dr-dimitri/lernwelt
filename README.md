@@ -37,7 +37,7 @@ Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale mac
 
 ## Bedienung
 
-Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Jedes Fach öffnet jetzt einen Lehrplan-Themenkatalog: Lernbereich und Unterthema auswählen oder nach einem Begriff wie „Längen“ oder „Simple Present“ suchen. 69 Unterthemen in 17 Lernbereichen führen zu kurzen Runden mit höchstens sechs Aufgaben. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md). Eine feste Seitennavigation führt zu Fächern, Trainern und Spielhalle; im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
+Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Jedes Fach öffnet jetzt einen Lehrplan-Themenkatalog: Lernbereich und Unterthema auswählen oder nach einem Begriff wie „Längen“ oder „Simple Present“ suchen. 87 Unterthemen in 17 Lernbereichen führen zu kurzen Runden mit höchstens sechs Aufgaben. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md). Eine feste Seitennavigation führt zu Fächern, Trainern und Spielhalle; im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
 
 ## App aktualisieren
 
@@ -92,7 +92,7 @@ Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri
 
 ## Mathematik Klasse 5
 
-399 eigene Aufgaben nach [LehrplanPLUS Gymnasium Bayern, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik), Quellenstand des Grundpakets 24.09.2026, Zahlenstrahl-Ergänzung 26.09.2026. Zu allen 39 Kompetenzerwartungen gibt es in neun Themen konkrete Lernangebote aus Bildschirmübungen und angeleiteten Tätigkeiten. Die Inhaltsmatrix belegt jede Zuordnung und benennt Grenzen der automatischen Bewertung.
+1.767 eigene Aufgaben in 40 gezielt auswählbaren Unterthemen nach [LehrplanPLUS Gymnasium Bayern, Mathematik 5](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik), Quellenstand des Grundpakets 24.09.2026, Zahlenstrahl-Ergänzung 26.09.2026. Zu allen 39 Kompetenzerwartungen gibt es in neun Themen konkrete Lernangebote aus Bildschirmübungen und angeleiteten Tätigkeiten. Die Inhaltsmatrix belegt jede Zuordnung und benennt Grenzen der automatischen Bewertung.
 
 - Mengen & Zahlenmengen: Elemente, Mengenschreibweise, ∈/∉ und natürliche/ganze Zahlen.
 
@@ -105,11 +105,11 @@ Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri
 - Flächen-Abenteuer: Flächeninhalt, Umfang, Einheiten, zusammengesetzte Flächen und Quaderoberflächen.
 - Zahlenstrahl-Werkstatt: Zahlen ablesen und markieren, Skalen erkennen, Abstände und Schritte untersuchen.
 
-Die **Zahlenstrahl-Werkstatt** bietet 36 zusätzliche Übungen, zwölf pro Stufe. Über **Mathematik → Thema wählen → Zahlenstrahl-Werkstatt** erscheinen beschriftete Zahlenstrahlen und Zahlengeraden. Zum Markieren einen Teilstrich anklicken oder per Tab erreichen und mit den Pfeiltasten wählen; Pos1/Ende wählen den ersten/letzten Teilstrich. Erst **Antwort prüfen** bewertet die Auswahl. Ohne Zeitlimit, mit Tipps, Lösungswegen und Textbeschreibung zur Grafik. Auf schmalen Fenstern lässt sich die Achse seitlich verschieben. Die gewohnte Punktevergabe und der gespeicherte Fortschritt gelten auch hier. [Inhalte, Lehrplanbezug und Grenzen](docs/curriculum-number-line-5.md).
+Die **Zahlenstrahl-Werkstatt** bietet 36 zusätzliche Übungen, zwölf pro Stufe. Über **Mathematik → Zahlen verstehen → Zahlenstrahl und Zahlengerade** erscheinen beschriftete Zahlenstrahlen und Zahlengeraden. Zum Markieren einen Teilstrich anklicken oder per Tab erreichen und mit den Pfeiltasten wählen; Pos1/Ende wählen den ersten/letzten Teilstrich. Erst **Antwort prüfen** bewertet die Auswahl. Ohne Zeitlimit, mit Tipps, Lösungswegen und Textbeschreibung zur Grafik. Auf schmalen Fenstern lässt sich die Achse seitlich verschieben. Die gewohnte Punktevergabe und der gespeicherte Fortschritt gelten auch hier. [Inhalte, Lehrplanbezug und Grenzen](docs/curriculum-number-line-5.md).
 
 **Vorschule** bietet einen leichten Einstieg, **Könner** reguläre Übungen und **Streber** anspruchsvollere Knobelaufgaben. Es sind spielerische Bezeichnungen, keine Altersstufen. Die Wahl bleibt über Fachwechsel, Profiländerung und Neustart erhalten; Standard ist Könner. Englisch bietet ebenfalls alle drei Stufen (1. Fremdsprache). Die angebotene Mathematik bleibt Klasse 5, auch wenn ein älteres Profil noch eine andere Klasse enthält.
 
-Jede der 615 Fachaufgaben bietet den bisherigen Tipp und über **Nächster Tipp** einen weiteren Denkschritt. Bei 108 Aufgaben sind außerdem konkrete Hinweise zu typischen falschen Antworten hinterlegt. Den vollständigen Lösungsweg kannst du nach einer falschen Antwort selbst öffnen; nach einer richtigen Antwort steht er direkt in der Rückmeldung. Tipps kosten nichts und ändern weder die Bewertung noch die Punkte. [Bedienung, Inhaltsumfang und Grenzen](docs/learning-hints.md). Auswahlfragen, ganze Zahlen und exakte Dezimalzahlen werden im Backend bewertet. Komma oder Punkt gelten als Dezimaltrennzeichen, normale/geschützte Leerzeichen als Dreiergruppierung: `25 000` oder `25000`; `25.000` bedeutet 25. Einheiten stehen in der Frage und werden nicht mit eingegeben. Englischwörter werden ohne Beachtung der Großschreibung verglichen.
+Jede der 3.675 Fachaufgaben bietet den bisherigen Tipp und über **Nächster Tipp** einen weiteren Denkschritt. Bei 148 Aufgaben sind außerdem konkrete Hinweise zu typischen falschen Antworten hinterlegt. Den vollständigen Lösungsweg kannst du nach einer falschen Antwort selbst öffnen; nach einer richtigen Antwort steht er direkt in der Rückmeldung. Tipps kosten nichts und ändern weder die Bewertung noch die Punkte. [Bedienung, Inhaltsumfang und Grenzen](docs/learning-hints.md). Auswahlfragen, ganze Zahlen und exakte Dezimalzahlen werden im Backend bewertet. Komma oder Punkt gelten als Dezimaltrennzeichen, normale/geschützte Leerzeichen als Dreiergruppierung: `25 000` oder `25000`; `25.000` bedeutet 25. Einheiten stehen in der Frage und werden nicht mit eingegeben. Englischwörter werden ohne Beachtung der Großschreibung verglichen.
 
 54 Mitmachaufgaben ergänzen Zeichnen, Messen, Schätzen und Begründen mit Selbstkontrollhinweisen. Sie gelten für alle Stufen, vergeben keine Punkte und werden nicht automatisch bewertet. Einheitentafeln für Geld, Länge, Masse und Fläche sowie die vollständige Quadratzahlreihe bis 400 ergänzen die Übungen. Das Paket enthält Lernangebote zu allen Kompetenzerwartungen, ist aber kein unbegrenzter Aufgabengenerator, keine vollständige Lernstandserhebung und kein Ersatz für Unterricht. Es gibt keine amtliche Freigabe. Weitere Hinweise und die Inhaltsmatrix stehen in [docs/curriculum-math-5.md](docs/curriculum-math-5.md).
 
@@ -130,9 +130,9 @@ Eintritt, offene Runde und abgeschlossene Bestwerte werden lokal gespeichert. Na
 
 ## Englisch Klasse 5
 
-108 eigene Aufgaben in zwölf Themen, je drei pro Thema und Stufe, dazu 24 Mitmachaufgaben. Begrüßung, Familie, Wohnen, Schule, Tagesablauf, Freizeit, Einkaufen, Geburtstag, Vergangenheit, Lesen, Landeskunde und Lernstrategien verbinden Wortschatz mit Grammatik. Die Aufgaben sind kurz formuliert und enthalten Tipps und Erklärungen. Neue korrekte Lösungen bringen wie in Mathematik 1/2/3 Punkte.
+1.368 eigene Aufgaben in 35 gezielt auswählbaren Unterthemen, mindestens zwölf pro Stufe und Unterthema, dazu 24 Mitmachaufgaben. Begrüßung, Familie, Wohnen, Schule, Tagesablauf, Freizeit, Einkaufen, Geburtstag, Vergangenheit, Lesen, Landeskunde und Lernstrategien verbinden Wortschatz mit Grammatik. Die Aufgaben sind kurz formuliert und enthalten Tipps und Erklärungen. Neue korrekte Lösungen bringen wie in Mathematik 1/2/3 Punkte.
 
-Grundlage: [LehrplanPLUS Englisch 5, erste Fremdsprache](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache). Thematische Orientierung: [öffentlicher Stoffverteilungsplan Green Line Bayern 1](https://assets.klett.de/assets/43500837/StoffverteilungsplanBd1.pdf), Bayern-Ausgabe ab 2017, ISBN 978-3-12-803010-4. Quellenstand 24.09.2026. Eigene Texte und Aufgaben; kein Klett-Lehrbuchimport und keine vom Verlag freigegebene Begleitsoftware.
+Grundlage: [LehrplanPLUS Englisch 5, erste Fremdsprache](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache). Thematische Orientierung: [öffentlicher Stoffverteilungsplan Green Line Bayern 1](https://assets.klett.de/assets/43500837/StoffverteilungsplanBd1.pdf), Bayern-Ausgabe ab 2017, ISBN 978-3-12-803010-4. Quellenstand des Grundpakets 24.09.2026, Themenausbau 02.10.2026. Eigene Texte und Aufgaben; kein Klett-Lehrbuchimport und keine vom Verlag freigegebene Begleitsoftware.
 
 Sprechen und freies Schreiben werden durch angeleitete Aktivitäten mit Selbstkontrolle bzw. Vorleseperson geübt. Der Vokabeltrainer ergänzt gebündelte englische Audios und kurze Hörübungen. Keine Mikrofonaufnahmen, keine automatische Aussprache- oder Freitextbewertung. Das begrenzte Paket ist keine vollständige Abdeckung jedes Lehrbuchinhalts und keine vollständige Lernstandserhebung. Die Themen bleiben Klasse 5, auch wenn ein älteres Profil noch eine andere Klasse enthält. [Inhaltsübersicht und Grenzen](docs/curriculum-english-5.md).
 
@@ -156,6 +156,8 @@ Alle **370 englischen Wörter und ihre Beispielsätze** lassen sich offline anh�
 
 **3 Wörter hören** startet eine freiwillige Runde: Wort anhören und die deutsche Bedeutung auswählen. Nach drei Wörtern kannst du aufhören oder eine neue Runde beginnen. Kein Zeitlimit; beliebig oft anhören oder die Lösung zeigen. Die Hörrunde vergibt keine Punkte und ändert weder Karteifächer noch Wiederholungstermine. Zurück zu **Wörter schreiben** bleiben die bisherigen Regeln unverändert.
 
+Auch **Englisch → Lesen, sprechen und schreiben → Englische Wörter hören** bietet kurze Hörübungen. Ein verknüpftes Wortschatz-Unterthema öffnet direkt sein Wortthema im Trainer.
+
 Die britische Stimme Cori wurde vorab synthetisch erzeugt. Alle 740 MP3s sind Teil der App; keine Cloud, keine Mikrofonaufnahme und keine Sprachsynthese zur Laufzeit. Quelle und Lizenz (Public-Domain-Stimme, Audios unter CC0), Erzeugung und Prüfgrenzen: [Offline-Audios](docs/vocabulary-audio.md).
 
 ## Einmaleins-Trainer: Werkstatt und Insel
@@ -176,7 +178,7 @@ Die Spielsteuerung und Pause stehen neben dem Spielfeld; nach dem Ende erscheint
 
 ## Natur und Technik Klasse 5
 
-**108 eigene Fragen in zwölf Themen**, je drei Aufgaben pro Stufe und Thema, sowie **24 Mitmachaufgaben** für Kinder von 10–12 Jahren. Die Inhalte orientieren sich am [LehrplanPLUS Natur und Technik 5, Gymnasium Bayern](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym), Quellenstand 25.09.2026. Naturwissenschaftliches Arbeiten und Biologie werden verbunden: Forschen, Wasser und Teilchen, Licht und Energie, Luft und Materialien, Zellen, Sinne, Bewegung, Ernährung, Atmung und Kreislauf, Entwicklung, Samenpflanzen und Grünland.
+**540 eigene Fragen in zwölf gezielt auswählbaren Unterthemen**, mindestens zwölf Aufgaben pro Stufe und Unterthema, sowie **24 Mitmachaufgaben** für Kinder von 10–12 Jahren. Die Inhalte orientieren sich am [LehrplanPLUS Natur und Technik 5, Gymnasium Bayern](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym), Quellenstand 25.09.2026. Naturwissenschaftliches Arbeiten und Biologie werden verbunden: Forschen, Wasser und Teilchen, Licht und Energie, Luft und Materialien, Zellen, Sinne, Bewegung, Ernährung, Atmung und Kreislauf, Entwicklung, Samenpflanzen und Grünland.
 
 Über **Meine Fächer → Natur und Technik** lassen sich Fragen und Lernspiele auswählen. Kurze Fragen mit Alltagssituationen, Beobachtungen und Messwerten bieten Tipps und erklärte Lösungen. Ein Blütenschnitt und Teilchenbilder helfen beim Verstehen; Mitmachaufgaben ergänzen Zeichnen, Beobachten und Erklären. Für neue richtige Fachantworten gelten dieselben gespeicherten **1/2/3 Lernpunkte** und dieselbe freie Stufenauswahl wie in den anderen Fächern.
 

@@ -1,18 +1,18 @@
 # Gestufte Hilfen für Fachaufgaben
 
-Stand: 26.09.2026 · Issue #83
+Stand: 02.10.2026 · Issues #83 und #101
 
 ## Bedienung
 
 **Gib mir einen Tipp** öffnet den bisherigen Aufgabentipp. **Nächster Tipp** ergänzt einen konkreten Denkschritt, ein Vergleichsbeispiel oder eine Prüffrage. Der erste Tipp bleibt zum Nachlesen sichtbar. Schließen und erneutes Öffnen derselben Aufgabe behält die geöffneten Schritte; eine andere Aufgabe, ein anderes Thema, eine andere Stufe oder ein anderes Fach beginnt wieder mit Tipp 1. Die offenen Tipps sind ein vorübergehender Ansichtsstand und werden nicht in SQLite gespeichert.
 
-Die 615 sichtbaren Fachaufgaben haben jeweils einen zusätzlichen Tipp. Bei einer falschen Antwort kann außerdem ein passender Hinweis erscheinen, etwa zur Verwechslung von Umfang und Fläche, einer falschen Zeiteinheit oder einer doppelten Vergangenheitsform. 111 ausdrücklich formulierte Regeln unterstützen 108 Aufgaben. Für andere falsche Antworten bleibt die allgemeine ermutigende Rückmeldung. Der vollständige Lösungsweg öffnet sich nach einer Antwort weiterhin nur auf Wunsch; nach einer richtigen Antwort steht er direkt in der Rückmeldung.
+Die 3.675 sichtbaren Fachaufgaben haben jeweils einen zusätzlichen Tipp. Bei einer falschen Antwort kann außerdem ein passender Hinweis erscheinen, etwa zur Verwechslung von Umfang und Fläche, einer falschen Zeiteinheit oder einer doppelten Vergangenheitsform. 151 ausdrücklich formulierte Regeln unterstützen 148 Aufgaben. Für andere falsche Antworten bleibt die allgemeine ermutigende Rückmeldung. Der vollständige Lösungsweg öffnet sich nach einer Antwort weiterhin nur auf Wunsch; nach einer richtigen Antwort steht er direkt in der Rückmeldung.
 
 Tipps lesen kostet nichts und bucht keinen Versuch. Die Antwortprüfung und die unveränderte Erstlösungsregel vergeben weiterhin 1/2/3 Punkte. Die vorhandenen Aufgaben-IDs, Fragen, ersten Tipps, Lösungsschlüssel, Erklärungen und Lehrplanverweise wurden beibehalten. Historische Beispielaufgaben bleiben für gespeicherte Antworten erreichbar.
 
 ## Inhaltsmodell und Grenzen
 
-Die vier vorhandenen lokalen JSON-Pakete ergänzen pro Aufgabe:
+Die vier Grundpakete und die neue lokale Themenbank ergänzen pro Aufgabe:
 
 - `furtherHints`: ein bis zwei zusätzliche Texte, jeweils höchstens 500 Zeichen. Aktuell ist bei allen sichtbaren Aufgaben genau ein weiterer Tipp hinterlegt.
 - `commonMistakes`: optional höchstens vier Regeln mit jeweils ein bis vier konkreten falschen Antworten und einem Hinweis von höchstens 500 Zeichen. Antworttexte haben dieselbe Grenze von 120 Zeichen wie die Eingabe.
@@ -29,41 +29,43 @@ Der Umfang betrifft die Fachaufgaben in Mathematik, Englisch sowie Natur und Tec
 
 Jede Zeile ist in allen drei frei wählbaren Stufen enthalten. „Mit Fehlerhinweis“ zählt Aufgaben mit mindestens einer gezielten Regel, nicht automatisch erkannte Arten von Lernschwierigkeiten.
 
-| Thema | Aufgaben mit zweitem Tipp | Mit Fehlerhinweis |
+| Grundthema / Erklärungsbereich | Aufgaben mit zweitem Tipp | Mit Fehlerhinweis |
 | --- | ---: | ---: |
-| Mengen & Zahlenmengen | 21 | 0 |
-| Zahlen entdecken | 36 | 4 |
-| Plus & Minus | 36 | 3 |
-| Geometrie-Werkstatt | 48 | 3 |
-| Mal, Geteilt & Potenzen | 108 | 28 |
-| Rechentricks & Terme | 30 | 4 |
-| Größen im Alltag | 48 | 7 |
-| Flächen-Abenteuer | 36 | 9 |
-| Hello! Das bin ich | 9 | 4 |
-| Meine bunte Familie | 9 | 4 |
-| Zimmer-Safari | 9 | 3 |
-| Mission Schultag | 9 | 2 |
-| Ein Tag voller Ideen | 9 | 3 |
-| Freizeit mit Freunden | 9 | 2 |
-| Im Snackladen | 9 | 3 |
-| Geburtstag & Regeln | 9 | 2 |
-| Gestern war ein Abenteuer | 9 | 6 |
-| Geschichten-Detektive | 9 | 0 |
-| Unterwegs in Großbritannien | 9 | 0 |
-| Wörter-Werkstatt | 9 | 0 |
-| Die Forscherwerkstatt | 9 | 2 |
-| Wasser auf Reisen | 9 | 3 |
-| Licht und Energie entdecken | 9 | 0 |
-| Luft, Boden und Stoffdetektive | 9 | 1 |
-| Die winzige Welt der Zellen | 9 | 3 |
-| Sinne auf Entdeckungstour | 9 | 0 |
-| Knochen, Gelenke, Muskeln | 9 | 0 |
-| Dem Essen auf der Spur | 9 | 1 |
-| Luft und Blut im Team | 9 | 1 |
-| Wachsen und sich verändern | 9 | 0 |
-| Das Geheimnis der Blüten | 9 | 0 |
-| Expedition Wiese | 9 | 2 |
+| Mengen & Zahlenmengen | 57 | 0 |
+| Zahlen entdecken | 180 | 4 |
+| Plus & Minus | 180 | 3 |
+| Geometrie-Werkstatt | 228 | 3 |
+| Mal, Geteilt & Potenzen | 360 | 28 |
+| Rechentricks & Terme | 210 | 4 |
+| Größen im Alltag | 336 | 31 |
+| Flächen-Abenteuer | 180 | 9 |
+| Hello! Das bin ich | 189 | 4 |
+| Meine bunte Familie | 117 | 4 |
+| Zimmer-Safari | 117 | 3 |
+| Mission Schultag | 117 | 2 |
+| Ein Tag voller Ideen | 81 | 19 |
+| Freizeit mit Freunden | 45 | 2 |
+| Im Snackladen | 117 | 3 |
+| Geburtstag & Regeln | 117 | 2 |
+| Gestern war ein Abenteuer | 81 | 6 |
+| Geschichten-Detektive | 45 | 0 |
+| Unterwegs in Großbritannien | 81 | 0 |
+| Wörter-Werkstatt | 261 | 0 |
+| Die Forscherwerkstatt | 45 | 2 |
+| Wasser auf Reisen | 45 | 3 |
+| Licht und Energie entdecken | 45 | 0 |
+| Luft, Boden und Stoffdetektive | 45 | 1 |
+| Die winzige Welt der Zellen | 45 | 3 |
+| Sinne auf Entdeckungstour | 45 | 0 |
+| Knochen, Gelenke, Muskeln | 45 | 0 |
+| Dem Essen auf der Spur | 45 | 1 |
+| Luft und Blut im Team | 45 | 1 |
+| Wachsen und sich verändern | 45 | 0 |
+| Das Geheimnis der Blüten | 45 | 0 |
+| Expedition Wiese | 45 | 2 |
 | Zahlenstrahl-Werkstatt | 36 | 8 |
+
+Die feinere Auswahl und die Anzahl je Stufe stehen in der [Unterthemenmatrix](study-catalog.md). Neue gezielte Fehlerhinweise ergänzen vor allem Längenumrechnung und Simple Present.
 
 ## Prüfungen
 

@@ -36,12 +36,14 @@ type Feedback = {
 
 export default function VocabularyPanel({
   profileVersion,
+  initialDeck = 'all',
 }: {
   profileVersion: number;
+  initialDeck?: string;
 }) {
   const [mode, setMode] = useState<'write' | 'listen'>('write');
   const [state, setState] = useState<VocabularyState | null>(null);
-  const [deck, setDeck] = useState('all');
+  const [deck, setDeck] = useState(initialDeck);
   const [reload, setReload] = useState(0);
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState<Feedback | null>(null);

@@ -1,5 +1,7 @@
 # Natur und Technik 5
 
+**Erweiterung vom 02.10.2026:** Einschließlich der neuen Themenpakete stehen 540 Natur und Technik-Fachaufgaben zur Verfügung. Die [aktuelle Unterthemenmatrix](study-catalog.md) zeigt den Umfang je Stufe. Die folgenden Paketangaben beschreiben den unveränderten ursprünglichen Bestand; IDs, Antworten und Fortschritt bleiben erhalten.
+
 Quellenstand: 25.09.2026. Das offline gebündelte Paket `src-tauri/content/nature-5-v1.json` enthält **108 eigene Bildschirmaufgaben in zwölf Themen sowie 24 Mitmachaktivitäten**. Es richtet sich an etwa 10–12-jährige Kinder in Klasse 5 des bayerischen Gymnasiums. Jedes Thema enthält drei Aufgaben je Stufe: **Vorschule** für einen leichten Einstieg, **Könner** für reguläres Üben und **Streber** für anspruchsvolleres Nachdenken. Diese Namen bewerten kein Kind und stehen nicht für Altersgruppen.
 
 ## Quelle und Umfang
