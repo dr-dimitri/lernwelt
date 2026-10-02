@@ -1,5 +1,6 @@
 import { useId, useRef, useState } from 'react';
 import type { Subject, SubjectId } from '../domain/subjects';
+import { SubjectArt } from './DiscoveryArt';
 
 export default function SubjectLibrary({
   subjects,
@@ -19,32 +20,38 @@ export default function SubjectLibrary({
   );
 
   return (
-    <div className="subject-library">
-      <div className="subject-search">
-        <label className="subject-search-field" htmlFor={searchId}>
-          Fach suchen
-          <input
-            id={searchId}
-            ref={searchField}
-            type="search"
-            value={query}
-            autoComplete="off"
-            placeholder="Wie heißt dein Fach?"
-            onChange={(event) => setQuery(event.target.value)}
-          />
-        </label>
-        {query && (
-          <button
-            type="button"
-            className="secondary-button"
-            onClick={() => {
-              setQuery('');
-              searchField.current?.focus();
-            }}
-          >
-            Suche löschen
-          </button>
-        )}
+    <section className="subject-library" aria-labelledby="subjects-title">
+      <div className="library-heading">
+        <div>
+          <p className="eyebrow">WISSEN BEGINNT MIT NEUGIER</p>
+          <h2 id="subjects-title">Womit legen wir los?</h2>
+        </div>
+        <div className="subject-search">
+          <label className="subject-search-field" htmlFor={searchId}>
+            Fach suchen
+            <input
+              id={searchId}
+              ref={searchField}
+              type="search"
+              value={query}
+              autoComplete="off"
+              placeholder="Fach suchen …"
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </label>
+          {query && (
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={() => {
+                setQuery('');
+                searchField.current?.focus();
+              }}
+            >
+              Suche löschen
+            </button>
+          )}
+        </div>
       </div>
       <p className="subject-result-count" role="status" aria-live="polite">
         {matches.length} {matches.length === 1 ? 'Fach' : 'Fächer'}
@@ -61,8 +68,13 @@ export default function SubjectLibrary({
               aria-pressed={selected === subject.id}
               onClick={() => onSelect(subject.id)}
             >
-              <span className="subject-symbol" aria-hidden="true">
-                {subject.symbol}
+              <span className="subject-artwork">
+                <SubjectArt subject={subject.id} symbol={subject.symbol} />
+                {selected === subject.id && (
+                  <span className="subject-selected">
+                    <span aria-hidden="true">✓ </span>Ausgewählt
+                  </span>
+                )}
               </span>
               <span className="subject-name">{subject.name}</span>
               <span className="subject-description">{subject.description}</span>
@@ -78,6 +90,6 @@ export default function SubjectLibrary({
           <p>Ändere deine Suche oder lösche sie. Dann siehst du mehr Fächer.</p>
         </div>
       )}
-    </div>
+    </section>
   );
 }

@@ -9,6 +9,7 @@ import SubjectLibrary from './components/SubjectLibrary';
 import MissionCard from './components/MissionCard';
 import MissionPanel from './components/MissionPanel';
 import AppUpdates from './components/AppUpdates';
+import DiscoveryArt from './components/DiscoveryArt';
 import { subjects, type SubjectId } from './domain/subjects';
 
 type View =
@@ -55,58 +56,6 @@ function NavIcon({ name }: { name: string }) {
           <path d="M7 10v4m-2-2h4m6-1h.01m3 2h.01" />
         </>
       )}
-    </svg>
-  );
-}
-
-function DiscoveryArt() {
-  return (
-    <svg
-      className="discovery-art"
-      viewBox="0 0 260 180"
-      fill="none"
-      aria-hidden="true"
-    >
-      <circle cx="143" cy="88" r="70" fill="#d2eee5" />
-      <ellipse
-        cx="136"
-        cy="94"
-        rx="108"
-        ry="38"
-        transform="rotate(-25 136 94)"
-        stroke="#84bdac"
-        strokeWidth="1.5"
-        strokeDasharray="4 7"
-      />
-      <g transform="rotate(-10 115 95)">
-        <rect x="59" y="41" width="95" height="110" rx="15" fill="#147969" />
-        <rect x="67" y="36" width="95" height="108" rx="12" fill="#fffefa" />
-        <path
-          d="M86 60h51M86 71h32"
-          stroke="#9abeb1"
-          strokeWidth="5"
-          strokeLinecap="round"
-        />
-        <path
-          d="m91 105 11 11 24-27"
-          stroke="#147969"
-          strokeWidth="7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
-      <g transform="rotate(12 191 114)">
-        <rect x="161" y="83" width="61" height="65" rx="15" fill="#ffc966" />
-        <path
-          d="M179 114h25m-12-13v26"
-          stroke="#7a5115"
-          strokeWidth="5"
-          strokeLinecap="round"
-        />
-      </g>
-      <path d="m202 24 3 9 9 3-9 3-3 9-3-9-9-3 9-3Z" fill="#ec886e" />
-      <circle cx="41" cy="108" r="6" fill="#ec886e" />
-      <circle cx="181" cy="160" r="4" fill="#147969" />
     </svg>
   );
 }
@@ -190,7 +139,7 @@ export default function App() {
           id="navigation-items"
           className={`navigation-items ${menuOpen ? 'is-open' : ''}`}
         >
-          <p className="nav-label">DEIN ENTDECKERPLATZ</p>
+          <p className="nav-label">DEIN LERNRAUM</p>
           <nav className="primary-navigation" aria-label="Lernwelt-Bereiche">
             {destinations.map((item) => (
               <button
@@ -212,11 +161,11 @@ export default function App() {
           <div className="sidebar-note">
             <span aria-hidden="true">✦</span>
             <p>
-              Dein Tempo.
+              Kleine Schritte.
               <br />
-              <strong>Dein Abenteuer.</strong>
+              <strong>Große Ideen.</strong>
             </p>
-            <small>Ausprobieren gehört dazu.</small>
+            <small>Alles beginnt mit Neugier.</small>
           </div>
           <p className="offline-note">
             <span aria-hidden="true" />
@@ -253,23 +202,21 @@ export default function App() {
                 </button>
               )}
               {view === 'subjects' && (
-                <p className="eyebrow">NEUGIER AN. LOS GEHT’S.</p>
+                <p className="eyebrow">DEIN RAUM FÜR NEUE IDEEN</p>
               )}
               <h1 ref={heading} tabIndex={-1}>
                 {view === 'subjects' ? (
                   <>
-                    Was möchtest du
+                    Dein nächstes
                     <br />
-                    heute entdecken?
+                    <span>Aha wartet.</span>
                   </>
                 ) : (
                   title
                 )}
               </h1>
               {view === 'subjects' && (
-                <p>
-                  Such dir ein Fach aus. Kleine Schritte, große Aha-Momente.
-                </p>
+                <p>Rechnen, sprechen, forschen. Was entdeckst du heute?</p>
               )}
             </div>
             {view === 'subjects' && <DiscoveryArt />}
@@ -284,17 +231,17 @@ export default function App() {
           </div>
           {view === 'subjects' ? (
             <>
+              <SubjectLibrary
+                subjects={subjects}
+                selected={selected}
+                onSelect={(id) => navigate('learn', id)}
+              />
               <MissionCard
                 profileVersion={profileVersion}
                 onOpen={(topicId) => {
                   setMissionTopic(topicId);
                   navigate('mission');
                 }}
-              />
-              <SubjectLibrary
-                subjects={subjects}
-                selected={selected}
-                onSelect={(id) => navigate('learn', id)}
               />
             </>
           ) : view === 'learn' ? (
