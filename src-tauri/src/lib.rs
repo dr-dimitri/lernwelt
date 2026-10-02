@@ -4,6 +4,7 @@ mod database;
 mod learning;
 mod mission;
 mod multiplication;
+mod study;
 mod vocabulary;
 
 use database::{Profile, Progress};

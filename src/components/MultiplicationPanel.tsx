@@ -10,6 +10,7 @@ import {
 import type {
   MultiplicationConfiguration,
   MultiplicationInput,
+  MultiplicationMode,
   MultiplicationResult,
   MultiplicationState,
   MultiplicationTask,
@@ -48,8 +49,10 @@ const message = (error: unknown) =>
 
 export default function MultiplicationPanel({
   profileVersion,
+  initialMode,
 }: {
   profileVersion: number;
+  initialMode?: MultiplicationMode;
 }) {
   const [state, setState] = useState<MultiplicationState | null>(null);
   const [answer, setAnswer] = useState('');
@@ -92,8 +95,10 @@ export default function MultiplicationPanel({
     setPending(null);
     setPaused(false);
     setSettingsOpen(false);
-    void desktop
-      .getMultiplicationState()
+    const loaded = initialMode
+      ? desktop.getMultiplicationState(initialMode)
+      : desktop.getMultiplicationState();
+    void loaded
       .then((value) => {
         if (current !== revision.current) return;
         setState(value);
@@ -111,7 +116,7 @@ export default function MultiplicationPanel({
     return () => {
       ++revision.current;
     };
-  }, [reload, profileVersion]);
+  }, [reload, profileVersion, initialMode]);
 
   useEffect(() => {
     if (busy || settingsOpen) return;

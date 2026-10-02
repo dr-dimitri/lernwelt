@@ -62,6 +62,7 @@ function NavIcon({ name }: { name: string }) {
 
 export default function App() {
   const [view, setView] = useState<View>('subjects');
+  const [multiplicationMode, setMultiplicationMode] = useState<'squares'>();
   const [missionTopic, setMissionTopic] = useState<string>();
   const [selected, setSelected] = useState<SubjectId>('mathematics');
   const [profileVersion, setProfileVersion] = useState(0);
@@ -90,6 +91,7 @@ export default function App() {
   function navigate(next: View, subjectId?: SubjectId) {
     navigationRequested.current =
       next !== view || (subjectId !== undefined && subjectId !== selected);
+    if (next === 'multiplication') setMultiplicationMode(undefined);
     if (subjectId) setSelected(subjectId);
     setView(next);
     setMenuOpen(false);
@@ -245,14 +247,30 @@ export default function App() {
               />
             </>
           ) : view === 'learn' ? (
-            <LearningPanel subject={selected} profileVersion={profileVersion} />
+            <LearningPanel
+              subject={selected}
+              profileVersion={profileVersion}
+              onSupplement={(link) => {
+                if (link.kind === 'mission') {
+                  setMissionTopic(link.target);
+                  navigate('mission');
+                } else {
+                  navigate(link.kind);
+                  if (link.kind === 'multiplication')
+                    setMultiplicationMode('squares');
+                }
+              }}
+            />
           ) : view === 'mission' ? (
             <MissionPanel
               profileVersion={profileVersion}
               topicId={missionTopic}
             />
           ) : view === 'multiplication' ? (
-            <MultiplicationPanel profileVersion={profileVersion} />
+            <MultiplicationPanel
+              profileVersion={profileVersion}
+              initialMode={multiplicationMode}
+            />
           ) : view === 'vocabulary' ? (
             <VocabularyPanel profileVersion={profileVersion} />
           ) : (

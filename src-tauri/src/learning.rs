@@ -75,6 +75,7 @@ pub struct LearningState {
     profile_ready: bool,
     difficulty: Difficulty,
     topics: &'static [Topic],
+    study_catalog: &'static crate::study::StudyCatalog,
     curriculum_source: &'static str,
     curriculum_version: &'static str,
     points_by_difficulty: std::collections::BTreeMap<&'static str, i64>,
@@ -156,6 +157,7 @@ pub fn get_state(connection: &mut Connection) -> Result<LearningState, String> {
         profile_ready: database::get_profile(&transaction)?.is_some(),
         difficulty: database::get_difficulty(&transaction)?,
         topics: &catalog.topics,
+        study_catalog: crate::study::catalog(catalog)?,
         curriculum_source: &catalog.source,
         curriculum_version: &catalog.curriculum_version,
         points_by_difficulty: [
