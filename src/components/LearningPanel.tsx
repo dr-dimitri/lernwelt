@@ -11,7 +11,13 @@ import LearningTable from './LearningTable';
 import NatureGames from './NatureGames';
 import NumberLine from './NumberLine';
 import { FlowerPicture, ParticlePicture } from './NatureArt';
-import { useEffect, useRef, useState, type SubmitEvent } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type SubmitEvent,
+} from 'react';
 import {
   difficulties,
   type Difficulty,
@@ -54,6 +60,7 @@ export default function LearningPanel({
   } | null>(null);
   const returningTopics = useRef(false);
   const practiceRef = useRef<HTMLDivElement>(null);
+  const focusPractice = useRef(false);
   const pending = useRef<{
     id: string;
     questionId: string;
@@ -158,25 +165,32 @@ export default function LearningPanel({
     }
   }, [state?.difficulty, studyUnit?.id, roundIds, bank]);
 
+  useLayoutEffect(() => {
+    if (focusPractice.current) {
+      focusPractice.current = false;
+      practiceRef.current?.focus();
+    }
+  }, [roundIds, roundFinished]);
+
   function startUnit(unit: StudyUnit, offset = 0) {
     returningTopics.current = false;
     if (!state) return;
     const available = unitQuestions(state, unit);
     const effectiveOffset = available.some((q) => !q.solved) ? 0 : offset;
     const ids = studyRound(available, effectiveOffset);
+    focusPractice.current = true;
     setStudyUnitId(unit.id);
     setRoundOffset(effectiveOffset);
     setRoundIds(ids.length ? ids : studyRound(available));
     setRoundFinished(false);
     selectQuestion('');
-    requestAnimationFrame(() => practiceRef.current?.focus());
   }
 
   function nextQuestion() {
     if (studyUnit && questionIndex === questions.length - 1) {
+      focusPractice.current = true;
       setRoundFinished(true);
       setResult(null);
-      requestAnimationFrame(() => practiceRef.current?.focus());
     } else if (questions.length) {
       selectQuestion(questions[(questionIndex + 1) % questions.length].id);
     }
