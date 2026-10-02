@@ -126,6 +126,8 @@ Eine bereits bezahlte Wolkenflitzer-Runde bleibt kostenlos spielbar, neue Runden
 
 Jedes Spiel bietet deutsche Anleitungen, Tastatur- und Bildschirmtasten, Pause und ein sichtbares Rundenende. Hühner können zusätzlich direkt angetippt werden. Beim Fokusverlust pausiert das Spiel. **Spielpunkte und Bestwerte sind getrennt von Lernpunkten** und bringen kein neues Guthaben. Keine automatische kostenpflichtige Wiederholung.
 
+Kurze Ziele und eine Fortschrittsanzeige begleiten die Runde. Im **Klötzchen-Kosmos** zeigen eine helle Landehilfe und der nächste Stein, wie du weiterstapeln kannst. Beim **Hühner-Rummel** kannst du freiwillig alle fünf Hühner mit Konfetti begrüßen; schon begrüßte Hühner erhalten einen Stern. Treffer, Sterne und volle Reihen werden mit kurzen Rückmeldungen gefeiert. **Weniger Bewegung** reduziert die dekorativen Effekte und übernimmt beim Einstieg die Systemeinstellung. Die zusätzlichen Rundenziele vergeben keine Punkte oder gespeicherten Abzeichen.
+
 Eintritt, offene Runde und abgeschlossene Bestwerte werden lokal gespeichert. Nach Verlassen oder App-Neustart lässt sich eine offene bezahlte Runde kostenlos von vorn starten; die genaue Spielposition wird nicht gespeichert. Erst nach Abschluss dieser Runde ist ein neues Spiel auswählbar. Ein Speicherfehler lässt sich ohne weitere Abbuchung erneut versuchen. Die Spielauswahl zeigt statische Vorschauen der echten Spielgrafik. Kristallblöcke, ein perspektivisches Sternenlabyrinth mit freundlichen Robotern, Raumschiffe mit Triebwerken und flatternde Hühner auf dem Bauernhof werden lokal im Canvas gezeichnet, auf hochauflösenden Displays mit bis zu doppelter interner Auflösung. Animationen folgen der aktiven Spielzeit; in der Pause ruht die Zeichenschleife. Es werden keine Original-Assets der bekannten Spiele und keine neuen Bibliotheken eingebunden.
 
 ## Englisch Klasse 5
@@ -189,5 +191,7 @@ Drei lokal gezeichnete Lernspiele bieten zusätzlich freies Üben ohne Zeitdruck
 - **Wiesen-Netz:** Nahrungsbeziehungen einer vereinfachten Wiesengemeinschaft aufbauen.
 
 Die Spiele sind kostenlos, vergeben keine Lernpunkte und funktionieren auch ohne gespeichertes Profil. Alle Aktionen sind per Tastatur möglich. Vorschule, Könner und Streber bieten unterschiedliche Aufgaben; beim Verlassen oder Stufenwechsel beginnt die lokale Spielrunde neu. Die Fragen speichern ihren Fortschritt dagegen dauerhaft in SQLite.
+
+Eine Entdeckungsleiste macht jede richtige Zuordnung sichtbar. Nach dem Abschluss erscheint ein Forscherstern als Rückmeldung für diese Runde. Falsche Versuche bleiben ohne Abzug; du kannst in Ruhe weiterprobieren.
 
 Das Paket ist ein begrenztes Lernangebot zu ausgewählten Kompetenzen, **keine vollständige Lehrplanabdeckung**, keine amtlich freigegebene Lernsoftware und kein Ersatz für Unterricht. Praktische Fertigkeiten werden über Mitmachaufgaben mit Selbstkontrolle geübt. Quellenzuordnung, fachliche Grenzen und Hinweise zu den Modellen: [Inhaltsmatrix Natur und Technik](docs/curriculum-nature-5.md).

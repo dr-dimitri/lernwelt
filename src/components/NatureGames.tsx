@@ -23,6 +23,29 @@ interface Feedback {
   correct: boolean;
 }
 
+function DiscoveryTrail({
+  found,
+  total,
+  label,
+}: {
+  found: number;
+  total: number;
+  label: string;
+}) {
+  return (
+    <div className="nature-discovery-trail">
+      <progress aria-label={label} value={found} max={total} />
+      <div aria-hidden="true">
+        {Array.from({ length: total }, (_, i) => (
+          <span key={i} className={i < found ? 'is-found' : ''}>
+            {i < found ? '✦' : i + 1}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [found, setFound] = useState<string[]>([]);
@@ -79,6 +102,11 @@ function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
           {found.length} von {round.items.length} entdeckt
         </span>
       </div>
+      <DiscoveryTrail
+        found={found.length}
+        total={round.items.length}
+        label="Entdeckungen"
+      />
       <p>{round.instruction}</p>
       {flower ? (
         <FlowerPicture found={foundTargets} />
@@ -168,6 +196,9 @@ function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
       </div>
       {complete && (
         <div className="nature-complete">
+          <span className="nature-discovery-award" aria-hidden="true">
+            ✦
+          </span>
           <h4 ref={completionHeading} tabIndex={-1}>
             Alles entdeckt!
           </h4>
@@ -266,6 +297,11 @@ function MeadowGame({ difficulty }: { difficulty: Difficulty }) {
           {links.length} von {round.links.length} Verbindungen
         </span>
       </div>
+      <DiscoveryTrail
+        found={links.length}
+        total={round.links.length}
+        label="Verbindungen"
+      />
       <p>Wähle eine Nahrung. Wähle dann das Tier, das sie frisst.</p>
       <MeadowPicture nodes={round.nodes} links={links} />
       <p className="nature-model-note">
@@ -344,6 +380,9 @@ function MeadowGame({ difficulty }: { difficulty: Difficulty }) {
       )}
       {complete && (
         <div className="nature-complete">
+          <span className="nature-discovery-award" aria-hidden="true">
+            ✦
+          </span>
           <h4 ref={completionHeading} tabIndex={-1}>
             Deine Wiese ist verbunden!
           </h4>
@@ -403,6 +442,7 @@ function NatureGamesSession({ difficulty }: { difficulty: Difficulty }) {
           <button
             type="button"
             key={game.id}
+            aria-label={game.name}
             aria-pressed={active === game.id}
             onClick={() => setActive(game.id)}
           >
@@ -411,6 +451,7 @@ function NatureGamesSession({ difficulty }: { difficulty: Difficulty }) {
             </span>
             <span>
               <strong>{game.name}</strong>
+              <small>{game.subtitle}</small>
             </span>
           </button>
         ))}

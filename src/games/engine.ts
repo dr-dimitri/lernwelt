@@ -42,6 +42,9 @@ export interface Game {
   next: number;
   fallClock: number;
   color: number;
+  lines: number;
+  chickenHits: boolean[];
+  feedback: { serial: number; text: string; ttl: number };
   bursts: { x: number; y: number; ttl: number }[];
 }
 const shapes = [
@@ -119,6 +122,9 @@ export function createGame(id: GameId, seed = Date.now()): Game {
     next: 0,
     fallClock: 0,
     color: 1,
+    lines: 0,
+    chickenHits: Array<boolean>(5).fill(false),
+    feedback: { serial: 0, text: '', ttl: 0 },
     bursts: [],
   };
   if (id === 'maze') {
@@ -174,6 +180,22 @@ function fits(g: Game, piece = g.piece, x = g.pieceX, y = g.pieceY) {
     ),
   );
 }
+// Both the landing guide and the actual drop use the same collision rules.
+export function landingRow(g: Game) {
+  if (g.id !== 'blocks' || !g.piece.length) return g.pieceY;
+  let y = g.pieceY;
+  while (fits(g, g.piece, g.pieceX, y + 1)) y++;
+  return y;
+}
+export function nextPiece(g: Game) {
+  return shapes[g.next].map((row) => [...row]);
+}
+function celebrate(g: Game, text: string, x = 320, y = 200) {
+  g.feedback = { serial: g.feedback.serial + 1, text, ttl: 1.8 };
+  g.bursts.push({ x, y, ttl: 0.6 });
+  // Decoration stays bounded even when many targets are collected in one frame.
+  g.bursts = g.bursts.slice(-12);
+}
 function spawn(g: Game) {
   g.color = g.next + 1;
   g.piece = shapes[g.next].map((row) => [...row]);
@@ -195,6 +217,14 @@ function descend(g: Game) {
   const remaining = g.board.filter((row) => row.some((cell) => !cell));
   const lines = 18 - remaining.length;
   g.score += lines * lines * 100;
+  g.lines += lines;
+  if (lines)
+    celebrate(
+      g,
+      `${lines === 1 ? 'Reihe geschafft!' : `${lines} Reihen auf einmal!`} +${lines * lines * 100}`,
+      320,
+      340,
+    );
   g.board = [
     ...Array.from({ length: lines }, () => Array<number>(10).fill(0)),
     ...remaining,
@@ -219,7 +249,7 @@ export function actGame(g: Game, action: Action) {
     }
     if (action === 'down') descend(g);
     if (action === 'drop') {
-      while (fits(g, g.piece, g.pieceX, g.pieceY + 1)) g.pieceY++;
+      g.pieceY = landingRow(g);
       descend(g);
       g.fallClock = 0;
     }
@@ -229,6 +259,7 @@ export function actGame(g: Game, action: Action) {
     if (robot) {
       robot.alive = false;
       g.score += 75;
+      celebrate(g, 'Roboter schwebt davon! +75');
     }
     g.maze.flash = 0.22;
     g.cooldown = 0.3;
@@ -245,7 +276,13 @@ export function hitChicken(g: Game, index: number) {
   if (!target?.alive) return;
   g.score += 50;
   g.cooldown = 0.35;
-  g.bursts.push({ x: target.x + 28, y: target.y + 22, ttl: 0.5 });
+  g.chickenHits[index] = true;
+  celebrate(
+    g,
+    `Konfetti für Huhn ${index + 1}! +50`,
+    target.x + 28,
+    target.y + 22,
+  );
   target.x = 20 + random(g) * 550;
   target.y = 65 + random(g) * 210;
 }
@@ -265,6 +302,7 @@ export function stepGame(
   g.elapsed += dt;
   g.cooldown -= dt;
   g.invincible -= dt;
+  g.feedback.ttl = Math.max(0, g.feedback.ttl - dt);
   g.bursts = g.bursts.filter((b) => (b.ttl -= dt) > 0);
   if (g.id === 'blocks') {
     g.fallClock += dt;
@@ -287,6 +325,7 @@ export function stepGame(
       if (coin.alive && overlaps(player, coin)) {
         coin.alive = false;
         g.score += 50;
+        celebrate(g, 'Stern gefunden! +50', 134, g.y);
       }
     if (g.invincible <= 0 && g.entities.some((e) => overlaps(player, e))) {
       g.lives--;
@@ -312,6 +351,12 @@ export function stepGame(
       if (star.alive && Math.hypot(m.x - star.x, m.y - star.y) < 0.55) {
         star.alive = false;
         g.score += 100;
+        celebrate(
+          g,
+          m.stars.every((s) => !s.alive)
+            ? 'Alle Sterne da! Zum grünen Portal!'
+            : 'Stern gefunden! +100',
+        );
       }
     for (const robot of m.robots) {
       if (!robot.alive) continue;
@@ -382,6 +427,7 @@ export function stepGame(
         if (target) {
           target.alive = false;
           g.score += 25;
+          celebrate(g, 'Roboter gerettet! +25', target.x + 15, target.y + 12);
           shot.y = -100;
         }
       }
@@ -396,6 +442,7 @@ export function stepGame(
       } else {
         g.wave++;
         wave(g);
+        celebrate(g, `Welle geschafft! Weiter mit Welle ${g.wave}.`);
       }
     }
   }

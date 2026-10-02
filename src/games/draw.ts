@@ -1,5 +1,5 @@
 import { drawMaze } from './maze-draw';
-import type { Game } from './engine';
+import { landingRow, nextPiece, type Game } from './engine';
 
 const gems = [
   '#15223f',
@@ -183,8 +183,8 @@ function crystal(
   );
 }
 
-function blocks(b: Brushes, g: Game) {
-  cosmos(b, g.elapsed, true);
+function blocks(b: Brushes, g: Game, time: number) {
+  cosmos(b, time, true);
   b.box(210, 10, 220, 380, '#788ac533', 13);
   b.box(215, 15, 210, 370, '#080f24', 8);
   b.line(
@@ -218,6 +218,27 @@ function blocks(b: Brushes, g: Game) {
       if (v) crystal(b, 220 + x * 20, 20 + y * 20, 19, gems[v]);
     }),
   );
+  const landing = landingRow(g);
+  if (!g.over && landing > g.pieceY)
+    g.piece.forEach((row, y) =>
+      row.forEach((v, x) => {
+        if (!v) return;
+        const px = 220 + (g.pieceX + x) * 20;
+        const py = 20 + (landing + y) * 20;
+        b.box(px + 2, py + 2, 15, 15, '#a8eef340', 3);
+        b.line(
+          [
+            [px + 3, py + 5],
+            [px + 3, py + 3],
+            [px + 16, py + 3],
+            [px + 16, py + 16],
+            [px + 3, py + 16],
+          ],
+          '#9ce9ed',
+          1,
+        );
+      }),
+    );
   g.piece.forEach((row, y) =>
     row.forEach((v, x) => {
       if (v)
@@ -230,33 +251,49 @@ function blocks(b: Brushes, g: Game) {
         );
     }),
   );
-  b.text('MISSION', 30, 57, 12, '#9ab9de');
+  b.text('DEIN KOSMOS', 30, 57, 12, '#9ab9de');
   b.text('REIHEN', 30, 86, 25);
   b.text('KNACKEN', 30, 116, 25, '#77ede4');
   b.star(72, 287, 16);
-  b.text('100', 100, 295, 28);
-  b.text('pro voller Reihe', 30, 325, 15, '#b9cee5');
-  b.box(453, 36, 160, 91, '#ffffff0d', 16);
-  b.text('NOCH ZEIT', 470, 61, 12, '#a6c2e3');
-  b.text(
-    `${Math.max(0, Math.ceil(240 - g.elapsed))} s`,
-    470,
-    99,
-    31,
-    '#ffdb79',
+  b.text(String(g.lines), 100, 295, 28);
+  b.text('Reihen geschafft', 30, 325, 15, '#b9cee5');
+  b.box(453, 36, 160, 125, '#ffffff0d', 16);
+  b.text('ALS NÄCHSTES', 470, 61, 12, '#a6c2e3');
+  const next = nextPiece(g);
+  const size = 24;
+  const startX = 533 - (next[0].length * size) / 2;
+  const startY = 108 - (next.length * size) / 2;
+  next.forEach((row, y) =>
+    row.forEach((v, x) => {
+      if (v)
+        crystal(
+          b,
+          startX + x * size,
+          startY + y * size,
+          size - 1,
+          gems[g.next + 1],
+        );
+    }),
   );
-  b.text('Lücken füllen.', 452, 187, 18);
-  b.text('Reihen feiern!', 452, 214, 18);
+  b.text('Die helle Spur', 452, 198, 16);
+  b.text('zeigt den Platz', 452, 223, 16, '#b9cee5');
+  b.text('zum Ablegen.', 452, 248, 16, '#b9cee5');
   b.line(
     [
-      [453, 241],
-      [609, 241],
+      [453, 271],
+      [609, 271],
     ],
     '#a7bcdf40',
   );
-  b.text('Mehrere Reihen', 453, 272, 15, '#b9cee5');
-  b.text('auf einmal?', 453, 294, 15, '#b9cee5');
-  b.text('Bonus kassieren!', 453, 323, 16, '#77ede4');
+  b.text('100 pro Reihe', 453, 301, 15, '#77ede4');
+  b.text('Mehrere = Bonus!', 453, 325, 15, '#b9cee5');
+  b.text(
+    `${Math.max(0, Math.ceil(240 - g.elapsed))} s Spielzeit übrig`,
+    453,
+    364,
+    13,
+    '#b9cee5',
+  );
 }
 
 function cloud(b: Brushes, x: number, y: number, scale = 1) {
@@ -329,7 +366,7 @@ function meadow(b: Brushes, camera: number, farm: boolean) {
   }
 }
 
-function runner(b: Brushes, g: Game) {
+function runner(b: Brushes, g: Game, time: number, reducedMotion: boolean) {
   const camera = g.x - 120;
   meadow(b, camera, false);
   g.entities.forEach((e) => {
@@ -374,7 +411,8 @@ function runner(b: Brushes, g: Game) {
     b.star(x, e.y + 11, 10, '#b97831');
     b.star(x, e.y + 9, 10);
     b.oval(x - 2, e.y + 6, 2, 2, '#fff8d7');
-    if (Math.sin(g.elapsed * 3 + i) > 0.6) b.star(x + 13, e.y, 3, '#fffced');
+    if (!reducedMotion && Math.sin(time * 3 + i) > 0.6)
+      b.star(x + 13, e.y, 3, '#fffced');
   });
   const flag = 3400 - camera;
   if (flag < 670) {
@@ -392,10 +430,10 @@ function runner(b: Brushes, g: Game) {
     );
     b.text('ZIEL', flag + 13, 195, 16);
   }
-  const stride = g.y >= 310 ? Math.sin(g.elapsed * 20) * 3 : -2;
+  const stride = g.y >= 310 ? Math.sin(time * 20) * 3 : -2;
   b.oval(134, 349, Math.max(7, 19 - (310 - g.y) / 30), 4, '#164d4c35');
   // Solid character shapes follow the engine's 28 × 40 hitbox; scarf is decorative.
-  if (g.invincible <= 0 || Math.floor(g.elapsed * 12) % 2) {
+  if (reducedMotion || g.invincible <= 0 || Math.floor(g.elapsed * 12) % 2) {
     b.poly(
       [
         [122, g.y + 20],
@@ -439,8 +477,8 @@ function runner(b: Brushes, g: Game) {
   b.text(`${Math.min(100, Math.floor((g.x / 3400) * 100))}%`, 180, 54, 13);
 }
 
-function space(b: Brushes, g: Game) {
-  cosmos(b, g.elapsed, false);
+function space(b: Brushes, g: Game, time: number, reducedMotion: boolean) {
+  cosmos(b, time, false);
   b.poly(
     [
       [0, 397],
@@ -516,11 +554,11 @@ function space(b: Brushes, g: Game) {
       e.y + 2,
       1.8,
       1.8,
-      Math.sin(g.elapsed * 3 + i) > 0 ? '#f8e498' : '#bb9fe6',
+      Math.sin(time * 3 + i) > 0 ? '#f8e498' : '#bb9fe6',
     );
   });
-  if (g.invincible <= 0 || Math.floor(g.elapsed * 12) % 2) {
-    const flame = 6 + Math.sin(g.elapsed * 30) * 3;
+  if (reducedMotion || g.invincible <= 0 || Math.floor(g.elapsed * 12) % 2) {
+    const flame = 6 + Math.sin(time * 30) * 3;
     b.poly(
       [
         [g.x + 10, g.y + 27],
@@ -682,7 +720,12 @@ function farm(b: Brushes) {
   }
 }
 
-function chickens(c: CanvasRenderingContext2D, b: Brushes, g: Game) {
+function chickens(
+  c: CanvasRenderingContext2D,
+  b: Brushes,
+  g: Game,
+  time: number,
+) {
   meadow(b, 0, true);
   farm(b);
   g.entities.forEach((e, i) => {
@@ -736,7 +779,7 @@ function chickens(c: CanvasRenderingContext2D, b: Brushes, g: Game) {
       '#f0ac48',
     );
     b.oval(48, 24, 2.5, 3.5, '#ee8580');
-    const wing = Math.sin(g.elapsed * 13 + i) * 5;
+    const wing = Math.sin(time * 13 + i) * 5;
     b.oval(21, 21 + wing, 12, 7, i % 2 ? '#d7a774' : '#e6c793');
     b.line(
       [
@@ -748,22 +791,9 @@ function chickens(c: CanvasRenderingContext2D, b: Brushes, g: Game) {
       1.5,
     );
     c.restore();
-    b.oval(e.x + 9, e.y + 3, 11, 11, '#254568');
+    b.oval(e.x + 9, e.y + 3, 12, 12, g.chickenHits[i] ? '#286448' : '#254568');
     b.text(String(i + 1), e.x + 4, e.y + 8, 14);
-  });
-  g.bursts.forEach((burst) => {
-    for (let i = 0; i < 14; i++) {
-      const angle = (i * Math.PI) / 7;
-      const radius = (1 - burst.ttl) * 65;
-      const x = burst.x + Math.cos(angle) * radius;
-      const y = burst.y + Math.sin(angle) * radius + (1 - burst.ttl) * 12;
-      c.save();
-      c.globalAlpha = Math.min(1, burst.ttl * 2);
-      c.translate(x, y);
-      c.rotate(angle + g.elapsed * 2);
-      b.box(-3, -2, 6, 4, gems[1 + (i % 7)], 1);
-      c.restore();
-    }
+    if (g.chickenHits[i]) b.star(e.x + 52, e.y + 2, 6);
   });
   b.box(18, 15, 170, 36, '#214b60ed', 12);
   b.text(`${Math.max(0, Math.ceil(90 - g.elapsed))} Sekunden`, 32, 40, 19);
@@ -777,14 +807,39 @@ function chickens(c: CanvasRenderingContext2D, b: Brushes, g: Game) {
   );
 }
 
-export function drawGame(c: CanvasRenderingContext2D, g: Game) {
+function celebrations(c: CanvasRenderingContext2D, b: Brushes, g: Game) {
+  g.bursts.forEach((burst) => {
+    const t = 1 - burst.ttl / 0.6;
+    for (let i = 0; i < 12; i++) {
+      const angle = (i * Math.PI) / 6;
+      const radius = 10 + t * 38;
+      c.save();
+      c.globalAlpha = Math.min(1, burst.ttl * 3);
+      c.translate(
+        burst.x + Math.cos(angle) * radius,
+        burst.y + Math.sin(angle) * radius + t * 15,
+      );
+      c.rotate(angle + t * 2);
+      b.box(-3, -2, 6, 4, gems[1 + (i % 7)], 1);
+      c.restore();
+    }
+  });
+}
+
+export function drawGame(
+  c: CanvasRenderingContext2D,
+  g: Game,
+  reducedMotion = false,
+) {
   c.save();
   c.clearRect(0, 0, 640, 400);
   const b = brushes(c);
-  if (g.id === 'maze') drawMaze(c, g);
-  else if (g.id === 'blocks') blocks(b, g);
-  else if (g.id === 'runner') runner(b, g);
-  else if (g.id === 'space') space(b, g);
-  else chickens(c, b, g);
+  const time = reducedMotion ? 0 : g.elapsed;
+  if (g.id === 'maze') drawMaze(c, g, reducedMotion);
+  else if (g.id === 'blocks') blocks(b, g, time);
+  else if (g.id === 'runner') runner(b, g, time, reducedMotion);
+  else if (g.id === 'space') space(b, g, time, reducedMotion);
+  else chickens(c, b, g, time);
+  if (!reducedMotion) celebrations(c, b, g);
   c.restore();
 }

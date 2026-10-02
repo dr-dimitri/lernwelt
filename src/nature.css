@@ -295,3 +295,118 @@
     padding: 9px 6px;
   }
 }
+
+.nature-games-intro {
+  padding: 18px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 95% 0, #d3e9c0 0, transparent 48%), #edf5e8;
+  border: 1px solid #d4e2c9;
+}
+.nature-game-picker button {
+  min-height: 112px;
+  padding: 12px 8px;
+  box-shadow: 0 4px 0 #d8e3d2;
+  transition: transform 160ms ease;
+}
+.nature-game-picker button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.nature-game-picker button[aria-pressed='true'] {
+  background: #dcefd2;
+  box-shadow: 0 4px 0 #7c9d6f;
+}
+.nature-game-symbol {
+  width: 40px;
+  height: 40px;
+  flex-basis: 40px;
+  background: #f7fbe9;
+}
+.nature-discovery-trail {
+  margin: 16px 0;
+  padding: 12px;
+  border-radius: 14px;
+  background: #f0f5e9;
+}
+.nature-discovery-trail progress {
+  display: block;
+  width: 100%;
+  height: 9px;
+  margin: 9px 0;
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  accent-color: #286448;
+}
+.nature-discovery-trail progress::-webkit-progress-bar {
+  background: #d5e2cb;
+  border-radius: 20px;
+}
+.nature-discovery-trail progress::-webkit-progress-value {
+  background: #42744f;
+  border-radius: 20px;
+}
+.nature-discovery-trail > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+.nature-discovery-trail span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px dashed #9dad93;
+  border-radius: 50%;
+  color: #51644b;
+  font-size: 13px;
+}
+.nature-discovery-trail .is-found {
+  border: 1px solid #9b792c;
+  background: #ffe4a0;
+  color: #755114;
+  font-size: 23px;
+  animation: discovery-pop 300ms ease-out;
+}
+.nature-complete {
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr);
+  column-gap: 14px;
+  background: linear-gradient(130deg, #fff2c9, #eaf4de);
+}
+.nature-discovery-award {
+  grid-row: 1 / 3;
+  display: grid;
+  place-items: center;
+  align-self: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 17px;
+  background: #ffe6a5;
+  color: #755114;
+  font-size: 35px;
+  box-shadow: 0 4px 0 #d7bb76;
+}
+@keyframes discovery-pop {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nature-game-picker button:hover:not(:disabled) {
+    transform: none;
+  }
+  .nature-discovery-trail .is-found {
+    animation: none;
+  }
+}
+@container (max-width: 350px) {
+  .nature-game-picker button {
+    min-height: 70px;
+    padding: 10px;
+  }
+}

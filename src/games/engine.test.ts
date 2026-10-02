@@ -1,7 +1,54 @@
 import { describe, expect, it } from 'vitest';
-import { actGame, createGame, hitChicken, pointAt, stepGame } from './engine';
+import {
+  actGame,
+  createGame,
+  hitChicken,
+  landingRow,
+  nextPiece,
+  pointAt,
+  stepGame,
+} from './engine';
+import { gameProgress } from './progress';
 
 describe('Klötzchen-Kosmos', () => {
+  it.each([0, 1, 2, 3, 4, 5, 6])(
+    'zeigt für Stein %i eine unverändernde Landehilfe auf einem unebenen Stapel',
+    (shape) => {
+      const g = createGame('blocks', 42);
+      g.next = shape;
+      g.piece = nextPiece(g);
+      g.pieceX = 3;
+      g.board[17][3] = 2;
+      g.board[16][4] = 3;
+      g.board[17][6] = 4;
+      actGame(g, 'rotate');
+      const before = structuredClone(g);
+      const landing = landingRow(g);
+      expect(g).toEqual(before);
+      expect(landing).toBeGreaterThan(g.pieceY);
+      actGame(g, 'drop');
+      before.piece.forEach((row, dy) =>
+        row.forEach((cell, dx) => {
+          if (cell)
+            expect(g.board[landing + dy][before.pieceX + dx]).toBe(
+              before.color,
+            );
+        }),
+      );
+    },
+  );
+  it('zeigt genau den nächsten Stein, ohne durch die Vorschau Zufall oder Formen zu verändern', () => {
+    const g = createGame('blocks', 42);
+    const before = structuredClone(g);
+    const next = nextPiece(g);
+    expect(g).toEqual(before);
+    const altered = nextPiece(g);
+    altered[0][0] = 99;
+    expect(nextPiece(g)).toEqual(next);
+    actGame(g, 'drop');
+    expect(g.piece).toEqual(next);
+    expect(g.color).toBe(before.next + 1);
+  });
   it('löscht volle Reihen, zählt den Bonus und erzeugt den nächsten Stein', () => {
     const g = createGame('blocks', 1);
     g.board[17] = [1, 1, 1, 1, 0, 0, 1, 1, 1, 1];
@@ -10,6 +57,9 @@ describe('Klötzchen-Kosmos', () => {
     g.pieceY = 16;
     actGame(g, 'drop');
     expect(g.score).toBe(100);
+    expect(g.lines).toBe(1);
+    expect(gameProgress(g).value).toBe(1);
+    expect(g.feedback.text).toContain('Reihe geschafft! +100');
     expect(g.board.every((row) => row.every((cell) => !cell))).toBe(true);
     expect(g.pieceY).toBe(0);
   });
@@ -77,11 +127,14 @@ describe('Sternenwache', () => {
     stepGame(g, 0.02);
     expect(g.score).toBe(25);
     expect(g.wave).toBe(2);
+    expect(gameProgress(g).value).toBe(24);
+    expect(g.feedback.text).toContain('Weiter mit Welle 2');
     g.wave = 6;
     g.entities.forEach((e) => (e.alive = false));
     stepGame(g, 0.02);
     expect(g.over).toBe(true);
     expect(g.won).toBe(true);
+    expect(gameProgress(g).value).toBe(144);
   });
   it('begrenzt Feuerfrequenz und endet bei Verlust der Herzen oder Station', () => {
     const g = createGame('space');
@@ -100,6 +153,26 @@ describe('Sternenwache', () => {
   });
 });
 describe('Hühner-Rummel', () => {
+  it('zählt unterschiedliche Hühner als freiwilliges Ziel und spielt danach mit den bisherigen Punkten weiter', () => {
+    const g = createGame('chickens', 1);
+    pointAt(g, 635, 395);
+    expect(gameProgress(g).value).toBe(0);
+    for (const i of [0, 0, 1, 2, 3, 4]) {
+      g.cooldown = 0;
+      hitChicken(g, i);
+    }
+    expect(gameProgress(g).value).toBe(5);
+    expect(g.over).toBe(false);
+    expect(g.score).toBe(300);
+    expect(g.feedback.text).toBe('Konfetti für Huhn 5! +50');
+    const snapshot = structuredClone(g);
+    hitChicken(g, 4);
+    expect(g).toEqual(snapshot);
+    for (let i = 0; i < 50; i++) stepGame(g, 0.04);
+    expect(g.feedback.ttl).toBe(0);
+    expect(g.bursts).toEqual([]);
+    expect(g.score).toBe(300);
+  });
   it('wertet nur Hühner-Treffer, mit Wartezeit und festem Rundenende', () => {
     const g = createGame('chickens', 1);
     pointAt(g, 635, 395);
