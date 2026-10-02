@@ -8,6 +8,7 @@ Das Ergebnis umfasst 87 Unterthemen in 17 Lernbereichen und 3.675 sichtbare Fach
 
 ## Befunde und Korrekturen
 
+- Der letzte Abgleich von Dokumentation und Katalog fand fehlende Wortschatz-Stichwörter nach einem erneuten Build. Das Entwicklungswerkzeug aktualisiert den Suchindex jetzt bei jedem Lauf. Der Inhaltscheck fordert ausdrücklich „mother“ und „Mutter“ im Familienthema.
 - Englisch wurde in 18 gezielte Wortschatz-Themen aufgeteilt. Trainerlinks starten im passenden Deck; Wortschatzsuche berücksichtigt deutsche und englische Wörter. Ein eigenes Hörthema nutzt bekannte lokale Wort- und Satzdateien. Keine beliebigen Pfade oder neuen Commands.
 - Lernziele wurden von bloßen Themenwiederholungen zu konkreten Fähigkeiten überarbeitet. Die Fragen nennen gesuchte Größe und Einheit; neue Zeichen und Begriffe werden in Frage, Tipp oder Erklärung erläutert. Natur und Technik verwendet fachbezogene Hinweise; Versuchsauswertung erhält zwölf konkrete Denkwege.
 - Mehrdeutige Versuchseinleitung, gleiche Geometrie-/Lesebeispiele und mögliche unfaire freie Synonymabfragen wurden während des Inhaltsreviews korrigiert. Auswahlaufgaben erhalten eindeutig verschiedene Optionen und wechselnde Positionen der richtigen Antwort. Hör-Schreibaufgaben bieten den Satz zur Einordnung ähnlich klingender Wörter.

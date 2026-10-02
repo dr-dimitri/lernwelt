@@ -474,8 +474,16 @@ def build():
  # Rebuilding uses the original navigation assignments and adds the same finite v1 bank.
  for unit in study['units']:unit['exerciseIds']=[id for id in unit['exerciseIds'] if '.focus.' not in id]
  by_id={e['id']:e for e in originals};expand_word_units(study,by_id);new=[]
+ cards=json.loads((ROOT/'src-tauri/content/vocabulary-5-v1.json').read_text())['cards']
  for unit in study['units']:
   if unit['id'] in GOALS:unit['goal']=GOALS[unit['id']]
+  if unit['id'].startswith('english-vocabulary-'):
+   deck=unit['id'].removeprefix('english-vocabulary-')
+   terms=[unit['name']]
+   for card in cards:
+    if card['deckId']==deck:
+     terms.extend([card['english'],card['german'],*card.get('englishAnswers',[]),*card.get('germanAnswers',[])])
+   unit['keywords']=list(dict.fromkeys(terms))
  for unit in study['units']:
   if all(sum(by_id[eid]['difficulty']==level for eid in unit['exerciseIds'])>=12 for level in ['vorschule','koenner','streber']):continue
   exemplar=by_id[unit['exerciseIds'][0]] if unit['exerciseIds'] else dict(topicId=('english-'+unit['id'].removeprefix('english-vocabulary-') if unit['id'].removeprefix('english-vocabulary-') in ['hello','family','home','school','day','friends','shopping','party','past','stories','travel','words'] else 'english-words'))

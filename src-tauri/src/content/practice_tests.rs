@@ -4,6 +4,13 @@ use super::*;
 fn all_selectable_units_offer_twelve_tasks_at_each_level_without_duplicate_tasks() {
     let content = catalog().unwrap();
     let study = crate::study::catalog(content).unwrap();
+    let family = study
+        .units
+        .iter()
+        .find(|u| u.id == "english-vocabulary-family")
+        .unwrap();
+    assert!(family.keywords.iter().any(|word| word == "mother"));
+    assert!(family.keywords.iter().any(|word| word == "Mutter"));
     for unit in &study.units {
         for level in [
             Difficulty::Vorschule,
