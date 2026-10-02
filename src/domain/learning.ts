@@ -1,3 +1,4 @@
+import type { StudyCatalog } from './study';
 import type { SubjectId } from './subjects';
 import type { NumberLineDiagram } from './number-line';
 
@@ -82,6 +83,7 @@ export interface LearningState {
   profileReady: boolean;
   difficulty: Difficulty;
   topics: Topic[];
+  studyCatalog?: StudyCatalog;
   curriculumSource: string;
   curriculumVersion: string;
   pointsByDifficulty: Record<Difficulty, number>;

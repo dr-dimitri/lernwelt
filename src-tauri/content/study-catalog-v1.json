@@ -1,0 +1,2249 @@
+{
+  "version": 1,
+  "areas": [
+    {
+      "id": "math-numbers",
+      "subject": "mathematics",
+      "name": "Zahlen verstehen",
+      "curriculumRef": "M5 1.1"
+    },
+    {
+      "id": "math-add",
+      "subject": "mathematics",
+      "name": "Plus und Minus",
+      "curriculumRef": "M5 1.2"
+    },
+    {
+      "id": "math-geometry",
+      "subject": "mathematics",
+      "name": "Geometrie",
+      "curriculumRef": "M5 2"
+    },
+    {
+      "id": "math-multiply",
+      "subject": "mathematics",
+      "name": "Mal und Geteilt",
+      "curriculumRef": "M5 3.1"
+    },
+    {
+      "id": "math-terms",
+      "subject": "mathematics",
+      "name": "Terme und Rechentricks",
+      "curriculumRef": "M5 3.2"
+    },
+    {
+      "id": "math-units",
+      "subject": "mathematics",
+      "name": "Größen und Einheiten",
+      "curriculumRef": "M5 4.1"
+    },
+    {
+      "id": "math-area",
+      "subject": "mathematics",
+      "name": "Flächen und Körper",
+      "curriculumRef": "M5 4.2"
+    },
+    {
+      "id": "english-grammar",
+      "subject": "english",
+      "name": "Grammatik gezielt üben",
+      "curriculumRef": "E5 1.2 Grammatik"
+    },
+    {
+      "id": "english-words",
+      "subject": "english",
+      "name": "Wörter im Alltag",
+      "curriculumRef": "E5 1.2 Wortschatz; E5 5"
+    },
+    {
+      "id": "english-texts",
+      "subject": "english",
+      "name": "Lesen, sprechen und schreiben",
+      "curriculumRef": "E5 1.1; E5 3"
+    },
+    {
+      "id": "english-culture",
+      "subject": "english",
+      "name": "Land, Leute und Lernideen",
+      "curriculumRef": "E5 2; E5 4; E5 5"
+    },
+    {
+      "id": "nature-methods",
+      "subject": "nature",
+      "name": "Forschen und Messen",
+      "curriculumRef": "NT5 1.1; NT5 2.1"
+    },
+    {
+      "id": "nature-materials",
+      "subject": "nature",
+      "name": "Stoffe und Naturphänomene",
+      "curriculumRef": "NT5 1.2"
+    },
+    {
+      "id": "nature-cells",
+      "subject": "nature",
+      "name": "Lebewesen und Zellen",
+      "curriculumRef": "NT5 2.2"
+    },
+    {
+      "id": "nature-human",
+      "subject": "nature",
+      "name": "Der menschliche Körper",
+      "curriculumRef": "NT5 2.3"
+    },
+    {
+      "id": "nature-plants",
+      "subject": "nature",
+      "name": "Samenpflanzen",
+      "curriculumRef": "NT5 2.4"
+    },
+    {
+      "id": "nature-grassland",
+      "subject": "nature",
+      "name": "Lebensraum Wiese",
+      "curriculumRef": "NT5 2.5"
+    }
+  ],
+  "units": [
+    {
+      "id": "math-sets",
+      "areaId": "math-numbers",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Mengen und Zahlenmengen",
+      "goal": "Du übst: Mengen und Zahlenmengen.",
+      "keywords": [
+        "Element",
+        "gehört dazu",
+        "ℕ",
+        "ℤ"
+      ],
+      "curriculumRef": "M5 1.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.sets.elements.vorschule.v1",
+        "by.math.5.sets.elements.koenner.v1",
+        "by.math.5.sets.elements.streber.v1",
+        "by.math.5.sets.notation.vorschule.v1",
+        "by.math.5.sets.notation.koenner.v1",
+        "by.math.5.sets.notation.streber.v1",
+        "by.math.5.sets.belongs.vorschule.v1",
+        "by.math.5.sets.belongs.koenner.v1",
+        "by.math.5.sets.belongs.streber.v1",
+        "by.math.5.sets.not-belongs.vorschule.v1",
+        "by.math.5.sets.not-belongs.koenner.v1",
+        "by.math.5.sets.not-belongs.streber.v1",
+        "by.math.5.sets.natural.vorschule.v1",
+        "by.math.5.sets.natural.koenner.v1",
+        "by.math.5.sets.natural.streber.v1",
+        "by.math.5.sets.integers.vorschule.v1",
+        "by.math.5.sets.integers.koenner.v1",
+        "by.math.5.sets.integers.streber.v1",
+        "by.math.5.sets.infinite.vorschule.v1",
+        "by.math.5.sets.infinite.koenner.v1",
+        "by.math.5.sets.infinite.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-place-value",
+      "areaId": "math-numbers",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Stellenwerte und große Zahlen",
+      "goal": "Du übst: Stellenwerte und große Zahlen.",
+      "keywords": [
+        "Zahlwort",
+        "Million",
+        "Zehnersystem"
+      ],
+      "curriculumRef": "M5 1.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.numbers.place-value.vorschule.v1",
+        "by.math.5.numbers.place-value.koenner.v1",
+        "by.math.5.numbers.place-value.streber.v1",
+        "by.math.5.numbers.word-to-number.vorschule.v1",
+        "by.math.5.numbers.word-to-number.koenner.v1",
+        "by.math.5.numbers.word-to-number.streber.v1",
+        "by.math.5.numbers.read-number.vorschule.v1",
+        "by.math.5.numbers.read-number.koenner.v1",
+        "by.math.5.numbers.read-number.streber.v1",
+        "by.math.5.numbers.word-zero-groups.vorschule.v1",
+        "by.math.5.numbers.word-zero-groups.koenner.v1",
+        "by.math.5.numbers.word-zero-groups.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-roman",
+      "areaId": "math-numbers",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Römische Zahlen",
+      "goal": "Du übst: Römische Zahlen.",
+      "keywords": [
+        "IV",
+        "X",
+        "Zahlzeichen"
+      ],
+      "curriculumRef": "M5 1.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.numbers.roman.vorschule.v1",
+        "by.math.5.numbers.roman.koenner.v1",
+        "by.math.5.numbers.roman.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-rounding",
+      "areaId": "math-numbers",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Zahlen runden",
+      "goal": "Du übst: Zahlen runden.",
+      "keywords": [
+        "Hunderttausender",
+        "Rundung"
+      ],
+      "curriculumRef": "M5 1.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.numbers.rounding.vorschule.v1",
+        "by.math.5.numbers.rounding.koenner.v1",
+        "by.math.5.numbers.rounding.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-number-line",
+      "areaId": "math-numbers",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Zahlenstrahl und Zahlengerade",
+      "goal": "Du übst: Zahlenstrahl und Zahlengerade.",
+      "keywords": [
+        "Skala",
+        "markieren",
+        "ablesen"
+      ],
+      "curriculumRef": "M5 1.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.numbers.number-line.vorschule.v1",
+        "by.math.5.numbers.number-line.koenner.v1",
+        "by.math.5.numbers.number-line.streber.v1",
+        "by.math.5.numbers.choose-scale.vorschule.v1",
+        "by.math.5.numbers.choose-scale.koenner.v1",
+        "by.math.5.numbers.choose-scale.streber.v1",
+        "by.math.5.number-line.1.vorschule.v1",
+        "by.math.5.number-line.2.vorschule.v1",
+        "by.math.5.number-line.3.vorschule.v1",
+        "by.math.5.number-line.4.vorschule.v1",
+        "by.math.5.number-line.5.vorschule.v1",
+        "by.math.5.number-line.6.vorschule.v1",
+        "by.math.5.number-line.7.vorschule.v1",
+        "by.math.5.number-line.8.vorschule.v1",
+        "by.math.5.number-line.9.vorschule.v1",
+        "by.math.5.number-line.10.vorschule.v1",
+        "by.math.5.number-line.11.vorschule.v1",
+        "by.math.5.number-line.12.vorschule.v1",
+        "by.math.5.number-line.1.koenner.v1",
+        "by.math.5.number-line.2.koenner.v1",
+        "by.math.5.number-line.3.koenner.v1",
+        "by.math.5.number-line.4.koenner.v1",
+        "by.math.5.number-line.5.koenner.v1",
+        "by.math.5.number-line.6.koenner.v1",
+        "by.math.5.number-line.7.koenner.v1",
+        "by.math.5.number-line.8.koenner.v1",
+        "by.math.5.number-line.9.koenner.v1",
+        "by.math.5.number-line.10.koenner.v1",
+        "by.math.5.number-line.11.koenner.v1",
+        "by.math.5.number-line.12.koenner.v1",
+        "by.math.5.number-line.1.streber.v1",
+        "by.math.5.number-line.2.streber.v1",
+        "by.math.5.number-line.3.streber.v1",
+        "by.math.5.number-line.4.streber.v1",
+        "by.math.5.number-line.5.streber.v1",
+        "by.math.5.number-line.6.streber.v1",
+        "by.math.5.number-line.7.streber.v1",
+        "by.math.5.number-line.8.streber.v1",
+        "by.math.5.number-line.9.streber.v1",
+        "by.math.5.number-line.10.streber.v1",
+        "by.math.5.number-line.11.streber.v1",
+        "by.math.5.number-line.12.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-integers",
+      "areaId": "math-numbers",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Negative Zahlen und Betrag",
+      "goal": "Du übst: Negative Zahlen und Betrag.",
+      "keywords": [
+        "Vorzeichen",
+        "Abstand zur Null",
+        "ganze Zahlen"
+      ],
+      "curriculumRef": "M5 1.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.numbers.ordering.vorschule.v1",
+        "by.math.5.numbers.ordering.koenner.v1",
+        "by.math.5.numbers.ordering.streber.v1",
+        "by.math.5.numbers.absolute.vorschule.v1",
+        "by.math.5.numbers.absolute.koenner.v1",
+        "by.math.5.numbers.absolute.streber.v1",
+        "by.math.5.numbers.successor.vorschule.v1",
+        "by.math.5.numbers.successor.koenner.v1",
+        "by.math.5.numbers.successor.streber.v1",
+        "by.math.5.numbers.build-counterexample.vorschule.v1",
+        "by.math.5.numbers.build-counterexample.koenner.v1",
+        "by.math.5.numbers.build-counterexample.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-written-add",
+      "areaId": "math-add",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Schriftlich addieren und subtrahieren",
+      "goal": "Du übst: Schriftlich addieren und subtrahieren.",
+      "keywords": [
+        "Übertrag",
+        "Tauschen"
+      ],
+      "curriculumRef": "M5 1.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.add.written.vorschule.v1",
+        "by.math.5.add.written.koenner.v1",
+        "by.math.5.add.written.streber.v1",
+        "by.math.5.add.written-carry.vorschule.v1",
+        "by.math.5.add.written-carry.koenner.v1",
+        "by.math.5.add.written-carry.streber.v1",
+        "by.math.5.add.written-exchange.vorschule.v1",
+        "by.math.5.add.written-exchange.koenner.v1",
+        "by.math.5.add.written-exchange.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-signed-add",
+      "areaId": "math-add",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Plus und Minus mit negativen Zahlen",
+      "goal": "Du übst: Plus und Minus mit negativen Zahlen.",
+      "keywords": [
+        "Guthaben",
+        "Schulden",
+        "Rechenzeichen"
+      ],
+      "curriculumRef": "M5 1.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.add.signed.vorschule.v1",
+        "by.math.5.add.signed.koenner.v1",
+        "by.math.5.add.signed.streber.v1",
+        "by.math.5.add.context.vorschule.v1",
+        "by.math.5.add.context.koenner.v1",
+        "by.math.5.add.context.streber.v1",
+        "by.math.5.add.sign-or-operation.vorschule.v1",
+        "by.math.5.add.sign-or-operation.koenner.v1",
+        "by.math.5.add.sign-or-operation.streber.v1",
+        "by.math.5.add.debt-reasoning.vorschule.v1",
+        "by.math.5.add.debt-reasoning.koenner.v1",
+        "by.math.5.add.debt-reasoning.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-add-equations",
+      "areaId": "math-add",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Gleichungen mit Plus und Minus",
+      "goal": "Du übst: Gleichungen mit Plus und Minus.",
+      "keywords": [
+        "x",
+        "Umkehraufgabe"
+      ],
+      "curriculumRef": "M5 1.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.add.equations.vorschule.v1",
+        "by.math.5.add.equations.koenner.v1",
+        "by.math.5.add.equations.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-add-strategy",
+      "areaId": "math-add",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Rechenwege und Überschlag",
+      "goal": "Du übst: Rechenwege und Überschlag.",
+      "keywords": [
+        "Summand",
+        "Minuend",
+        "Subtrahend"
+      ],
+      "curriculumRef": "M5 1.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.add.estimate.vorschule.v1",
+        "by.math.5.add.estimate.koenner.v1",
+        "by.math.5.add.estimate.streber.v1",
+        "by.math.5.add.strategy.vorschule.v1",
+        "by.math.5.add.strategy.koenner.v1",
+        "by.math.5.add.strategy.streber.v1",
+        "by.math.5.add.terms.vorschule.v1",
+        "by.math.5.add.terms.koenner.v1",
+        "by.math.5.add.terms.streber.v1",
+        "by.math.5.add.sum-difference-structure.vorschule.v1",
+        "by.math.5.add.sum-difference-structure.koenner.v1",
+        "by.math.5.add.sum-difference-structure.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-coordinates",
+      "areaId": "math-geometry",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Punkte im Koordinatensystem",
+      "goal": "Du übst: Punkte im Koordinatensystem.",
+      "keywords": [
+        "x-Achse",
+        "y-Achse",
+        "Koordinaten"
+      ],
+      "curriculumRef": "M5 2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.geometry.coordinates.vorschule.v1",
+        "by.math.5.geometry.coordinates.koenner.v1",
+        "by.math.5.geometry.coordinates.streber.v1",
+        "by.math.5.geometry.point-line.vorschule.v1",
+        "by.math.5.geometry.point-line.koenner.v1",
+        "by.math.5.geometry.point-line.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-lines",
+      "areaId": "math-geometry",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Geraden und Abstände",
+      "goal": "Du übst: Geraden und Abstände.",
+      "keywords": [
+        "parallel",
+        "senkrecht",
+        "Lot",
+        "Strecke"
+      ],
+      "curriculumRef": "M5 2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.geometry.lines.vorschule.v1",
+        "by.math.5.geometry.lines.koenner.v1",
+        "by.math.5.geometry.lines.streber.v1",
+        "by.math.5.geometry.distance.vorschule.v1",
+        "by.math.5.geometry.distance.koenner.v1",
+        "by.math.5.geometry.distance.streber.v1",
+        "by.math.5.geometry.short-notation.vorschule.v1",
+        "by.math.5.geometry.short-notation.koenner.v1",
+        "by.math.5.geometry.short-notation.streber.v1",
+        "by.math.5.geometry.line-cases.vorschule.v1",
+        "by.math.5.geometry.line-cases.koenner.v1",
+        "by.math.5.geometry.line-cases.streber.v1",
+        "by.math.5.geometry.distance-conditions.vorschule.v1",
+        "by.math.5.geometry.distance-conditions.koenner.v1",
+        "by.math.5.geometry.distance-conditions.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-circles",
+      "areaId": "math-geometry",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Kreise und ihre Lage",
+      "goal": "Du übst: Kreise und ihre Lage.",
+      "keywords": [
+        "Radius",
+        "Tangente",
+        "Mittelpunkt"
+      ],
+      "curriculumRef": "M5 2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.geometry.circles.vorschule.v1",
+        "by.math.5.geometry.circles.koenner.v1",
+        "by.math.5.geometry.circles.streber.v1",
+        "by.math.5.geometry.circle-line-cases.vorschule.v1",
+        "by.math.5.geometry.circle-line-cases.koenner.v1",
+        "by.math.5.geometry.circle-line-cases.streber.v1",
+        "by.math.5.geometry.circle-circle-cases.vorschule.v1",
+        "by.math.5.geometry.circle-circle-cases.koenner.v1",
+        "by.math.5.geometry.circle-circle-cases.streber.v1",
+        "by.math.5.geometry.nested-circles.vorschule.v1",
+        "by.math.5.geometry.nested-circles.koenner.v1",
+        "by.math.5.geometry.nested-circles.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-angles",
+      "areaId": "math-geometry",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Winkel messen und bestimmen",
+      "goal": "Du übst: Winkel messen und bestimmen.",
+      "keywords": [
+        "Grad",
+        "Geodreieck",
+        "rechter Winkel"
+      ],
+      "curriculumRef": "M5 2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.geometry.angle-types.vorschule.v1",
+        "by.math.5.geometry.angle-types.koenner.v1",
+        "by.math.5.geometry.angle-types.streber.v1",
+        "by.math.5.geometry.angles.vorschule.v1",
+        "by.math.5.geometry.angles.koenner.v1",
+        "by.math.5.geometry.angles.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-quadrilaterals",
+      "areaId": "math-geometry",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Vierecke erkennen",
+      "goal": "Du übst: Vierecke erkennen.",
+      "keywords": [
+        "Quadrat",
+        "Rechteck",
+        "Raute",
+        "Trapez"
+      ],
+      "curriculumRef": "M5 2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.geometry.quadrilaterals.vorschule.v1",
+        "by.math.5.geometry.quadrilaterals.koenner.v1",
+        "by.math.5.geometry.quadrilaterals.streber.v1",
+        "by.math.5.geometry.quadrilaterals-around-us.vorschule.v1",
+        "by.math.5.geometry.quadrilaterals-around-us.koenner.v1",
+        "by.math.5.geometry.quadrilaterals-around-us.streber.v1",
+        "by.math.5.geometry.mental-quadrilaterals.vorschule.v1",
+        "by.math.5.geometry.mental-quadrilaterals.koenner.v1",
+        "by.math.5.geometry.mental-quadrilaterals.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-written-multiply",
+      "areaId": "math-multiply",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Schriftlich multiplizieren",
+      "goal": "Du übst: Schriftlich multiplizieren.",
+      "keywords": [
+        "Teilprodukt",
+        "Malrechnung"
+      ],
+      "curriculumRef": "M5 3.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.multiply.written.vorschule.v1",
+        "by.math.5.multiply.written.koenner.v1",
+        "by.math.5.multiply.written.streber.v1",
+        "by.math.5.multiply.written-product-steps.vorschule.v1",
+        "by.math.5.multiply.written-product-steps.koenner.v1",
+        "by.math.5.multiply.written-product-steps.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-written-divide",
+      "areaId": "math-multiply",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Schriftlich dividieren",
+      "goal": "Du übst: Schriftlich dividieren.",
+      "keywords": [
+        "Geteilt",
+        "Division",
+        "Nullstelle",
+        "Quotient"
+      ],
+      "curriculumRef": "M5 3.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.multiply.division-steps.vorschule.v1",
+        "by.math.5.multiply.division-steps.koenner.v1",
+        "by.math.5.multiply.division-steps.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-primes",
+      "areaId": "math-multiply",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Teilbarkeit und Primfaktoren",
+      "goal": "Du übst: Teilbarkeit und Primfaktoren.",
+      "keywords": [
+        "Primzahl",
+        "Faktorisieren",
+        "Teilbarkeitsregel"
+      ],
+      "curriculumRef": "M5 3.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.multiply.divisibility.vorschule.v1",
+        "by.math.5.multiply.divisibility.koenner.v1",
+        "by.math.5.multiply.divisibility.streber.v1",
+        "by.math.5.multiply.prime.vorschule.v1",
+        "by.math.5.multiply.prime.koenner.v1",
+        "by.math.5.multiply.prime.streber.v1",
+        "by.math.5.multiply.factor-uniqueness.vorschule.v1",
+        "by.math.5.multiply.factor-uniqueness.koenner.v1",
+        "by.math.5.multiply.factor-uniqueness.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-counting",
+      "areaId": "math-multiply",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Möglichkeiten zählen",
+      "goal": "Du übst: Möglichkeiten zählen.",
+      "keywords": [
+        "Baumdiagramm",
+        "Zählprinzip"
+      ],
+      "curriculumRef": "M5 3.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.multiply.counting.vorschule.v1",
+        "by.math.5.multiply.counting.koenner.v1",
+        "by.math.5.multiply.counting.streber.v1",
+        "by.math.5.multiply.counting-limits.vorschule.v1",
+        "by.math.5.multiply.counting-limits.koenner.v1",
+        "by.math.5.multiply.counting-limits.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-signed-multiply",
+      "areaId": "math-multiply",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Mal und Geteilt mit Vorzeichen",
+      "goal": "Du übst: Mal und Geteilt mit Vorzeichen.",
+      "keywords": [
+        "negative Zahlen",
+        "Vorzeichenregeln"
+      ],
+      "curriculumRef": "M5 3.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.multiply.signs.vorschule.v1",
+        "by.math.5.multiply.signs.koenner.v1",
+        "by.math.5.multiply.signs.streber.v1",
+        "by.math.5.multiply.sign-pattern.vorschule.v1",
+        "by.math.5.multiply.sign-pattern.koenner.v1",
+        "by.math.5.multiply.sign-pattern.streber.v1",
+        "by.math.5.multiply.division-sign-reason.vorschule.v1",
+        "by.math.5.multiply.division-sign-reason.koenner.v1",
+        "by.math.5.multiply.division-sign-reason.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-powers",
+      "areaId": "math-multiply",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Potenzen und Verdopplung",
+      "goal": "Du übst: Potenzen und Verdopplung.",
+      "keywords": [
+        "Exponent",
+        "Basis",
+        "Zehnerpotenz"
+      ],
+      "curriculumRef": "M5 3.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.multiply.powers.vorschule.v1",
+        "by.math.5.multiply.powers.koenner.v1",
+        "by.math.5.multiply.powers.streber.v1",
+        "by.math.5.multiply.growth.vorschule.v1",
+        "by.math.5.multiply.growth.koenner.v1",
+        "by.math.5.multiply.growth.streber.v1",
+        "by.math.5.multiply.ten-powers-context.vorschule.v1",
+        "by.math.5.multiply.ten-powers-context.koenner.v1",
+        "by.math.5.multiply.ten-powers-context.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-squares",
+      "areaId": "math-multiply",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Quadratzahlen bis 400",
+      "goal": "Du übst: Quadratzahlen bis 400.",
+      "keywords": [
+        "Quadrat",
+        "20²"
+      ],
+      "curriculumRef": "M5 3.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.multiply.square-00.vorschule.v1",
+        "by.math.5.multiply.square-00.koenner.v1",
+        "by.math.5.multiply.square-00.streber.v1",
+        "by.math.5.multiply.square-01.vorschule.v1",
+        "by.math.5.multiply.square-01.koenner.v1",
+        "by.math.5.multiply.square-01.streber.v1",
+        "by.math.5.multiply.square-02.vorschule.v1",
+        "by.math.5.multiply.square-02.koenner.v1",
+        "by.math.5.multiply.square-02.streber.v1",
+        "by.math.5.multiply.square-03.vorschule.v1",
+        "by.math.5.multiply.square-03.koenner.v1",
+        "by.math.5.multiply.square-03.streber.v1",
+        "by.math.5.multiply.square-04.vorschule.v1",
+        "by.math.5.multiply.square-04.koenner.v1",
+        "by.math.5.multiply.square-04.streber.v1",
+        "by.math.5.multiply.square-05.vorschule.v1",
+        "by.math.5.multiply.square-05.koenner.v1",
+        "by.math.5.multiply.square-05.streber.v1",
+        "by.math.5.multiply.square-06.vorschule.v1",
+        "by.math.5.multiply.square-06.koenner.v1",
+        "by.math.5.multiply.square-06.streber.v1",
+        "by.math.5.multiply.square-07.vorschule.v1",
+        "by.math.5.multiply.square-07.koenner.v1",
+        "by.math.5.multiply.square-07.streber.v1",
+        "by.math.5.multiply.square-08.vorschule.v1",
+        "by.math.5.multiply.square-08.koenner.v1",
+        "by.math.5.multiply.square-08.streber.v1",
+        "by.math.5.multiply.square-09.vorschule.v1",
+        "by.math.5.multiply.square-09.koenner.v1",
+        "by.math.5.multiply.square-09.streber.v1",
+        "by.math.5.multiply.square-10.vorschule.v1",
+        "by.math.5.multiply.square-10.koenner.v1",
+        "by.math.5.multiply.square-10.streber.v1",
+        "by.math.5.multiply.square-11.vorschule.v1",
+        "by.math.5.multiply.square-11.koenner.v1",
+        "by.math.5.multiply.square-11.streber.v1",
+        "by.math.5.multiply.square-12.vorschule.v1",
+        "by.math.5.multiply.square-12.koenner.v1",
+        "by.math.5.multiply.square-12.streber.v1",
+        "by.math.5.multiply.square-13.vorschule.v1",
+        "by.math.5.multiply.square-13.koenner.v1",
+        "by.math.5.multiply.square-13.streber.v1",
+        "by.math.5.multiply.square-14.vorschule.v1",
+        "by.math.5.multiply.square-14.koenner.v1",
+        "by.math.5.multiply.square-14.streber.v1",
+        "by.math.5.multiply.square-15.vorschule.v1",
+        "by.math.5.multiply.square-15.koenner.v1",
+        "by.math.5.multiply.square-15.streber.v1",
+        "by.math.5.multiply.square-16.vorschule.v1",
+        "by.math.5.multiply.square-16.koenner.v1",
+        "by.math.5.multiply.square-16.streber.v1",
+        "by.math.5.multiply.square-17.vorschule.v1",
+        "by.math.5.multiply.square-17.koenner.v1",
+        "by.math.5.multiply.square-17.streber.v1",
+        "by.math.5.multiply.square-18.vorschule.v1",
+        "by.math.5.multiply.square-18.koenner.v1",
+        "by.math.5.multiply.square-18.streber.v1",
+        "by.math.5.multiply.square-19.vorschule.v1",
+        "by.math.5.multiply.square-19.koenner.v1",
+        "by.math.5.multiply.square-19.streber.v1",
+        "by.math.5.multiply.square-20.vorschule.v1",
+        "by.math.5.multiply.square-20.koenner.v1",
+        "by.math.5.multiply.square-20.streber.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "multiplication",
+          "label": "Quadratzahlen in der Werkstatt üben",
+          "target": "squares"
+        }
+      ]
+    },
+    {
+      "id": "math-multiply-equations",
+      "areaId": "math-multiply",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Gleichungen mit Mal und Geteilt",
+      "goal": "Du übst: Gleichungen mit Mal und Geteilt.",
+      "keywords": [
+        "x",
+        "Umkehraufgabe"
+      ],
+      "curriculumRef": "M5 3.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.multiply.equations.vorschule.v1",
+        "by.math.5.multiply.equations.koenner.v1",
+        "by.math.5.multiply.equations.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-order",
+      "areaId": "math-terms",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Punkt vor Strich und Klammern",
+      "goal": "Du übst: Punkt vor Strich und Klammern.",
+      "keywords": [
+        "Reihenfolge",
+        "Termwert"
+      ],
+      "curriculumRef": "M5 3.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.terms.precedence.vorschule.v1",
+        "by.math.5.terms.precedence.koenner.v1",
+        "by.math.5.terms.precedence.streber.v1",
+        "by.math.5.terms.brackets.vorschule.v1",
+        "by.math.5.terms.brackets.koenner.v1",
+        "by.math.5.terms.brackets.streber.v1",
+        "by.math.5.terms.equal-calculation-lines.vorschule.v1",
+        "by.math.5.terms.equal-calculation-lines.koenner.v1",
+        "by.math.5.terms.equal-calculation-lines.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-laws",
+      "areaId": "math-terms",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Rechengesetze nutzen",
+      "goal": "Du übst: Rechengesetze nutzen.",
+      "keywords": [
+        "Verteilen",
+        "Vertauschen",
+        "Zusammenfassen"
+      ],
+      "curriculumRef": "M5 3.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.terms.distribute.vorschule.v1",
+        "by.math.5.terms.distribute.koenner.v1",
+        "by.math.5.terms.distribute.streber.v1",
+        "by.math.5.terms.associate.vorschule.v1",
+        "by.math.5.terms.associate.koenner.v1",
+        "by.math.5.terms.associate.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-term-structure",
+      "areaId": "math-terms",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Terme und Rechenbäume",
+      "goal": "Du übst: Terme und Rechenbäume.",
+      "keywords": [
+        "Summe",
+        "Produkt",
+        "Quotient",
+        "Differenz"
+      ],
+      "curriculumRef": "M5 3.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.terms.structure.vorschule.v1",
+        "by.math.5.terms.structure.koenner.v1",
+        "by.math.5.terms.structure.streber.v1",
+        "by.math.5.terms.describe-structure.vorschule.v1",
+        "by.math.5.terms.describe-structure.koenner.v1",
+        "by.math.5.terms.describe-structure.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-reverse",
+      "areaId": "math-terms",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Rückwärts rechnen",
+      "goal": "Du übst: Rückwärts rechnen.",
+      "keywords": [
+        "Umkehren",
+        "Rechenkette"
+      ],
+      "curriculumRef": "M5 3.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.terms.reverse.vorschule.v1",
+        "by.math.5.terms.reverse.koenner.v1",
+        "by.math.5.terms.reverse.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-stories",
+      "areaId": "math-terms",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Sachaufgaben lösen",
+      "goal": "Du übst: Sachaufgaben lösen.",
+      "keywords": [
+        "Rechengeschichte",
+        "Antwortsatz",
+        "Textaufgabe"
+      ],
+      "curriculumRef": "M5 3.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.terms.model.vorschule.v1",
+        "by.math.5.terms.model.koenner.v1",
+        "by.math.5.terms.model.streber.v1",
+        "by.math.5.terms.explain-model.vorschule.v1",
+        "by.math.5.terms.explain-model.koenner.v1",
+        "by.math.5.terms.explain-model.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-money",
+      "areaId": "math-units",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Geldbeträge umrechnen",
+      "goal": "Du übst: Geldbeträge umrechnen.",
+      "keywords": [
+        "Euro",
+        "Cent",
+        "€",
+        "ct"
+      ],
+      "curriculumRef": "M5 4.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.units.money.vorschule.v1",
+        "by.math.5.units.money.koenner.v1",
+        "by.math.5.units.money.streber.v1",
+        "by.math.5.units.money-table.vorschule.v1",
+        "by.math.5.units.money-table.koenner.v1",
+        "by.math.5.units.money-table.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-length",
+      "areaId": "math-units",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Längen umrechnen",
+      "goal": "Du übst: Längen umrechnen.",
+      "keywords": [
+        "Meter",
+        "Zentimeter",
+        "Kilometer",
+        "mm",
+        "cm",
+        "dm",
+        "km"
+      ],
+      "curriculumRef": "M5 4.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.units.length.vorschule.v1",
+        "by.math.5.units.length.koenner.v1",
+        "by.math.5.units.length.streber.v1",
+        "by.math.5.units.small-lengths.vorschule.v1",
+        "by.math.5.units.small-lengths.koenner.v1",
+        "by.math.5.units.small-lengths.streber.v1",
+        "by.math.5.units.length-table.vorschule.v1",
+        "by.math.5.units.length-table.koenner.v1",
+        "by.math.5.units.length-table.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-mass",
+      "areaId": "math-units",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Massen umrechnen",
+      "goal": "Du übst: Massen umrechnen.",
+      "keywords": [
+        "Gewicht",
+        "Kilogramm",
+        "Gramm",
+        "Tonne"
+      ],
+      "curriculumRef": "M5 4.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.units.mass.vorschule.v1",
+        "by.math.5.units.mass.koenner.v1",
+        "by.math.5.units.mass.streber.v1",
+        "by.math.5.units.mass-table.vorschule.v1",
+        "by.math.5.units.mass-table.koenner.v1",
+        "by.math.5.units.mass-table.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-time",
+      "areaId": "math-units",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Zeit und Uhrzeit",
+      "goal": "Du übst: Zeit und Uhrzeit.",
+      "keywords": [
+        "Stunden",
+        "Minuten",
+        "Sekunden"
+      ],
+      "curriculumRef": "M5 4.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.units.time.vorschule.v1",
+        "by.math.5.units.time.koenner.v1",
+        "by.math.5.units.time.streber.v1",
+        "by.math.5.units.time-is-different.vorschule.v1",
+        "by.math.5.units.time-is-different.koenner.v1",
+        "by.math.5.units.time-is-different.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-estimate",
+      "areaId": "math-units",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Größen schätzen",
+      "goal": "Du übst: Größen schätzen.",
+      "keywords": [
+        "Bezugsgröße",
+        "Schätzung"
+      ],
+      "curriculumRef": "M5 4.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.units.estimate.vorschule.v1",
+        "by.math.5.units.estimate.koenner.v1",
+        "by.math.5.units.estimate.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-unitary",
+      "areaId": "math-units",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Dreisatz",
+      "goal": "Du übst: Dreisatz.",
+      "keywords": [
+        "Stückpreis",
+        "Schlussrechnung"
+      ],
+      "curriculumRef": "M5 4.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.units.unitary.vorschule.v1",
+        "by.math.5.units.unitary.koenner.v1",
+        "by.math.5.units.unitary.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-scale",
+      "areaId": "math-units",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Maßstab",
+      "goal": "Du übst: Maßstab.",
+      "keywords": [
+        "Karte",
+        "Plan",
+        "wirkliche Länge"
+      ],
+      "curriculumRef": "M5 4.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.units.scale.vorschule.v1",
+        "by.math.5.units.scale.koenner.v1",
+        "by.math.5.units.scale.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-quantities",
+      "areaId": "math-units",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Mit Größen rechnen",
+      "goal": "Du übst: Mit Größen rechnen.",
+      "keywords": [
+        "gleiche Einheiten",
+        "Sachaufgabe"
+      ],
+      "curriculumRef": "M5 4.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.units.add-quantities.vorschule.v1",
+        "by.math.5.units.add-quantities.koenner.v1",
+        "by.math.5.units.add-quantities.streber.v1",
+        "by.math.5.units.subtract-quantities.vorschule.v1",
+        "by.math.5.units.subtract-quantities.koenner.v1",
+        "by.math.5.units.subtract-quantities.streber.v1",
+        "by.math.5.units.multiply-quantities.vorschule.v1",
+        "by.math.5.units.multiply-quantities.koenner.v1",
+        "by.math.5.units.multiply-quantities.streber.v1",
+        "by.math.5.units.divide-quantities.vorschule.v1",
+        "by.math.5.units.divide-quantities.koenner.v1",
+        "by.math.5.units.divide-quantities.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-rectangles",
+      "areaId": "math-area",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Umfang und Rechteckfläche",
+      "goal": "Du übst: Umfang und Rechteckfläche.",
+      "keywords": [
+        "Rand",
+        "Flächeninhalt",
+        "Quadrat"
+      ],
+      "curriculumRef": "M5 4.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.area.squares.vorschule.v1",
+        "by.math.5.area.squares.koenner.v1",
+        "by.math.5.area.squares.streber.v1",
+        "by.math.5.area.perimeter.vorschule.v1",
+        "by.math.5.area.perimeter.koenner.v1",
+        "by.math.5.area.perimeter.streber.v1",
+        "by.math.5.area.compare.vorschule.v1",
+        "by.math.5.area.compare.koenner.v1",
+        "by.math.5.area.compare.streber.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "mission",
+          "label": "Ein Zaun für unseren Garten",
+          "target": "by.math.5.round.garden.v1"
+        }
+      ]
+    },
+    {
+      "id": "math-area-units",
+      "areaId": "math-area",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Flächeneinheiten umrechnen",
+      "goal": "Du übst: Flächeneinheiten umrechnen.",
+      "keywords": [
+        "Hektar",
+        "ha",
+        "Ar",
+        "Quadratmeter",
+        "cm²"
+      ],
+      "curriculumRef": "M5 4.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.area.conversion.vorschule.v1",
+        "by.math.5.area.conversion.koenner.v1",
+        "by.math.5.area.conversion.streber.v1",
+        "by.math.5.area.land.vorschule.v1",
+        "by.math.5.area.land.koenner.v1",
+        "by.math.5.area.land.streber.v1",
+        "by.math.5.area.square-unit-reason.vorschule.v1",
+        "by.math.5.area.square-unit-reason.koenner.v1",
+        "by.math.5.area.square-unit-reason.streber.v1",
+        "by.math.5.area.area-table.vorschule.v1",
+        "by.math.5.area.area-table.koenner.v1",
+        "by.math.5.area.area-table.streber.v1",
+        "by.math.5.area.decimal-area-conversion.vorschule.v1",
+        "by.math.5.area.decimal-area-conversion.koenner.v1",
+        "by.math.5.area.decimal-area-conversion.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-compound",
+      "areaId": "math-area",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Flächen zerlegen und schätzen",
+      "goal": "Du übst: Flächen zerlegen und schätzen.",
+      "keywords": [
+        "L-Form",
+        "ergänzen",
+        "Näherung"
+      ],
+      "curriculumRef": "M5 4.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.area.compound.vorschule.v1",
+        "by.math.5.area.compound.koenner.v1",
+        "by.math.5.area.compound.streber.v1",
+        "by.math.5.area.approximate-area.vorschule.v1",
+        "by.math.5.area.approximate-area.koenner.v1",
+        "by.math.5.area.approximate-area.streber.v1",
+        "by.math.5.area.area-bounds.vorschule.v1",
+        "by.math.5.area.area-bounds.koenner.v1",
+        "by.math.5.area.area-bounds.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "math-surface",
+      "areaId": "math-area",
+      "subject": "mathematics",
+      "grade": 5,
+      "name": "Quaderoberfläche",
+      "goal": "Du übst: Quaderoberfläche.",
+      "keywords": [
+        "Netz",
+        "Schachtel",
+        "Körper"
+      ],
+      "curriculumRef": "M5 4.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.math.5.area.surface.vorschule.v1",
+        "by.math.5.area.surface.koenner.v1",
+        "by.math.5.area.surface.streber.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "english-be",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "be: am, is und are",
+      "goal": "Du übst: be: am, is und are.",
+      "keywords": [
+        "sein",
+        "Kurzantworten"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.hello.2.v1",
+        "by.english.5.hello.4.v1",
+        "by.english.5.hello.5.v1",
+        "by.english.5.hello.8.v1",
+        "by.english.5.home.2.v1",
+        "by.english.5.home.4.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-nouns",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "Nomen, Plural und Genitiv",
+      "goal": "Du übst: Nomen, Plural und Genitiv.",
+      "keywords": [
+        "Mehrzahl",
+        "Besitz",
+        "child",
+        "children"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.family.2.v1",
+        "by.english.5.family.4.v1",
+        "by.english.5.family.5.v1",
+        "by.english.5.family.7.v1",
+        "by.english.5.family.8.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-pronouns",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "Begleiter und Pronomen",
+      "goal": "Du übst: Begleiter und Pronomen.",
+      "keywords": [
+        "my",
+        "your",
+        "this",
+        "that",
+        "somebody"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.family.3.v1",
+        "by.english.5.family.6.v1",
+        "by.english.5.family.9.v1",
+        "by.english.5.home.5.v1",
+        "by.english.5.home.6.v1",
+        "by.english.5.home.7.v1",
+        "by.english.5.home.9.v1",
+        "by.english.5.stories.3.v1",
+        "by.english.5.stories.6.v1",
+        "by.english.5.stories.7.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-prepositions",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "Orte und Präpositionen",
+      "goal": "Du übst: Orte und Präpositionen.",
+      "keywords": [
+        "under",
+        "on",
+        "in",
+        "Ort"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.home.3.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-articles-have",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "Artikel und have got",
+      "goal": "Du übst: Artikel und have got.",
+      "keywords": [
+        "a",
+        "an",
+        "the",
+        "has got"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.school.1.v1",
+        "by.english.5.school.2.v1",
+        "by.english.5.school.4.v1",
+        "by.english.5.school.5.v1",
+        "by.english.5.school.7.v1",
+        "by.english.5.school.8.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-present",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "Simple Present",
+      "goal": "Du übst: Simple Present.",
+      "keywords": [
+        "Gegenwart",
+        "Gewohnheit",
+        "does",
+        "Verneinung"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.day.2.v1",
+        "by.english.5.day.4.v1",
+        "by.english.5.day.5.v1",
+        "by.english.5.day.6.v1",
+        "by.english.5.day.7.v1",
+        "by.english.5.day.8.v1",
+        "by.english.5.day.9.v1",
+        "by.english.5.shopping.9.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        },
+        {
+          "kind": "mission",
+          "label": "Ein Tag an unserer Schule",
+          "target": "by.english.5.round.school.v1"
+        }
+      ]
+    },
+    {
+      "id": "english-questions",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "Fragewörter und Fragen",
+      "goal": "Du übst: Fragewörter und Fragen.",
+      "keywords": [
+        "who",
+        "what",
+        "whose",
+        "where",
+        "why"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.hello.7.v1",
+        "by.english.5.friends.1.v1",
+        "by.english.5.friends.4.v1",
+        "by.english.5.friends.5.v1",
+        "by.english.5.friends.7.v1",
+        "by.english.5.friends.8.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-progressive",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "Present Progressive",
+      "goal": "Du übst: Present Progressive.",
+      "keywords": [
+        "Verlaufsform",
+        "now",
+        "ing"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.shopping.3.v1",
+        "by.english.5.shopping.7.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-quantifiers",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "Mengen: much, many, some und any",
+      "goal": "Du übst: Mengen: much, many, some und any.",
+      "keywords": [
+        "zählbar",
+        "uncountable",
+        "Mengenwörter"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.shopping.2.v1",
+        "by.english.5.shopping.4.v1",
+        "by.english.5.shopping.5.v1",
+        "by.english.5.shopping.6.v1",
+        "by.english.5.shopping.8.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-modals",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "can, must und needn’t",
+      "goal": "Du übst: can, must und needn’t.",
+      "keywords": [
+        "Modalverb",
+        "dürfen",
+        "müssen",
+        "mustn’t"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.school.6.v1",
+        "by.english.5.party.3.v1",
+        "by.english.5.party.4.v1",
+        "by.english.5.party.5.v1",
+        "by.english.5.party.7.v1",
+        "by.english.5.party.9.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-past",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "Simple Past",
+      "goal": "Du übst: Simple Past.",
+      "keywords": [
+        "Vergangenheit",
+        "did",
+        "went",
+        "was",
+        "were"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.past.1.v1",
+        "by.english.5.past.3.v1",
+        "by.english.5.past.4.v1",
+        "by.english.5.past.5.v1",
+        "by.english.5.past.6.v1",
+        "by.english.5.past.7.v1",
+        "by.english.5.past.8.v1",
+        "by.english.5.past.9.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-sentences",
+      "areaId": "english-grammar",
+      "subject": "english",
+      "grade": 5,
+      "name": "Sätze verbinden und ordnen",
+      "goal": "Du übst: Sätze verbinden und ordnen.",
+      "keywords": [
+        "because",
+        "when",
+        "that",
+        "Wortstellung"
+      ],
+      "curriculumRef": "E5 1.2 Grammatik",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.home.8.v1",
+        "by.english.5.friends.2.v1",
+        "by.english.5.friends.9.v1",
+        "by.english.5.stories.4.v1",
+        "by.english.5.stories.8.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-greetings",
+      "areaId": "english-texts",
+      "subject": "english",
+      "grade": 5,
+      "name": "Begrüßen und höflich bitten",
+      "goal": "Du übst: Begrüßen und höflich bitten.",
+      "keywords": [
+        "classroom phrases",
+        "Dialog",
+        "Hello"
+      ],
+      "curriculumRef": "E5 1.1; E5 3",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.hello.1.v1",
+        "by.english.5.hello.6.v1",
+        "by.english.5.hello.9.v1",
+        "by.english.5.school.3.v1",
+        "by.english.5.school.9.v1",
+        "by.english.5.friends.3.v1",
+        "by.english.5.friends.6.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-reading",
+      "areaId": "english-texts",
+      "subject": "english",
+      "grade": 5,
+      "name": "Kurze Texte verstehen",
+      "goal": "Du übst: Kurze Texte verstehen.",
+      "keywords": [
+        "Lesen",
+        "Informationen",
+        "Geschichte"
+      ],
+      "curriculumRef": "E5 1.1; E5 3",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.party.6.v1",
+        "by.english.5.stories.1.v1",
+        "by.english.5.stories.2.v1",
+        "by.english.5.stories.5.v1",
+        "by.english.5.stories.9.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-daily-words",
+      "areaId": "english-words",
+      "subject": "english",
+      "grade": 5,
+      "name": "Wörter für Familie, Schule und Alltag",
+      "goal": "Du übst: Wörter für Familie, Schule und Alltag.",
+      "keywords": [
+        "Zahlen",
+        "Uhrzeit",
+        "Kalender",
+        "Wochentage",
+        "Familie"
+      ],
+      "curriculumRef": "E5 1.2 Wortschatz; E5 5",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.hello.3.v1",
+        "by.english.5.family.1.v1",
+        "by.english.5.home.1.v1",
+        "by.english.5.day.1.v1",
+        "by.english.5.day.3.v1",
+        "by.english.5.shopping.1.v1",
+        "by.english.5.party.1.v1",
+        "by.english.5.party.2.v1",
+        "by.english.5.party.8.v1",
+        "by.english.5.past.2.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-culture",
+      "areaId": "english-culture",
+      "subject": "english",
+      "grade": 5,
+      "name": "Großbritannien und Sprachmittlung",
+      "goal": "Du übst: Großbritannien und Sprachmittlung.",
+      "keywords": [
+        "UK",
+        "USA",
+        "London",
+        "Schilder",
+        "Sprachbrücke"
+      ],
+      "curriculumRef": "E5 2; E5 4; E5 5",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.travel.1.v1",
+        "by.english.5.travel.2.v1",
+        "by.english.5.travel.3.v1",
+        "by.english.5.travel.4.v1",
+        "by.english.5.travel.5.v1",
+        "by.english.5.travel.6.v1",
+        "by.english.5.travel.7.v1",
+        "by.english.5.travel.8.v1",
+        "by.english.5.travel.9.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "english-learning",
+      "areaId": "english-culture",
+      "subject": "english",
+      "grade": 5,
+      "name": "Wörter lernen und Aussprache entdecken",
+      "goal": "Du übst: Wörter lernen und Aussprache entdecken.",
+      "keywords": [
+        "Lautzeichen",
+        "false friends",
+        "chunks",
+        "Lernstrategien"
+      ],
+      "curriculumRef": "E5 2; E5 4; E5 5",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": "1. Fremdsprache",
+      "exerciseIds": [
+        "by.english.5.words.1.v1",
+        "by.english.5.words.2.v1",
+        "by.english.5.words.3.v1",
+        "by.english.5.words.4.v1",
+        "by.english.5.words.5.v1",
+        "by.english.5.words.6.v1",
+        "by.english.5.words.7.v1",
+        "by.english.5.words.8.v1",
+        "by.english.5.words.9.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "vocabulary",
+          "label": "Wörter im Vokabeltrainer üben",
+          "target": "all"
+        }
+      ]
+    },
+    {
+      "id": "nature-research",
+      "areaId": "nature-methods",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Versuche fair vergleichen",
+      "goal": "Du übst: Versuche fair vergleichen.",
+      "keywords": [
+        "Hypothese",
+        "Beobachtung",
+        "Messung",
+        "Modell"
+      ],
+      "curriculumRef": "NT5 1.1; NT5 2.1",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.research.1.v1",
+        "by.nature.5.research.2.v1",
+        "by.nature.5.research.3.v1",
+        "by.nature.5.research.4.v1",
+        "by.nature.5.research.5.v1",
+        "by.nature.5.research.6.v1",
+        "by.nature.5.research.7.v1",
+        "by.nature.5.research.8.v1",
+        "by.nature.5.research.9.v1"
+      ],
+      "supplements": [
+        {
+          "kind": "mission",
+          "label": "Auf Forschertour: genau hinschauen",
+          "target": "by.nature.5.round.research.v1"
+        }
+      ]
+    },
+    {
+      "id": "nature-water",
+      "areaId": "nature-materials",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Wasser und Stoffzustände",
+      "goal": "Du übst: Wasser und Stoffzustände.",
+      "keywords": [
+        "Verdunsten",
+        "Schmelzen",
+        "Teilchen",
+        "Wasserkreislauf"
+      ],
+      "curriculumRef": "NT5 1.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.water.1.v1",
+        "by.nature.5.water.2.v1",
+        "by.nature.5.water.3.v1",
+        "by.nature.5.water.4.v1",
+        "by.nature.5.water.5.v1",
+        "by.nature.5.water.6.v1",
+        "by.nature.5.water.7.v1",
+        "by.nature.5.water.8.v1",
+        "by.nature.5.water.9.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "nature-light-energy",
+      "areaId": "nature-materials",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Licht, Schatten und Energie",
+      "goal": "Du übst: Licht, Schatten und Energie.",
+      "keywords": [
+        "Spiegel",
+        "Solarzelle",
+        "Tag",
+        "Nacht"
+      ],
+      "curriculumRef": "NT5 1.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.light-energy.1.v1",
+        "by.nature.5.light-energy.2.v1",
+        "by.nature.5.light-energy.3.v1",
+        "by.nature.5.light-energy.4.v1",
+        "by.nature.5.light-energy.5.v1",
+        "by.nature.5.light-energy.6.v1",
+        "by.nature.5.light-energy.7.v1",
+        "by.nature.5.light-energy.8.v1",
+        "by.nature.5.light-energy.9.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "nature-air-materials",
+      "areaId": "nature-materials",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Luft, Boden und Stoffe",
+      "goal": "Du übst: Luft, Boden und Stoffe.",
+      "keywords": [
+        "Trennen",
+        "Dichte",
+        "Schall",
+        "Gestein"
+      ],
+      "curriculumRef": "NT5 1.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.air-materials.1.v1",
+        "by.nature.5.air-materials.2.v1",
+        "by.nature.5.air-materials.3.v1",
+        "by.nature.5.air-materials.4.v1",
+        "by.nature.5.air-materials.5.v1",
+        "by.nature.5.air-materials.6.v1",
+        "by.nature.5.air-materials.7.v1",
+        "by.nature.5.air-materials.8.v1",
+        "by.nature.5.air-materials.9.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "nature-cells",
+      "areaId": "nature-cells",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Zellen und Lebewesen",
+      "goal": "Du übst: Zellen und Lebewesen.",
+      "keywords": [
+        "Mikroskop",
+        "Zellwand",
+        "Chloroplasten"
+      ],
+      "curriculumRef": "NT5 2.2",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.cells.1.v1",
+        "by.nature.5.cells.2.v1",
+        "by.nature.5.cells.3.v1",
+        "by.nature.5.cells.4.v1",
+        "by.nature.5.cells.5.v1",
+        "by.nature.5.cells.6.v1",
+        "by.nature.5.cells.7.v1",
+        "by.nature.5.cells.8.v1",
+        "by.nature.5.cells.9.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "nature-senses",
+      "areaId": "nature-human",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Sinne und Reaktionen",
+      "goal": "Du übst: Sinne und Reaktionen.",
+      "keywords": [
+        "Gehirn",
+        "Nerven",
+        "Hören"
+      ],
+      "curriculumRef": "NT5 2.3",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.senses.1.v1",
+        "by.nature.5.senses.2.v1",
+        "by.nature.5.senses.3.v1",
+        "by.nature.5.senses.4.v1",
+        "by.nature.5.senses.5.v1",
+        "by.nature.5.senses.6.v1",
+        "by.nature.5.senses.7.v1",
+        "by.nature.5.senses.8.v1",
+        "by.nature.5.senses.9.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "nature-movement",
+      "areaId": "nature-human",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Knochen, Gelenke und Muskeln",
+      "goal": "Du übst: Knochen, Gelenke und Muskeln.",
+      "keywords": [
+        "Skelett",
+        "Sehne",
+        "Gegenspieler"
+      ],
+      "curriculumRef": "NT5 2.3",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.movement.1.v1",
+        "by.nature.5.movement.2.v1",
+        "by.nature.5.movement.3.v1",
+        "by.nature.5.movement.4.v1",
+        "by.nature.5.movement.5.v1",
+        "by.nature.5.movement.6.v1",
+        "by.nature.5.movement.7.v1",
+        "by.nature.5.movement.8.v1",
+        "by.nature.5.movement.9.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "nature-nutrition",
+      "areaId": "nature-human",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Nahrung und Verdauung",
+      "goal": "Du übst: Nahrung und Verdauung.",
+      "keywords": [
+        "Nährstoffe",
+        "Dünndarm",
+        "Stärke"
+      ],
+      "curriculumRef": "NT5 2.3",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.nutrition.1.v1",
+        "by.nature.5.nutrition.2.v1",
+        "by.nature.5.nutrition.3.v1",
+        "by.nature.5.nutrition.4.v1",
+        "by.nature.5.nutrition.5.v1",
+        "by.nature.5.nutrition.6.v1",
+        "by.nature.5.nutrition.7.v1",
+        "by.nature.5.nutrition.8.v1",
+        "by.nature.5.nutrition.9.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "nature-breathing",
+      "areaId": "nature-human",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Atmung und Blutkreislauf",
+      "goal": "Du übst: Atmung und Blutkreislauf.",
+      "keywords": [
+        "Herz",
+        "Lunge",
+        "Zellatmung"
+      ],
+      "curriculumRef": "NT5 2.3",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.breathing.1.v1",
+        "by.nature.5.breathing.2.v1",
+        "by.nature.5.breathing.3.v1",
+        "by.nature.5.breathing.4.v1",
+        "by.nature.5.breathing.5.v1",
+        "by.nature.5.breathing.6.v1",
+        "by.nature.5.breathing.7.v1",
+        "by.nature.5.breathing.8.v1",
+        "by.nature.5.breathing.9.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "nature-development",
+      "areaId": "nature-human",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Wachsen und sich verändern",
+      "goal": "Du übst: Wachsen und sich verändern.",
+      "keywords": [
+        "Pubertät",
+        "Befruchtung",
+        "Grenzen"
+      ],
+      "curriculumRef": "NT5 2.3",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.development.1.v1",
+        "by.nature.5.development.2.v1",
+        "by.nature.5.development.3.v1",
+        "by.nature.5.development.4.v1",
+        "by.nature.5.development.5.v1",
+        "by.nature.5.development.6.v1",
+        "by.nature.5.development.7.v1",
+        "by.nature.5.development.8.v1",
+        "by.nature.5.development.9.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "nature-plants",
+      "areaId": "nature-plants",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Blüten und Bestäubung",
+      "goal": "Du übst: Blüten und Bestäubung.",
+      "keywords": [
+        "Samenpflanze",
+        "Narbe",
+        "Pollen"
+      ],
+      "curriculumRef": "NT5 2.4",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.plants.1.v1",
+        "by.nature.5.plants.2.v1",
+        "by.nature.5.plants.3.v1",
+        "by.nature.5.plants.4.v1",
+        "by.nature.5.plants.5.v1",
+        "by.nature.5.plants.6.v1",
+        "by.nature.5.plants.7.v1",
+        "by.nature.5.plants.8.v1",
+        "by.nature.5.plants.9.v1"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "nature-grassland",
+      "areaId": "nature-grassland",
+      "subject": "nature",
+      "grade": 5,
+      "name": "Die Wiese als Ökosystem",
+      "goal": "Du übst: Die Wiese als Ökosystem.",
+      "keywords": [
+        "Grünland",
+        "Lebensgemeinschaft",
+        "Arten"
+      ],
+      "curriculumRef": "NT5 2.5",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.nature.5.grassland.1.v1",
+        "by.nature.5.grassland.2.v1",
+        "by.nature.5.grassland.3.v1",
+        "by.nature.5.grassland.4.v1",
+        "by.nature.5.grassland.5.v1",
+        "by.nature.5.grassland.6.v1",
+        "by.nature.5.grassland.7.v1",
+        "by.nature.5.grassland.8.v1",
+        "by.nature.5.grassland.9.v1"
+      ],
+      "supplements": []
+    }
+  ]
+}

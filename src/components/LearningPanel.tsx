@@ -1,3 +1,10 @@
+import StudyBrowser from './StudyBrowser';
+import {
+  studyRound,
+  unitQuestions,
+  type StudyUnit,
+  type StudySupplement,
+} from '../domain/study';
 import InfoPanel from './InfoPanel';
 import LearningHints from './LearningHints';
 import LearningTable from './LearningTable';
@@ -17,9 +24,11 @@ import { desktop } from '../lib/desktop';
 export default function LearningPanel({
   subject,
   profileVersion,
+  onSupplement,
 }: {
   subject: SubjectId;
   profileVersion: number;
+  onSupplement?: (link: StudySupplement) => void;
 }) {
   const [state, setState] = useState<LearningState | null>(null);
   const [loading, setLoading] = useState(true);
@@ -29,6 +38,10 @@ export default function LearningPanel({
   const [rewardsOpen, setRewardsOpen] = useState(false);
   const [topicId, setTopicId] = useState('');
   const [questionId, setQuestionId] = useState('');
+  const [studyUnitId, setStudyUnitId] = useState('');
+  const [roundIds, setRoundIds] = useState<string[]>([]);
+  const [roundFinished, setRoundFinished] = useState(false);
+  const [roundOffset, setRoundOffset] = useState(0);
   const [natureMode, setNatureMode] = useState<'questions' | 'games'>(
     'questions',
   );
@@ -39,6 +52,7 @@ export default function LearningPanel({
     questionId: string;
     answer: AnswerResult;
   } | null>(null);
+  const returningTopics = useRef(false);
   const practiceRef = useRef<HTMLDivElement>(null);
   const pending = useRef<{
     id: string;
@@ -78,6 +92,9 @@ export default function LearningPanel({
   }, [profileVersion, reload]);
 
   useEffect(() => {
+    setStudyUnitId('');
+    setRoundIds([]);
+    setRoundFinished(false);
     setQuestionId('');
     setAnswer('');
     setResult(null);
@@ -89,16 +106,27 @@ export default function LearningPanel({
   }, [subject]);
 
   const topics = state?.topics.filter((item) => item.subject === subject) ?? [];
-  const topic = topics.find((item) => item.id === topicId) ?? topics[0];
-  const questions =
-    state?.questions.filter(
-      (item) =>
-        item.subject === subject &&
-        item.topicId === topic?.id &&
-        item.difficulty === state.difficulty,
-    ) ?? [];
+  const studyUnit = state?.studyCatalog?.units.find(
+    (item) => item.id === studyUnitId && item.subject === subject,
+  );
+  const browsing = !!state?.studyCatalog && !studyUnit && !playingNature;
+  const bank = state && studyUnit ? unitQuestions(state, studyUnit) : [];
+  const legacyTopic = topics.find((item) => item.id === topicId) ?? topics[0];
+  const questions = studyUnit
+    ? roundIds
+        .map((id) => bank.find((q) => q.id === id))
+        .filter((q): q is NonNullable<typeof q> => !!q)
+    : (state?.questions.filter(
+        (item) =>
+          item.subject === subject &&
+          item.topicId === legacyTopic?.id &&
+          item.difficulty === state.difficulty,
+      ) ?? []);
   const question =
     questions.find((item) => item.id === questionId) ?? questions[0];
+  const topic = studyUnit
+    ? topics.find((t) => t.id === question?.topicId)
+    : legacyTopic;
   const questionIndex = questions.findIndex((item) => item.id === question?.id);
   const solvedCount = questions.filter((item) => item.solved).length;
 
@@ -113,6 +141,53 @@ export default function LearningPanel({
     setAnswer('');
     setResult(null);
     setNotice('');
+  }
+
+  useEffect(() => {
+    if (
+      state &&
+      studyUnit &&
+      roundIds.some((id) => !bank.some((q) => q.id === id))
+    ) {
+      setRoundIds(studyRound(bank));
+      setRoundFinished(false);
+      setRoundOffset(0);
+      setQuestionId('');
+      setAnswer('');
+      setResult(null);
+    }
+  }, [state?.difficulty, studyUnit?.id, roundIds, bank]);
+
+  function startUnit(unit: StudyUnit, offset = 0) {
+    returningTopics.current = false;
+    if (!state) return;
+    const available = unitQuestions(state, unit);
+    const effectiveOffset = available.some((q) => !q.solved) ? 0 : offset;
+    const ids = studyRound(available, effectiveOffset);
+    setStudyUnitId(unit.id);
+    setRoundOffset(effectiveOffset);
+    setRoundIds(ids.length ? ids : studyRound(available));
+    setRoundFinished(false);
+    selectQuestion('');
+    requestAnimationFrame(() => practiceRef.current?.focus());
+  }
+
+  function nextQuestion() {
+    if (studyUnit && questionIndex === questions.length - 1) {
+      setRoundFinished(true);
+      setResult(null);
+      requestAnimationFrame(() => practiceRef.current?.focus());
+    } else if (questions.length) {
+      selectQuestion(questions[(questionIndex + 1) % questions.length].id);
+    }
+  }
+
+  function returnToTopics() {
+    returningTopics.current = true;
+    setStudyUnitId('');
+    setRoundIds([]);
+    setRoundFinished(false);
+    selectQuestion('');
   }
 
   async function changeDifficulty(difficulty: Difficulty) {
@@ -131,6 +206,13 @@ export default function LearningPanel({
       ++revision.current;
       setLoading(false);
       setState((current) => current && { ...current, difficulty: saved });
+      if (studyUnit) {
+        setRoundIds(
+          studyRound(unitQuestions({ ...state, difficulty: saved }, studyUnit)),
+        );
+        setRoundFinished(false);
+        setRoundOffset(0);
+      }
       selectQuestion('');
     } catch (reason) {
       showError(reason);
@@ -332,7 +414,7 @@ export default function LearningPanel({
                   </p>
                 </InfoPanel>
               </div>
-              {!playingNature && (
+              {!playingNature && !state.studyCatalog && (
                 <div className="topic-section">
                   <h3>
                     {subjects.find((item) => item.id === subject)?.name} ·
@@ -390,7 +472,51 @@ export default function LearningPanel({
         {playingNature && state && (
           <NatureGames key={state.difficulty} difficulty={state.difficulty} />
         )}
-        {!playingNature && question && topic && (
+        {browsing && state && (
+          <StudyBrowser
+            key={subject}
+            state={state}
+            subject={subject}
+            disabled={busy || loading}
+            onSelect={startUnit}
+            focusOnMount={returningTopics.current}
+          />
+        )}
+        {!playingNature && !browsing && studyUnit && roundFinished && (
+          <div
+            className="practice-area"
+            ref={practiceRef}
+            tabIndex={-1}
+            aria-label="Deine Übung"
+          >
+            <h3>Deine Runde ist zu Ende!</h3>
+            <p>
+              {questions.filter((q) => q.solved).length} von {questions.length}{' '}
+              Aufgaben schon richtig gelöst. Du kannst weiter ausprobieren oder
+              eine Pause machen.
+            </p>
+            <button
+              className="primary-button"
+              disabled={busy || loading}
+              onClick={() =>
+                startUnit(
+                  studyUnit,
+                  roundOffset + 6 < bank.length ? roundOffset + 6 : 0,
+                )
+              }
+            >
+              Noch eine kurze Runde
+            </button>
+            <button
+              className="secondary-button"
+              disabled={busy || loading}
+              onClick={returnToTopics}
+            >
+              Zur Themenübersicht
+            </button>
+          </div>
+        )}
+        {!playingNature && !browsing && !roundFinished && question && topic && (
           <div
             className="practice-area"
             ref={practiceRef}
@@ -398,7 +524,7 @@ export default function LearningPanel({
             aria-label="Deine Übung"
           >
             <div className="section-heading">
-              <h3>{topic.name}</h3>
+              <h3>{studyUnit?.name ?? topic.name}</h3>
               <span>
                 {
                   difficulties.find((level) => level.id === state?.difficulty)
@@ -408,6 +534,32 @@ export default function LearningPanel({
               </span>
             </div>
 
+            {studyUnit && (
+              <>
+                <nav className="study-breadcrumb" aria-label="Dein Themenweg">
+                  <button
+                    className="secondary-button"
+                    disabled={busy || loading}
+                    onClick={returnToTopics}
+                  >
+                    ← Themenübersicht
+                  </button>
+                  <span>
+                    {
+                      state?.studyCatalog?.areas.find(
+                        (a) => a.id === studyUnit.areaId,
+                      )?.name
+                    }{' '}
+                    / {studyUnit.name}
+                  </span>
+                </nav>
+                <p>{studyUnit.goal}</p>
+                <p className="sample-note">
+                  Aufgabe {questionIndex + 1} von {questions.length} in deiner
+                  kurzen Runde · Du darfst Aufgaben überspringen.
+                </p>
+              </>
+            )}
             <div className="question-navigation">
               <label htmlFor="question-picker">Deine Aufgabe</label>
               <select
@@ -425,12 +577,10 @@ export default function LearningPanel({
               </select>
               <button
                 className="secondary-button"
-                disabled={busy || loading || questions.length < 2}
-                onClick={() =>
-                  selectQuestion(
-                    questions[(questionIndex + 1) % questions.length].id,
-                  )
+                disabled={
+                  busy || loading || (!studyUnit && questions.length < 2)
                 }
+                onClick={nextQuestion}
               >
                 Nächste Aufgabe →
               </button>
@@ -620,10 +770,7 @@ export default function LearningPanel({
                     className="primary-button"
                     data-close-info
                     onClick={() => {
-                      if (visibleResult.correct)
-                        selectQuestion(
-                          questions[(questionIndex + 1) % questions.length].id,
-                        );
+                      if (visibleResult.correct) nextQuestion();
                       else setResult(null);
                     }}
                   >
@@ -634,10 +781,35 @@ export default function LearningPanel({
                 </div>
               </InfoPanel>
             )}
+            {studyUnit && (
+              <InfoPanel className="study-details">
+                <summary>Lernziel, Quellen und weitere Übungen</summary>
+                <p>{studyUnit.goal}</p>
+                <p>
+                  {studyUnit.curriculumRef} · {studyUnit.curriculumVersion}.
+                  Quelle: {studyUnit.source}.
+                </p>
+                <p>
+                  Aufgaben auf dieser Stufe: {bank.length}. Gelöst heißt hier
+                  einmal richtig beantwortet; es ist keine Lernstandsdiagnose.
+                </p>
+                {studyUnit.supplements.map((link) => (
+                  <button
+                    key={link.kind + link.target}
+                    className="secondary-button"
+                    disabled={busy || loading || !onSupplement}
+                    onClick={() => onSupplement?.(link)}
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </InfoPanel>
+            )}
             {solvedCount === questions.length && (
               <p className="completion-message">
-                ✦ Alles geschafft in dieser Stufe! Lust auf ein anderes Thema
-                oder eine Mitmachaufgabe?
+                {studyUnit
+                  ? '✦ Diese Aufgaben hast du schon richtig gelöst. Lust auf eine weitere Runde?'
+                  : '✦ Alles geschafft in dieser Stufe! Lust auf ein anderes Thema oder eine Mitmachaufgabe?'}
               </p>
             )}
             {topic.activities.length > 0 && (
@@ -733,7 +905,7 @@ export default function LearningPanel({
         </InfoPanel>
       )}
       {notice && !rewardsOpen && <p role="status">{notice}</p>}
-      {state && subject === 'nature' && (
+      {state && !browsing && subject === 'nature' && (
         <InfoPanel className="source-note">
           <summary>Für Neugierige & Erwachsene: Natur und Technik</summary>
           <p>
@@ -756,7 +928,7 @@ export default function LearningPanel({
           </p>
         </InfoPanel>
       )}
-      {state && subject === 'english' && (
+      {state && !browsing && subject === 'english' && (
         <InfoPanel className="source-note">
           <summary>Für Neugierige & Erwachsene: Englisch-Lerninhalte</summary>
           <p>
@@ -776,7 +948,7 @@ export default function LearningPanel({
           </p>
         </InfoPanel>
       )}
-      {state && subject === 'mathematics' && (
+      {state && !browsing && subject === 'mathematics' && (
         <InfoPanel className="source-note">
           <summary>Für Neugierige & Erwachsene: Lerninhalte</summary>
           <p>

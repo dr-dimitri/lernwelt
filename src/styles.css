@@ -1653,3 +1653,87 @@ main {
 .vocabulary-listening .flashcard > .secondary-button {
   margin-top: 0.75rem;
 }
+
+/* The catalogue expands one level at a time; exercise pages retain a single task. */
+.study-browser {
+  min-width: 0;
+  padding: 1.25rem;
+}
+.study-browser-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.study-browser-heading h3 {
+  margin: 0.4rem 0;
+}
+.study-search {
+  display: grid;
+  gap: 0.4rem;
+  width: min(100%, 20rem);
+}
+.study-search input {
+  width: 100%;
+}
+.study-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+.study-card {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: left;
+  gap: 0.65rem;
+  border: 1px solid var(--border, #dcd8e8);
+  border-radius: 1rem;
+  padding: 1.1rem;
+  background: white;
+  color: inherit;
+  min-height: 145px;
+}
+.study-card strong {
+  font-size: 1.08rem;
+}
+.study-card:hover:not(:disabled) {
+  border-color: #7560b9;
+  background: #f9f7ff;
+}
+.study-action {
+  margin-top: auto;
+  color: #64449f;
+  font-weight: 600;
+}
+.study-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+.study-details button {
+  display: block;
+  margin-top: 0.7rem;
+}
+.learning-workspace:has(.study-browser) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.learning-workspace:has(.study-browser) .learning-settings {
+  padding-bottom: 0;
+}
+.learning-workspace:has(.study-browser) .level-section {
+  max-width: 680px;
+}
+.learning-workspace:has(.study-browser) .level-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 520px) {
+  .learning-workspace:has(.study-browser) .level-grid {
+    grid-template-columns: 1fr;
+  }
+}
