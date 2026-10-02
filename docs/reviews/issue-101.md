@@ -13,6 +13,7 @@ Das Ergebnis umfasst 87 Unterthemen in 17 Lernbereichen und 3.675 sichtbare Fach
 - Mehrdeutige Versuchseinleitung, gleiche Geometrie-/Lesebeispiele und mögliche unfaire freie Synonymabfragen wurden während des Inhaltsreviews korrigiert. Auswahlaufgaben erhalten eindeutig verschiedene Optionen und wechselnde Positionen der richtigen Antwort. Hör-Schreibaufgaben bieten den Satz zur Einordnung ähnlich klingender Wörter.
 - Der neue Audio-Baustein erhielt einen eigenen React-Schlüssel, damit Aufgabenwechsel die Wiedergabe zuverlässig beenden. Frontendtests prüfen Wechsel, Rückweg, Abspielfehler, erneuten Versuch und ausbleibende Punktebuchung durch Anhören.
 - Der in `main` reproduzierte verspätete Fokuswechsel wurde separat als #103 bearbeitet, reviewt und vor Fortsetzung gemergt. Kein stiller Nebenfix.
+- Bei neuen Englisch-Texteingaben wurde das Zahlen-Einheitenfeld weggelassen, damit kein unpassender Hinweis zu Zahlenformaten erscheint; die Frage selbst benennt die geforderte Antwort. Eine unklare Lernstrategiefrage wurde sprachlich vereinfacht. IDs und Antworten bleiben gleich.
 - Vorhandene Umfangstests wurden auf die vergrößerte Bank aktualisiert; Antwort- und Punkteprüfungen bleiben vollständig. Kein Datenbankschema, keine alten Antwortbedeutungen und keine bestehenden Buchungen geändert.
 
 ## Prüfergebnisse
