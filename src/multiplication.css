@@ -1,5 +1,5 @@
 .adventure-panel {
-  background: #fffefa;
+  background: #fff;
 }
 .adventure-topbar,
 .adventure-toolbar,
@@ -23,23 +23,23 @@
   flex-wrap: wrap;
   padding: 4px;
   gap: 4px;
-  border: 1px solid #d4e2dd;
-  background: #eef4f1;
+  border: 1px solid var(--line);
+  background: #f2eef9;
   border-radius: 14px;
 }
 .adventure-worlds button {
   border: 1px solid transparent;
   background: transparent;
-  color: #506761;
+  color: var(--muted);
   border-radius: 10px;
   padding: 10px 14px;
   font-weight: 650;
 }
 .adventure-worlds [aria-pressed='true'] {
-  border-color: #c5ddd2;
-  color: #155f51;
+  border-color: #c9b9e7;
+  color: var(--accent-hover);
   background: white;
-  box-shadow: 0 2px 6px #2c685114;
+  box-shadow: 0 2px 6px #6550ac14;
 }
 .adventure-tools {
   display: flex;
@@ -58,8 +58,8 @@
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  background: #eaf2ec;
-  border: 1px solid #d2e4d7;
+  background: #f1edfa;
+  border: 1px solid #dcd2ee;
   overflow: hidden;
 }
 .adventure-landscape.island {
@@ -73,7 +73,7 @@
   font-size: 16px;
 }
 .adventure-scene-heading span {
-  color: #526c62;
+  color: var(--muted);
   font-size: 12px;
   font-weight: 650;
   text-align: right;
@@ -101,10 +101,10 @@
 .adventure-progress-track span {
   height: 7px;
   border-radius: 8px;
-  background: #d1dfd6;
+  background: #d8cee9;
 }
 .adventure-progress-track .is-built {
-  background: #147565;
+  background: var(--accent);
 }
 .adventure-question {
   display: flex;
@@ -113,8 +113,8 @@
   justify-content: center;
   padding: 22px;
   min-width: 0;
-  border: 1px solid #eadfcd;
-  background: #fff8ec;
+  border: 1px solid #eedac8;
+  background: #fff6ec;
   border-radius: 20px;
 }
 .adventure-question > h3 {
