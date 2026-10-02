@@ -26,7 +26,7 @@ Nur die sechs Versionswerte (npm-Paket, beide npm-Lockwerte, Cargo-Paket/-Lock, 
 - Formatierung, 211 Frontendtests, 8 Skripttests, TypeScript und Produktionsbuild erfolgreich. 122 Rusttests erfolgreich; Rust-Formatierung, Clippy und Dokumentationstest im abschließenden seriellen `npm run check:rust` vollständig erfolgreich.
 - Der erste Gesamtaufruf lief versehentlich parallel zum nativen Build und scheiterte nach allen erfolgreichen Unit-Tests im Rust-Dokumentationstest mit `E0463`. Nach Ende des nativen Builds wurde der gesamte betroffene Rust-Prüflauf seriell erfolgreich wiederholt. Die CI verwendet ebenfalls die serielle Reihenfolge.
 - `npm run desktop:build -- --debug --no-bundle` mit unveränderter Produktionskonfiguration und Version 0.3.0 erfolgreich.
-- Finale Inhalts-CI vor dem Merge erfolgreich auf Frontend, macOS und Windows: [Quality-Lauf 37030764400](https://github.com/dr-dimitri/lernwelt/actions/runs/37030764400). Die Release-CI prüft den Versions-PR zusätzlich vor dem Tag.
+- Finale Inhalts-CI vor dem Merge erfolgreich auf Frontend, macOS und Windows: [Quality-Lauf 37030764400](https://github.com/dr-dimitri/lernwelt/actions/runs/37030764400). Die Quality-CI prüft den Versions-PR vor dem Tag; die Release-Pipeline prüft anschließend den Tag und die Pakete.
 - Suchfunktion mit tatsächlichem finalem Katalog geprüft: „mother“ und „Mutter“ finden beide „Meine bunte Familie“. Reproduzierbare Bank/Katalog und alle ursprünglichen Lösungsschlüssel wurden im Inhaltsreview geprüft.
 - Drei Release-Assemblytests prüfen vollständige Plattformliste, Signaturen und Kollisionsfreiheit der Mac-Pakete; erfolgreich.
 
