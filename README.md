@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.2.1 bringt weitere Lernrunden, Hilfen in mehreren Schritten, englische Offline-Audios und einen integrierten Updater. [Alle Änderungen und Installationshinweise](docs/releases/0.2.1.md).
+Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.2.2 bringt die neue Oberfläche mit klarer Navigation, eigenen Fachmotiven und übersichtlichen Aufgabenflächen. [Alle Änderungen und Installationshinweise](docs/releases/0.2.2.md).
 
 ## Mitarbeit
 
