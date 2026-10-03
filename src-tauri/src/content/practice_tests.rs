@@ -1,7 +1,7 @@
 use super::*;
 
 #[test]
-fn all_selectable_units_offer_twelve_tasks_at_each_level_without_duplicate_tasks() {
+fn selectable_units_meet_subject_specific_scope_without_duplicate_tasks() {
     let content = catalog().unwrap();
     let study = crate::study::catalog(content).unwrap();
     let family = study
@@ -22,7 +22,11 @@ fn all_selectable_units_offer_twelve_tasks_at_each_level_without_duplicate_tasks
                 .iter()
                 .filter(|e| unit.exercise_ids.contains(&e.id) && e.difficulty == level)
                 .collect();
-            assert!(tasks.len() >= 12, "{} {}", unit.id, level.as_str());
+            if unit.subject == Subject::Geography {
+                assert_eq!(tasks.len(), 8, "{} {}", unit.id, level.as_str());
+            } else {
+                assert!(tasks.len() >= 12, "{} {}", unit.id, level.as_str());
+            }
             let mut distinct = HashSet::new();
             for task in tasks.iter().filter(|e| e.id.contains(".focus.")) {
                 assert!(

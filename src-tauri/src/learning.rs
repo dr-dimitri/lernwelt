@@ -1,10 +1,13 @@
-use crate::content::{self, AnswerKind, Difficulty, NumberLine, Topic};
+use crate::content::{self, AnswerKind, Difficulty, NumberLine, SolarSystemPlanetId, Topic};
 use crate::database::{self, Subject};
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::Serialize;
 
 #[cfg(test)]
 mod nature_tests;
+
+#[cfg(test)]
+mod geography_tests;
 
 #[cfg(test)]
 mod number_line_tests;
@@ -51,6 +54,8 @@ pub struct Question {
     number_line: Option<&'static NumberLine>,
     #[serde(skip_serializing_if = "Option::is_none")]
     audio_card_id: Option<&'static str>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    solar_system_planet_id: Option<SolarSystemPlanetId>,
 }
 
 #[derive(Debug, Serialize)]
@@ -153,6 +158,7 @@ pub fn get_state(connection: &mut Connection) -> Result<LearningState, String> {
                 competency_id: &exercise.competency_id,
                 number_line: exercise.number_line.as_ref(),
                 audio_card_id: exercise.audio_card_id.as_deref(),
+                solar_system_planet_id: exercise.solar_system_planet_id,
             })
         })
         .collect::<Result<Vec<_>, String>>()?;

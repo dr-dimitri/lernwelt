@@ -1,0 +1,710 @@
+{
+  "version": 1,
+  "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/geographie",
+  "curriculumVersion": "LehrplanPLUS Bayern · Geographie 5 · Geo5 Lernbereich 2 · Fakten: NASA Solar System Exploration · Quellenstand 03.10.2026",
+  "topics": [
+    {
+      "id": "geography-solar-system",
+      "name": "Reise durchs Sonnensystem",
+      "subject": "geography",
+      "grade": 5,
+      "curriculumRef": "Geo5 2: Planet Erde · Grundstruktur des Sonnensystems; Einzigartigkeit der Erde",
+      "description": "Entdecke acht Planeten, erkenne ihre Reihenfolge und erforsche unsere Erde. Ein begrenztes Angebot zum Sonnensystem, keine vollständige Geographie-Abdeckung.",
+      "lesson": "Die Sonne ist ein Stern. Sie gibt Licht und Wärme ab. Acht Planeten umkreisen sie auf Bahnen. Von innen nach außen heißen sie Merkur, Venus, Erde, Mars, Jupiter, Saturn, Uranus und Neptun. Die vier inneren Planeten haben eine feste Gesteinsoberfläche. Jupiter und Saturn sind Gasriesen, Uranus und Neptun heißen Eisriesen. Sie haben keine feste Oberfläche wie die Erde. Die Erde ist der einzige Planet, auf dem wir bisher Leben kennen. Flüssiges Wasser, eine schützende Lufthülle und passende Temperaturen ermöglichen Leben. Deshalb schützen wir Wasser, Luft und Lebensräume. Im Modell sind Größen, Abstände und Umlaufzeiten stark vereinfacht. Die Planeten stehen nicht immer in einer Reihe. Pluto ist ein Zwergplanet und gehört nicht zu den acht Planeten. Faktenquelle: https://science.nasa.gov/solar-system/planets/",
+      "tables": [],
+      "activities": [
+        {
+          "title": "Dein Planetenmodell",
+          "prompt": "1. Zeichne eine Sonne und acht Kreise als Planeten.\n2. Schreibe die Namen von innen nach außen dazu.\n3. Erkläre, warum die echten Abstände nicht auf dein Blatt passen.",
+          "check": "Die Reihenfolge lautet Merkur, Venus, Erde, Mars, Jupiter, Saturn, Uranus, Neptun. Dein Bild zeigt die Ordnung, aber nicht die echten Größen und Abstände."
+        },
+        {
+          "title": "Unsere Erde schützen",
+          "prompt": "1. Zeichne Wasser, Luft und einen Lebensraum auf der Erde.\n2. Wähle eine Sache aus, die du schützen möchtest.\n3. Erkläre eine kleine Handlung, die dabei hilft.",
+          "check": "Zum Beispiel: Müll aufheben schützt Lebensräume. Beim Zähneputzen das Wasser abstellen spart Trinkwasser. Viele kleine Handlungen helfen, Lebensbedingungen zu erhalten."
+        }
+      ],
+      "languageSequence": null
+    }
+  ],
+  "exercises": [
+    {
+      "id": "by.geography.5.solar.mercury.vorschule.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Planet liegt auf der ersten Bahn direkt bei der Sonne?",
+      "answer": "Merkur",
+      "hint": "Beginne bei der Sonne und suche die innerste Bahn.",
+      "furtherHints": [
+        "Der gesuchte Planet ist klein und hat eine graue Oberfläche."
+      ],
+      "commonMistakes": [],
+      "explanation": "Merkur ist der erste Planet von der Sonne aus. Er ist auch der kleinste der acht Planeten.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "mercury"
+    },
+    {
+      "id": "by.geography.5.solar.venus.vorschule.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Wie heißt der Planet auf der zweiten Bahn von der Sonne?",
+      "answer": "Venus",
+      "hint": "Zähle die Bahnen von innen nach außen.",
+      "furtherHints": ["Der gesuchte Planet liegt zwischen Merkur und Erde."],
+      "commonMistakes": [],
+      "explanation": "Venus ist der zweite Planet von der Sonne aus. Sie liegt zwischen Merkur und Erde.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "venus"
+    },
+    {
+      "id": "by.geography.5.solar.earth.vorschule.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Planet ist unsere Heimat und liegt auf der dritten Bahn?",
+      "answer": "Erde",
+      "hint": "Suche den Planeten mit Ozeanen und Kontinenten.",
+      "furtherHints": ["Er liegt zwischen Venus und Mars."],
+      "commonMistakes": [],
+      "explanation": "Die Erde ist unsere Heimat. Sie ist der dritte Planet von der Sonne aus. Hier kennen wir Leben und große Ozeane.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "earth"
+    },
+    {
+      "id": "by.geography.5.solar.mars.vorschule.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Planet liegt auf der vierten Bahn und wird der rote Planet genannt?",
+      "answer": "Mars",
+      "hint": "Zähle von der Sonne aus vier Bahnen.",
+      "furtherHints": ["Er liegt direkt außerhalb der Erdbahn."],
+      "commonMistakes": [],
+      "explanation": "Mars ist der vierte Planet. Eisenhaltiger Staub lässt seine Oberfläche rötlich aussehen.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "mars"
+    },
+    {
+      "id": "by.geography.5.solar.jupiter.vorschule.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Planet ist der größte und liegt auf der fünften Bahn?",
+      "answer": "Jupiter",
+      "hint": "Suche den großen Planeten außerhalb der Marsbahn.",
+      "furtherHints": ["Er ist der erste der beiden Gasriesen."],
+      "commonMistakes": [],
+      "explanation": "Jupiter ist der größte Planet und der fünfte von der Sonne aus. Er ist ein Gasriese.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "jupiter"
+    },
+    {
+      "id": "by.geography.5.solar.saturn.vorschule.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Planet auf der sechsten Bahn hat besonders auffällige Ringe?",
+      "answer": "Saturn",
+      "hint": "Suche im Modell die breiten Ringe.",
+      "furtherHints": ["Er liegt zwischen Jupiter und Uranus."],
+      "commonMistakes": [],
+      "explanation": "Saturn ist der sechste Planet. Seine hellen, breiten Ringe bestehen vor allem aus Eisstücken.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "saturn"
+    },
+    {
+      "id": "by.geography.5.solar.uranus.vorschule.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Wie heißt der Planet auf der siebten Bahn von der Sonne?",
+      "answer": "Uranus",
+      "hint": "Zähle die Bahnen von innen nach außen.",
+      "furtherHints": ["Er liegt zwischen Saturn und Neptun."],
+      "commonMistakes": [],
+      "explanation": "Uranus ist der siebte Planet. Er gehört zusammen mit Neptun zu den Eisriesen.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "uranus"
+    },
+    {
+      "id": "by.geography.5.solar.neptune.vorschule.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Planet liegt auf der achten und äußersten Planetenbahn?",
+      "answer": "Neptun",
+      "hint": "Suche die äußerste der acht Planetenbahnen.",
+      "furtherHints": [
+        "Er liegt noch weiter von der Sonne entfernt als Uranus."
+      ],
+      "commonMistakes": [],
+      "explanation": "Neptun ist der achte und äußerste der acht Planeten. Außerhalb liegen weitere kleine Himmelskörper und Zwergplaneten.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "neptune"
+    },
+    {
+      "id": "by.geography.5.solar.mercury.koenner.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Gesteinsplanet ist der kleinste der acht Planeten und der Sonne am nächsten?",
+      "answer": "Merkur",
+      "hint": "Ein Gesteinsplanet hat eine feste Oberfläche aus Gestein.",
+      "furtherHints": [
+        "Suche unter den vier inneren Planeten die innerste Bahn."
+      ],
+      "commonMistakes": [],
+      "explanation": "Merkur ist ein Gesteinsplanet. Er ist der kleinste der acht Planeten und der Sonne am nächsten.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "mercury"
+    },
+    {
+      "id": "by.geography.5.solar.venus.koenner.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Planet liegt zwischen Merkur und Erde und hat eine dichte Wolkenhülle?",
+      "answer": "Venus",
+      "hint": "Suche zuerst Merkur und Erde im Modell.",
+      "furtherHints": ["Zwischen ihren Bahnen liegt genau ein Planet."],
+      "commonMistakes": [],
+      "explanation": "Venus liegt zwischen Merkur und Erde. Ihre dichte Atmosphäre, also ihre Gashülle, hält sehr viel Wärme fest.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "venus"
+    },
+    {
+      "id": "by.geography.5.solar.earth.koenner.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Auf welchem Planeten kennen wir Leben und große Ozeane aus flüssigem Wasser?",
+      "answer": "Erde",
+      "hint": "Suche unsere Heimat unter den vier inneren Planeten.",
+      "furtherHints": [
+        "Flüssiges Wasser und eine schützende Lufthülle sind hier wichtig für das Leben."
+      ],
+      "commonMistakes": [],
+      "explanation": "Auf der Erde kennen wir Leben und große Ozeane aus flüssigem Wasser. Sie ist der dritte Planet. Wir schützen ihre Lebensbedingungen.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "earth"
+    },
+    {
+      "id": "by.geography.5.solar.mars.koenner.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher rote Gesteinsplanet liegt zwischen Erde und Jupiter?",
+      "answer": "Mars",
+      "hint": "Gesteinsplaneten haben eine feste Oberfläche.",
+      "furtherHints": [
+        "Der gesuchte Planet ist der äußerste der vier inneren Planeten."
+      ],
+      "commonMistakes": [],
+      "explanation": "Mars liegt zwischen Erde und Jupiter. Er ist der vierte Planet und hat eine feste Gesteinsoberfläche.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "mars"
+    },
+    {
+      "id": "by.geography.5.solar.jupiter.koenner.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Gasriese liegt direkt außerhalb der Marsbahn und ist größer als Saturn?",
+      "answer": "Jupiter",
+      "hint": "Gasriesen haben keine feste Oberfläche wie die Erde.",
+      "furtherHints": [
+        "Der gesuchte Planet ist der erste der vier äußeren Riesenplaneten."
+      ],
+      "commonMistakes": [],
+      "explanation": "Jupiter liegt außerhalb der Marsbahn. Er ist ein Gasriese und größer als Saturn sowie jeder andere Planet.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "jupiter"
+    },
+    {
+      "id": "by.geography.5.solar.saturn.koenner.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Gasriese mit breiten Ringen liegt zwischen Jupiter und Uranus?",
+      "answer": "Saturn",
+      "hint": "Suche die Bahn direkt außerhalb von Jupiter.",
+      "furtherHints": [
+        "Der gesuchte Planet ist der zweite der beiden Gasriesen."
+      ],
+      "commonMistakes": [],
+      "explanation": "Saturn liegt zwischen Jupiter und Uranus. Er ist der zweite Gasriese und besitzt besonders auffällige Ringe.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "saturn"
+    },
+    {
+      "id": "by.geography.5.solar.uranus.koenner.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Eisriese liegt zwischen Saturn und Neptun?",
+      "answer": "Uranus",
+      "hint": "Eisriesen heißen die beiden äußersten Riesenplaneten.",
+      "furtherHints": [
+        "Der gesuchte Planet ist der innere der beiden Eisriesen."
+      ],
+      "commonMistakes": [],
+      "explanation": "Uranus liegt zwischen Saturn und Neptun. Er ist der siebte Planet und der innere Eisriese.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "uranus"
+    },
+    {
+      "id": "by.geography.5.solar.neptune.koenner.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Welcher Eisriese liegt außerhalb der Uranusbahn?",
+      "answer": "Neptun",
+      "hint": "Suche die beiden äußersten Planeten.",
+      "furtherHints": [
+        "Der gesuchte Planet liegt weiter außen als der andere Eisriese."
+      ],
+      "commonMistakes": [],
+      "explanation": "Neptun liegt außerhalb der Uranusbahn. Er ist der äußere der beiden Eisriesen und der achte Planet.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "neptune"
+    },
+    {
+      "id": "by.geography.5.solar.mercury.streber.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Ich bin ein Gesteinsplanet. Zwischen meiner Bahn und der Erdbahn liegt genau eine Planetenbahn. Ich liege näher an der Sonne als die Erde. Welcher Planet bin ich?",
+      "answer": "Merkur",
+      "hint": "Betrachte die Bahnen innerhalb der Erdbahn.",
+      "furtherHints": [
+        "Gesucht ist die Bahn, bei der noch ein anderer Planet zwischen ihr und der Erde liegt."
+      ],
+      "commonMistakes": [],
+      "explanation": "Die Erde liegt auf Bahn 3. Venus auf Bahn 2 liegt zwischen der Erde und Merkur auf Bahn 1. Gesucht ist Merkur.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "mercury"
+    },
+    {
+      "id": "by.geography.5.solar.venus.streber.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Ich liege innerhalb der Erdbahn. Zwischen meiner Bahn und der Erdbahn liegt keine andere Planetenbahn. Welcher Planet bin ich?",
+      "answer": "Venus",
+      "hint": "Innerhalb heißt hier: näher an der Sonne.",
+      "furtherHints": ["Suche den direkten inneren Nachbarn der Erde."],
+      "commonMistakes": [],
+      "explanation": "Die Erde liegt auf Bahn 3. Ihr direkter innerer Nachbar ist Venus auf Bahn 2.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "venus"
+    },
+    {
+      "id": "by.geography.5.solar.earth.streber.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Von der Sonne bis zu meiner Bahn liegen zwei andere Planetenbahnen. Direkt außerhalb meiner Bahn liegt Mars. Welcher Planet bin ich?",
+      "answer": "Erde",
+      "hint": "Zähle nur die Planetenbahnen, die näher an der Sonne liegen.",
+      "furtherHints": [
+        "Zwei Bahnen davor bedeutet: Gesucht ist die dritte Bahn."
+      ],
+      "commonMistakes": [],
+      "explanation": "Vor der Erdbahn liegen Merkur und Venus. Direkt außerhalb liegt Mars. Gesucht ist die Erde auf Bahn 3.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "earth"
+    },
+    {
+      "id": "by.geography.5.solar.mars.streber.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Ich bin der äußerste Gesteinsplanet. Direkt außerhalb meiner Bahn beginnt die Gruppe der Riesenplaneten. Welcher Planet bin ich?",
+      "answer": "Mars",
+      "hint": "Die ersten vier Planeten sind Gesteinsplaneten.",
+      "furtherHints": [
+        "Suche den Übergang zwischen den vier inneren und den vier äußeren Planeten."
+      ],
+      "commonMistakes": [],
+      "explanation": "Mars ist der äußerste der vier Gesteinsplaneten. Danach folgt Jupiter als erster Riesenplanet.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "mars"
+    },
+    {
+      "id": "by.geography.5.solar.jupiter.streber.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Ich bin ein Gasriese. Zwischen meiner Bahn und der Erdbahn liegt genau eine Planetenbahn. Welcher Planet bin ich?",
+      "answer": "Jupiter",
+      "hint": "Die Gasriesen liegen auf Bahn 5 und 6.",
+      "furtherHints": [
+        "Prüfe, bei welcher Bahn nur Mars zwischen ihr und der Erde liegt."
+      ],
+      "commonMistakes": [],
+      "explanation": "Zwischen Erde auf Bahn 3 und Jupiter auf Bahn 5 liegt nur Mars auf Bahn 4. Daher ist Jupiter gesucht.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "jupiter"
+    },
+    {
+      "id": "by.geography.5.solar.saturn.streber.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Ich bin ein Gasriese. Weiter außen als ich liegen nur noch die zwei Eisriesen. Welcher Planet bin ich?",
+      "answer": "Saturn",
+      "hint": "Gasriesen sind Jupiter und Saturn. Eisriesen sind Uranus und Neptun.",
+      "furtherHints": ["Suche den äußeren der beiden Gasriesen."],
+      "commonMistakes": [],
+      "explanation": "Außerhalb der Saturnbahn liegen Uranus und Neptun. Jupiter liegt weiter innen. Gesucht ist Saturn auf Bahn 6.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "saturn"
+    },
+    {
+      "id": "by.geography.5.solar.uranus.streber.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Ich bin ein Eisriese. Direkt innerhalb meiner Bahn liegt ein Gasriese. Welcher Planet bin ich?",
+      "answer": "Uranus",
+      "hint": "Die beiden Eisriesen liegen auf Bahn 7 und 8.",
+      "furtherHints": [
+        "Suche den Eisriesen, dessen innerer Nachbar Saturn ist."
+      ],
+      "commonMistakes": [],
+      "explanation": "Uranus auf Bahn 7 liegt direkt außerhalb von Saturn, einem Gasriesen. Neptuns innerer Nachbar ist dagegen Uranus.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "uranus"
+    },
+    {
+      "id": "by.geography.5.solar.neptune.streber.v1",
+      "subject": "geography",
+      "topicId": "geography-solar-system",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.solar-system",
+      "prompt": "Ich bin ein Eisriese. Zwischen meiner Bahn und der Saturnbahn liegt genau eine Planetenbahn. Welcher Planet bin ich?",
+      "answer": "Neptun",
+      "hint": "Saturn liegt auf Bahn 6. Zähle von dort nach außen.",
+      "furtherHints": [
+        "Eine Bahn dazwischen bedeutet: Überspringe den direkten Nachbarn von Saturn."
+      ],
+      "commonMistakes": [],
+      "explanation": "Zwischen Saturn auf Bahn 6 und Neptun auf Bahn 8 liegt Uranus auf Bahn 7. Gesucht ist Neptun.",
+      "options": [
+        "Merkur",
+        "Venus",
+        "Erde",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false,
+      "solarSystemPlanetId": "neptune"
+    }
+  ]
+}

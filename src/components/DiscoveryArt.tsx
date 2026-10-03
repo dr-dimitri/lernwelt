@@ -139,6 +139,45 @@ export function SubjectArt({
           <path d="m252 22 3 9 9 3-9 3-3 9-3-9-9-3 9-3Z" fill="#954729" />
           <circle cx="49" cy="119" r="5" fill="#cb744c" />
         </>
+      ) : subject === 'geography' ? (
+        <>
+          <rect width="320" height="150" rx="13" fill="#102039" />
+          <ellipse
+            cx="160"
+            cy="77"
+            rx="113"
+            ry="34"
+            transform="rotate(-18 160 77)"
+            stroke="#829ec7"
+          />
+          <ellipse
+            cx="160"
+            cy="77"
+            rx="73"
+            ry="22"
+            transform="rotate(-18 160 77)"
+            stroke="#829ec7"
+          />
+          <circle cx="160" cy="77" r="24" fill="#ffd17d" />
+          <circle cx="227" cy="52" r="13" fill="#8dc6eb" />
+          <circle cx="78" cy="119" r="17" fill="#d3ad83" />
+          <ellipse
+            cx="78"
+            cy="119"
+            rx="30"
+            ry="7"
+            transform="rotate(-18 78 119)"
+            stroke="#edd2a2"
+            strokeWidth="4"
+          />
+          <circle cx="110" cy="67" r="8" fill="#e18760" />
+          <path
+            d="M52 30v8m-4-4h8M260 105v8m-4-4h8"
+            stroke="#dae9ff"
+            strokeWidth="2"
+          />
+          <circle cx="260" cy="25" r="2" fill="#dae9ff" />
+        </>
       ) : subject === 'nature' ? (
         <>
           <circle cx="173" cy="76" r="61" fill="#a5d3c0" />

@@ -102,6 +102,12 @@
       "subject": "nature",
       "name": "Lebensraum Wiese",
       "curriculumRef": "NT5 2.5"
+    },
+    {
+      "id": "geography-earth",
+      "subject": "geography",
+      "name": "Planet Erde",
+      "curriculumRef": "Geo5 2"
     }
   ],
   "units": [
@@ -6746,6 +6752,59 @@
           "target": "all"
         }
       ]
+    },
+    {
+      "id": "geography-solar-system",
+      "areaId": "geography-earth",
+      "subject": "geography",
+      "grade": 5,
+      "name": "Reise durchs Sonnensystem",
+      "goal": "Erkenne die acht Planeten im Modell und ordne unsere Erde ein.",
+      "keywords": [
+        "Sonnensystem",
+        "Planeten",
+        "Sonne",
+        "Erde",
+        "Merkur",
+        "Venus",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptun",
+        "Weltraum"
+      ],
+      "curriculumRef": "Geo5 2: Grundstruktur des Sonnensystems; Einzigartigkeit der Erde",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/geographie",
+      "curriculumVersion": "LehrplanPLUS Bayern · Geographie 5 · Geo5 Lernbereich 2 · Fakten: NASA Solar System Exploration · Quellenstand 03.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.geography.5.solar.mercury.vorschule.v1",
+        "by.geography.5.solar.venus.vorschule.v1",
+        "by.geography.5.solar.earth.vorschule.v1",
+        "by.geography.5.solar.mars.vorschule.v1",
+        "by.geography.5.solar.jupiter.vorschule.v1",
+        "by.geography.5.solar.saturn.vorschule.v1",
+        "by.geography.5.solar.uranus.vorschule.v1",
+        "by.geography.5.solar.neptune.vorschule.v1",
+        "by.geography.5.solar.mercury.koenner.v1",
+        "by.geography.5.solar.venus.koenner.v1",
+        "by.geography.5.solar.earth.koenner.v1",
+        "by.geography.5.solar.mars.koenner.v1",
+        "by.geography.5.solar.jupiter.koenner.v1",
+        "by.geography.5.solar.saturn.koenner.v1",
+        "by.geography.5.solar.uranus.koenner.v1",
+        "by.geography.5.solar.neptune.koenner.v1",
+        "by.geography.5.solar.mercury.streber.v1",
+        "by.geography.5.solar.venus.streber.v1",
+        "by.geography.5.solar.earth.streber.v1",
+        "by.geography.5.solar.mars.streber.v1",
+        "by.geography.5.solar.jupiter.streber.v1",
+        "by.geography.5.solar.saturn.streber.v1",
+        "by.geography.5.solar.uranus.streber.v1",
+        "by.geography.5.solar.neptune.streber.v1"
+      ],
+      "supplements": []
     }
   ]
 }

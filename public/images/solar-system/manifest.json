@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "usageGuidelines": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "usage": "Sachliche Bildungsnutzung mit den angegebenen Credits; keine NASA-Empfehlung oder Zusammenarbeit. Keine Logos oder identifizierbaren Personen.",
+  "sourcesCheckedAt": "2026-10-03",
+  "images": [
+    {
+      "id": "mercury",
+      "sourceImage": "https://science.nasa.gov/wp-content/uploads/2024/03/pia15162-mercury-basins-messenger-16x9-1.jpg?w=1024",
+      "width": 1024,
+      "height": 576,
+      "bytes": 26780,
+      "sha256": "d4bb1ff54ab523d3603ebf357bd3ddce332f3b9b13f2f3cb2b2cc196d6d1f2d1",
+      "file": "mercury.webp",
+      "sourcePage": "https://science.nasa.gov/photojournal/mercury-globe-0n-180e/",
+      "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington",
+      "retrievedAt": "2026-10-03",
+      "processing": "NASA-Datei auf maximal 1024 Pixel verkleinert und als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    },
+    {
+      "id": "venus",
+      "sourceImage": "https://science.nasa.gov/wp-content/uploads/2024/03/venus-mariner-10-pia23791-fig2-16x9-1.jpg?w=1024",
+      "width": 1024,
+      "height": 576,
+      "bytes": 12076,
+      "sha256": "1b95ebfb8b1d96d28f404727ae3c71e8bf330dfd863d3d5c1384465b6f94dd95",
+      "file": "venus.webp",
+      "sourcePage": "https://science.nasa.gov/photojournal/venus-from-mariner-10/",
+      "credit": "NASA/JPL-Caltech",
+      "retrievedAt": "2026-10-03",
+      "processing": "NASA-Datei auf maximal 1024 Pixel verkleinert und als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    },
+    {
+      "id": "earth",
+      "sourceImage": "https://science.nasa.gov/wp-content/uploads/2024/03/blue-marble-apollo-17-16x9-1.jpg?w=1024",
+      "width": 1024,
+      "height": 576,
+      "bytes": 61260,
+      "sha256": "5b0ebce7168f27c3643d5551069aa6066e0678ec1f691e91dc5d52d8b80e9e68",
+      "file": "earth.webp",
+      "sourcePage": "https://www.nasa.gov/image-article/apollo-17-blue-marble/",
+      "credit": "NASA",
+      "retrievedAt": "2026-10-03",
+      "processing": "NASA-Datei auf maximal 1024 Pixel verkleinert und als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    },
+    {
+      "id": "mars",
+      "sourceImage": "https://science.nasa.gov/wp-content/uploads/2024/03/mars-full-globe-16x9-1.jpg?w=1024",
+      "width": 1024,
+      "height": 576,
+      "bytes": 24806,
+      "sha256": "afa6a946abf0fa29e35a9f44d47a63fee6d2bf2ef032874833992f245f03e71b",
+      "file": "mars.webp",
+      "sourcePage": "https://science.nasa.gov/resource/mosaic-of-mars/",
+      "credit": "NASA/JPL-Caltech/USGS",
+      "retrievedAt": "2026-10-03",
+      "processing": "NASA-Datei auf maximal 1024 Pixel verkleinert und als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    },
+    {
+      "id": "jupiter",
+      "sourceImage": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia02/pia02873/PIA02873.jpg?crop=faces%2Cfocalpoint&fit=clip&h=1080&w=1920",
+      "width": 1024,
+      "height": 576,
+      "bytes": 19608,
+      "sha256": "f5af1cf3e861e9f216f180ba898628bbfc762aa046df0f55a612bd16416a357e",
+      "file": "jupiter.webp",
+      "sourcePage": "https://science.nasa.gov/photojournal/pj-high-resolution-globe-of-jupiter/",
+      "credit": "NASA/JPL/University of Arizona",
+      "retrievedAt": "2026-10-03",
+      "processing": "NASA-Datei auf maximal 1024 Pixel verkleinert und als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    },
+    {
+      "id": "saturn",
+      "sourceImage": "https://science.nasa.gov/wp-content/uploads/2023/05/saturn-farewell-pia21345-sse-banner-1920x640-1.jpg?w=1024",
+      "width": 1024,
+      "height": 341,
+      "bytes": 11182,
+      "sha256": "22bd4afb69ad7a186b897eaa434f841664d409cb40af165ca07e6221a32a7562",
+      "file": "saturn.webp",
+      "sourcePage": "https://science.nasa.gov/photojournal/so-far-from-home/",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "retrievedAt": "2026-10-03",
+      "processing": "NASA-Datei auf maximal 1024 Pixel verkleinert und als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    },
+    {
+      "id": "uranus",
+      "sourceImage": "https://science.nasa.gov/wp-content/uploads/2024/03/uranus-pia18182-16x9-1.jpg?w=1024",
+      "width": 1024,
+      "height": 576,
+      "bytes": 8410,
+      "sha256": "a6d7783b7910b731f9aa0def737cc305441c44e8cee9ab5fe3760e20cc3f74d3",
+      "file": "uranus.webp",
+      "sourcePage": "https://science.nasa.gov/photojournal/uranus-as-seen-by-nasas-voyager-2/",
+      "credit": "NASA/JPL-Caltech",
+      "retrievedAt": "2026-10-03",
+      "processing": "NASA-Datei auf maximal 1024 Pixel verkleinert und als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    },
+    {
+      "id": "neptune",
+      "sourceImage": "https://science.nasa.gov/wp-content/uploads/2024/03/pia01492-neptune-full-disk-16x9-1.jpg?w=1024",
+      "width": 1024,
+      "height": 576,
+      "bytes": 14318,
+      "sha256": "3380ae5ece7bfe494e0a1ba7479dfbcd43f14a42257a5690d5474506617c7df0",
+      "file": "neptune.webp",
+      "sourcePage": "https://science.nasa.gov/photojournal/neptune-full-disk-view/",
+      "credit": "NASA/JPL",
+      "retrievedAt": "2026-10-03",
+      "processing": "NASA-Datei auf maximal 1024 Pixel verkleinert und als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    }
+  ]
+}

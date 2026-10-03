@@ -1,18 +1,20 @@
 # Gezielte Lehrplanthemen · Klasse 5
 
-Quellenstand: 02.10.2026. Eigene didaktische Gliederung nach LehrplanPLUS Gymnasium Bayern. Keine amtliche Freigabe. Die Zuordnung erfasst vorhandene Lernangebote, keine vollständige Beherrschung oder Lernstandsdiagnose.
+Quellenstand: 02.10.2026, Sonnensystem-Ergänzung 03.10.2026. Eigene didaktische Gliederung nach LehrplanPLUS Gymnasium Bayern. Keine amtliche Freigabe. Die Zuordnung erfasst vorhandene Lernangebote, keine vollständige Beherrschung oder Lernstandsdiagnose.
 
-Der Katalog `src-tauri/content/study-catalog-v1.json` ist die maschinenlesbare Inhaltsmatrix. Jede sichtbare Fachaufgabe ist genau einem Unterthema zugeordnet. Weitere Zugänge wie Trainer und Lernrunden verlinken ihre eigenen unveränderten Lernstände. Es gibt keine Nutzerdatenmigration.
+Der Katalog `src-tauri/content/study-catalog-v1.json` ist die maschinenlesbare Inhaltsmatrix. Jede sichtbare Fachaufgabe ist genau einem Unterthema zugeordnet. Weitere Zugänge wie Trainer und Lernrunden verlinken ihre eigenen unveränderten Lernstände. Der Themenkatalog benötigt keine eigene Nutzerdatenmigration. Das neue Fach Geographie erweitert die Fachliste über Migration 016 ohne Datenverlust.
 
 ## Auswahl und Runden
 
-Meine Fächer → Fach → Lernbereich → Unterthema startet direkt eine Runde mit höchstens sechs Aufgaben. Die Suche durchsucht Unterthema, Lernziel, Lernbereich und Stichwörter; Großschreibung und Umlaute werden normalisiert. Die Stufen bleiben frei wählbar. Noch nicht gelöste Aufgaben kommen zuerst. Nach der letzten Aufgabe endet die Runde ausdrücklich; übersprungene und falsch gelöste Aufgaben bleiben für neue Runden verfügbar. Gelöste Aufgaben können wiederholt werden, ohne erneute Erstlösungspunkte.
+In Mathematik, Englisch sowie Natur und Technik startet Meine Fächer → Fach → Lernbereich → Unterthema direkt eine Runde mit höchstens sechs Aufgaben. Die Suche durchsucht Unterthema, Lernziel, Lernbereich und Stichwörter; Großschreibung und Umlaute werden normalisiert. Die Stufen bleiben frei wählbar. Noch nicht gelöste Aufgaben kommen zuerst. Nach der letzten Aufgabe endet die Runde ausdrücklich; übersprungene und falsch gelöste Aufgaben bleiben für neue Runden verfügbar. Gelöste Aufgaben können wiederholt werden, ohne erneute Erstlösungspunkte.
 
 Der Rückweg führt zur Themenübersicht und setzt den Tastaturfokus auf ihre Überschrift. Hinweise, Quellen und weitere Angebote öffnen bei Bedarf. Der Einmaleins-Link zu Quadratzahlen öffnet diesen Rechenmodus; Lernrunden öffnen das konkrete Thema. Wortschatz-Unterthemen öffnen ihr konkretes Wortthema im Vokabeltrainer; dort bleibt die eigene Themenwahl verfügbar. Hörübungen verwenden bereits gebündelte Wort- und Satz-Audios.
 
+Geographie öffnet eine [eigene Sonnensystemwelt](solar-system.md) mit Entdeckungsmodus, NASA-Bildern und acht Rätseln pro Stufe. Die Aufgabe ist auch in der Katalogmatrix unter „Planet Erde“ zugeordnet.
+
 ## Tatsächliches Angebot
 
-Der Katalog enthält **87 Unterthemen in 17 Lernbereichen** und **3.675 Fachaufgaben**: 1.767 Mathematik, 1.368 Englisch und 540 Natur und Technik. Jedes Unterthema bietet mindestens zwölf Aufgaben je Stufe. Die bisherigen 615 Aufgaben bleiben erhalten; `topic-practice-v1.json` ergänzt 3.060 eigene Aufgaben. Kein Unterthema hat mehr eine leere Stufe.
+Der Katalog enthält **88 Unterthemen in 18 Lernbereichen** und **3.699 Fachaufgaben**: 1.767 Mathematik, 1.368 Englisch, 540 Natur und Technik sowie 24 Geographie. Die bisherigen Unterthemen bieten mindestens zwölf Aufgaben je Stufe; Sonnensystem enthält genau acht Planetenrätsel je Stufe. Die bisherigen 615 Aufgaben bleiben erhalten; `topic-practice-v1.json` ergänzt 3.060 eigene Aufgaben. Kein Unterthema hat mehr eine leere Stufe.
 
 Die Erweiterung ist eine endliche, vorab erstellte Aufgabenbank. Zahlvarianten, Auswahlfragen, Fehlerdetektiv-Aufgaben und kurze Anwendungssituationen ergänzen sich. Einige Grundlagen werden über Stufen hinweg wiederholt; die Anzahl ist keine Zahl vollständig unabhängiger Kompetenzen. Vorschule nutzt kleinere Schritte oder weniger Antwortmöglichkeiten; Könner reguläre Aufgaben; Streber ergänzt mehrschrittige Mathematik, Fehlerprüfung, Textanwendung, Satzlücken und Schreiben gehörter Wörter. Es gibt keine KI-Erzeugung oder KI-Antwortprüfung zur Laufzeit.
 
@@ -107,11 +109,13 @@ Die Erweiterung ist eine endliche, vorab erstellte Aufgabenbank. Zahlvarianten, 
 | Natur und Technik | Der menschliche Körper | Wachsen und sich verändern | NT5 2.3 | 15 | 15 | 15 |
 | Natur und Technik | Samenpflanzen | Blüten und Bestäubung | NT5 2.4 | 15 | 15 | 15 |
 | Natur und Technik | Lebensraum Wiese | Die Wiese als Ökosystem | NT5 2.5 | 15 | 15 | 15 |
+| Geographie | Planet Erde | Reise durchs Sonnensystem | Geo5 2 | 8 | 8 | 8 |
 
 ## Quellen und Grenzen
 
 - https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/mathematik
 - https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/englisch/1-fremdsprache
 - https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym
+- https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/geographie
 
 Englisch richtet sich an die erste Fremdsprache. Zeichnen, freies Schreiben und Sprechen, Messpraxis und Versuchsaufbau werden über angeleitete Mitmachangebote mit Selbstkontrolle unterstützt. Automatische Bewertung bleibt auf eindeutig prüfbare Antworten begrenzt. Die ursprünglichen Mathematikangebote zu allen 39 Kompetenzerwartungen bleiben erhalten; neue Navigation ist keine weitergehende Vollständigkeitsbehauptung.

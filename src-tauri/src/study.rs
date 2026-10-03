@@ -184,8 +184,8 @@ mod tests {
     fn every_visible_exercise_has_exactly_one_reachable_unit() {
         let content = crate::content::catalog().unwrap();
         let study = catalog(content).unwrap();
-        assert_eq!(study.areas.len(), 17);
-        assert_eq!(study.units.len(), 87);
+        assert_eq!(study.areas.len(), 18);
+        assert_eq!(study.units.len(), 88);
         study.validate(content).unwrap();
         let projection = serde_json::to_value(study).unwrap();
         assert!(projection["units"][0].get("answer").is_none());

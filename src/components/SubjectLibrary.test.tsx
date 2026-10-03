@@ -16,7 +16,7 @@ describe('Fächerbibliothek', () => {
       />,
     );
 
-    expect(screen.getByRole('status')).toHaveTextContent('3 Fächer für dich');
+    expect(screen.getByRole('status')).toHaveTextContent('4 Fächer für dich');
     expect(screen.getByRole('button', { name: 'Mathematik' })).toHaveAttribute(
       'aria-pressed',
       'true',

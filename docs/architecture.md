@@ -1,5 +1,13 @@
 # Architektur
 
+## Sonnensystem-Lernwelt (Schema 16)
+
+Das Fach `geography` ergänzt die Fächerübersicht um eine eigene `SolarSystemWorld`. Acht NASA-Bilder, Steckbriefe und Bildnachweise liegen lokal in `public/images/solar-system/` und `src/domain/solar-system.ts`. `solar-projection.ts` projiziert schematische Planetenpositionen aus einer räumlichen Ebene mit Perspektive auf ein SVG. `SolarSystemModel` verbindet die Projektion mit Ziehen, zwei nativen Tastaturreglern und einer Planetenwahl. Es gibt keine neue Abhängigkeit und keine externen Bildaufrufe.
+
+`geography-solar-5-v1.json` enthält 24 stabile Aufgaben, acht pro Stufe, zu Geo5 Lernbereich 2. Die optionale `solarSystemPlanetId` wird als geschlossenes Enum validiert, mit Fach, Auswahlantwort und Antwortschlüssel abgeglichen und ohne Lösungserklärung projiziert. Der Katalog ordnet die Aufgaben dem Bereich „Planet Erde“ zu. Das Frontend markiert das Ziel ohne Namenslabel und sendet die gewählte Antwort über den vorhandenen `submit_answer`-Command. Antwortprüfung, 1/2/3 Punkte und Idempotenz bleiben im Rust-Backend. Ein fehlgeschlagener identischer Versuch behält seine Request-ID.
+
+Migration 016 erweitert ausschließlich die Fachliste in `learning_progress` durch transaktionalen Tabellentausch. Alle bisherigen Fortschrittszeilen und Zeitstempel werden übernommen; Profil, Punkte- und Antwortjournale bleiben erhalten. Tests prüfen Schema-15-Daten, neue Verbindungen, historische Antwort-Replays und Rollback bei einem Fehler. Entdeckungsmodus und Modell benötigen kein Profil; gespeicherte Rätsel benötigen ein geladenes Profil. [Quellen, Bedienung und Grenzen](solar-system.md).
+
 ## Aufbau
 
 Lernwelt ist eine eigenständige Tauri-2-Anwendung. React, TypeScript und Vite stellen die Oberfläche bereit; Rust verwaltet SQLite über rusqlite mit eingebundener SQLite-Version. Es ist kein separater Web- oder Datenbankserver im installierten Produkt notwendig. npm/Vite sind Entwicklungs- und Buildwerkzeuge.
@@ -185,7 +193,7 @@ Weitere Hinweise zu Inhalt, Bedienung und Forschungsgrenzen: [Geführte Lernrund
 
 ## Mehrere Lernrunden ohne Schemaänderung
 
-Drei eingebettete Pakete (`mission-garden-v1.json`, `mission-english-v1.json`, `mission-nature-v1.json`) nutzen dieselben Tabellen aus Schema 13; das aktuelle Schema 15 bleibt unverändert. Themen-ID und Stufe begrenzen alle Fortschritts- und Rundenzugriffe. Das Punktejournal erhält das tatsächliche Fach und die Kompetenz des Pakets. Der Loader prüft paketübergreifend eindeutige Themen-/Aufgaben-IDs, drei Varianten pro Stufe und bei Englisch die erste Fremdsprachenfolge. Die Garten-IDs und Antworten bleiben unverändert.
+Drei eingebettete Pakete (`mission-garden-v1.json`, `mission-english-v1.json`, `mission-nature-v1.json`) nutzen dieselben Tabellen aus Schema 13; Schema 15 wurde dafür nicht geändert. Themen-ID und Stufe begrenzen alle Fortschritts- und Rundenzugriffe. Das Punktejournal erhält das tatsächliche Fach und die Kompetenz des Pakets. Der Loader prüft paketübergreifend eindeutige Themen-/Aufgaben-IDs, drei Varianten pro Stufe und bei Englisch die erste Fremdsprachenfolge. Die Garten-IDs und Antworten bleiben unverändert.
 
 `get_mission_state(topicId?)` liest das gewählte Thema und eine Übersicht aller drei Themen auf der globalen Stufe in einer gemeinsamen Lesetransaktion. Die Übersicht enthält Metadaten, offenen Schritt und Fälligkeit, keine Antworten. Eine fehlende Themen-ID wählt zur Kompatibilität den Garten. `start_mission` akzeptiert ebenfalls eine optionale Themen-ID. Das Feld wird bei fehlender Angabe nicht serialisiert: historische Start-Belege behalten damit ihre exakte Nutzlast und lassen sich erneut übertragen. Eine unbekannte Themen-ID oder eine geänderte Nutzlast mit alter Request-ID wird abgewiesen.
 

@@ -10,6 +10,7 @@ import MissionCard from './components/MissionCard';
 import MissionPanel from './components/MissionPanel';
 import AppUpdates from './components/AppUpdates';
 import DiscoveryArt from './components/DiscoveryArt';
+import SolarSystemWorld from './components/SolarSystemWorld';
 import { subjects, type SubjectId } from './domain/subjects';
 
 type View =
@@ -249,22 +250,26 @@ export default function App() {
               />
             </>
           ) : view === 'learn' ? (
-            <LearningPanel
-              subject={selected}
-              profileVersion={profileVersion}
-              onSupplement={(link) => {
-                if (link.kind === 'mission') {
-                  setMissionTopic(link.target);
-                  navigate('mission');
-                } else {
-                  navigate(link.kind);
-                  if (link.kind === 'vocabulary')
-                    setVocabularyDeck(link.target);
-                  if (link.kind === 'multiplication')
-                    setMultiplicationMode('squares');
-                }
-              }}
-            />
+            selected === 'geography' ? (
+              <SolarSystemWorld profileVersion={profileVersion} />
+            ) : (
+              <LearningPanel
+                subject={selected}
+                profileVersion={profileVersion}
+                onSupplement={(link) => {
+                  if (link.kind === 'mission') {
+                    setMissionTopic(link.target);
+                    navigate('mission');
+                  } else {
+                    navigate(link.kind);
+                    if (link.kind === 'vocabulary')
+                      setVocabularyDeck(link.target);
+                    if (link.kind === 'multiplication')
+                      setMultiplicationMode('squares');
+                  }
+                }}
+              />
+            )
           ) : view === 'mission' ? (
             <MissionPanel
               profileVersion={profileVersion}
