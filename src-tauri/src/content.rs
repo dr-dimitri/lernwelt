@@ -74,6 +74,52 @@ pub enum AnswerKind {
     Choice,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize, Serialize)]
+#[serde(rename_all = "lowercase")]
+pub enum SolarSystemPlanetId {
+    Mercury,
+    Venus,
+    Earth,
+    Mars,
+    Jupiter,
+    Saturn,
+    Uranus,
+    Neptune,
+}
+
+impl SolarSystemPlanetId {
+    fn name(self) -> &'static str {
+        match self {
+            Self::Mercury => "Merkur",
+            Self::Venus => "Venus",
+            Self::Earth => "Erde",
+            Self::Mars => "Mars",
+            Self::Jupiter => "Jupiter",
+            Self::Saturn => "Saturn",
+            Self::Uranus => "Uranus",
+            Self::Neptune => "Neptun",
+        }
+    }
+
+    fn valid_for(self, exercise: &Exercise) -> bool {
+        let names = [
+            "Merkur", "Venus", "Erde", "Mars", "Jupiter", "Saturn", "Uranus", "Neptun",
+        ];
+        exercise.subject == Subject::Geography
+            && !exercise.legacy
+            && matches!(exercise.answer_kind, AnswerKind::Choice)
+            && exercise.number_line.is_none()
+            && exercise.audio_card_id.is_none()
+            && exercise.answer == self.name()
+            && (2..=8).contains(&exercise.options.len())
+            && exercise
+                .options
+                .iter()
+                .all(|option| names.contains(&option.as_str()))
+            && exercise.options.iter().collect::<HashSet<_>>().len() == exercise.options.len()
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize, Serialize)]
 #[serde(rename_all = "lowercase")]
 pub enum NumberLineKind {
@@ -188,6 +234,8 @@ pub struct Exercise {
     pub number_line: Option<NumberLine>,
     #[serde(default)]
     pub audio_card_id: Option<String>,
+    #[serde(default)]
+    pub solar_system_planet_id: Option<SolarSystemPlanetId>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -209,6 +257,7 @@ pub fn catalog() -> Result<&'static Catalog, String> {
                 include_str!("../content/english-5-v1.json"),
                 include_str!("../content/nature-5-v1.json"),
                 include_str!("../content/number-line-5-v1.json"),
+                include_str!("../content/geography-solar-5-v1.json"),
             ])?;
             let additional: Vec<Exercise> = serde_json::from_str(include_str!(
                 "../content/topic-practice-v1.json"
@@ -298,6 +347,12 @@ impl Catalog {
                 .number_line
                 .as_ref()
                 .is_some_and(|number_line| !number_line.valid_for(exercise))
+            {
+                return Err(invalid());
+            }
+            if exercise
+                .solar_system_planet_id
+                .is_some_and(|planet| !planet.valid_for(exercise))
             {
                 return Err(invalid());
             }
@@ -715,3 +770,6 @@ mod help_tests;
 
 #[cfg(test)]
 mod practice_tests;
+
+#[cfg(test)]
+mod solar_system_tests;

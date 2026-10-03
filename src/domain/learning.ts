@@ -1,6 +1,7 @@
 import type { StudyCatalog } from './study';
 import type { SubjectId } from './subjects';
 import type { NumberLineDiagram } from './number-line';
+import type { SolarPlanet } from './solar-system';
 
 export type Difficulty = 'vorschule' | 'koenner' | 'streber';
 export const difficulties: {
@@ -63,6 +64,7 @@ export interface Question {
   unit: string | null;
   numberLine?: NumberLineDiagram | null;
   audioCardId?: string;
+  solarSystemPlanetId?: SolarPlanet['id'] | null;
   solved: boolean;
 }
 

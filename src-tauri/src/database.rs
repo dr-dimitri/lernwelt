@@ -5,7 +5,10 @@ use std::{path::Path, time::Duration};
 #[cfg(test)]
 mod nature_tests;
 
-const SCHEMA_VERSION: i64 = 15;
+#[cfg(test)]
+mod geography_tests;
+
+const SCHEMA_VERSION: i64 = 16;
 const DATABASE_ERROR: &str = "Die lokalen Lerndaten konnten nicht verarbeitet werden.";
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -21,6 +24,7 @@ pub enum Subject {
     Mathematics,
     English,
     Nature,
+    Geography,
 }
 
 impl Subject {
@@ -29,6 +33,7 @@ impl Subject {
             Self::Mathematics => "mathematics",
             Self::English => "english",
             Self::Nature => "nature",
+            Self::Geography => "geography",
         }
     }
 }
@@ -145,6 +150,11 @@ fn migrate(connection: &mut Connection) -> Result<(), String> {
             .execute_batch(include_str!("../migrations/015_nature.sql"))
             .map_err(database_error)?;
     }
+    if version < 16 {
+        transaction
+            .execute_batch(include_str!("../migrations/016_geography.sql"))
+            .map_err(database_error)?;
+    }
     transaction
         .pragma_update(None, "user_version", SCHEMA_VERSION)
         .map_err(database_error)?;
@@ -251,6 +261,7 @@ pub fn list_progress(connection: &Connection) -> Result<Vec<Progress>, String> {
                 "mathematics" => Subject::Mathematics,
                 "english" => Subject::English,
                 "nature" => Subject::Nature,
+                "geography" => Subject::Geography,
                 _ => return Err(rusqlite::Error::InvalidQuery),
             };
             Ok(Progress {

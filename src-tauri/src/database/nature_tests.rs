@@ -2,7 +2,7 @@ use super::*;
 use rusqlite::types::Value;
 use std::collections::BTreeMap;
 
-fn schema_14(path: &Path) -> Connection {
+pub(super) fn schema_14(path: &Path) -> Connection {
     let connection = Connection::open(path).unwrap();
     connection
         .pragma_update(None, "foreign_keys", true)
@@ -52,7 +52,7 @@ fn schema_14(path: &Path) -> Connection {
 }
 
 // Compare complete stored rows, including IDs, old rewards and timestamps.
-fn stored_rows(connection: &Connection) -> BTreeMap<String, Vec<Vec<Value>>> {
+pub(super) fn stored_rows(connection: &Connection) -> BTreeMap<String, Vec<Vec<Value>>> {
     let mut tables = connection.prepare(
         "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name",
     ).unwrap();
@@ -91,7 +91,7 @@ fn nature_migration_preserves_all_existing_rows_and_survives_reopening() {
         upgraded
             .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
             .unwrap(),
-        15
+        SCHEMA_VERSION
     );
     assert_eq!(
         get_profile(&upgraded).unwrap().unwrap(),

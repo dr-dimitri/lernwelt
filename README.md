@@ -1,6 +1,6 @@
 # Lernwelt
 
-Eine lokal laufende Desktop-Lernanwendung für Mathematik, Englisch sowie Natur und Technik am bayerischen Gymnasium.
+Eine lokal laufende Desktop-Lernanwendung für Mathematik, Englisch, Natur und Technik sowie Geographie am bayerischen Gymnasium.
 
 ## Technische Richtung
 
@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.2.2 bringt die neue Oberfläche mit klarer Navigation, eigenen Fachmotiven und übersichtlichen Aufgabenflächen. [Alle Änderungen und Installationshinweise](docs/releases/0.2.2.md).
+Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.4.0 ergänzt Geographie mit einer Sonnensystem-Lernwelt, NASA-Bildern und einem drehbaren Planeten-Rätsel. [Alle Änderungen und Installationshinweise](docs/releases/0.4.0.md).
 
 ## Mitarbeit
 
@@ -37,7 +37,7 @@ Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale mac
 
 ## Bedienung
 
-Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Jedes Fach öffnet jetzt einen Lehrplan-Themenkatalog: Lernbereich und Unterthema auswählen oder nach einem Begriff wie „Längen“ oder „Simple Present“ suchen. 87 Unterthemen in 17 Lernbereichen führen zu kurzen Runden mit höchstens sechs Aufgaben. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md). Eine feste Seitennavigation führt zu Fächern, Trainern und Spielhalle; im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
+Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Mathematik, Englisch sowie Natur und Technik öffnen einen Lehrplan-Themenkatalog: Lernbereich und Unterthema auswählen oder nach einem Begriff wie „Längen“ oder „Simple Present“ suchen. 88 Unterthemen in 18 Lernbereichen stehen zur Auswahl. Die bisherigen Fächer führen zu kurzen Runden mit höchstens sechs Aufgaben; Geographie öffnet eine eigene Sonnensystemwelt mit acht Planetenrätseln je Stufe. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md). Eine feste Seitennavigation führt zu Fächern, Trainern und Spielhalle; im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
 
 ## App aktualisieren
 
@@ -51,7 +51,7 @@ Das Lernprofil (Spitzname und Klasse 5) wird in `lernwelt.sqlite3` im Tauri-Anwe
 
 In der Klassenauswahl steht ausschließlich Klasse 5 zur Verfügung. Ältere Profile mit einer anderen Klasse bleiben lesbar und werden beim Laden nicht verändert. Ein Hinweis erklärt die bisherige Klasse; erst **Profil speichern** stellt sie auf Klasse 5 um. Der Lernfortschritt bleibt erhalten.
 
-Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Aufgaben in allen drei Fächern sind an das Punktesystem angeschlossen. Eine fachübergreifende Stufenauswahl wird ebenfalls lokal gespeichert. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
+Die Datenbank enthält außerdem eine Grundlage für fach- und kompetenzbezogenen Lernfortschritt. Aufgaben in allen vier Fächern sind an das Punktesystem angeschlossen. Eine fachübergreifende Stufenauswahl wird ebenfalls lokal gespeichert. Änderungen am Profil erhalten vorhandenen Fortschritt. Für eine manuelle Sicherung die App vollständig beenden und die Datenbankdatei kopieren; es gibt noch keinen integrierten Export und keine Synchronisierung.
 
 ```sh
 cargo test --manifest-path src-tauri/Cargo.toml
@@ -109,7 +109,7 @@ Die **Zahlenstrahl-Werkstatt** bietet 36 zusätzliche Übungen, zwölf pro Stufe
 
 **Vorschule** bietet einen leichten Einstieg, **Könner** reguläre Übungen und **Streber** anspruchsvollere Knobelaufgaben. Es sind spielerische Bezeichnungen, keine Altersstufen. Die Wahl bleibt über Fachwechsel, Profiländerung und Neustart erhalten; Standard ist Könner. Englisch bietet ebenfalls alle drei Stufen (1. Fremdsprache). Die angebotene Mathematik bleibt Klasse 5, auch wenn ein älteres Profil noch eine andere Klasse enthält.
 
-Jede der 3.675 Fachaufgaben bietet den bisherigen Tipp und über **Nächster Tipp** einen weiteren Denkschritt. Bei 148 Aufgaben sind außerdem konkrete Hinweise zu typischen falschen Antworten hinterlegt. Den vollständigen Lösungsweg kannst du nach einer falschen Antwort selbst öffnen; nach einer richtigen Antwort steht er direkt in der Rückmeldung. Tipps kosten nichts und ändern weder die Bewertung noch die Punkte. [Bedienung, Inhaltsumfang und Grenzen](docs/learning-hints.md). Auswahlfragen, ganze Zahlen und exakte Dezimalzahlen werden im Backend bewertet. Komma oder Punkt gelten als Dezimaltrennzeichen, normale/geschützte Leerzeichen als Dreiergruppierung: `25 000` oder `25000`; `25.000` bedeutet 25. Einheiten stehen in der Frage und werden nicht mit eingegeben. Englischwörter werden ohne Beachtung der Großschreibung verglichen.
+Jede der 3.699 Fachaufgaben bietet den bisherigen Tipp und über **Nächster Tipp** einen weiteren Denkschritt. Bei 148 Aufgaben sind außerdem konkrete Hinweise zu typischen falschen Antworten hinterlegt. Den vollständigen Lösungsweg kannst du nach einer falschen Antwort selbst öffnen; nach einer richtigen Antwort steht er direkt in der Rückmeldung. Tipps kosten nichts und ändern weder die Bewertung noch die Punkte. [Bedienung, Inhaltsumfang und Grenzen](docs/learning-hints.md). Auswahlfragen, ganze Zahlen und exakte Dezimalzahlen werden im Backend bewertet. Komma oder Punkt gelten als Dezimaltrennzeichen, normale/geschützte Leerzeichen als Dreiergruppierung: `25 000` oder `25000`; `25.000` bedeutet 25. Einheiten stehen in der Frage und werden nicht mit eingegeben. Englischwörter werden ohne Beachtung der Großschreibung verglichen.
 
 54 Mitmachaufgaben ergänzen Zeichnen, Messen, Schätzen und Begründen mit Selbstkontrollhinweisen. Sie gelten für alle Stufen, vergeben keine Punkte und werden nicht automatisch bewertet. Einheitentafeln für Geld, Länge, Masse und Fläche sowie die vollständige Quadratzahlreihe bis 400 ergänzen die Übungen. Das Paket enthält Lernangebote zu allen Kompetenzerwartungen, ist aber kein unbegrenzter Aufgabengenerator, keine vollständige Lernstandserhebung und kein Ersatz für Unterricht. Es gibt keine amtliche Freigabe. Weitere Hinweise und die Inhaltsmatrix stehen in [docs/curriculum-math-5.md](docs/curriculum-math-5.md).
 
@@ -195,3 +195,9 @@ Die Spiele sind kostenlos, vergeben keine Lernpunkte und funktionieren auch ohne
 Eine Entdeckungsleiste macht jede richtige Zuordnung sichtbar. Nach dem Abschluss erscheint ein Forscherstern als Rückmeldung für diese Runde. Falsche Versuche bleiben ohne Abzug; du kannst in Ruhe weiterprobieren.
 
 Das Paket ist ein begrenztes Lernangebot zu ausgewählten Kompetenzen, **keine vollständige Lehrplanabdeckung**, keine amtlich freigegebene Lernsoftware und kein Ersatz für Unterricht. Praktische Fertigkeiten werden über Mitmachaufgaben mit Selbstkontrolle geübt. Quellenzuordnung, fachliche Grenzen und Hinweise zu den Modellen: [Inhaltsmatrix Natur und Technik](docs/curriculum-nature-5.md).
+
+## Geographie: Reise durchs Sonnensystem
+
+Über **Meine Fächer → Geographie** öffnet sich die Sonnensystem-Lernwelt. Acht lokal mitgelieferte NASA-Bilder und kurze Steckbriefe laden zum Entdecken ein. Ein räumliches Modell lässt sich mit Maus oder Touch drehen; die beiden Regler sind auch per Tastatur bedienbar. Größen, Abstände und Planetenpositionen sind schematisch.
+
+**Planeten erraten** bietet acht Rätsel je Stufe, insgesamt 24 neue Aufgaben. Ein goldmarkierter Planet wird gesucht; sein Name bleibt im Modell verborgen. Tipps und erklärte Rückmeldungen helfen ohne Zeitdruck. Neue richtige Antworten bringen einmalig 1/2/3 Punkte; alle Lernstände und bisherigen Buchungen bleiben erhalten. Eine Zeichen- und Erklärmission ergänzt das Lernen abseits des Bildschirms. Das Thema orientiert sich an Geo5 Lernbereich 2 „Planet Erde“ und deckt nicht den gesamten Geographie-Lehrplan ab. [Bedienung, Quellen und Bildnachweise](docs/solar-system.md).
