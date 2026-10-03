@@ -19,59 +19,74 @@ type Pending =
 const message = (reason: unknown) =>
   reason instanceof Error
     ? reason.message
-    : 'Dein Tastengarten konnte nicht geladen oder gespeichert werden. Versuche es noch einmal.';
+    : 'Deine Weltraumreise konnte nicht geladen oder gespeichert werden. Versuche es noch einmal.';
 
-function GardenPlant({ growth, index }: { growth: number; index: number }) {
-  const colors = ['#bb6298', '#dc9459', '#7f75b2', '#6ba28c'];
-  const color = colors[index % colors.length];
+const missionStages = [
+  'Bereit zum Start',
+  'Signal empfangen',
+  'Kurs bestätigt',
+  'Sektor erkundet',
+];
+
+function MissionOrbit({
+  completed,
+  index,
+  compact = false,
+}: {
+  completed: number;
+  index: number;
+  compact?: boolean;
+}) {
+  const colors = ['#8bb9ca', '#aaa8d6', '#8fbdb6', '#c7af95'];
   return (
-    <svg viewBox="0 0 100 104" aria-hidden="true" className="typing-plant">
-      <ellipse cx="50" cy="94" rx="32" ry="5" fill="#dce6d8" />
-      <path d="M24 75h52l-7 23H31Z" fill="#d6a07f" />
-      <path d="M22 73h56v8H22Z" fill="#efbb98" />
-      <ellipse cx="50" cy="73" rx="26" ry="4" fill="#80644f" />
-      {growth === 0 ? (
-        <path d="M46 72q4-13 9-8q3 8-9 8Z" fill="#f9d991" />
-      ) : (
-        <g className="typing-sprout">
+    <svg
+      viewBox="0 0 88 88"
+      className={`typing-orbit${compact ? ' compact' : ''}`}
+      aria-hidden={compact || undefined}
+      role={compact ? undefined : 'img'}
+      aria-label={
+        compact
+          ? undefined
+          : `${missionStages[completed]} · ${completed} von 3 Zeilen bestätigt`
+      }
+    >
+      <circle cx="44" cy="44" r="34" className="typing-orbit-track" />
+      {[0, 120, 240].map((angle, segment) => (
+        <path
+          key={angle}
+          d="M44 10A34 34 0 0 1 77.48 49.9"
+          transform={`rotate(${angle} 44 44)`}
+          className={`typing-orbit-segment${segment < completed ? ' complete' : ''}`}
+        />
+      ))}
+      <circle
+        cx="44"
+        cy="44"
+        r="20"
+        fill={colors[index % colors.length]}
+        opacity="0.13"
+      />
+      <ellipse
+        cx="44"
+        cy="44"
+        rx="27"
+        ry="11"
+        transform={`rotate(${index % 2 ? -28 : 28} 44 44)`}
+        className="typing-orbit-ring"
+      />
+      {compact ? (
+        <>
+          <circle cx="44" cy="44" r="11" fill={colors[index % colors.length]} />
           <path
-            d={`M50 73Q${index % 2 ? 54 : 46} 54 50 ${growth === 1 ? 50 : 30}`}
-            fill="none"
-            stroke="#568769"
-            strokeWidth="4"
-            strokeLinecap="round"
+            d="M37 42q7-5 15 0m-12 7q5-3 10-1"
+            className="typing-planet-lines"
           />
-          <path d="M49 63Q23 62 26 45q23 0 23 18Z" fill="#7fab79" />
-          <path d="M51 57q24-2 23-18q-22 0-23 18Z" fill="#99bd83" />
-          {growth >= 2 && (
-            <path d="M50 44Q32 42 33 31q17 0 17 13Z" fill="#7fab79" />
-          )}
-          {growth === 2 && (
-            <ellipse cx="50" cy="27" rx="8" ry="11" fill={color} />
-          )}
-          {growth >= 3 && (
-            <g fill={color}>
-              {[0, 60, 120, 180, 240, 300].map((angle) => (
-                <ellipse
-                  key={angle}
-                  cx="50"
-                  cy="15"
-                  rx={index % 2 ? 7 : 9}
-                  ry="12"
-                  transform={`rotate(${angle} 50 28)`}
-                />
-              ))}
-              <circle cx="50" cy="28" r="9" fill="#f9d991" />
-              <circle cx="47" cy="27" r="1.1" fill="#6c6041" />
-              <circle cx="53" cy="27" r="1.1" fill="#6c6041" />
-              <path
-                d="M47 31q3 3 6 0"
-                fill="none"
-                stroke="#6c6041"
-                strokeWidth="1.3"
-              />
-            </g>
-          )}
+        </>
+      ) : (
+        <g className="typing-ship">
+          <path d="m44 24 8 18 13 16-15-4-6 8-6-8-15 4 13-16Z" />
+          <path d="M44 31v22m-7-8 7 4 7-4m-13 9 2-13m10 13-2-13" />
+          <path d="M41 66v6m6-6v6" className="typing-ship-engine" />
         </g>
       )}
     </svg>
@@ -301,7 +316,8 @@ export default function TypingPanel({
     field.current?.focus();
   }
 
-  const growth = station && state ? solvedLines(station, state.difficulty) : 0;
+  const completed =
+    station && state ? solvedLines(station, state.difficulty) : 0;
   const points =
     state?.difficulty === 'vorschule'
       ? 1
@@ -316,9 +332,9 @@ export default function TypingPanel({
     >
       <div className="section-heading typing-topbar">
         <div>
-          <p className="eyebrow">TASTE FÜR TASTE WÄCHST DEIN GARTEN</p>
+          <p className="eyebrow">MISSIONSKONSOLE · TASTSCHREIBEN</p>
           <h2 id="typing-title" ref={heading} tabIndex={-1}>
-            Dein Tastengarten
+            Weltraumreise
           </h2>
         </div>
         {state && (
@@ -329,7 +345,7 @@ export default function TypingPanel({
         )}
       </div>
       <div className="typing-intro">
-        <p>Tippe in Ruhe. Drei Zeilen, eine Blume.</p>
+        <p>Präzision vor Tempo. Erkunde zwölf Sektoren mit deiner Tastatur.</p>
         <InfoPanel>
           <summary>So fängst du an</summary>
           <ol>
@@ -360,14 +376,14 @@ export default function TypingPanel({
             aus dem Fenster schauen.
           </p>
           <p>
-            Wähle jedes Beet und jede Stufe frei. Eine neue richtige Zeile
+            Wähle jeden Sektor und jede Stufe frei. Eine neue richtige Zeile
             bringt 1 Punkt in Vorschule, 2 in Könner oder 3 in Streber.
             Wiederholen gibt keine neuen Punkte. Fehler kosten nichts.
           </p>
         </InfoPanel>
       </div>
       {busy && (
-        <p role="status">Dein Tastengarten wird geladen oder gespeichert …</p>
+        <p role="status">Deine Weltraumreise wird geladen oder gespeichert …</p>
       )}
       {error && (
         <div
@@ -392,7 +408,7 @@ export default function TypingPanel({
               disabled={busy}
               onClick={reloadState}
             >
-              Tastengarten neu laden
+              Weltraumreise neu laden
             </button>
           </div>
         </div>
@@ -400,7 +416,7 @@ export default function TypingPanel({
       {state && !state.profileReady && (
         <p>
           Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst du
-          tippen und deinen Garten wachsen lassen.
+          tippen und deine Missionen speichern.
         </p>
       )}
       {state?.profileReady && (
@@ -429,26 +445,41 @@ export default function TypingPanel({
             </span>
           </div>
           <div className="typing-workspace">
-            <nav className="typing-garden" aria-label="Deine zwölf Beete">
-              <h3>Wähle dein Beet</h3>
-              <p>Alle Beete sind offen.</p>
+            <nav
+              className="typing-star-map"
+              aria-label="Sternenkarte: zwölf frei wählbare Sektoren"
+            >
+              <div className="typing-map-heading">
+                <h3>Sternenkarte</h3>
+                <span aria-hidden="true">12 SEKT.</span>
+              </div>
+              <p>Drei Zeilen pro Sektor. Freie Kurswahl.</p>
               <div className="typing-stations">
+                <svg
+                  className="typing-map-routes"
+                  viewBox="0 0 200 350"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path d="M45 25H155L45 85H155L45 145H155L45 205H155L45 265H155L45 325H155" />
+                </svg>
                 {state.stations.map((item, index) => (
                   <button
                     key={item.id}
                     className="typing-station"
                     aria-pressed={item.id === station?.id}
-                    aria-label={`${index + 1}. ${item.title} · ${solvedLines(item, state.difficulty)} von 3 Zeilen geschafft`}
+                    aria-label={`Sektor ${index + 1}: ${item.title} · ${solvedLines(item, state.difficulty)} von 3 Zeilen bestätigt`}
                     title={item.title}
                     disabled={disabled}
                     onClick={() => selectLine(item.id)}
                   >
-                    <GardenPlant
-                      growth={solvedLines(item, state.difficulty)}
+                    <MissionOrbit
+                      completed={solvedLines(item, state.difficulty)}
                       index={index}
+                      compact
                     />
                     <span>
-                      <strong>Beet {index + 1}</strong>
+                      <strong>S{String(index + 1).padStart(2, '0')}</strong>
                       <small className="typing-station-keys">
                         {stationKeys(item)}
                       </small>
@@ -457,24 +488,45 @@ export default function TypingPanel({
                   </button>
                 ))}
               </div>
+              <p className="typing-map-legend">
+                Ein heller Orbitabschnitt = eine bestätigte Zeile.
+              </p>
             </nav>
             {station && task ? (
               <div className="typing-exercise">
                 <div className="typing-station-heading">
                   <div>
                     <p className="eyebrow">
-                      DEIN BEET · {growth} VON 3 ZEILEN GESCHAFFT
+                      SEKTOR{' '}
+                      {String(state.stations.indexOf(station) + 1).padStart(
+                        2,
+                        '0',
+                      )}{' '}
+                      · {completed} VON 3 ZEILEN BESTÄTIGT
                     </p>
                     <h3>{station.title}</h3>
                     <p>{station.description}</p>
                   </div>
-                  <GardenPlant
-                    growth={growth}
+                  <MissionOrbit
+                    completed={completed}
                     index={state.stations.indexOf(station)}
                   />
                 </div>
                 <div className="typing-keys-intro">
-                  <strong>Diese Tasten:</strong> {station.newKeys.join(' · ')}
+                  <span>
+                    <strong>Diese Tasten:</strong> {station.newKeys.join(' · ')}
+                  </span>
+                  <span className="typing-mission-status">
+                    <span>{missionStages[completed]}</span>
+                    <span className="typing-mission-meter" aria-hidden="true">
+                      {[0, 1, 2].map((segment) => (
+                        <span
+                          key={segment}
+                          className={segment < completed ? 'complete' : ''}
+                        />
+                      ))}
+                    </span>
+                  </span>
                 </div>
                 <div
                   className="typing-lines"
@@ -611,9 +663,9 @@ export default function TypingPanel({
                       {feedback.correct
                         ? feedback.pointsAwarded === 0
                           ? 'Diese Zeile hast du schon geschafft. Du kannst weiterüben oder eine neue Zeile wählen.'
-                          : growth === 3
-                            ? 'Deine Blume blüht! Wähle ein neues Beet oder übe hier weiter.'
-                            : 'Deine Pflanze wächst. Nimm dir die nächste Zeile vor, wenn du magst.'
+                          : completed === 3
+                            ? 'Sektor erkundet: Alle drei Zeilen sind bestätigt. Wähle einen neuen Kurs oder übe hier weiter.'
+                            : 'Zeile bestätigt. Dein Missionsfortschritt ist gespeichert. Du kannst mit der nächsten Zeile weitermachen.'
                         : 'Vergleiche deine Eingabe mit der Zeile darüber. Fehler kosten keine Punkte.'}
                     </p>
                     {feedback.correct && (
@@ -692,8 +744,8 @@ export default function TypingPanel({
               </div>
             ) : (
               <p>
-                Für diese Stufe sind gerade keine Zeilen verfügbar. Lade den
-                Tastengarten neu.
+                Für diese Stufe sind gerade keine Zeilen verfügbar. Lade die
+                Weltraumreise neu.
               </p>
             )}
           </div>

@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.5.0 ergänzt Tastschreiben mit einem eigenen Tastengarten, zwölf freien Stationen und 108 kurzen Zeilen. [Alle Änderungen und Installationshinweise](docs/releases/0.5.0.md).
+Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.5.1 gestaltet Tastschreiben als eigene Weltraumreise für Jugendliche mit zwölf freien Missionen und 108 kurzen Zeilen. [Alle Änderungen und Installationshinweise](docs/releases/0.5.1.md).
 
 ## Mitarbeit
 
@@ -172,13 +172,13 @@ Wähle das gemischte Einmaleins (1 × 1 bis 10 × 10), eine einzelne Reihe oder 
 
 Welt, Rechenart, Gestaltung und bestätigte Antworten bleiben lokal gespeichert. Wiederholte Übertragungen zählen nicht doppelt. Bei Speicherfehlern lässt sich erneut speichern oder der bestätigte Stand laden. Historische Antworten und Punkte bleiben unverändert; neue Quadratzahlaufgaben halten sich an den im Lehrplan genannten Automatisierungsumfang bis 400. Eigene Inhalte zu Klasse 5 / M5 3.1 und M5 3.2, Quellenstand 25.09.2026; keine vollständige Lehrplanabdeckung oder Lernstandsdiagnose. [Lehrplanbezug, Spielregeln und Grenzen](docs/multiplication-adventures.md).
 
-## Tastschreiben: dein Tastengarten
+## Tastschreiben: Weltraumreise
 
-Der eigene Menüpunkt **Tastschreiben** bietet zwölf frei wählbare Stationen für Kinder, die gerade beginnen. Von F/J und Leertaste geht es über die Grundreihe zur Ober- und Unterreihe, danach zu Umlauten, Großbuchstaben und kurzen Gartensätzen. Jede Station enthält drei eigene Zeilen je Stufe, insgesamt 108. Eine QWERTZ-Tastatur und kurze Fingerhinweise helfen beim Schreiben; die Rücktaste erlaubt Korrekturen.
+Der eigene Menüpunkt **Tastschreiben** bietet zwölf frei wählbare Missionen für Jugendliche, die gerade beginnen. Eine ruhig gestaltete Missionskonsole zeigt Sternenkarte, Sektoren und bestätigte Abschnitte. Von F/J und Leertaste geht es über die Grundreihe zur Ober- und Unterreihe, danach zu Umlauten, Großbuchstaben, Funkmeldungen und Logbucheinträgen. Jede Station enthält drei eigene Zeilen je Stufe, insgesamt 108. Eine QWERTZ-Tastatur und kurze Fingerhinweise helfen beim Schreiben; die Rücktaste erlaubt Korrekturen.
 
-Jede erstmals richtig geschriebene Zeile lässt die Pflanze der Station wachsen und bringt **1/2/3 gemeinsame Lernpunkte** in Vorschule/Könner/Streber. **Zeile prüfen** oder Enter prüft den ganzen Text in Rust. Keine Zeitlimits, Sperren, Ranglisten oder Fehlerabzüge. Alle Stufen und Stationen bleiben frei wählbar. Bereits gelöste Zeilen lassen sich ohne weitere Punkte wiederholen; doppelte Übertragungen buchen nichts zusätzlich.
+Jede erstmals richtig geschriebene Zeile bestätigt einen Missionsabschnitt und bringt **1/2/3 gemeinsame Lernpunkte** in Vorschule/Könner/Streber. Die bestehenden Stufennamen ordnen kein Alter zu. **Zeile prüfen** oder Enter prüft den ganzen Text in Rust. Keine Zeitlimits, Sperren, Ranglisten oder Fehlerabzüge. Alle Stufen und Stationen bleiben frei wählbar. Bereits gelöste Zeilen lassen sich ohne weitere Punkte wiederholen; doppelte Übertragungen buchen nichts zusätzlich. Bestätigte Vorgängerzeilen aus dem Tastengarten zählen weiter und ermöglichen keine zweiten Erstlösungspunkte.
 
-Bestätigte Fortschritte bleiben lokal nach Neustart und Änderung des Profilnamens erhalten. Die App prüft Texte, keine tatsächliche Fingerhaltung. Deutsches Tastaturlayout wird empfohlen. Das Paket ist eine fachübergreifende Zusatzfertigkeit, keine vollständige Lehrplanabdeckung. Aufgaben und Grafiken sind selbst gestaltet; die Lernprinzipien orientieren sich an öffentlich dokumentierten Angeboten wie Tipp10 und TypingClub. [Plan, Quellen, Bedienung und Grenzen](docs/typing-garden.md).
+Bestätigte Fortschritte bleiben lokal nach Neustart und Änderung des Profilnamens erhalten. Alte Aufgaben behalten ihre Kennungen und Zieltexte; neue Weltraumtexte haben eigene Kennungen. Die App prüft Texte, keine tatsächliche Fingerhaltung. Deutsches Tastaturlayout wird empfohlen. Die Reise ist fiktional; das Paket ist eine fachübergreifende Zusatzfertigkeit, keine vollständige Lehrplanabdeckung. Aufgaben und Grafiken sind selbst gestaltet; die Lernprinzipien orientieren sich an öffentlich dokumentierten Angeboten wie Tipp10 und TypingClub. [Plan, Quellen, Bedienung und Grenzen](docs/typing-space.md).
 
 ## Kompakte Bedienung
 

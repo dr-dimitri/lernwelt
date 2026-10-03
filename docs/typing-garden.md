@@ -1,5 +1,7 @@
 # Tastschreiben: der Tastengarten
 
+Dieses Dokument beschreibt den ursprünglichen Trainer aus Version 0.5.0 und die damalige Recherche. Ab Version 0.5.1 ersetzt eine [Weltraumreise für Jugendliche](typing-space.md) die Gartengestaltung. Das ursprüngliche Inhaltspaket bleibt für historische Aufgaben, Fortschritte und Antwortbelege erhalten.
+
 ## Plan und Ziel
 
 Der eigene Menüpunkt **Tastschreiben** ergänzt die Trainer von Lernwelt. Kinder, die gerade beginnen, lernen in kleinen Schritten die deutsche QWERTZ-Tastatur kennen. Ein selbst gestalteter Tastengarten macht den Fortschritt sichtbar: Drei erstmals richtig geschriebene Zeilen lassen die Pflanze einer Station auf der gewählten Stufe wachsen. Alle Stationen sind von Anfang an frei wählbar.

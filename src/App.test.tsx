@@ -275,13 +275,13 @@ it('öffnet Tastschreiben aus dem kompakten Menü und lädt nach der Rückkehr d
     wallet: initial.wallet,
     stations: [
       {
-        id: 'typing.fj.v1',
-        title: 'F und J finden',
+        id: 'typing.fj.v2',
+        title: 'Funkkontakt',
         description: 'Fühle die kleinen Striche auf F und J.',
         newKeys: ['F', 'J', 'Leertaste'],
         tip: 'Deine Zeigefinger starten hier.',
         tasks: [1, 2, 3].map((number) => ({
-          id: `typing.fj.koenner.${number}.v1`,
+          id: `typing.fj.koenner.${number}.v2`,
           difficulty: 'koenner',
           text: 'fj jf',
           solved: false,

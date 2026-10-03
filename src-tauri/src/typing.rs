@@ -66,16 +66,20 @@ struct Task {
 
 impl Bank {
     fn validate(&self) -> Result<(), String> {
-        let invalid = || "Der Tastengarten enthält ungültige Übungen.".to_owned();
+        let invalid = || "Die Weltraumreise enthält ungültige Übungen.".to_owned();
+        let (title, target_grade) = match self.version {
+            1 => ("Tastengarten", 5),
+            2 => ("Weltraumreise", 7),
+            _ => return Err(invalid()),
+        };
         let valid_description = |text: &str| {
             !text.trim().is_empty()
                 && text.chars().count() <= 500
                 && !text.chars().any(char::is_control)
         };
-        if self.version != 1
-            || self.title != "Tastengarten"
+        if self.title != title
             || self.subject != "fachübergreifend"
-            || self.target_grade != 5
+            || self.target_grade != target_grade
             || !valid_description(&self.competency)
             || self.source_date != "2026-10-03"
             || !valid_description(&self.orientation)
@@ -98,7 +102,7 @@ impl Bank {
                 let capitals: Vec<_> = allowed.iter().flat_map(|c| c.to_uppercase()).collect();
                 allowed.extend(capitals);
             }
-            if station.id != format!("typing.{key}.v1")
+            if station.id != format!("typing.{key}.v{}", self.version)
                 || !valid_description(&station.title)
                 || !valid_description(&station.description)
                 || !valid_description(&station.tip)
@@ -122,7 +126,7 @@ impl Bank {
                     return Err(invalid());
                 }
                 for number in 1..=3 {
-                    let id = format!("typing.{key}.{}.{number}.v1", level.as_str());
+                    let id = format!("typing.{key}.{}.{number}.v{}", level.as_str(), self.version);
                     if !tasks.iter().any(|task| task.id == id) {
                         return Err(invalid());
                     }
@@ -150,16 +154,65 @@ impl Bank {
     }
 }
 
+struct Content {
+    current: Bank,
+    legacy: Bank,
+}
+
+impl Content {
+    // Only the 108 validated station/level/line pairs are aliases. The original text
+    // remains attached to its original ID; aliases share progress and first rewards.
+    fn task_pair(&self, id: &str) -> Option<(&Task, &Task)> {
+        let current_id = match id.strip_suffix(".v1") {
+            Some(prefix) => format!("{prefix}.v2"),
+            None => id.to_owned(),
+        };
+        let current = self.current.task(&current_id)?;
+        let prefix = current.id.strip_suffix(".v2")?;
+        let legacy = self.legacy.task(&format!("{prefix}.v1"))?;
+        if id == current.id || id == legacy.id {
+            Some((current, legacy))
+        } else {
+            None
+        }
+    }
+}
+
+fn content() -> Result<&'static Content, String> {
+    static CONTENT: OnceLock<Result<Content, String>> = OnceLock::new();
+    CONTENT
+        .get_or_init(|| {
+            let load = |json| -> Result<Bank, String> {
+                let bank: Bank = serde_json::from_str(json)
+                    .map_err(|_| "Die Weltraumreise konnte nicht gelesen werden.".to_owned())?;
+                bank.validate()?;
+                Ok(bank)
+            };
+            let content = Content {
+                current: load(include_str!("../content/typing-v2.json"))?,
+                legacy: load(include_str!("../content/typing-v1.json"))?,
+            };
+            if content.current.version != 2 || content.legacy.version != 1 {
+                return Err("Die Weltraumreise enthält ungültige Inhaltsversionen.".to_owned());
+            }
+            for task in content.current.stations.iter().flat_map(|s| &s.tasks) {
+                let (current, legacy) = content
+                    .task_pair(&task.id)
+                    .ok_or("Die Weltraumreise enthält eine ungültige Fortschrittszuordnung.")?;
+                if current.difficulty != legacy.difficulty {
+                    return Err(
+                        "Die Weltraumreise enthält eine ungültige Stufenzuordnung.".to_owned()
+                    );
+                }
+            }
+            Ok(content)
+        })
+        .as_ref()
+        .map_err(Clone::clone)
+}
+
 fn bank() -> Result<&'static Bank, String> {
-    static BANK: OnceLock<Result<Bank, String>> = OnceLock::new();
-    BANK.get_or_init(|| {
-        let bank: Bank = serde_json::from_str(include_str!("../content/typing-v1.json"))
-            .map_err(|_| "Der Tastengarten konnte nicht gelesen werden.".to_owned())?;
-        bank.validate()?;
-        Ok(bank)
-    })
-    .as_ref()
-    .map_err(Clone::clone)
+    Ok(&content()?.current)
 }
 
 #[derive(Debug, Serialize)]
@@ -208,12 +261,13 @@ pub struct SubmitResult {
 }
 
 fn db_error(_: rusqlite::Error) -> String {
-    "Dein Tastengarten konnte nicht gespeichert oder geladen werden. Bitte versuche es erneut."
+    "Deine Weltraumreise konnte nicht gespeichert oder geladen werden. Bitte versuche es erneut."
         .to_owned()
 }
 
 pub fn get_state(connection: &mut Connection) -> Result<TypingState, String> {
     let tx = connection.transaction().map_err(db_error)?;
+    let content = content()?;
     let bank = bank()?;
     let solved: HashSet<String> = {
         let mut statement = tx
@@ -244,7 +298,11 @@ pub fn get_state(connection: &mut Connection) -> Result<TypingState, String> {
                         id: &task.id,
                         difficulty: task.difficulty,
                         text: &task.text,
-                        solved: solved.contains(&task.id),
+                        solved: content
+                            .task_pair(&task.id)
+                            .is_some_and(|(current, legacy)| {
+                                solved.contains(&current.id) || solved.contains(&legacy.id)
+                            }),
                     })
                     .collect(),
             })
@@ -268,7 +326,7 @@ pub fn submit(connection: &mut Connection, input: SubmitInput) -> Result<SubmitR
             .bytes()
             .all(|b| b.is_ascii_alphanumeric() || b"-_.".contains(&b))
     {
-        return Err("Diese Tippübung ist ungültig. Bitte lade den Tastengarten neu.".to_owned());
+        return Err("Diese Tippübung ist ungültig. Bitte lade die Weltraumreise neu.".to_owned());
     }
     if input.answer.is_empty()
         || input.answer.chars().count() > MAX_TEXT_LENGTH
@@ -276,9 +334,14 @@ pub fn submit(connection: &mut Connection, input: SubmitInput) -> Result<SubmitR
     {
         return Err("Bitte tippe eine Zeile mit 1 bis 120 Zeichen ohne Zeilenumbruch.".to_owned());
     }
-    let task = bank()?
-        .task(&input.task_id)
-        .ok_or("Diese Tippübung ist nicht verfügbar. Bitte lade den Tastengarten neu.")?;
+    let (current, legacy) = content()?
+        .task_pair(&input.task_id)
+        .ok_or("Diese Tippübung ist nicht verfügbar. Bitte lade die Weltraumreise neu.")?;
+    let task = if input.task_id == current.id {
+        current
+    } else {
+        legacy
+    };
     let tx = connection
         .transaction_with_behavior(TransactionBehavior::Immediate)
         .map_err(db_error)?;
@@ -305,15 +368,16 @@ pub fn submit(connection: &mut Connection, input: SubmitInput) -> Result<SubmitR
         });
     }
     if database::get_difficulty(&tx)? != task.difficulty {
-        return Err("Die Stufe wurde geändert. Bitte lade den Tastengarten neu.".to_owned());
+        return Err("Die Stufe wurde geändert. Bitte lade die Weltraumreise neu.".to_owned());
     }
     // Exact text, including capitals and spaces. Timing or frontend flags never decide success.
     let correct = input.answer == task.text;
-    let already_rewarded: bool = tx.query_row(
-        "SELECT EXISTS(SELECT 1 FROM point_entries WHERE profile_id=1 AND kind='answer' AND item_id=?1)",
-        [&task.id], |row| row.get(0),
+    let already_solved_or_rewarded: bool = tx.query_row(
+        "SELECT EXISTS(SELECT 1 FROM point_entries WHERE profile_id=1 AND kind='answer' AND item_id IN (?1,?2))
+         OR EXISTS(SELECT 1 FROM typing_progress WHERE profile_id=1 AND solved=1 AND task_id IN (?1,?2))",
+        [&current.id, &legacy.id], |row| row.get(0),
     ).map_err(db_error)?;
-    let points_awarded = if correct && !already_rewarded {
+    let points_awarded = if correct && !already_solved_or_rewarded {
         match task.difficulty {
             Difficulty::Vorschule => 1,
             Difficulty::Koenner => 2,

@@ -2,13 +2,38 @@
   margin-bottom: 12px;
 }
 .detail-panel.typing-panel {
-  --garden-ink: #335c44;
-  --garden-soft: #f0f6ed;
-  --garden-line: #ccdaca;
+  --space-ink: #285368;
+  --space-soft: #edf4f7;
+  --space-line: #ccdce3;
   padding: 18px;
 }
+.typing-panel button {
+  min-height: 44px;
+}
+.typing-panel .primary-button {
+  border-color: #285c73;
+  background: #285c73;
+}
+.typing-panel .primary-button:hover:not(:disabled) {
+  border-color: #1d455a;
+  background: #1d455a;
+}
+.typing-panel .secondary-button {
+  color: #3c596c;
+  border-color: #b9ccd6;
+}
+.typing-panel .secondary-button:hover:not(:disabled) {
+  background: #edf4f7;
+  border-color: #799bab;
+}
+.typing-panel .secondary-button[aria-pressed='true'] {
+  color: #1e5268;
+  background: #e2eff3;
+  border-color: #47788d;
+  box-shadow: inset 0 0 0 1px #47788d;
+}
 .detail-panel.typing-panel .eyebrow {
-  color: var(--garden-ink);
+  color: var(--space-ink);
 }
 .typing-topbar h2:focus,
 .typing-feedback h4:focus,
@@ -46,51 +71,93 @@
 .typing-workspace {
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
-  gap: 20px;
+  gap: 18px;
   align-items: start;
 }
-.typing-garden {
+.typing-star-map {
+  position: relative;
+  overflow: hidden;
   padding: 12px;
-  border: 1px solid var(--garden-line);
-  border-radius: 18px;
-  background: var(--garden-soft);
+  border: 1px solid #30495e;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 18% 18%, #bad8eb 0 0.8px, transparent 1.1px),
+    radial-gradient(circle at 76% 65%, #6f94ad 0 0.8px, transparent 1.1px),
+    radial-gradient(circle at 90% 10%, #c5d8e3 0 1px, transparent 1.3px),
+    linear-gradient(155deg, #20334a, #152332);
+  background-size:
+    69px 89px,
+    101px 79px,
+    131px 127px,
+    auto;
+  color: #e9f2f7;
 }
-.typing-garden > h3 {
-  color: var(--garden-ink);
+.typing-map-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.typing-map-heading h3 {
+  color: #e9f2f7;
   font-size: 16px;
 }
-.detail-panel.typing-panel .typing-garden > p {
-  font-size: 12px;
+.typing-map-heading > span {
+  font-size: 9px;
+  color: #a9c4d2;
+  letter-spacing: 0.7px;
+}
+.detail-panel.typing-panel .typing-star-map > p {
+  color: #b8cdd9;
+  font-size: 11px;
   margin: 4px 0 8px;
+  line-height: 1.45;
+}
+.detail-panel.typing-panel .typing-star-map > .typing-map-legend {
+  font-size: 10px;
+  margin: 8px 0 0;
 }
 .typing-stations {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 5px;
 }
+.typing-map-routes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  stroke: #55768e;
+  stroke-width: 0.7;
+  fill: none;
+  stroke-dasharray: 2 3;
+}
 .typing-station {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   min-height: 55px;
   padding: 5px;
-  border: 1px solid #d6dfd1;
+  border: 1px solid #446174;
   border-radius: 10px;
-  background: #fff;
-  color: var(--garden-ink);
+  background: #20374a;
+  color: #e7f1f5;
   text-align: left;
   transition:
     background-color 150ms,
     border-color 150ms;
 }
 .typing-station:hover:not(:disabled) {
-  background: #f9fcf6;
-  border-color: #74966d;
+  background: #2a4659;
+  border-color: #8cbcc9;
 }
 .typing-station[aria-pressed='true'] {
-  border-color: #64875d;
-  background: #e2eddb;
-  box-shadow: inset 0 0 0 1px #64875d;
+  border-color: #98d4dd;
+  background: #2b5063;
+  box-shadow: inset 0 0 0 1px #98d4dd;
 }
 .typing-station > span {
   min-width: 0;
@@ -105,23 +172,59 @@
   display: block;
   font-size: 10px;
   margin-top: 3px;
-  color: #54704c;
+  color: #c2d7e0;
 }
 .typing-station .typing-station-keys {
   font-size: 9px;
   line-height: 1.2;
   white-space: nowrap;
 }
-.typing-plant {
+.typing-orbit {
   display: block;
-  width: 74px;
-  height: 77px;
+  width: 70px;
+  height: 70px;
   flex-shrink: 0;
   overflow: visible;
 }
-.typing-station .typing-plant {
-  width: 26px;
-  height: 30px;
+.typing-orbit-track,
+.typing-orbit-ring {
+  fill: none;
+  stroke: #52758b;
+  stroke-width: 1;
+}
+.typing-orbit-ring {
+  stroke: #8ab4c3;
+}
+.typing-orbit-segment {
+  fill: none;
+  stroke: #375168;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.typing-orbit-segment.complete {
+  stroke: #8cd7df;
+}
+.typing-planet-lines {
+  fill: none;
+  stroke: #20374a;
+  stroke-width: 1.6;
+}
+.typing-ship {
+  fill: #e2edf2;
+  stroke: #6a96aa;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+.typing-ship path:not(:first-child) {
+  fill: none;
+}
+.typing-ship .typing-ship-engine {
+  stroke: #8cd7df;
+  stroke-width: 2;
+}
+.typing-station .typing-orbit {
+  width: 34px;
+  height: 34px;
 }
 .typing-exercise {
   min-width: 0;
@@ -131,10 +234,23 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  padding: 10px 13px;
+  border: 1px solid #ccdde5;
+  border-radius: 14px;
+  background: linear-gradient(110deg, #f0f6f8, #f8fbfc);
 }
-.typing-station-heading > .typing-plant {
-  width: 58px;
-  height: 60px;
+.typing-station-heading > .typing-orbit {
+  width: 68px;
+  height: 68px;
+}
+.typing-station-heading .typing-orbit-segment {
+  stroke: #c8dce5;
+}
+.typing-station-heading .typing-orbit-segment.complete {
+  stroke: #27798a;
+}
+.typing-station-heading .typing-ship-engine {
+  stroke: #27798a;
 }
 .typing-station-heading .eyebrow {
   font-size: 10px;
@@ -147,13 +263,37 @@
   line-height: 1.4;
 }
 .typing-keys-intro {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
   padding: 7px 10px;
   margin: 4px 0 10px;
   border-radius: 10px;
-  background: var(--garden-soft);
-  color: var(--garden-ink);
+  background: var(--space-soft);
+  color: var(--space-ink);
   font-size: 12px;
   line-height: 1.5;
+}
+.typing-mission-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+}
+.typing-mission-meter {
+  display: flex;
+  gap: 3px;
+}
+.typing-mission-meter > span {
+  width: 13px;
+  height: 4px;
+  border-radius: 2px;
+  background: #c7d9e1;
+}
+.typing-mission-meter > .complete {
+  background: #27798a;
 }
 .typing-lines {
   display: flex;
@@ -179,9 +319,9 @@
 .detail-panel.typing-panel .typing-prompt {
   padding: 10px 12px;
   margin: 0;
-  border: 1px solid var(--garden-line);
+  border: 1px solid var(--space-line);
   border-radius: 14px;
-  background: #fafcf7;
+  background: #f7fafb;
   font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
   font-size: clamp(20px, 2.2vw, 26px);
   color: #3c4240;
@@ -191,8 +331,8 @@
   overflow-wrap: anywhere;
 }
 .typing-prompt .typed {
-  color: #285d3b;
-  background: #dcecd7;
+  color: #1b5967;
+  background: #d8edf0;
 }
 .typing-prompt .next {
   color: #29283e;
@@ -209,7 +349,7 @@
 .typing-exercise input {
   font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
   font-size: 18px;
-  border-color: #9eae99;
+  border-color: #98afbb;
   min-height: 44px;
   padding-block: 9px;
 }
@@ -243,12 +383,12 @@
   border-radius: 13px;
 }
 .typing-feedback.correct {
-  background: #eef6e9;
-  border-color: var(--garden-line);
+  background: #edf6f7;
+  border-color: var(--space-line);
 }
 .typing-feedback h4 {
   margin: 0;
-  color: var(--garden-ink);
+  color: var(--space-ink);
   font-size: 17px;
 }
 .detail-panel.typing-panel .typing-feedback p {
@@ -265,10 +405,10 @@
 .typing-keyboard-help {
   margin-top: 14px;
   padding-top: 12px;
-  border-top: 1px solid var(--garden-line);
+  border-top: 1px solid var(--space-line);
 }
 .detail-panel.typing-panel .typing-key-hint {
-  color: var(--garden-ink);
+  color: var(--space-ink);
   margin: 0 0 9px;
   font-size: 13px;
 }
@@ -360,6 +500,9 @@
   .typing-station {
     min-height: 60px;
   }
+  .typing-map-routes {
+    display: none;
+  }
   .typing-levels > span {
     width: 100%;
     margin-left: 0;
@@ -369,16 +512,26 @@
   .typing-topbar .eyebrow {
     display: none;
   }
+  .typing-station-heading {
+    padding-block: 6px;
+  }
+  .typing-station-heading > .typing-orbit {
+    width: 54px;
+    height: 54px;
+  }
+  .typing-levels {
+    padding-block: 6px;
+  }
 }
 @media (max-width: 500px) {
   .typing-stations {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .typing-station .typing-plant {
-    width: 26px;
-    height: 31px;
+  .typing-station .typing-orbit {
+    width: 34px;
+    height: 34px;
   }
-  .typing-station-heading > .typing-plant {
+  .typing-station-heading > .typing-orbit {
     width: 58px;
     height: 62px;
   }

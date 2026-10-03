@@ -1,0 +1,669 @@
+{
+  "version": 2,
+  "title": "Weltraumreise",
+  "subject": "fachübergreifend",
+  "targetGrade": 7,
+  "competency": "Tastaturbedienung als fachübergreifende Zusatzfertigkeit",
+  "sourceDate": "2026-10-03",
+  "orientation": "Eigene Tastschreibübungen für Jugendliche mit einem fiktionalen Weltraumthema. Die Tastenfolge beginnt bei der Grundstellung und bleibt für Anfänger geeignet. Kein Lehrplanpaket und kein Versprechen vollständiger Lehrplanabdeckung.",
+  "sources": [
+    {
+      "title": "TIPP10: Fingerposition und deutsche Tastatur",
+      "url": "https://www.tipp10.com/de/support/documents/keyboard/"
+    },
+    {
+      "title": "TypingClub: Einstieg mit F und J",
+      "url": "https://primary.typingclub.com/docs/user-guide/class-student-setup/manage-courses.html"
+    }
+  ],
+  "stations": [
+    {
+      "id": "typing.fj.v2",
+      "title": "Funkkontakt",
+      "description": "F und J markieren deine Grundposition. Teste den ersten Funkkontakt.",
+      "newKeys": ["F", "J", "Leertaste"],
+      "tip": "Lege die Zeigefinger auf F und J. Die Erhebungen auf den Tasten helfen bei der Orientierung. Ein Daumen tippt die Leertaste. Halte Schultern und Hände locker.",
+      "tasks": [
+        {
+          "id": "typing.fj.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "f j"
+        },
+        {
+          "id": "typing.fj.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "fj jf"
+        },
+        {
+          "id": "typing.fj.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "ff jj"
+        },
+        {
+          "id": "typing.fj.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "fj fj jf jf"
+        },
+        {
+          "id": "typing.fj.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "ff jj fj jf"
+        },
+        {
+          "id": "typing.fj.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "f jf j fj"
+        },
+        {
+          "id": "typing.fj.streber.1.v2",
+          "difficulty": "streber",
+          "text": "fj jf ff jj fj jf"
+        },
+        {
+          "id": "typing.fj.streber.2.v2",
+          "difficulty": "streber",
+          "text": "f j fj jf j f"
+        },
+        {
+          "id": "typing.fj.streber.3.v2",
+          "difficulty": "streber",
+          "text": "ff jj jf fj ff jj"
+        }
+      ]
+    },
+    {
+      "id": "typing.dk.v2",
+      "title": "Signalabgleich",
+      "description": "D und K ergänzen den Funkkanal. Gleiche kurze Tastensignale ab.",
+      "newKeys": ["D", "K"],
+      "tip": "Die Mittelfinger liegen auf D und K. Die Zeigefinger bleiben bei F und J.",
+      "tasks": [
+        {
+          "id": "typing.dk.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "d k"
+        },
+        {
+          "id": "typing.dk.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "fd jk"
+        },
+        {
+          "id": "typing.dk.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "dd kk"
+        },
+        {
+          "id": "typing.dk.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "df jk fd kj"
+        },
+        {
+          "id": "typing.dk.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "dd ff jj kk"
+        },
+        {
+          "id": "typing.dk.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "dk kd fj jf"
+        },
+        {
+          "id": "typing.dk.streber.1.v2",
+          "difficulty": "streber",
+          "text": "df fd jk kj df fd"
+        },
+        {
+          "id": "typing.dk.streber.2.v2",
+          "difficulty": "streber",
+          "text": "fj dk kd jf fj dk"
+        },
+        {
+          "id": "typing.dk.streber.3.v2",
+          "difficulty": "streber",
+          "text": "d f j k k j f d"
+        }
+      ]
+    },
+    {
+      "id": "typing.sl.v2",
+      "title": "Kursdaten",
+      "description": "S und L erweitern deine Grundreihe. Übertrage die nächsten Tastencodes.",
+      "newKeys": ["S", "L"],
+      "tip": "Die Ringfinger liegen auf S und L. Tippe ruhig und finde danach wieder die Grundreihe.",
+      "tasks": [
+        {
+          "id": "typing.sl.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "s l"
+        },
+        {
+          "id": "typing.sl.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "sd kl"
+        },
+        {
+          "id": "typing.sl.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "ss ll"
+        },
+        {
+          "id": "typing.sl.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "sd df jk kl"
+        },
+        {
+          "id": "typing.sl.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "sl ls fj jf"
+        },
+        {
+          "id": "typing.sl.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "ss dd ff jj kk ll"
+        },
+        {
+          "id": "typing.sl.streber.1.v2",
+          "difficulty": "streber",
+          "text": "sdf jkl lkj fds"
+        },
+        {
+          "id": "typing.sl.streber.2.v2",
+          "difficulty": "streber",
+          "text": "sl dk fj jf kd ls"
+        },
+        {
+          "id": "typing.sl.streber.3.v2",
+          "difficulty": "streber",
+          "text": "ss ll sd kl df jk"
+        }
+      ]
+    },
+    {
+      "id": "typing.aoe.v2",
+      "title": "Grundsysteme",
+      "description": "Mit A und Ö ist die Grundstellung vollständig. Aus Codes werden erste Wörter.",
+      "newKeys": ["A", "Ö"],
+      "tip": "Die kleinen Finger liegen auf A und Ö. Die Grundstellung ist A S D F und J K L Ö.",
+      "tasks": [
+        {
+          "id": "typing.aoe.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "a ö"
+        },
+        {
+          "id": "typing.aoe.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "ja da"
+        },
+        {
+          "id": "typing.aoe.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "all als"
+        },
+        {
+          "id": "typing.aoe.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "das all"
+        },
+        {
+          "id": "typing.aoe.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "lass das"
+        },
+        {
+          "id": "typing.aoe.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "ja da das all"
+        },
+        {
+          "id": "typing.aoe.streber.1.v2",
+          "difficulty": "streber",
+          "text": "all das all"
+        },
+        {
+          "id": "typing.aoe.streber.2.v2",
+          "difficulty": "streber",
+          "text": "das all ja da"
+        },
+        {
+          "id": "typing.aoe.streber.3.v2",
+          "difficulty": "streber",
+          "text": "a s d f j k l ö"
+        }
+      ]
+    },
+    {
+      "id": "typing.gh.v2",
+      "title": "Sichtprüfung",
+      "description": "G und H liegen zwischen den Zeigefingern. Prüfe kurze Codes und Wörter.",
+      "newKeys": ["G", "H"],
+      "tip": "Der linke Zeigefinger tippt G, der rechte H. Kehre danach zu F und J zurück.",
+      "tasks": [
+        {
+          "id": "typing.gh.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "g h"
+        },
+        {
+          "id": "typing.gh.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "glas"
+        },
+        {
+          "id": "typing.gh.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "hall"
+        },
+        {
+          "id": "typing.gh.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "das all"
+        },
+        {
+          "id": "typing.gh.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "das glas"
+        },
+        {
+          "id": "typing.gh.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "g h gh hg"
+        },
+        {
+          "id": "typing.gh.streber.1.v2",
+          "difficulty": "streber",
+          "text": "hall hall das all"
+        },
+        {
+          "id": "typing.gh.streber.2.v2",
+          "difficulty": "streber",
+          "text": "das glas lag da"
+        },
+        {
+          "id": "typing.gh.streber.3.v2",
+          "difficulty": "streber",
+          "text": "glas hall g h glas"
+        }
+      ]
+    },
+    {
+      "id": "typing.ei.v2",
+      "title": "Displaytest",
+      "description": "E und I ergänzen die obere Reihe. Übertrage kurze Anzeigen aus der Station.",
+      "newKeys": ["E", "I"],
+      "tip": "Die Mittelfinger greifen nach oben: links zu E, rechts zu I. Komm danach wieder nach D und K.",
+      "tasks": [
+        {
+          "id": "typing.ei.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "e i"
+        },
+        {
+          "id": "typing.ei.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "die lage"
+        },
+        {
+          "id": "typing.ei.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "leise"
+        },
+        {
+          "id": "typing.ei.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "die halle"
+        },
+        {
+          "id": "typing.ei.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "die lage"
+        },
+        {
+          "id": "typing.ei.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "leise leise"
+        },
+        {
+          "id": "typing.ei.streber.1.v2",
+          "difficulty": "streber",
+          "text": "die lage die lage"
+        },
+        {
+          "id": "typing.ei.streber.2.v2",
+          "difficulty": "streber",
+          "text": "die halle das all"
+        },
+        {
+          "id": "typing.ei.streber.3.v2",
+          "difficulty": "streber",
+          "text": "die lage die halle leise"
+        }
+      ]
+    },
+    {
+      "id": "typing.ru.v2",
+      "title": "Kurskorrektur",
+      "description": "R und U machen Kursdaten und erste Funknotizen möglich.",
+      "newKeys": ["R", "U"],
+      "tip": "Die Zeigefinger greifen nach oben zu R und U. Schau lieber auf den Text als auf deine Hände.",
+      "tasks": [
+        {
+          "id": "typing.ru.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "r u"
+        },
+        {
+          "id": "typing.ru.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "radar"
+        },
+        {
+          "id": "typing.ru.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "uhr"
+        },
+        {
+          "id": "typing.ru.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "der kurs"
+        },
+        {
+          "id": "typing.ru.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "die uhr"
+        },
+        {
+          "id": "typing.ru.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "das relais"
+        },
+        {
+          "id": "typing.ru.streber.1.v2",
+          "difficulty": "streber",
+          "text": "hier auf der erde"
+        },
+        {
+          "id": "typing.ru.streber.2.v2",
+          "difficulty": "streber",
+          "text": "radar auf der erde"
+        },
+        {
+          "id": "typing.ru.streber.3.v2",
+          "difficulty": "streber",
+          "text": "die uhr das relais der kurs"
+        }
+      ]
+    },
+    {
+      "id": "typing.tz.v2",
+      "title": "Zeitfenster",
+      "description": "T und Z ergänzen die Zeigefinger. Übertrage Startmeldungen und Zeiten.",
+      "newKeys": ["T", "Z"],
+      "tip": "Die Zeigefinger tippen auch T und Z. Kehre nach jedem Besuch zu F und J zurück.",
+      "tasks": [
+        {
+          "id": "typing.tz.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "t z"
+        },
+        {
+          "id": "typing.tz.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "zeit"
+        },
+        {
+          "id": "typing.tz.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "start"
+        },
+        {
+          "id": "typing.tz.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "start frei"
+        },
+        {
+          "id": "typing.tz.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "radar ist gut"
+        },
+        {
+          "id": "typing.tz.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "das relais ist aus"
+        },
+        {
+          "id": "typing.tz.streber.1.v2",
+          "difficulty": "streber",
+          "text": "der start ist gut"
+        },
+        {
+          "id": "typing.tz.streber.2.v2",
+          "difficulty": "streber",
+          "text": "das relais ist zur zeit aus"
+        },
+        {
+          "id": "typing.tz.streber.3.v2",
+          "difficulty": "streber",
+          "text": "die erde ist hier"
+        }
+      ]
+    },
+    {
+      "id": "typing.wo.v2",
+      "title": "Orbitdaten",
+      "description": "W und O erweitern die obere Reihe. Prüfe Meldungen über Route und Radar.",
+      "newKeys": ["W", "O"],
+      "tip": "Die Ringfinger greifen nach oben: links zu W, rechts zu O. Halte die Hände locker.",
+      "tasks": [
+        {
+          "id": "typing.wo.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "w o"
+        },
+        {
+          "id": "typing.wo.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "route"
+        },
+        {
+          "id": "typing.wo.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "rotor"
+        },
+        {
+          "id": "typing.wo.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "rotor ist aus"
+        },
+        {
+          "id": "typing.wo.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "route zur erde"
+        },
+        {
+          "id": "typing.wo.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "wo ist das relais"
+        },
+        {
+          "id": "typing.wo.streber.1.v2",
+          "difficulty": "streber",
+          "text": "die route zur erde ist weit"
+        },
+        {
+          "id": "typing.wo.streber.2.v2",
+          "difficulty": "streber",
+          "text": "das relais weist zur erde"
+        },
+        {
+          "id": "typing.wo.streber.3.v2",
+          "difficulty": "streber",
+          "text": "wo ist das radar"
+        }
+      ]
+    },
+    {
+      "id": "typing.qpue.v2",
+      "title": "Versorgung",
+      "description": "Q, P und Ü vervollständigen die obere Reihe. Übertrage Systemmeldungen.",
+      "newKeys": ["Q", "P", "Ü"],
+      "tip": "Der linke kleine Finger tippt Q. Der rechte kleine Finger tippt P und Ü. Kleine Bewegungen reichen.",
+      "tasks": [
+        {
+          "id": "typing.qpue.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "q p ü"
+        },
+        {
+          "id": "typing.qpue.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "quer"
+        },
+        {
+          "id": "typing.qpue.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "düse"
+        },
+        {
+          "id": "typing.qpue.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "die düse"
+        },
+        {
+          "id": "typing.qpue.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "prüfe das radar"
+        },
+        {
+          "id": "typing.qpue.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "der puls ist gut"
+        },
+        {
+          "id": "typing.qpue.streber.1.v2",
+          "difficulty": "streber",
+          "text": "prüfe die route zur erde"
+        },
+        {
+          "id": "typing.qpue.streber.2.v2",
+          "difficulty": "streber",
+          "text": "die düse ist aus"
+        },
+        {
+          "id": "typing.qpue.streber.3.v2",
+          "difficulty": "streber",
+          "text": "quer zur route liegt das relais"
+        }
+      ]
+    },
+    {
+      "id": "typing.lower.v2",
+      "title": "Außenmission",
+      "description": "Die untere Reihe ergänzt deine Tastatur. Übertrage Navigations- und Systemnotizen.",
+      "newKeys": ["Y", "X", "C", "V", "B", "N", "M"],
+      "tip": "Übe die neuen Tasten in drei kleinen Zeilen. Links unten liegen Y, X, C und V. Rechts helfen N und M. B liegt in der Mitte. Komm nach jedem Besuch zur Grundreihe zurück.",
+      "tasks": [
+        {
+          "id": "typing.lower.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "c m"
+        },
+        {
+          "id": "typing.lower.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "v n b"
+        },
+        {
+          "id": "typing.lower.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "y x ein modul"
+        },
+        {
+          "id": "typing.lower.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "modul bereit"
+        },
+        {
+          "id": "typing.lower.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "funkkanal offen"
+        },
+        {
+          "id": "typing.lower.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "system aktiv"
+        },
+        {
+          "id": "typing.lower.streber.1.v2",
+          "difficulty": "streber",
+          "text": "die crew prüft den kurs zur basis"
+        },
+        {
+          "id": "typing.lower.streber.2.v2",
+          "difficulty": "streber",
+          "text": "das system meldet ein neues signal"
+        },
+        {
+          "id": "typing.lower.streber.3.v2",
+          "difficulty": "streber",
+          "text": "die navigation bleibt ruhig und exakt"
+        }
+      ]
+    },
+    {
+      "id": "typing.finish.v2",
+      "title": "Logbuch",
+      "description": "Ä, ß, Großbuchstaben und Satzzeichen vervollständigen deine Missionsnotizen.",
+      "newKeys": ["Ä", "ß", "Umschalt", ".", ","],
+      "tip": "Ä liegt rechts neben Ö, ß neben der 0. Halte für einen Großbuchstaben die Umschalttaste mit der anderen Hand. Punkt und Komma stehen rechts unten.",
+      "tasks": [
+        {
+          "id": "typing.finish.vorschule.1.v2",
+          "difficulty": "vorschule",
+          "text": "ä ß"
+        },
+        {
+          "id": "typing.finish.vorschule.2.v2",
+          "difficulty": "vorschule",
+          "text": "Kurs zur Erde"
+        },
+        {
+          "id": "typing.finish.vorschule.3.v2",
+          "difficulty": "vorschule",
+          "text": "Basis, Außenposten."
+        },
+        {
+          "id": "typing.finish.koenner.1.v2",
+          "difficulty": "koenner",
+          "text": "Die Crew bestätigt den Kurs."
+        },
+        {
+          "id": "typing.finish.koenner.2.v2",
+          "difficulty": "koenner",
+          "text": "Ein großes Modul nähert sich der Basis."
+        },
+        {
+          "id": "typing.finish.koenner.3.v2",
+          "difficulty": "koenner",
+          "text": "Die Außenstation prüft das Funksignal."
+        },
+        {
+          "id": "typing.finish.streber.1.v2",
+          "difficulty": "streber",
+          "text": "Kurs bestätigt, die Crew startet die nächste Messung."
+        },
+        {
+          "id": "typing.finish.streber.2.v2",
+          "difficulty": "streber",
+          "text": "Die Außenmission beginnt, während die Basis erreichbar bleibt."
+        },
+        {
+          "id": "typing.finish.streber.3.v2",
+          "difficulty": "streber",
+          "text": "Das Logbuch enthält Größe, Zustand und Position der Sonde."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+# Review zu Issue #114: Weltraumreise zum Tastschreiben
+
+## Umfang und Reviewart
+
+Separater unabhängiger Agentenreview durch Codex-Agent `space_review` am 03.10.2026. Der Reviewer hat weder Produktionscode noch Lerninhalte dieses Issues implementiert. Geprüft wurde der vollständige Diff von `codex/issue-114-weltraumreise` gegen `origin/main` (`caf7f7b5e7bc008a3caf06f6b44425f4a3d2caf4`) einschließlich aller neuen Dateien: Missionskonsole, Sternenkarte und lokale SVG-Grafiken, aktive Inhaltsbank `typing-v2.json`, historisches v1-Paket, Antwortprüfung, Fortschrittsübernahme, Punkte und Request-Replays, Oberflächentests und echte SQLite-Tests, Dokumentation, Releasehinweise und sämtliche Versionseinträge für 0.5.1. Grundlage waren AGENTS.md, beide Projektskills und die Akzeptanzkriterien von [Issue #114](https://github.com/dr-dimitri/lernwelt/issues/114).
+
+Alle 108 Zeilen, zwölf Beschreibungen und zwölf Tipps wurden auf Verständlichkeit, Themenbezug und bereits eingeführte Zeichen geprüft. Die frühen Stationen bleiben einfache Tastensignale; später folgen Wörter, Funkmeldungen und Logbucheinträge. Die aktive Ansicht verwendet kurze direkte Ansprache, ruhige Missionsgrafiken und technische Raumfahrtmotive ohne Blumen, Beete oder verniedlichende Figuren. Der Einstieg bleibt für Anfänger geeignet. Globale Stufennamen, freie Auswahl, Fingerhilfe, bewusste Prüfung und das Üben ohne Zeitdruck bleiben erhalten.
+
+## Befunde und Korrekturen
+
+- **Behoben: fehlerhafter Fallbacktext.** Der neu angepasste Zustand ohne verfügbare Zeilen enthielt „Lade den die Weltraumreise neu.“ Die Implementierung korrigierte ihn zu „Lade die Weltraumreise neu.“ Der Reviewer prüfte die Korrektur im abschließenden Diff. Eine reine Textkorrektur erforderte keinen künstlichen Zusatztest.
+- **Korrigierter visueller Nachweis.** Der zunächst übermittelte Screenshot zeigte die Fächerstartseite. Nach Meldung durch den Reviewer wurde er erst nach bestätigter Navigation zur Traineransicht neu erfasst. Der Reviewer sah das neue Bild selbst an: Sternenkarte, aktive Mission, alle drei Stufen, Zieltext, Eingabefeld und vollständiger Prüfknopf sind sichtbar. Die ruhige Weltraumgestaltung passt zur vorhandenen Oberfläche und zeigt keine Gartenelemente. Dies war ein Prüfartefaktfehler, kein nachgewiesener Produktbug.
+
+Nach der Textkorrektur und dem visuellen Nachreview bestehen keine offenen blockierenden Befunde.
+
+## Datenhaltung, Kompatibilität und Fehlerpfade
+
+Das veröffentlichte `typing-v1.json` ist bytegleich mit `origin/main`. Die aktiven 108 Aufgaben besitzen eindeutige v2-Kennungen; 60 Zieltexte wurden tatsächlich geändert. Jede v2-Kennung gehört genau zum v1-Vorgänger derselben Station, Stufe und Zeilennummer. Beide Banken und diese begrenzte Zuordnung werden geladen und validiert. Historische Aufgaben werden weiterhin gegen ihren eigenen unveränderten Text geprüft; selbst eine bislang ungespeicherte v1-Anfrage bleibt nach dem Update übertragbar.
+
+Die Oberfläche erhält ausschließlich aktive v2-Aufgaben. Ihr bestätigter Fortschritt berücksichtigt gelöste v1- oder v2-Vorgänger. Eine Erstgutschrift wird nur möglich, wenn weder der passende Vorgänger noch die neue Zeile bereits bestätigt oder im Punktejournal gebucht ist. Der Schutz gilt in beide Richtungen. Andere Zeilen und Stufen bleiben unabhängig. Reine Fehlerhistorie sperrt keine spätere Erstlösung; vorhandener gelöster Fortschritt ohne Buchung wird nicht rückwirkend vergütet. Die Immediate-Transaktion serialisiert gleichzeitig abgegebene v1-/v2-Antworten über unterschiedliche Verbindungen.
+
+Der Übergang benötigt keine Schemaänderung und schreibt keine historischen Fortschritte, Belege oder Punkte um. Ein unveränderter alter Request liefert weiterhin sein damaliges korrektes oder falsches Ergebnis und den aktuell bestätigten Kontostand. Geänderte Nutzlasten mit derselben Kennung sowie unbekannte Versionen und Aufgaben werden abgewiesen. Antwortbeleg, Fortschritt und mögliche Punktebuchung bleiben atomar und werden bei einem Speicherfehler gemeinsam zurückgerollt.
+
+IPC-Typen, zwei begrenzte Commands, deren Berechtigungen und die CSP bleiben unverändert. Rust validiert Kennungen und Eingaben unabhängig von der Oberfläche. SQL verwendet Parameter. Neue Netzwerkdienste, Bibliotheken oder externe Grafiken werden nicht eingeführt. Die Browseransicht simuliert im Produkt keine Speicherung. Im Speicherfehlerpfad hält die Oberfläche dieselbe Request-ID mit derselben Antwort; Auswahl und Stufenwechsel sind bis zum Retry oder ausdrücklichen Neuladen gesperrt. Verspätete Ergebnisse nach Neuabruf oder Verlassen der Ansicht werden verworfen. Korrekturen, Eingabelängenprüfung und Kompositionsschutz bleiben erhalten.
+
+## Tatsächlich ausgeführte Prüfungen
+
+Vom unabhängigen Reviewer selbst ausgeführt:
+
+- `npx vitest run src/components/TypingPanel.test.tsx src/domain/typing.test.ts src/App.test.tsx src/lib/desktop.test.ts`: **36 Tests in vier Dateien erfolgreich**. Darunter bewusste Prüfung, freie Missionswahl, Orbitfortschritt erst nach Bestätigung, Wiederholung ohne Fortschrittszuwachs, Fehlerkorrektur, Fokus, Retry, Stufenwechsel, Profiländerung, verspätete Ergebnisse, echte Eingabe, Paste-/Drop-Erklärung, Eingabegrenzen und simulierte Kompositionsereignisse.
+- `cargo test --manifest-path src-tauri/Cargo.toml --locked typing::tests::`: **15 Tests erfolgreich**. Echte SQLite-Dateien prüfen alle 108 Erstlösungen, alle 108 historischen Fortschrittsübernahmen mit unveränderten Altzeilen, beide Reihenfolgen v1/v2, alte korrekte und falsche Replays, Konflikte, Stufentrennung, Datenbestand nach erneutem Öffnen, Rollback, Migration 17 sowie gleichzeitige Abgabe über zwei Verbindungen mit genau einer Gutschrift.
+- Unabhängiger temporärer Inhaltsabgleich gegen `origin/main`: **108 eindeutige v1/v2-Paare**, unveränderte Tastengruppen, identische zugeordnete Stufen, ausschließlich kumulativ eingeführte Zeichen und begrenzte Texte; v1-Datei vollständig bytegleich. Alle neuen Zieltexte sowie Stationstexte sind frei von Gartenansprache. Der temporäre Prüfcode ist kein Produktbestandteil.
+- `GITHUB_REF_NAME=v0.5.1 node scripts/check-release-version.mjs`: erfolgreich; Versionen und Releasehinweise konsistent.
+- `git diff --check`: erfolgreich.
+- Abschließenden Desktop-Browserscreenshot der Traineransicht bei 1100 × 750 selbst visuell geprüft. Die Missionsgrafiken sind statisch; reduzierte Bewegung entfernt zusätzlich die dekorativen Übergänge. Schmale Ansicht, lange Textumbrüche und der eigene per Tab erreichbare Tastatur-Scrollbereich sind im CSS geprüft.
+- Den abschließenden nativen Buildlog gelesen: erfolgreiche Releasekompilierung und Bündelung der App. Die tatsächlich erzeugte App-Plist selbst geprüft: Version **0.5.1**, Produktionskennung **de.lernwelt.desktop**. Der Build wurde vom ausführenden Agenten gestartet, nicht vom Reviewer.
+
+Vom ausführenden Agenten gemeldet, nicht vom Reviewer selbst ausgeführt:
+
+- `npm run check`: Formatierung, **256 Frontendtests in 31 Dateien**, **acht Skripttests**, TypeScript und Vite-Build erfolgreich. Die reine Fallbacktextkorrektur wurde anschließend gezielt geprüft.
+- `npm run check:rust`: Rustformatierung, Clippy ohne Warnungen und **145 Rusttests erfolgreich**.
+- Browserlayoutprüfung mit der echten Anwendung und den echten v2-Inhalten in einer temporären, nicht eingecheckten Desktop-Simulation: Bei 1100 × 750 liegt der vollständige Prüfknopf im Anfangszustand zwischen y=691,15 und y=735,15, Höhe 44 Pixel, Seitenbreite 1100. Bei 420 × 750 wurden kompaktes Menü, freie Wahl von Sektor 12 auf Streber, Zeile 3 und die Tastaturhilfe geprüft; Seitenbreite 420, Vorlage und Eingabefeld 344 Pixel breit, kein Abschneiden. Der Desktop-Screenshot wurde zusätzlich unabhängig vom Reviewer angesehen. Der schmale Ablauf wurde nicht vom Reviewer selbst im Browser bedient.
+- Lokaler nativer Produktionsbuild erfolgreich: `npm run desktop:build -- --bundles app --config /private/tmp/lernwelt-0.5.1-local-build-config.json`. Der temporäre Override deaktiviert allein die für diesen lokalen App-Build nicht verfügbaren Updaterartefakte; die Repository-Konfiguration und ihr signierter Releaseprozess bleiben erhalten. Artefakt: `src-tauri/target/release/bundle/macos/Lernwelt.app`. Die bestehende Vite-Warnung zum JavaScript-Bundle über 500 kB ist weiterhin vorhanden, kein neuer blockierender Buildfehler.
+
+## Grenzen und Abschlussstatus
+
+Komponententests verwenden simulierte Desktop-Ergebnisse und jsdom; Rusttests verwenden echte lokale SQLite-Dateien. Die temporäre Browserlayoutvorschau verwendet die echte Anwendung mit echten v2-Inhalten, jedoch simulierte Desktop-Ergebnisse und ersetzt keine native Speicherprüfung. Der unabhängige Reviewer führte keinen eigenen nativen Start-, Installer-, Windows-, Screenreader-, Geräte- oder IME-Test durch. Für dieses Issue wurde auch durch den ausführenden Agenten keine neue native Bedienungsprüfung durchgeführt; Commands, Berechtigungen und produktive Konfiguration sind gegenüber 0.5.0 unverändert, der lokale native Build wurde erfolgreich ergänzt. Es liegen weder Tests mit Jugendlichen noch ein pädagogischer Wirksamkeitsnachweis vor. Die Reise ist fiktional; die App prüft passenden Text und kann tatsächliche Fingerhaltung oder Zehnfingertechnik nicht feststellen. Die bestehenden Grenzen alternativer Layouts, vollständiger Zahlen-/Sonderzeichenkurse und adaptiver Übungen sind dokumentiert.
+
+**Review abgeschlossen:** Die Akzeptanzkriterien zu Gestaltung, Inhalten, Kompatibilität, Datenhaltung und lokalen Prüfungen sind erfüllt. Keine offenen blockierenden Befunde. Freigabe für den anschließenden PR- und Mergeablauf bei grünen erforderlichen CI-Checks; das Issue gilt erst nach Merge als abgeschlossen. Plattformpakete, Signaturen und Veröffentlichung sind Teil des anschließend ausgeführten Releaseprozesses und werden durch diesen Review noch nicht als erledigt behauptet.
