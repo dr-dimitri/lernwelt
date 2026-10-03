@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import type { AnswerResult } from '../domain/learning';
 import { planets } from '../domain/solar-system';
+import { getPlanetImages } from '../domain/solar-planet-images';
 import { desktop } from '../lib/desktop';
 import {
   solarAnswerFor,
@@ -61,6 +62,27 @@ it('entdeckt alle acht Steckbriefe mit lokalem NASA-Bild, Fakten und Bildquelle'
     ).toHaveAttribute('href', planet.imageSource);
     expect(card).toHaveTextContent(planet.imageCredit);
     for (const fact of planet.facts) expect(card).toHaveTextContent(fact);
+  }
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
+});
+
+it('beginnt bei jedem Planetenwechsel mit Bild 1 und vergibt beim Erkunden keine Punkte', async () => {
+  const user = userEvent.setup();
+  render(<SolarSystemWorld profileVersion={0} />);
+  await screen.findByRole('button', { name: /Könner/ });
+  for (const planet of planets) {
+    await user.click(
+      screen.getByRole('button', { name: `${planet.order} ${planet.name}` }),
+    );
+    const card = screen.getByRole('article', { name: planet.name });
+    expect(within(card).getByText('Bild 1 von 3')).toBeVisible();
+    await user.click(
+      within(card).getByRole('button', { name: 'Nächstes Bild' }),
+    );
+    expect(within(card).getByRole('img')).toHaveAttribute(
+      'src',
+      getPlanetImages(planet.id)[1].src,
+    );
   }
   expect(desktop.submitAnswer).not.toHaveBeenCalled();
 });

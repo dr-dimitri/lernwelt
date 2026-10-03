@@ -9,6 +9,7 @@ import { planets, type SolarPlanet } from '../domain/solar-system';
 import { desktop } from '../lib/desktop';
 import InfoPanel from './InfoPanel';
 import LearningHints from './LearningHints';
+import PlanetGallery from './PlanetGallery';
 import SolarSystemModel from './SolarSystemModel';
 import '../solar-system.css';
 
@@ -296,20 +297,7 @@ export default function SolarSystemWorld({
             className="solar-fact-card"
             aria-labelledby="solar-planet-title"
           >
-            <figure>
-              <img
-                src={planet.image}
-                alt={planet.imageAlt}
-                width="640"
-                height="640"
-              />
-              <figcaption>
-                Bild: {planet.imageCredit} ·{' '}
-                <a href={planet.imageSource} target="_blank" rel="noreferrer">
-                  NASA-Bildquelle
-                </a>
-              </figcaption>
-            </figure>
+            <PlanetGallery key={planet.id} planet={planet} />
             <div>
               <p className="eyebrow">PLANET {planet.order} VON DER SONNE AUS</p>
               <h3 id="solar-planet-title">{planet.name}</h3>
