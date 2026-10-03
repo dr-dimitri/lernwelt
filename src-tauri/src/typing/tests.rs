@@ -53,7 +53,9 @@ fn authored_content_has_all_stations_levels_sources_and_cumulative_keys() {
         108
     );
     assert_eq!(bank.subject, "fachübergreifend");
-    assert_eq!(bank.target_grade, 5);
+    assert_eq!(bank.version, 2);
+    assert_eq!(bank.title, "Weltraumreise");
+    assert_eq!(bank.target_grade, 7);
     assert!(bank.competency.contains("Zusatzfertigkeit"));
     assert!(bank.orientation.contains("kein") || bank.orientation.contains("Kein"));
     assert_eq!(bank.source_date, "2026-10-03");
@@ -65,7 +67,7 @@ fn authored_content_has_all_stations_levels_sources_and_cumulative_keys() {
     let mut ids = HashSet::new();
     for (station, (_, _, characters)) in bank.stations.iter().zip(STATIONS) {
         allowed.extend(characters.chars());
-        if station.id == "typing.finish.v1" {
+        if station.id == "typing.finish.v2" {
             let uppercase: String = allowed.iter().collect::<String>().to_uppercase();
             allowed.extend(uppercase.chars());
         }
@@ -118,7 +120,7 @@ fn content_loader_rejects_broken_ids_levels_keys_text_and_metadata() {
     invalid = original.clone();
     invalid.target_grade = 9;
     assert!(invalid.validate().is_err());
-    let json = include_str!("../../content/typing-v1.json").replacen(
+    let json = include_str!("../../content/typing-v2.json").replacen(
         "\"difficulty\": \"vorschule\"",
         "\"difficulty\": \"expert\"",
         1,
@@ -232,20 +234,20 @@ fn comparison_preserves_case_spaces_and_punctuation_and_never_deducts_points() {
     database::set_difficulty(&connection, "vorschule").unwrap();
     let task = &bank().unwrap().stations[11].tasks[2];
     for (number, wrong) in [
-        "blätter, Blüten.",
-        "Blätter Blüten.",
-        "Blaetter, Blueten.",
-        " Blätter, Blüten.",
-        "Blätter, Blüten. ",
-        "Blätter,  Blüten.",
-        "Blätter, Blüten",
+        task.text.to_lowercase(),
+        task.text.replace(',', ""),
+        task.text.replace('ß', "ss"),
+        format!(" {}", task.text),
+        format!("{} ", task.text),
+        task.text.replace(' ', "  "),
+        task.text.trim_end_matches('.').to_owned(),
     ]
     .into_iter()
     .enumerate()
     {
         let result = submit(
             &mut connection,
-            input(&format!("wrong-{number}"), &task.id, wrong),
+            input(&format!("wrong-{number}"), &task.id, &wrong),
         )
         .unwrap();
         assert!(!result.correct, "{wrong:?}");
@@ -385,6 +387,322 @@ fn answer_receipt_progress_and_points_roll_back_together_on_storage_failure() {
         assert_eq!((result.points_awarded, result.wallet.balance), (2, 2));
         assert_eq!(row_counts(&connection), (1, 1, 1));
     }
+}
+
+fn legacy_rows(connection: &Connection) -> Vec<Vec<Vec<rusqlite::types::Value>>> {
+    [
+        "SELECT * FROM typing_progress WHERE task_id LIKE '%.v1' ORDER BY task_id",
+        "SELECT * FROM typing_submissions WHERE task_id LIKE '%.v1' ORDER BY request_id",
+        "SELECT * FROM point_entries WHERE item_id LIKE 'typing.%.v1' ORDER BY id",
+    ]
+    .into_iter()
+    .map(|sql| {
+        let mut statement = connection.prepare(sql).unwrap();
+        let columns = statement.column_count();
+        statement
+            .query_map([], |row| {
+                (0..columns)
+                    .map(|column| row.get(column))
+                    .collect::<rusqlite::Result<Vec<rusqlite::types::Value>>>()
+            })
+            .unwrap()
+            .collect::<Result<_, _>>()
+            .unwrap()
+    })
+    .collect()
+}
+
+#[test]
+fn all_legacy_solutions_transfer_without_rewriting_history_or_rewarding_again() {
+    let (directory, connection) = setup();
+    let content = content().unwrap();
+    // Represent a database already written by v0.5.0, independently of the new submit path.
+    for task in content.legacy.stations.iter().flat_map(|s| &s.tasks) {
+        let amount = match task.difficulty {
+            Difficulty::Vorschule => 1,
+            Difficulty::Koenner => 2,
+            Difficulty::Streber => 3,
+        };
+        connection
+            .execute(
+                "INSERT INTO typing_progress VALUES (1,?1,?2,4,1,1,'2026-10-03 10:11:12')",
+                params![task.id, task.difficulty.as_str()],
+            )
+            .unwrap();
+        connection
+            .execute(
+                "INSERT INTO typing_submissions VALUES (?1,1,?2,?3,?4,1,?5,'2026-10-03 10:11:12')",
+                params![
+                    format!("old-{}", task.id.replace('.', "-")),
+                    task.id,
+                    task.difficulty.as_str(),
+                    task.text,
+                    amount
+                ],
+            )
+            .unwrap();
+        connection.execute(
+            "INSERT INTO point_entries (profile_id,kind,item_id,amount,created_at) VALUES (1,'answer',?1,?2,'2026-10-03 10:11:12')",
+            params![task.id, amount],
+        ).unwrap();
+    }
+    let before = legacy_rows(&connection);
+    drop(connection);
+    let mut reopened = database::open(&directory.path().join("typing.sqlite3")).unwrap();
+    let state = get_state(&mut reopened).unwrap();
+    assert_eq!(state.wallet.balance, 216);
+    assert!(state
+        .stations
+        .iter()
+        .flat_map(|s| &s.tasks)
+        .all(|t| t.id.ends_with(".v2") && t.solved));
+    assert_eq!(legacy_rows(&reopened), before);
+    assert_eq!(row_counts(&reopened), (108, 108, 108));
+    for level in LEVELS {
+        database::set_difficulty(&reopened, level.as_str()).unwrap();
+        for task in content
+            .current
+            .stations
+            .iter()
+            .flat_map(|s| &s.tasks)
+            .filter(|t| t.difficulty == level)
+        {
+            let result = submit(
+                &mut reopened,
+                input(
+                    &format!("new-{}", task.id.replace('.', "-")),
+                    &task.id,
+                    &task.text,
+                ),
+            )
+            .unwrap();
+            assert!(result.correct);
+            assert_eq!((result.points_awarded, result.wallet.balance), (0, 216));
+        }
+    }
+    assert_eq!(row_counts(&reopened), (216, 216, 108));
+    let old = &content.legacy.stations[5].tasks[3];
+    let current = &content.current.stations[5].tasks[3];
+    assert_ne!(old.text, current.text);
+    // The saved result wins even after a content, target text and level change.
+    let replay = submit(
+        &mut reopened,
+        input(
+            &format!("old-{}", old.id.replace('.', "-")),
+            &old.id,
+            &old.text,
+        ),
+    )
+    .unwrap();
+    assert_eq!(
+        (replay.correct, replay.points_awarded, replay.wallet.balance),
+        (true, 2, 216)
+    );
+    assert!(submit(
+        &mut reopened,
+        input(
+            &format!("old-{}", old.id.replace('.', "-")),
+            &old.id,
+            &current.text
+        )
+    )
+    .is_err());
+    assert_eq!(legacy_rows(&reopened), before);
+    assert_eq!(row_counts(&reopened), (216, 216, 108));
+    drop(reopened);
+    let mut reopened = database::open(&directory.path().join("typing.sqlite3")).unwrap();
+    assert_eq!(legacy_rows(&reopened), before);
+    assert!(get_state(&mut reopened)
+        .unwrap()
+        .stations
+        .iter()
+        .flat_map(|s| &s.tasks)
+        .all(|t| t.solved));
+    assert_eq!(
+        reopened
+            .pragma_query_value(None, "user_version", |r| r.get::<_, i64>(0))
+            .unwrap(),
+        17
+    );
+}
+
+#[test]
+fn old_and_new_payloads_keep_their_own_answers_and_share_only_the_matching_line() {
+    let (directory, mut connection) = setup();
+    let content = content().unwrap();
+    let old = &content.legacy.stations[6].tasks[3];
+    let current = &content.current.stations[6].tasks[3];
+    assert_ne!(old.text, current.text);
+    let wrong = submit(
+        &mut connection,
+        input("old-unsolved", &old.id, &current.text),
+    )
+    .unwrap();
+    assert_eq!((wrong.correct, wrong.points_awarded), (false, 0));
+    assert!(!solved_task(
+        &get_state(&mut connection).unwrap(),
+        &current.id
+    ));
+    // A v1 request with no previous receipt remains valid after the upgrade.
+    let first = submit(
+        &mut connection,
+        input("old-undelivered", &old.id, &old.text),
+    )
+    .unwrap();
+    assert_eq!((first.correct, first.points_awarded), (true, 2));
+    let state = get_state(&mut connection).unwrap();
+    assert!(solved_task(&state, &current.id));
+    assert!(!solved_task(
+        &state,
+        &content.current.stations[6].tasks[4].id
+    ));
+    assert!(!solved_task(
+        &state,
+        &content.current.stations[6].tasks[0].id
+    ));
+    drop(connection);
+    let mut reopened = database::open(&directory.path().join("typing.sqlite3")).unwrap();
+    let new = submit(
+        &mut reopened,
+        input("new-after-old", &current.id, &current.text),
+    )
+    .unwrap();
+    assert_eq!(
+        (new.correct, new.points_awarded, new.wallet.balance),
+        (true, 0, 2)
+    );
+    let replay = submit(&mut reopened, input("old-unsolved", &old.id, &current.text)).unwrap();
+    assert_eq!(
+        (replay.correct, replay.points_awarded, replay.wallet.balance),
+        (false, 0, 2)
+    );
+    let next = &content.current.stations[6].tasks[4];
+    assert_eq!(
+        submit(&mut reopened, input("next-line", &next.id, &next.text))
+            .unwrap()
+            .points_awarded,
+        2
+    );
+    database::set_difficulty(&reopened, "vorschule").unwrap();
+    let easier = &content.current.stations[6].tasks[0];
+    assert_eq!(
+        submit(
+            &mut reopened,
+            input("other-level", &easier.id, &easier.text)
+        )
+        .unwrap()
+        .points_awarded,
+        1
+    );
+    assert_eq!(learning::wallet(&reopened).unwrap().balance, 5);
+}
+
+#[test]
+fn current_solution_blocks_a_later_legacy_reward_and_forged_versions_do_not_write() {
+    let (_directory, mut connection) = setup();
+    let content = content().unwrap();
+    let old = &content.legacy.stations[10].tasks[3];
+    let current = &content.current.stations[10].tasks[3];
+    let first = submit(
+        &mut connection,
+        input("new-first", &current.id, &current.text),
+    )
+    .unwrap();
+    assert_eq!(first.points_awarded, 2);
+    let before = row_counts(&connection);
+    for id in [
+        "typing.lower.koenner.1.v0",
+        "typing.lower.koenner.1.v3",
+        "typing.lower.koenner.4.v1",
+        "typing.lower.unknown.1.v1",
+    ] {
+        assert!(submit(&mut connection, input("forged-family", id, &old.text)).is_err());
+    }
+    assert_eq!(row_counts(&connection), before);
+    let old_with_new_text = submit(
+        &mut connection,
+        input("old-wrong-version-text", &old.id, &current.text),
+    )
+    .unwrap();
+    assert_eq!(
+        (old_with_new_text.correct, old_with_new_text.points_awarded),
+        (false, 0)
+    );
+    let later = submit(&mut connection, input("old-after-new", &old.id, &old.text)).unwrap();
+    assert_eq!(
+        (later.correct, later.points_awarded, later.wallet.balance),
+        (true, 0, 2)
+    );
+    assert_eq!(row_counts(&connection), (2, 3, 1));
+}
+
+#[test]
+fn simultaneous_old_and_new_solutions_over_two_connections_award_only_once() {
+    let (directory, connection) = setup();
+    let content = content().unwrap();
+    let old = &content.legacy.stations[10].tasks[3];
+    let current = &content.current.stations[10].tasks[3];
+    let path = directory.path().join("typing.sqlite3");
+    let second = database::open(&path).unwrap();
+    let barrier = std::sync::Arc::new(std::sync::Barrier::new(2));
+    let handles: Vec<_> = [
+        (connection, input("race-old", &old.id, &old.text)),
+        (second, input("race-new", &current.id, &current.text)),
+    ]
+    .into_iter()
+    .map(|(mut connection, input)| {
+        let barrier = barrier.clone();
+        std::thread::spawn(move || {
+            barrier.wait();
+            submit(&mut connection, input).unwrap()
+        })
+    })
+    .collect();
+    let mut awards: Vec<_> = handles
+        .into_iter()
+        .map(|handle| {
+            let result = handle.join().unwrap();
+            assert!(result.correct);
+            result.points_awarded
+        })
+        .collect();
+    awards.sort_unstable();
+    assert_eq!(awards, [0, 2]);
+    let mut reopened = database::open(&path).unwrap();
+    assert_eq!(row_counts(&reopened), (2, 2, 1));
+    let state = get_state(&mut reopened).unwrap();
+    assert_eq!(state.wallet.balance, 2);
+    assert!(solved_task(&state, &current.id));
+}
+
+#[test]
+fn confirmed_legacy_progress_without_a_booking_gets_no_retroactive_points() {
+    let (_directory, mut connection) = setup();
+    let content = content().unwrap();
+    let old = &content.legacy.stations[7].tasks[3];
+    let current = &content.current.stations[7].tasks[3];
+    connection
+        .execute(
+            "INSERT INTO typing_progress VALUES (1,?1,?2,1,1,1,'2026-10-03 10:11:12')",
+            params![old.id, old.difficulty.as_str()],
+        )
+        .unwrap();
+    let before = legacy_rows(&connection);
+    assert!(solved_task(
+        &get_state(&mut connection).unwrap(),
+        &current.id
+    ));
+    let result = submit(
+        &mut connection,
+        input("confirm-existing", &current.id, &current.text),
+    )
+    .unwrap();
+    assert_eq!(
+        (result.correct, result.points_awarded, result.wallet.balance),
+        (true, 0, 0)
+    );
+    assert_eq!(legacy_rows(&connection), before);
+    assert_eq!(row_counts(&connection), (2, 1, 0));
 }
 
 fn schema_16(path: &std::path::Path) -> Connection {

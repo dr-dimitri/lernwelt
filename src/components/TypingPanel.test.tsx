@@ -23,12 +23,12 @@ const initial: TypingState = {
     id: `station-${index}`,
     title:
       index === 0
-        ? 'F und J'
+        ? 'Funkkontakt'
         : index === 1
-          ? 'D und K'
+          ? 'Signalabgleich'
           : index === 11
-            ? 'Groß und klein'
-            : `Beet ${index + 1}`,
+            ? 'Logbuch'
+            : `Sektor ${index + 1}`,
     description: 'Finde deine Starttasten.',
     newKeys: index === 0 ? ['F', 'J', 'Leertaste'] : ['D', 'K'],
     tip: 'Fühle F und J mit deinen Zeigefingern.',
@@ -38,7 +38,7 @@ const initial: TypingState = {
         difficulty,
         text:
           index === 11
-            ? 'Äpfel für Öli!'
+            ? 'Äußerer Orbit.'
             : index === 1
               ? 'dk kd'
               : difficulty === 'vorschule'
@@ -80,7 +80,9 @@ it('lässt den Anfangsfokus beim Seitentitel und prüft echte Eingaben erst bewu
   expect(title).toHaveFocus();
   expect(
     within(
-      screen.getByRole('navigation', { name: 'Deine zwölf Beete' }),
+      screen.getByRole('navigation', {
+        name: 'Sternenkarte: zwölf frei wählbare Sektoren',
+      }),
     ).getAllByRole('button'),
   ).toHaveLength(12);
   await user.type(field, 'fj x');
@@ -100,7 +102,7 @@ it('lässt den Anfangsfokus beim Seitentitel und prüft echte Eingaben erst bewu
   );
   expect(
     screen.getByRole('button', {
-      name: '1. F und J · 1 von 3 Zeilen geschafft',
+      name: 'Sektor 1: Funkkontakt · 1 von 3 Zeilen bestätigt',
     }),
   ).toHaveAttribute('aria-pressed', 'true');
   await user.click(screen.getByRole('button', { name: 'Nächste Zeile' }));
@@ -112,20 +114,20 @@ it('lässt den Anfangsfokus beim Seitentitel und prüft echte Eingaben erst bewu
   );
 });
 
-it('bietet alle Beete und Zeilen frei an und nutzt die bestätigten Wiederholungspunkte', async () => {
+it('bietet alle Sektoren und Zeilen frei an und nutzt die bestätigten Wiederholungspunkte', async () => {
   const user = userEvent.setup();
   render(<TypingPanel profileVersion={0} />);
   const field = await screen.findByLabelText('Deine Zeile');
   await user.click(
     screen.getByRole('button', {
-      name: '12. Groß und klein · 0 von 3 Zeilen geschafft',
+      name: 'Sektor 12: Logbuch · 0 von 3 Zeilen bestätigt',
     }),
   );
   expect(field).toHaveFocus();
   await user.click(
     screen.getByRole('button', { name: 'Tastaturhilfe einblenden' }),
   );
-  await user.type(field, 'Äpfel für Öli!');
+  await user.type(field, 'Äußerer Orbit.');
   expect(
     screen.getByText(
       'Alle Zeichen sind da. Prüfe deine Zeile, wenn du bereit bist.',
@@ -150,7 +152,7 @@ it('bietet alle Beete und Zeilen frei an und nutzt die bestätigten Wiederholung
     ...success,
     pointsAwarded: 0,
   });
-  await user.type(field, 'Äpfel für Öli!{Enter}');
+  await user.type(field, 'Äußerer Orbit.{Enter}');
   expect(
     await screen.findByRole('heading', { name: 'Geschafft! Gut wiederholt.' }),
   ).toBeVisible();
@@ -161,7 +163,7 @@ it('bietet alle Beete und Zeilen frei an und nutzt die bestätigten Wiederholung
   ).toBeVisible();
   expect(
     screen.queryByText(
-      'Deine Pflanze wächst. Nimm dir die nächste Zeile vor, wenn du magst.',
+      'Zeile bestätigt. Dein Missionsfortschritt ist gespeichert. Du kannst mit der nächsten Zeile weitermachen.',
     ),
   ).not.toBeInTheDocument();
   expect(
@@ -174,7 +176,7 @@ it('bietet alle Beete und Zeilen frei an und nutzt die bestätigten Wiederholung
   expect(requests[0][0].requestId).not.toBe(requests[1][0].requestId);
   expect(
     screen.getByRole('button', {
-      name: '12. Groß und klein · 1 von 3 Zeilen geschafft',
+      name: 'Sektor 12: Logbuch · 1 von 3 Zeilen bestätigt',
     }),
   ).toBeVisible();
 });
@@ -203,7 +205,7 @@ it('erklärt Starttasten und zeigt QWERTZ, Leerzeichen sowie gegenüberliegendes
   expect(screen.getByText(/ein Daumen/)).toBeVisible();
   await user.click(
     screen.getByRole('button', {
-      name: '12. Groß und klein · 0 von 3 Zeilen geschafft',
+      name: 'Sektor 12: Logbuch · 0 von 3 Zeilen bestätigt',
     }),
   );
   expect(screen.getByText(/rechte[r]? kleine[r]? Finger/)).toBeVisible();
@@ -223,6 +225,11 @@ it('wartet auf die Desktop-Prüfung und lässt eine falsche Zeile ohne Punkte ko
   const field = await screen.findByLabelText('Deine Zeile');
   await user.type(field, 'fj jf{Enter}');
   expect(screen.queryByText(/Geschafft!/)).not.toBeInTheDocument();
+  expect(
+    screen.getByRole('img', {
+      name: 'Bereit zum Start · 0 von 3 Zeilen bestätigt',
+    }),
+  ).toBeVisible();
   expect(field).toBeDisabled();
   await act(async () =>
     resolve({ correct: false, pointsAwarded: 0, wallet: initial.wallet }),
@@ -234,13 +241,70 @@ it('wartet auf die Desktop-Prüfung und lässt eine falsche Zeile ohne Punkte ko
   ).toHaveFocus();
   expect(field).toBeEnabled();
   expect(
+    screen.getByRole('img', {
+      name: 'Bereit zum Start · 0 von 3 Zeilen bestätigt',
+    }),
+  ).toBeVisible();
+  expect(
     screen.getByRole('button', {
-      name: '1. F und J · 0 von 3 Zeilen geschafft',
+      name: 'Sektor 1: Funkkontakt · 0 von 3 Zeilen bestätigt',
     }),
   ).toBeVisible();
   await user.clear(field);
   await user.type(field, 'fj jf{Enter}');
   await screen.findByRole('heading', { name: 'Geschafft! +2 Punkte' });
+});
+
+it('zeigt die drei Orbitabschnitte erst nach bestätigten Lösungen und erhält sie beim Wiederholen', async () => {
+  const user = userEvent.setup();
+  render(<TypingPanel profileVersion={0} />);
+  const field = await screen.findByLabelText('Deine Zeile');
+  await user.type(field, 'fj jf');
+  expect(
+    screen.getByRole('img', {
+      name: 'Bereit zum Start · 0 von 3 Zeilen bestätigt',
+    }),
+  ).toBeVisible();
+  await user.type(field, '{Enter}');
+  expect(
+    await screen.findByRole('img', {
+      name: 'Signal empfangen · 1 von 3 Zeilen bestätigt',
+    }),
+  ).toBeVisible();
+  await user.click(screen.getByRole('button', { name: 'Nächste Zeile' }));
+  await user.type(field, 'jf fj{Enter}');
+  expect(
+    await screen.findByRole('img', {
+      name: 'Kurs bestätigt · 2 von 3 Zeilen bestätigt',
+    }),
+  ).toBeVisible();
+  await user.click(screen.getByRole('button', { name: 'Nächste Zeile' }));
+  await user.type(field, 'jf fj{Enter}');
+  expect(
+    await screen.findByRole('img', {
+      name: 'Sektor erkundet · 3 von 3 Zeilen bestätigt',
+    }),
+  ).toBeVisible();
+  expect(
+    screen.getByRole('button', {
+      name: 'Sektor 1: Funkkontakt · 3 von 3 Zeilen bestätigt',
+    }),
+  ).toHaveAttribute('aria-pressed', 'true');
+  expect(screen.getByText(/Sektor erkundet: Alle drei Zeilen/)).toBeVisible();
+  vi.mocked(desktop.submitTyping).mockResolvedValue({
+    ...success,
+    pointsAwarded: 0,
+  });
+  await user.click(screen.getByRole('button', { name: 'Noch einmal üben' }));
+  await user.type(field, 'jf fj{Enter}');
+  await screen.findByRole('heading', {
+    name: 'Geschafft! Gut wiederholt.',
+  });
+  expect(
+    screen.getByRole('img', {
+      name: 'Sektor erkundet · 3 von 3 Zeilen bestätigt',
+    }),
+  ).toBeVisible();
 });
 
 it('sperrt doppelte Übertragung und hält bei Speicherfehler dieselbe UUID und Antwort für Retry', async () => {
@@ -261,7 +325,7 @@ it('sperrt doppelte Übertragung und hält bei Speicherfehler dieselbe UUID und 
   expect(screen.getByRole('button', { name: 'Vorschule' })).toBeDisabled();
   expect(
     screen.getByRole('button', {
-      name: '2. D und K · 0 von 3 Zeilen geschafft',
+      name: 'Sektor 2: Signalabgleich · 0 von 3 Zeilen bestätigt',
     }),
   ).toBeDisabled();
   expect(screen.queryByText(/Geschafft!/)).not.toBeInTheDocument();
@@ -328,7 +392,7 @@ it('holt nach Ladefehlern den bestätigten Stand und lädt nach einem gespeicher
     profileReady: false,
   });
   await user.click(
-    screen.getByRole('button', { name: 'Tastengarten neu laden' }),
+    screen.getByRole('button', { name: 'Weltraumreise neu laden' }),
   );
   expect(await screen.findByText(/Speichere dein Lernprofil/)).toBeVisible();
   expect(screen.queryByLabelText('Deine Zeile')).not.toBeInTheDocument();
