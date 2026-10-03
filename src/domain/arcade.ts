@@ -1,6 +1,7 @@
 import type { Wallet } from './learning';
 
-export type GameId = 'blocks' | 'maze' | 'runner' | 'space' | 'chickens';
+export type GameId =
+  'blocks' | 'maze' | 'runner' | 'space' | 'chickens' | 'worms';
 export interface GameSession {
   id: string;
   gameId: GameId;
@@ -54,6 +55,17 @@ export const games: {
     theme: 'Deine Weltraummission',
     instructions:
       '← → steuern dein Raumschiff. Leertaste schickt Lichtblitze zu den Robotern (je 25 Spielpunkte). Weiche ihren Blitzen aus! Besiege 6 Wellen. Du hast 3 Herzen; erreicht ein Roboter deine Station, endet die Runde.',
+  },
+  {
+    id: 'worms',
+    name: 'Worms',
+    icon: '〰',
+    description: 'Zwei Teams, eine Insel und deine Flugbahn.',
+    goal: 'Gewinne das Inselduell mit deinem Zweierteam.',
+    controlsHint: 'Pfeiltasten, W/S & Leertaste oder Regler',
+    theme: 'Dein Inselduell',
+    instructions:
+      'Deine zwei Würmer spielen gegen ein Computerteam. Bewege deinen aktiven Wurm ein Stück, wähle Richtung, Winkel und Stärke und schieße einmal pro Zug. Treffer nehmen Energie und hinterlassen Krater. Der Wind verschiebt die Flugbahn. ← → bewegen, ↑ ↓ Winkel, W S Stärke, Leertaste schießt. Die Bildschirmtasten und Regler gehen auch. Nach 24 Zügen entscheidet die verbleibende Teamenergie. Jeder Energiepunkt, den das Computerteam verliert, bringt 5 Spielpunkte. Ein ausgeschiedener Computerwurm gibt 100 extra, ein Sieg 500 extra.',
   },
   {
     id: 'chickens',

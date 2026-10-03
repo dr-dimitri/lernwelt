@@ -23,7 +23,7 @@ fn geography_migration_preserves_every_existing_row_and_historical_retry() {
         upgraded
             .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
             .unwrap(),
-        17
+        SCHEMA_VERSION
     );
     assert_eq!(get_profile(&upgraded).unwrap().unwrap().grade, 7);
     assert_eq!(

@@ -1,6 +1,8 @@
 import { aimRobot, createMaze, moveMaze, visible, type Maze } from './maze';
 import type { GameId } from '../domain/arcade';
 
+export type ClassicGameId = Exclude<GameId, 'worms'>;
+
 export type Action =
   'left' | 'right' | 'down' | 'forward' | 'rotate' | 'jump' | 'fire' | 'drop';
 export interface Entity {
@@ -17,7 +19,7 @@ export interface Shot {
 }
 export interface Game {
   maze?: Maze;
-  id: GameId;
+  id: ClassicGameId;
   score: number;
   elapsed: number;
   over: boolean;
@@ -95,7 +97,7 @@ function wave(g: Game) {
   g.enemyClock = 0;
   g.shots = [];
 }
-export function createGame(id: GameId, seed = Date.now()): Game {
+export function createGame(id: ClassicGameId, seed = Date.now()): Game {
   const g: Game = {
     id,
     score: 0,

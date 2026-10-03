@@ -1,16 +1,24 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import ArcadePanel from './ArcadePanel';
 import { desktop } from '../lib/desktop';
-import type { ArcadeState } from '../domain/arcade';
+import type { ArcadeState, GameId } from '../domain/arcade';
 vi.mock('./GamePreview', () => ({ default: () => null }));
 vi.mock('../lib/desktop', () => ({
   desktop: { getArcadeState: vi.fn(), startGame: vi.fn(), finishGame: vi.fn() },
 }));
 vi.mock('./GameStage', () => ({
-  default: ({ onFinish }: { onFinish: (score: number) => void }) => (
-    <button onClick={() => onFinish(150)}>Test-Runde beenden</button>
+  default: ({
+    onFinish,
+    gameId,
+  }: {
+    onFinish: (score: number) => void;
+    gameId: GameId;
+  }) => (
+    <button onClick={() => onFinish(150)}>
+      {gameId === 'worms' ? 'Worms-Test-Runde beenden' : 'Test-Runde beenden'}
+    </button>
   ),
 }));
 const initial: ArcadeState = {
@@ -133,4 +141,119 @@ it('überschreibt eine Buchung nicht mit einem verspäteten Profil-Neuladen', as
   expect(
     screen.getByText('10 Lernpunkte', { selector: '.arcade-balance' }),
   ).toBeVisible();
+});
+
+it('öffnet Worms für 10 Lernpunkte und verwendet bei einer Wiederholung dieselbe Buchung', async () => {
+  const user = userEvent.setup();
+  const wormStarted: ArcadeState = {
+    ...started,
+    activeSession: { id: 'worm-paid', gameId: 'worms' },
+  };
+  vi.mocked(desktop.startGame)
+    .mockRejectedValueOnce(new Error('Transportfehler'))
+    .mockResolvedValueOnce(wormStarted);
+  render(<ArcadePanel profileVersion={0} />);
+  await screen.findByText('20 Lernpunkte', { selector: '.arcade-balance' });
+  const card = screen
+    .getByRole('heading', { name: 'Worms' })
+    .closest('article')!;
+  expect(
+    within(card).getByText('Gewinne das Inselduell mit deinem Zweierteam.'),
+  ).toBeVisible();
+  await user.click(
+    within(card).getByRole('button', { name: 'Spielen · 10 Lernpunkte' }),
+  );
+  expect(await screen.findByRole('alert')).toHaveTextContent('Transportfehler');
+  await user.click(
+    within(card).getByRole('button', { name: 'Buchung erneut versuchen' }),
+  );
+  expect(desktop.startGame).toHaveBeenCalledTimes(2);
+  expect(vi.mocked(desktop.startGame).mock.calls[0][1]).toBe('worms');
+  expect(vi.mocked(desktop.startGame).mock.calls[0]).toEqual(
+    vi.mocked(desktop.startGame).mock.calls[1],
+  );
+  expect(
+    screen.getByRole('button', { name: 'Worms-Test-Runde beenden' }),
+  ).toBeVisible();
+  expect(
+    screen.getByText('10 Lernpunkte', { selector: '.arcade-balance' }),
+  ).toBeVisible();
+});
+
+it('nimmt eine bezahlte Worms-Runde kostenlos auf und speichert Retry und Bestwert für Worms', async () => {
+  const user = userEvent.setup();
+  const wormStarted: ArcadeState = {
+    ...started,
+    activeSession: { id: 'worm-paid', gameId: 'worms' },
+  };
+  vi.mocked(desktop.getArcadeState).mockResolvedValue(wormStarted);
+  vi.mocked(desktop.finishGame)
+    .mockRejectedValueOnce(new Error('Speicherfehler'))
+    .mockResolvedValueOnce({
+      ...wormStarted,
+      activeSession: null,
+      bestScores: [{ gameId: 'worms', score: 150 }],
+    });
+  render(<ArcadePanel profileVersion={0} />);
+  await user.click(
+    await screen.findByRole('button', { name: 'Kostenlos wieder aufnehmen' }),
+  );
+  expect(desktop.startGame).not.toHaveBeenCalled();
+  await user.click(
+    screen.getByRole('button', { name: 'Worms-Test-Runde beenden' }),
+  );
+  expect(await screen.findByRole('alert')).toHaveTextContent('Speicherfehler');
+  await user.click(
+    screen.getByRole('button', { name: 'Ergebnis erneut speichern' }),
+  );
+  expect(desktop.finishGame).toHaveBeenNthCalledWith(1, 'worm-paid', 150);
+  expect(desktop.finishGame).toHaveBeenNthCalledWith(2, 'worm-paid', 150);
+  await user.click(
+    await screen.findByRole('button', { name: 'Zur Spielauswahl' }),
+  );
+  const card = screen
+    .getByRole('heading', { name: 'Worms' })
+    .closest('article')!;
+  expect(within(card).getByText('Bestwert: 150 Spielpunkte')).toBeVisible();
+  expect(
+    screen.getByText('10 Lernpunkte', { selector: '.arcade-balance' }),
+  ).toBeVisible();
+  expect(desktop.startGame).not.toHaveBeenCalled();
+});
+
+it('überträgt ein Worms-Ergebnis auch bei mehrfacher Abschlussaktivierung nur einmal gleichzeitig', async () => {
+  const user = userEvent.setup();
+  const wormStarted: ArcadeState = {
+    ...started,
+    activeSession: { id: 'worm-paid', gameId: 'worms' },
+  };
+  vi.mocked(desktop.getArcadeState).mockResolvedValue(wormStarted);
+  let resolveFinish!: (value: ArcadeState) => void;
+  vi.mocked(desktop.finishGame).mockImplementation(
+    () =>
+      new Promise((resolve) => {
+        resolveFinish = resolve;
+      }),
+  );
+  render(<ArcadePanel profileVersion={0} />);
+  await user.click(
+    await screen.findByRole('button', { name: 'Kostenlos wieder aufnehmen' }),
+  );
+  const finish = screen.getByRole('button', {
+    name: 'Worms-Test-Runde beenden',
+  });
+  await user.click(finish);
+  await user.click(finish);
+  expect(desktop.finishGame).toHaveBeenCalledExactlyOnceWith('worm-paid', 150);
+  await act(async () =>
+    resolveFinish({
+      ...wormStarted,
+      activeSession: null,
+      bestScores: [{ gameId: 'worms', score: 150 }],
+    }),
+  );
+  expect(
+    await screen.findByRole('button', { name: 'Zur Spielauswahl' }),
+  ).toBeVisible();
+  expect(desktop.startGame).not.toHaveBeenCalled();
 });

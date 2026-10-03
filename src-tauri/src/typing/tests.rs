@@ -522,7 +522,7 @@ fn all_legacy_solutions_transfer_without_rewriting_history_or_rewarding_again() 
         reopened
             .pragma_query_value(None, "user_version", |r| r.get::<_, i64>(0))
             .unwrap(),
-        17
+        database::SCHEMA_VERSION
     );
 }
 
@@ -788,7 +788,7 @@ fn migration_17_preserves_every_schema_16_row_and_historical_answer_replay() {
         upgraded
             .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
             .unwrap(),
-        17
+        database::SCHEMA_VERSION
     );
     assert_eq!(row_counts(&upgraded), (0, 0, 0));
     assert_eq!(database::get_profile(&upgraded).unwrap().unwrap().grade, 7);

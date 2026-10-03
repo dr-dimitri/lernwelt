@@ -1,0 +1,251 @@
+.arcade-worms {
+  --game-accent: #21646c;
+  --game-soft: #e0f0ea;
+}
+
+.game-stage.worms-stage {
+  grid-template-columns: minmax(0, 1fr) 235px;
+}
+
+.game-focus.worms-focus {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.worms-stage .worms-hud {
+  gap: 8px;
+}
+
+.worms-stage .game-heading h3:focus {
+  outline: none;
+}
+
+.worms-stage .game-scene {
+  height: clamp(220px, calc(100dvh - 500px), 300px);
+  background: #d7edf3;
+}
+
+.worms-stage .game-scene:has(.game-overlay) {
+  min-height: 220px;
+}
+
+.worms-stage .game-scene canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.arcade .worms-hud p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.worms-turn {
+  font-weight: 700;
+  color: #253e4c;
+}
+
+.worms-team {
+  border-top: 1px solid #c9d9dc;
+  padding-top: 8px;
+  font-size: 12px;
+}
+
+.worms-team ul {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+}
+
+.worms-team li + li {
+  margin-top: 5px;
+}
+
+.worms-team li span {
+  display: flex;
+  justify-content: space-between;
+}
+
+.worms-team progress {
+  display: block;
+  width: 100%;
+  height: 7px;
+  accent-color: #247d86;
+}
+
+.worms-team-cpu progress {
+  accent-color: #986b25;
+}
+
+.worms-controls {
+  min-width: 0;
+  border: none;
+  margin: 0;
+  padding: 8px 12px;
+  display: grid;
+  gap: 6px;
+  background: #edf5f3;
+  color: #244853;
+  font-size: 12px;
+}
+
+.arcade .worms-key-hint {
+  margin: 0;
+  padding: 8px 14px;
+  background: #e2efeb;
+  color: #244853;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.worms-controls legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.worms-controls:disabled {
+  opacity: 0.6;
+}
+
+.worms-stage .worms-controls button {
+  min-height: 40px;
+  padding: 7px 10px;
+  font-size: 12px;
+  border-color: #b0cbd0;
+  background: white;
+  color: #244853;
+}
+
+.worms-controls button:focus-visible,
+.worms-aim input:focus-visible {
+  outline: 3px solid #ba7b14;
+  outline-offset: 2px;
+}
+
+.worms-movement,
+.worms-shot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.worms-aim {
+  display: grid;
+  grid-template-columns: auto minmax(80px, 1fr) auto minmax(80px, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.worms-aim label {
+  white-space: nowrap;
+}
+
+.worms-aim output {
+  margin-left: 3px;
+  font-weight: 700;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.worms-aim input {
+  width: 100%;
+  min-width: 0;
+  min-height: 32px;
+  accent-color: #21646c;
+}
+
+.worms-shot-actions button[aria-pressed='true'] {
+  background: #d1e9e9;
+  border-color: #21646c;
+  box-shadow: inset 0 0 0 1px #21646c;
+}
+
+.worms-stage .worms-shot-actions .worms-fire {
+  background: #21646c;
+  color: white;
+  border-color: #21646c;
+}
+
+.worms-stage .worms-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  background: #fff;
+}
+
+.worms-stage .worms-actions button {
+  min-height: 40px;
+  padding: 8px 12px;
+  font-size: 12px;
+  background: #e4eeee;
+  color: #244853;
+  border-color: #b0cbd0;
+}
+
+.worms-stage .worms-actions .game-motion-choice {
+  margin: 0 0 0 auto;
+  min-height: 40px;
+  font-size: 12px;
+}
+
+@media (max-width: 1000px), (max-height: 650px) {
+  .game-stage.worms-stage {
+    display: block;
+  }
+
+  .worms-stage .worms-hud {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 12px 0;
+  }
+
+  .worms-stage .worms-hud > .game-feedback,
+  .worms-stage .worms-hud > span {
+    grid-column: 1 / -1;
+  }
+
+  .worms-hud .game-feedback {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .worms-stage .game-scene:has(.game-overlay) canvas {
+    display: none;
+  }
+
+  .worms-stage .game-scene:has(.game-overlay) {
+    height: auto;
+  }
+
+  .worms-aim {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .worms-shot-actions > span {
+    flex-basis: 100%;
+  }
+
+  .worms-shot-actions .worms-fire,
+  .worms-shot-actions > button:last-child {
+    flex: 1 1 40%;
+  }
+
+  .worms-stage .worms-actions .game-motion-choice {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+}
