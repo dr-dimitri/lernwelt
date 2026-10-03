@@ -111,6 +111,12 @@ Die vier `sample.*.v1`-Aufgaben stammen aus eigenen Lernwelt-Beispielen (Stand 2
 
 `src/games/engine.ts` enthält die unabhängig von React und Canvas prüfbaren Regeln, Kollisionen und Rundenenden. `draw.ts` zeichnet eigene Formen; `GameStage` verbindet die Regeln mit einem begrenzten Animationszeitschritt, Eingaben, Pause bei Fokusverlust und einmaliger Ergebnismeldung. Eine bezahlte unterbrochene Runde startet mit neuem lokalen Spielzustand, ohne erneuten Eintritt. Kein Checkpoint-Speichern mitten im Spiel. `ArcadePanel` behandelt Lade- und Buchungsfehler, behält eine unklare Start-ID für Wiederholungen und bietet das erneute Speichern eines Ergebnisses an. Die Hauptnavigation mountet Lernkonto bzw. Spielhalle beim Wechsel neu und lädt damit das aktuelle gemeinsame Guthaben.
 
+### Worms (Schema 18)
+
+`worms.ts` ergänzt ein getrenntes, deterministisch prüfbares Modell für das rundenbasierte Inselduell. Zwei Würmer je Team, begrenzte Bewegung, ballistische Geschosse, Geländekrater, Energie und Computerzüge sind unabhängig von React und Canvas. `worms-draw.ts` zeichnet eigene lokale Formen. `WormsStage` verbindet Modell, fokussierte Eingaben, Bildschirmsteuerung, Pause, reduzierte Effekte und einmaligen Abschluss; `GameStage` wählt den passenden Spieltyp. Die bisherigen Engines und Spielregeln bleiben getrennt.
+
+Migration 018 erweitert ausschließlich die erlaubten Spiel-IDs von `game_sessions` um `worms`. Alle bisherigen Spalten, Zeilen und Zeitstempel werden innerhalb der vorhandenen Migrationstransaktion kopiert; der Index für genau eine offene Runde wird wiederhergestellt. Rust erweitert die Spiel-Allowlist und verwendet weiterhin dieselben begrenzten Start-/Ende-Commands, Idempotenzschlüssel und Guthabenregeln. Es gibt keine neue IPC-Funktion oder Berechtigung und keine gespeicherten Wurmpositionen. Migration von Schema 17, vollständige Datenbewahrung, erneutes Öffnen, bezahlte Alt-Runden, Rollback nach Tabellentausch und ungültige Eingaben werden geprüft. [Spielregeln und Grenzen](worms.md).
+
 
 ## Punkte nach Schwierigkeit (Schema 5)
 

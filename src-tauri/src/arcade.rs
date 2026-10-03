@@ -2,7 +2,7 @@ use crate::{database, learning};
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::Serialize;
 
-const GAMES: [&str; 5] = ["blocks", "runner", "maze", "space", "chickens"];
+const GAMES: [&str; 6] = ["blocks", "runner", "maze", "space", "chickens", "worms"];
 const ENTRY_COST: i64 = 10;
 
 #[derive(Debug, Serialize)]

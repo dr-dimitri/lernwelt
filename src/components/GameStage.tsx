@@ -9,16 +9,32 @@ import {
   pointAt,
   stepGame,
   type Action,
+  type ClassicGameId,
 } from '../games/engine';
 import { drawGame } from '../games/draw';
 import { prepareCanvas } from '../games/canvas';
 import { gameProgress } from '../games/progress';
+import WormsStage from './WormsStage';
 
 export default function GameStage({
   gameId,
   onFinish,
 }: {
   gameId: GameId;
+  onFinish: (score: number) => void;
+}) {
+  return gameId === 'worms' ? (
+    <WormsStage onFinish={onFinish} />
+  ) : (
+    <ClassicGameStage gameId={gameId} onFinish={onFinish} />
+  );
+}
+
+function ClassicGameStage({
+  gameId,
+  onFinish,
+}: {
+  gameId: ClassicGameId;
   onFinish: (score: number) => void;
 }) {
   const [game] = useState(() => createGame(gameId));

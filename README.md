@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.5.2 ergänzt die Tastaturhilfe der Weltraumreise um beide Hände, Grundstellung und Haltungshinweise. [Alle Änderungen und Installationshinweise](docs/releases/0.5.2.md).
+Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.6.0 ergänzt Worms als eigenes Inselduell in der Spielhalle und zeigt die Tastaturhilfe im üblichen Laptopfenster gemeinsam mit der Schreibaufgabe. [Alle Änderungen und Installationshinweise](docs/releases/0.6.0.md).
 
 ## Mitarbeit
 
@@ -115,12 +115,13 @@ Jede der 3.699 Fachaufgaben bietet den bisherigen Tipp und über **Nächster Tip
 
 ## Spielhalle
 
-Verdiente Lernpunkte lassen sich für vier eigene Offline-Spiele einlösen. Eine Runde kostet **10 Lernpunkte**, unabhängig vom Lern-Schwierigkeitsgrad:
+Verdiente Lernpunkte lassen sich für fünf eigene Offline-Spiele einlösen. Eine Runde kostet **10 Lernpunkte**, unabhängig vom Lern-Schwierigkeitsgrad:
 
 - **Klötzchen-Kosmos:** fallende Formen drehen und vollständige Reihen bilden (bis zu vier Minuten).
 - **Sternenlabyrinth:** ein buntes Abenteuer in der Ich-Perspektive mit zufälligem Labyrinth, fünf Sternen, Blasenwerfer und Ausgangsportal (bis zu vier Minuten).
 - **Sternenwache:** sechs Wellen frecher Weltraumroboter mit Lichtblitzen abwehren.
 - **Hühner-Rummel:** fliegende Hühner mit Konfetti erwischen (90 Sekunden).
+- **Worms:** zwei eigene Würmer gegen ein Computerteam. Bewege deinen Wurm, wähle Richtung, Winkel und Stärke, dann schieße. Treffer verändern Energie und Gelände. Die Teams wechseln sich ab; die Runde endet nach spätestens 24 Zügen. [Regeln, Steuerung und Grenzen](docs/worms.md).
 
 Eine bereits bezahlte Wolkenflitzer-Runde bleibt kostenlos spielbar, neue Runden nutzen das Sternenlabyrinth mit eigenen Bestwerten. Seine Karte zeigt den Weg zum nächsten Stern und danach zum Portal. Die Welten sind zusammenhängend; jeder Neustart erzeugt eine neue Welt. Die verlängerten Zeitlimits ändern nichts daran, dass eine Runde durch Zielerreichung oder verlorene Herzen früher enden kann.
 
