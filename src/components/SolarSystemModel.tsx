@@ -294,8 +294,8 @@ export default function SolarSystemModel({
           <input
             id={`${id}-year`}
             type="range"
-            min="10"
-            max="60"
+            min="5"
+            max="15"
             step="1"
             value={earthYearSeconds}
             aria-label="Sekunden pro Erdenjahr"
@@ -305,8 +305,8 @@ export default function SolarSystemModel({
             }
           />
           <span className="solar-speed-scale" aria-hidden="true">
-            <span>Schnell · 10 Sekunden</span>
-            <span>Langsam · 60 Sekunden</span>
+            <span>Schnell · 5 Sekunden</span>
+            <span>Langsam · 15 Sekunden</span>
           </span>
         </label>
         <p>

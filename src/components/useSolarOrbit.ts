@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export default function useSolarOrbit() {
   const [running, setRunning] = useState(false);
-  const [earthYearSeconds, setEarthYearSeconds] = useState(10);
+  const [earthYearSeconds, setEarthYearSeconds] = useState(5);
   const [earthYears, setEarthYears] = useState(0);
 
   useEffect(() => {

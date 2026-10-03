@@ -109,16 +109,16 @@ it('bietet alle Planeten als native Tasten und entdeckt sie mit Enter oder Leert
   }
 });
 
-it('startet mit ruhenden Planeten und bietet 10 bis 60 Sekunden pro Erdenjahr', () => {
+it('startet mit ruhenden Planeten und bietet 5 bis 15 Sekunden pro Erdenjahr', () => {
   const clock = animationClock();
   render(<DiscoverModel />);
   const speed = screen.getByRole('slider', { name: 'Sekunden pro Erdenjahr' });
   expect(speed).toHaveAttribute('type', 'range');
-  expect(speed).toHaveAttribute('min', '10');
-  expect(speed).toHaveAttribute('max', '60');
+  expect(speed).toHaveAttribute('min', '5');
+  expect(speed).toHaveAttribute('max', '15');
   expect(speed).toHaveAttribute('step', '1');
-  expect(speed).toHaveValue('10');
-  expect(speed).toHaveAttribute('aria-valuetext', '10 Sekunden pro Erdenjahr');
+  expect(speed).toHaveValue('5');
+  expect(speed).toHaveAttribute('aria-valuetext', '5 Sekunden pro Erdenjahr');
   expect(
     screen.getByRole('button', { name: 'Umlauf starten' }),
   ).toHaveAttribute('aria-pressed', 'false');
@@ -129,13 +129,13 @@ it('startet mit ruhenden Planeten und bietet 10 bis 60 Sekunden pro Erdenjahr', 
   for (const [index, planet] of planets.entries()) {
     expectSameCenter(planetCenter(picture, planet.id), initial[index]);
   }
-  fireEvent.change(speed, { target: { value: '31' } });
-  expect(speed).toHaveValue('31');
-  expect(speed).toHaveAttribute('aria-valuetext', '31 Sekunden pro Erdenjahr');
-  expect(screen.getByText('Ein Erdenjahr: 31 Sekunden')).toBeVisible();
+  fireEvent.change(speed, { target: { value: '11' } });
+  expect(speed).toHaveValue('11');
+  expect(speed).toHaveAttribute('aria-valuetext', '11 Sekunden pro Erdenjahr');
+  expect(screen.getByText('Ein Erdenjahr: 11 Sekunden')).toBeVisible();
 });
 
-it.each([10, 60])(
+it.each([5, 15])(
   'führt die Erde in genau %i aktiven Sekunden einmal um die Sonne',
   (seconds) => {
     const clock = animationClock();
@@ -170,7 +170,7 @@ it('hält den Umlauf an, setzt ihn fort und wechselt die Geschwindigkeit ohne Po
   const picture = screen.getByRole('img');
   const initial = planetCenter(picture, 'earth');
   fireEvent.click(screen.getByRole('button', { name: 'Umlauf starten' }));
-  clock.advance(2500);
+  clock.advance(1250);
   const quarter = planetCenter(picture, 'earth');
   expect(quarter).not.toEqual(initial);
   fireEvent.click(screen.getByRole('button', { name: 'Umlauf anhalten' }));
@@ -179,16 +179,16 @@ it('hält den Umlauf an, setzt ihn fort und wechselt die Geschwindigkeit ohne Po
   expectSameCenter(planetCenter(picture, 'earth'), quarter);
   fireEvent.click(screen.getByRole('button', { name: 'Umlauf starten' }));
   expectSameCenter(planetCenter(picture, 'earth'), quarter);
-  clock.advance(2500);
+  clock.advance(1250);
   const half = planetCenter(picture, 'earth');
   expect(half).not.toEqual(quarter);
   fireEvent.change(
     screen.getByRole('slider', { name: 'Sekunden pro Erdenjahr' }),
-    { target: { value: '60' } },
+    { target: { value: '15' } },
   );
   expectSameCenter(planetCenter(picture, 'earth'), half);
   expect(clock.pending()).toBe(1);
-  clock.advance(30_000);
+  clock.advance(7500);
   expectSameCenter(planetCenter(picture, 'earth'), initial);
   fireEvent.change(screen.getByRole('slider', { name: 'Blick drehen' }), {
     target: { value: '90' },
@@ -211,7 +211,7 @@ it('zählt unsichtbare Zeit nicht mit und beendet die Animation beim Entfernen d
   const picture = screen.getByRole('img');
   const initial = planetCenter(picture, 'earth');
   fireEvent.click(screen.getByRole('button', { name: 'Umlauf starten' }));
-  clock.advance(2500);
+  clock.advance(1250);
   const quarter = planetCenter(picture, 'earth');
   clock.visibility(true);
   expect(clock.pending()).toBe(0);
@@ -220,7 +220,7 @@ it('zählt unsichtbare Zeit nicht mit und beendet die Animation beim Entfernen d
   clock.visibility(false);
   expect(clock.pending()).toBe(1);
   expectSameCenter(planetCenter(picture, 'earth'), quarter);
-  clock.advance(7500);
+  clock.advance(3750);
   expectSameCenter(planetCenter(picture, 'earth'), initial);
   view.unmount();
   expect(clock.pending()).toBe(0);
