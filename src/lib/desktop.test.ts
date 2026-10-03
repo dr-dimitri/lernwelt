@@ -10,6 +10,19 @@ beforeEach(() => {
 });
 
 describe('Desktop-Schnittstelle', () => {
+  it('übermittelt beim Tastschreiben nur Aufgabe, Text und Request-ID', async () => {
+    await desktop.getTypingState();
+    expect(invoke).toHaveBeenCalledWith('get_typing_state', undefined);
+    const input = {
+      requestId: 'typing-1',
+      taskId: 'typing.home.koenner.1.v1',
+      answer: 'fj jf',
+    };
+    await desktop.submitTyping(input);
+    expect(invoke).toHaveBeenCalledWith('submit_typing', { input });
+    vi.mocked(isTauri).mockReturnValue(false);
+    await expect(desktop.submitTyping(input)).rejects.toThrow('Desktop-App');
+  });
   it('täuscht in der Browser-Vorschau keine Speicherung vor', async () => {
     vi.mocked(isTauri).mockReturnValue(false);
     await expect(

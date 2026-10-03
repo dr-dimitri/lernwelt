@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
 import { desktop } from './lib/desktop';
 import type { LearnerProfile } from './domain/learner';
+import type { TypingState } from './domain/typing';
 vi.mock('./components/GamePreview', () => ({ default: () => null }));
 
 import { vocabularyInitial } from './test/vocabulary-fixture';
@@ -27,6 +28,7 @@ vi.mock('./lib/desktop', () => ({
     getArcadeState: vi.fn(),
     getVocabularyState: vi.fn(),
     getMultiplicationState: vi.fn(),
+    getTypingState: vi.fn(),
     getMissionState: vi.fn(),
     startMission: vi.fn(),
     actMission: vi.fn(),
@@ -263,6 +265,50 @@ it('öffnet den separaten Vokabeltrainer und lädt beim Rückweg die gemeinsame 
     await screen.findByRole('button', { name: /Streber/ }),
   ).toHaveAttribute('aria-pressed', 'true');
   expect(desktop.getLearningState).toHaveBeenCalledTimes(2);
+});
+
+it('öffnet Tastschreiben aus dem kompakten Menü und lädt nach der Rückkehr den gespeicherten Stand neu', async () => {
+  const user = userEvent.setup();
+  const typing: TypingState = {
+    profileReady: true,
+    difficulty: 'koenner',
+    wallet: initial.wallet,
+    stations: [
+      {
+        id: 'typing.fj.v1',
+        title: 'F und J finden',
+        description: 'Fühle die kleinen Striche auf F und J.',
+        newKeys: ['F', 'J', 'Leertaste'],
+        tip: 'Deine Zeigefinger starten hier.',
+        tasks: [1, 2, 3].map((number) => ({
+          id: `typing.fj.koenner.${number}.v1`,
+          difficulty: 'koenner',
+          text: 'fj jf',
+          solved: false,
+        })),
+      },
+    ],
+  };
+  vi.mocked(desktop.getTypingState).mockResolvedValue(typing);
+  render(<App />);
+  await user.click(screen.getByRole('button', { name: 'Menü öffnen' }));
+  await user.click(screen.getByRole('button', { name: 'Tastschreiben' }));
+  expect(await screen.findByLabelText('Deine Zeile')).toBeVisible();
+  expect(
+    screen.getByRole('heading', { name: 'Tastschreiben', level: 1 }),
+  ).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Tastschreiben' })).toHaveAttribute(
+    'aria-current',
+    'page',
+  );
+  expect(screen.getByRole('button', { name: 'Menü öffnen' })).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
+  await user.click(screen.getByRole('button', { name: 'Meine Fächer' }));
+  await user.click(screen.getByRole('button', { name: 'Tastschreiben' }));
+  await screen.findByLabelText('Deine Zeile');
+  expect(desktop.getTypingState).toHaveBeenCalledTimes(2);
 });
 
 it('öffnet den Einmaleins-Trainer neben dem Vokabeltrainer und lädt danach das Guthaben neu', async () => {

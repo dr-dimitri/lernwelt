@@ -19,6 +19,8 @@ fn main() {
             "get_mission_state",
             "start_mission",
             "act_mission",
+            "get_typing_state",
+            "submit_typing",
         ]),
     ))
     .expect("Tauri build configuration failed");

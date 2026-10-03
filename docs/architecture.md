@@ -1,5 +1,13 @@
 # Architektur
 
+## Tastengarten (Schema 17)
+
+Der eigene Bereich `typing` verwendet `TypingPanel` und die typisierte Grenze in `desktop.ts`. Das Rust-Modul `typing.rs` lädt das offline gebündelte Paket `typing-v1.json`: zwölf Stationen mit jeweils drei Aufgaben pro Stufe. Inhalte und stabile IDs werden unabhängig von den Nutzerdaten validiert. Der begrenzte Command `get_typing_state` liefert Stationen, gespeicherte Erstlösungen, die vorhandene globale Stufe und das gemeinsame Punktekonto.
+
+`submit_typing` nimmt Request-ID, Aufgaben-ID und den geschriebenen Text entgegen. Rust vergleicht den vollständigen Text einschließlich Groß-/Kleinschreibung und Leerzeichen. Eine erstmals richtige Zeile vergibt 1/2/3 Punkte über das bestehende `point_entries`-Journal. Antwortbeleg, Fortschritt und Gutschrift erfolgen in einer Immediate-Transaktion. Identische Requests sind idempotent, eine ID mit geänderter Payload wird abgewiesen. Es gibt kein vom Frontend übergebenes Richtig-Flag und keine gespeicherten laufenden Tastenanschläge oder Geschwindigkeitsmessungen.
+
+Migration 017 ergänzt eigene `typing_progress`- und `typing_submissions`-Tabellen, ohne bestehende Fach-, Profil- oder Punktezeilen zu verändern. Tests prüfen die Migration von Schema 16, erneutes Öffnen, Datenbewahrung, Rollback, Eingabevalidierung, erste Lösungen und Replays. Der Trainer nutzt die bestehende Stufenauswahl; Tastschreiben wird als Zusatzfertigkeit geführt und erhält keine neue Lehrplan-Fach-ID. Die UI zeichnet eigene Pflanzen und eine QWERTZ-Hilfe lokal. [Plan, Quellen und Grenzen](typing-garden.md).
+
 ## Sonnensystem-Lernwelt (Schema 16)
 
 Das Fach `geography` ergänzt die Fächerübersicht um eine eigene `SolarSystemWorld`. Acht NASA-Bilder, Steckbriefe und Bildnachweise liegen lokal in `public/images/solar-system/` und `src/domain/solar-system.ts`. `solar-projection.ts` projiziert schematische Planetenpositionen aus einer räumlichen Ebene mit Perspektive auf ein SVG. `SolarSystemModel` verbindet die Projektion mit Ziehen, zwei nativen Tastaturreglern und einer Planetenwahl. Es gibt keine neue Abhängigkeit und keine externen Bildaufrufe.

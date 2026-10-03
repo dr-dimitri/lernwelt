@@ -77,6 +77,18 @@ pub(super) fn stored_rows(connection: &Connection) -> BTreeMap<String, Vec<Vec<V
         .collect()
 }
 
+// New migrations may add tables. Every table and complete row that existed before
+// upgrading must still be present and unchanged.
+pub(super) fn assert_preserved_rows(
+    connection: &Connection,
+    before: &BTreeMap<String, Vec<Vec<Value>>>,
+) {
+    let after = stored_rows(connection);
+    for (table, rows) in before {
+        assert_eq!(after.get(table), Some(rows), "existing table {table}");
+    }
+}
+
 #[test]
 fn nature_migration_preserves_all_existing_rows_and_survives_reopening() {
     let directory = tempfile::tempdir().unwrap();
@@ -86,7 +98,7 @@ fn nature_migration_preserves_all_existing_rows_and_survives_reopening() {
     drop(old);
 
     let mut upgraded = open(&path).unwrap();
-    assert_eq!(stored_rows(&upgraded), before);
+    assert_preserved_rows(&upgraded, &before);
     assert_eq!(
         upgraded
             .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
@@ -110,7 +122,7 @@ fn nature_migration_preserves_all_existing_rows_and_survives_reopening() {
             .points_awarded,
         10
     );
-    assert_eq!(stored_rows(&upgraded), before);
+    assert_preserved_rows(&upgraded, &before);
     record_attempt(&upgraded, Subject::Nature, "by.nature.5.research", false).unwrap();
     record_attempt(&upgraded, Subject::Nature, "by.nature.5.research", true).unwrap();
     let expected = stored_rows(&upgraded);

@@ -8,7 +8,7 @@ mod nature_tests;
 #[cfg(test)]
 mod geography_tests;
 
-const SCHEMA_VERSION: i64 = 16;
+const SCHEMA_VERSION: i64 = 17;
 const DATABASE_ERROR: &str = "Die lokalen Lerndaten konnten nicht verarbeitet werden.";
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -153,6 +153,11 @@ fn migrate(connection: &mut Connection) -> Result<(), String> {
     if version < 16 {
         transaction
             .execute_batch(include_str!("../migrations/016_geography.sql"))
+            .map_err(database_error)?;
+    }
+    if version < 17 {
+        transaction
+            .execute_batch(include_str!("../migrations/017_typing.sql"))
             .map_err(database_error)?;
     }
     transaction

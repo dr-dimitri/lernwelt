@@ -11,15 +11,23 @@ import MissionPanel from './components/MissionPanel';
 import AppUpdates from './components/AppUpdates';
 import DiscoveryArt from './components/DiscoveryArt';
 import SolarSystemWorld from './components/SolarSystemWorld';
+import TypingPanel from './components/TypingPanel';
 import { subjects, type SubjectId } from './domain/subjects';
 
 type View =
-  'subjects' | 'learn' | 'mission' | 'arcade' | 'vocabulary' | 'multiplication';
+  | 'subjects'
+  | 'learn'
+  | 'mission'
+  | 'arcade'
+  | 'vocabulary'
+  | 'multiplication'
+  | 'typing';
 
 const destinations = [
   { id: 'subjects', label: 'Meine Fächer', icon: 'subjects' },
   { id: 'vocabulary', label: 'Vokabeltrainer', icon: 'words' },
   { id: 'multiplication', label: 'Einmaleins-Trainer', icon: 'numbers' },
+  { id: 'typing', label: 'Tastschreiben', icon: 'keyboard' },
   { id: 'arcade', label: 'Spielhalle', icon: 'game' },
 ] as const;
 
@@ -50,6 +58,11 @@ function NavIcon({ name }: { name: string }) {
         <>
           <rect x="4" y="2" width="16" height="20" rx="3" />
           <path d="M8 6h8M8 11h1m6 0h1m-8 4h1m6 0h1m-8 4h1m6 0h1" />
+        </>
+      ) : name === 'keyboard' ? (
+        <>
+          <rect x="2" y="5" width="20" height="14" rx="3" />
+          <path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M7 16h10" />
         </>
       ) : (
         <>
@@ -195,7 +208,7 @@ export default function App() {
         </header>
         <main id="main" tabIndex={-1}>
           <div
-            className={`page-heading ${view === 'subjects' ? 'discovery-heading' : ''}`}
+            className={`page-heading ${view === 'subjects' ? 'discovery-heading' : view === 'typing' ? 'typing-page-heading' : ''}`}
           >
             <div>
               {(view === 'learn' || view === 'mission') && (
@@ -280,6 +293,8 @@ export default function App() {
               profileVersion={profileVersion}
               initialMode={multiplicationMode}
             />
+          ) : view === 'typing' ? (
+            <TypingPanel profileVersion={profileVersion} />
           ) : view === 'vocabulary' ? (
             <VocabularyPanel
               key={vocabularyDeck}

@@ -1,4 +1,4 @@
-use super::nature_tests::{schema_14, stored_rows};
+use super::nature_tests::{assert_preserved_rows, schema_14, stored_rows};
 use super::*;
 
 fn schema_15(path: &Path) -> Connection {
@@ -18,12 +18,12 @@ fn geography_migration_preserves_every_existing_row_and_historical_retry() {
     let before = stored_rows(&old);
     drop(old);
     let mut upgraded = open(&path).unwrap();
-    assert_eq!(stored_rows(&upgraded), before);
+    assert_preserved_rows(&upgraded, &before);
     assert_eq!(
         upgraded
             .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
             .unwrap(),
-        16
+        17
     );
     assert_eq!(get_profile(&upgraded).unwrap().unwrap().grade, 7);
     assert_eq!(
@@ -36,7 +36,7 @@ fn geography_migration_preserves_every_existing_row_and_historical_retry() {
             .points_awarded,
         10
     );
-    assert_eq!(stored_rows(&upgraded), before);
+    assert_preserved_rows(&upgraded, &before);
     record_attempt(
         &upgraded,
         Subject::Geography,
