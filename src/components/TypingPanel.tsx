@@ -32,24 +32,17 @@ const missionStages = [
 function MissionOrbit({
   completed,
   index,
-  compact = false,
 }: {
   completed: number;
   index: number;
-  compact?: boolean;
 }) {
   const colors = ['#8bb9ca', '#aaa8d6', '#8fbdb6', '#c7af95'];
   return (
     <svg
       viewBox="0 0 88 88"
-      className={`typing-orbit${compact ? ' compact' : ''}`}
-      aria-hidden={compact || undefined}
-      role={compact ? undefined : 'img'}
-      aria-label={
-        compact
-          ? undefined
-          : `${missionStages[completed]} · ${completed} von 3 Zeilen bestätigt`
-      }
+      className="typing-orbit"
+      role="img"
+      aria-label={`${missionStages[completed]} · ${completed} von 3 Zeilen bestätigt`}
     >
       <circle cx="44" cy="44" r="34" className="typing-orbit-track" />
       {[0, 120, 240].map((angle, segment) => (
@@ -75,21 +68,11 @@ function MissionOrbit({
         transform={`rotate(${index % 2 ? -28 : 28} 44 44)`}
         className="typing-orbit-ring"
       />
-      {compact ? (
-        <>
-          <circle cx="44" cy="44" r="11" fill={colors[index % colors.length]} />
-          <path
-            d="M37 42q7-5 15 0m-12 7q5-3 10-1"
-            className="typing-planet-lines"
-          />
-        </>
-      ) : (
-        <g className="typing-ship">
-          <path d="m44 24 8 18 13 16-15-4-6 8-6-8-15 4 13-16Z" />
-          <path d="M44 31v22m-7-8 7 4 7-4m-13 9 2-13m10 13-2-13" />
-          <path d="M41 66v6m6-6v6" className="typing-ship-engine" />
-        </g>
-      )}
+      <g className="typing-ship">
+        <path d="m44 24 8 18 13 16-15-4-6 8-6-8-15 4 13-16Z" />
+        <path d="M44 31v22m-7-8 7 4 7-4m-13 9 2-13m10 13-2-13" />
+        <path d="M41 66v6m6-6v6" className="typing-ship-engine" />
+      </g>
     </svg>
   );
 }
@@ -98,13 +81,6 @@ function solvedLines(station: TypingStation, difficulty: Difficulty) {
   return station.tasks.filter(
     (task) => task.difficulty === difficulty && task.solved,
   ).length;
-}
-
-function stationKeys(station: TypingStation) {
-  const letters = station.newKeys.filter((key) => key.length === 1);
-  return letters.length > 3
-    ? `${letters[0]} … ${letters[letters.length - 1]}`
-    : letters.join(' · ');
 }
 
 export default function TypingPanel({
@@ -331,57 +307,68 @@ export default function TypingPanel({
       aria-labelledby="typing-title"
       aria-busy={busy}
     >
-      <div className="section-heading typing-topbar">
-        <div>
-          <p className="eyebrow">MISSIONSKONSOLE · TASTSCHREIBEN</p>
-          <h2 id="typing-title" ref={heading} tabIndex={-1}>
-            Weltraumreise
-          </h2>
-        </div>
-        {state && (
-          <div className="points-balance" aria-label="Verfügbare Lernpunkte">
-            {state.wallet.balance}{' '}
-            {state.wallet.balance === 1 ? 'Punkt' : 'Punkte'}
+      <div className="typing-header">
+        <div className="section-heading typing-topbar">
+          <div>
+            <p className="eyebrow">MISSIONSKONSOLE · TASTSCHREIBEN</p>
+            <h2 id="typing-title" ref={heading} tabIndex={-1}>
+              Weltraumreise
+            </h2>
           </div>
-        )}
-      </div>
-      <div className="typing-intro">
-        <p>Präzision vor Tempo. Erkunde zwölf Sektoren mit deiner Tastatur.</p>
-        <InfoPanel>
-          <summary>So fängst du an</summary>
-          <ol>
-            <li>Setz dich bequem hin. Lass Schultern und Hände locker.</li>
-            <li>
-              Fühle die kleinen Erhebungen auf F und J. Dort liegen deine
-              Zeigefinger. Die anderen Finger ruhen auf A S D und K L Ö.
-            </li>
-            <li>
-              Tippe mit dem passenden Finger. Komm danach wieder zu deiner
-              Starttaste zurück. Ein Daumen drückt die Leertaste.
-            </li>
-            <li>
-              Schau öfter auf die Zeile am Bildschirm. Du darfst jederzeit auf
-              die Tastatur schauen und die Tastaturhilfe einschalten.
-            </li>
-          </ol>
+          {state && (
+            <div className="points-balance" aria-label="Verfügbare Lernpunkte">
+              {state.wallet.balance}{' '}
+              {state.wallet.balance === 1 ? 'Punkt' : 'Punkte'}
+            </div>
+          )}
+        </div>
+        <div className="typing-intro">
           <p>
-            Für einen großen Buchstaben hältst du die Umschalttaste (Shift) mit
-            der anderen Hand. Tippe den Buchstaben, dann lass Shift wieder los.
+            Präzision vor Tempo. Erkunde zwölf Sektoren mit deiner Tastatur.
           </p>
-          <p>
-            Die Hilfe zeigt eine deutsche QWERTZ-Tastatur. Auf manchen Geräten
-            sind die Tasten etwas anders geformt.
-          </p>
-          <p>
-            Mach nach ein paar Zeilen eine Pause: Hände ausschütteln, strecken,
-            aus dem Fenster schauen.
-          </p>
-          <p>
-            Wähle jeden Sektor und jede Stufe frei. Eine neue richtige Zeile
-            bringt 1 Punkt in Vorschule, 2 in Könner oder 3 in Streber.
-            Wiederholen gibt keine neuen Punkte. Fehler kosten nichts.
-          </p>
-        </InfoPanel>
+          <InfoPanel>
+            <summary>So fängst du an</summary>
+            {station && (
+              <p>
+                <strong>{station.title}:</strong> {station.description}{' '}
+                {station.tip}
+              </p>
+            )}
+            <ol>
+              <li>Setz dich bequem hin. Lass Schultern und Hände locker.</li>
+              <li>
+                Fühle die kleinen Erhebungen auf F und J. Dort liegen deine
+                Zeigefinger. Die anderen Finger ruhen auf A S D und K L Ö.
+              </li>
+              <li>
+                Tippe mit dem passenden Finger. Komm danach wieder zu deiner
+                Starttaste zurück. Ein Daumen drückt die Leertaste.
+              </li>
+              <li>
+                Schau öfter auf die Zeile am Bildschirm. Du darfst jederzeit auf
+                die Tastatur schauen und die Tastaturhilfe einschalten.
+              </li>
+            </ol>
+            <p>
+              Für einen großen Buchstaben hältst du die Umschalttaste (Shift)
+              mit der anderen Hand. Tippe den Buchstaben, dann lass Shift wieder
+              los.
+            </p>
+            <p>
+              Die Hilfe zeigt eine deutsche QWERTZ-Tastatur. Auf manchen Geräten
+              sind die Tasten etwas anders geformt.
+            </p>
+            <p>
+              Mach nach ein paar Zeilen eine Pause: Hände ausschütteln,
+              strecken, aus dem Fenster schauen.
+            </p>
+            <p>
+              Wähle jeden Sektor und jede Stufe frei. Eine neue richtige Zeile
+              bringt 1 Punkt in Vorschule, 2 in Könner oder 3 in Streber.
+              Wiederholen gibt keine neuen Punkte. Fehler kosten nichts.
+            </p>
+          </InfoPanel>
+        </div>
       </div>
       {busy && (
         <p role="status">Deine Weltraumreise wird geladen oder gespeichert …</p>
@@ -422,201 +409,169 @@ export default function TypingPanel({
       )}
       {state?.profileReady && (
         <>
-          <div
-            className="typing-levels"
-            role="group"
-            aria-label="Schwierigkeitsgrad für alle Fächer"
-          >
-            {difficulties.map((level) => (
-              <button
-                key={level.id}
-                className="secondary-button"
-                aria-pressed={state.difficulty === level.id}
+          <div className="typing-levels">
+            <div
+              className="typing-difficulty-options"
+              role="group"
+              aria-label="Schwierigkeitsgrad für alle Fächer"
+            >
+              {difficulties.map((level) => (
+                <button
+                  key={level.id}
+                  className="secondary-button"
+                  aria-pressed={state.difficulty === level.id}
+                  disabled={disabled}
+                  onClick={() => {
+                    if (level.id !== state.difficulty)
+                      void perform({
+                        kind: 'difficulty',
+                        difficulty: level.id,
+                      });
+                  }}
+                >
+                  {level.name}
+                </button>
+              ))}
+            </div>
+            <div className="typing-course-picker">
+              <label htmlFor="typing-course">Kurs wählen</label>
+              <select
+                id="typing-course"
+                value={station?.id ?? ''}
                 disabled={disabled}
-                onClick={() => {
-                  if (level.id !== state.difficulty)
-                    void perform({ kind: 'difficulty', difficulty: level.id });
-                }}
+                onChange={(event) => selectLine(event.target.value)}
               >
-                {level.name}
-              </button>
-            ))}
+                {state.stations.map((item, index) => (
+                  <option key={item.id} value={item.id}>
+                    S{String(index + 1).padStart(2, '0')}: {item.title} ·{' '}
+                    {solvedLines(item, state.difficulty)} / 3
+                  </option>
+                ))}
+              </select>
+            </div>
             <span>
               Neue Zeile: +{points} {points === 1 ? 'Punkt' : 'Punkte'}
             </span>
           </div>
           <div className="typing-workspace">
-            <nav
-              className="typing-star-map"
-              aria-label="Sternenkarte: zwölf frei wählbare Sektoren"
-            >
-              <div className="typing-map-heading">
-                <h3>Sternenkarte</h3>
-                <span aria-hidden="true">12 SEKT.</span>
-              </div>
-              <p>Drei Zeilen pro Sektor. Freie Kurswahl.</p>
-              <div className="typing-stations">
-                <svg
-                  className="typing-map-routes"
-                  viewBox="0 0 200 350"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <path d="M45 25H155L45 85H155L45 145H155L45 205H155L45 265H155L45 325H155" />
-                </svg>
-                {state.stations.map((item, index) => (
-                  <button
-                    key={item.id}
-                    className="typing-station"
-                    aria-pressed={item.id === station?.id}
-                    aria-label={`Sektor ${index + 1}: ${item.title} · ${solvedLines(item, state.difficulty)} von 3 Zeilen bestätigt`}
-                    title={item.title}
-                    disabled={disabled}
-                    onClick={() => selectLine(item.id)}
-                  >
-                    <MissionOrbit
-                      completed={solvedLines(item, state.difficulty)}
-                      index={index}
-                      compact
-                    />
-                    <span>
-                      <strong>S{String(index + 1).padStart(2, '0')}</strong>
-                      <small className="typing-station-keys">
-                        {stationKeys(item)}
-                      </small>
-                      <small>{solvedLines(item, state.difficulty)} / 3</small>
-                    </span>
-                  </button>
-                ))}
-              </div>
-              <p className="typing-map-legend">
-                Ein heller Orbitabschnitt = eine bestätigte Zeile.
-              </p>
-            </nav>
             {station && task ? (
               <div className="typing-exercise">
-                <div className="typing-station-heading">
-                  <div>
-                    <p className="eyebrow">
-                      SEKTOR{' '}
-                      {String(state.stations.indexOf(station) + 1).padStart(
-                        2,
-                        '0',
-                      )}{' '}
-                      · {completed} VON 3 ZEILEN BESTÄTIGT
-                    </p>
-                    <h3>{station.title}</h3>
-                    <p>{station.description}</p>
+                <div className="typing-course-bar">
+                  <div className="typing-station-heading">
+                    <div>
+                      <p className="typing-sr-only">
+                        SEKTOR{' '}
+                        {String(state.stations.indexOf(station) + 1).padStart(
+                          2,
+                          '0',
+                        )}{' '}
+                        · {completed} VON 3 ZEILEN BESTÄTIGT
+                      </p>
+                      <h3>{station.title}</h3>
+                      <div className="typing-keys-intro">
+                        <span>
+                          <strong>Diese Tasten:</strong>{' '}
+                          {station.newKeys.join(' · ')}
+                        </span>
+                      </div>
+                    </div>
+                    <MissionOrbit
+                      completed={completed}
+                      index={state.stations.indexOf(station)}
+                    />
                   </div>
-                  <MissionOrbit
-                    completed={completed}
-                    index={state.stations.indexOf(station)}
-                  />
-                </div>
-                <div className="typing-keys-intro">
-                  <span>
-                    <strong>Diese Tasten:</strong> {station.newKeys.join(' · ')}
-                  </span>
-                  <span className="typing-mission-status">
-                    <span>{missionStages[completed]}</span>
-                    <span className="typing-mission-meter" aria-hidden="true">
-                      {[0, 1, 2].map((segment) => (
-                        <span
-                          key={segment}
-                          className={segment < completed ? 'complete' : ''}
-                        />
-                      ))}
-                    </span>
-                  </span>
-                </div>
-                <div
-                  className="typing-lines"
-                  role="group"
-                  aria-label="Zeile wählen"
-                >
-                  {tasks.map((line, index) => (
-                    <button
-                      key={line.id}
-                      className="secondary-button"
-                      disabled={disabled}
-                      aria-pressed={line.id === task.id}
-                      aria-label={`Zeile ${index + 1}${line.solved ? ' · geschafft' : ''}`}
-                      onClick={() => selectLine(station.id, line.id)}
-                    >
-                      {line.solved && <span aria-hidden="true">✓ </span>}Zeile{' '}
-                      {index + 1}
-                    </button>
-                  ))}
+                  <div
+                    className="typing-lines"
+                    role="group"
+                    aria-label="Zeile wählen"
+                  >
+                    {tasks.map((line, index) => (
+                      <button
+                        key={line.id}
+                        className="secondary-button"
+                        disabled={disabled}
+                        aria-pressed={line.id === task.id}
+                        aria-label={`Zeile ${index + 1}${line.solved ? ' · geschafft' : ''}`}
+                        onClick={() => selectLine(station.id, line.id)}
+                      >
+                        {line.solved && <span aria-hidden="true">✓ </span>}Zeile{' '}
+                        {index + 1}
+                      </button>
+                    ))}
+                  </div>
                 </div>
                 <form
+                  className="typing-form"
                   onSubmit={(event) => {
                     event.preventDefault();
                     submit();
                   }}
                 >
-                  <p className="typing-question">Tippe diese Zeile genau ab:</p>
-                  <p className="typing-prompt" id="typing-target">
-                    <span className="typing-sr-only">{task.text}</span>
-                    <span aria-hidden="true">
-                      {Array.from(task.text).map((character, index) => (
-                        <span
-                          key={index}
-                          className={
-                            index < progress.prefix
-                              ? 'typed'
-                              : index === progress.prefix
-                                ? `next${progress.mistake ? ' mistake' : ''}`
-                                : ''
-                          }
-                        >
-                          {character === ' ' ? (
-                            <span className="typing-space">␣</span>
-                          ) : (
-                            character
-                          )}
-                        </span>
-                      ))}
-                    </span>
-                  </p>
-                  <label htmlFor="typing-answer">Deine Zeile</label>
-                  <input
-                    id="typing-answer"
-                    ref={field}
-                    value={answer}
-                    maxLength={120}
-                    autoComplete="off"
-                    autoCapitalize="off"
-                    autoCorrect="off"
-                    spellCheck={false}
-                    aria-describedby="typing-target typing-input-tip"
-                    disabled={disabled || !!feedback?.correct}
-                    onChange={(event) => {
-                      setAnswer(event.target.value);
-                      setFeedback(null);
-                      setNotice('');
-                    }}
-                    onCompositionStart={() => {
-                      composing.current = true;
-                    }}
-                    onCompositionEnd={() => {
-                      composing.current = false;
-                    }}
-                    onKeyDown={(event) => {
-                      if (
-                        event.key === 'Enter' &&
-                        (event.nativeEvent.isComposing ||
-                          composing.current ||
-                          event.nativeEvent.keyCode === 229)
-                      )
-                        event.preventDefault();
-                    }}
-                    onPaste={explainTyping}
-                    onDrop={explainTyping}
-                  />
-                  <p id="typing-input-tip" className="typing-input-tip">
-                    ␣ bedeutet ein Leerzeichen. Achte auf Groß und Klein.
-                    Verbessere mit der Rücktaste (⌫).
-                  </p>
+                  <div className="typing-target-field">
+                    <p className="typing-question">
+                      Tippe diese Zeile genau ab:
+                    </p>
+                    <p className="typing-prompt" id="typing-target">
+                      <span className="typing-sr-only">{task.text}</span>
+                      <span aria-hidden="true">
+                        {Array.from(task.text).map((character, index) => (
+                          <span
+                            key={index}
+                            className={
+                              index < progress.prefix
+                                ? 'typed'
+                                : index === progress.prefix
+                                  ? `next${progress.mistake ? ' mistake' : ''}`
+                                  : ''
+                            }
+                          >
+                            {character === ' ' ? (
+                              <span className="typing-space">␣</span>
+                            ) : (
+                              character
+                            )}
+                          </span>
+                        ))}
+                      </span>
+                    </p>
+                  </div>
+                  <div className="typing-answer-field">
+                    <label htmlFor="typing-answer">Deine Zeile</label>
+                    <input
+                      id="typing-answer"
+                      ref={field}
+                      value={answer}
+                      maxLength={120}
+                      autoComplete="off"
+                      autoCapitalize="off"
+                      autoCorrect="off"
+                      spellCheck={false}
+                      aria-describedby="typing-target typing-input-tip"
+                      disabled={disabled || !!feedback?.correct}
+                      onChange={(event) => {
+                        setAnswer(event.target.value);
+                        setFeedback(null);
+                        setNotice('');
+                      }}
+                      onCompositionStart={() => {
+                        composing.current = true;
+                      }}
+                      onCompositionEnd={() => {
+                        composing.current = false;
+                      }}
+                      onKeyDown={(event) => {
+                        if (
+                          event.key === 'Enter' &&
+                          (event.nativeEvent.isComposing ||
+                            composing.current ||
+                            event.nativeEvent.keyCode === 229)
+                        )
+                          event.preventDefault();
+                      }}
+                      onPaste={explainTyping}
+                      onDrop={explainTyping}
+                    />
+                  </div>
                   {progress.mistake && !feedback && (
                     <p className="typing-correction">
                       {progress.next === null
@@ -648,6 +603,9 @@ export default function TypingPanel({
                       Tastaturhilfe {showKeyboard ? 'ausblenden' : 'einblenden'}
                     </button>
                   </div>
+                  <p id="typing-input-tip" className="typing-input-tip">
+                    ␣ = Leerzeichen. Groß/Klein beachten. Mit ⌫ verbessern.
+                  </p>
                 </form>
                 {feedback && (
                   <div
@@ -695,11 +653,13 @@ export default function TypingPanel({
                         <>
                           {progress.mistake ? 'Zu verbessern' : 'Nächste Taste'}
                           : <strong>{hint.label}</strong> · {hint.finger}
+                          {hint.choiceFingerIds.length > 0 &&
+                            '. Wähle den linken oder rechten Daumen.'}
                           {hint.shift && (
                             <>
-                              . Halte dazu die{' '}
+                              {' · '}
                               {hint.shift === 'left' ? 'linke' : 'rechte'}{' '}
-                              Umschalttaste (Shift) mit dem kleinen Finger.
+                              Umschalttaste (Shift): kleiner Finger.
                             </>
                           )}
                         </>
@@ -707,40 +667,38 @@ export default function TypingPanel({
                         'Alle Zeichen sind da. Prüfe deine Zeile, wenn du bereit bist.'
                       )}
                     </p>
-                    <div
-                      className="typing-keyboard-scroll"
-                      role="region"
-                      aria-label="Deutsche QWERTZ-Tastatur als Hilfe"
-                      tabIndex={0}
-                    >
-                      <div className="typing-keyboard" aria-hidden="true">
-                        {typingKeyboardRows.map((row, index) => (
-                          <div className="typing-keyboard-row" key={index}>
-                            {row.map((key) => (
-                              <span
-                                key={key}
-                                className={`typing-key ${key === 'space' ? 'space' : key.startsWith('shift') ? 'shift' : key === 'backspace' ? 'backspace' : ''}${hint?.key === key || (hint?.shift && key === `shift-${hint.shift}`) || (!feedback?.correct && progress.mistake && !progress.next && key === 'backspace') ? ' highlighted' : ''}${key === 'f' || key === 'j' ? ' home' : ''}`}
-                              >
-                                {key === 'space'
-                                  ? 'Leertaste'
-                                  : key.startsWith('shift')
-                                    ? '⇧ Shift'
-                                    : key === 'backspace'
-                                      ? '⌫'
-                                      : key === 'ß'
-                                        ? 'ß'
-                                        : key.toLocaleUpperCase('de')}
-                              </span>
-                            ))}
-                          </div>
-                        ))}
+                    <div className="typing-keyboard-area">
+                      <div
+                        className="typing-keyboard-scroll"
+                        role="region"
+                        aria-label="Deutsche QWERTZ-Tastatur als Hilfe"
+                        tabIndex={0}
+                      >
+                        <div className="typing-keyboard" aria-hidden="true">
+                          {typingKeyboardRows.map((row, index) => (
+                            <div className="typing-keyboard-row" key={index}>
+                              {row.map((key) => (
+                                <span
+                                  key={key}
+                                  className={`typing-key ${key === 'space' ? 'space' : key.startsWith('shift') ? 'shift' : key === 'backspace' ? 'backspace' : ''}${hint?.key === key || (hint?.shift && key === `shift-${hint.shift}`) || (!feedback?.correct && progress.mistake && !progress.next && key === 'backspace') ? ' highlighted' : ''}${key === 'f' || key === 'j' ? ' home' : ''}`}
+                                >
+                                  {key === 'space'
+                                    ? 'Leertaste'
+                                    : key.startsWith('shift')
+                                      ? '⇧ Shift'
+                                      : key === 'backspace'
+                                        ? '⌫'
+                                        : key === 'ß'
+                                          ? 'ß'
+                                          : key.toLocaleUpperCase('de')}
+                                </span>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                     <TypingHands hint={hint} correcting={progress.mistake} />
-                    <p>
-                      {station.tip} Die Bildschirmtasten sind Hinweise. Tippe
-                      auf deiner echten Tastatur.
-                    </p>
                   </div>
                 )}
               </div>

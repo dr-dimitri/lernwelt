@@ -7,7 +7,7 @@ import {
 } from '../domain/typing';
 
 const handOutline =
-  'M72 228 67 185C50 173 34 149 33 132L23 93Q19 80 28 77Q39 72 44 85L58 119 50 55Q47 40 59 37Q71 34 76 49L93 116 88 32Q87 16 100 15Q113 14 116 29L123 111 127 48Q127 33 139 33Q152 33 153 47L155 133 185 104Q197 93 206 102Q215 112 205 125L179 155C171 175 164 185 155 188L153 228Z';
+  'M72 188 67 185C50 173 34 149 33 132L23 93Q19 80 28 77Q39 72 44 85L58 119 50 55Q47 40 59 37Q71 34 76 49L93 116 88 32Q87 16 100 15Q113 14 116 29L123 111 127 48Q127 33 139 33Q152 33 153 47L155 133 185 104Q197 93 206 102Q215 112 205 125L179 155C171 175 164 185 155 188L153 188Z';
 
 // Anatomical drawing coordinates; key and finger assignments come from the domain model.
 const fingerShapes: Record<
@@ -38,7 +38,7 @@ function Hand({
       <path className="typing-hand-outline" d={handOutline} />
       <path
         className="typing-hand-joints"
-        d="M63 147q35-18 80 2m-58 18q27-10 54-3M74 202h73"
+        d="M63 147q35-18 80 2m-58 18q27-10 54-3M74 179h73"
       />
       {typingFingers
         .filter((finger) => finger.hand === hand)
@@ -112,79 +112,81 @@ export default function TypingHands({
       .map((finger) => finger.homeKey)
       .join(' · ');
   const activity = hint?.choiceFingerIds.length
-    ? 'Für die Leertaste: Wähle einen Daumen. Die beiden gestrichelten Markierungen zeigen deine Wahlmöglichkeiten; drücke nur mit einem Daumen.'
+    ? 'Leertaste: Daumen frei wählen; drücke nur mit einem Daumen.'
     : activeFinger
-      ? `${correcting ? 'Zum Verbessern' : 'Für die nächste Taste'}: ${activeFinger.name}${shiftFinger ? `; dazu ${shiftFinger.name} für Shift` : ''}. Nach der Taste kehrt der Finger in die Grundstellung zurück.`
+      ? `${correcting ? 'Zum Verbessern' : 'Finger'}: ${activeFinger.name}${shiftFinger ? `; dazu ${shiftFinger.name} für Shift` : ''}.`
       : hint
         ? 'Für dieses Zeichen gibt es hier keine Fingerzuordnung. Suche die Taste auf deiner Tastatur.'
-        : 'Die Hände zeigen die Grundstellung. Gerade ist kein Finger für eine nächste Taste markiert.';
+        : 'Grundstellung: Gerade ist kein Finger für die nächste Taste markiert.';
 
   return (
     <div className="typing-hands-help">
-      <div className="typing-hands-heading">
-        <h4>So liegen deine Hände</h4>
-        <span>Grundstellung · schematisch</span>
+      <div className="typing-hands-overview">
+        <div className="typing-hands-heading">
+          <h4>So liegen deine Hände</h4>
+          <span>schematisch</span>
+        </div>
+        <svg
+          className="typing-hands-diagram"
+          viewBox="0 0 560 235"
+          role="img"
+          aria-labelledby={`${id}-title`}
+          aria-describedby={`${id}-description`}
+        >
+          <title id={`${id}-title`}>
+            Grundstellung der Hände auf einer deutschen QWERTZ-Tastatur
+          </title>
+          <desc id={`${id}-description`}>
+            Draufsicht: Finger oben, Handgelenke unten, Daumen innen. Links:{' '}
+            {homeKeys('left')}. Rechts: {homeKeys('right')}. Beide Daumen liegen
+            locker über der Leertaste. {activity}
+          </desc>
+          <g aria-hidden="true">
+            <Hand hand="left" hint={hint} />
+            <Hand hand="right" hint={hint} />
+            <path
+              className="typing-thumb-guide"
+              d="M213 143 252 174M347 143 308 174"
+            />
+            <rect
+              className="typing-hand-space-key"
+              x="218"
+              y="171"
+              width="124"
+              height="29"
+              rx="6"
+            />
+            <text
+              className="typing-hand-space-label"
+              x="280"
+              y="191"
+              textAnchor="middle"
+            >
+              Leertaste
+            </text>
+            <text
+              className="typing-hand-label"
+              x="126"
+              y="229"
+              textAnchor="middle"
+            >
+              Linke Hand
+            </text>
+            <text
+              className="typing-hand-label"
+              x="434"
+              y="229"
+              textAnchor="middle"
+            >
+              Rechte Hand
+            </text>
+          </g>
+        </svg>
+        <p className="typing-hand-home">
+          Links: {homeKeys('left')}. Rechts: {homeKeys('right')}.
+        </p>
+        <p className="typing-hand-activity">{activity}</p>
       </div>
-      <svg
-        className="typing-hands-diagram"
-        viewBox="0 0 560 280"
-        role="img"
-        aria-labelledby={`${id}-title`}
-        aria-describedby={`${id}-description`}
-      >
-        <title id={`${id}-title`}>
-          Grundstellung der Hände auf einer deutschen QWERTZ-Tastatur
-        </title>
-        <desc id={`${id}-description`}>
-          Draufsicht: Finger oben, Unterarme unten, Daumen innen. Links:{' '}
-          {homeKeys('left')}. Rechts: {homeKeys('right')}. Beide Daumen liegen
-          locker über der Leertaste. {activity}
-        </desc>
-        <g aria-hidden="true">
-          <Hand hand="left" hint={hint} />
-          <Hand hand="right" hint={hint} />
-          <path
-            className="typing-thumb-guide"
-            d="M213 143 252 174M347 143 308 174"
-          />
-          <rect
-            className="typing-hand-space-key"
-            x="218"
-            y="171"
-            width="124"
-            height="29"
-            rx="6"
-          />
-          <text
-            className="typing-hand-space-label"
-            x="280"
-            y="191"
-            textAnchor="middle"
-          >
-            Leertaste
-          </text>
-          <text
-            className="typing-hand-label"
-            x="126"
-            y="269"
-            textAnchor="middle"
-          >
-            Linke Hand
-          </text>
-          <text
-            className="typing-hand-label"
-            x="434"
-            y="269"
-            textAnchor="middle"
-          >
-            Rechte Hand
-          </text>
-        </g>
-      </svg>
-      <p className="typing-hand-home">
-        Links: {homeKeys('left')}. Rechts: {homeKeys('right')}.
-      </p>
-      <p className="typing-hand-activity">{activity}</p>
       <div className="typing-posture">
         <svg
           viewBox="0 0 220 95"
@@ -205,14 +207,8 @@ export default function TypingHands({
         </svg>
         <ul>
           <li>Finger leicht gekrümmt, Hände frei beweglich.</li>
-          <li>
-            Handgelenke möglichst gerade in Linie mit den Unterarmen. Schultern
-            locker.
-          </li>
-          <li>
-            Fühle die Erhebungen auf F und J mit den Zeigefingern. Die Daumen
-            liegen locker über der Leertaste.
-          </li>
+          <li>Handgelenke möglichst gerade, Schultern locker.</li>
+          <li>F/J ertasten. Nach der Taste zur Grundstellung zurück.</li>
         </ul>
       </div>
     </div>

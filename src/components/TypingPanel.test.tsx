@@ -79,11 +79,9 @@ it('lässt den Anfangsfokus beim Seitentitel und prüft echte Eingaben erst bewu
   const field = await screen.findByLabelText('Deine Zeile');
   expect(title).toHaveFocus();
   expect(
-    within(
-      screen.getByRole('navigation', {
-        name: 'Sternenkarte: zwölf frei wählbare Sektoren',
-      }),
-    ).getAllByRole('button'),
+    within(screen.getByRole('combobox', { name: 'Kurs wählen' })).getAllByRole(
+      'option',
+    ),
   ).toHaveLength(12);
   await user.type(field, 'fj x');
   expect(screen.getByText(/Schau bei Zeichen 4/)).toBeVisible();
@@ -100,11 +98,12 @@ it('lässt den Anfangsfokus beim Seitentitel und prüft echte Eingaben erst bewu
   expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
     '10 Punkte',
   );
+  expect(screen.getByRole('combobox', { name: 'Kurs wählen' })).toHaveValue(
+    'station-0',
+  );
   expect(
-    screen.getByRole('button', {
-      name: 'Sektor 1: Funkkontakt · 1 von 3 Zeilen bestätigt',
-    }),
-  ).toHaveAttribute('aria-pressed', 'true');
+    screen.getByRole('option', { name: 'S01: Funkkontakt · 1 / 3' }),
+  ).toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Nächste Zeile' }));
   expect(field).toHaveFocus();
   expect(field).toHaveValue('');
@@ -118,10 +117,9 @@ it('bietet alle Sektoren und Zeilen frei an und nutzt die bestätigten Wiederhol
   const user = userEvent.setup();
   render(<TypingPanel profileVersion={0} />);
   const field = await screen.findByLabelText('Deine Zeile');
-  await user.click(
-    screen.getByRole('button', {
-      name: 'Sektor 12: Logbuch · 0 von 3 Zeilen bestätigt',
-    }),
+  await user.selectOptions(
+    screen.getByRole('combobox', { name: 'Kurs wählen' }),
+    'station-11',
   );
   expect(field).toHaveFocus();
   await user.click(
@@ -174,11 +172,12 @@ it('bietet alle Sektoren und Zeilen frei an und nutzt die bestätigten Wiederhol
   const requests = vi.mocked(desktop.submitTyping).mock.calls;
   expect(requests[0][0].taskId).toBe(requests[1][0].taskId);
   expect(requests[0][0].requestId).not.toBe(requests[1][0].requestId);
+  expect(screen.getByRole('combobox', { name: 'Kurs wählen' })).toHaveValue(
+    'station-11',
+  );
   expect(
-    screen.getByRole('button', {
-      name: 'Sektor 12: Logbuch · 1 von 3 Zeilen bestätigt',
-    }),
-  ).toBeVisible();
+    screen.getByRole('option', { name: 'S12: Logbuch · 1 / 3' }),
+  ).toBeInTheDocument();
 });
 
 it('erklärt Starttasten und zeigt QWERTZ, Leerzeichen sowie gegenüberliegendes Shift', async () => {
@@ -207,10 +206,9 @@ it('erklärt Starttasten und zeigt QWERTZ, Leerzeichen sowie gegenüberliegendes
   expect(
     screen.getByText(/ein Daumen/, { selector: '.typing-key-hint' }),
   ).toBeVisible();
-  await user.click(
-    screen.getByRole('button', {
-      name: 'Sektor 12: Logbuch · 0 von 3 Zeilen bestätigt',
-    }),
+  await user.selectOptions(
+    screen.getByRole('combobox', { name: 'Kurs wählen' }),
+    'station-11',
   );
   expect(
     screen.getByText(/rechte[r]? kleine[r]? Finger/, {
@@ -304,11 +302,12 @@ it('wartet auf die Desktop-Prüfung und lässt eine falsche Zeile ohne Punkte ko
       name: 'Bereit zum Start · 0 von 3 Zeilen bestätigt',
     }),
   ).toBeVisible();
+  expect(screen.getByRole('combobox', { name: 'Kurs wählen' })).toHaveValue(
+    'station-0',
+  );
   expect(
-    screen.getByRole('button', {
-      name: 'Sektor 1: Funkkontakt · 0 von 3 Zeilen bestätigt',
-    }),
-  ).toBeVisible();
+    screen.getByRole('option', { name: 'S01: Funkkontakt · 0 / 3' }),
+  ).toBeInTheDocument();
   await user.clear(field);
   await user.type(field, 'fj jf{Enter}');
   await screen.findByRole('heading', { name: 'Geschafft! +2 Punkte' });
@@ -344,11 +343,12 @@ it('zeigt die drei Orbitabschnitte erst nach bestätigten Lösungen und erhält 
       name: 'Sektor erkundet · 3 von 3 Zeilen bestätigt',
     }),
   ).toBeVisible();
+  expect(screen.getByRole('combobox', { name: 'Kurs wählen' })).toHaveValue(
+    'station-0',
+  );
   expect(
-    screen.getByRole('button', {
-      name: 'Sektor 1: Funkkontakt · 3 von 3 Zeilen bestätigt',
-    }),
-  ).toHaveAttribute('aria-pressed', 'true');
+    screen.getByRole('option', { name: 'S01: Funkkontakt · 3 / 3' }),
+  ).toBeInTheDocument();
   expect(screen.getByText(/Sektor erkundet: Alle drei Zeilen/)).toBeVisible();
   vi.mocked(desktop.submitTyping).mockResolvedValue({
     ...success,
@@ -382,11 +382,7 @@ it('sperrt doppelte Übertragung und hält bei Speicherfehler dieselbe UUID und 
   expect(field).toHaveValue('fj jf');
   expect(field).toBeDisabled();
   expect(screen.getByRole('button', { name: 'Vorschule' })).toBeDisabled();
-  expect(
-    screen.getByRole('button', {
-      name: 'Sektor 2: Signalabgleich · 0 von 3 Zeilen bestätigt',
-    }),
-  ).toBeDisabled();
+  expect(screen.getByRole('combobox', { name: 'Kurs wählen' })).toBeDisabled();
   expect(screen.queryByText(/Geschafft!/)).not.toBeInTheDocument();
   await user.click(
     screen.getByRole('button', { name: 'Speichern erneut versuchen' }),
@@ -566,4 +562,36 @@ it('unterdrückt das WebKit-Enter zur IME-Bestätigung auch nach compositionEnd'
   expect(
     await screen.findByRole('heading', { name: 'Geschafft! +2 Punkte' }),
   ).toBeVisible();
+});
+
+it('hält die eingeblendete Hilfe bei allen zwölf Kurswechseln bereit und fokussiert die passende Eingabe', async () => {
+  const user = userEvent.setup();
+  render(<TypingPanel profileVersion={0} />);
+  const field = await screen.findByLabelText('Deine Zeile');
+  const picker = screen.getByRole('combobox', { name: 'Kurs wählen' });
+  await user.click(
+    screen.getByRole('button', { name: 'Tastaturhilfe einblenden' }),
+  );
+  for (const station of initial.stations) {
+    await user.type(field, 'x');
+    await user.selectOptions(picker, station.id);
+    expect(picker).toHaveValue(station.id);
+    expect(screen.getByRole('heading', { name: station.title })).toBeVisible();
+    expect(field).toHaveFocus();
+    expect(field).toHaveValue('');
+    expect(
+      screen.getByRole('region', {
+        name: 'Deutsche QWERTZ-Tastatur als Hilfe',
+      }),
+    ).toBeVisible();
+    expect(
+      screen.getByRole('img', { name: /Grundstellung der Hände/ }),
+    ).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Zeile prüfen' })).toBeVisible();
+    expect(
+      screen.getByRole('button', { name: 'Tastaturhilfe ausblenden' }),
+    ).toHaveAttribute('aria-pressed', 'true');
+  }
+  expect(desktop.submitTyping).not.toHaveBeenCalled();
+  expect(desktop.setDifficulty).not.toHaveBeenCalled();
 });
