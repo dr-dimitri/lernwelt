@@ -47,16 +47,112 @@ export function typingProgress(text: string, answer: string) {
   };
 }
 
-const fingers = [
-  { keys: '1qay', name: 'linker kleiner Finger', hand: 'left' },
-  { keys: '2wsx', name: 'linker Ringfinger', hand: 'left' },
-  { keys: '3edc', name: 'linker Mittelfinger', hand: 'left' },
-  { keys: '45rtfgvb', name: 'linker Zeigefinger', hand: 'left' },
-  { keys: '67zuhjnm', name: 'rechter Zeigefinger', hand: 'right' },
-  { keys: '8ik,', name: 'rechter Mittelfinger', hand: 'right' },
-  { keys: '9ol.', name: 'rechter Ringfinger', hand: 'right' },
-  { keys: '0ßpüöä-', name: 'rechter kleiner Finger', hand: 'right' },
-] as const;
+export type TypingHand = 'left' | 'right';
+export type TypingDigit = 'little' | 'ring' | 'middle' | 'index' | 'thumb';
+export type TypingFingerId = `${TypingHand}-${TypingDigit}`;
+
+export interface TypingFinger {
+  id: TypingFingerId;
+  digit: TypingDigit;
+  keys: string;
+  homeKey: string;
+  name: string;
+  hand: TypingHand;
+}
+
+/** One shared QWERTZ model for the written hint, keyboard and hand diagram. */
+export const typingFingers: readonly TypingFinger[] = [
+  {
+    id: 'left-little',
+    digit: 'little',
+    keys: '1qay',
+    homeKey: 'A',
+    name: 'linker kleiner Finger',
+    hand: 'left',
+  },
+  {
+    id: 'left-ring',
+    digit: 'ring',
+    keys: '2wsx',
+    homeKey: 'S',
+    name: 'linker Ringfinger',
+    hand: 'left',
+  },
+  {
+    id: 'left-middle',
+    digit: 'middle',
+    keys: '3edc',
+    homeKey: 'D',
+    name: 'linker Mittelfinger',
+    hand: 'left',
+  },
+  {
+    id: 'left-index',
+    digit: 'index',
+    keys: '45rtfgvb',
+    homeKey: 'F',
+    name: 'linker Zeigefinger',
+    hand: 'left',
+  },
+  {
+    id: 'left-thumb',
+    digit: 'thumb',
+    keys: ' ',
+    homeKey: 'Leertaste',
+    name: 'linker Daumen',
+    hand: 'left',
+  },
+  {
+    id: 'right-index',
+    digit: 'index',
+    keys: '67zuhjnm',
+    homeKey: 'J',
+    name: 'rechter Zeigefinger',
+    hand: 'right',
+  },
+  {
+    id: 'right-middle',
+    digit: 'middle',
+    keys: '8ik,',
+    homeKey: 'K',
+    name: 'rechter Mittelfinger',
+    hand: 'right',
+  },
+  {
+    id: 'right-ring',
+    digit: 'ring',
+    keys: '9ol.',
+    homeKey: 'L',
+    name: 'rechter Ringfinger',
+    hand: 'right',
+  },
+  {
+    id: 'right-little',
+    digit: 'little',
+    keys: '0ßpüöä-',
+    homeKey: 'Ö',
+    name: 'rechter kleiner Finger',
+    hand: 'right',
+  },
+  {
+    id: 'right-thumb',
+    digit: 'thumb',
+    keys: ' ',
+    homeKey: 'Leertaste',
+    name: 'rechter Daumen',
+    hand: 'right',
+  },
+];
+
+export interface TypingKeyHint {
+  key: string;
+  label: string;
+  finger: string;
+  fingerId: TypingFingerId | null;
+  choiceFingerIds: TypingFingerId[];
+  shift: TypingHand | null;
+  shiftFingerId: TypingFingerId | null;
+}
 const shifted: Record<string, string> = {
   '!': '1',
   '"': '2',
@@ -74,18 +170,26 @@ const shifted: Record<string, string> = {
   _: '-',
 };
 
-export function typingKeyHint(character: string | null) {
+export function typingKeyHint(character: string | null): TypingKeyHint | null {
   if (character === null) return null;
   if (character === ' ')
     return {
       key: 'space',
       label: 'Leertaste',
       finger: 'ein Daumen',
+      fingerId: null,
+      choiceFingerIds: typingFingers
+        .filter((finger) => finger.digit === 'thumb')
+        .map((finger) => finger.id),
       shift: null,
+      shiftFingerId: null,
     };
   const lower = character.toLocaleLowerCase('de');
   const key = shifted[character] ?? lower;
-  const finger = fingers.find((entry) => entry.keys.includes(key));
+  const finger =
+    key.length === 1
+      ? typingFingers.find((entry) => entry.keys.includes(key))
+      : undefined;
   const capital = lower !== character || character in shifted;
   const shift =
     capital && finger ? (finger.hand === 'left' ? 'right' : 'left') : null;
@@ -93,7 +197,10 @@ export function typingKeyHint(character: string | null) {
     key,
     label: character,
     finger: finger?.name ?? 'Suche die Taste auf deiner Tastatur',
+    fingerId: finger?.id ?? null,
+    choiceFingerIds: [],
     shift,
+    shiftFingerId: shift ? `${shift}-little` : null,
   };
 }
 

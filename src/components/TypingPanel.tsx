@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import InfoPanel from './InfoPanel';
+import TypingHands from './TypingHands';
 import { difficulties, type Difficulty } from '../domain/learning';
 import {
   typingKeyboardRows,
@@ -185,7 +186,7 @@ export default function TypingPanel({
   const taskIndex = tasks.findIndex((item) => item.id === task?.id);
   const disabled = busy || !!pending;
   const progress = typingProgress(task?.text ?? '', answer);
-  const hint = typingKeyHint(progress.next);
+  const hint = typingKeyHint(feedback?.correct ? null : progress.next);
 
   function reloadState() {
     if (inFlight.current) return;
@@ -698,7 +699,7 @@ export default function TypingPanel({
                             <>
                               . Halte dazu die{' '}
                               {hint.shift === 'left' ? 'linke' : 'rechte'}{' '}
-                              Umschalttaste (Shift).
+                              Umschalttaste (Shift) mit dem kleinen Finger.
                             </>
                           )}
                         </>
@@ -718,7 +719,7 @@ export default function TypingPanel({
                             {row.map((key) => (
                               <span
                                 key={key}
-                                className={`typing-key ${key === 'space' ? 'space' : key.startsWith('shift') ? 'shift' : key === 'backspace' ? 'backspace' : ''}${hint?.key === key || (hint?.shift && key === `shift-${hint.shift}`) || (progress.mistake && !progress.next && key === 'backspace') ? ' highlighted' : ''}${key === 'f' || key === 'j' ? ' home' : ''}`}
+                                className={`typing-key ${key === 'space' ? 'space' : key.startsWith('shift') ? 'shift' : key === 'backspace' ? 'backspace' : ''}${hint?.key === key || (hint?.shift && key === `shift-${hint.shift}`) || (!feedback?.correct && progress.mistake && !progress.next && key === 'backspace') ? ' highlighted' : ''}${key === 'f' || key === 'j' ? ' home' : ''}`}
                               >
                                 {key === 'space'
                                   ? 'Leertaste'
@@ -735,6 +736,7 @@ export default function TypingPanel({
                         ))}
                       </div>
                     </div>
+                    <TypingHands hint={hint} correcting={progress.mistake} />
                     <p>
                       {station.tip} Die Bildschirmtasten sind Hinweise. Tippe
                       auf deiner echten Tastatur.

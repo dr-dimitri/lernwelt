@@ -8,6 +8,8 @@ Der eigene Bereich `typing` verwendet `TypingPanel` und die typisierte Grenze in
 
 Migration 017 ergänzt eigene `typing_progress`- und `typing_submissions`-Tabellen, ohne bestehende Fach-, Profil- oder Punktezeilen zu verändern. Der Wechsel zur Weltraumreise benötigt keine zusätzliche Migration. Tests prüfen die Migration von Schema 16, erneutes Öffnen, Datenbewahrung, Rollback, Eingabevalidierung, erste Lösungen, Replays und den v1/v2-Übergang ohne Doppelgutschrift. Der Trainer nutzt die bestehende Stufenauswahl; Tastschreiben wird als Zusatzfertigkeit geführt und erhält keine neue Lehrplan-Fach-ID. Die UI zeichnet Sternenkarte, Missionsfortschritt und QWERTZ-Hilfe lokal. [Plan, Quellen und Grenzen](typing-space.md).
 
+`TypingHands` ergänzt die QWERTZ-Hilfe mit eigenen SVG-Handgrafiken und einer Seitenansicht. Das gemeinsame Finger-/Handmodell in `src/domain/typing.ts` versorgt vorhandene Tastaturhinweise und Handdarstellung; aktive Finger, frei wählbare Daumen und gegenüberliegendes Shift bleiben auch textlich verständlich. Die Ergänzung ist ausschließlich lokal im Frontend und verändert weder Inhaltspakete noch Persistenz oder IPC. [Bedienung, Quellen und Grenzen](typing-hands.md).
+
 ## Sonnensystem-Lernwelt (Schema 16)
 
 Das Fach `geography` ergänzt die Fächerübersicht um eine eigene `SolarSystemWorld`. Acht NASA-Bilder, Steckbriefe und Bildnachweise liegen lokal in `public/images/solar-system/` und `src/domain/solar-system.ts`. `solar-projection.ts` projiziert schematische Planetenpositionen aus einer räumlichen Ebene mit Perspektive auf ein SVG. `SolarSystemModel` verbindet die Projektion mit Ziehen, zwei nativen Tastaturreglern und einer Planetenwahl. Es gibt keine neue Abhängigkeit und keine externen Bildaufrufe.

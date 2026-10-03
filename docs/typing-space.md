@@ -22,6 +22,8 @@ Die aktive Reise enthält **108 Zeilen**: zwölf Stationen, drei Zeilen pro Stat
 
 Wähle einen Sektor und eine Zeile. Schreibe die Vorlage in **Deine Zeile**. Sichtbare Leerzeichen in der Vorlage werden mit der Leertaste geschrieben; Groß-/Kleinschreibung, Umlaute und Satzzeichen zählen zum genauen Zieltext. Die Hilfe zeigt die nächste Taste und den passenden Finger. Ein normales Eingabefeld nimmt ausschließlich den dort geschriebenen Text entgegen, ohne globale Tastenerfassung. Rücktaste korrigiert Fehler. Einfügen und Ziehen sind mit verständlicher Erklärung ausgeschaltet.
 
+Ab Version 0.5.2 zeigt die eingeblendete Tastaturhilfe zusätzlich beide Hände mit Grundtasten und dem passenden Finger. Eine schematische Seitenansicht erklärt möglichst gerade Handgelenke und leicht gekrümmte Finger. [Handdarstellung, Bedienung und Quellen](typing-hands.md).
+
 Erst **Zeile prüfen** oder Enter prüft den vollständigen Text in Rust. Eine neue richtige Zeile erhält einmalig **1/2/3 gemeinsame Lernpunkte**. Falsche Antworten und Wiederholungen ändern das Guthaben nicht. Jede bestätigte Zeile ergänzt einen von drei Missionsabschnitten. Ein vom früheren Tastengarten übernommener Abschnitt zählt bereits als bestätigt; die neue Vorlage lässt sich ohne weitere Punkte üben. Fortschrittsanzeigen und Rückmeldungen stellen Wiederholungen nicht als neue Erfolge dar.
 
 ## Vorbilder und Eigenständigkeit

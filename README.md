@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.5.1 gestaltet Tastschreiben als eigene Weltraumreise für Jugendliche mit zwölf freien Missionen und 108 kurzen Zeilen. [Alle Änderungen und Installationshinweise](docs/releases/0.5.1.md).
+Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.5.2 ergänzt die Tastaturhilfe der Weltraumreise um beide Hände, Grundstellung und Haltungshinweise. [Alle Änderungen und Installationshinweise](docs/releases/0.5.2.md).
 
 ## Mitarbeit
 
@@ -179,6 +179,8 @@ Der eigene Menüpunkt **Tastschreiben** bietet zwölf frei wählbare Missionen f
 Jede erstmals richtig geschriebene Zeile bestätigt einen Missionsabschnitt und bringt **1/2/3 gemeinsame Lernpunkte** in Vorschule/Könner/Streber. Die bestehenden Stufennamen ordnen kein Alter zu. **Zeile prüfen** oder Enter prüft den ganzen Text in Rust. Keine Zeitlimits, Sperren, Ranglisten oder Fehlerabzüge. Alle Stufen und Stationen bleiben frei wählbar. Bereits gelöste Zeilen lassen sich ohne weitere Punkte wiederholen; doppelte Übertragungen buchen nichts zusätzlich. Bestätigte Vorgängerzeilen aus dem Tastengarten zählen weiter und ermöglichen keine zweiten Erstlösungspunkte.
 
 Bestätigte Fortschritte bleiben lokal nach Neustart und Änderung des Profilnamens erhalten. Alte Aufgaben behalten ihre Kennungen und Zieltexte; neue Weltraumtexte haben eigene Kennungen. Die App prüft Texte, keine tatsächliche Fingerhaltung. Deutsches Tastaturlayout wird empfohlen. Die Reise ist fiktional; das Paket ist eine fachübergreifende Zusatzfertigkeit, keine vollständige Lehrplanabdeckung. Aufgaben und Grafiken sind selbst gestaltet; die Lernprinzipien orientieren sich an öffentlich dokumentierten Angeboten wie Tipp10 und TypingClub. [Plan, Quellen, Bedienung und Grenzen](docs/typing-space.md).
+
+**Tastaturhilfe einblenden** zeigt auch die Grundstellung beider Hände: A/S/D/F links, J/K/L/Ö rechts und die Daumen über der Leertaste. Die Grafik hebt den passenden Finger und bei Großbuchstaben den kleinen Finger für das gegenüberliegende Shift hervor. Eine eigene Seitenansicht und kurze Hinweise erklären möglichst gerade Handgelenke und leicht gekrümmte Finger. [Handhilfe, Quellen und Grenzen](docs/typing-hands.md).
 
 ## Kompakte Bedienung
 
