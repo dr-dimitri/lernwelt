@@ -250,6 +250,85 @@
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
+.solar-gallery {
+  min-width: 0;
+}
+.solar-gallery-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 12px 0;
+}
+.solar-gallery-controls button {
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+.solar-gallery-controls > span {
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+.solar-image-enlarge {
+  width: 100%;
+  min-height: 44px;
+}
+.solar-fact-card .solar-image-title {
+  display: block;
+  font-size: 15px;
+  color: var(--ink);
+  margin-top: 16px;
+}
+.solar-image-description {
+  font-size: 13px;
+  color: var(--ink);
+  margin: 6px 0 10px;
+  line-height: 1.55;
+}
+.solar-image-error {
+  display: grid;
+  align-content: center;
+  gap: 12px;
+  padding: 22px;
+  min-height: 180px;
+  background: #edf2f9;
+  border-radius: 16px;
+  line-height: 1.55;
+}
+.solar-image-error p {
+  margin: 0;
+}
+.solar-image-dialog {
+  width: min(1020px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+}
+.solar-image-dialog .dialog-heading h2 {
+  margin: 0;
+  font-size: 23px;
+}
+.solar-image-dialog figure {
+  margin: 0;
+  padding: 20px 24px 24px;
+}
+.solar-image-dialog .solar-gallery-image {
+  width: 100%;
+  height: min(58dvh, 700px);
+  min-height: 160px;
+  object-fit: contain;
+  aspect-ratio: auto;
+  border-radius: 16px;
+}
+.solar-image-dialog figcaption {
+  margin-top: 14px;
+}
+.solar-image-dialog .solar-image-title {
+  margin-top: 0;
+}
+.solar-image-dialog .solar-gallery-controls {
+  justify-content: center;
+  gap: 20px;
+}
 .solar-fact-card h3 {
   font-size: 36px;
   letter-spacing: -1px;
@@ -435,9 +514,20 @@
     padding: 18px;
     gap: 18px;
   }
-  .solar-fact-card figure {
+  .solar-fact-card .solar-gallery {
     max-width: 340px;
+    width: 100%;
     margin: 0 auto;
+  }
+  .solar-image-dialog figure {
+    padding: 16px;
+  }
+  .solar-image-dialog .dialog-heading h2 {
+    font-size: 19px;
+  }
+  .solar-image-dialog .solar-gallery-controls {
+    justify-content: space-between;
+    gap: 8px;
   }
   .solar-quiz-card > img {
     width: 160px;
