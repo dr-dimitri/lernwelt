@@ -26,6 +26,8 @@
     "allow-configure-multiplication",
     "allow-get-mission-state",
     "allow-start-mission",
-    "allow-act-mission"
+    "allow-act-mission",
+    "allow-get-typing-state",
+    "allow-submit-typing"
   ]
 }

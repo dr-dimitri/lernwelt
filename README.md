@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.4.0 ergänzt Geographie mit einer Sonnensystem-Lernwelt, NASA-Bildern und einem drehbaren Planeten-Rätsel. [Alle Änderungen und Installationshinweise](docs/releases/0.4.0.md).
+Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.5.0 ergänzt Tastschreiben mit einem eigenen Tastengarten, zwölf freien Stationen und 108 kurzen Zeilen. [Alle Änderungen und Installationshinweise](docs/releases/0.5.0.md).
 
 ## Mitarbeit
 
@@ -37,7 +37,7 @@ Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale mac
 
 ## Bedienung
 
-Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Mathematik, Englisch sowie Natur und Technik öffnen einen Lehrplan-Themenkatalog: Lernbereich und Unterthema auswählen oder nach einem Begriff wie „Längen“ oder „Simple Present“ suchen. 88 Unterthemen in 18 Lernbereichen stehen zur Auswahl. Die bisherigen Fächer führen zu kurzen Runden mit höchstens sechs Aufgaben; Geographie öffnet eine eigene Sonnensystemwelt mit acht Planetenrätseln je Stufe. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md). Eine feste Seitennavigation führt zu Fächern, Trainern und Spielhalle; im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
+Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Mathematik, Englisch sowie Natur und Technik öffnen einen Lehrplan-Themenkatalog: Lernbereich und Unterthema auswählen oder nach einem Begriff wie „Längen“ oder „Simple Present“ suchen. 88 Unterthemen in 18 Lernbereichen stehen zur Auswahl. Die bisherigen Fächer führen zu kurzen Runden mit höchstens sechs Aufgaben; Geographie öffnet eine eigene Sonnensystemwelt mit acht Planetenrätseln je Stufe. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md). Eine feste Seitennavigation führt zu Fächern, Vokabeltrainer, Einmaleins-Trainer, Tastschreiben und Spielhalle; im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
 
 ## App aktualisieren
 
@@ -171,6 +171,14 @@ Eine Etappe dauert **acht geübte Aufgaben**. Jede gespeicherte Antwort baut wei
 Wähle das gemischte Einmaleins (1 × 1 bis 10 × 10), eine einzelne Reihe oder Quadratzahlen **10² bis 20²**. Gemischte Runden enthalten 100 Aufgaben, einzelne Reihen zehn. Eine Quadratrunde enthält fünf zufällig ausgewählte Aufgaben je viermal. Die kurzen Bauetappen laufen unabhängig davon. Auf Wunsch zeigen Rechentipps Gruppen und Teilflächen. Falsche oder aufgedeckte Aufgaben kannst du später in einer freiwilligen Wiederholungsrunde üben.
 
 Welt, Rechenart, Gestaltung und bestätigte Antworten bleiben lokal gespeichert. Wiederholte Übertragungen zählen nicht doppelt. Bei Speicherfehlern lässt sich erneut speichern oder der bestätigte Stand laden. Historische Antworten und Punkte bleiben unverändert; neue Quadratzahlaufgaben halten sich an den im Lehrplan genannten Automatisierungsumfang bis 400. Eigene Inhalte zu Klasse 5 / M5 3.1 und M5 3.2, Quellenstand 25.09.2026; keine vollständige Lehrplanabdeckung oder Lernstandsdiagnose. [Lehrplanbezug, Spielregeln und Grenzen](docs/multiplication-adventures.md).
+
+## Tastschreiben: dein Tastengarten
+
+Der eigene Menüpunkt **Tastschreiben** bietet zwölf frei wählbare Stationen für Kinder, die gerade beginnen. Von F/J und Leertaste geht es über die Grundreihe zur Ober- und Unterreihe, danach zu Umlauten, Großbuchstaben und kurzen Gartensätzen. Jede Station enthält drei eigene Zeilen je Stufe, insgesamt 108. Eine QWERTZ-Tastatur und kurze Fingerhinweise helfen beim Schreiben; die Rücktaste erlaubt Korrekturen.
+
+Jede erstmals richtig geschriebene Zeile lässt die Pflanze der Station wachsen und bringt **1/2/3 gemeinsame Lernpunkte** in Vorschule/Könner/Streber. **Zeile prüfen** oder Enter prüft den ganzen Text in Rust. Keine Zeitlimits, Sperren, Ranglisten oder Fehlerabzüge. Alle Stufen und Stationen bleiben frei wählbar. Bereits gelöste Zeilen lassen sich ohne weitere Punkte wiederholen; doppelte Übertragungen buchen nichts zusätzlich.
+
+Bestätigte Fortschritte bleiben lokal nach Neustart und Änderung des Profilnamens erhalten. Die App prüft Texte, keine tatsächliche Fingerhaltung. Deutsches Tastaturlayout wird empfohlen. Das Paket ist eine fachübergreifende Zusatzfertigkeit, keine vollständige Lehrplanabdeckung. Aufgaben und Grafiken sind selbst gestaltet; die Lernprinzipien orientieren sich an öffentlich dokumentierten Angeboten wie Tipp10 und TypingClub. [Plan, Quellen, Bedienung und Grenzen](docs/typing-garden.md).
 
 ## Kompakte Bedienung
 

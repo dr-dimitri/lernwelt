@@ -11,6 +11,7 @@ import type {
   VocabularyReviewResult,
 } from '../domain/vocabulary';
 import type { ArcadeState, GameId } from '../domain/arcade';
+import type { TypingState, TypingInput, TypingResult } from '../domain/typing';
 import type {
   MissionState,
   MissionStartInput,
@@ -46,6 +47,9 @@ async function callDesktop<T>(
 }
 
 export const desktop = {
+  getTypingState: () => callDesktop<TypingState>('get_typing_state'),
+  submitTyping: (input: TypingInput) =>
+    callDesktop<TypingResult>('submit_typing', { input }),
   getMissionState: (topicId?: string) =>
     callDesktop<MissionState>('get_mission_state', { topicId }),
   startMission: (input: MissionStartInput) =>

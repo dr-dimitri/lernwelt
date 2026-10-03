@@ -505,7 +505,7 @@ fn v10_upgrade_replaces_only_unanswered_squares_and_preserves_small_factor_repla
         [],
     )
     .unwrap();
-    c.execute_batch("DROP TABLE multiplication_configurations; DROP TABLE multiplication_review_queue; DROP TABLE multiplication_tasks; DROP TABLE multiplication_cursors; DROP TABLE multiplication_robots; DROP TABLE multiplication_worlds; DROP TABLE multiplication_settings; DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress;").unwrap();
+    c.execute_batch("DROP TABLE typing_submissions; DROP TABLE typing_progress; DROP TABLE multiplication_configurations; DROP TABLE multiplication_review_queue; DROP TABLE multiplication_tasks; DROP TABLE multiplication_cursors; DROP TABLE multiplication_robots; DROP TABLE multiplication_worlds; DROP TABLE multiplication_settings; DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress;").unwrap();
     c.pragma_update(None, "user_version", 10).unwrap();
     drop(c);
     let mut c = database::open(&d.path().join("test.db")).unwrap();

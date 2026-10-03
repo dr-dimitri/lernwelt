@@ -1,0 +1,397 @@
+.page-heading.typing-page-heading {
+  margin-bottom: 12px;
+}
+.detail-panel.typing-panel {
+  --garden-ink: #335c44;
+  --garden-soft: #f0f6ed;
+  --garden-line: #ccdaca;
+  padding: 18px;
+}
+.detail-panel.typing-panel .eyebrow {
+  color: var(--garden-ink);
+}
+.typing-topbar h2:focus,
+.typing-feedback h4:focus,
+.typing-error:focus {
+  outline-offset: 5px;
+}
+.typing-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 14px;
+}
+.detail-panel.typing-panel .typing-intro p {
+  margin: 2px 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.typing-intro .secondary-button {
+  padding: 7px 12px;
+  font-size: 13px;
+}
+.typing-levels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+.typing-levels > span {
+  font-size: 12px;
+  color: var(--muted);
+  margin-left: auto;
+}
+.typing-workspace {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.typing-garden {
+  padding: 12px;
+  border: 1px solid var(--garden-line);
+  border-radius: 18px;
+  background: var(--garden-soft);
+}
+.typing-garden > h3 {
+  color: var(--garden-ink);
+  font-size: 16px;
+}
+.detail-panel.typing-panel .typing-garden > p {
+  font-size: 12px;
+  margin: 4px 0 8px;
+}
+.typing-stations {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+}
+.typing-station {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-height: 55px;
+  padding: 5px;
+  border: 1px solid #d6dfd1;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--garden-ink);
+  text-align: left;
+  transition:
+    background-color 150ms,
+    border-color 150ms;
+}
+.typing-station:hover:not(:disabled) {
+  background: #f9fcf6;
+  border-color: #74966d;
+}
+.typing-station[aria-pressed='true'] {
+  border-color: #64875d;
+  background: #e2eddb;
+  box-shadow: inset 0 0 0 1px #64875d;
+}
+.typing-station > span {
+  min-width: 0;
+}
+.typing-station strong {
+  display: block;
+  font-size: 11px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.typing-station small {
+  display: block;
+  font-size: 10px;
+  margin-top: 3px;
+  color: #54704c;
+}
+.typing-station .typing-station-keys {
+  font-size: 9px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.typing-plant {
+  display: block;
+  width: 74px;
+  height: 77px;
+  flex-shrink: 0;
+  overflow: visible;
+}
+.typing-station .typing-plant {
+  width: 26px;
+  height: 30px;
+}
+.typing-exercise {
+  min-width: 0;
+}
+.typing-station-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.typing-station-heading > .typing-plant {
+  width: 58px;
+  height: 60px;
+}
+.typing-station-heading .eyebrow {
+  font-size: 10px;
+  margin: 0 0 5px;
+  letter-spacing: 0.8px;
+}
+.detail-panel.typing-panel .typing-station-heading p:not(.eyebrow) {
+  font-size: 13px;
+  margin: 4px 0;
+  line-height: 1.4;
+}
+.typing-keys-intro {
+  padding: 7px 10px;
+  margin: 4px 0 10px;
+  border-radius: 10px;
+  background: var(--garden-soft);
+  color: var(--garden-ink);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.typing-lines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.typing-lines button {
+  padding: 7px 12px;
+  font-size: 13px;
+}
+.detail-panel.typing-panel .typing-question {
+  margin: 0 0 5px;
+  color: var(--ink);
+  font-weight: 650;
+}
+.typing-exercise label {
+  display: block;
+  margin: 8px 0 6px;
+  font-weight: 650;
+  font-size: 13px;
+}
+.detail-panel.typing-panel .typing-prompt {
+  padding: 10px 12px;
+  margin: 0;
+  border: 1px solid var(--garden-line);
+  border-radius: 14px;
+  background: #fafcf7;
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: clamp(20px, 2.2vw, 26px);
+  color: #3c4240;
+  line-height: 1.5;
+  letter-spacing: 0.7px;
+  white-space: break-spaces;
+  overflow-wrap: anywhere;
+}
+.typing-prompt .typed {
+  color: #285d3b;
+  background: #dcecd7;
+}
+.typing-prompt .next {
+  color: #29283e;
+  background: #ffe8ad;
+  border-bottom: 3px solid #80550e;
+}
+.typing-prompt .mistake {
+  background: #ffe0d5;
+  border-color: #ad432c;
+}
+.typing-space {
+  opacity: 0.65;
+}
+.typing-exercise input {
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 18px;
+  border-color: #9eae99;
+  min-height: 44px;
+  padding-block: 9px;
+}
+.detail-panel.typing-panel .typing-input-tip {
+  font-size: 12px;
+  margin: 5px 0 9px;
+  line-height: 1.4;
+}
+.detail-panel.typing-panel .typing-correction,
+.detail-panel.typing-panel .typing-notice {
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: #fff4e4;
+  color: #754b25;
+  font-size: 12px;
+}
+.typing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.typing-actions button {
+  font-size: 13px;
+  padding: 9px 13px;
+}
+.typing-feedback {
+  margin-top: 14px;
+  padding: 13px;
+  background: #fff4e4;
+  border: 1px solid #ecd7b8;
+  border-radius: 13px;
+}
+.typing-feedback.correct {
+  background: #eef6e9;
+  border-color: var(--garden-line);
+}
+.typing-feedback h4 {
+  margin: 0;
+  color: var(--garden-ink);
+  font-size: 17px;
+}
+.detail-panel.typing-panel .typing-feedback p {
+  font-size: 13px;
+  margin: 7px 0 10px;
+}
+.typing-error {
+  padding: 10px;
+  margin: 12px 0;
+  border: 1px solid #ebcdc6;
+  border-radius: 12px;
+  background: #fff8f5;
+}
+.typing-keyboard-help {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--garden-line);
+}
+.detail-panel.typing-panel .typing-key-hint {
+  color: var(--garden-ink);
+  margin: 0 0 9px;
+  font-size: 13px;
+}
+.typing-keyboard-scroll {
+  overflow-x: auto;
+  padding: 3px 2px 6px;
+  border-radius: 9px;
+}
+.typing-keyboard {
+  min-width: 398px;
+  display: grid;
+  gap: 4px;
+}
+.typing-keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+.typing-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 28px;
+  height: 30px;
+  background: #f7f7f5;
+  border: 1px solid #c8cdc4;
+  border-bottom-width: 3px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 650;
+  color: #475347;
+}
+.typing-key.home::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  width: 9px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+.typing-key.shift {
+  width: 40px;
+  font-size: 9px;
+}
+.typing-key.backspace {
+  width: 43px;
+}
+.typing-key.space {
+  width: 170px;
+}
+.typing-key.highlighted {
+  background: #ffe8ad;
+  border-color: #a67b2e;
+  color: #57380d;
+}
+.detail-panel.typing-panel .typing-keyboard-help > p:last-child {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.typing-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 1000px) {
+  .typing-workspace {
+    grid-template-columns: 194px minmax(0, 1fr);
+    gap: 14px;
+  }
+}
+@media (max-width: 760px) {
+  .detail-panel.typing-panel {
+    padding: 17px;
+  }
+  .typing-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .typing-stations {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .typing-station {
+    min-height: 60px;
+  }
+  .typing-levels > span {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media (max-height: 800px) and (min-width: 761px) {
+  .typing-topbar .eyebrow {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .typing-stations {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .typing-station .typing-plant {
+    width: 26px;
+    height: 31px;
+  }
+  .typing-station-heading > .typing-plant {
+    width: 58px;
+    height: 62px;
+  }
+  .typing-topbar .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.7px;
+  }
+  .typing-levels .secondary-button {
+    padding-inline: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .typing-station {
+    transition: none;
+  }
+}

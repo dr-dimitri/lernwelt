@@ -5,6 +5,7 @@ mod learning;
 mod mission;
 mod multiplication;
 mod study;
+mod typing;
 mod vocabulary;
 
 use database::{Profile, Progress};
@@ -158,6 +159,19 @@ fn act_mission(
     storage.with_connection(|c| mission::act(c, input))
 }
 
+#[tauri::command]
+fn get_typing_state(storage: State<'_, Storage>) -> Result<typing::TypingState, String> {
+    storage.with_connection(typing::get_state)
+}
+
+#[tauri::command]
+fn submit_typing(
+    storage: State<'_, Storage>,
+    input: typing::SubmitInput,
+) -> Result<typing::SubmitResult, String> {
+    storage.with_connection(|connection| typing::submit(connection, input))
+}
+
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_updater::Builder::new().build())
@@ -194,7 +208,9 @@ pub fn run() {
             configure_multiplication,
             get_mission_state,
             start_mission,
-            act_mission
+            act_mission,
+            get_typing_state,
+            submit_typing
         ])
         .run(tauri::generate_context!())
         .expect("Lernwelt konnte nicht gestartet werden");
