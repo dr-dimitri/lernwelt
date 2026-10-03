@@ -6,6 +6,8 @@ Die eigene Sonnensystem-Lernwelt führt zu den acht Planeten. Die Kinder können
 
 **Meine Fächer → Geographie** öffnet den Entdeckungsmodus. Unter dem Modell wählen acht Tasten einen Planeten und dessen Steckbrief. Das Modell lässt sich durch Ziehen drehen. Die Regler **Blick drehen** und **Von oben schauen** funktionieren mit Maus, Touch und Tastatur (Tab, dann Pfeiltasten). **Blick zurücksetzen** stellt die Ausgangsperspektive wieder her.
 
+**Umlauf starten** setzt alle acht Planeten in Bewegung; **Umlauf anhalten** friert ihre Positionen ein. Erneutes Starten setzt dort fort. Der Regler **Sekunden pro Erdenjahr** reicht von 10 (schnell) bis 60 Sekunden (langsam) in Sekundenschritten, standardmäßig 10. Eine Runde der Erde dauert genau die eingestellte aktive Zeit. Die Geschwindigkeit kann auch während des Umlaufs geändert werden. Die Sonne bleibt fest; Drehen, Kippen und die Planetenwahl bleiben möglich. Die Steuerung steht auch in den Rätseln bereit. Anfangs ist die Animation ausgeschaltet. Beim Ausblenden des Fensters ruht sie ohne Zeitsprung bei der Rückkehr; beim Verlassen der Modellansicht endet die Animationsschleife. Die Einstellung wird nicht gespeichert.
+
 **Planeten erraten** startet eine Runde mit acht Aufgaben auf der gespeicherten globalen Stufe. Der Zielplanet und seine Bahn sind goldmarkiert; das Modell zeigt seinen Namen nicht. Ein größeres NASA-Bild ergänzt die Ansicht. Nach der Auswahl eines Namens speichert **Antwort prüfen** den Versuch im Backend. Tipps, freiwillige Lösungserklärungen nach Fehlern und **Nächster Planet** unterstützen die Runde ohne Zeitdruck. Jede Stufe besitzt acht stabile Aufgaben-IDs in `geography-solar-5-v1.json`.
 
 Vorschule, Könner und Streber können frei gewählt werden. Neue richtige Lösungen bringen einmalig 1/2/3 Punkte. Fehler, reines Erkunden und Mitmachaufträge bringen keine Punkte. Bereits gelöste Aufgaben können wiederholt werden; identische Übertragungen und neue Wiederholungsversuche buchen keine zusätzlichen Punkte. Zum Speichern wird ein Lernprofil benötigt. Ohne Profil bleiben Modell und Steckbriefe zugänglich; die Browser-Vorschau simuliert keine Speicherung. Migration 016 erhält bisherige Daten und Buchungen.
@@ -24,7 +26,20 @@ Die Sonne ist ein Stern und kein Planet. Sie leuchtet selbst; die Planeten kreis
 
 ## Grenzen des Modells
 
-Das räumliche Modell ist eine eigene schematische Lernzeichnung. Planetengrößen, Abstände und die dargestellten Bahnen sind für die Bedienung vereinfacht und nicht maßstabsgetreu. Die Planeten stehen an beispielhaften Positionen; das Modell zeigt keine aktuellen astronomischen Positionen und simuliert keine echten Umlaufzeiten. Die Reihenfolge der acht Planeten bleibt korrekt.
+Das räumliche Modell ist eine eigene schematische Lernzeichnung. Planetengrößen, Abstände und die dargestellten Bahnen sind für die Bedienung vereinfacht und nicht maßstabsgetreu. Die Planeten beginnen an beispielhaften Positionen; das Modell zeigt keine aktuellen astronomischen Positionen. Sie umlaufen die Sonne auf Kreisbahnen mit gleichmäßiger Winkelgeschwindigkeit. Elliptische Bahnen und die wechselnde Geschwindigkeit entlang einer echten Bahn werden nicht simuliert. Die Reihenfolge der acht Planeten bleibt korrekt.
+
+Die **Zeitverhältnisse** folgen den siderischen Umlaufzeiten (eine vollständige Runde relativ zu den Sternen) aus den einzelnen [NASA Planetary Fact Sheets](https://nssdc.gsfc.nasa.gov/planetary/factsheet/), geprüft am 03.10.2026. Die Dauer im Modell ist `Sekunden pro Erdenjahr × Umlauftage des Planeten / 365,256`. Bei 10 Sekunden pro Erdenjahr benötigt Neptun deshalb etwa 27 Minuten 28 Sekunden; seine langsame Bewegung ist beabsichtigt.
+
+| Planet | Siderische Umlaufzeit in Erdentagen | Modellumlauf bei 10 Sekunden pro Erdenjahr |
+| --- | ---: | ---: |
+| [Merkur](https://nssdc.gsfc.nasa.gov/planetary/factsheet/mercuryfact.html) | 87,969 | 2,408 Sekunden |
+| [Venus](https://nssdc.gsfc.nasa.gov/planetary/factsheet/venusfact.html) | 224,701 | 6,152 Sekunden |
+| [Erde](https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html) | 365,256 | 10 Sekunden |
+| [Mars](https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html) | 686,980 | 18,808 Sekunden |
+| [Jupiter](https://nssdc.gsfc.nasa.gov/planetary/factsheet/jupiterfact.html) | 4.332,589 | 118,618 Sekunden |
+| [Saturn](https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html) | 10.755,699 | 294,470 Sekunden |
+| [Uranus](https://nssdc.gsfc.nasa.gov/planetary/factsheet/uranusfact.html) | 30.685,400 | 840,107 Sekunden |
+| [Neptun](https://nssdc.gsfc.nasa.gov/planetary/factsheet/neptunefact.html) | 60.189,018 | 1.647,858 Sekunden |
 
 Raumsondenbilder sind häufig aus mehreren Aufnahmen zusammengesetzt und in Farben oder Kontrast bearbeitet. Venus zeigt eine von NASA aus unterschiedlichen Filtern zusammengesetzte Farbansicht; Neptuns kräftiges Blau ist in dieser historischen Aufnahme verstärkt. Die Bilder zeigen weder einen gemeinsamen Maßstab noch gleichzeitige Aufnahmen. Ein Foto ist deshalb keine sichere Farbreferenz für den Blick mit eigenen Augen.
 

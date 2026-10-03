@@ -51,3 +51,21 @@ it('liefert geschlossene endliche Umlaufbahnen und ändert sie beim Drehen oder 
     expect(solarOrbitPath(planet.order, 0, 80)).not.toBe(path);
   }
 });
+
+it('hält die Planeten auch während des Umlaufs bei jedem Blickwinkel in der Bildfläche', () => {
+  for (const yaw of [-180, -90, 0, 90, 180]) {
+    for (const tilt of [15, 38, 80]) {
+      for (const earthYears of [0.1, 0.25, 0.5, 1, 5, 25, 100]) {
+        for (const planet of planets) {
+          const point = solarPlanetPosition(planet, yaw, tilt, earthYears);
+          expect(Object.values(point).every(Number.isFinite)).toBe(true);
+          expect(point.radius).toBeGreaterThan(0);
+          expect(point.x - point.radius - 8).toBeGreaterThan(0);
+          expect(point.x + point.radius + 8).toBeLessThan(1000);
+          expect(point.y - point.radius - 17).toBeGreaterThan(0);
+          expect(point.y + point.radius + 8).toBeLessThan(650);
+        }
+      }
+    }
+  }
+});
