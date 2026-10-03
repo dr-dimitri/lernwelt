@@ -4,6 +4,7 @@ mod database;
 mod learning;
 mod mission;
 mod multiplication;
+mod roman;
 mod study;
 mod typing;
 mod vocabulary;
@@ -49,6 +50,17 @@ fn list_progress(storage: State<'_, Storage>) -> Result<Vec<Progress>, String> {
 #[tauri::command]
 fn get_learning_state(storage: State<'_, Storage>) -> Result<learning::LearningState, String> {
     storage.with_connection(learning::get_state)
+}
+
+#[tauri::command]
+fn get_roman_question(
+    storage: State<'_, Storage>,
+    direction: roman::Direction,
+    previous_question_id: Option<String>,
+) -> Result<roman::Question, String> {
+    storage.with_connection(|connection| {
+        roman::get_question(connection, direction, previous_question_id.as_deref())
+    })
 }
 
 #[tauri::command]
@@ -195,6 +207,7 @@ pub fn run() {
             save_profile,
             list_progress,
             get_learning_state,
+            get_roman_question,
             set_difficulty,
             submit_answer,
             redeem_reward,

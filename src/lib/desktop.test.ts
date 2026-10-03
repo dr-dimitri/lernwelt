@@ -10,6 +10,18 @@ beforeEach(() => {
 });
 
 describe('Desktop-Schnittstelle', () => {
+  it('lädt römische Zufallsaufgaben mit Richtung und vorheriger Aufgabe ohne Lösungsschlüssel', async () => {
+    await desktop.getRomanQuestion('decimal-to-roman');
+    expect(invoke).toHaveBeenCalledWith('get_roman_question', {
+      direction: 'decimal-to-roman',
+      previousQuestionId: undefined,
+    });
+    await desktop.getRomanQuestion('roman-to-decimal', 'previous-task');
+    expect(invoke).toHaveBeenCalledWith('get_roman_question', {
+      direction: 'roman-to-decimal',
+      previousQuestionId: 'previous-task',
+    });
+  });
   it('übermittelt beim Tastschreiben nur Aufgabe, Text und Request-ID', async () => {
     await desktop.getTypingState();
     expect(invoke).toHaveBeenCalledWith('get_typing_state', undefined);
