@@ -3,12 +3,12 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { getPlanetImages } from './solar-planet-images';
-import { planets } from './solar-system';
+import { solarBodies } from './solar-system';
 
-it('bündelt drei unterschiedliche gültige NASA-Bilddateien je Planet mit vollständigen Nachweisen', () => {
+it('bündelt drei unterschiedliche gültige NASA-Bilddateien je Planet und für Pluto mit vollständigen Nachweisen', () => {
   const usedIds = new Set<string>();
   const usedHashes = new Set<string>();
-  for (const planet of planets) {
+  for (const planet of solarBodies) {
     const images = getPlanetImages(planet.id);
     expect(images).toHaveLength(3);
     expect(images[0].src).toBe(planet.image);
@@ -29,7 +29,9 @@ it('bündelt drei unterschiedliche gültige NASA-Bilddateien je Planet mit volls
         expect(new URL(url).protocol).toBe('https:');
         expect(new URL(url).hostname).toMatch(/(^|\.)nasa\.gov$/);
       }
-      expect(image.retrievedAt).toBe('2026-10-03');
+      expect(image.retrievedAt).toBe(
+        planet.id === 'pluto' ? '2026-10-04' : '2026-10-03',
+      );
       expect(image.processing).toContain('keine Inhalts- oder Farbänderung');
       const file = readFileSync(
         resolve(process.cwd(), 'public', image.src.slice(1)),

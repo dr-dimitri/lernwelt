@@ -3,7 +3,7 @@ import {
   getPlanetImages,
   type SolarPlanetImage,
 } from '../domain/solar-planet-images';
-import type { SolarPlanet } from '../domain/solar-system';
+import type { SolarBody } from '../domain/solar-system';
 
 function PlanetPhoto({ image }: { image: SolarPlanetImage }) {
   const [failed, setFailed] = useState(false);
@@ -53,7 +53,7 @@ function PictureCaption({ image }: { image: SolarPlanetImage }) {
 }
 
 /** The parent keys this gallery by planet ID so a new planet starts at picture 1. */
-export default function PlanetGallery({ planet }: { planet: SolarPlanet }) {
+export default function PlanetGallery({ planet }: { planet: SolarBody }) {
   const images = getPlanetImages(planet.id);
   const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);

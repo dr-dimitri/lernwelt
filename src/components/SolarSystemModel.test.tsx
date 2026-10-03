@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, expect, it, vi } from 'vitest';
-import { planets, type SolarPlanet } from '../domain/solar-system';
+import {
+  planets,
+  pluto,
+  solarBodies,
+  type SolarBody,
+} from '../domain/solar-system';
 import SolarSystemModel from './SolarSystemModel';
 
 afterEach(() => vi.restoreAllMocks());
@@ -36,8 +41,8 @@ function animationClock() {
   };
 }
 
-function planetCenter(picture: HTMLElement, id: SolarPlanet['id']) {
-  const planet = planets.find((candidate) => candidate.id === id)!;
+function planetCenter(picture: HTMLElement, id: SolarBody['id']) {
+  const planet = solarBodies.find((candidate) => candidate.id === id)!;
   const portrait = picture.querySelector(
     `image[href="${planet.image}"]`,
   )!.parentElement!;
@@ -60,7 +65,7 @@ function expectSameCenter(
 }
 
 function DiscoverModel() {
-  const [selected, setSelected] = useState<SolarPlanet['id']>('earth');
+  const [selected, setSelected] = useState<SolarBody['id']>('earth');
   return (
     <SolarSystemModel
       guessing={false}
@@ -70,7 +75,7 @@ function DiscoverModel() {
   );
 }
 
-it('bietet alle Planeten als native Tasten und entdeckt sie mit Enter oder Leertaste', async () => {
+it('bietet acht Planeten und Pluto als native Tasten und entdeckt sie mit Enter oder Leertaste', async () => {
   const user = userEvent.setup();
   render(<DiscoverModel />);
   await user.tab();
@@ -107,6 +112,16 @@ it('bietet alle Planeten als native Tasten und entdeckt sie mit Enter oder Leert
     expect(screen.getByRole('img')).toHaveTextContent(planet.name);
     expect(screen.getAllByRole('button', { pressed: true })).toHaveLength(1);
   }
+  await user.tab();
+  const dwarf = screen.getByRole('button', { name: 'Pluto · Zwergplanet' });
+  expect(dwarf).toHaveFocus();
+  await user.keyboard('{Enter}');
+  expect(dwarf).toHaveAttribute('aria-pressed', 'true');
+  expect(screen.getByRole('img')).toHaveTextContent('Pluto');
+  expect(screen.getAllByRole('button', { pressed: true })).toHaveLength(1);
+  expect(
+    screen.queryByRole('button', { name: '9 Pluto' }),
+  ).not.toBeInTheDocument();
 });
 
 it('startet mit ruhenden Planeten und bietet 5 bis 15 Sekunden pro Erdenjahr', () => {
@@ -123,16 +138,42 @@ it('startet mit ruhenden Planeten und bietet 5 bis 15 Sekunden pro Erdenjahr', (
     screen.getByRole('button', { name: 'Umlauf starten' }),
   ).toHaveAttribute('aria-pressed', 'false');
   const picture = screen.getByRole('img');
-  const initial = planets.map((planet) => planetCenter(picture, planet.id));
+  const initial = solarBodies.map((planet) => planetCenter(picture, planet.id));
   clock.advance(60_000);
   expect(clock.pending()).toBe(0);
-  for (const [index, planet] of planets.entries()) {
+  for (const [index, planet] of solarBodies.entries()) {
     expectSameCenter(planetCenter(picture, planet.id), initial[index]);
   }
   fireEvent.change(speed, { target: { value: '11' } });
   expect(speed).toHaveValue('11');
   expect(speed).toHaveAttribute('aria-valuetext', '11 Sekunden pro Erdenjahr');
   expect(screen.getByText('Ein Erdenjahr: 11 Sekunden')).toBeVisible();
+});
+
+it('bewegt den ausgewählten Zwergplaneten in seiner langen Umlaufzeit und hält ihn an', () => {
+  const clock = animationClock();
+  render(<DiscoverModel />);
+  fireEvent.click(screen.getByRole('button', { name: 'Pluto · Zwergplanet' }));
+  const picture = screen.getByRole('img');
+  const initial = planetCenter(picture, 'pluto');
+  expect(picture.querySelectorAll('path')).toHaveLength(9);
+  expect(picture.querySelectorAll('path')[8]).toHaveAttribute(
+    'stroke',
+    '#ffd17d',
+  );
+  expect(picture).toHaveTextContent('Pluto');
+  fireEvent.click(screen.getByRole('button', { name: 'Umlauf starten' }));
+  clock.advance(5000);
+  const firstYear = planetCenter(picture, 'pluto');
+  expect(firstYear).not.toEqual(initial);
+  clock.advance(((90560 / 365.256) * 5 - 5) * 1000);
+  expectSameCenter(planetCenter(picture, 'pluto'), initial);
+  fireEvent.click(screen.getByRole('button', { name: 'Umlauf anhalten' }));
+  clock.advance(60_000);
+  expectSameCenter(planetCenter(picture, 'pluto'), initial);
+  expect(
+    screen.getByRole('button', { name: 'Pluto · Zwergplanet' }),
+  ).toHaveAttribute('aria-pressed', 'true');
 });
 
 it.each([5, 15])(
@@ -265,7 +306,7 @@ it('zeigt im Rätsel ein Fragezeichen und lässt Bildklicks keine Lösung auswä
     <SolarSystemModel
       guessing
       target="saturn"
-      selected="earth"
+      selected="pluto"
       onSelect={select}
     />,
   );
@@ -284,10 +325,13 @@ it('zeigt im Rätsel ein Fragezeichen und lässt Bildklicks keine Lösung auswä
   clock.advance(10_000);
   expect(planetCenter(picture, 'saturn')).not.toEqual(initial);
   expect(picture).toHaveTextContent('?');
-  for (const planet of planets) {
+  for (const planet of solarBodies) {
     expect(picture).not.toHaveTextContent(planet.name);
   }
   expect(picture.querySelectorAll('circle[stroke="#ffd17d"]')).toHaveLength(1);
+  expect(
+    screen.queryByRole('button', { name: /Pluto/ }),
+  ).not.toBeInTheDocument();
   expect(picture.querySelectorAll('path')[5]).toHaveAttribute(
     'stroke',
     '#ffd17d',
@@ -296,7 +340,7 @@ it('zeigt im Rätsel ein Fragezeichen und lässt Bildklicks keine Lösung auswä
   expect(select).not.toHaveBeenCalled();
 });
 
-it('bündelt acht lokale Planetenbilder und hält Farbverläufe bei zwei Modellen getrennt', () => {
+it('bündelt neun lokale Bilder und hält Farbverläufe bei zwei Modellen getrennt', () => {
   const { container } = render(
     <>
       <DiscoverModel />
@@ -306,12 +350,15 @@ it('bündelt acht lokale Planetenbilder und hält Farbverläufe bei zwei Modelle
   const pictures = screen.getAllByRole('img');
   for (const picture of pictures) {
     const images = picture.querySelectorAll('image');
-    expect(images).toHaveLength(8);
+    expect(images).toHaveLength(9);
     expect(
       Array.from(images)
         .map((image) => image.getAttribute('href'))
         .sort(),
-    ).toEqual(planets.map((planet) => planet.image).sort());
+    ).toEqual(solarBodies.map((planet) => planet.image).sort());
+    expect(
+      picture.querySelector(`image[href="${pluto.image}"]`),
+    ).toBeInTheDocument();
   }
   const ids = Array.from(container.querySelectorAll('[id]')).map(
     (element) => element.id,

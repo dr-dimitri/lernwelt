@@ -169,3 +169,34 @@ export const planets: readonly SolarPlanet[] = [
     color: '#6485e9',
   },
 ];
+
+/** Pluto is discoverable without extending the eight-planet quiz contract. */
+export interface SolarDwarfPlanet extends Omit<SolarPlanet, 'id'> {
+  readonly id: 'pluto';
+}
+
+export type SolarBody = SolarPlanet | SolarDwarfPlanet;
+
+export const pluto: SolarDwarfPlanet = {
+  id: 'pluto',
+  name: 'Pluto',
+  order: 9,
+  image: '/images/solar-system/pluto.webp',
+  imageAlt:
+    'Pluto als braune Kugel mit einer hellen, herzförmigen Fläche. New-Horizons-Aufnahme mit ergänzten Farbdaten.',
+  imageCredit:
+    'NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute',
+  imageSource:
+    'https://science.nasa.gov/photojournal/plutos-big-heart-in-color/',
+  tagline: 'Eine kleine eisige Welt weit draußen.',
+  facts: [
+    'Pluto ist ein Zwergplanet. Er ist kleiner als unser Mond und zählt nicht zu den acht Planeten.',
+    'Er gehört zum Kuipergürtel. Dort kreisen viele eisige Körper weit draußen um die Sonne.',
+    'Ein Umlauf um die Sonne dauert etwa 248 Erdenjahre.',
+    'Auf seiner Oberfläche gibt es Berge aus Wassereis und Ebenen aus gefrorenem Stickstoff.',
+    'Pluto hat fünf Monde. Der größte heißt Charon.',
+  ],
+  color: '#c5af97',
+};
+
+export const solarBodies: readonly SolarBody[] = [...planets, pluto];
