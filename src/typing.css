@@ -63,6 +63,11 @@
   gap: 8px;
   padding: 8px 0;
 }
+.typing-difficulty-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 .typing-levels > span {
   font-size: 12px;
   color: var(--muted);
@@ -70,114 +75,9 @@
 }
 .typing-workspace {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
   align-items: start;
-}
-.typing-star-map {
-  position: relative;
-  overflow: hidden;
-  padding: 12px;
-  border: 1px solid #30495e;
-  border-radius: 16px;
-  background:
-    radial-gradient(circle at 18% 18%, #bad8eb 0 0.8px, transparent 1.1px),
-    radial-gradient(circle at 76% 65%, #6f94ad 0 0.8px, transparent 1.1px),
-    radial-gradient(circle at 90% 10%, #c5d8e3 0 1px, transparent 1.3px),
-    linear-gradient(155deg, #20334a, #152332);
-  background-size:
-    69px 89px,
-    101px 79px,
-    131px 127px,
-    auto;
-  color: #e9f2f7;
-}
-.typing-map-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-}
-.typing-map-heading h3 {
-  color: #e9f2f7;
-  font-size: 16px;
-}
-.typing-map-heading > span {
-  font-size: 9px;
-  color: #a9c4d2;
-  letter-spacing: 0.7px;
-}
-.detail-panel.typing-panel .typing-star-map > p {
-  color: #b8cdd9;
-  font-size: 11px;
-  margin: 4px 0 8px;
-  line-height: 1.45;
-}
-.detail-panel.typing-panel .typing-star-map > .typing-map-legend {
-  font-size: 10px;
-  margin: 8px 0 0;
-}
-.typing-stations {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 5px;
-}
-.typing-map-routes {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  stroke: #55768e;
-  stroke-width: 0.7;
-  fill: none;
-  stroke-dasharray: 2 3;
-}
-.typing-station {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  min-height: 55px;
-  padding: 5px;
-  border: 1px solid #446174;
-  border-radius: 10px;
-  background: #20374a;
-  color: #e7f1f5;
-  text-align: left;
-  transition:
-    background-color 150ms,
-    border-color 150ms;
-}
-.typing-station:hover:not(:disabled) {
-  background: #2a4659;
-  border-color: #8cbcc9;
-}
-.typing-station[aria-pressed='true'] {
-  border-color: #98d4dd;
-  background: #2b5063;
-  box-shadow: inset 0 0 0 1px #98d4dd;
-}
-.typing-station > span {
-  min-width: 0;
-}
-.typing-station strong {
-  display: block;
-  font-size: 11px;
-  line-height: 1.25;
-  overflow-wrap: anywhere;
-}
-.typing-station small {
-  display: block;
-  font-size: 10px;
-  margin-top: 3px;
-  color: #c2d7e0;
-}
-.typing-station .typing-station-keys {
-  font-size: 9px;
-  line-height: 1.2;
-  white-space: nowrap;
 }
 .typing-orbit {
   display: block;
@@ -204,11 +104,6 @@
 .typing-orbit-segment.complete {
   stroke: #8cd7df;
 }
-.typing-planet-lines {
-  fill: none;
-  stroke: #20374a;
-  stroke-width: 1.6;
-}
 .typing-ship {
   fill: #e2edf2;
   stroke: #6a96aa;
@@ -221,10 +116,6 @@
 .typing-ship .typing-ship-engine {
   stroke: #8cd7df;
   stroke-width: 2;
-}
-.typing-station .typing-orbit {
-  width: 34px;
-  height: 34px;
 }
 .typing-exercise {
   min-width: 0;
@@ -406,11 +297,112 @@
   margin-top: 14px;
   padding-top: 12px;
   border-top: 1px solid var(--space-line);
+  display: grid;
+  grid-template-columns: minmax(398px, 1.1fr) minmax(0, 1fr);
+  gap: 8px 14px;
+}
+.typing-keyboard-area {
+  min-width: 0;
+  grid-column: 1;
+  grid-row: 2;
+}
+.typing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+}
+.typing-topbar {
+  margin: 0;
+}
+.typing-header .typing-intro {
+  justify-content: flex-end;
+}
+.typing-header .typing-intro > p {
+  display: none;
+}
+.typing-course-picker {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.typing-course-picker > label {
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 650;
+}
+.typing-course-picker > select {
+  padding: 7px 10px;
+  font-size: 13px;
+}
+.typing-course-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px 12px;
+}
+.typing-course-bar .typing-keys-intro,
+.typing-course-bar .typing-lines {
+  margin: 0;
+}
+.typing-course-bar .typing-lines {
+  justify-content: flex-end;
+}
+.typing-course-bar .typing-keys-intro {
+  justify-content: flex-start;
+  background: none;
+  padding: 0;
+}
+.typing-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 14px;
+  margin-top: 10px;
+}
+.typing-form > .typing-correction,
+.typing-form > .typing-notice,
+.typing-form > .typing-input-tip {
+  grid-column: 1 / -1;
+}
+.typing-form > .typing-actions {
+  align-items: center;
+  grid-column: 2;
+  grid-row: 2;
+}
+.detail-panel.typing-panel .typing-form > .typing-input-tip {
+  margin: 0;
+}
+.typing-target-field,
+.typing-answer-field {
+  min-width: 0;
+}
+.typing-target-field {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+.typing-answer-field {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.typing-answer-field > label {
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.typing-answer-field > input {
+  flex: 1;
 }
 .detail-panel.typing-panel .typing-key-hint {
   color: var(--space-ink);
   margin: 0 0 9px;
   font-size: 13px;
+  grid-column: 1 / -1;
+  grid-row: 1;
 }
 .typing-keyboard-scroll {
   overflow-x: auto;
@@ -467,8 +459,13 @@
   color: #57380d;
 }
 .typing-hands-help {
-  margin-top: 12px;
-  padding: 12px;
+  display: contents;
+}
+.typing-hands-overview {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 0;
+  padding: 9px;
   border: 1px solid var(--space-line);
   border-radius: 13px;
   background: #f3f7fa;
@@ -486,15 +483,15 @@
   font-size: 14px;
 }
 .typing-hands-heading > span {
-  font-size: 11px;
+  font-size: 10px;
   color: #567184;
 }
 .typing-hands-diagram {
   display: block;
   width: 100%;
-  max-width: 560px;
+  max-width: 320px;
   height: auto;
-  margin: 8px auto 0;
+  margin: 4px auto 0;
 }
 .typing-hand-outline,
 .typing-posture-arm {
@@ -522,7 +519,7 @@
 .typing-finger-key {
   fill: #2a4a60;
   font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
 }
 .typing-hand-finger.active .typing-finger-trace,
@@ -545,7 +542,7 @@
 }
 .typing-finger-action {
   fill: #285c73;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 .typing-hand-finger.choice .typing-finger-marker {
@@ -566,7 +563,7 @@
 .typing-hand-space-label,
 .typing-hand-label {
   fill: #2a4a60;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 650;
 }
 .detail-panel.typing-panel .typing-hand-home,
@@ -582,13 +579,15 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px 14px;
+  gap: 5px 10px;
   border-top: 1px solid var(--space-line);
-  margin-top: 10px;
-  padding-top: 8px;
+  margin-top: 7px;
+  padding-top: 5px;
+  grid-column: 1 / -1;
+  grid-row: 3;
 }
 .typing-posture-diagram {
-  width: 150px;
+  width: 90px;
   max-width: 100%;
   flex-shrink: 0;
 }
@@ -608,14 +607,17 @@
 }
 .typing-posture ul {
   flex: 1;
-  min-width: min(100%, 240px);
+  min-width: min(100%, 180px);
   padding-left: 16px;
   margin: 0;
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1.35;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
 }
 .typing-posture li + li {
-  margin-top: 4px;
+  margin-top: 0;
 }
 .detail-panel.typing-panel .typing-keyboard-help > p:last-child {
   font-size: 12px;
@@ -633,9 +635,30 @@
   border: 0;
 }
 @media (max-width: 1000px) {
-  .typing-workspace {
-    grid-template-columns: 194px minmax(0, 1fr);
-    gap: 14px;
+  .typing-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .typing-form > .typing-actions {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .typing-keyboard-help {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .typing-keyboard-area {
+    grid-row: auto;
+  }
+  .typing-hands-diagram {
+    max-width: 430px;
+  }
+  .typing-hands-help {
+    display: block;
+  }
+  .typing-posture ul {
+    display: block;
+  }
+  .typing-posture li + li {
+    margin-top: 3px;
   }
 }
 @media (max-width: 760px) {
@@ -645,14 +668,26 @@
   .typing-workspace {
     grid-template-columns: minmax(0, 1fr);
   }
-  .typing-stations {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .typing-header,
+  .typing-course-bar,
+  .typing-form,
+  .typing-answer-field {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
-  .typing-station {
-    min-height: 60px;
+  .typing-header .typing-intro {
+    justify-content: space-between;
   }
-  .typing-map-routes {
-    display: none;
+  .typing-header .typing-intro > p {
+    display: block;
+  }
+  .typing-course-bar .typing-keys-intro,
+  .typing-course-bar .typing-lines {
+    justify-content: flex-start;
+  }
+  .typing-course-picker {
+    flex-basis: 100%;
   }
   .typing-levels > span {
     width: 100%;
@@ -660,28 +695,82 @@
   }
 }
 @media (max-height: 800px) and (min-width: 761px) {
+  main:has(.typing-panel) {
+    padding-top: 10px;
+    padding-bottom: 18px;
+  }
+  .page-heading.typing-page-heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .detail-panel.typing-panel {
+    padding: 10px 16px;
+  }
   .typing-topbar .eyebrow {
     display: none;
   }
   .typing-station-heading {
-    padding-block: 6px;
+    padding-block: 2px;
   }
   .typing-station-heading > .typing-orbit {
     width: 54px;
     height: 54px;
   }
   .typing-levels {
-    padding-block: 6px;
+    padding-block: 0;
+    gap: 6px;
   }
-}
-@media (max-width: 500px) {
-  .typing-stations {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .typing-difficulty-options > .secondary-button {
+    padding: 8px 12px;
+    font-size: 13px;
   }
-  .typing-station .typing-orbit {
+  .typing-levels > span {
+    flex-basis: auto;
+    text-align: right;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .typing-course-bar .typing-station-heading > .typing-orbit {
     width: 34px;
     height: 34px;
   }
+  .typing-keyboard-help {
+    margin-top: 4px;
+    padding-top: 4px;
+    row-gap: 6px;
+  }
+  .typing-form {
+    margin-top: 8px;
+    row-gap: 6px;
+  }
+  .detail-panel.typing-panel .typing-prompt {
+    font-size: 22px;
+    padding-block: 8px;
+    line-height: 1.4;
+  }
+  .typing-course-bar .typing-mission-status {
+    display: none;
+  }
+}
+@media (max-height: 800px) and (min-width: 1001px) {
+  .app-content:has(.typing-panel) > .header {
+    min-height: 64px;
+    padding-block: 8px;
+  }
+  .typing-hand-home,
+  .typing-hand-activity {
+    display: none;
+  }
+  .detail-panel.typing-panel .typing-key-hint {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 500px) {
   .typing-station-heading > .typing-orbit {
     width: 58px;
     height: 62px;
@@ -692,10 +781,5 @@
   }
   .typing-levels .secondary-button {
     padding-inline: 12px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .typing-station {
-    transition: none;
   }
 }
