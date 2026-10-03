@@ -200,16 +200,75 @@ it('erklärt Starttasten und zeigt QWERTZ, Leerzeichen sowie gegenüberliegendes
   expect(keyboard).toHaveAttribute('tabindex', '0');
   expect(within(keyboard).getByText('ß')).toBeVisible();
   expect(within(keyboard).queryByRole('button')).not.toBeInTheDocument();
-  expect(screen.getByText(/linker Zeigefinger/)).toBeVisible();
+  expect(
+    screen.getByText(/linker Zeigefinger/, { selector: '.typing-key-hint' }),
+  ).toBeVisible();
   await user.type(field, 'fj');
-  expect(screen.getByText(/ein Daumen/)).toBeVisible();
+  expect(
+    screen.getByText(/ein Daumen/, { selector: '.typing-key-hint' }),
+  ).toBeVisible();
   await user.click(
     screen.getByRole('button', {
       name: 'Sektor 12: Logbuch · 0 von 3 Zeilen bestätigt',
     }),
   );
-  expect(screen.getByText(/rechte[r]? kleine[r]? Finger/)).toBeVisible();
+  expect(
+    screen.getByText(/rechte[r]? kleine[r]? Finger/, {
+      selector: '.typing-key-hint',
+    }),
+  ).toBeVisible();
   expect(screen.getByText(/linke Umschalttaste/)).toBeVisible();
+});
+
+it('blendet die Hände gemeinsam mit der Tastatur ein und hält sie bei zusätzlichen oder vollständigen Zeichen neutral', async () => {
+  const user = userEvent.setup();
+  const { container } = render(<TypingPanel profileVersion={0} />);
+  const field = await screen.findByLabelText('Deine Zeile');
+  expect(screen.queryByText('So liegen deine Hände')).not.toBeInTheDocument();
+  await user.click(
+    screen.getByRole('button', { name: 'Tastaturhilfe einblenden' }),
+  );
+  expect(screen.getByText('So liegen deine Hände')).toBeVisible();
+  expect(container.querySelector('[data-finger="left-index"]')).toHaveAttribute(
+    'data-status',
+    'active',
+  );
+  fireEvent.change(field, { target: { value: 'fj' } });
+  expect(container.querySelectorAll('[data-status="choice"]')).toHaveLength(2);
+  fireEvent.change(field, { target: { value: 'fj jfx' } });
+  expect(container.querySelectorAll('[data-status="rest"]')).toHaveLength(10);
+  expect(screen.getByText(/Nächste Taste: Rücktaste/)).toBeVisible();
+  const keyboard = screen.getByRole('region', {
+    name: 'Deutsche QWERTZ-Tastatur als Hilfe',
+  });
+  expect(within(keyboard).getByText('⌫')).toHaveClass('highlighted');
+  fireEvent.change(field, { target: { value: 'fj jf' } });
+  expect(container.querySelectorAll('[data-status="rest"]')).toHaveLength(10);
+  expect(keyboard.querySelector('.highlighted')).not.toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Zeile prüfen' }));
+  await screen.findByRole('heading', { name: 'Geschafft! +2 Punkte' });
+  expect(container.querySelectorAll('[data-status="rest"]')).toHaveLength(10);
+  await user.click(screen.getByRole('button', { name: 'Noch einmal üben' }));
+  expect(container.querySelector('[data-finger="left-index"]')).toHaveAttribute(
+    'data-status',
+    'active',
+  );
+  fireEvent.change(field, { target: { value: 'x' } });
+  expect(
+    screen.getByText(/Zum Verbessern: linker Zeigefinger/, {
+      selector: '.typing-hand-activity',
+    }),
+  ).toBeVisible();
+  await user.click(
+    screen.getByRole('button', { name: 'Tastaturhilfe ausblenden' }),
+  );
+  expect(screen.queryByText('So liegen deine Hände')).not.toBeInTheDocument();
+  expect(
+    screen.queryByRole('region', {
+      name: 'Deutsche QWERTZ-Tastatur als Hilfe',
+    }),
+  ).not.toBeInTheDocument();
+  expect(field).toHaveValue('x');
 });
 
 it('wartet auf die Desktop-Prüfung und lässt eine falsche Zeile ohne Punkte korrigieren', async () => {
