@@ -411,6 +411,57 @@
       "credit": "NASA/JPL",
       "retrievedAt": "2026-10-03",
       "processing": "NASA-Datei auf maximal 1400 Pixel an der längsten Seite verkleinert und als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    },
+    {
+      "id": "pluto",
+      "planetId": "pluto",
+      "title": "Pluto und sein helles Herz",
+      "alt": "Pluto als braune Kugel mit einer hellen, herzförmigen Fläche. New-Horizons-Aufnahme mit ergänzten Farbdaten.",
+      "caption": "Die helle Fläche auf Pluto sieht wie ein Herz aus. New Horizons fotografierte sie. NASA ergänzte das scharfe Schwarz-Weiß-Bild mit Farbdaten derselben Raumsonde.",
+      "sourceImage": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia19/pia19708/PIA19708.jpg",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 35562,
+      "sha256": "8c9e734513bf1e24ed7ad501f2a87fc3545abc98b8b03a82b974cb76f52643f8",
+      "file": "pluto.webp",
+      "sourcePage": "https://science.nasa.gov/photojournal/plutos-big-heart-in-color/",
+      "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+      "retrievedAt": "2026-10-04",
+      "processing": "NASA-Originaldatei mit 1024 × 1024 Pixeln als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    },
+    {
+      "id": "pluto-pia19710",
+      "planetId": "pluto",
+      "title": "Plutos Eisberge aus der Nähe",
+      "alt": "Eine Bergkette auf Pluto mit zerklüfteten Gipfeln und flacheren Flächen. Schwarz-Weiß-Nahaufnahme von New Horizons.",
+      "caption": "Diese Nahaufnahme zeigt Berge nahe Plutos Äquator. Die Gipfel sind wahrscheinlich aus Wassereis. Die Aufnahme ist in Schwarz-Weiß.",
+      "sourceImage": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia19/pia19710/PIA19710.jpg",
+      "width": 1041,
+      "height": 742,
+      "bytes": 88102,
+      "sha256": "3f86e4a1b2045362bbcc062295fc948942817de135a24b8c7b39d45569258658",
+      "file": "pluto-pia19710.webp",
+      "sourcePage": "https://science.nasa.gov/photojournal/the-icy-mountains-of-pluto/",
+      "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+      "retrievedAt": "2026-10-04",
+      "processing": "NASA-Originaldatei mit 1041 × 742 Pixeln als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
+    },
+    {
+      "id": "pluto-pia20038",
+      "planetId": "pluto",
+      "title": "Pluto im Gegenlicht",
+      "alt": "Pluto als dunkle Scheibe mit einer hellen Sichel und feinen Dunstschichten am Rand. New-Horizons-Aufnahme im Gegenlicht.",
+      "caption": "Nach dem Vorbeiflug blickte New Horizons zurück zu Pluto. Sonnenlicht macht feine Dunstschichten in seiner dünnen Lufthülle sichtbar.",
+      "sourceImage": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20038/PIA20038.jpg",
+      "width": 1400,
+      "height": 788,
+      "bytes": 15660,
+      "sha256": "b85e4849d9b6b3724a2b044024d8219ce426bdbb4603ac7f1fc43c131d1c78bd",
+      "file": "pluto-pia20038.webp",
+      "sourcePage": "https://science.nasa.gov/photojournal/a-full-view-of-plutos-stunning-crescent/",
+      "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+      "retrievedAt": "2026-10-04",
+      "processing": "NASA-Datei auf maximal 1400 Pixel an der längsten Seite verkleinert und als WebP (Qualität 88) komprimiert; keine Inhalts- oder Farbänderung durch Lernwelt."
     }
   ]
 }

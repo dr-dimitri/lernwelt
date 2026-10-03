@@ -1,5 +1,9 @@
 import { useId, useMemo, useRef, useState } from 'react';
-import { planets, type SolarPlanet } from '../domain/solar-system';
+import {
+  solarBodies,
+  type SolarBody,
+  type SolarPlanet,
+} from '../domain/solar-system';
 import {
   solarOrbitPath,
   solarPlanetPosition,
@@ -9,8 +13,8 @@ import useSolarOrbit from './useSolarOrbit';
 // Zoom into the planetary disc in each local NASA image; keep full photographs
 // in the fact cards and quiz close-up. Saturn's rings are drawn separately here.
 const modelCrop: Record<
-  SolarPlanet['id'],
-  { x: number; y: number; size: number }
+  SolarBody['id'],
+  { x: number; y: number; size: number; height?: number }
 > = {
   mercury: { x: 279, y: 29, size: 512 },
   venus: { x: 254, y: 40, size: 496 },
@@ -20,6 +24,7 @@ const modelCrop: Record<
   saturn: { x: 434, y: 37, size: 255 },
   uranus: { x: 240, y: 23, size: 536 },
   neptune: { x: 240, y: 24, size: 536 },
+  pluto: { x: 192, y: 174, size: 650, height: 1024 },
 };
 
 export default function SolarSystemModel({
@@ -30,8 +35,8 @@ export default function SolarSystemModel({
 }: {
   target?: SolarPlanet['id'] | null;
   guessing: boolean;
-  selected: SolarPlanet['id'];
-  onSelect: (id: SolarPlanet['id']) => void;
+  selected: SolarBody['id'];
+  onSelect: (id: SolarBody['id']) => void;
 }) {
   const id = useId().replaceAll(':', '');
   const [yaw, setYaw] = useState(0);
@@ -44,7 +49,7 @@ export default function SolarSystemModel({
     earthYears,
   } = useSolarOrbit();
   const orbitPaths = useMemo(
-    () => planets.map((planet) => solarOrbitPath(planet.order, yaw, tilt)),
+    () => solarBodies.map((planet) => solarOrbitPath(planet.order, yaw, tilt)),
     [yaw, tilt],
   );
   const drag = useRef<{
@@ -54,14 +59,14 @@ export default function SolarSystemModel({
     tilt: number;
   } | null>(null);
   const moved = useRef(false);
-  const positions = planets.map((planet) => ({
+  const positions = solarBodies.map((planet) => ({
     planet,
     ...solarPlanetPosition(planet, yaw, tilt, earthYears),
   }));
   const nodes = [
     ...positions.map((point) => ({ ...point, sun: false })),
     {
-      planet: planets[0],
+      planet: solarBodies[0],
       x: 500,
       y: 315,
       radius: 43,
@@ -78,7 +83,9 @@ export default function SolarSystemModel({
         <span>DEIN BLICK INS ALL</span>
         <span>
           ✦{' '}
-          {guessing ? 'Welcher Planet ist goldmarkiert?' : '8 Welten · 1 Stern'}
+          {guessing
+            ? 'Welcher Planet ist goldmarkiert?'
+            : '8 Planeten · Pluto · 1 Stern'}
         </span>
       </div>
       <svg
@@ -88,7 +95,7 @@ export default function SolarSystemModel({
         aria-label={
           guessing
             ? 'Räumliches Sonnensystem. Der gesuchte Planet und seine Umlaufbahn sind goldmarkiert. Die Sonne steht in der Mitte.'
-            : 'Drehbares räumliches Modell mit Sonne und acht Planeten. Wähle einen Planeten mit den Tasten unter dem Bild.'
+            : 'Drehbares räumliches Modell mit Sonne, acht Planeten und dem Zwergplaneten Pluto. Wähle eine Welt mit den Tasten unter dem Bild.'
         }
         onPointerDown={(event) => {
           if (event.button !== 0) return;
@@ -142,7 +149,7 @@ export default function SolarSystemModel({
               opacity={0.2 + (i % 5) * 0.12}
             />
           ))}
-          {planets.map((planet) => (
+          {solarBodies.map((planet) => (
             <path
               key={planet.id}
               d={orbitPaths[planet.order - 1]}
@@ -211,7 +218,10 @@ export default function SolarSystemModel({
                     <image
                       href={point.planet.image}
                       width="1024"
-                      height={point.planet.id === 'saturn' ? 341 : 576}
+                      height={
+                        modelCrop[point.planet.id].height ??
+                        (point.planet.id === 'saturn' ? 341 : 576)
+                      }
                     />
                   </svg>
                 </g>
@@ -311,7 +321,8 @@ export default function SolarSystemModel({
         </label>
         <p>
           Die Erde braucht hier {earthYearSeconds} Sekunden für eine Runde. Die
-          anderen Planeten kreisen im Verhältnis ihrer echten Umlaufzeiten.
+          anderen Planeten und Pluto kreisen im Verhältnis ihrer echten
+          Umlaufzeiten.
         </p>
       </div>
       <figcaption>
@@ -319,21 +330,28 @@ export default function SolarSystemModel({
         dann Pfeiltasten.
         <strong>
           {' '}
-          Größen und Abstände sind zum Lernen verändert. Die Planeten stehen
+          Größen und Abstände sind zum Lernen verändert. Die Welten stehen
           anfangs an Beispielpositionen. Sie bewegen sich auf vereinfachten
-          Kreisbahnen gleichmäßig um die Sonne.
+          Kreisbahnen gleichmäßig um die Sonne. Plutos echte Bahn ist schräg und
+          oval.
         </strong>
       </figcaption>
       {!guessing && (
         <div className="solar-planet-picker" aria-label="Planet entdecken">
-          {planets.map((planet) => (
+          {solarBodies.map((planet) => (
             <button
               key={planet.id}
               type="button"
               aria-pressed={selected === planet.id}
               onClick={() => onSelect(planet.id)}
             >
-              <span>{planet.order}</span> {planet.name}
+              {planet.id === 'pluto' ? (
+                'Pluto · Zwergplanet'
+              ) : (
+                <>
+                  <span>{planet.order}</span> {planet.name}
+                </>
+              )}
             </button>
           ))}
         </div>

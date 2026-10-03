@@ -2,7 +2,7 @@ import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import type { AnswerResult } from '../domain/learning';
-import { planets } from '../domain/solar-system';
+import { planets, pluto, solarBodies } from '../domain/solar-system';
 import { getPlanetImages } from '../domain/solar-planet-images';
 import { desktop } from '../lib/desktop';
 import {
@@ -37,9 +37,18 @@ beforeEach(() => {
   );
 });
 
-async function startQuiz(user: ReturnType<typeof userEvent.setup>) {
+async function startQuiz(
+  user: ReturnType<typeof userEvent.setup>,
+  fromPluto = false,
+) {
   render(<SolarSystemWorld profileVersion={0} />);
   await screen.findByRole('button', { name: /Könner/ });
+  if (fromPluto) {
+    await user.click(
+      screen.getByRole('button', { name: 'Pluto · Zwergplanet' }),
+    );
+    expect(screen.getByRole('article', { name: 'Pluto' })).toBeVisible();
+  }
   await user.click(screen.getByRole('button', { name: 'Planeten erraten' }));
   return screen.getByRole('heading', { name: firstQuestion.prompt });
 }
@@ -66,6 +75,59 @@ it('entdeckt alle acht Steckbriefe mit lokalem NASA-Bild, Fakten und Bildquelle'
   expect(desktop.submitAnswer).not.toHaveBeenCalled();
 });
 
+it('entdeckt Pluto als Zwergplaneten mit drei Bildern, Großansicht und zurückgesetzter Galerie', async () => {
+  const user = userEvent.setup();
+  render(<SolarSystemWorld profileVersion={0} />);
+  await screen.findByRole('button', { name: /Könner/ });
+  const picker = screen.getByRole('button', { name: 'Pluto · Zwergplanet' });
+  await user.click(picker);
+  expect(picker).toHaveAttribute('aria-pressed', 'true');
+  const card = screen.getByRole('article', { name: 'Pluto' });
+  expect(within(card).getByText('ZWERGPLANET')).toBeVisible();
+  expect(card).not.toHaveTextContent('PLANET 9 VON DER SONNE AUS');
+  for (const fact of pluto.facts) expect(card).toHaveTextContent(fact);
+  const images = getPlanetImages('pluto');
+  expect(images).toHaveLength(3);
+  for (const [index, image] of images.entries()) {
+    expect(within(card).getByText(`Bild ${index + 1} von 3`)).toBeVisible();
+    expect(within(card).getByRole('img')).toHaveAttribute('src', image.src);
+    expect(within(card).getByRole('img')).toHaveAccessibleName(image.alt);
+    expect(within(card).getByText(image.title)).toBeVisible();
+    expect(within(card).getByText(image.caption)).toBeVisible();
+    expect(
+      within(card).getByRole('link', { name: 'NASA-Bildquelle' }),
+    ).toHaveAttribute('href', image.sourcePage);
+    expect(card).toHaveTextContent(image.credit);
+    if (index < images.length - 1) {
+      await user.click(
+        within(card).getByRole('button', { name: 'Nächstes Bild' }),
+      );
+    }
+  }
+  const trigger = within(card).getByRole('button', { name: 'Bild vergrößern' });
+  await user.click(trigger);
+  const dialog = screen.getByRole('dialog', { name: 'Pluto: Bild vergrößert' });
+  expect(within(dialog).getByRole('img')).toHaveAttribute('src', images[2].src);
+  expect(
+    within(dialog).getByRole('button', { name: 'Schließen' }),
+  ).toHaveFocus();
+  await user.click(
+    within(dialog).getByRole('button', { name: 'Nächstes Bild' }),
+  );
+  expect(within(dialog).getByRole('img')).toHaveAttribute('src', pluto.image);
+  await user.click(within(dialog).getByRole('button', { name: 'Schließen' }));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(trigger).toHaveFocus();
+  await user.click(within(card).getByRole('button', { name: 'Nächstes Bild' }));
+  expect(within(card).getByRole('img')).toHaveAttribute('src', images[1].src);
+  await user.click(screen.getByRole('button', { name: '3 Erde' }));
+  await user.click(picker);
+  const reopened = screen.getByRole('article', { name: 'Pluto' });
+  expect(within(reopened).getByText('Bild 1 von 3')).toBeVisible();
+  expect(within(reopened).getByRole('img')).toHaveAttribute('src', pluto.image);
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
+});
+
 it('beginnt bei jedem Planetenwechsel mit Bild 1 und vergibt beim Erkunden keine Punkte', async () => {
   const user = userEvent.setup();
   render(<SolarSystemWorld profileVersion={0} />);
@@ -87,9 +149,9 @@ it('beginnt bei jedem Planetenwechsel mit Bild 1 und vergibt beim Erkunden keine
   expect(desktop.submitAnswer).not.toHaveBeenCalled();
 });
 
-it('markiert den gesuchten Planeten, ohne ihn in Grafik, Bildtext oder Überschrift zu benennen', async () => {
+it('markiert nach Pluto-Auswahl alle acht Rätsel ohne Namensleck oder Pluto als Antwortoption', async () => {
   const user = userEvent.setup();
-  await startQuiz(user);
+  await startQuiz(user, true);
   for (let index = 0; index < questions.length; index++) {
     const question = questions[index];
     const answer = solarAnswerFor(question);
@@ -101,7 +163,7 @@ it('markiert den gesuchten Planeten, ohne ihn in Grafik, Bildtext oder Überschr
     expect(heading).not.toHaveTextContent(answer);
     const model = screen.getByRole('img', { name: /Räumliches Sonnensystem/ });
     expect(model).toHaveTextContent('?');
-    for (const planet of planets) {
+    for (const planet of solarBodies) {
       expect(model).not.toHaveTextContent(planet.name);
       expect(model).not.toHaveAccessibleName(new RegExp(planet.name));
     }
@@ -109,6 +171,16 @@ it('markiert den gesuchten Planeten, ohne ihn in Grafik, Bildtext oder Überschr
       screen.getByRole('img', { name: 'NASA-Aufnahme des gesuchten Planeten' }),
     ).toHaveAttribute('src', target.image);
     expect(screen.getAllByRole('radio')).toHaveLength(8);
+    expect(
+      screen.queryByRole('radio', { name: /Pluto/ }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /Pluto/ }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('article', { name: 'Pluto' }),
+    ).not.toBeInTheDocument();
+    expect(model.querySelectorAll('image')).toHaveLength(9);
     expect(screen.getByRole('radio', { name: answer })).not.toBeChecked();
     expect(
       screen.queryByRole('button', { name: `${target.order} ${answer}` }),

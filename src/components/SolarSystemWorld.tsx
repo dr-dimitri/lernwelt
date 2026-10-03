@@ -5,7 +5,7 @@ import {
   type Difficulty,
   type LearningState,
 } from '../domain/learning';
-import { planets, type SolarPlanet } from '../domain/solar-system';
+import { planets, solarBodies, type SolarBody } from '../domain/solar-system';
 import { desktop } from '../lib/desktop';
 import InfoPanel from './InfoPanel';
 import LearningHints from './LearningHints';
@@ -19,7 +19,7 @@ export default function SolarSystemWorld({
   profileVersion: number;
 }) {
   const [mode, setMode] = useState<'discover' | 'quiz'>('discover');
-  const [selected, setSelected] = useState<SolarPlanet['id']>('earth');
+  const [selected, setSelected] = useState<SolarBody['id']>('earth');
   const [state, setState] = useState<LearningState | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -38,7 +38,7 @@ export default function SolarSystemWorld({
   } | null>(null);
   const questionHeading = useRef<HTMLHeadingElement>(null);
   const focusQuestion = useRef(false);
-  const planet = planets.find((item) => item.id === selected)!;
+  const planet = solarBodies.find((item) => item.id === selected)!;
   const questions =
     state?.questions.filter(
       (item) =>
@@ -207,8 +207,8 @@ export default function SolarSystemWorld({
           <p className="eyebrow">GEOGRAPHIE · DEINE WELTRAUMREISE</p>
           <h2 id="solar-title">Hallo, Sonnensystem!</h2>
           <p>
-            Acht Planeten, ein leuchtender Stern und mittendrin unser Zuhause.
-            Komm mit auf Entdeckungsreise!
+            Acht Planeten, der Zwergplanet Pluto und ein leuchtender Stern. Komm
+            mit auf Entdeckungsreise!
           </p>
         </div>
         <div className="solar-counter" aria-label="Verfügbare Punkte">
@@ -299,7 +299,11 @@ export default function SolarSystemWorld({
           >
             <PlanetGallery key={planet.id} planet={planet} />
             <div>
-              <p className="eyebrow">PLANET {planet.order} VON DER SONNE AUS</p>
+              <p className="eyebrow">
+                {planet.id === 'pluto'
+                  ? 'ZWERGPLANET'
+                  : `PLANET ${planet.order} VON DER SONNE AUS`}
+              </p>
               <h3 id="solar-planet-title">{planet.name}</h3>
               <p className="solar-tagline">{planet.tagline}</p>
               <ul>
@@ -341,7 +345,8 @@ export default function SolarSystemWorld({
               <h3>Und was ist mit Pluto?</h3>
               <p>
                 Pluto gehört auch zum Sonnensystem. Er ist ein Zwergplanet und
-                zählt deshalb nicht zu den acht Planeten.
+                zählt deshalb nicht zu den acht Planeten. Wähle Pluto unter dem
+                Modell und entdecke seine eisige Oberfläche.
               </p>
             </article>
           </div>
@@ -353,6 +358,7 @@ export default function SolarSystemWorld({
                 Beschrifte sie in der Reihenfolge von der Sonne aus. Schau bei
                 Bedarf im Modell nach.
               </li>
+              <li>Zeichne zusätzlich Pluto und schreibe „Zwergplanet“ dazu.</li>
               <li>Erkläre jemandem: Was macht unsere Erde besonders?</li>
             </ol>
             <p>
@@ -524,7 +530,8 @@ export default function SolarSystemWorld({
           Dieses begrenzte Lernangebot gehört zu Geographie Klasse 5,
           Lernbereich 2 „Planet Erde“: Grundstruktur des Sonnensystems und
           Besonderheiten der Erde. Es deckt nicht den gesamten
-          Geographie-Lehrplan ab. Quellenstand: 03.10.2026.
+          Geographie-Lehrplan ab. Quellenstand: 03.10.2026; Pluto ergänzt am
+          04.10.2026.
         </p>
         <p>
           <a
@@ -549,7 +556,7 @@ export default function SolarSystemWorld({
           öffnen externe Quellen und benötigen Internet.
         </p>
         <ul>
-          {planets.map((item) => (
+          {solarBodies.map((item) => (
             <li key={item.id}>
               <a href={item.imageSource} target="_blank" rel="noreferrer">
                 {item.name}

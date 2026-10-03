@@ -1,10 +1,10 @@
-import type { SolarPlanet } from './solar-system';
+import type { SolarBody } from './solar-system';
 import { solarOrbitAngle } from './solar-orbits';
 
 // Deliberately compressed distances and enlarged planets for a readable model.
-const radii = [68, 102, 140, 180, 238, 300, 365, 430];
-const angles = [210, 330, 85, 155, 275, 30, 190, 115];
-const sizes = [10, 15, 17, 13, 38, 32, 25, 24];
+const radii = [68, 102, 140, 180, 238, 300, 365, 430, 480];
+const angles = [210, 330, 85, 155, 275, 30, 190, 115, 300];
+const sizes = [10, 15, 17, 13, 38, 32, 25, 24, 11];
 
 export function projectSolarPoint(
   x: number,
@@ -19,9 +19,12 @@ export function projectSolarPoint(
   const depth = rotatedZ * Math.cos(elevation);
   // Fit even the nearest outer orbit into the frame at a steep viewing angle.
   // Reserve space above the spheres for the target marker and its label.
-  const outerExtent =
-    (430 * Math.sin(elevation)) / (1 - (430 / 1400) * Math.cos(elevation));
-  const fit = Math.min(1, 255 / outerExtent);
+  const outerRadius = radii.at(-1)!;
+  const perspective = (outerRadius / 1400) * Math.cos(elevation);
+  const verticalExtent =
+    (outerRadius * Math.sin(elevation)) / (1 - perspective);
+  const horizontalExtent = outerRadius / Math.sqrt(1 - perspective ** 2);
+  const fit = Math.min(1, 255 / verticalExtent, 460 / horizontalExtent);
   const scale = fit / (1 + depth / 1400);
   return {
     x: 500 + rotatedX * scale,
@@ -32,7 +35,7 @@ export function projectSolarPoint(
 }
 
 export function solarPlanetPosition(
-  planet: SolarPlanet,
+  planet: SolarBody,
   yaw: number,
   tilt: number,
   earthYears = 0,

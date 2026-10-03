@@ -1,5 +1,6 @@
 import { expect, it } from 'vitest';
-import { planets } from './solar-system';
+import { solarBodies } from './solar-system';
+import { orbitalPeriodDays } from './solar-orbits';
 import {
   projectSolarPoint,
   solarOrbitPath,
@@ -24,10 +25,10 @@ it('hält den Sonnenmittelpunkt fest und stellt nahe Punkte perspektivisch grö�
   expect(projectSolarPoint(200, 0, 180, 38).x).toBeLessThan(500);
 });
 
-it('zeigt alle Planeten über den ganzen Reglerbereich endlich und innerhalb der Bildfläche', () => {
+it('zeigt acht Planeten und Pluto über den ganzen Reglerbereich innerhalb der Bildfläche', () => {
   for (let yaw = -180; yaw <= 180; yaw += 15) {
     for (let tilt = 15; tilt <= 80; tilt += 5) {
-      for (const planet of planets) {
+      for (const planet of solarBodies) {
         const point = solarPlanetPosition(planet, yaw, tilt);
         expect(Object.values(point).every(Number.isFinite)).toBe(true);
         expect(point.radius).toBeGreaterThan(0);
@@ -41,7 +42,7 @@ it('zeigt alle Planeten über den ganzen Reglerbereich endlich und innerhalb der
 });
 
 it('liefert geschlossene endliche Umlaufbahnen und ändert sie beim Drehen oder Kippen', () => {
-  for (const planet of planets) {
+  for (const planet of solarBodies) {
     const path = solarOrbitPath(planet.order, 0, 38);
     expect(path).toMatch(/^M[-\d., ]+(?:L[-\d., ]+)+ Z$/);
     expect(path).not.toMatch(/NaN|Infinity/);
@@ -52,11 +53,15 @@ it('liefert geschlossene endliche Umlaufbahnen und ändert sie beim Drehen oder 
   }
 });
 
-it('hält die Planeten auch während des Umlaufs bei jedem Blickwinkel in der Bildfläche', () => {
+it('hält alle neun Welten auch während des Umlaufs bei jedem Blickwinkel in der Bildfläche', () => {
   for (const yaw of [-180, -90, 0, 90, 180]) {
     for (const tilt of [15, 38, 80]) {
-      for (const earthYears of [0.1, 0.25, 0.5, 1, 5, 25, 100]) {
-        for (const planet of planets) {
+      for (const planet of solarBodies) {
+        for (const fraction of [
+          0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875,
+        ]) {
+          const earthYears =
+            (orbitalPeriodDays[planet.id] / orbitalPeriodDays.earth) * fraction;
           const point = solarPlanetPosition(planet, yaw, tilt, earthYears);
           expect(Object.values(point).every(Number.isFinite)).toBe(true);
           expect(point.radius).toBeGreaterThan(0);
