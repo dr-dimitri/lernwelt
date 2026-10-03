@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.6.0 ergänzt Worms als eigenes Inselduell in der Spielhalle und zeigt die Tastaturhilfe im üblichen Laptopfenster gemeinsam mit der Schreibaufgabe. [Alle Änderungen und Installationshinweise](docs/releases/0.6.0.md).
+Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.6.1 ergänzt bei den römischen Zahlen Zufallsübungen von 1 bis 9999 in beide Richtungen. [Alle Änderungen und Installationshinweise](docs/releases/0.6.1.md).
 
 ## Mitarbeit
 
