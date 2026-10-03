@@ -12,6 +12,8 @@ Der Rückweg führt zur Themenübersicht und setzt den Tastaturfokus auf ihre Ü
 
 Geographie öffnet eine [eigene Sonnensystemwelt](solar-system.md) mit Entdeckungsmodus, NASA-Bildern und acht Rätseln pro Stufe. Die Aufgabe ist auch in der Katalogmatrix unter „Planet Erde“ zugeordnet.
 
+Im Unterthema „Römische Zahlen“ ergänzt eine [Zufallsübung von 1 bis 9999](roman-practice.md) die festen Katalogaufgaben. Beide Richtungen sind frei wählbar. Dynamische Aufgaben sind kein Teil der unten gezählten festen Inhaltsbank; Erstlösungen und Wiederholungen verwenden die bisherigen Punktregeln.
+
 ## Tatsächliches Angebot
 
 Der Katalog enthält **88 Unterthemen in 18 Lernbereichen** und **3.699 Fachaufgaben**: 1.767 Mathematik, 1.368 Englisch, 540 Natur und Technik sowie 24 Geographie. Die bisherigen Unterthemen bieten mindestens zwölf Aufgaben je Stufe; Sonnensystem enthält genau acht Planetenrätsel je Stufe. Die bisherigen 615 Aufgaben bleiben erhalten; `topic-practice-v1.json` ergänzt 3.060 eigene Aufgaben. Kein Unterthema hat mehr eine leere Stufe.

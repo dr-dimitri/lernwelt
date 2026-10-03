@@ -2061,3 +2061,14 @@ main {
     transform: none;
   }
 }
+.roman-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block: 0.75rem;
+}
+
+.roman-controls button[aria-pressed='true'] {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

@@ -11,6 +11,7 @@ import LearningHints from './LearningHints';
 import LearningTable from './LearningTable';
 import NatureGames from './NatureGames';
 import NumberLine from './NumberLine';
+import RomanPractice from './RomanPractice';
 import { FlowerPicture, ParticlePicture } from './NatureArt';
 import {
   useEffect,
@@ -49,6 +50,7 @@ export default function LearningPanel({
   const [roundIds, setRoundIds] = useState<string[]>([]);
   const [roundFinished, setRoundFinished] = useState(false);
   const [roundOffset, setRoundOffset] = useState(0);
+  const [romanRandom, setRomanRandom] = useState(false);
   const [natureMode, setNatureMode] = useState<'questions' | 'games'>(
     'questions',
   );
@@ -100,6 +102,7 @@ export default function LearningPanel({
   }, [profileVersion, reload]);
 
   useEffect(() => {
+    setRomanRandom(false);
     setStudyUnitId('');
     setRoundIds([]);
     setRoundFinished(false);
@@ -118,6 +121,7 @@ export default function LearningPanel({
     (item) => item.id === studyUnitId && item.subject === subject,
   );
   const browsing = !!state?.studyCatalog && !studyUnit && !playingNature;
+  const regularPractice = !romanRandom && !playingNature && !browsing;
   const bank = state && studyUnit ? unitQuestions(state, studyUnit) : [];
   const legacyTopic = topics.find((item) => item.id === topicId) ?? topics[0];
   const questions = studyUnit
@@ -174,6 +178,7 @@ export default function LearningPanel({
   }, [roundIds, roundFinished]);
 
   function startUnit(unit: StudyUnit, offset = 0) {
+    setRomanRandom(false);
     returningTopics.current = false;
     if (!state) return;
     const available = unitQuestions(state, unit);
@@ -198,6 +203,7 @@ export default function LearningPanel({
   }
 
   function returnToTopics() {
+    setRomanRandom(false);
     returningTopics.current = true;
     setStudyUnitId('');
     setRoundIds([]);
@@ -429,6 +435,42 @@ export default function LearningPanel({
                   </p>
                 </InfoPanel>
               </div>
+              {studyUnit?.id === 'math-roman' && (
+                <div className="roman-mode">
+                  <h3>Deine römischen Zahlen</h3>
+                  <div
+                    className="roman-controls"
+                    role="group"
+                    aria-label="Übungsart"
+                  >
+                    <button
+                      className="secondary-button"
+                      aria-pressed={!romanRandom}
+                      disabled={busy || loading}
+                      onClick={() => setRomanRandom(false)}
+                    >
+                      Kurze Lernrunde
+                    </button>
+                    <button
+                      className="secondary-button"
+                      aria-pressed={romanRandom}
+                      disabled={busy || loading}
+                      onClick={() => setRomanRandom(true)}
+                    >
+                      Zufallsübung 1–9999
+                    </button>
+                  </div>
+                  {romanRandom && (
+                    <button
+                      className="secondary-button"
+                      disabled={busy || loading}
+                      onClick={returnToTopics}
+                    >
+                      ← Themenübersicht
+                    </button>
+                  )}
+                </div>
+              )}
               {!playingNature && !state.studyCatalog && (
                 <div className="topic-section">
                   <h3>
@@ -497,7 +539,20 @@ export default function LearningPanel({
             focusOnMount={returningTopics.current}
           />
         )}
-        {!playingNature && !browsing && studyUnit && roundFinished && (
+        {romanRandom && studyUnit?.id === 'math-roman' && state && (
+          <RomanPractice
+            difficulty={state.difficulty}
+            profileReady={state.profileReady}
+            disabled={busy || loading}
+            onBusyChange={setBusy}
+            onWalletChange={(wallet) => {
+              ++revision.current;
+              setLoading(false);
+              setState((current) => current && { ...current, wallet });
+            }}
+          />
+        )}
+        {regularPractice && studyUnit && roundFinished && (
           <div
             className="practice-area"
             ref={practiceRef}
@@ -531,7 +586,7 @@ export default function LearningPanel({
             </button>
           </div>
         )}
-        {!playingNature && !browsing && !roundFinished && question && topic && (
+        {regularPractice && !roundFinished && question && topic && (
           <div
             className="practice-area"
             ref={practiceRef}

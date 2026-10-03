@@ -1,5 +1,11 @@
 # Architektur
 
+## Römische Zufallszahlen (ohne Schemaänderung)
+
+`roman.rs` ergänzt das Unterthema `math-roman` mit dynamischen Aufgaben für 1–9999 in zwei Richtungen. Der begrenzte Command `get_roman_question` übernimmt die lokal gespeicherte globale Schwierigkeit, validiert die Richtung und eine optionale vorherige Aufgaben-ID und schließt deren Wert beim Würfeln aus. Die Projektion enthält die Frage und Hinweise ohne Antwortschlüssel. Für 4000–9999 wird die im UI erklärte Erweiterung durch weitere M verwendet.
+
+`submit_answer` löst neben statischen Katalogaufgaben ausschließlich streng validierte, kanonische römische Zufalls-IDs auf. Zahl, Richtung, Stufe und Inhaltsversion bestimmen die unveränderliche Bedeutung. Die vorhandene Immediate-Transaktion mit `answer_submissions`, `record_exercise_result` und `point_entries` speichert Antwortbeleg, Kompetenzfortschritt und einmalige 1/2/3 Punkte gemeinsam. Alias-IDs, abweichende Request-Replays und ungültige Eingaben werden abgewiesen. Es gibt keine Migration oder zusätzliche Abhängigkeit. `RomanPractice` verwendet dieselbe typisierte Desktop-Grenze, behält bei Übertragungsfehlern die Request-ID und aktualisiert das gemeinsame Punktekonto erst nach bestätigter Antwort. [Schreibweise, Bedienung und Grenzen](roman-practice.md).
+
 ## Weltraumreise zum Tastschreiben (Schema 17)
 
 Der eigene Bereich `typing` verwendet `TypingPanel` und die typisierte Grenze in `desktop.ts`. Das Rust-Modul `typing.rs` lädt das aktive offline gebündelte Paket `typing-v2.json`: zwölf Stationen mit jeweils drei Aufgaben pro Stufe. Das veröffentlichte `typing-v1.json` bleibt unverändert für historische Aufgaben und Antwortbelege gebündelt. Beide Pakete und die genau begrenzte paarweise Vorgängerzuordnung werden unabhängig von den Nutzerdaten validiert. Der begrenzte Command `get_typing_state` liefert die aktiven Stationen, gespeicherte Erstlösungen aus beiden Paketversionen, die vorhandene globale Stufe und das gemeinsame Punktekonto.

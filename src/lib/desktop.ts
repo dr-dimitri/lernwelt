@@ -25,6 +25,7 @@ import type {
   LearningState,
   Wallet,
 } from '../domain/learning';
+import type { RomanDirection, RomanQuestion } from '../domain/roman';
 
 async function callDesktop<T>(
   command: string,
@@ -76,6 +77,11 @@ export const desktop = {
     callDesktop<LearnerProfile>('save_profile', { profile }),
   listProgress: () => callDesktop<LearningProgress[]>('list_progress'),
   getLearningState: () => callDesktop<LearningState>('get_learning_state'),
+  getRomanQuestion: (direction: RomanDirection, previousQuestionId?: string) =>
+    callDesktop<RomanQuestion>('get_roman_question', {
+      direction,
+      previousQuestionId,
+    }),
   setDifficulty: (difficulty: Difficulty) =>
     callDesktop<Difficulty>('set_difficulty', { difficulty }),
   submitAnswer: (requestId: string, questionId: string, answer: string) =>

@@ -95,8 +95,8 @@ pub struct LearningState {
 pub struct AnswerResult {
     pub correct: bool,
     pub points_awarded: i64,
-    pub explanation: &'static str,
-    pub mistake_hint: Option<&'static str>,
+    pub explanation: String,
+    pub mistake_hint: Option<String>,
     pub wallet: Wallet,
 }
 
@@ -229,11 +229,18 @@ pub fn submit_answer(
     {
         return Err("Bitte gib eine Antwort mit 1 bis 120 Zeichen ein.".to_owned());
     }
-    let exercise = content::catalog()?
+    let generated;
+    let exercise = if let Some(exercise) = content::catalog()?
         .exercises
         .iter()
         .find(|exercise| exercise.id == question_id)
-        .ok_or("Diese Aufgabe ist nicht verfügbar.")?;
+    {
+        exercise
+    } else {
+        generated = crate::roman::exercise_from_id(question_id)
+            .map_err(|_| "Diese Aufgabe ist nicht verfügbar.")?;
+        &generated
+    };
     let transaction = connection
         .transaction_with_behavior(TransactionBehavior::Immediate)
         .map_err(db_error)?;
@@ -272,11 +279,11 @@ pub fn submit_answer(
     let result = AnswerResult {
         correct,
         points_awarded,
-        explanation: &exercise.explanation,
+        explanation: exercise.explanation.clone(),
         mistake_hint: if correct {
             None
         } else {
-            exercise.mistake_hint(answer)
+            exercise.mistake_hint(answer).map(str::to_owned)
         },
         wallet: wallet(&transaction)?,
     };
