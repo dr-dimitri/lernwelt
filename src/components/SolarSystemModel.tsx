@@ -1,9 +1,10 @@
-import { useId, useRef, useState } from 'react';
+import { useId, useMemo, useRef, useState } from 'react';
 import { planets, type SolarPlanet } from '../domain/solar-system';
 import {
   solarOrbitPath,
   solarPlanetPosition,
 } from '../domain/solar-projection';
+import useSolarOrbit from './useSolarOrbit';
 
 // Zoom into the planetary disc in each local NASA image; keep full photographs
 // in the fact cards and quiz close-up. Saturn's rings are drawn separately here.
@@ -35,6 +36,17 @@ export default function SolarSystemModel({
   const id = useId().replaceAll(':', '');
   const [yaw, setYaw] = useState(0);
   const [tilt, setTilt] = useState(38);
+  const {
+    running,
+    setRunning,
+    earthYearSeconds,
+    setEarthYearSeconds,
+    earthYears,
+  } = useSolarOrbit();
+  const orbitPaths = useMemo(
+    () => planets.map((planet) => solarOrbitPath(planet.order, yaw, tilt)),
+    [yaw, tilt],
+  );
   const drag = useRef<{
     x: number;
     y: number;
@@ -44,7 +56,7 @@ export default function SolarSystemModel({
   const moved = useRef(false);
   const positions = planets.map((planet) => ({
     planet,
-    ...solarPlanetPosition(planet, yaw, tilt),
+    ...solarPlanetPosition(planet, yaw, tilt, earthYears),
   }));
   const nodes = [
     ...positions.map((point) => ({ ...point, sun: false })),
@@ -133,7 +145,7 @@ export default function SolarSystemModel({
           {planets.map((planet) => (
             <path
               key={planet.id}
-              d={solarOrbitPath(planet.order, yaw, tilt)}
+              d={orbitPaths[planet.order - 1]}
               fill="none"
               stroke={marked === planet.id ? '#ffd17d' : '#7193c0'}
               strokeOpacity={marked === planet.id ? 0.85 : 0.25}
@@ -269,13 +281,47 @@ export default function SolarSystemModel({
           Blick zurücksetzen
         </button>
       </div>
+      <div className="solar-orbit-controls">
+        <button
+          type="button"
+          aria-pressed={running}
+          onClick={() => setRunning((active) => !active)}
+        >
+          {running ? 'Umlauf anhalten' : 'Umlauf starten'}
+        </button>
+        <label htmlFor={`${id}-year`}>
+          Ein Erdenjahr: {earthYearSeconds} Sekunden
+          <input
+            id={`${id}-year`}
+            type="range"
+            min="5"
+            max="15"
+            step="1"
+            value={earthYearSeconds}
+            aria-label="Sekunden pro Erdenjahr"
+            aria-valuetext={`${earthYearSeconds} Sekunden pro Erdenjahr`}
+            onChange={(event) =>
+              setEarthYearSeconds(Number(event.target.value))
+            }
+          />
+          <span className="solar-speed-scale" aria-hidden="true">
+            <span>Schnell · 5 Sekunden</span>
+            <span>Langsam · 15 Sekunden</span>
+          </span>
+        </label>
+        <p>
+          Die Erde braucht hier {earthYearSeconds} Sekunden für eine Runde. Die
+          anderen Planeten kreisen im Verhältnis ihrer echten Umlaufzeiten.
+        </p>
+      </div>
       <figcaption>
         Ziehe am Bild oder nutze die Regler. Mit der Tastatur: Tab zum Regler,
         dann Pfeiltasten.
         <strong>
           {' '}
           Größen und Abstände sind zum Lernen verändert. Die Planeten stehen
-          hier an Beispielpositionen.
+          anfangs an Beispielpositionen. Sie bewegen sich auf vereinfachten
+          Kreisbahnen gleichmäßig um die Sonne.
         </strong>
       </figcaption>
       {!guessing && (

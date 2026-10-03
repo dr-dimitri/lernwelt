@@ -125,14 +125,16 @@
   gap: 18px;
   padding: 0 25px 16px;
 }
-.solar-view-controls label {
+.solar-view-controls label,
+.solar-orbit-controls label {
   display: grid;
   gap: 7px;
   font-size: 13px;
   color: #dbe8fb;
   flex: 1 1 170px;
 }
-.solar-view-controls input {
+.solar-view-controls input,
+.solar-orbit-controls input {
   width: 100%;
   min-height: 24px;
   padding: 0;
@@ -140,6 +142,7 @@
   cursor: pointer;
 }
 .solar-view-controls button,
+.solar-orbit-controls button,
 .solar-planet-picker button {
   border: 1px solid #607b9f;
   border-radius: 10px;
@@ -150,8 +153,42 @@
   font-size: 12px;
 }
 .solar-view-controls button:hover,
+.solar-orbit-controls button:hover,
 .solar-planet-picker button:hover {
   background: #355171;
+}
+.solar-orbit-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin: 0 25px 18px;
+  padding-top: 18px;
+  border-top: 1px solid #31435d;
+}
+.solar-orbit-controls button {
+  min-height: 44px;
+  font-size: 14px;
+}
+.solar-orbit-controls button[aria-pressed='true'] {
+  background: #fff0cf;
+  color: #35281a;
+  border-color: var(--gold);
+}
+.solar-speed-scale {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11px;
+  color: #b8cbe6;
+}
+.solar-orbit-controls p {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #b8cbe6;
 }
 .solar-model > figcaption {
   padding: 0 25px 20px;
@@ -421,5 +458,9 @@
   .solar-model > figcaption {
     padding-left: 16px;
     padding-right: 16px;
+  }
+  .solar-orbit-controls {
+    margin-left: 16px;
+    margin-right: 16px;
   }
 }
