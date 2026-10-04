@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.6.4 vergrößert das Standardfenster für WQHD-Bildschirme und zeigt Aufgaben, Antworten und Hauptaktionen ohne Scrollen auf einer Seite. Römische Zahlen erhalten eine gemeinsame Erklärung zum Lesen, Schreiben und Rechnen. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Alle Änderungen und Installationshinweise](docs/releases/0.6.4.md).
+Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.6.5 korrigiert die Planetenauswahl im Sonnensystem: Der dekorative Sonnenhalo blockiert keine Klicks auf sichtbare Planeten mehr. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Alle Änderungen und Installationshinweise](docs/releases/0.6.5.md).
 
 ## Mitarbeit
 
