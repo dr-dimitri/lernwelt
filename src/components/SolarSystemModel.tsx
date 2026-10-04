@@ -168,8 +168,16 @@ export default function SolarSystemModel({
                   r="64"
                   fill="#ffb74e"
                   opacity="0.08"
+                  pointerEvents="none"
                 />
-                <circle cx="500" cy="315" r="52" fill="#ffb74e" opacity="0.1" />
+                <circle
+                  cx="500"
+                  cy="315"
+                  r="52"
+                  fill="#ffb74e"
+                  opacity="0.1"
+                  pointerEvents="none"
+                />
                 <circle cx="500" cy="315" r="43" fill={`url(#${id}-sun)`} />
                 <text
                   x="500"
@@ -177,6 +185,7 @@ export default function SolarSystemModel({
                   textAnchor="middle"
                   fill="#ffe1a5"
                   fontSize="17"
+                  pointerEvents="none"
                 >
                   Sonne
                 </text>
