@@ -49,6 +49,43 @@
   white-space: nowrap;
   margin: 0;
 }
+.mission-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 24px;
+  align-items: start;
+  margin-top: 20px;
+}
+.mission-work,
+.mission-sidebar {
+  min-width: 0;
+}
+.mission-sidebar {
+  display: grid;
+  gap: 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  background: #f7f9f8;
+}
+.mission-sidebar .mission-levels {
+  margin: 0;
+}
+.mission-sidebar .mission-levels > button {
+  flex: 1 1 100%;
+}
+.mission-sidebar .mission-levels .mission-small {
+  margin: 4px 0 0;
+}
+.mission-sidebar .mission-album-row {
+  margin: 0;
+}
+.mission-sidebar .mission-album {
+  display: grid;
+}
+.mission-sidebar .info-panel > button {
+  width: 100%;
+}
 .mission-levels {
   display: flex;
   flex-wrap: wrap;
@@ -63,7 +100,7 @@
 .mission-path {
   list-style: none;
   padding: 0;
-  margin: 16px 0;
+  margin: 0 0 16px;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
@@ -120,6 +157,9 @@
 .mission-garden {
   margin: 8px 0 0;
   min-width: 0;
+  width: 100%;
+  max-width: 480px;
+  justify-self: center;
 }
 .mission-garden svg {
   width: 100%;
@@ -258,6 +298,15 @@
   margin-top: 2px;
 }
 @media (max-width: 900px) {
+  .mission-workspace {
+    grid-template-columns: 1fr;
+  }
+  .mission-sidebar .mission-levels > button {
+    flex: 1 1 auto;
+  }
+  .mission-sidebar .mission-album {
+    display: flex;
+  }
   .mission-card {
     flex-wrap: wrap;
     gap: 12px;
@@ -284,6 +333,22 @@
   .mission-path li {
     flex-direction: column;
     text-align: center;
+  }
+}
+@media (min-width: 901px) and (max-width: 1399px) {
+  .mission-workspace {
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 16px;
+  }
+  .mission-sidebar {
+    padding: 16px;
+  }
+  .mission-step {
+    grid-template-columns: 1fr;
+  }
+  .mission-garden {
+    max-width: 320px;
+    grid-row: 1;
   }
 }
 @media (max-width: 500px) {

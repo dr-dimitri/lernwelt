@@ -347,9 +347,6 @@
   margin-bottom: 10px;
 }
 .solar-discover-notes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
   margin: 22px 0;
 }
 .solar-discover-notes article {
@@ -552,5 +549,99 @@
   .solar-orbit-controls {
     margin-left: 16px;
     margin-right: 16px;
+  }
+}
+
+/* On the WQHD learning window, the model and the current task share one row. */
+@media (min-width: 1400px) {
+  .solar-intro {
+    margin-bottom: 14px;
+  }
+  .solar-intro h2 {
+    font-size: 32px;
+    margin-block: 4px;
+  }
+  .solar-intro p {
+    margin-block: 8px;
+    max-width: 900px;
+  }
+  .solar-mode {
+    float: left;
+    margin: 0 24px 14px 0;
+  }
+  .solar-levels {
+    min-height: 44px;
+    margin-bottom: 14px;
+  }
+  .solar-error,
+  .solar-workspace,
+  .solar-quiz-heading,
+  .solar-round-end {
+    clear: both;
+  }
+  .solar-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .solar-model {
+    margin: 0;
+  }
+  .solar-space {
+    height: 320px;
+    max-height: 320px;
+  }
+  .solar-planet-picker {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .solar-view-controls {
+    gap: 14px;
+  }
+  .solar-orbit-controls {
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-top: 14px;
+  }
+  .solar-orbit-controls p {
+    line-height: 1.45;
+  }
+  .solar-fact-card {
+    gap: 20px;
+    padding: 20px;
+  }
+  .solar-fact-card .solar-gallery > figure > .solar-gallery-image {
+    height: 230px;
+    object-fit: contain;
+    aspect-ratio: auto;
+  }
+  .solar-discover-notes {
+    display: block;
+    margin-block: 16px;
+    gap: 12px;
+  }
+  .solar-discover-notes article {
+    padding: 16px;
+  }
+  .solar-discover-notes h3 {
+    margin-block: 8px;
+  }
+  .solar-activity,
+  .solar-sources {
+    margin-block: 12px;
+  }
+  .solar-quiz-card {
+    grid-template-columns: minmax(140px, 0.55fr) minmax(0, 1.4fr);
+    gap: 20px;
+  }
+  .solar-quiz-card > img {
+    max-height: 230px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .solar-world:has(.solar-error) .solar-space {
+    height: 240px;
+    max-height: 240px;
   }
 }

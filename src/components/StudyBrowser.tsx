@@ -3,6 +3,8 @@ import type { LearningState } from '../domain/learning';
 import type { SubjectId } from '../domain/subjects';
 import { matchesUnit, unitQuestions, type StudyUnit } from '../domain/study';
 
+const unitsPerPage = 12;
+
 export default function StudyBrowser({
   state,
   subject,
@@ -18,10 +20,14 @@ export default function StudyBrowser({
 }) {
   const [areaId, setAreaId] = useState('');
   const [query, setQuery] = useState('');
+  const [page, setPage] = useState(0);
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     if (focusOnMount) heading.current?.focus();
   }, [focusOnMount]);
+  useEffect(() => {
+    setPage(0);
+  }, [state.difficulty, subject]);
   const catalog = state.studyCatalog!;
   const areas = catalog.areas.filter((a) => a.subject === subject);
   const selectedArea = areas.find((a) => a.id === areaId);
@@ -37,9 +43,22 @@ export default function StudyBrowser({
           )
         : u.areaId === selectedArea?.id),
   );
+  const pageCount = Math.ceil(matches.length / unitsPerPage);
+  const currentPage = Math.min(page, Math.max(0, pageCount - 1));
+  const visibleUnits = matches.slice(
+    currentPage * unitsPerPage,
+    (currentPage + 1) * unitsPerPage,
+  );
   const enterArea = (id: string) => {
+    if (disabled) return;
     setAreaId(id);
     setQuery('');
+    setPage(0);
+    heading.current?.focus();
+  };
+  const turnPage = (next: number) => {
+    if (disabled) return;
+    setPage(next);
     heading.current?.focus();
   };
   return (
@@ -60,6 +79,7 @@ export default function StudyBrowser({
           <input
             type="search"
             value={query}
+            disabled={disabled}
             placeholder={
               subject === 'mathematics'
                 ? 'z. B. Längen oder Winkel'
@@ -67,7 +87,10 @@ export default function StudyBrowser({
                   ? 'z. B. Simple Present'
                   : 'z. B. Bestäubung'
             }
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setPage(0);
+            }}
           />
         </label>
       </div>
@@ -110,7 +133,7 @@ export default function StudyBrowser({
         </div>
       ) : matches.length ? (
         <div className="study-grid">
-          {matches.map((unit) => {
+          {visibleUnits.map((unit) => {
             const questions = unitQuestions(state, unit);
             const solved = questions.filter((q) => q.solved).length;
             return (
@@ -142,10 +165,40 @@ export default function StudyBrowser({
           <p>
             Versuche einen kürzeren Begriff, zum Beispiel „Zeit“ oder „Wasser“.
           </p>
-          <button className="secondary-button" onClick={() => setQuery('')}>
+          <button
+            className="secondary-button"
+            disabled={disabled}
+            onClick={() => {
+              setQuery('');
+              setPage(0);
+            }}
+          >
             Suche löschen
           </button>
         </div>
+      )}
+      {(selectedArea || searching) && pageCount > 1 && (
+        <nav className="page-controls" aria-label="Unterthemen-Seiten">
+          <button
+            type="button"
+            className="secondary-button"
+            disabled={disabled || currentPage === 0}
+            onClick={() => turnPage(currentPage - 1)}
+          >
+            ← Vorige Unterthemen
+          </button>
+          <span aria-live="polite">
+            Seite {currentPage + 1} von {pageCount}
+          </span>
+          <button
+            type="button"
+            className="secondary-button"
+            disabled={disabled || currentPage === pageCount - 1}
+            onClick={() => turnPage(currentPage + 1)}
+          >
+            Weitere Unterthemen →
+          </button>
+        </nav>
       )}
       <p className="sample-note">
         Wähle frei. Du kannst jederzeit das Thema oder die Stufe wechseln.

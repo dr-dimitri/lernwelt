@@ -637,3 +637,132 @@ it('holt nach unklarer Speicherung beim Neuladen den bestätigten Aufgabenstand 
   );
   expect(desktop.answerMultiplication).toHaveBeenCalledTimes(1);
 });
+
+it('zeigt höchstens sechs Robotermodelle pro Seite und erreicht alle Bauwerke ohne Änderung des Lernstands', async () => {
+  const user = userEvent.setup();
+  const robots = (['scout', 'garden', 'aqua'] as const).flatMap((design, row) =>
+    (['mint', 'amber', 'violet'] as const).map((palette, column) => ({
+      design,
+      palette,
+      count: row * 3 + column + 1,
+    })),
+  );
+  vi.mocked(desktop.getMultiplicationState).mockResolvedValue({
+    ...initial,
+    adventure: {
+      ...initial.adventure,
+      robots,
+      worlds: {
+        ...initial.adventure.worlds,
+        island: { ...initial.adventure.worlds.island, completedStages: 8 },
+      },
+    },
+  });
+  render(<MultiplicationPanel profileVersion={0} />);
+  const input = await screen.findByLabelText('Dein Ergebnis');
+  await user.type(input, '16');
+  const trigger = screen.getByRole('button', { name: 'Dein Bauregal' });
+  await user.click(trigger);
+  const dialog = screen.getByRole('dialog', { name: 'Dein Bauregal' });
+  const robotShelf = within(dialog).getByRole('region', {
+    name: 'Deine Roboter',
+  });
+  const islandShelf = within(dialog).getByRole('region', {
+    name: 'Deine Insel',
+  });
+  expect(within(robotShelf).getAllByRole('listitem')).toHaveLength(6);
+  expect(within(robotShelf).getByText('Seite 1 von 2')).toBeVisible();
+  expect(
+    within(robotShelf).getByRole('button', { name: '← Vorherige Roboter' }),
+  ).toBeDisabled();
+  expect(
+    within(robotShelf).queryByText('Minzgrün · 7 gebaut'),
+  ).not.toBeInTheDocument();
+  expect(within(islandShelf).getAllByRole('listitem')).toHaveLength(6);
+  expect(
+    within(islandShelf).getByText('Außerdem: 2 weitere Ausbaustufen.'),
+  ).toBeVisible();
+
+  within(robotShelf).getByRole('button', { name: 'Weitere Roboter →' }).focus();
+  await user.keyboard('{Enter}');
+  expect(within(robotShelf).getAllByRole('listitem')).toHaveLength(3);
+  expect(within(robotShelf).getByText('Minzgrün · 7 gebaut')).toBeVisible();
+  expect(within(robotShelf).getByText('Sonnengelb · 8 gebaut')).toBeVisible();
+  expect(within(robotShelf).getByText('Beerenlila · 9 gebaut')).toBeVisible();
+  expect(
+    within(robotShelf).getByRole('button', { name: 'Weitere Roboter →' }),
+  ).toBeDisabled();
+  expect(within(robotShelf).getByText('Seite 2 von 2')).toBeVisible();
+  expect(within(islandShelf).getAllByRole('listitem')).toHaveLength(6);
+
+  within(robotShelf)
+    .getByRole('button', { name: '← Vorherige Roboter' })
+    .focus();
+  await user.keyboard('{Enter}');
+  expect(within(robotShelf).getAllByRole('listitem')).toHaveLength(6);
+  await user.click(
+    within(robotShelf).getByRole('button', { name: 'Weitere Roboter →' }),
+  );
+  await user.click(within(dialog).getByRole('button', { name: 'Schließen' }));
+  expect(trigger).toHaveFocus();
+  expect(input).toHaveValue('16');
+  await user.keyboard('{Enter}');
+  expect(screen.getByText('Seite 1 von 2')).toBeVisible();
+  expect(screen.queryByText('Minzgrün · 7 gebaut')).not.toBeInTheDocument();
+  expect(desktop.configureMultiplication).not.toHaveBeenCalled();
+  expect(desktop.answerMultiplication).not.toHaveBeenCalled();
+  expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
+    '9 Punkte',
+  );
+});
+
+it('startet nach einem Profilwechsel mit der neuen kleineren Sammlung und zeigt für leere oder einzelne Seiten keine Blättertasten', async () => {
+  const user = userEvent.setup();
+  const robots = (['scout', 'garden', 'aqua'] as const).flatMap((design) =>
+    (['mint', 'amber', 'violet'] as const).map((palette) => ({
+      design,
+      palette,
+      count: 1,
+    })),
+  );
+  vi.mocked(desktop.getMultiplicationState).mockResolvedValueOnce({
+    ...initial,
+    adventure: { ...initial.adventure, robots },
+  });
+  const { rerender } = render(<MultiplicationPanel profileVersion={0} />);
+  await user.click(
+    await screen.findByRole('button', { name: 'Dein Bauregal' }),
+  );
+  await user.click(screen.getByRole('button', { name: 'Weitere Roboter →' }));
+  expect(screen.getByText('Seite 2 von 2')).toBeVisible();
+
+  vi.mocked(desktop.getMultiplicationState).mockResolvedValueOnce({
+    ...initial,
+    adventure: { ...initial.adventure, robots: robots.slice(0, 2) },
+  });
+  rerender(<MultiplicationPanel profileVersion={1} />);
+  await screen.findByLabelText('Dein Ergebnis');
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Dein Bauregal' }));
+  const dialog = screen.getByRole('dialog', { name: 'Dein Bauregal' });
+  const robotShelf = within(dialog).getByRole('region', {
+    name: 'Deine Roboter',
+  });
+  expect(within(robotShelf).getAllByRole('listitem')).toHaveLength(2);
+  expect(within(robotShelf).queryByRole('navigation')).not.toBeInTheDocument();
+  await user.click(within(dialog).getByRole('button', { name: 'Schließen' }));
+
+  vi.mocked(desktop.getMultiplicationState).mockResolvedValueOnce(initial);
+  rerender(<MultiplicationPanel profileVersion={2} />);
+  await screen.findByLabelText('Dein Ergebnis');
+  await user.click(screen.getByRole('button', { name: 'Dein Bauregal' }));
+  const emptyShelf = screen.getByRole('region', { name: 'Deine Roboter' });
+  expect(
+    within(emptyShelf).getByText(
+      'Dein erster Roboter wartet noch auf seine Bauteile.',
+    ),
+  ).toBeVisible();
+  expect(within(emptyShelf).queryByRole('list')).not.toBeInTheDocument();
+  expect(within(emptyShelf).queryByRole('navigation')).not.toBeInTheDocument();
+  expect(desktop.configureMultiplication).not.toHaveBeenCalled();
+});

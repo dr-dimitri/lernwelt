@@ -54,6 +54,9 @@ it('ordnet Blütenfunktionen zu und setzt Tipps und Auswahl beim Neustart zurüc
   await user.click(screen.getByRole('button', { name: /Pflanzen-Werkstatt/ }));
   await user.click(screen.getByRole('button', { name: 'Forscher-Tipp' }));
   expect(screen.getByText(/Pollen = Blütenstaub/)).toBeVisible();
+  expect(screen.getByRole('dialog', { name: 'Forscher-Tipp' })).toBeVisible();
+  await user.click(screen.getByRole('button', { name: 'Schließen' }));
+  expect(screen.getByRole('button', { name: 'Forscher-Tipp' })).toHaveFocus();
   await user.click(
     screen.getByRole('button', { name: 'Hier liegen die Samenanlagen' }),
   );
@@ -65,10 +68,7 @@ it('ordnet Blütenfunktionen zu und setzt Tipps und Auswahl beim Neustart zurüc
   );
   await user.click(screen.getByRole('button', { name: 'Runde neu starten' }));
   expect(screen.getByText('0 von 4 entdeckt')).toBeVisible();
-  expect(screen.getByRole('button', { name: 'Forscher-Tipp' })).toHaveAttribute(
-    'aria-expanded',
-    'false',
-  );
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   expect(screen.queryByText(/Pollen = Blütenstaub/)).not.toBeInTheDocument();
   expect(
     screen.getByRole('button', { name: 'Bildet Pollen im Staubbeutel' }),

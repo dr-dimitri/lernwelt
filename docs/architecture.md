@@ -191,7 +191,7 @@ Zeitlimits: Blöcke 240 Sekunden, Hühner 90 Sekunden, Labyrinth 240 Sekunden. S
 
 `InfoPanel` verwendet native modale HTML-Dialoge mit Escape, Fokus-Rückgabe und optionaler Seitennavigation. Erklärungen/Mitmachaufgaben werden in getrennten Seiten angeboten; `LearningTable` zeigt acht Zeilen pro Abschnitt. Fehler beim Einlösen bleiben im geöffneten Belohnungsfenster sichtbar. Automatisch geöffnete Antwort-Rückmeldungen führen den Fokus nach Weitergehen zurück zur stabilen Übungsregion, auch wenn sich die Aufgabe ändert.
 
-Desktop-Layouts stellen Einstellungen und Übung nebeneinander und begrenzen die Canvasgröße anhand der Fensterhöhe. Keine globale Scrollsperre: kleine Fenster, Zoom und außergewöhnlich lange Fehler behalten einen zugänglichen Overflow-Fallback. Standardfenster 1100×750, bisherige Mindestgröße bleibt erhalten. Keine Änderung an Datenbank oder Commands durch die Layoutumstellung; Profilhinweise im Backend verweisen nun auf den oberen Profilknopf.
+Desktop-Layouts stellen Einstellungen und Übung nebeneinander und begrenzen die Canvasgröße anhand der Fensterhöhe. Keine globale Scrollsperre: kleine Fenster, Zoom und außergewöhnlich lange Fehler behalten einen zugänglichen Overflow-Fallback. Standardfenster 2400×1300, bisherige Mindestgröße bleibt erhalten. Keine Änderung an Datenbank oder Commands durch die Layoutumstellung; Profilhinweise im Backend verweisen nun auf den oberen Profilknopf.
 
 ## Geführte Lernrunde (Schema 13)
 

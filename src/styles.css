@@ -166,7 +166,7 @@ input::placeholder {
   display: grid;
   grid-template-columns: 224px minmax(0, 1fr);
   min-height: 100dvh;
-  max-width: 1800px;
+  max-width: 2400px;
   margin: auto;
 }
 .sidebar {
@@ -356,7 +356,7 @@ input::placeholder {
 }
 main {
   padding: 28px 32px 32px;
-  max-width: 1400px;
+  max-width: 2160px;
   margin: auto;
 }
 .page-heading {
@@ -637,6 +637,8 @@ main {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 380px;
+  object-fit: contain;
 }
 .nature-lesson-models figcaption,
 .nature-lesson-flower figcaption {
@@ -2071,4 +2073,32 @@ main {
 .roman-controls button[aria-pressed='true'] {
   outline: 2px solid currentColor;
   outline-offset: 2px;
+}
+
+/* Wide task pages use the available space without changing reading order. */
+@media (min-width: 1600px) {
+  main {
+    padding-block: 20px;
+  }
+  .page-heading:not(.discovery-heading) {
+    margin-bottom: 16px;
+  }
+  .learning-workspace,
+  .vocabulary-workspace {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 28px;
+  }
+  .practice-area {
+    padding: 22px 28px;
+  }
+  .practice-area > form {
+    max-width: 1200px;
+  }
+  .answer-label {
+    font-size: 22px;
+  }
+  .vocabulary-workspace .flashcard {
+    max-width: 1000px;
+    justify-self: center;
+  }
 }

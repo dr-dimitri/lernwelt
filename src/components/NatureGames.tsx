@@ -16,6 +16,7 @@ import {
   MeadowPicture,
   ParticlePicture,
 } from './NatureArt';
+import InfoPanel from './InfoPanel';
 import '../nature.css';
 
 interface Feedback {
@@ -50,11 +51,9 @@ function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [found, setFound] = useState<string[]>([]);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
-  const [showHint, setShowHint] = useState(false);
   const cards = useRef(new Map<string, HTMLButtonElement>());
   const completionHeading = useRef<HTMLHeadingElement>(null);
   const moveFocus = useRef(false);
-  const hintId = useId();
   const complete = found.length === round.items.length;
   const selectedItem = round.items.find((item) => item.id === selected);
   const foundTargets = round.items
@@ -91,7 +90,6 @@ function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
     setSelected(null);
     setFound([]);
     setFeedback(null);
-    setShowHint(false);
   }
 
   return (
@@ -108,81 +106,88 @@ function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
         label="Entdeckungen"
       />
       <p>{round.instruction}</p>
-      {flower ? (
-        <FlowerPicture found={foundTargets} />
-      ) : (
+      {!flower && (
         <p className="nature-model-note">
           Die Punkte zeigen ein vereinfachtes Teilchenmodell. Teilchen sind
           winzig und immer in Bewegung.
         </p>
       )}
-      <fieldset className="nature-card-field">
-        <legend>1. Wähle eine Karte</legend>
-        <div className="nature-match-cards">
-          {round.items.map((item) => {
-            const solved = found.includes(item.id);
-            return (
-              <button
-                key={item.id}
-                ref={(button) => {
-                  if (button) cards.current.set(item.id, button);
-                  else cards.current.delete(item.id);
-                }}
-                type="button"
-                className="nature-match-card"
-                aria-label={item.label}
-                aria-pressed={selected === item.id}
-                disabled={solved}
-                onClick={() => {
-                  setSelected(item.id);
-                  setFeedback(null);
-                }}
-              >
-                {item.particleState && (
-                  <span className="nature-particle-pair">
-                    <ParticlePicture state={item.particleState} />
-                    {item.nextState && (
-                      <>
-                        <span aria-hidden="true">→</span>
-                        <ParticlePicture state={item.nextState} />
-                      </>
+      <div className={`nature-round-workspace ${flower ? 'has-picture' : ''}`}>
+        {flower && (
+          <div className="nature-round-picture">
+            <FlowerPicture found={foundTargets} />
+          </div>
+        )}
+        <div className="nature-choice-columns">
+          <fieldset className="nature-card-field">
+            <legend>1. Wähle eine Karte</legend>
+            <div className="nature-match-cards">
+              {round.items.map((item) => {
+                const solved = found.includes(item.id);
+                return (
+                  <button
+                    key={item.id}
+                    ref={(button) => {
+                      if (button) cards.current.set(item.id, button);
+                      else cards.current.delete(item.id);
+                    }}
+                    type="button"
+                    className="nature-match-card"
+                    aria-label={item.label}
+                    aria-pressed={selected === item.id}
+                    disabled={solved}
+                    onClick={() => {
+                      setSelected(item.id);
+                      setFeedback(null);
+                    }}
+                  >
+                    {item.particleState && (
+                      <span className="nature-particle-pair">
+                        <ParticlePicture state={item.particleState} />
+                        {item.nextState && (
+                          <>
+                            <span aria-hidden="true">→</span>
+                            <ParticlePicture state={item.nextState} />
+                          </>
+                        )}
+                      </span>
                     )}
-                  </span>
-                )}
-                <span>
-                  {solved ? '✓ ' : ''}
-                  {item.label}
-                </span>
-                {solved && <small>Entdeckt</small>}
-              </button>
-            );
-          })}
+                    <span>
+                      {solved ? '✓ ' : ''}
+                      {item.label}
+                    </span>
+                    {solved && <small>Entdeckt</small>}
+                  </button>
+                );
+              })}
+            </div>
+          </fieldset>
+          <fieldset className="nature-card-field">
+            <legend>
+              2. {flower ? 'Wähle den Blütenteil' : 'Wähle das passende Fach'}
+            </legend>
+            <div className="nature-targets">
+              {round.targets.map((target, index) => (
+                <button
+                  key={target.id}
+                  type="button"
+                  className="nature-target"
+                  disabled={!selected || foundTargets.includes(target.id)}
+                  onClick={() => match(target.id)}
+                >
+                  {flower && (
+                    <span className="nature-part-number" aria-hidden="true">
+                      {index + 1}
+                    </span>
+                  )}
+                  {target.label}
+                  {foundTargets.includes(target.id) && ' ✓'}
+                </button>
+              ))}
+            </div>
+          </fieldset>
         </div>
-      </fieldset>
-      <fieldset className="nature-card-field">
-        <legend>
-          2. {flower ? 'Wähle den Blütenteil' : 'Wähle das passende Fach'}
-        </legend>
-        <div className="nature-targets">
-          {round.targets.map((target, index) => (
-            <button
-              key={target.id}
-              type="button"
-              className="nature-target"
-              disabled={!selected || foundTargets.includes(target.id)}
-              onClick={() => match(target.id)}
-            >
-              {flower && (
-                <span className="nature-part-number" aria-hidden="true">
-                  {index + 1}
-                </span>
-              )}
-              {target.label}
-              {foundTargets.includes(target.id) && ' ✓'}
-            </button>
-          ))}
-        </div>
-      </fieldset>
+      </div>
       <div
         className={`nature-feedback ${feedback?.correct ? 'is-correct' : ''}`}
         role="status"
@@ -210,24 +215,14 @@ function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
         </div>
       )}
       <div className="nature-round-actions">
-        <button
-          type="button"
-          className="secondary-button"
-          aria-expanded={showHint}
-          aria-controls={hintId}
-          onClick={() => setShowHint(!showHint)}
-        >
-          Forscher-Tipp
-        </button>
+        <InfoPanel>
+          <summary>Forscher-Tipp</summary>
+          <p className="nature-hint">{round.hint}</p>
+        </InfoPanel>
         <button type="button" className="secondary-button" onClick={reset}>
           {complete ? 'Noch einmal erforschen' : 'Runde neu starten'}
         </button>
       </div>
-      {showHint && (
-        <p className="nature-hint" id={hintId}>
-          {round.hint}
-        </p>
-      )}
     </div>
   );
 }
@@ -237,11 +232,9 @@ function MeadowGame({ difficulty }: { difficulty: Difficulty }) {
   const [food, setFood] = useState<MeadowAnimal | null>(null);
   const [links, setLinks] = useState<[MeadowAnimal, MeadowAnimal][]>([]);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
-  const [showHint, setShowHint] = useState(false);
   const foodButtons = useRef(new Map<MeadowAnimal, HTMLButtonElement>());
   const completionHeading = useRef<HTMLHeadingElement>(null);
   const moveFocus = useRef(false);
-  const hintId = useId();
   const complete = links.length === round.links.length;
 
   useEffect(() => {
@@ -286,7 +279,6 @@ function MeadowGame({ difficulty }: { difficulty: Difficulty }) {
     setFood(null);
     setLinks([]);
     setFeedback(null);
-    setShowHint(false);
   }
 
   return (
@@ -303,59 +295,65 @@ function MeadowGame({ difficulty }: { difficulty: Difficulty }) {
         label="Verbindungen"
       />
       <p>Wähle eine Nahrung. Wähle dann das Tier, das sie frisst.</p>
-      <MeadowPicture nodes={round.nodes} links={links} />
-      <p className="nature-model-note">
-        Unser Beispiel zeigt eine feuchte Wiese. Ein Pfeil bedeutet: „wird
-        gefressen von“. In der Natur gibt es viel mehr Beziehungen.
-      </p>
-      <fieldset className="nature-card-field">
-        <legend>1. Wähle die Nahrung</legend>
-        <div className="nature-meadow-choices">
-          {round.nodes.map((node) => (
-            <button
-              key={node}
-              ref={(button) => {
-                if (button) foodButtons.current.set(node, button);
-                else foodButtons.current.delete(node);
-              }}
-              type="button"
-              className="nature-match-card"
-              aria-label={`Nahrung: ${meadowNames[node]}`}
-              aria-pressed={food === node}
-              disabled={complete}
-              onClick={() => {
-                setFood(node);
-                setFeedback(null);
-              }}
-            >
-              <svg viewBox="-52 -40 108 82" aria-hidden="true">
-                <MeadowCreature kind={node} />
-              </svg>
-              {meadowNames[node]}
-            </button>
-          ))}
+      <div className="nature-round-workspace has-picture">
+        <div className="nature-round-picture">
+          <MeadowPicture nodes={round.nodes} links={links} />
+          <p className="nature-model-note">
+            Unser Beispiel zeigt eine feuchte Wiese. Ein Pfeil bedeutet: „wird
+            gefressen von“. In der Natur gibt es viel mehr Beziehungen.
+          </p>
         </div>
-      </fieldset>
-      <fieldset className="nature-card-field">
-        <legend>
-          2. Wer frisst {food ? meadowNames[food] : 'diese Nahrung'}?
-        </legend>
-        <div className="nature-targets">
-          {round.nodes
-            .filter((node) => node !== 'grass')
-            .map((node) => (
-              <button
-                key={node}
-                type="button"
-                className="nature-target"
-                disabled={!food || complete}
-                onClick={() => connect(node)}
-              >
-                {meadowNames[node]}
-              </button>
-            ))}
+        <div className="nature-choice-columns">
+          <fieldset className="nature-card-field">
+            <legend>1. Wähle die Nahrung</legend>
+            <div className="nature-meadow-choices">
+              {round.nodes.map((node) => (
+                <button
+                  key={node}
+                  ref={(button) => {
+                    if (button) foodButtons.current.set(node, button);
+                    else foodButtons.current.delete(node);
+                  }}
+                  type="button"
+                  className="nature-match-card"
+                  aria-label={`Nahrung: ${meadowNames[node]}`}
+                  aria-pressed={food === node}
+                  disabled={complete}
+                  onClick={() => {
+                    setFood(node);
+                    setFeedback(null);
+                  }}
+                >
+                  <svg viewBox="-52 -40 108 82" aria-hidden="true">
+                    <MeadowCreature kind={node} />
+                  </svg>
+                  {meadowNames[node]}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+          <fieldset className="nature-card-field">
+            <legend>
+              2. Wer frisst {food ? meadowNames[food] : 'diese Nahrung'}?
+            </legend>
+            <div className="nature-targets">
+              {round.nodes
+                .filter((node) => node !== 'grass')
+                .map((node) => (
+                  <button
+                    key={node}
+                    type="button"
+                    className="nature-target"
+                    disabled={!food || complete}
+                    onClick={() => connect(node)}
+                  >
+                    {meadowNames[node]}
+                  </button>
+                ))}
+            </div>
+          </fieldset>
         </div>
-      </fieldset>
+      </div>
       <div
         className={`nature-feedback ${feedback?.correct ? 'is-correct' : ''}`}
         role="status"
@@ -394,24 +392,14 @@ function MeadowGame({ difficulty }: { difficulty: Difficulty }) {
         </div>
       )}
       <div className="nature-round-actions">
-        <button
-          type="button"
-          className="secondary-button"
-          aria-expanded={showHint}
-          aria-controls={hintId}
-          onClick={() => setShowHint(!showHint)}
-        >
-          Forscher-Tipp
-        </button>
+        <InfoPanel>
+          <summary>Forscher-Tipp</summary>
+          <p className="nature-hint">{round.hint}</p>
+        </InfoPanel>
         <button type="button" className="secondary-button" onClick={reset}>
           {complete ? 'Noch einmal erforschen' : 'Runde neu starten'}
         </button>
       </div>
-      {showHint && (
-        <p className="nature-hint" id={hintId}>
-          {round.hint}
-        </p>
-      )}
     </div>
   );
 }
@@ -425,56 +413,58 @@ function NatureGamesSession({ difficulty }: { difficulty: Difficulty }) {
       className={`nature-games nature-games-${active}`}
       aria-labelledby={headingId}
     >
-      <div className="nature-games-intro">
-        <p className="eyebrow">DEINE FORSCHER-WERKSTATT</p>
-        <h3 id={headingId}>Anklicken. Ausprobieren. Staunen.</h3>
-        <p>
-          Drei Lernspiele ·{' '}
-          {difficulties.find((entry) => entry.id === difficulty)!.name}
+      <div className="nature-games-layout">
+        <div className="nature-games-intro">
+          <p className="eyebrow">DEINE FORSCHER-WERKSTATT</p>
+          <h3 id={headingId}>Anklicken. Ausprobieren. Staunen.</h3>
+          <p>
+            Drei Lernspiele ·{' '}
+            {difficulties.find((entry) => entry.id === difficulty)!.name}
+          </p>
+        </div>
+        <div
+          className="nature-game-picker"
+          role="group"
+          aria-label="Lernspiel wählen"
+        >
+          {natureGames.map((game) => (
+            <button
+              type="button"
+              key={game.id}
+              aria-label={game.name}
+              aria-pressed={active === game.id}
+              onClick={() => setActive(game.id)}
+            >
+              <span className="nature-game-symbol" aria-hidden="true">
+                {game.symbol}
+              </span>
+              <span>
+                <strong>{game.name}</strong>
+                <small>{game.subtitle}</small>
+              </span>
+            </button>
+          ))}
+        </div>
+        <section aria-label={name} key={`${active}-${difficulty}`}>
+          {active === 'meadow' ? (
+            <MeadowGame difficulty={difficulty} />
+          ) : (
+            <MatchGame
+              round={
+                active === 'matter'
+                  ? matterRounds[difficulty]
+                  : flowerRounds[difficulty]
+              }
+              flower={active === 'flower'}
+            />
+          )}
+        </section>
+        <p className="nature-session-note">
+          Freies Erkunden ohne Zeitlimit und ohne Lernpunkte. Beim Spiel- oder
+          Stufenwechsel beginnt eine neue Runde. Beim Verlassen wird die Runde
+          nicht gespeichert.
         </p>
       </div>
-      <div
-        className="nature-game-picker"
-        role="group"
-        aria-label="Lernspiel wählen"
-      >
-        {natureGames.map((game) => (
-          <button
-            type="button"
-            key={game.id}
-            aria-label={game.name}
-            aria-pressed={active === game.id}
-            onClick={() => setActive(game.id)}
-          >
-            <span className="nature-game-symbol" aria-hidden="true">
-              {game.symbol}
-            </span>
-            <span>
-              <strong>{game.name}</strong>
-              <small>{game.subtitle}</small>
-            </span>
-          </button>
-        ))}
-      </div>
-      <section aria-label={name} key={`${active}-${difficulty}`}>
-        {active === 'meadow' ? (
-          <MeadowGame difficulty={difficulty} />
-        ) : (
-          <MatchGame
-            round={
-              active === 'matter'
-                ? matterRounds[difficulty]
-                : flowerRounds[difficulty]
-            }
-            flower={active === 'flower'}
-          />
-        )}
-      </section>
-      <p className="nature-session-note">
-        Freies Erkunden ohne Zeitlimit und ohne Lernpunkte. Beim Spiel- oder
-        Stufenwechsel beginnt eine neue Runde. Beim Verlassen wird die Runde
-        nicht gespeichert.
-      </p>
     </section>
   );
 }

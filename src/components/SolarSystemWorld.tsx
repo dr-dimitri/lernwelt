@@ -201,7 +201,10 @@ export default function SolarSystemWorld({
   }
 
   return (
-    <section className="solar-world" aria-labelledby="solar-title">
+    <section
+      className={`solar-world solar-${mode}`}
+      aria-labelledby="solar-title"
+    >
       <header className="solar-intro">
         <div>
           <p className="eyebrow">GEOGRAPHIE · DEINE WELTRAUMREISE</p>
@@ -287,87 +290,93 @@ export default function SolarSystemWorld({
       )}
 
       {mode === 'discover' ? (
-        <>
+        <div className="solar-workspace">
           <SolarSystemModel
             guessing={false}
             selected={selected}
             onSelect={setSelected}
           />
-          <article
-            className="solar-fact-card"
-            aria-labelledby="solar-planet-title"
-          >
-            <PlanetGallery key={planet.id} planet={planet} />
-            <div>
-              <p className="eyebrow">
-                {planet.id === 'pluto'
-                  ? 'ZWERGPLANET'
-                  : `PLANET ${planet.order} VON DER SONNE AUS`}
-              </p>
-              <h3 id="solar-planet-title">{planet.name}</h3>
-              <p className="solar-tagline">{planet.tagline}</p>
-              <ul>
-                {planet.facts.map((fact) => (
-                  <li key={fact}>{fact}</li>
-                ))}
-              </ul>
-              <button
-                type="button"
-                className="primary-button"
-                onClick={startQuiz}
-                disabled={busy}
-              >
-                Bereit für ein Planeten-Rätsel?
-              </button>
-            </div>
-          </article>
-          <div className="solar-discover-notes">
-            <article>
-              <span aria-hidden="true">☀</span>
-              <h3>Unser Stern: die Sonne</h3>
-              <p>
-                Die Sonne leuchtet selbst und gibt uns Wärme. Alle acht Planeten
-                kreisen um sie. Eine Umlaufbahn ist der Weg eines Planeten um
-                die Sonne.
-              </p>
+          <div className="solar-discovery-details">
+            <article
+              className="solar-fact-card"
+              aria-labelledby="solar-planet-title"
+            >
+              <PlanetGallery key={planet.id} planet={planet} />
+              <div>
+                <p className="eyebrow">
+                  {planet.id === 'pluto'
+                    ? 'ZWERGPLANET'
+                    : `PLANET ${planet.order} VON DER SONNE AUS`}
+                </p>
+                <h3 id="solar-planet-title">{planet.name}</h3>
+                <p className="solar-tagline">{planet.tagline}</p>
+                <ul>
+                  {planet.facts.map((fact) => (
+                    <li key={fact}>{fact}</li>
+                  ))}
+                </ul>
+                <button
+                  type="button"
+                  className="primary-button"
+                  onClick={startQuiz}
+                  disabled={busy}
+                >
+                  Bereit für ein Planeten-Rätsel?
+                </button>
+              </div>
             </article>
-            <article>
-              <span aria-hidden="true">♧</span>
-              <h3>Ein besonderer Planet</h3>
+            <InfoPanel paginate className="solar-discover-notes">
+              <summary>Die Sonne, unsere Erde und Pluto</summary>
+              <article>
+                <span aria-hidden="true">☀</span>
+                <h3>Unser Stern: die Sonne</h3>
+                <p>
+                  Die Sonne leuchtet selbst und gibt uns Wärme. Alle acht
+                  Planeten kreisen um sie. Eine Umlaufbahn ist der Weg eines
+                  Planeten um die Sonne.
+                </p>
+              </article>
+              <article>
+                <span aria-hidden="true">♧</span>
+                <h3>Ein besonderer Planet</h3>
+                <p>
+                  Auf der Erde gibt es flüssiges Wasser und Luft zum Atmen. Sie
+                  ist unser einziges bekanntes Zuhause mit Leben. Wir können sie
+                  schützen: Wasser sparen, Müll vermeiden und öfter zu Fuß
+                  gehen.
+                </p>
+              </article>
+              <article>
+                <span aria-hidden="true">✦</span>
+                <h3>Und was ist mit Pluto?</h3>
+                <p>
+                  Pluto gehört auch zum Sonnensystem. Er ist ein Zwergplanet und
+                  zählt deshalb nicht zu den acht Planeten. Wähle Pluto unter
+                  dem Modell und entdecke seine eisige Oberfläche.
+                </p>
+              </article>
+            </InfoPanel>
+            <InfoPanel paginate className="solar-activity">
+              <summary>Deine Mission abseits des Bildschirms</summary>
+              <ol>
+                <li>Zeichne die Sonne und acht Kreise für die Planeten.</li>
+                <li>
+                  Beschrifte sie in der Reihenfolge von der Sonne aus. Schau bei
+                  Bedarf im Modell nach.
+                </li>
+                <li>
+                  Zeichne zusätzlich Pluto und schreibe „Zwergplanet“ dazu.
+                </li>
+                <li>Erkläre jemandem: Was macht unsere Erde besonders?</li>
+              </ol>
               <p>
-                Auf der Erde gibt es flüssiges Wasser und Luft zum Atmen. Sie
-                ist unser einziges bekanntes Zuhause mit Leben. Wir können sie
-                schützen: Wasser sparen, Müll vermeiden und öfter zu Fuß gehen.
+                Zum Merken: „Mein Vater erklärt mir jeden Sonntag unseren
+                Nachthimmel.“ Die Anfangsbuchstaben passen zu Merkur, Venus,
+                Erde, Mars, Jupiter, Saturn, Uranus und Neptun.
               </p>
-            </article>
-            <article>
-              <span aria-hidden="true">✦</span>
-              <h3>Und was ist mit Pluto?</h3>
-              <p>
-                Pluto gehört auch zum Sonnensystem. Er ist ein Zwergplanet und
-                zählt deshalb nicht zu den acht Planeten. Wähle Pluto unter dem
-                Modell und entdecke seine eisige Oberfläche.
-              </p>
-            </article>
+            </InfoPanel>
           </div>
-          <InfoPanel className="solar-activity">
-            <summary>Deine Mission abseits des Bildschirms</summary>
-            <ol>
-              <li>Zeichne die Sonne und acht Kreise für die Planeten.</li>
-              <li>
-                Beschrifte sie in der Reihenfolge von der Sonne aus. Schau bei
-                Bedarf im Modell nach.
-              </li>
-              <li>Zeichne zusätzlich Pluto und schreibe „Zwergplanet“ dazu.</li>
-              <li>Erkläre jemandem: Was macht unsere Erde besonders?</li>
-            </ol>
-            <p>
-              Zum Merken: „Mein Vater erklärt mir jeden Sonntag unseren
-              Nachthimmel.“ Die Anfangsbuchstaben passen zu Merkur, Venus, Erde,
-              Mars, Jupiter, Saturn, Uranus und Neptun.
-            </p>
-          </InfoPanel>
-        </>
+        </div>
       ) : loading ? (
         <p role="status">Deine Planeten-Runde wird geladen …</p>
       ) : !state ? (
@@ -418,93 +427,95 @@ export default function SolarSystemWorld({
               prüfe deine Antwort.
             </p>
           </div>
-          <SolarSystemModel
-            guessing
-            target={question.solarSystemPlanetId}
-            selected={selected}
-            onSelect={setSelected}
-          />
-          <div className="solar-quiz-card">
-            <img
-              src={target.image}
-              alt="NASA-Aufnahme des gesuchten Planeten"
-              width="240"
-              height="240"
+          <div className="solar-workspace">
+            <SolarSystemModel
+              guessing
+              target={question.solarSystemPlanetId}
+              selected={selected}
+              onSelect={setSelected}
             />
-            <div>
-              <form onSubmit={(event) => void submit(event)}>
-                <fieldset disabled={!enabled || !!result?.correct}>
-                  <legend>Wie heißt dieser Planet?</legend>
-                  <div className="solar-answer-options">
-                    {question.options.map((option) => (
-                      <label
-                        key={option}
-                        className={answer === option ? 'is-selected' : ''}
-                      >
-                        <input
-                          type="radio"
-                          name="solar-answer"
-                          value={option}
-                          checked={answer === option}
-                          onChange={() => {
-                            setAnswer(option);
-                            setResult(null);
-                          }}
-                        />
-                        {option}
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
-                <button
-                  className="primary-button"
-                  disabled={!enabled || !answer || !!result?.correct}
-                  type="submit"
-                >
-                  {busy ? 'Wird geprüft …' : 'Antwort prüfen'}
-                </button>
-                {question.solved && (
-                  <small className="solar-solved">
-                    Schon gelöst · Wiederholen ist immer erlaubt.
-                  </small>
-                )}
-              </form>
-              <LearningHints key={question.id} question={question} />
-              {result && (
-                <div
-                  className={`solar-feedback ${result.correct ? 'correct' : ''}`}
-                  role="status"
-                >
-                  <strong>
-                    {result.correct
-                      ? result.pointsAwarded
-                        ? `Richtig! +${result.pointsAwarded} ${result.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
-                        : 'Richtig! Diesen Planeten hast du schon gelöst.'
-                      : 'Noch nicht ganz. Du kannst es nochmal versuchen!'}
-                  </strong>
-                  {result.correct ? (
-                    <p>{result.explanation}</p>
-                  ) : (
-                    <>
-                      {result.mistakeHint && <p>{result.mistakeHint}</p>}
-                      <InfoPanel>
-                        <summary>Lösung verstehen</summary>
-                        <p>{result.explanation}</p>
-                      </InfoPanel>
-                    </>
+            <div className="solar-quiz-card">
+              <img
+                src={target.image}
+                alt="NASA-Aufnahme des gesuchten Planeten"
+                width="240"
+                height="240"
+              />
+              <div>
+                <form onSubmit={(event) => void submit(event)}>
+                  <fieldset disabled={!enabled || !!result?.correct}>
+                    <legend>Wie heißt dieser Planet?</legend>
+                    <div className="solar-answer-options">
+                      {question.options.map((option) => (
+                        <label
+                          key={option}
+                          className={answer === option ? 'is-selected' : ''}
+                        >
+                          <input
+                            type="radio"
+                            name="solar-answer"
+                            value={option}
+                            checked={answer === option}
+                            onChange={() => {
+                              setAnswer(option);
+                              setResult(null);
+                            }}
+                          />
+                          {option}
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                  <button
+                    className="primary-button"
+                    disabled={!enabled || !answer || !!result?.correct}
+                    type="submit"
+                  >
+                    {busy ? 'Wird geprüft …' : 'Antwort prüfen'}
+                  </button>
+                  {question.solved && (
+                    <small className="solar-solved">
+                      Schon gelöst · Wiederholen ist immer erlaubt.
+                    </small>
                   )}
-                </div>
-              )}
-              <button
-                className="secondary-button solar-next"
-                type="button"
-                disabled={busy}
-                onClick={next}
-              >
-                {index + 1 === questions.length
-                  ? 'Reise abschließen'
-                  : 'Nächster Planet →'}
-              </button>
+                </form>
+                <LearningHints key={question.id} question={question} />
+                {result && (
+                  <div
+                    className={`solar-feedback ${result.correct ? 'correct' : ''}`}
+                    role="status"
+                  >
+                    <strong>
+                      {result.correct
+                        ? result.pointsAwarded
+                          ? `Richtig! +${result.pointsAwarded} ${result.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
+                          : 'Richtig! Diesen Planeten hast du schon gelöst.'
+                        : 'Noch nicht ganz. Du kannst es nochmal versuchen!'}
+                    </strong>
+                    {result.correct ? (
+                      <p>{result.explanation}</p>
+                    ) : (
+                      <>
+                        {result.mistakeHint && <p>{result.mistakeHint}</p>}
+                        <InfoPanel>
+                          <summary>Lösung verstehen</summary>
+                          <p>{result.explanation}</p>
+                        </InfoPanel>
+                      </>
+                    )}
+                  </div>
+                )}
+                <button
+                  className="secondary-button solar-next"
+                  type="button"
+                  disabled={busy}
+                  onClick={next}
+                >
+                  {index + 1 === questions.length
+                    ? 'Reise abschließen'
+                    : 'Nächster Planet →'}
+                </button>
+              </div>
             </div>
           </div>
           <p className="solar-points-note">
