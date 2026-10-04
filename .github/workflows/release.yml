@@ -3,16 +3,49 @@ name: Release
 on:
   push:
     tags: ['v*']
+  workflow_call:
+    secrets:
+      TAURI_SIGNING_PRIVATE_KEY:
+        required: true
+      TAURI_SIGNING_PRIVATE_KEY_PASSWORD:
+        required: false
 
 permissions:
   contents: read
 
 concurrency:
-  group: release-${{ github.ref }}
+  group: release-${{ github.sha }}
   cancel-in-progress: false
+  queue: max
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 5
+    outputs:
+      tag: ${{ steps.release.outputs.tag }}
+      version: ${{ steps.release.outputs.version }}
+      build: ${{ steps.release.outputs.build }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+      - name: Prepare tag at the checked merge commit
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/prepare-release.mjs
+
   build:
+    needs: prepare
+    if: needs.prepare.outputs.build == 'true'
+    env:
+      RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
     name: Release (${{ matrix.target }})
     strategy:
       fail-fast: false
@@ -53,6 +86,7 @@ jobs:
         shell: bash
         run: node scripts/check-release-version.mjs
       - run: npm run check:all
+        if: github.ref_type == 'tag'
       - name: Build signed update and installer
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
@@ -70,7 +104,13 @@ jobs:
           retention-days: 7
 
   publish:
-    needs: build
+    needs: [prepare, build]
+    env:
+      RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
+    concurrency:
+      group: release-publish
+      cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -88,13 +128,4 @@ jobs:
       - name: Publish completed release
         env:
           GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          if gh release view "$GITHUB_REF_NAME" --json isDraft >/dev/null 2>&1; then
-            test "$(gh release view "$GITHUB_REF_NAME" --json isDraft --jq .isDraft)" = true
-          else
-            gh release create "$GITHUB_REF_NAME" --verify-tag --draft --title "Lernwelt $VERSION" --notes-file "docs/releases/$VERSION.md"
-          fi
-          gh release upload "$GITHUB_REF_NAME" release-upload/* --clobber
-          gh release edit "$GITHUB_REF_NAME" --draft=false --latest
+        run: node scripts/publish-release.mjs
