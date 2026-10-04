@@ -41,7 +41,7 @@ Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Ma
 
 ## App aktualisieren
 
-Über **App aktualisieren** oben im Fenster kannst du neue Versionen prüfen, herunterladen und installieren. Lernwelt prüft standardmäßig einmal beim Start; diese Prüfung ist abschaltbar und bleibt lokal gespeichert. Die Installation startet erst nach deinem Klick. Neue Pakete werden vor der Installation mit einer Signatur geprüft. Der Lernbetrieb funktioniert weiterhin offline; Profile und Antworten werden nicht übertragen.
+Über **App aktualisieren** oben im Fenster kannst du neue Versionen prüfen, herunterladen und installieren. Lernwelt prüft standardmäßig einmal beim Start; diese Prüfung ist abschaltbar und bleibt lokal gespeichert. Standardmäßig werden nur stabile Releases angeboten. Mit **Vorabversionen (Pre-Releases) anbieten** kannst du zusätzlich auf GitHub als Vorabversion markierte Veröffentlichungen wählen. Diese Auswahl wird getrennt von der Startprüfung lokal gespeichert. Die Installation startet erst nach deinem Klick. Neue Pakete werden vor der Installation mit einer Signatur geprüft. Der Lernbetrieb funktioniert weiterhin offline; Profile und Antworten werden nicht übertragen.
 
 Die erste Installation einer Version mit Updater erfolgt über den GitHub-Release. Die bisherige Version 0.1.0 kann sich noch nicht selbst aktualisieren. macOS (Apple Silicon und Intel) sowie Windows x64 erhalten eigene Pakete. Die Pakete sind für den Updater signiert, haben aber noch keine Apple-Notarisierung oder Windows-Herausgebersignatur. [Bedienung und Release-Prozess](docs/app-updates.md).
 

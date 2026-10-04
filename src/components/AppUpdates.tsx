@@ -12,6 +12,8 @@ export default function AppUpdates() {
   const [nextVersion, setNextVersion] = useState('');
   const [notes, setNotes] = useState('');
   const [automatic, setAutomatic] = useState(false);
+  const [includePrereleases, setIncludePrereleases] = useState(false);
+  const [isPrerelease, setIsPrerelease] = useState(false);
   const [error, setError] = useState('');
   const [preferenceError, setPreferenceError] = useState('');
   const [progress, setProgress] = useState<number | null>(null);
@@ -23,6 +25,7 @@ export default function AppUpdates() {
   const busy = useRef(false);
   const mounted = useRef(false);
   const initialized = useRef(false);
+  const previewChannel = useRef(false);
   const native = updater.available();
 
   async function checkForUpdates() {
@@ -34,7 +37,7 @@ export default function AppUpdates() {
     update.current = null;
     if (old) void old.close().catch(() => undefined);
     try {
-      const found = await updater.check();
+      const found = await updater.check(previewChannel.current);
       if (!mounted.current) {
         if (found) void found.close().catch(() => undefined);
         return;
@@ -42,6 +45,7 @@ export default function AppUpdates() {
       update.current = found;
       setNextVersion(found?.version ?? '');
       setNotes(found?.body ?? '');
+      setIsPrerelease(found?.prerelease ?? false);
       setPhase(found ? 'available' : 'current');
     } catch {
       if (mounted.current) {
@@ -69,6 +73,9 @@ export default function AppUpdates() {
         });
       try {
         const enabled = updater.preference();
+        const include = updater.prereleasePreference();
+        previewChannel.current = include;
+        setIncludePrereleases(include);
         setAutomatic(enabled);
         if (enabled) void checkForUpdates();
       } catch {
@@ -98,6 +105,21 @@ export default function AppUpdates() {
     dialog.current?.close();
     setOpen(false);
     trigger.current?.focus();
+  }
+
+  function changePrereleases(enabled: boolean) {
+    if (busy.current || phase === 'installed') return;
+    try {
+      updater.savePrereleasePreference(enabled);
+      previewChannel.current = enabled;
+      setIncludePrereleases(enabled);
+      setPreferenceError('');
+      void checkForUpdates();
+    } catch {
+      setPreferenceError(
+        'Die Einstellung konnte nicht gespeichert werden. Versuche es erneut.',
+      );
+    }
   }
 
   async function install() {
@@ -211,6 +233,26 @@ export default function AppUpdates() {
                 />
                 Beim Start automatisch nach Updates suchen
               </label>
+              <label className="update-preference">
+                <input
+                  type="checkbox"
+                  checked={includePrereleases}
+                  disabled={
+                    phase === 'checking' ||
+                    phase === 'installing' ||
+                    phase === 'installed' ||
+                    restarting
+                  }
+                  aria-describedby="prerelease-hint"
+                  onChange={(event) => changePrereleases(event.target.checked)}
+                />
+                Vorabversionen (Pre-Releases) anbieten
+              </label>
+              <p id="prerelease-hint" className="sample-note">
+                Vorabversionen enthalten neue Funktionen zum Ausprobieren und
+                können noch Fehler haben. Du entscheidest, ob du sie
+                installierst.
+              </p>
               <p className="sample-note">
                 Die Prüfung lädt Versionsinformationen von GitHub. Dein Profil
                 und deine Antworten bleiben auf deinem Gerät. Zum Lernen
@@ -230,10 +272,15 @@ export default function AppUpdates() {
                 <p role="status">Suche nach einer neuen Version …</p>
               )}
               {phase === 'current' && (
-                <p role="status">Du hast die aktuelle Version.</p>
+                <p role="status">
+                  Für diese App gibt es gerade kein neueres Update.
+                </p>
               )}
               {(phase === 'available' || phase === 'installing') && (
-                <h3>Version {nextVersion} ist verfügbar</h3>
+                <h3>
+                  {isPrerelease ? 'Vorabversion' : 'Version'} {nextVersion} ist
+                  verfügbar
+                </h3>
               )}
               {notes && (phase === 'available' || phase === 'installing') && (
                 <details>

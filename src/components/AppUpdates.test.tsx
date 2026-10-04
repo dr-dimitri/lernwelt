@@ -19,6 +19,8 @@ vi.mock('../lib/updater', () => ({
     restart: vi.fn(),
     preference: vi.fn(),
     savePreference: vi.fn(),
+    prereleasePreference: vi.fn(),
+    savePrereleasePreference: vi.fn(),
   },
 }));
 
@@ -28,10 +30,12 @@ beforeEach(() => {
   vi.mocked(updater.available).mockReturnValue(true);
   vi.mocked(updater.version).mockResolvedValue('0.1.0');
   vi.mocked(updater.preference).mockReturnValue(true);
+  vi.mocked(updater.prereleasePreference).mockReturnValue(false);
   vi.mocked(updater.check).mockResolvedValue(null);
   vi.mocked(updater.restart).mockResolvedValue();
   candidate = {
     version: '0.2.0',
+    prerelease: false,
     body: 'Neue Lernrunden',
     close: vi.fn().mockResolvedValue(undefined),
     downloadAndInstall: vi.fn().mockResolvedValue(undefined),
@@ -53,10 +57,18 @@ describe('App-Updates', () => {
     );
     await open();
     expect(
-      await screen.findByText('Du hast die aktuelle Version.'),
+      await screen.findByText(
+        'Für diese App gibt es gerade kein neueres Update.',
+      ),
     ).toBeVisible();
     expect(screen.getByText('0.1.0')).toBeVisible();
     expect(updater.check).toHaveBeenCalledTimes(1);
+    expect(updater.check).toHaveBeenCalledWith(false);
+    expect(
+      screen.getByRole('checkbox', {
+        name: 'Vorabversionen (Pre-Releases) anbieten',
+      }),
+    ).not.toBeChecked();
     expect(updater.restart).not.toHaveBeenCalled();
   });
 
@@ -65,14 +77,24 @@ describe('App-Updates', () => {
     render(<AppUpdates />);
     await open();
     expect(updater.check).not.toHaveBeenCalled();
-    expect(screen.getByRole('checkbox')).not.toBeChecked();
+    expect(
+      screen.getByRole('checkbox', {
+        name: 'Beim Start automatisch nach Updates suchen',
+      }),
+    ).not.toBeChecked();
     await userEvent.click(
       screen.getByRole('button', { name: 'Nach Updates suchen' }),
     );
     expect(
-      await screen.findByText('Du hast die aktuelle Version.'),
+      await screen.findByText(
+        'Für diese App gibt es gerade kein neueres Update.',
+      ),
     ).toBeVisible();
-    await userEvent.click(screen.getByRole('checkbox'));
+    await userEvent.click(
+      screen.getByRole('checkbox', {
+        name: 'Beim Start automatisch nach Updates suchen',
+      }),
+    );
     expect(updater.savePreference).toHaveBeenCalledWith(true);
   });
 
@@ -92,7 +114,9 @@ describe('App-Updates', () => {
       screen.getByRole('button', { name: 'Nach Updates suchen' }),
     );
     expect(
-      await screen.findByText('Du hast die aktuelle Version.'),
+      await screen.findByText(
+        'Für diese App gibt es gerade kein neueres Update.',
+      ),
     ).toBeVisible();
   });
 
@@ -117,6 +141,11 @@ describe('App-Updates', () => {
     );
     expect(screen.getByRole('progressbar')).toHaveAttribute('value', '40');
     expect(screen.getByRole('button', { name: 'Schließen' })).toBeDisabled();
+    expect(
+      screen.getByRole('checkbox', {
+        name: 'Vorabversionen (Pre-Releases) anbieten',
+      }),
+    ).toBeDisabled();
     fireEvent(
       screen.getByRole('dialog'),
       new Event('cancel', { cancelable: true }),
@@ -125,6 +154,11 @@ describe('App-Updates', () => {
     expect(candidate.downloadAndInstall).toHaveBeenCalledTimes(1);
     await act(async () => finish());
     expect(await screen.findByText(/Das Update ist installiert/)).toBeVisible();
+    expect(
+      screen.getByRole('checkbox', {
+        name: 'Vorabversionen (Pre-Releases) anbieten',
+      }),
+    ).toBeDisabled();
     expect(updater.restart).not.toHaveBeenCalled();
     await userEvent.click(
       screen.getByRole('button', { name: 'Jetzt neu starten' }),
@@ -191,9 +225,17 @@ describe('App-Updates', () => {
     await open();
     expect(updater.check).not.toHaveBeenCalled();
     expect(screen.getByRole('alert')).toHaveTextContent('nicht gelesen');
-    await userEvent.click(screen.getByRole('checkbox'));
+    await userEvent.click(
+      screen.getByRole('checkbox', {
+        name: 'Beim Start automatisch nach Updates suchen',
+      }),
+    );
     expect(screen.getByRole('alert')).toHaveTextContent('nicht gespeichert');
-    expect(screen.getByRole('checkbox')).not.toBeChecked();
+    expect(
+      screen.getByRole('checkbox', {
+        name: 'Beim Start automatisch nach Updates suchen',
+      }),
+    ).not.toBeChecked();
   });
 
   it('releases a pending native update when the view unmounts', async () => {
@@ -208,6 +250,139 @@ describe('App-Updates', () => {
     view.unmount();
     await act(async () => finish(candidate));
     await waitFor(() => expect(candidate.close).toHaveBeenCalledTimes(1));
+  });
+
+  it('uses the saved preview choice at startup and labels GitHub previews explicitly', async () => {
+    vi.mocked(updater.prereleasePreference).mockReturnValue(true);
+    candidate.prerelease = true;
+    vi.mocked(updater.check).mockResolvedValue(candidate);
+    render(
+      <StrictMode>
+        <AppUpdates />
+      </StrictMode>,
+    );
+    await open();
+    expect(
+      await screen.findByRole('heading', {
+        name: 'Vorabversion 0.2.0 ist verfügbar',
+      }),
+    ).toBeVisible();
+    expect(updater.check).toHaveBeenCalledExactlyOnceWith(true);
+    expect(
+      screen.getByRole('checkbox', {
+        name: 'Vorabversionen (Pre-Releases) anbieten',
+      }),
+    ).toBeChecked();
+    expect(candidate.downloadAndInstall).not.toHaveBeenCalled();
+  });
+
+  it('checks on channel changes even without automatic startup checks and discards the old preview', async () => {
+    vi.mocked(updater.preference).mockReturnValue(false);
+    candidate.prerelease = true;
+    let finish!: (update: AvailableUpdate | null) => void;
+    vi.mocked(updater.check)
+      .mockImplementationOnce(() => Promise.resolve(candidate))
+      .mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            finish = resolve;
+          }),
+      );
+    render(<AppUpdates />);
+    await open();
+    const preview = screen.getByRole('checkbox', {
+      name: 'Vorabversionen (Pre-Releases) anbieten',
+    });
+    await userEvent.click(preview);
+    expect(updater.savePrereleasePreference).toHaveBeenCalledWith(true);
+    expect(updater.check).toHaveBeenNthCalledWith(1, true);
+    expect(
+      await screen.findByRole('heading', { name: /Vorabversion/ }),
+    ).toBeVisible();
+    await userEvent.click(preview);
+    expect(updater.savePrereleasePreference).toHaveBeenLastCalledWith(false);
+    expect(updater.check).toHaveBeenNthCalledWith(2, false);
+    expect(candidate.close).toHaveBeenCalledTimes(1);
+    expect(preview).toBeDisabled();
+    expect(
+      screen.queryByRole('button', {
+        name: 'Update herunterladen und installieren',
+      }),
+    ).not.toBeInTheDocument();
+    await act(async () => finish(null));
+    expect(preview).toBeEnabled();
+    expect(preview).not.toBeChecked();
+    expect(candidate.downloadAndInstall).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole('checkbox', {
+        name: 'Beim Start automatisch nach Updates suchen',
+      }),
+    ).not.toBeChecked();
+  });
+
+  it('keeps the channel and existing offer unchanged if saving the channel fails', async () => {
+    vi.mocked(updater.prereleasePreference).mockReturnValue(true);
+    candidate.prerelease = true;
+    vi.mocked(updater.check).mockResolvedValue(candidate);
+    vi.mocked(updater.savePrereleasePreference).mockImplementation(() => {
+      throw new Error('storage unavailable');
+    });
+    render(<AppUpdates />);
+    await open();
+    const preview = screen.getByRole('checkbox', {
+      name: 'Vorabversionen (Pre-Releases) anbieten',
+    });
+    await userEvent.click(preview);
+    expect(screen.getByRole('alert')).toHaveTextContent('nicht gespeichert');
+    expect(preview).toBeChecked();
+    expect(updater.check).toHaveBeenCalledTimes(1);
+    expect(candidate.close).not.toHaveBeenCalled();
+    expect(screen.getByRole('heading', { name: /Vorabversion/ })).toBeVisible();
+  });
+
+  it('defaults to stable manual checks if the saved preview choice cannot be read', async () => {
+    vi.mocked(updater.prereleasePreference).mockImplementation(() => {
+      throw new Error('storage unavailable');
+    });
+    render(<AppUpdates />);
+    await open();
+    expect(updater.check).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole('checkbox', {
+        name: 'Vorabversionen (Pre-Releases) anbieten',
+      }),
+    ).not.toBeChecked();
+    await userEvent.click(
+      screen.getByRole('button', { name: 'Nach Updates suchen' }),
+    );
+    expect(updater.check).toHaveBeenCalledExactlyOnceWith(false);
+  });
+
+  it('does not retain an installable preview if checking the stable channel fails', async () => {
+    vi.mocked(updater.prereleasePreference).mockReturnValue(true);
+    candidate.prerelease = true;
+    vi.mocked(updater.check)
+      .mockResolvedValueOnce(candidate)
+      .mockRejectedValueOnce(new Error('offline'));
+    render(<AppUpdates />);
+    await open();
+    await userEvent.click(
+      screen.getByRole('checkbox', {
+        name: 'Vorabversionen (Pre-Releases) anbieten',
+      }),
+    );
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      'Du kannst weiterlernen',
+    );
+    expect(candidate.close).toHaveBeenCalledTimes(1);
+    expect(
+      screen.queryByRole('button', {
+        name: 'Update herunterladen und installieren',
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Für diese App gibt es gerade kein neueres Update.'),
+    ).not.toBeInTheDocument();
   });
 
   it('does not pretend to update the browser preview', async () => {

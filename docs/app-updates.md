@@ -2,13 +2,17 @@
 
 **App aktualisieren** oben im Fenster zeigt die installierte Version und sucht nach neuen Versionen. Standardmäßig prüft Lernwelt einmal beim Start. Die Einstellung lässt sich abschalten und wird in der lokalen Webview gespeichert. Eine manuelle Prüfung bleibt möglich. Ist diese Einstellung nicht lesbar, erfolgt keine automatische Prüfung.
 
+Standardmäßig sucht Lernwelt ausschließlich nach stabilen GitHub-Releases. **Vorabversionen (Pre-Releases) anbieten** schaltet die auf GitHub als `prerelease: true` gekennzeichneten Veröffentlichungen hinzu. Die Auswahl ist standardmäßig aus, wird unabhängig von der Startprüfung lokal gespeichert und gilt auch für manuelle Prüfungen. Ein Wechsel prüft sofort erneut und verwirft das bisherige Angebot. Während Prüfung, Installation und bis zum Neustart nach einer Installation bleibt dieser Schalter gesperrt. Bei unlesbaren Einstellungen wird nicht automatisch geprüft; eine manuelle Prüfung beginnt sicher mit stabilen Releases.
+
+Bei aktivierter Option berücksichtigt die App veröffentlichte stabile und Vorab-Releases mit hochgeladenem `latest.json`. Sie wählt die höchste neuere semantische Version, unabhängig von Veröffentlichungsdatum und Listenreihenfolge. Entwürfe, Tags ohne Release, fehlende/leere Manifeste sowie gleiche oder ältere Versionen werden nicht angeboten. Die Kennzeichnung **Vorabversion** folgt dem GitHub-Flag, auch wenn eine Versionsnummer keinen `beta`-Zusatz hat. Eine spätere stabile Version wird ebenfalls angeboten, sobald sie höher als die installierte Vorabversion ist. Ausschalten der Option führt nicht zu einem Downgrade.
+
 Eine verfügbare Version erscheint am Knopf. Herunterladen und Installieren beginnen erst mit **Update herunterladen und installieren**. Vorher die aktuelle Aufgabe beenden; unter Windows schließt der Installer die App und startet sie anschließend wieder. Auf macOS erscheint nach erfolgreicher Installation **Jetzt neu starten**. Während der Installation bleibt das Updatefenster modal. Fehler erlauben erneutes Versuchen und werden nicht als erfolgreiche Installation ausgegeben. Bei einem fehlgeschlagenen Neustart kann die App von Hand beendet und geöffnet werden.
 
 ## Offline und Daten
 
-Die Versionsprüfung nutzt ausschließlich den festen HTTPS-Endpunkt `https://github.com/dr-dimitri/lernwelt/releases/latest/download/latest.json`. GitHub erhält die technisch erforderliche Verbindungsinformation (unter anderem IP-Adresse), keine Lernprofile oder Antworten. Ohne Netz bleibt das Lernen verfügbar. Die Update-Prüfung läuft höchstens 15 Sekunden, ein Download höchstens drei Minuten; danach ist ein erneuter Versuch möglich. SQLite und lokale Lernstände werden nicht exportiert oder ersetzt.
+Für stabile Updates nutzt die Prüfung den festen HTTPS-Endpunkt `https://github.com/dr-dimitri/lernwelt/releases/latest/download/latest.json`. Nur bei aktivierten Vorabversionen liest Rust zusätzlich `https://api.github.com/repos/dr-dimitri/lernwelt/releases` (ohne Zugangsschlüssel), gefolgt vom `latest.json` des ausgewählten Releases. Die Listenprüfung liest bis zu zehn Seiten mit je 100 Einträgen; alle Anfragen und das Manifest teilen sich ein Zeitbudget von 15 Sekunden. Ein überschrittenes Limit, API-Fehler, widersprüchliche Versionen oder ein fehlendes Plattformpaket ergeben einen Fehler statt einer falschen Erfolgsanzeige. GitHub erhält die technisch erforderliche Verbindungsinformation (unter anderem IP-Adresse), keine Lernprofile oder Antworten. Ohne Netz bleibt das Lernen verfügbar. Die Update-Prüfung läuft höchstens 15 Sekunden, ein Download höchstens drei Minuten; danach ist ein erneuter Versuch möglich. SQLite und lokale Lernstände werden nicht exportiert oder ersetzt.
 
-Die offiziellen Tauri-Plugins prüfen vor der Installation die kryptografische Signatur des Updatepakets gegen den mitgelieferten öffentlichen Schlüssel. Eine ungültige Signatur bricht die Installation ab. Im Frontend gibt es keine freie Datei-, Shell- oder HTTP-Schnittstelle; die Capability erlaubt nur Version, Updateprüfung, Installation, Freigabe nativer Ressourcen und Neustart.
+Die offiziellen Tauri-Plugins prüfen vor der Installation die kryptografische Signatur des Updatepakets gegen den mitgelieferten öffentlichen Schlüssel. Eine ungültige Signatur bricht die Installation ab. Im Frontend gibt es keine freie Datei-, Shell- oder HTTP-Schnittstelle; die Capability erlaubt nur Version, den eigenen Command `check_app_update` mit einem booleschen Kanalschalter, signierte Installation, Freigabe nativer Ressourcen und Neustart. Rust begrenzt alle Quellen auf dieses Repository und prüft die Übereinstimmung von GitHub-Tag, Manifest-Version und Paketadresse. Native Update-Ressourcen bleiben im offiziellen Tauri-Plugin.
 
 ## Release erstellen
 
@@ -24,6 +28,12 @@ Grundlagen des Ablaufs: [wiederverwendbare GitHub-Workflows](https://docs.github
 `scripts/release-assets.mjs` verhindert unvollständige Plattformlisten, fehlende Signaturen und Namenskollisionen der macOS-Pakete. Die tatsächliche kryptografische Prüfung erfolgt im Tauri-Updater. Version und Metadaten werden vor dem Release durch `scripts/check-release-version.mjs` geprüft.
 
 Der private Schlüssel muss dauerhaft außerhalb von Git sicher aufbewahrt werden. Ein neuer Schlüssel kann vorhandene Installationen nicht ohne Übergangsrelease aktualisieren. Schlüssel/Passwort gehören weder in Logs noch in Artefakte. Der öffentliche Schlüssel in der App ist kein Geheimnis.
+
+## GitHub-Vorabversionen bereitstellen
+
+Eine als **Pre-release** markierte GitHub-Veröffentlichung braucht dieselben signierten Updater-Pakete für die jeweilige Plattform und ein `latest.json` wie ein stabiler Release. Der Tag muss eine semantische Version enthalten (z. B. `v0.7.0-beta.1`); die Manifest-Version muss dazu passen, Paketadressen müssen auf hochgeladene Assets dieses Releases zeigen. Das GitHub-Flag entscheidet über den Kanal. Ein alleiniger Quellcode-Tag oder die Vorabmarkierung ohne Updater-Pakete kann keine installierbare Version bereitstellen. Die vorhandene Merge-Pipeline veröffentlicht weiter stabile Versionen; dieses Updatefeature erzeugt keine zusätzlichen Vorab-Releases.
+
+Grundlage der Vorabauswahl: [GitHub Releases API](https://docs.github.com/en/rest/releases/releases#list-releases) und [Tauri-Updater-Konfiguration](https://v2.tauri.app/plugin/updater/).
 
 ## Grenzen
 

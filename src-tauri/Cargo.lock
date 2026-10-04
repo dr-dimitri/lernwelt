@@ -1814,9 +1814,11 @@ dependencies = [
 
 [[package]]
 name = "lernwelt"
-version = "0.6.7"
+version = "0.6.8"
 dependencies = [
+ "reqwest",
  "rusqlite",
+ "semver",
  "serde",
  "serde_json",
  "tauri",
