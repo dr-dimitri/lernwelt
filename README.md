@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.6.6 vergrößert die Planetenansicht im Blick ins All und hält kleinere Welten auch bei überlappenden Auswahlmarkierungen anklickbar. Die Erde kreist mit einer festen Umlaufzeit von 5 Sekunden; Start und Anhalten bleiben direkt erreichbar. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Alle Änderungen und Installationshinweise](docs/releases/0.6.6.md).
+Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.6.7 ergänzt eine einklappbare Seitenleiste: Die Navigation bleibt als schmale Symbolleiste erreichbar und schafft mehr Platz für die Aufgabe. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Alle Änderungen und Installationshinweise](docs/releases/0.6.7.md).
 
 ## Mitarbeit
 
@@ -37,7 +37,7 @@ Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale mac
 
 ## Bedienung
 
-Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Mathematik, Englisch sowie Natur und Technik öffnen einen Lehrplan-Themenkatalog: Lernbereich und Unterthema auswählen oder nach einem Begriff wie „Längen“ oder „Simple Present“ suchen. 88 Unterthemen in 18 Lernbereichen stehen zur Auswahl. Die bisherigen Fächer führen zu kurzen Runden mit höchstens sechs Aufgaben; Geographie öffnet eine eigene Sonnensystemwelt mit acht Planetenrätseln je Stufe. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md). Eine feste Seitennavigation führt zu Fächern, Vokabeltrainer, Einmaleins-Trainer, Tastschreiben und Spielhalle; im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
+Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Mathematik, Englisch sowie Natur und Technik öffnen einen Lehrplan-Themenkatalog: Lernbereich und Unterthema auswählen oder nach einem Begriff wie „Längen“ oder „Simple Present“ suchen. 88 Unterthemen in 18 Lernbereichen stehen zur Auswahl. Die bisherigen Fächer führen zu kurzen Runden mit höchstens sechs Aufgaben; Geographie öffnet eine eigene Sonnensystemwelt mit acht Planetenrätseln je Stufe. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md). Die Seitennavigation führt zu Fächern, Vokabeltrainer, Einmaleins-Trainer, Tastschreiben und Spielhalle. **Einklappen** reduziert sie auf Symbole; der Pfeil klappt sie wieder aus. Beim Darüberfahren erscheinen die Namen, die aktuelle Auswahl bleibt markiert. Die Einstellung gilt bis zum Schließen der App. Im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche mit Beschriftungen. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
 
 ## App aktualisieren
 
