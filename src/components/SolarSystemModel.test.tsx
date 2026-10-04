@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, expect, it, vi } from 'vitest';
+import { solarPlanetPosition } from '../domain/solar-projection';
 import {
   planets,
   pluto,
@@ -11,6 +12,20 @@ import {
 import SolarSystemModel from './SolarSystemModel';
 
 afterEach(() => vi.restoreAllMocks());
+
+// Independent reference periods in Earth days, also used to check the model's
+// fixed five-second Earth year for every other world.
+const orbitalDays: [SolarBody['id'], number][] = [
+  ['mercury', 87.969],
+  ['venus', 224.701],
+  ['earth', 365.256],
+  ['mars', 686.98],
+  ['jupiter', 4332.589],
+  ['saturn', 10755.699],
+  ['uranus', 30685.4],
+  ['neptune', 60189.018],
+  ['pluto', 90560],
+];
 
 function animationClock() {
   let time = 0;
@@ -97,10 +112,6 @@ it('bietet acht Planeten und Pluto als native Tasten und entdeckt sie mit Enter 
   await user.keyboard(' ');
   expect(start).toHaveAccessibleName('Umlauf starten');
   expect(start).toHaveAttribute('aria-pressed', 'false');
-  await user.tab();
-  expect(
-    screen.getByRole('slider', { name: 'Sekunden pro Erdenjahr' }),
-  ).toHaveFocus();
   for (const planet of planets) {
     await user.tab();
     const button = screen.getByRole('button', {
@@ -124,16 +135,13 @@ it('bietet acht Planeten und Pluto als native Tasten und entdeckt sie mit Enter 
   ).not.toBeInTheDocument();
 });
 
-it('startet mit ruhenden Planeten und bietet 5 bis 15 Sekunden pro Erdenjahr', () => {
+it('startet mit ruhenden Planeten und bietet nur die beiden Blickregler', () => {
   const clock = animationClock();
   render(<DiscoverModel />);
-  const speed = screen.getByRole('slider', { name: 'Sekunden pro Erdenjahr' });
-  expect(speed).toHaveAttribute('type', 'range');
-  expect(speed).toHaveAttribute('min', '5');
-  expect(speed).toHaveAttribute('max', '15');
-  expect(speed).toHaveAttribute('step', '1');
-  expect(speed).toHaveValue('5');
-  expect(speed).toHaveAttribute('aria-valuetext', '5 Sekunden pro Erdenjahr');
+  expect(screen.getAllByRole('slider')).toHaveLength(2);
+  expect(
+    screen.queryByRole('slider', { name: 'Sekunden pro Erdenjahr' }),
+  ).not.toBeInTheDocument();
   expect(
     screen.getByRole('button', { name: 'Umlauf starten' }),
   ).toHaveAttribute('aria-pressed', 'false');
@@ -144,10 +152,6 @@ it('startet mit ruhenden Planeten und bietet 5 bis 15 Sekunden pro Erdenjahr', (
   for (const [index, planet] of solarBodies.entries()) {
     expectSameCenter(planetCenter(picture, planet.id), initial[index]);
   }
-  fireEvent.change(speed, { target: { value: '11' } });
-  expect(speed).toHaveValue('11');
-  expect(speed).toHaveAttribute('aria-valuetext', '11 Sekunden pro Erdenjahr');
-  expect(screen.getByText('Ein Erdenjahr: 11 Sekunden')).toBeVisible();
 });
 
 it('bewegt den ausgewählten Zwergplaneten in seiner langen Umlaufzeit und hält ihn an', () => {
@@ -166,46 +170,62 @@ it('bewegt den ausgewählten Zwergplaneten in seiner langen Umlaufzeit und hält
   clock.advance(5000);
   const firstYear = planetCenter(picture, 'pluto');
   expect(firstYear).not.toEqual(initial);
-  clock.advance(((90560 / 365.256) * 5 - 5) * 1000);
-  expectSameCenter(planetCenter(picture, 'pluto'), initial);
   fireEvent.click(screen.getByRole('button', { name: 'Umlauf anhalten' }));
   clock.advance(60_000);
-  expectSameCenter(planetCenter(picture, 'pluto'), initial);
+  expectSameCenter(planetCenter(picture, 'pluto'), firstYear);
   expect(
     screen.getByRole('button', { name: 'Pluto · Zwergplanet' }),
   ).toHaveAttribute('aria-pressed', 'true');
 });
 
-it.each([5, 15])(
-  'führt die Erde in genau %i aktiven Sekunden einmal um die Sonne',
-  (seconds) => {
+it('führt die Erde in genau fünf aktiven Sekunden einmal um die Sonne', () => {
+  const clock = animationClock();
+  render(<DiscoverModel />);
+  const picture = screen.getByRole('img');
+  const earth = planets.find((planet) => planet.id === 'earth')!;
+  const initialEarth = planetCenter(picture, 'earth');
+  const initialMars = planetCenter(picture, 'mars');
+  const initialNeptune = planetCenter(picture, 'neptune');
+  const orbit = picture.querySelectorAll('path')[2].getAttribute('d');
+  fireEvent.click(screen.getByRole('button', { name: 'Umlauf starten' }));
+  clock.advance(1250);
+  expectSameCenter(
+    planetCenter(picture, 'earth'),
+    solarPlanetPosition(earth, 0, 38, 0.25),
+  );
+  clock.advance(1250);
+  expectSameCenter(
+    planetCenter(picture, 'earth'),
+    solarPlanetPosition(earth, 0, 38, 0.5),
+  );
+  clock.advance(2499);
+  expect(planetCenter(picture, 'earth')).not.toEqual(initialEarth);
+  clock.advance(1);
+  expectSameCenter(planetCenter(picture, 'earth'), initialEarth);
+  expect(planetCenter(picture, 'mars')).not.toEqual(initialMars);
+  expect(planetCenter(picture, 'neptune')).not.toEqual(initialNeptune);
+  expect(picture.querySelectorAll('path')[2]).toHaveAttribute('d', orbit);
+  expect(picture).toHaveTextContent('Erde');
+  expect(picture.querySelectorAll('circle[stroke="#ffd17d"]')).toHaveLength(1);
+});
+
+it.each(orbitalDays)(
+  'führt %s in seiner relativen Umlaufzeit bei festem Erdenjahr um die Sonne',
+  (id, days) => {
     const clock = animationClock();
     render(<DiscoverModel />);
-    fireEvent.change(
-      screen.getByRole('slider', { name: 'Sekunden pro Erdenjahr' }),
-      { target: { value: String(seconds) } },
-    );
     const picture = screen.getByRole('img');
-    const initialEarth = planetCenter(picture, 'earth');
-    const initialMars = planetCenter(picture, 'mars');
-    const initialNeptune = planetCenter(picture, 'neptune');
-    const orbit = picture.querySelectorAll('path')[2].getAttribute('d');
+    const initial = planetCenter(picture, id);
+    const orbitMilliseconds = (days / 365.256) * 5000;
     fireEvent.click(screen.getByRole('button', { name: 'Umlauf starten' }));
-    clock.advance((seconds * 1000) / 2);
-    expect(planetCenter(picture, 'earth')).not.toEqual(initialEarth);
-    clock.advance((seconds * 1000) / 2);
-    expectSameCenter(planetCenter(picture, 'earth'), initialEarth);
-    expect(planetCenter(picture, 'mars')).not.toEqual(initialMars);
-    expect(planetCenter(picture, 'neptune')).not.toEqual(initialNeptune);
-    expect(picture.querySelectorAll('path')[2]).toHaveAttribute('d', orbit);
-    expect(picture).toHaveTextContent('Erde');
-    expect(picture.querySelectorAll('circle[stroke="#ffd17d"]')).toHaveLength(
-      1,
-    );
+    clock.advance(orbitMilliseconds / 2);
+    expect(planetCenter(picture, id)).not.toEqual(initial);
+    clock.advance(orbitMilliseconds / 2);
+    expectSameCenter(planetCenter(picture, id), initial);
   },
 );
 
-it('hält den Umlauf an, setzt ihn fort und wechselt die Geschwindigkeit ohne Positionssprung', () => {
+it('hält den Umlauf an und setzt ihn ohne Positionssprung fort', () => {
   const clock = animationClock();
   render(<DiscoverModel />);
   const picture = screen.getByRole('img');
@@ -223,13 +243,8 @@ it('hält den Umlauf an, setzt ihn fort und wechselt die Geschwindigkeit ohne Po
   clock.advance(1250);
   const half = planetCenter(picture, 'earth');
   expect(half).not.toEqual(quarter);
-  fireEvent.change(
-    screen.getByRole('slider', { name: 'Sekunden pro Erdenjahr' }),
-    { target: { value: '15' } },
-  );
-  expectSameCenter(planetCenter(picture, 'earth'), half);
   expect(clock.pending()).toBe(1);
-  clock.advance(7500);
+  clock.advance(2500);
   expectSameCenter(planetCenter(picture, 'earth'), initial);
   fireEvent.change(screen.getByRole('slider', { name: 'Blick drehen' }), {
     target: { value: '90' },
@@ -293,9 +308,6 @@ it('dreht und kippt die Ansicht mit begrenzten Reglern und setzt den Blick zurü
   expect(yaw).toHaveValue('0');
   expect(tilt).toHaveValue('38');
   expect(picture.querySelector('path')!.getAttribute('d')).toBe(initialPath);
-  expect(
-    screen.getByText(/Größen und Abstände sind zum Lernen verändert/),
-  ).toBeVisible();
 });
 
 it('zeigt im Rätsel ein Fragezeichen und lässt Bildklicks keine Lösung auswählen', async () => {

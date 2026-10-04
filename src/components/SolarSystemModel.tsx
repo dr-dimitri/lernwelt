@@ -41,13 +41,7 @@ export default function SolarSystemModel({
   const id = useId().replaceAll(':', '');
   const [yaw, setYaw] = useState(0);
   const [tilt, setTilt] = useState(38);
-  const {
-    running,
-    setRunning,
-    earthYearSeconds,
-    setEarthYearSeconds,
-    earthYears,
-  } = useSolarOrbit();
+  const { running, setRunning, earthYears } = useSolarOrbit();
   const orbitPaths = useMemo(
     () => solarBodies.map((planet) => solarOrbitPath(planet.order, yaw, tilt)),
     [yaw, tilt],
@@ -241,7 +235,7 @@ export default function SolarSystemModel({
                   fill={`url(#${id}-light)`}
                 />
                 {marked === point.planet.id && (
-                  <>
+                  <g pointerEvents="none">
                     <circle
                       cx={point.x}
                       cy={point.y}
@@ -260,7 +254,7 @@ export default function SolarSystemModel({
                     >
                       {guessing ? '?' : point.planet.name}
                     </text>
-                  </>
+                  </g>
                 )}
               </g>
             ),
@@ -308,43 +302,7 @@ export default function SolarSystemModel({
         >
           {running ? 'Umlauf anhalten' : 'Umlauf starten'}
         </button>
-        <label htmlFor={`${id}-year`}>
-          Ein Erdenjahr: {earthYearSeconds} Sekunden
-          <input
-            id={`${id}-year`}
-            type="range"
-            min="5"
-            max="15"
-            step="1"
-            value={earthYearSeconds}
-            aria-label="Sekunden pro Erdenjahr"
-            aria-valuetext={`${earthYearSeconds} Sekunden pro Erdenjahr`}
-            onChange={(event) =>
-              setEarthYearSeconds(Number(event.target.value))
-            }
-          />
-          <span className="solar-speed-scale" aria-hidden="true">
-            <span>Schnell · 5 Sekunden</span>
-            <span>Langsam · 15 Sekunden</span>
-          </span>
-        </label>
-        <p>
-          Die Erde braucht hier {earthYearSeconds} Sekunden für eine Runde. Die
-          anderen Planeten und Pluto kreisen im Verhältnis ihrer echten
-          Umlaufzeiten.
-        </p>
       </div>
-      <figcaption>
-        Ziehe am Bild oder nutze die Regler. Mit der Tastatur: Tab zum Regler,
-        dann Pfeiltasten.
-        <strong>
-          {' '}
-          Größen und Abstände sind zum Lernen verändert. Die Welten stehen
-          anfangs an Beispielpositionen. Sie bewegen sich auf vereinfachten
-          Kreisbahnen gleichmäßig um die Sonne. Plutos echte Bahn ist schräg und
-          oval.
-        </strong>
-      </figcaption>
       {!guessing && (
         <div className="solar-planet-picker" aria-label="Planet entdecken">
           {solarBodies.map((planet) => (

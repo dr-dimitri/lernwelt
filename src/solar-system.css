@@ -125,16 +125,14 @@
   gap: 18px;
   padding: 0 25px 16px;
 }
-.solar-view-controls label,
-.solar-orbit-controls label {
+.solar-view-controls label {
   display: grid;
   gap: 7px;
   font-size: 13px;
   color: #dbe8fb;
   flex: 1 1 170px;
 }
-.solar-view-controls input,
-.solar-orbit-controls input {
+.solar-view-controls input {
   width: 100%;
   min-height: 24px;
   padding: 0;
@@ -174,31 +172,6 @@
   background: #fff0cf;
   color: #35281a;
   border-color: var(--gold);
-}
-.solar-speed-scale {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-size: 11px;
-  color: #b8cbe6;
-}
-.solar-orbit-controls p {
-  flex-basis: 100%;
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.6;
-  color: #b8cbe6;
-}
-.solar-model > figcaption {
-  padding: 0 25px 20px;
-  font-size: 12px;
-  line-height: 1.6;
-  color: #b8cbe6;
-}
-.solar-model > figcaption strong {
-  color: #d4e2f6;
-  font-weight: 500;
 }
 .solar-planet-picker {
   display: grid;
@@ -542,10 +515,6 @@
     padding-left: 16px;
     padding-right: 16px;
   }
-  .solar-model > figcaption {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
   .solar-orbit-controls {
     margin-left: 16px;
     margin-right: 16px;
@@ -589,8 +558,8 @@
     margin: 0;
   }
   .solar-space {
-    height: 320px;
-    max-height: 320px;
+    height: 500px;
+    max-height: 500px;
   }
   .solar-planet-picker {
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -602,9 +571,6 @@
     gap: 12px;
     margin-bottom: 14px;
     padding-top: 14px;
-  }
-  .solar-orbit-controls p {
-    line-height: 1.45;
   }
   .solar-fact-card {
     gap: 20px;
@@ -641,7 +607,7 @@
 
 @media (min-width: 1400px) {
   .solar-world:has(.solar-error) .solar-space {
-    height: 240px;
-    max-height: 240px;
+    height: 400px;
+    max-height: 400px;
   }
 }
