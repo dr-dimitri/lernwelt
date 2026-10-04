@@ -5,7 +5,13 @@ import '../updates.css';
 type Phase =
   'idle' | 'checking' | 'current' | 'available' | 'installing' | 'installed';
 
-export default function AppUpdates() {
+export default function AppUpdates({
+  disabled = false,
+  onBeforeInstall,
+}: {
+  disabled?: boolean;
+  onBeforeInstall?: (install: () => void) => void;
+}) {
   const [open, setOpen] = useState(false);
   const [phase, setPhase] = useState<Phase>('idle');
   const [version, setVersion] = useState('');
@@ -178,6 +184,7 @@ export default function AppUpdates() {
       <button
         ref={trigger}
         className="secondary-button"
+        disabled={disabled}
         onClick={() => setOpen(true)}
       >
         {phase === 'available'
@@ -297,7 +304,11 @@ export default function AppUpdates() {
                   </p>
                   <button
                     className="primary-button"
-                    onClick={() => void install()}
+                    onClick={() =>
+                      onBeforeInstall
+                        ? onBeforeInstall(() => void install())
+                        : void install()
+                    }
                   >
                     Update herunterladen und installieren
                   </button>

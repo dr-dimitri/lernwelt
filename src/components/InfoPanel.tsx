@@ -16,6 +16,7 @@ export default function InfoPanel({
   onOpenChange,
   autoOpen = false,
   returnFocusRef,
+  disabled = false,
 }: {
   children: ReactNode;
   className?: string;
@@ -23,6 +24,7 @@ export default function InfoPanel({
   autoOpen?: boolean;
   returnFocusRef?: RefObject<HTMLElement | null>;
   onOpenChange?: (open: boolean) => void;
+  disabled?: boolean;
 }) {
   const parts = Children.toArray(children);
   const summary = parts.find(
@@ -41,6 +43,7 @@ export default function InfoPanel({
     if (open && !dialog.current?.open) dialog.current?.showModal();
   }, [open]);
   function close() {
+    if (disabled) return;
     dialog.current?.close();
     setOpen(false);
     onOpenChange?.(false);
@@ -54,6 +57,7 @@ export default function InfoPanel({
         type="button"
         className="secondary-button"
         ref={trigger}
+        disabled={disabled}
         onClick={() => {
           setPage(0);
           setOpen(true);
@@ -79,7 +83,12 @@ export default function InfoPanel({
         >
           <div className="dialog-heading">
             <h2>{label}</h2>
-            <button type="button" className="secondary-button" onClick={close}>
+            <button
+              type="button"
+              className="secondary-button"
+              disabled={disabled}
+              onClick={close}
+            >
               Schließen
             </button>
           </div>

@@ -35,7 +35,7 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '24'
-      - name: Prepare tag at the checked merge commit
+      - name: Verify source and prepare stable or explicit rc tag
         id: release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -46,6 +46,7 @@ jobs:
     if: needs.prepare.outputs.build == 'true'
     env:
       RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
+      RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
     name: Release (${{ matrix.target }})
     strategy:
       fail-fast: false
@@ -69,9 +70,6 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
-      - name: Require a release from main
-        shell: bash
-        run: git merge-base --is-ancestor "$GITHUB_SHA" origin/main
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '24'
@@ -82,16 +80,16 @@ jobs:
           components: rustfmt, clippy
           targets: ${{ matrix.target }}
       - run: npm ci
-      - name: Verify release version
+      - name: Verify release source and prepare Tauri version override
         shell: bash
-        run: node scripts/check-release-version.mjs
+        run: node scripts/release-source.mjs --write-build-config
       - run: npm run check:all
         if: github.ref_type == 'tag'
       - name: Build signed update and installer
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
-        run: npm run desktop:build -- --target ${{ matrix.target }} --bundles ${{ matrix.bundles }}
+        run: npm run desktop:build -- --target ${{ matrix.target }} --bundles ${{ matrix.bundles }} --config release-build-config.json
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: ${{ matrix.platform }}
@@ -107,6 +105,7 @@ jobs:
     needs: [prepare, build]
     env:
       RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
+      RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
     concurrency:
       group: release-publish
       cancel-in-progress: false

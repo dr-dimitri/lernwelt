@@ -37,7 +37,11 @@ Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale mac
 
 ## Bedienung
 
-Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Mathematik, Englisch sowie Natur und Technik öffnen einen Lehrplan-Themenkatalog: Lernbereich und Unterthema auswählen oder nach einem Begriff wie „Längen“ oder „Simple Present“ suchen. 88 Unterthemen in 18 Lernbereichen stehen zur Auswahl. Die bisherigen Fächer führen zu kurzen Runden mit höchstens sechs Aufgaben; Geographie öffnet eine eigene Sonnensystemwelt mit acht Planetenrätseln je Stufe. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md). Die Seitennavigation führt zu Fächern, Vokabeltrainer, Einmaleins-Trainer, Tastschreiben und Spielhalle. **Einklappen** reduziert sie auf Symbole; der Pfeil klappt sie wieder aus. Beim Darüberfahren erscheinen die Namen, die aktuelle Auswahl bleibt markiert. Die Einstellung gilt bis zum Schließen der App. Im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche mit Beschriftungen. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
+Der Einstieg zeigt **Mathematik** mit direkten Themen. Vier dauerhaft beschriftete Fächer führen zu Mathematik, Englisch, Natur und Technik sowie Geographie. Ein sichtbares Thema öffnet sofort eine Runde mit höchstens sechs Aufgaben. **Thema suchen**, der optionale Lernbereichsfilter und Seiten mit höchstens sechs Zielen machen alle vorhandenen Unterthemen erreichbar. **Zu den Themen** stellt Suche, Filter, Seite und Fokus während der Sitzung wieder her. Geographie bietet **Sonnensystem entdecken** und **Planeten erraten**. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md).
+
+**Trainer & Spiele** erschließt Vokabeln, Einmaleins, Tastschreiben, Naturspiele und die Spielhalle. Die Fächer bieten außerdem passende konkrete Vokabeldecks und drei Lernreisen. **Stufe: …** öffnet jederzeit die drei freien Stufen. Bei ungesendeten Eingaben fragt ein Wechsel **Bleiben / Wechseln**; laufende Speicherungen sperren Wechsel. Profil, Sammlung/Abzeichen und App-Updates stehen als beschriftete Einstiege oben. Im kleinen Fenster öffnet **Menü öffnen** die Fachnavigation; Escape schließt es und gibt den Fokus zurück. [Gestaltung](docs/interface.md).
+
+Diese Oberfläche wird für Issue #149 zunächst ausschließlich als **0.6.9-rc.1** veröffentlicht; die stabile Downloadversion bleibt 0.6.8.
 
 ## App aktualisieren
 
@@ -73,7 +77,7 @@ Details: [Architektur](docs/architecture.md), [Reviewnachweise](docs/reviews/).
 
 ## Deine Lernrunde
 
-Auf **Meine Fächer** zeigt **Deine Lernrunden** drei Themen: **Ein Zaun für unseren Garten** (Mathematik), **Ein Tag an unserer Schule** (Englisch, erste Fremdsprache) und **Auf Forschertour: genau hinschauen** (Natur und Technik). Die Auswahl zeigt für jedes Thema auf der gewählten Stufe offene Schritte und fällige Wiederholungen. Fünf kurze Schritte verbinden Erinnern, ein anschauliches Beispiel, eigenes Lösen, Fehlerdetektiv und eine freiwillige Mitmachaufgabe.
+Die direkten Fachziele bieten drei Lernreisen: **Ein Zaun für unseren Garten** (Mathematik), **Ein Tag an unserer Schule** (Englisch, erste Fremdsprache) und **Auf Forschertour: genau hinschauen** (Natur und Technik). Die Auswahl zeigt für jedes Thema auf der gewählten Stufe offene Schritte und fällige Wiederholungen. Fünf kurze Schritte verbinden Erinnern, ein anschauliches Beispiel, eigenes Lösen, Fehlerdetektiv und eine freiwillige Mitmachaufgabe.
 
 Alle drei Stufen sind frei wählbar. Jedes Thema und jede Stufe behalten ihre eigene offene Runde, auch nach Themenwechsel und Neustart. Die App plant Wiederholungen lokal und bietet drei geprüfte Varianten je Thema und Stufe. Englisch übt Wortschatz, kurze Lesetexte und Simple Present; Natur und Technik verbindet Beobachtungen, Messwerte und die Planung fairer Vergleiche. Die neuen Pakete enthalten jeweils 27 eigene automatisch prüfbare Aufgaben plus Beispiele und Mitmachaufträge.
 

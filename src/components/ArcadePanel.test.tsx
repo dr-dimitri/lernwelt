@@ -80,9 +80,7 @@ it('nimmt eine bezahlte Runde kostenlos auf und wiederholt eine fehlgeschlagene 
   expect(
     screen.queryByRole('button', { name: 'Zur Spielauswahl' }),
   ).not.toBeInTheDocument();
-  await user.click(
-    screen.getByRole('button', { name: 'Ergebnis erneut speichern' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
   expect(desktop.finishGame).toHaveBeenNthCalledWith(1, 'paid', 150);
   expect(desktop.finishGame).toHaveBeenNthCalledWith(2, 'paid', 150);
   await user.click(
@@ -110,9 +108,7 @@ it('lädt nach einem Ladefehler erneut ohne Punktebuchung', async () => {
     .mockResolvedValueOnce(initial);
   render(<ArcadePanel profileVersion={0} />);
   expect(await screen.findByRole('alert')).toHaveTextContent('Ladefehler');
-  await user.click(
-    screen.getByRole('button', { name: 'Spielhalle neu laden' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
   expect(
     await screen.findByText('20 Lernpunkte', { selector: '.arcade-balance' }),
   ).toBeVisible();
@@ -203,9 +199,7 @@ it('nimmt eine bezahlte Worms-Runde kostenlos auf und speichert Retry und Bestwe
     screen.getByRole('button', { name: 'Worms-Test-Runde beenden' }),
   );
   expect(await screen.findByRole('alert')).toHaveTextContent('Speicherfehler');
-  await user.click(
-    screen.getByRole('button', { name: 'Ergebnis erneut speichern' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
   expect(desktop.finishGame).toHaveBeenNthCalledWith(1, 'worm-paid', 150);
   expect(desktop.finishGame).toHaveBeenNthCalledWith(2, 'worm-paid', 150);
   await user.click(
@@ -256,4 +250,56 @@ it('überträgt ein Worms-Ergebnis auch bei mehrfacher Abschlussaktivierung nur 
     await screen.findByRole('button', { name: 'Zur Spielauswahl' }),
   ).toBeVisible();
   expect(desktop.startGame).not.toHaveBeenCalled();
+});
+
+it('meldet bezahlte offene Runden und laufende Buchungen an die Fachnavigation', async () => {
+  const user = userEvent.setup();
+  const activity = vi.fn();
+  let open!: (value: ArcadeState) => void;
+  let finish!: (value: ArcadeState) => void;
+  vi.mocked(desktop.startGame).mockImplementation(
+    () =>
+      new Promise((resolve) => {
+        open = resolve;
+      }),
+  );
+  vi.mocked(desktop.finishGame).mockImplementation(
+    () =>
+      new Promise((resolve) => {
+        finish = resolve;
+      }),
+  );
+  render(
+    <ArcadePanel
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  const starts = await screen.findAllByRole('button', {
+    name: 'Spielen · 10 Lernpunkte',
+  });
+  await user.click(starts[0]);
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: true });
+  await act(async () => open(started));
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });
+  await user.click(screen.getByRole('button', { name: 'Test-Runde beenden' }));
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: true });
+  await act(async () => finish({ ...started, activeSession: null }));
+  expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
+});
+
+it('hält andere Fächer erreichbar, solange nur die Modul-Daten geladen werden', () => {
+  vi.mocked(desktop.getArcadeState).mockImplementation(
+    () => new Promise(() => {}),
+  );
+  const activity = vi.fn();
+  render(
+    <ArcadePanel
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
 });

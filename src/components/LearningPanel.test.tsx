@@ -418,65 +418,51 @@ it('zeigt nach Stufenwechsel 1, 2 und 3 Punkte und die tatsächliche Gutschrift'
   }
 });
 
-it('öffnet die Rückmeldung kompakt und führt zurück zur nächsten Aufgabe', async () => {
+it('zeigt die Rückmeldung inline und führt zurück zur nächsten Aufgabe', async () => {
   const user = userEvent.setup();
   render(<LearningPanel subject="mathematics" profileVersion={0} />);
   await user.type(await screen.findByLabelText('Was ist 17 + 25?'), '42');
   await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  expect(await screen.findByText('Richtig! +10 Punkte')).toBeVisible();
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.getByLabelText('Was ist 17 + 25?')).toHaveValue('42');
   expect(
-    await screen.findByRole('dialog', { name: 'Deine Rückmeldung' }),
-  ).toBeVisible();
+    screen.queryByRole('button', { name: 'Antwort prüfen' }),
+  ).not.toBeInTheDocument();
   await user.click(
     screen.getByRole('button', { name: 'Weiter zur nächsten Aufgabe' }),
   );
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.queryByText('Richtig! +10 Punkte')).not.toBeInTheDocument();
   expect(screen.getByLabelText('Deine Übung')).toHaveFocus();
 });
 
-it.each([
-  { correct: true, close: 'button' },
-  { correct: true, close: 'escape' },
-  { correct: false, close: 'button' },
-  { correct: false, close: 'escape' },
-])(
-  'zeigt bei gleicher Antwort eine neue Rückmeldung (richtig=$correct, schließen=$close)',
-  async ({ correct, close }) => {
-    const user = userEvent.setup();
-    vi.mocked(desktop.submitAnswer).mockResolvedValue({
-      ...awarded,
-      correct,
-      pointsAwarded: 0,
-      wallet: initial.wallet,
-    });
-    const { rerender } = render(
-      <LearningPanel subject="mathematics" profileVersion={0} />,
-    );
-    await user.type(
-      await screen.findByLabelText('Was ist 17 + 25?'),
-      correct ? '42' : '43',
-    );
-    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
-    const dialog = await screen.findByRole('dialog', {
-      name: 'Deine Rückmeldung',
-    });
-    if (close === 'escape') {
-      fireEvent(dialog, new Event('cancel', { cancelable: true }));
-    } else {
-      await user.click(screen.getByRole('button', { name: 'Schließen' }));
-    }
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    rerender(<LearningPanel subject="mathematics" profileVersion={0} />);
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
-    expect(
-      await screen.findByRole('dialog', { name: 'Deine Rückmeldung' }),
-    ).toBeVisible();
-    expect(desktop.submitAnswer).toHaveBeenCalledTimes(2);
-    expect(screen.getByLabelText('Verfügbare Punkte')).toHaveTextContent(
-      '10 Punkte',
-    );
-  },
-);
+it('erlaubt dieselbe falsche Antwort erneut zu prüfen und zeigt bestätigte Rückmeldung', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.submitAnswer).mockResolvedValue({
+    ...awarded,
+    correct: false,
+    pointsAwarded: 0,
+    wallet: initial.wallet,
+  });
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await user.type(await screen.findByLabelText('Was ist 17 + 25?'), '43');
+  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  expect(
+    await screen.findByText('Noch nicht richtig. Versuch es noch einmal!'),
+  ).toBeVisible();
+  await user.click(
+    screen.getByRole('button', { name: 'Noch einmal versuchen' }),
+  );
+  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  expect(
+    await screen.findByText('Noch nicht richtig. Versuch es noch einmal!'),
+  ).toBeVisible();
+  expect(desktop.submitAnswer).toHaveBeenCalledTimes(2);
+  expect(vi.mocked(desktop.submitAnswer).mock.calls[0][0]).not.toBe(
+    vi.mocked(desktop.submitAnswer).mock.calls[1][0],
+  );
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+});
 
 it('zeigt Natur-Fragen mit eigener Quelle und speichert die gewählte Antwort mit wiederholbarem Request', async () => {
   const { natureInitial, natureTopic } = await import('../test/nature-fixture');

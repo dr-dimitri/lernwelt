@@ -1,0 +1,43 @@
+# Review: Issue #149 – Direkt zum Thema
+
+## Umfang und Reviewart
+
+Konzept C wurde auf `codex/issue-149-direkt-zum-thema` vom aktuellen `main` (`8b573432`, stabile Version 0.6.8) umgesetzt. Der Nutzer verlangt ausdrücklich **nur ein Prerelease zum Vorabtesten**. Deshalb bleibt der PR offen und wird nicht nach `main` gemergt. Issue und Branch bleiben für den Test erhalten; es wird kein Abschluss des normalen Merge-/Bereinigungsablaufs behauptet.
+
+Separater **unabhängiger Agentenreview** der UI durch Agent `prerelease` (eigene Release-Implementierung ausgeschlossen). Separater **unabhängiger Agentenreview** des Release-Ablaufs durch Agent `learning_workspace` (eigene UI-Implementierung ausgeschlossen). Agent `special_modules` prüfte außerdem App/zentralen CSS-Diff sowie Screenshots, ohne dies als unabhängige Freigabe seiner eigenen Spezialmodule auszugeben. Der Root führte Integration, Nachbesserungen und die vollständigen Prüfungen aus. Der Review umfasst den Gesamtdiff gegen `main`, Akzeptanzkriterien, Fehlerpfade, Datenhaltung und Tests.
+
+## Verhalten und Erhaltungsregeln
+
+- Vier beschriftete Fachziele bleiben stabil erreichbar; Auswahl besitzt Häkchen und `aria-current`. Trainer & Spiele, Profil, Sammlung und Update-Einstellungen sind beschriftet auffindbar. Das kleine Menü schließt mit Escape und gibt den Fokus zurück.
+- Sichtbare Themen starten direkt. Suche und optionaler Bereichsfilter nutzen den vorhandenen Katalog und seine Normalisierung. Maximal sechs Ziele je Seite schließen passende Trainer-/Missionslinks ein; Query, Filter, Seite und Rückfokus werden je Fach während der Sitzung erhalten.
+- Alle 88 vorhandenen Unterthemen bleiben erreichbar. Englisch benennt die erste Fremdsprache. Gleiche Vokabel-Linktexte unterscheiden sich durch ihr vorhandenes Wortthema. Drei Lernreisen, konkrete Vokabeldecks, Einmaleins/Quadratzahlen, Naturspiele, Tastschreiben, beide Sonnensystemmodi und kostenpflichtige Spiele sind weiterhin erreichbar.
+- Fachaufgaben trennen Katalog und Arbeit. Frage, Material, Antwort und Inlinefeedback bleiben zusammen; Tipp steht daneben, Hilfe/Quellen/Mitmachen öffnen auf Wunsch. Prüfen, Speichern oder Weiter ist jeweils die hervorgehobene Hauptaktion. Automatische Trainerprüfung bleibt erhalten.
+- Stufenwechsel verwendet die vorhandene Backendbestätigung. Fehlgeschlagenes Speichern erhält bestätigte Stufe und Eingabe. Erststart bewahrt das gewählte Ziel und zeigt dort Spitzname/Speichern. Profilfehler erhalten Eingabe; ältere Klassen bleiben beim Laden unverändert.
+- Fach- und Modulwechsel fragen bei ungesendeter Eingabe nach. Laufende Mutationen sperren die globale Navigation. Reine Lesevorgänge lassen andere funktionsfähige Bereiche erreichbar. Retry behält Aufgaben-/Sitzungsziel, Request und Nutzlast; verspätete Rückgaben nach Wechsel werden verworfen.
+- Keine Änderung an Lerninhalten, stabilen Inhalts-IDs, typisierten Commands, Antwortprüfung, Punktebuchung oder SQLite-Schema. Erstlösungspunkte 1/2/3, Trainerpunkte, Wiederholungsplanung, Abzeichenkosten und Spielkosten bleiben erhalten. Standard-Fachrunden erhalten keine neue Persistenz.
+- Fünf Versionsdateien stimmen stabil auf 0.6.9 überein. Ein expliziter RC-Tag setzt nur für den Build Version 0.6.9-rc.1. Die Release-Quelle muss einem gepushten Issue-Branch angehören; stabile Releases verlangen weiterhin `main`-Abstammung. Alle neun Assets mit drei Plattformen und Signaturen sind Voraussetzung für Veröffentlichung. `prerelease: true` und `make_latest: false` erhalten das stabile Release. Bereits veröffentlichte Tags/Releases werden nicht überschrieben.
+
+## Befunde und Korrekturen
+
+Die unabhängigen Reviews fanden zunächst mögliche Eingabeverluste durch Profil-/Sammlungsmutationen, fehlende globale Aktivitätsmeldungen bei Roman-/Arcade-Modulen, überlagerten Katalog-Rückfokus, einen abgebauten Stufenknopf als Fokusziel und nicht unterscheidbare englische Trainerlinks. Korrigiert wurden zentrale Mutationssperren, bestätigte Wechsel, ein verbundener Fokusfallback, Activity-Meldungen aller Module und sichtbarer vorhandener Wortthema-Kontext. Regressionstests prüfen diese Fälle.
+
+Zusätzlich wurden interne Deck-/Kurs-/Modus-/Spielwechsel geschützt und Hilfsaktionen schließen ihre bisherige Seite nach einem bestätigten Wechsel. Fehlgeschlagene Lernstand-Ladevorgänge sperren die Antwortprüfung mit einem alten Stand. Reines Laden blockiert keine globale Navigation. Rückkehr nach Profilanlage fokussiert die gewählte Aufgabe.
+
+Die Sichtprüfung fand einen Überlauf der Spielhallenauswahl, abgeschnittene lange Wörter bei 200 % Zoom und zu kleine Worms-Schaltflächen im neuen Rahmen. Fünf Spielkarten stehen im Standardfenster nun in einer Reihe; Container-Umbrüche stellen schmale Themenflächen einspaltig dar und erhalten alle Wörter. Die Worms-Bedienflächen erhalten im neuen Rahmen mindestens 56 Pixel Höhe. Agent `special_modules` prüfte diese drei abschließenden CSS-Korrekturen unabhängig anhand von Diff und erneuerten Screenshots ohne verbleibende Blocker. Die Sonnensystemgrafik verwendet im breiten Arbeitsrahmen 420 Pixel Höhe, sodass auch Steuerung und Quellen erreichbar bleiben.
+
+Nach den Korrekturen meldeten die unabhängigen Code-Reviews keine offenen blockierenden Befunde. Dies ist keine Prüfung mit Kindern und keine Zertifizierung der Barrierefreiheit.
+
+## Prüfergebnisse
+
+- `npm run check:all`: erfolgreich; Formatierung, TypeScript, Produktionsbuild, 371 Frontendtests in 41 Dateien, 35 Skripttests, Rustfmt, Clippy mit `-D warnings` und 164 Rusttests. Die bestehende Vite-Hinweismeldung zur Bundlegröße ist kein Prüfungsfehler.
+- Zusätzliche Verhaltenstests prüfen direkte Aktivierung, Suche/Seiten/Filter, Fachzustand und Fokus, Profilziel/Fehler, Bleiben/Wechseln/Escape, Inlinefeedback, feste Retry-Nutzlast, Mutationssperren und erreichbare Bereiche bei hängenden Lesedaten.
+- Lokaler nativer Apple-Silicon-Debug-App-Build mit Tauri-Versionsoverride erfolgreich. `CFBundleShortVersionString` ist tatsächlich `0.6.9-rc.1`. Dieser lokale Build deaktiviert nur die Updater-Artefakterzeugung für die unsignierte lokale Prüfung; GitHub CI erstellt die signierten Veröffentlichungspakete.
+- Versionsabgleich gegen aktuelles `main` und `git diff --check`: erfolgreich.
+- Echte Chromium-Geometrieprüfung: **610 Zustände**, keine JavaScript-Fehler, keine zu kleinen Bedienflächen und keine Überläufe der geprüften Standardansichten bei 2400 × 1300. Geprüft wurden die längsten Fragen je 87 Fachthemen und drei Stufen jeweils mit und ohne Tipp, beide Geographiemodi, Katalogseiten, Trainer, Zahlengeraden-/Audio-/Roman-Aufgabentypen, Missionsschritte, Hilfe/Mitmachen, Profil, Laden, Fehler, Speichern, richtig/falsch, Abschluss sowie alle fünf aktiven und pausierten Spiele. Schmale Fenster und 200 % Zoom erhalten einen lesbaren Scroll-Fallback. Die Prüfung verwendet das tatsächliche gebaute React/CSS-Bundle, vorhandene lokale Lerninhalte und isolierte Desktop-Service-Testdaten, keine echte Datenbank oder Punktehistorie. Ausgewählte Screenshots wurden zusätzlich visuell geprüft. Dies prüft repräsentative Aufgaben und Zustände, nicht jede einzelne Inhaltsfrage.
+- Nach der abschließenden CSS-Korrektur wurden die 21 zusätzlichen Aufgaben-/Spielzustände, Formatprüfung und Produktionsbuild erneut erfolgreich geprüft; die unabhängige Sichtprüfung ist aktualisiert.
+
+## Grenzen und Veröffentlichungsstatus
+
+Lokale native Prüfung lief auf macOS Apple Silicon. macOS Intel und Windows sowie tatsächliche Updater-Signaturen/Manifest werden durch GitHub CI gebaut und vor Abschluss dieses Vorabauftrags kontrolliert. Lokales UI-Layout ersetzt keinen vollständigen nativen Plattformvergleich. Eine Verständlichkeitsprüfung mit 10–11-Jährigen wurde nicht durchgeführt.
+
+Kein Merge und keine Branchlöschung: ausdrücklich für den Vorabtest zurückgestellt. Die tatsächliche CI-Veröffentlichung wird vor Übergabe nachgewiesen; ein gestarteter Lauf allein gilt nicht als veröffentlichtes Prerelease.

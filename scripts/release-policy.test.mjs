@@ -6,17 +6,24 @@ import {
   releaseTag,
   prepareReleaseTag,
   shouldMakeLatest,
+  parseReleaseVersion,
+  releaseVersion,
 } from './release-policy.mjs';
 
 const sha = 'a'.repeat(40);
 const source = { version: '0.6.2', sha, ref: 'refs/heads/main' };
-function fakeApi({ tag = null, release = null, annotated = null } = {}) {
+function fakeApi({
+  tag = null,
+  release = null,
+  annotated = null,
+  version = '0.6.2',
+} = {}) {
   const requests = [];
   const api = async (method, path, body, missing) => {
     requests.push({ method, path, body, missing });
-    if (path === 'git/ref/tags/v0.6.2') return tag;
+    if (path === `git/ref/tags/v${version}`) return tag;
     if (path.startsWith('git/tags/')) return { object: annotated };
-    if (path === 'releases/tags/v0.6.2') return release;
+    if (path === `releases/tags/v${version}`) return release;
     if (method === 'POST' && path === 'git/refs')
       return { object: { type: 'commit', sha } };
     throw new Error(`Unexpected request ${method} ${path}`);
@@ -127,4 +134,80 @@ test('keeps the updater latest version monotonic even when an older build finish
   assert.equal(shouldMakeLatest('0.6.2', { tag_name: 'v0.7.0' }), false);
   assert.equal(shouldMakeLatest('0.10.0', { tag_name: 'v0.9.9' }), true);
   assert.throws(() => shouldMakeLatest('0.6.2', { tag_name: 'other-tag' }));
+});
+
+test('enables rc versions only through a matching explicit tag with a stable source version', () => {
+  assert.equal(releaseVersion('0.6.9', 'refs/heads/main'), '0.6.9');
+  assert.equal(releaseVersion('0.6.9', 'refs/tags/v0.6.9'), '0.6.9');
+  assert.equal(releaseVersion('0.6.9', 'refs/tags/v0.6.9-rc.1'), '0.6.9-rc.1');
+  assert.deepEqual(parseReleaseVersion('0.6.9-rc.12'), {
+    baseVersion: '0.6.9',
+    prerelease: true,
+  });
+  assert.equal(
+    releaseTag('0.6.9-rc.1', sha, 'refs/tags/v0.6.9-rc.1'),
+    'v0.6.9-rc.1',
+  );
+  for (const ref of [
+    'refs/heads/main',
+    'refs/heads/codex/issue-149-test',
+    'refs/tags/v0.6.9',
+  ])
+    assert.throws(() => releaseTag('0.6.9-rc.1', sha, ref), /explicit rc tag/);
+  for (const tag of [
+    'v0.6.8-rc.1',
+    'v0.6.9-rc.0',
+    'v0.6.9-rc.01',
+    'v0.6.9-beta.1',
+    'v0.6.9-rc.9007199254740992',
+  ])
+    assert.throws(() => releaseVersion('0.6.9', `refs/tags/${tag}`));
+  assert.throws(
+    () => requireNewVersion('0.6.9-rc.1', '0.6.8'),
+    /stable release version/,
+  );
+});
+
+test('a prerelease never replaces the stable latest endpoint', () => {
+  for (const latest of [
+    null,
+    { tag_name: 'v0.6.8' },
+    { tag_name: 'other-tag' },
+  ])
+    assert.equal(shouldMakeLatest('0.6.9-rc.1', latest), false);
+});
+
+test('rc tags preserve their exact commit and leave a published preview unchanged', async () => {
+  const version = '0.6.9-rc.1';
+  for (const draft of [true, false]) {
+    const f = fakeApi({
+      version,
+      tag: { object: { type: 'commit', sha } },
+      release: { draft, prerelease: true },
+    });
+    assert.deepEqual(
+      await prepareReleaseTag(
+        { version, sha, ref: `refs/tags/v${version}` },
+        f.api,
+      ),
+      { tag: `v${version}`, version, build: draft },
+    );
+    assert.equal(
+      f.requests.filter((request) => request.method !== 'GET').length,
+      0,
+    );
+  }
+  const mismatched = fakeApi({
+    version,
+    tag: { object: { type: 'commit', sha: 'b'.repeat(40) } },
+  });
+  await assert.rejects(
+    () =>
+      prepareReleaseTag(
+        { version, sha, ref: `refs/tags/v${version}` },
+        mismatched.api,
+      ),
+    /different commit/,
+  );
+  assert.equal(mismatched.requests.length, 1);
 });

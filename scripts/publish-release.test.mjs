@@ -58,12 +58,12 @@ test('publishes a new draft only after all nine files were uploaded', async () =
   assert.deepEqual(f.writes.at(-1), {
     method: 'PATCH',
     path: 'releases/123',
-    body: { draft: false, make_latest: 'true' },
+    body: { draft: false, prerelease: false, make_latest: 'true' },
   });
 });
 
 test('leaves a published release untouched without uploads or writes', async () => {
-  const f = fixture({ existing: { id: 123, draft: false } });
+  const f = fixture({ existing: { id: 123, draft: false, prerelease: false } });
   assert.deepEqual(await publishRelease(source, f.api, f.upload), {
     published: false,
     unchanged: true,
@@ -128,6 +128,57 @@ test('rejects a mismatched prepared tag before accessing GitHub', async () => {
   await assert.rejects(
     () => publishRelease({ ...source, tag: 'v0.6.1' }, f.api, f.upload),
     /tag differs/,
+  );
+  assert.equal(f.writes.length, 0);
+  assert.equal(f.uploads.length, 0);
+});
+
+test('publishes rc assets as a prerelease without reading or changing stable latest', async () => {
+  const version = '0.6.9-rc.1';
+  const previewAssets = assets.map((name) => name.replace('0.6.2', version));
+  const writes = [];
+  const reads = [];
+  const uploads = [];
+  const api = async (method, path, body) => {
+    if (method !== 'GET') writes.push({ method, path, body });
+    else reads.push(path);
+    if (path === `releases/tags/v${version}`) return null;
+    if (method === 'POST') return { id: 123, draft: true, prerelease: true };
+    if (method === 'GET' && path === 'releases/123')
+      return { assets: previewAssets.map((name) => ({ name, size: 100 })) };
+    if (method === 'PATCH') return { draft: false, prerelease: true };
+    throw new Error(`Unexpected ${method} ${path}`);
+  };
+  assert.deepEqual(
+    await publishRelease(
+      {
+        ...source,
+        version,
+        tag: `v${version}`,
+        ref: `refs/tags/v${version}`,
+        assets: previewAssets,
+      },
+      api,
+      async (tag, files) => uploads.push({ tag, files }),
+    ),
+    { published: true, makeLatest: false },
+  );
+  assert.equal(writes[0].body.prerelease, true);
+  assert.equal(writes[0].body.make_latest, 'false');
+  assert.deepEqual(writes.at(-1).body, {
+    draft: false,
+    prerelease: true,
+    make_latest: 'false',
+  });
+  assert.ok(!reads.includes('releases/latest'));
+  assert.deepEqual(uploads, [{ tag: `v${version}`, files: previewAssets }]);
+});
+
+test('does not overwrite a published release with a conflicting channel', async () => {
+  const f = fixture({ existing: { id: 123, draft: false, prerelease: true } });
+  await assert.rejects(
+    () => publishRelease(source, f.api, f.upload),
+    /channel differs/,
   );
   assert.equal(f.writes.length, 0);
   assert.equal(f.uploads.length, 0);

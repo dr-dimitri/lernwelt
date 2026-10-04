@@ -65,8 +65,7 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllGlobals());
 async function start(user: ReturnType<typeof userEvent.setup>) {
-  await user.click(await screen.findByRole('button', { name: /Hören/ }));
-  await user.click(screen.getByRole('button', { name: /Wörter hören/ }));
+  await user.click(await screen.findByRole('button', { name: /Wörter hören/ }));
 }
 it('spielt Hörübungen lokal und stoppt beim Aufgabenwechsel und Rückweg', async () => {
   const { instances } = mockAudio();

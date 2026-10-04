@@ -7,6 +7,7 @@ import {
 } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { parseReleaseVersion, releaseVersion } from './release-policy.mjs';
 
 const targets = ['darwin-aarch64', 'darwin-x86_64', 'windows-x86_64'];
 function files(directory) {
@@ -24,8 +25,7 @@ export function prepareRelease(
   notes,
   repository = 'dr-dimitri/lernwelt',
 ) {
-  if (!/^\d+\.\d+\.\d+$/.test(version))
-    throw new Error('Expected a stable semantic version.');
+  parseReleaseVersion(version);
   if (repository !== 'dr-dimitri/lernwelt')
     throw new Error('Unexpected release repository.');
   const manifest = {
@@ -84,7 +84,12 @@ if (
   process.argv[1] &&
   import.meta.url === pathToFileURL(resolve(process.argv[1])).href
 ) {
-  const version = JSON.parse(readFileSync('package.json', 'utf8')).version;
+  const sourceVersion = JSON.parse(
+    readFileSync('package.json', 'utf8'),
+  ).version;
+  const version = releaseVersion(sourceVersion, process.env.GITHUB_REF ?? '');
+  if (process.env.RELEASE_VERSION && process.env.RELEASE_VERSION !== version)
+    throw new Error('Prepared release version differs.');
   if (
     (process.env.RELEASE_TAG ?? process.env.GITHUB_REF_NAME) !== `v${version}`
   )
@@ -93,6 +98,6 @@ if (
     'release-assets',
     'release-upload',
     version,
-    readFileSync(`docs/releases/${version}.md`, 'utf8'),
+    readFileSync(`docs/releases/${sourceVersion}.md`, 'utf8'),
   );
 }

@@ -1,4 +1,5 @@
 import InfoPanel from './InfoPanel';
+import ProfilePanel from './ProfilePanel';
 import { useEffect, useRef, useState } from 'react';
 import {
   games,
@@ -13,12 +14,19 @@ import GamePreview from './GamePreview';
 
 export default function ArcadePanel({
   profileVersion,
+  externalControls = false,
+  onActivityChange,
+  onProfileSaved,
 }: {
   profileVersion: number;
+  externalControls?: boolean;
+  onActivityChange?: (activity: { dirty: boolean; busy: boolean }) => void;
+  onProfileSaved?: () => void;
 }) {
   const [state, setState] = useState<ArcadeState | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [reload, setReload] = useState(0);
   const [playing, setPlaying] = useState<GameSession | null>(null);
   const [result, setResult] = useState<number | null>(null);
@@ -27,9 +35,27 @@ export default function ArcadePanel({
   const loadVersion = useRef(0);
   const pending = useRef<GameSession | null>(null);
   useEffect(() => {
+    if (externalControls && state && !state.profileReady) return;
+    onActivityChange?.({
+      dirty: !!pending.current || (!!playing && (result === null || !saved)),
+      busy,
+    });
+  }, [
+    busy,
+    loading,
+    playing,
+    result,
+    saved,
+    state,
+    externalControls,
+    onActivityChange,
+  ]);
+
+  useEffect(() => {
     let current = true;
     const version = ++loadVersion.current;
     setError('');
+    setLoading(true);
     desktop
       .getArcadeState()
       .then((value) => {
@@ -41,48 +67,56 @@ export default function ArcadePanel({
       .catch((reason) => {
         if (current && version === loadVersion.current)
           setError((reason as Error).message);
+      })
+      .finally(() => {
+        if (current && version === loadVersion.current) setLoading(false);
       });
     return () => {
       current = false;
+      ++loadVersion.current;
     };
   }, [profileVersion, reload]);
   async function start(gameId: GameId) {
     if (inFlight.current) return;
     inFlight.current = true;
-    loadVersion.current++;
+    const version = ++loadVersion.current;
+    setLoading(false);
     setBusy(true);
     setError('');
     const request = pending.current ?? { id: crypto.randomUUID(), gameId };
     pending.current = request;
     try {
       const next = await desktop.startGame(request.id, request.gameId);
+      if (version !== loadVersion.current) return;
       setState(next);
       setPlaying(next.activeSession);
       setResult(null);
       setSaved(false);
       pending.current = null;
     } catch (reason) {
-      setError((reason as Error).message);
+      if (version === loadVersion.current) setError((reason as Error).message);
     } finally {
       inFlight.current = false;
-      setBusy(false);
+      if (version === loadVersion.current) setBusy(false);
     }
   }
   async function finish(score: number) {
     if (!playing || inFlight.current) return;
     inFlight.current = true;
-    loadVersion.current++;
+    const version = ++loadVersion.current;
     setResult(score);
     setBusy(true);
     setError('');
     try {
-      setState(await desktop.finishGame(playing.id, score));
+      const next = await desktop.finishGame(playing.id, score);
+      if (version !== loadVersion.current) return;
+      setState(next);
       setSaved(true);
     } catch (reason) {
-      setError((reason as Error).message);
+      if (version === loadVersion.current) setError((reason as Error).message);
     } finally {
       inFlight.current = false;
-      setBusy(false);
+      if (version === loadVersion.current) setBusy(false);
     }
   }
   return (
@@ -111,7 +145,7 @@ export default function ArcadePanel({
           <p>{error}</p>
           {result !== null && !saved ? (
             <button disabled={busy} onClick={() => void finish(result)}>
-              Ergebnis erneut speichern
+              Erneut versuchen
             </button>
           ) : (
             !playing && (
@@ -122,129 +156,141 @@ export default function ArcadePanel({
                   setReload((r) => r + 1);
                 }}
               >
-                Spielhalle neu laden
+                Erneut laden
               </button>
             )
           )}
         </div>
       )}
       {!state && !error && <p role="status">Deine Spielhalle wird geladen …</p>}
-      {state && !state.profileReady && (
-        <p>
-          Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst du beim
-          Lernen Punkte verdienen.
-        </p>
-      )}
-      {playing ? (
-        <>
-          <GameStage
-            key={playing.id}
-            gameId={playing.gameId}
-            onFinish={(score) => void finish(score)}
+      {state &&
+        !state.profileReady &&
+        (externalControls ? (
+          <ProfilePanel
+            compact
+            onActivityChange={onActivityChange}
+            onSaved={() => {
+              setReload((value) => value + 1);
+              onProfileSaved?.();
+            }}
           />
-          {result !== null && (
-            <div className="arcade-result" role="status">
-              <span className="arcade-result-icon" aria-hidden="true">
-                ✦
-              </span>
-              <h3>{gameDefinition(playing.gameId).name}: gut gespielt!</h3>
-              <strong>{result} Spielpunkte</strong>
-              <p>
-                {saved
-                  ? 'Dein Ergebnis ist gespeichert. Entdecke ein anderes Spiel oder sammle beim Lernen neue Punkte.'
-                  : busy
-                    ? 'Dein Ergebnis wird gespeichert …'
-                    : 'Bitte speichere dein Ergebnis erneut. Es werden keine Lernpunkte abgezogen.'}
-              </p>
-              {saved && (
+        ) : (
+          <p>
+            Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst du
+            beim Lernen Punkte verdienen.
+          </p>
+        ))}
+      {(!externalControls || !state || state.profileReady) &&
+        (playing ? (
+          <>
+            <GameStage
+              key={playing.id}
+              gameId={playing.gameId}
+              onFinish={(score) => void finish(score)}
+            />
+            {result !== null && (
+              <div className="arcade-result" role="status">
+                <span className="arcade-result-icon" aria-hidden="true">
+                  ✦
+                </span>
+                <h3>{gameDefinition(playing.gameId).name}: gut gespielt!</h3>
+                <strong>{result} Spielpunkte</strong>
+                <p>
+                  {saved
+                    ? 'Dein Ergebnis ist gespeichert. Entdecke ein anderes Spiel oder sammle beim Lernen neue Punkte.'
+                    : busy
+                      ? 'Dein Ergebnis wird gespeichert …'
+                      : 'Bitte speichere dein Ergebnis erneut. Es werden keine Lernpunkte abgezogen.'}
+                </p>
+                {saved && (
+                  <button
+                    onClick={() => {
+                      setPlaying(null);
+                      setResult(null);
+                    }}
+                  >
+                    Zur Spielauswahl
+                  </button>
+                )}
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            {state?.activeSession && (
+              <div className="resume-round">
+                <h3>Deine bezahlte Runde wartet!</h3>
+                <p>
+                  {gameDefinition(state.activeSession.gameId).name}: Du startest
+                  die unterbrochene Runde von vorn. Das kostet keine weiteren
+                  Punkte. Beende diese Runde, bevor du ein anderes Spiel wählst.
+                </p>
                 <button
+                  disabled={busy}
                   onClick={() => {
-                    setPlaying(null);
+                    setPlaying(state.activeSession);
                     setResult(null);
+                    setSaved(false);
                   }}
                 >
-                  Zur Spielauswahl
+                  Kostenlos wieder aufnehmen
                 </button>
-              )}
-            </div>
-          )}
-        </>
-      ) : (
-        <>
-          {state?.activeSession && (
-            <div className="resume-round">
-              <h3>Deine bezahlte Runde wartet!</h3>
-              <p>
-                {gameDefinition(state.activeSession.gameId).name}: Du startest
-                die unterbrochene Runde von vorn. Das kostet keine weiteren
-                Punkte. Beende diese Runde, bevor du ein anderes Spiel wählst.
-              </p>
-              <button
-                disabled={busy}
-                onClick={() => {
-                  setPlaying(state.activeSession);
-                  setResult(null);
-                  setSaved(false);
-                }}
-              >
-                Kostenlos wieder aufnehmen
-              </button>
-            </div>
-          )}
-          <div className="arcade-grid">
-            {games.map((game) => (
-              <article
-                key={game.id}
-                className={`arcade-card arcade-${game.id}`}
-              >
-                <div className="arcade-card-scene">
-                  <GamePreview gameId={game.id} />
-                  <span className="arcade-theme">{game.theme}</span>
-                </div>
-                <h3>{game.name}</h3>
-                <p className="arcade-card-goal">{game.goal}</p>
-                <p className="arcade-controls-hint">{game.controlsHint}</p>
-                <p className="best-score">
-                  Bestwert:{' '}
-                  {state?.bestScores.find((b) => b.gameId === game.id)?.score ??
-                    0}{' '}
-                  Spielpunkte
-                </p>
-                <InfoPanel>
-                  <summary>So geht’s</summary>
-                  <p>{game.instructions}</p>
-                </InfoPanel>
-                <button
-                  disabled={
-                    !state?.profileReady ||
-                    !!state.activeSession ||
-                    busy ||
-                    state.wallet.balance < state.entryCost ||
-                    (!!pending.current && pending.current.gameId !== game.id)
-                  }
-                  onClick={() => void start(game.id)}
-                >
-                  {busy && pending.current?.gameId === game.id
-                    ? 'Runde wird geöffnet …'
-                    : pending.current?.gameId === game.id
-                      ? 'Buchung erneut versuchen'
-                      : `Spielen · ${state?.entryCost ?? 10} Lernpunkte`}
-                </button>
-              </article>
-            ))}
-          </div>
-          {state?.profileReady &&
-            state.wallet.balance < state.entryCost &&
-            !state.activeSession && (
-              <p className="points-tip">
-                Sammle mit Lernaufgaben weitere Punkte: Vorschule bringt 1,
-                Könner 2 und Streber 3 Lernpunkte pro neuer richtiger Lösung. Im
-                Vokabel- und Einmaleins-Trainer gibt jede richtige Antwort 1
-                Lernpunkt. Eine Spielrunde kostet 10 Lernpunkte.
-              </p>
+              </div>
             )}
-        </>
-      )}
+            <div className="arcade-grid">
+              {games.map((game) => (
+                <article
+                  key={game.id}
+                  className={`arcade-card arcade-${game.id}`}
+                >
+                  <div className="arcade-card-scene">
+                    <GamePreview gameId={game.id} />
+                    <span className="arcade-theme">{game.theme}</span>
+                  </div>
+                  <h3>{game.name}</h3>
+                  <p className="arcade-card-goal">{game.goal}</p>
+                  <p className="arcade-controls-hint">{game.controlsHint}</p>
+                  <p className="best-score">
+                    Bestwert:{' '}
+                    {state?.bestScores.find((b) => b.gameId === game.id)
+                      ?.score ?? 0}{' '}
+                    Spielpunkte
+                  </p>
+                  <InfoPanel>
+                    <summary>So geht’s</summary>
+                    <p>{game.instructions}</p>
+                  </InfoPanel>
+                  <button
+                    disabled={
+                      !state?.profileReady ||
+                      !!state.activeSession ||
+                      busy ||
+                      state.wallet.balance < state.entryCost ||
+                      (!!pending.current && pending.current.gameId !== game.id)
+                    }
+                    onClick={() => void start(game.id)}
+                  >
+                    {busy && pending.current?.gameId === game.id
+                      ? 'Runde wird geöffnet …'
+                      : pending.current?.gameId === game.id
+                        ? 'Buchung erneut versuchen'
+                        : `Spielen · ${state?.entryCost ?? 10} Lernpunkte`}
+                  </button>
+                </article>
+              ))}
+            </div>
+            {state?.profileReady &&
+              state.wallet.balance < state.entryCost &&
+              !state.activeSession && (
+                <p className="points-tip">
+                  Sammle mit Lernaufgaben weitere Punkte: Vorschule bringt 1,
+                  Könner 2 und Streber 3 Lernpunkte pro neuer richtiger Lösung.
+                  Im Vokabel- und Einmaleins-Trainer gibt jede richtige Antwort
+                  1 Lernpunkt. Eine Spielrunde kostet 10 Lernpunkte.
+                </p>
+              )}
+          </>
+        ))}
       <InfoPanel className="arcade-note">
         <summary>Pause & Spielstände</summary>
         <p>

@@ -103,6 +103,8 @@ it('wechselt zur Gegenrichtung und lädt weitere Zahlen mit der vorherigen Aufga
   setup();
   await user.type(await screen.findByLabelText(decimalQuestion.prompt), 'X');
   await user.click(screen.getByRole('button', { name: 'Römisch → Zahl' }));
+  expect(screen.getByRole('dialog', { name: 'Übung wechseln?' })).toBeVisible();
+  await user.click(screen.getByRole('button', { name: 'Wechseln' }));
   const input = await screen.findByLabelText(numeralQuestion.prompt);
   expect(input).toHaveValue('');
   expect(input).toHaveAttribute('inputmode', 'numeric');
@@ -119,7 +121,7 @@ it('wechselt zur Gegenrichtung und lädt weitere Zahlen mit der vorherigen Aufga
   );
   await user.click(
     await screen.findByRole('button', {
-      name: 'Weiter zur nächsten Zufallszahl',
+      name: 'Weiter',
     }),
   );
   expect(await screen.findByLabelText(next.prompt)).toHaveValue('');
@@ -142,8 +144,8 @@ it('gibt schrittweise Tipps und zeigt nach einem Fehler den Lösungsweg ohne Pun
     wallet: initial.wallet,
   });
   const input = await screen.findByLabelText(decimalQuestion.prompt);
-  await user.click(screen.getByRole('button', { name: 'Gib mir einen Tipp' }));
-  const hints = screen.getByRole('dialog', { name: 'Gib mir einen Tipp' });
+  await user.click(screen.getByRole('button', { name: 'Tipp' }));
+  const hints = screen.getByRole('region', { name: 'Tipps' });
   expect(within(hints).getByText(decimalQuestion.hint)).toBeVisible();
   expect(
     within(hints).queryByText(decimalQuestion.furtherHints[0]),
@@ -154,17 +156,15 @@ it('gibt schrittweise Tipps und zeigt nach einem Fehler den Lösungsweg ohne Pun
   expect(
     within(hints).getByText(decimalQuestion.furtherHints[0]),
   ).toBeVisible();
-  await user.click(within(hints).getByRole('button', { name: 'Schließen' }));
+  await user.click(within(hints).getByRole('button', { name: 'Tipp' }));
   await user.type(input, 'LXII{Enter}');
   expect(
     await screen.findByText('Noch nicht richtig. Versuch es noch einmal!'),
   ).toBeVisible();
   expect(screen.getByText('Prüfe die Reihenfolge von X und L.')).toBeVisible();
   expect(screen.queryByText(correct.explanation)).not.toBeInTheDocument();
-  await user.click(
-    screen.getByRole('button', { name: 'Lösungsweg anschauen' }),
-  );
-  const solution = screen.getByRole('dialog', { name: 'Lösungsweg anschauen' });
+  await user.click(screen.getByRole('button', { name: 'Hilfe' }));
+  const solution = screen.getByRole('dialog', { name: 'Hilfe' });
   expect(within(solution).getByText(correct.explanation)).toBeVisible();
   await user.click(within(solution).getByRole('button', { name: 'Schließen' }));
   await user.click(
@@ -217,7 +217,7 @@ it('behält nach Speicherfehlern die Request-ID und sperrt Eingabe und Wechsel w
   expect(input).toHaveValue('XLII');
   expect(onWalletChange).not.toHaveBeenCalled();
   expect(screen.queryByText('Richtig! +2 Punkte')).not.toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
   expect(input).toBeDisabled();
   expect(
     screen.getByRole('button', { name: 'Neue Zufallszahl →' }),
@@ -246,7 +246,7 @@ it('zeigt bei Ladefehlern keine alte Erfolgsrückmeldung und lässt das Laden wi
   );
   await user.click(
     await screen.findByRole('button', {
-      name: 'Weiter zur nächsten Zufallszahl',
+      name: 'Weiter',
     }),
   );
   expect(await screen.findByRole('alert')).toHaveTextContent(
@@ -255,7 +255,7 @@ it('zeigt bei Ladefehlern keine alte Erfolgsrückmeldung und lässt das Laden wi
   expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
   expect(screen.queryByText('Richtig! +2 Punkte')).not.toBeInTheDocument();
   expect(onWalletChange).toHaveBeenCalledTimes(1);
-  await user.click(screen.getByRole('button', { name: 'Noch einmal laden' }));
+  await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
   expect(await screen.findByLabelText(decimalQuestion.prompt)).toHaveValue('');
   expect(desktop.getRomanQuestion).toHaveBeenNthCalledWith(
     3,
@@ -269,7 +269,7 @@ it('zeigt Zufallszahlen ohne Profil, erlaubt aber noch keine Antwortbuchung', as
   const { onWalletChange } = setup(false);
   const input = await screen.findByLabelText(decimalQuestion.prompt);
   expect(input).toBeDisabled();
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeDisabled();
   await user.type(input, 'XLII{Enter}');
   expect(desktop.submitAnswer).not.toHaveBeenCalled();
   expect(onWalletChange).not.toHaveBeenCalled();

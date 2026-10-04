@@ -2152,3 +2152,306 @@ main {
     justify-self: center;
   }
 }
+
+/* Direct topic navigation: readable labels and one calm working area. */
+[hidden] {
+  display: none !important;
+}
+.direct-topics-shell {
+  --sidebar-width: 230px;
+  font-size: 17px;
+}
+.direct-topics-shell button,
+.direct-topics-shell input,
+.direct-topics-shell select {
+  min-height: 56px;
+}
+.direct-topics-shell .worms-stage .worms-controls button,
+.direct-topics-shell .worms-stage .worms-actions button {
+  min-height: 56px;
+}
+.direct-topics-shell input[type='radio'],
+.direct-topics-shell input[type='checkbox'] {
+  min-height: 22px;
+}
+.direct-topics-shell .sidebar {
+  padding: 24px 16px;
+  background: #f0edf7;
+  color: var(--ink);
+  border-right: 1px solid var(--line);
+}
+.direct-topics-shell .brand {
+  color: var(--ink);
+  font-size: 24px;
+}
+.direct-topics-shell .nav-label {
+  color: #625675;
+  font-size: 12px;
+}
+.direct-topics-shell .primary-navigation button {
+  color: #4f465e;
+  font-size: 17px;
+  padding: 14px 10px;
+}
+.direct-topics-shell .primary-navigation button:hover {
+  background: #e7e0f4;
+}
+.direct-topics-shell .primary-navigation button[aria-current='page'] {
+  background: #e4daf9;
+  border-color: #a894cf;
+  color: #413064;
+}
+.subject-nav-symbol {
+  width: 28px;
+  flex-shrink: 0;
+  font-size: 24px;
+  text-align: center;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+.current-mark {
+  margin-left: auto;
+  font-weight: 800;
+}
+.direct-topics-shell .offline-note {
+  margin-top: auto;
+  padding-top: 32px;
+  color: #625675;
+  font-size: 13px;
+}
+.direct-topics-shell .sidebar :focus-visible {
+  outline-color: #0878b3;
+}
+.direct-topics-shell .header {
+  padding: 14px 28px;
+  gap: 12px;
+}
+.settings-entry {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.direct-topics-shell .header button {
+  font-size: 15px;
+}
+.direct-topics-shell main {
+  padding: 22px 32px;
+}
+.direct-topics-shell .page-heading {
+  margin-bottom: 16px;
+}
+.direct-topics-shell .page-heading h1 {
+  font-size: 32px;
+}
+.direct-topics-shell .detail-panel {
+  margin: 0;
+}
+.learning-subject-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+.direct-topics-shell .learning-panel {
+  padding: 20px 24px;
+}
+.direct-topics-shell .learning-workspace {
+  display: block;
+  margin-top: 0;
+}
+.direct-topics-shell .learning-settings:empty {
+  display: none;
+}
+.direct-topics-shell .study-browser {
+  padding: 12px 4px;
+}
+.direct-topics-shell .study-browser-heading h3 {
+  font-size: 28px;
+}
+.direct-topics-shell .study-browser-heading p {
+  margin: 8px 0 16px;
+}
+.catalog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: end;
+}
+.catalog-filters label {
+  display: grid;
+  gap: 8px;
+  width: min(100%, 320px);
+}
+.direct-topics-shell .study-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+.direct-topics-shell .study-card {
+  min-height: 210px;
+  padding: 24px;
+  gap: 12px;
+}
+.direct-topics-shell .study-card strong {
+  font-size: 23px;
+}
+.direct-topics-shell .study-card small,
+.direct-topics-shell .study-card span {
+  line-height: 1.5;
+}
+.goal-symbol {
+  font-size: 28px;
+  color: var(--accent);
+}
+.direct-topics-shell .practice-area {
+  background: white;
+  padding: 20px 24px;
+}
+.direct-topics-shell .practice-area > .section-heading h3 {
+  font-size: 25px;
+}
+.direct-topics-shell .practice-goal {
+  margin-block: 12px;
+}
+.exercise-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr);
+  gap: 32px;
+  align-items: start;
+  margin-top: 16px;
+}
+.exercise-main,
+.exercise-help {
+  min-width: 0;
+}
+.exercise-help {
+  border-left: 1px solid var(--line);
+  padding-left: 28px;
+}
+.inline-hints .hint-box {
+  margin-top: 14px;
+  padding: 18px;
+}
+.inline-hints .hint-box p {
+  font-size: 18px;
+}
+.direct-topics-shell .answer-label {
+  font-size: 25px;
+  margin-block: 12px 20px;
+}
+.direct-topics-shell .practice-toolbar {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.inline-feedback {
+  margin-top: 18px;
+}
+.direct-topics-shell .sample-note {
+  font-size: 15px;
+}
+.direct-topics-shell .answer-feedback {
+  font-size: 18px;
+}
+.direct-topics-shell .answer-option {
+  min-height: 56px;
+}
+.direct-topics-shell .answer-option input {
+  min-height: 20px;
+}
+.practice-progress {
+  font-weight: 650;
+  color: #5b4a77;
+}
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+.global-error {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin: 12px 32px;
+  color: #a12e24;
+}
+.global-difficulty .level-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 1250px) {
+  .direct-topics-shell .study-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .exercise-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .exercise-help {
+    padding: 20px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+@media (max-width: 760px) {
+  .direct-topics-shell .sidebar {
+    padding: 12px 16px;
+  }
+  .direct-topics-shell .menu-toggle {
+    color: var(--ink);
+    background: white;
+  }
+  .direct-topics-shell .header,
+  .direct-topics-shell main {
+    padding: 16px;
+  }
+  .direct-topics-shell .learning-panel,
+  .direct-topics-shell .practice-area {
+    padding: 16px;
+  }
+  .catalog-filters,
+  .catalog-filters label {
+    width: 100%;
+  }
+  .direct-topics-shell .study-grid,
+  .global-difficulty .level-grid {
+    grid-template-columns: 1fr;
+  }
+  .direct-topics-shell .study-card {
+    min-height: 160px;
+  }
+  .settings-entry {
+    width: 100%;
+  }
+  .direct-topics-shell .study-breadcrumb {
+    align-items: start;
+  }
+}
+
+@media (min-width: 1400px) {
+  .direct-topics-shell .solar-space {
+    height: 420px;
+    max-height: 420px;
+  }
+}
+
+.direct-topics-shell .study-browser,
+.direct-topics-shell .direct-goals {
+  container-type: inline-size;
+}
+.direct-topics-shell .study-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+@container (max-width: 760px) {
+  .direct-topics-shell .study-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (min-width: 1600px) {
+  .direct-topics-shell .arcade-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}

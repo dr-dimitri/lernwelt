@@ -8,6 +8,8 @@ import {
 import { planets, solarBodies, type SolarBody } from '../domain/solar-system';
 import { desktop } from '../lib/desktop';
 import InfoPanel from './InfoPanel';
+import ProfilePanel from './ProfilePanel';
+import useConfirmChange from './useConfirmChange';
 import LearningHints from './LearningHints';
 import PlanetGallery from './PlanetGallery';
 import SolarSystemModel from './SolarSystemModel';
@@ -15,10 +17,18 @@ import '../solar-system.css';
 
 export default function SolarSystemWorld({
   profileVersion,
+  initialMode = 'discover',
+  externalControls = false,
+  onActivityChange,
+  onProfileSaved,
 }: {
   profileVersion: number;
+  initialMode?: 'discover' | 'quiz';
+  externalControls?: boolean;
+  onActivityChange?: (activity: { dirty: boolean; busy: boolean }) => void;
+  onProfileSaved?: () => void;
 }) {
-  const [mode, setMode] = useState<'discover' | 'quiz'>('discover');
+  const [mode, setMode] = useState<'discover' | 'quiz'>(initialMode);
   const [selected, setSelected] = useState<SolarBody['id']>('earth');
   const [state, setState] = useState<LearningState | null>(null);
   const [loading, setLoading] = useState(true);
@@ -37,7 +47,7 @@ export default function SolarSystemWorld({
     answer: string;
   } | null>(null);
   const questionHeading = useRef<HTMLHeadingElement>(null);
-  const focusQuestion = useRef(false);
+  const focusQuestion = useRef(initialMode === 'quiz');
   const planet = solarBodies.find((item) => item.id === selected)!;
   const questions =
     state?.questions.filter(
@@ -53,11 +63,38 @@ export default function SolarSystemWorld({
   const solved = questions.filter((item) => item.solved).length;
   const enabled = !!state?.profileReady && !busy && !loading;
 
+  const { requestChange, confirmation } = useConfirmChange(
+    (!!answer && !result) || !!pending.current,
+    busy || loading,
+  );
+
+  useEffect(() => {
+    if (externalControls && mode === 'quiz' && state && !state.profileReady)
+      return;
+    onActivityChange?.({
+      dirty: (!!answer && !result) || !!pending.current,
+      busy,
+    });
+  }, [
+    answer,
+    result,
+    busy,
+    loading,
+    state,
+    mode,
+    externalControls,
+    onActivityChange,
+  ]);
+
   useEffect(() => {
     let active = true;
     const version = ++revision.current;
     setLoading(true);
     setResult(null);
+    setAnswer('');
+    setIndex(0);
+    setFinished(false);
+    pending.current = null;
     desktop
       .getLearningState()
       .then((value) => {
@@ -83,7 +120,7 @@ export default function SolarSystemWorld({
   }, [profileVersion, reload]);
 
   useEffect(() => {
-    if (focusQuestion.current && mode === 'quiz') {
+    if (focusQuestion.current && mode === 'quiz' && questionHeading.current) {
       questionHeading.current?.focus();
       focusQuestion.current = false;
     }
@@ -236,7 +273,7 @@ export default function SolarSystemWorld({
           aria-pressed={mode === 'discover'}
           disabled={busy}
           onClick={() => {
-            setMode('discover');
+            requestChange(() => setMode('discover'));
           }}
         >
           Planeten entdecken
@@ -246,7 +283,7 @@ export default function SolarSystemWorld({
           className={mode === 'quiz' ? 'primary-button' : 'secondary-button'}
           aria-pressed={mode === 'quiz'}
           disabled={busy}
-          onClick={startQuiz}
+          onClick={() => requestChange(startQuiz)}
         >
           Planeten erraten
         </button>
@@ -262,13 +299,13 @@ export default function SolarSystemWorld({
               disabled={busy || loading}
               onClick={() => setReload((value) => value + 1)}
             >
-              Lernrunde neu laden
+              Erneut laden
             </button>
           )}
         </div>
       )}
 
-      {state && (
+      {state && !externalControls && (
         <div className="solar-levels">
           <span>Deine Stufe</span>
           <div className="difficulty-options" aria-label="Schwierigkeitsgrad">
@@ -278,7 +315,9 @@ export default function SolarSystemWorld({
                 type="button"
                 aria-pressed={state.difficulty === difficulty.id}
                 disabled={busy || loading}
-                onClick={() => void changeDifficulty(difficulty.id)}
+                onClick={() =>
+                  requestChange(() => void changeDifficulty(difficulty.id))
+                }
               >
                 <span aria-hidden="true">{difficulty.symbol} </span>
                 {difficulty.name}
@@ -318,7 +357,7 @@ export default function SolarSystemWorld({
                 <button
                   type="button"
                   className="primary-button"
-                  onClick={startQuiz}
+                  onClick={() => requestChange(startQuiz)}
                   disabled={busy}
                 >
                   Bereit für ein Planeten-Rätsel?
@@ -395,138 +434,164 @@ export default function SolarSystemWorld({
             Stufe schon gelöst. Alles darfst du in Ruhe noch einmal
             ausprobieren.
           </p>
-          <button className="primary-button" type="button" onClick={startQuiz}>
+          <button
+            className="primary-button"
+            type="button"
+            onClick={() => requestChange(startQuiz)}
+          >
             Noch eine Reise starten
           </button>
           <button
             className="secondary-button"
             type="button"
-            onClick={() => setMode('discover')}
+            onClick={() => requestChange(() => setMode('discover'))}
           >
             Steckbriefe entdecken
           </button>
         </div>
       ) : question && target ? (
         <>
-          {!state.profileReady && (
-            <p className="status-message">
-              Speichere oben unter „Dein Profil“ deinen Namen. Dann kannst du
-              Antworten prüfen und Lernpunkte sammeln. Die Planeten kannst du
-              jetzt schon entdecken.
-            </p>
-          )}
-          <div className="solar-quiz-heading">
-            <p className="eyebrow">
-              PLANETEN-RÄTSEL {index + 1} VON {questions.length}
-            </p>
-            <h3 ref={questionHeading} tabIndex={-1}>
-              {question.prompt}
-            </h3>
-            <p>
-              Schau auf den goldmarkierten Planeten. Wähle seinen Namen und
-              prüfe deine Antwort.
-            </p>
-          </div>
-          <div className="solar-workspace">
-            <SolarSystemModel
-              guessing
-              target={question.solarSystemPlanetId}
-              selected={selected}
-              onSelect={setSelected}
-            />
-            <div className="solar-quiz-card">
-              <img
-                src={target.image}
-                alt="NASA-Aufnahme des gesuchten Planeten"
-                width="240"
-                height="240"
+          {!state.profileReady &&
+            (externalControls ? (
+              <ProfilePanel
+                compact
+                onActivityChange={onActivityChange}
+                onSaved={() => {
+                  setReload((value) => value + 1);
+                  onProfileSaved?.();
+                }}
               />
-              <div>
-                <form onSubmit={(event) => void submit(event)}>
-                  <fieldset disabled={!enabled || !!result?.correct}>
-                    <legend>Wie heißt dieser Planet?</legend>
-                    <div className="solar-answer-options">
-                      {question.options.map((option) => (
-                        <label
-                          key={option}
-                          className={answer === option ? 'is-selected' : ''}
-                        >
-                          <input
-                            type="radio"
-                            name="solar-answer"
-                            value={option}
-                            checked={answer === option}
-                            onChange={() => {
-                              setAnswer(option);
-                              setResult(null);
-                            }}
-                          />
-                          {option}
-                        </label>
-                      ))}
-                    </div>
-                  </fieldset>
-                  <button
-                    className="primary-button"
-                    disabled={!enabled || !answer || !!result?.correct}
-                    type="submit"
-                  >
-                    {busy ? 'Wird geprüft …' : 'Antwort prüfen'}
-                  </button>
-                  {question.solved && (
-                    <small className="solar-solved">
-                      Schon gelöst · Wiederholen ist immer erlaubt.
-                    </small>
-                  )}
-                </form>
-                <LearningHints key={question.id} question={question} />
-                {result && (
-                  <div
-                    className={`solar-feedback ${result.correct ? 'correct' : ''}`}
-                    role="status"
-                  >
-                    <strong>
-                      {result.correct
-                        ? result.pointsAwarded
-                          ? `Richtig! +${result.pointsAwarded} ${result.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
-                          : 'Richtig! Diesen Planeten hast du schon gelöst.'
-                        : 'Noch nicht ganz. Du kannst es nochmal versuchen!'}
-                    </strong>
-                    {result.correct ? (
-                      <p>{result.explanation}</p>
-                    ) : (
-                      <>
-                        {result.mistakeHint && <p>{result.mistakeHint}</p>}
-                        <InfoPanel>
-                          <summary>Lösung verstehen</summary>
-                          <p>{result.explanation}</p>
-                        </InfoPanel>
-                      </>
-                    )}
-                  </div>
-                )}
-                <button
-                  className="secondary-button solar-next"
-                  type="button"
-                  disabled={busy}
-                  onClick={next}
-                >
-                  {index + 1 === questions.length
-                    ? 'Reise abschließen'
-                    : 'Nächster Planet →'}
-                </button>
+            ) : (
+              <p className="status-message">
+                Speichere oben unter „Dein Profil“ deinen Namen. Dann kannst du
+                Antworten prüfen und Lernpunkte sammeln. Die Planeten kannst du
+                jetzt schon entdecken.
+              </p>
+            ))}
+          {(!externalControls || state.profileReady) && (
+            <>
+              <div className="solar-quiz-heading">
+                <p className="eyebrow">
+                  PLANETEN-RÄTSEL {index + 1} VON {questions.length}
+                </p>
+                <h3 ref={questionHeading} tabIndex={-1}>
+                  {question.prompt}
+                </h3>
+                <p>
+                  Schau auf den goldmarkierten Planeten. Wähle seinen Namen und
+                  prüfe deine Antwort.
+                </p>
               </div>
-            </div>
-          </div>
-          <p className="solar-points-note">
-            Eine neue richtige Lösung bringt{' '}
-            {state.pointsByDifficulty[state.difficulty]}{' '}
-            {state.pointsByDifficulty[state.difficulty] === 1
-              ? 'Punkt'
-              : 'Punkte'}
-            . Fehler kosten nichts. Bereits gelöste Rätsel geben keine weiteren
-            Punkte.
-          </p>
+              <div className="solar-workspace">
+                <SolarSystemModel
+                  guessing
+                  target={question.solarSystemPlanetId}
+                  selected={selected}
+                  onSelect={setSelected}
+                />
+                <div className="solar-quiz-card">
+                  <img
+                    src={target.image}
+                    alt="NASA-Aufnahme des gesuchten Planeten"
+                    width="240"
+                    height="240"
+                  />
+                  <div>
+                    <form onSubmit={(event) => void submit(event)}>
+                      <fieldset disabled={!enabled || !!result?.correct}>
+                        <legend>Wie heißt dieser Planet?</legend>
+                        <div className="solar-answer-options">
+                          {question.options.map((option) => (
+                            <label
+                              key={option}
+                              className={answer === option ? 'is-selected' : ''}
+                            >
+                              <input
+                                type="radio"
+                                name="solar-answer"
+                                value={option}
+                                checked={answer === option}
+                                onChange={() => {
+                                  setAnswer(option);
+                                  setResult(null);
+                                }}
+                              />
+                              {option}
+                            </label>
+                          ))}
+                        </div>
+                      </fieldset>
+                      <button
+                        className={
+                          result?.correct || (pending.current && !busy)
+                            ? 'secondary-button'
+                            : 'primary-button'
+                        }
+                        disabled={!enabled || !answer || !!result?.correct}
+                        type="submit"
+                      >
+                        {busy ? 'Wird gespeichert …' : 'Prüfen'}
+                      </button>
+                      {question.solved && (
+                        <small className="solar-solved">
+                          Schon gelöst · Wiederholen ist immer erlaubt.
+                        </small>
+                      )}
+                    </form>
+                    <LearningHints
+                      compact
+                      key={question.id}
+                      question={question}
+                    />
+                    {result && (
+                      <div
+                        className={`solar-feedback ${result.correct ? 'correct' : ''}`}
+                        role="status"
+                      >
+                        <strong>
+                          {result.correct
+                            ? result.pointsAwarded
+                              ? `Richtig! +${result.pointsAwarded} ${result.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
+                              : 'Richtig! Diesen Planeten hast du schon gelöst.'
+                            : 'Noch nicht ganz. Du kannst es nochmal versuchen!'}
+                        </strong>
+                        {result.correct ? (
+                          <p>{result.explanation}</p>
+                        ) : (
+                          <>
+                            {result.mistakeHint && <p>{result.mistakeHint}</p>}
+                            <InfoPanel>
+                              <summary>Hilfe</summary>
+                              <p>{result.explanation}</p>
+                            </InfoPanel>
+                          </>
+                        )}
+                      </div>
+                    )}
+                    <button
+                      className={`${result?.correct ? 'primary-button' : 'secondary-button'} solar-next`}
+                      type="button"
+                      disabled={busy}
+                      onClick={() => requestChange(next)}
+                    >
+                      {index + 1 === questions.length
+                        ? 'Reise abschließen'
+                        : 'Weiter'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p className="solar-points-note">
+                Eine neue richtige Lösung bringt{' '}
+                {state.pointsByDifficulty[state.difficulty]}{' '}
+                {state.pointsByDifficulty[state.difficulty] === 1
+                  ? 'Punkt'
+                  : 'Punkte'}
+                . Fehler kosten nichts. Bereits gelöste Rätsel geben keine
+                weiteren Punkte.
+              </p>
+            </>
+          )}
         </>
       ) : (
         <p role="alert">
@@ -577,6 +642,7 @@ export default function SolarSystemWorld({
           ))}
         </ul>
       </InfoPanel>
+      {confirmation}
     </section>
   );
 }

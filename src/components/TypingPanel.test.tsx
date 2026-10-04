@@ -104,7 +104,7 @@ it('lässt den Anfangsfokus beim Seitentitel und prüft echte Eingaben erst bewu
   expect(
     screen.getByRole('option', { name: 'S01: Funkkontakt · 1 / 3' }),
   ).toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: 'Nächste Zeile' }));
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
   expect(field).toHaveFocus();
   expect(field).toHaveValue('');
   expect(screen.getByRole('button', { name: 'Zeile 2' })).toHaveAttribute(
@@ -184,8 +184,8 @@ it('erklärt Starttasten und zeigt QWERTZ, Leerzeichen sowie gegenüberliegendes
   const user = userEvent.setup();
   render(<TypingPanel profileVersion={0} />);
   const field = await screen.findByLabelText('Deine Zeile');
-  await user.click(screen.getByRole('button', { name: 'So fängst du an' }));
-  const dialog = screen.getByRole('dialog', { name: 'So fängst du an' });
+  await user.click(screen.getByRole('button', { name: 'Hilfe' }));
+  const dialog = screen.getByRole('dialog', { name: 'Hilfe' });
   expect(
     within(dialog).getByText(/Fühle die kleinen Erhebungen auf F und J/),
   ).toBeVisible();
@@ -210,6 +210,7 @@ it('erklärt Starttasten und zeigt QWERTZ, Leerzeichen sowie gegenüberliegendes
     screen.getByRole('combobox', { name: 'Kurs wählen' }),
     'station-11',
   );
+  await user.click(screen.getByRole('button', { name: 'Wechseln' }));
   expect(
     screen.getByText(/rechte[r]? kleine[r]? Finger/, {
       selector: '.typing-key-hint',
@@ -243,7 +244,7 @@ it('blendet die Hände gemeinsam mit der Tastatur ein und hält sie bei zusätzl
   fireEvent.change(field, { target: { value: 'fj jf' } });
   expect(container.querySelectorAll('[data-status="rest"]')).toHaveLength(10);
   expect(keyboard.querySelector('.highlighted')).not.toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: 'Zeile prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   await screen.findByRole('heading', { name: 'Geschafft! +2 Punkte' });
   expect(container.querySelectorAll('[data-status="rest"]')).toHaveLength(10);
   await user.click(screen.getByRole('button', { name: 'Noch einmal üben' }));
@@ -329,14 +330,14 @@ it('zeigt die drei Orbitabschnitte erst nach bestätigten Lösungen und erhält 
       name: 'Signal empfangen · 1 von 3 Zeilen bestätigt',
     }),
   ).toBeVisible();
-  await user.click(screen.getByRole('button', { name: 'Nächste Zeile' }));
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
   await user.type(field, 'jf fj{Enter}');
   expect(
     await screen.findByRole('img', {
       name: 'Kurs bestätigt · 2 von 3 Zeilen bestätigt',
     }),
   ).toBeVisible();
-  await user.click(screen.getByRole('button', { name: 'Nächste Zeile' }));
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
   await user.type(field, 'jf fj{Enter}');
   expect(
     await screen.findByRole('img', {
@@ -374,7 +375,7 @@ it('sperrt doppelte Übertragung und hält bei Speicherfehler dieselbe UUID und 
   render(<TypingPanel profileVersion={0} />);
   const field = await screen.findByLabelText('Deine Zeile');
   await user.type(field, 'fj jf');
-  const button = screen.getByRole('button', { name: 'Zeile prüfen' });
+  const button = screen.getByRole('button', { name: 'Prüfen' });
   fireEvent.click(button);
   fireEvent.click(button);
   expect(await screen.findByRole('alert')).toHaveTextContent('Speicherfehler');
@@ -384,9 +385,7 @@ it('sperrt doppelte Übertragung und hält bei Speicherfehler dieselbe UUID und 
   expect(screen.getByRole('button', { name: 'Vorschule' })).toBeDisabled();
   expect(screen.getByRole('combobox', { name: 'Kurs wählen' })).toBeDisabled();
   expect(screen.queryByText(/Geschafft!/)).not.toBeInTheDocument();
-  await user.click(
-    screen.getByRole('button', { name: 'Speichern erneut versuchen' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
   expect(
     await screen.findByRole('heading', { name: 'Geschafft! +2 Punkte' }),
   ).toHaveFocus();
@@ -416,9 +415,7 @@ it('stellt beim Stufenwechsel die passenden Zeilen bereit und erhält Eingaben b
     ...initial,
     difficulty: 'vorschule',
   });
-  await user.click(
-    screen.getByRole('button', { name: 'Speichern erneut versuchen' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
   expect(field).toHaveFocus();
   expect(field).toHaveValue('');
   expect(screen.getByRole('button', { name: 'Vorschule' })).toHaveAttribute(
@@ -446,9 +443,7 @@ it('holt nach Ladefehlern den bestätigten Stand und lädt nach einem gespeicher
     ...initial,
     profileReady: false,
   });
-  await user.click(
-    screen.getByRole('button', { name: 'Weltraumreise neu laden' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
   expect(await screen.findByText(/Speichere dein Lernprofil/)).toBeVisible();
   expect(screen.queryByLabelText('Deine Zeile')).not.toBeInTheDocument();
   rerender(<TypingPanel profileVersion={1} />);
@@ -521,7 +516,7 @@ it('lässt überlange und unsichtbare Zeichen ohne Speicheranfrage verbessern', 
   const field = await screen.findByLabelText('Deine Zeile');
   expect(field).toHaveAttribute('maxlength', '120');
   fireEvent.change(field, { target: { value: 'f'.repeat(121) } });
-  await user.click(screen.getByRole('button', { name: 'Zeile prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   expect(screen.getByRole('status')).toHaveTextContent('höchstens 120 Zeichen');
   expect(field).toBeEnabled();
   expect(field).toHaveFocus();
@@ -529,7 +524,7 @@ it('lässt überlange und unsichtbare Zeichen ohne Speicheranfrage verbessern', 
   expect(desktop.submitTyping).not.toHaveBeenCalled();
   fireEvent.change(field, { target: { value: 'fj\tjf' } });
   expect(screen.queryByRole('status')).not.toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: 'Zeile prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   expect(screen.getByRole('status')).toHaveTextContent('unsichtbare Zeichen');
   expect(field).toBeEnabled();
   expect(desktop.submitTyping).not.toHaveBeenCalled();
@@ -575,6 +570,7 @@ it('hält die eingeblendete Hilfe bei allen zwölf Kurswechseln bereit und fokus
   for (const station of initial.stations) {
     await user.type(field, 'x');
     await user.selectOptions(picker, station.id);
+    await user.click(screen.getByRole('button', { name: 'Wechseln' }));
     expect(picker).toHaveValue(station.id);
     expect(screen.getByRole('heading', { name: station.title })).toBeVisible();
     expect(field).toHaveFocus();
@@ -587,11 +583,64 @@ it('hält die eingeblendete Hilfe bei allen zwölf Kurswechseln bereit und fokus
     expect(
       screen.getByRole('img', { name: /Grundstellung der Hände/ }),
     ).toBeVisible();
-    expect(screen.getByRole('button', { name: 'Zeile prüfen' })).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Prüfen' })).toBeVisible();
     expect(
       screen.getByRole('button', { name: 'Tastaturhilfe ausblenden' }),
     ).toHaveAttribute('aria-pressed', 'true');
   }
   expect(desktop.submitTyping).not.toHaveBeenCalled();
   expect(desktop.setDifficulty).not.toHaveBeenCalled();
+});
+
+it('meldet Entwurf und Übertragung an die Fachnavigation und bewahrt die Zeile beim Abbrechen eines Kurswechsels', async () => {
+  const user = userEvent.setup();
+  const activity = vi.fn();
+  let finish!: (value: TypingResult) => void;
+  vi.mocked(desktop.submitTyping).mockImplementation(
+    () =>
+      new Promise((resolve) => {
+        finish = resolve;
+      }),
+  );
+  render(
+    <TypingPanel
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  const field = await screen.findByLabelText('Deine Zeile');
+  expect(field).toHaveFocus();
+  expect(
+    screen.queryByRole('group', { name: 'Schwierigkeitsgrad für alle Fächer' }),
+  ).not.toBeInTheDocument();
+  await user.type(field, 'fj');
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });
+  const picker = screen.getByRole('combobox', { name: 'Kurs wählen' });
+  await user.selectOptions(picker, 'station-1');
+  expect(screen.getByRole('button', { name: 'Bleiben' })).toHaveFocus();
+  await user.keyboard('{Escape}');
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(picker).toHaveFocus();
+  expect(picker).toHaveValue('station-0');
+  expect(field).toHaveValue('fj');
+  await user.type(field, ' jf{Enter}');
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: true });
+  await act(async () => finish(success));
+  expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
+});
+
+it('hält andere Fächer erreichbar, solange nur die Modul-Daten geladen werden', () => {
+  vi.mocked(desktop.getTypingState).mockImplementation(
+    () => new Promise(() => {}),
+  );
+  const activity = vi.fn();
+  render(
+    <TypingPanel
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
 });

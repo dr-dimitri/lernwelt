@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import InfoPanel from './InfoPanel';
+import ProfilePanel from './ProfilePanel';
+import useConfirmChange from './useConfirmChange';
 import TypingHands from './TypingHands';
 import { difficulties, type Difficulty } from '../domain/learning';
 import {
@@ -85,8 +87,14 @@ function solvedLines(station: TypingStation, difficulty: Difficulty) {
 
 export default function TypingPanel({
   profileVersion,
+  externalControls = false,
+  onActivityChange,
+  onProfileSaved,
 }: {
   profileVersion: number;
+  externalControls?: boolean;
+  onActivityChange?: (activity: { dirty: boolean; busy: boolean }) => void;
+  onProfileSaved?: () => void;
 }) {
   const [state, setState] = useState<TypingState | null>(null);
   const [stationId, setStationId] = useState('');
@@ -108,6 +116,27 @@ export default function TypingPanel({
   const errorBox = useRef<HTMLDivElement>(null);
   const focusRequested = useRef<'input' | 'feedback' | 'error' | null>(null);
 
+  const { requestChange, confirmation } = useConfirmChange(
+    (!!answer && !feedback) || !!pending,
+    busy,
+  );
+
+  useEffect(() => {
+    if (externalControls && state && !state.profileReady) return;
+    onActivityChange?.({
+      dirty: (!!answer && !feedback) || !!pending,
+      busy: busy && !!pending,
+    });
+  }, [
+    answer,
+    feedback,
+    pending,
+    busy,
+    state,
+    externalControls,
+    onActivityChange,
+  ]);
+
   useEffect(() => {
     const current = ++revision.current;
     inFlight.current = true;
@@ -122,7 +151,10 @@ export default function TypingPanel({
     void desktop
       .getTypingState()
       .then((value) => {
-        if (current === revision.current) setState(value);
+        if (current === revision.current) {
+          setState(value);
+          if (externalControls) focusRequested.current = 'input';
+        }
       })
       .catch((reason: unknown) => {
         if (current === revision.current) {
@@ -139,7 +171,7 @@ export default function TypingPanel({
     return () => {
       ++revision.current;
     };
-  }, [reload, profileVersion]);
+  }, [reload, profileVersion, externalControls]);
 
   useEffect(() => {
     if (busy) return;
@@ -327,7 +359,7 @@ export default function TypingPanel({
             Präzision vor Tempo. Erkunde zwölf Sektoren mit deiner Tastatur.
           </p>
           <InfoPanel>
-            <summary>So fängst du an</summary>
+            <summary>Hilfe</summary>
             {station && (
               <p>
                 <strong>{station.title}:</strong> {station.description}{' '}
@@ -388,58 +420,74 @@ export default function TypingPanel({
                 disabled={busy}
                 onClick={() => void perform(pending)}
               >
-                Speichern erneut versuchen
+                Erneut versuchen
               </button>
             )}
             <button
               className="secondary-button"
               disabled={busy}
-              onClick={reloadState}
+              onClick={() => requestChange(reloadState)}
             >
-              Weltraumreise neu laden
+              Erneut laden
             </button>
           </div>
         </div>
       )}
-      {state && !state.profileReady && (
-        <p>
-          Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst du
-          tippen und deine Missionen speichern.
-        </p>
-      )}
+      {state &&
+        !state.profileReady &&
+        (externalControls ? (
+          <ProfilePanel
+            compact
+            onActivityChange={onActivityChange}
+            onSaved={() => {
+              setReload((value) => value + 1);
+              onProfileSaved?.();
+            }}
+          />
+        ) : (
+          <p>
+            Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst du
+            tippen und deine Missionen speichern.
+          </p>
+        ))}
       {state?.profileReady && (
         <>
           <div className="typing-levels">
-            <div
-              className="typing-difficulty-options"
-              role="group"
-              aria-label="Schwierigkeitsgrad für alle Fächer"
-            >
-              {difficulties.map((level) => (
-                <button
-                  key={level.id}
-                  className="secondary-button"
-                  aria-pressed={state.difficulty === level.id}
-                  disabled={disabled}
-                  onClick={() => {
-                    if (level.id !== state.difficulty)
-                      void perform({
-                        kind: 'difficulty',
-                        difficulty: level.id,
-                      });
-                  }}
-                >
-                  {level.name}
-                </button>
-              ))}
-            </div>
+            {!externalControls && (
+              <div
+                className="typing-difficulty-options"
+                role="group"
+                aria-label="Schwierigkeitsgrad für alle Fächer"
+              >
+                {difficulties.map((level) => (
+                  <button
+                    key={level.id}
+                    className="secondary-button"
+                    aria-pressed={state.difficulty === level.id}
+                    disabled={disabled}
+                    onClick={() => {
+                      if (level.id !== state.difficulty)
+                        void perform({
+                          kind: 'difficulty',
+                          difficulty: level.id,
+                        });
+                    }}
+                  >
+                    {level.name}
+                  </button>
+                ))}
+              </div>
+            )}
             <div className="typing-course-picker">
               <label htmlFor="typing-course">Kurs wählen</label>
               <select
                 id="typing-course"
                 value={station?.id ?? ''}
                 disabled={disabled}
-                onChange={(event) => selectLine(event.target.value)}
+                onChange={(event) => {
+                  const next = event.target.value;
+                  requestChange(() => selectLine(next));
+                }}
               >
                 {state.stations.map((item, index) => (
                   <option key={item.id} value={item.id}>
@@ -492,7 +540,9 @@ export default function TypingPanel({
                         disabled={disabled}
                         aria-pressed={line.id === task.id}
                         aria-label={`Zeile ${index + 1}${line.solved ? ' · geschafft' : ''}`}
-                        onClick={() => selectLine(station.id, line.id)}
+                        onClick={() =>
+                          requestChange(() => selectLine(station.id, line.id))
+                        }
                       >
                         {line.solved && <span aria-hidden="true">✓ </span>}Zeile{' '}
                         {index + 1}
@@ -586,13 +636,17 @@ export default function TypingPanel({
                   )}
                   <div className="typing-actions">
                     <button
-                      className="primary-button"
+                      className={
+                        feedback?.correct || (pending && !busy)
+                          ? 'secondary-button'
+                          : 'primary-button'
+                      }
                       type="submit"
                       disabled={
                         disabled || !answer.length || !!feedback?.correct
                       }
                     >
-                      Zeile prüfen
+                      {busy ? 'Wird gespeichert …' : 'Prüfen'}
                     </button>
                     <button
                       className="secondary-button"
@@ -630,7 +684,7 @@ export default function TypingPanel({
                     {feedback.correct && (
                       <div className="typing-actions">
                         <button className="primary-button" onClick={nextLine}>
-                          Nächste Zeile
+                          Weiter
                         </button>
                         <button
                           className="secondary-button"
@@ -711,6 +765,7 @@ export default function TypingPanel({
           </div>
         </>
       )}
+      {confirmation}
     </section>
   );
 }

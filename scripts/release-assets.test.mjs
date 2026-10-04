@@ -91,3 +91,21 @@ test('rejects invalid versions and unexpected destinations', (t) => {
     /repository/,
   );
 });
+
+test('assembles all signed preview platforms with the exact rc version in URLs and manifest', (t) => {
+  const root = fixture(t);
+  const output = join(root, 'output');
+  const result = prepareRelease(root, output, '0.6.9-rc.1', 'Vorab testen');
+  assert.equal(result.version, '0.6.9-rc.1');
+  assert.equal(Object.keys(result.platforms).length, 3);
+  for (const entry of Object.values(result.platforms)) {
+    assert.ok(
+      entry.url.startsWith(
+        'https://github.com/dr-dimitri/lernwelt/releases/download/v0.6.9-rc.1/Lernwelt_0.6.9-rc.1_',
+      ),
+    );
+    assert.ok(
+      readFileSync(join(output, entry.url.split('/').at(-1))).length > 0,
+    );
+  }
+});

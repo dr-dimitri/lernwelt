@@ -44,7 +44,7 @@ it('prüft die Eingabe per Enter, zeigt erst danach die Lösung und aktualisiert
   expect(
     screen.queryByRole('button', { name: 'Gewusst' }),
   ).not.toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeDisabled();
   expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
     '8 Punkte',
   );
@@ -66,10 +66,10 @@ it('prüft die Eingabe per Enter, zeigt erst danach die Lösung und aktualisiert
   );
   expect(screen.getByText('I say hello.')).toBeVisible();
   expect(
-    screen.queryByRole('button', { name: 'Antwort prüfen' }),
+    screen.queryByRole('button', { name: 'Prüfen' }),
   ).not.toBeInTheDocument();
   vi.mocked(desktop.getVocabularyState).mockResolvedValue(done);
-  await user.click(screen.getByRole('button', { name: 'Nächste Karte' }));
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
   expect(await screen.findByText('Für jetzt geschafft!')).toHaveFocus();
   expect(screen.getByText(/Nächste Wiederholung:/)).toBeVisible();
   expect(desktop.reviewVocabulary).toHaveBeenCalledTimes(1);
@@ -103,7 +103,7 @@ it('lässt nach der Rückmeldung und nächsten Karte direkt per Tastatur weiter�
     await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
   ).toHaveFocus();
   await user.tab();
-  expect(screen.getByRole('button', { name: 'Nächste Karte' })).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Weiter' })).toHaveFocus();
   await user.keyboard('{Enter}');
   expect(
     await screen.findByRole('heading', { name: 'auf Wiedersehen' }),
@@ -125,9 +125,9 @@ it('behält Eingabe und bewusst gewählten Fokus bei unverändertem Zustand', as
   expect(field).toHaveValue('hello');
   expect(field).toHaveFocus();
   await user.tab();
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toHaveFocus();
   rerender(<VocabularyPanel profileVersion={0} />);
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toHaveFocus();
   expect(field).toHaveValue('hello');
 });
 it('zeigt eine falsche Lösung ohne Punkte und erlaubt bewusstes Aufdecken ohne Antwort', async () => {
@@ -144,7 +144,7 @@ it('zeigt eine falsche Lösung ohne Punkte und erlaubt bewusstes Aufdecken ohne 
     await screen.findByLabelText('Deine englische Antwort'),
     'cat',
   );
-  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   expect(
     await screen.findByText('Noch nicht ganz – wir üben das wieder!'),
   ).toBeVisible();
@@ -152,10 +152,11 @@ it('zeigt eine falsche Lösung ohne Punkte und erlaubt bewusstes Aufdecken ohne 
   expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
     '8 Punkte',
   );
-  await user.click(screen.getByRole('button', { name: 'Nächste Karte' }));
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
+  await user.click(await screen.findByRole('button', { name: 'Hilfe' }));
   await user.click(
     await screen.findByRole('button', {
-      name: 'Weiß ich noch nicht · Lösung zeigen',
+      name: 'Lösung zeigen',
     }),
   );
   expect(desktop.reviewVocabulary).toHaveBeenLastCalledWith(
@@ -179,18 +180,18 @@ it('behält nach Speicherfehler Antwort und Request und verhindert doppelte Punk
     await screen.findByLabelText('Deine englische Antwort'),
     'hello',
   );
-  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   expect(await screen.findByRole('alert')).toHaveTextContent('Transportfehler');
   expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
     '8 Punkte',
   );
   expect(screen.getByLabelText('Deine englische Antwort')).toHaveValue('hello');
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeDisabled();
   expect(screen.getByLabelText('Dein Wortthema')).toBeDisabled();
-  await user.click(
-    screen.getByRole('button', { name: 'Speichern erneut versuchen' }),
-  );
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
+  expect(
+    screen.getByRole('button', { name: 'Wird gespeichert …' }),
+  ).toBeDisabled();
   expect(vi.mocked(desktop.reviewVocabulary).mock.calls[0]).toEqual(
     vi.mocked(desktop.reviewVocabulary).mock.calls[1],
   );
@@ -208,7 +209,7 @@ it.each(['hello\t', 'he\u000blo', 'hello\u007f', 'hello\u0085', 'hello\u009f'])(
     await user.click(field);
     await user.paste(pasted);
     expect(field).toHaveValue(pasted);
-    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+    await user.click(screen.getByRole('button', { name: 'Prüfen' }));
 
     expect(desktop.reviewVocabulary).not.toHaveBeenCalled();
     expect(screen.getByRole('alert')).toHaveTextContent(
@@ -218,11 +219,11 @@ it.each(['hello\t', 'he\u000blo', 'hello\u007f', 'hello\u0085', 'hello\u009f'])(
     expect(field).toHaveFocus();
     expect(field).toHaveValue(pasted);
     expect(
-      screen.queryByRole('button', { name: 'Speichern erneut versuchen' }),
+      screen.queryByRole('button', { name: 'Erneut versuchen' }),
     ).not.toBeInTheDocument();
     expect(
       screen.getByRole('button', {
-        name: 'Weiß ich noch nicht · Lösung zeigen',
+        name: 'Hilfe',
       }),
     ).toBeEnabled();
 
@@ -250,6 +251,7 @@ it('wechselt die Antwortrichtung und zeigt Satzlücken ohne alten Fortschritt od
     difficulty: 'vorschule',
   });
   await user.click(screen.getByRole('button', { name: /Vorschule/ }));
+  await user.click(screen.getByRole('button', { name: 'Wechseln' }));
   expect(
     await screen.findByLabelText('Deine deutsche Übersetzung'),
   ).toHaveValue('');
@@ -301,7 +303,7 @@ it('zeigt Profilhinweis und lässt einen Ladefehler erneut versuchen', async () 
   await user.click(screen.getByRole('button', { name: 'Karten neu laden' }));
   expect(await screen.findByText(/Speichere dein Lernprofil/)).toBeVisible();
   expect(
-    screen.queryByRole('button', { name: 'Antwort prüfen' }),
+    screen.queryByRole('button', { name: 'Prüfen' }),
   ).not.toBeInTheDocument();
 });
 it('verwirft veraltete Ladeantworten nach einer Profiländerung', async () => {
@@ -318,25 +320,23 @@ it('verwirft veraltete Ladeantworten nach einer Profiländerung', async () => {
   expect(await screen.findByText('Für jetzt geschafft!')).toBeVisible();
   await act(async () => resolve(initial));
   expect(
-    screen.queryByRole('button', { name: 'Antwort prüfen' }),
+    screen.queryByRole('button', { name: 'Prüfen' }),
   ).not.toBeInTheDocument();
 });
 it('zeigt nach fehlgeschlagenem Stufenwechsel keine veraltete Karte als aktuell', async () => {
   const user = userEvent.setup();
   render(<VocabularyPanel profileVersion={0} />);
-  await screen.findByRole('button', { name: 'Antwort prüfen' });
+  await screen.findByRole('button', { name: 'Prüfen' });
   vi.mocked(desktop.setDifficulty).mockRejectedValueOnce(
     new Error('Speicherfehler'),
   );
   await user.click(screen.getByRole('button', { name: /Streber/ }));
   expect(await screen.findByRole('alert')).toHaveTextContent('Speicherfehler');
   expect(
-    screen.queryByRole('button', { name: 'Antwort prüfen' }),
+    screen.queryByRole('button', { name: 'Prüfen' }),
   ).not.toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Karten neu laden' }));
-  expect(
-    await screen.findByRole('button', { name: 'Antwort prüfen' }),
-  ).toBeVisible();
+  expect(await screen.findByRole('button', { name: 'Prüfen' })).toBeVisible();
 });
 
 it('öffnet das verknüpfte Wortthema und erlaubt danach eine eigene Auswahl', async () => {
@@ -349,4 +349,45 @@ it('öffnet das verknüpfte Wortthema und erlaubt danach eine eigene Auswahl', a
   await waitFor(() =>
     expect(desktop.getVocabularyState).toHaveBeenLastCalledWith('all'),
   );
+});
+
+it('bewahrt beim abgebrochenen Hörmoduswechsel die Übersetzung und meldet sie an die Navigation', async () => {
+  const user = userEvent.setup();
+  const activity = vi.fn();
+  render(
+    <VocabularyPanel
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  const field = await screen.findByLabelText('Deine englische Antwort');
+  expect(field).toHaveFocus();
+  expect(
+    screen.queryByLabelText('Schwierigkeitsgrad für alle Fächer'),
+  ).not.toBeInTheDocument();
+  await user.type(field, 'hello');
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });
+  const listen = screen.getByRole('button', { name: '3 Wörter hören' });
+  await user.click(listen);
+  expect(screen.getByRole('button', { name: 'Bleiben' })).toHaveFocus();
+  await user.keyboard('{Escape}');
+  expect(listen).toHaveFocus();
+  expect(field).toHaveValue('hello');
+  expect(desktop.reviewVocabulary).not.toHaveBeenCalled();
+});
+
+it('hält andere Fächer erreichbar, solange nur die Modul-Daten geladen werden', () => {
+  vi.mocked(desktop.getVocabularyState).mockImplementation(
+    () => new Promise(() => {}),
+  );
+  const activity = vi.fn();
+  render(
+    <VocabularyPanel
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
 });

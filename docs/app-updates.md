@@ -31,7 +31,13 @@ Der private Schlüssel muss dauerhaft außerhalb von Git sicher aufbewahrt werde
 
 ## GitHub-Vorabversionen bereitstellen
 
-Eine als **Pre-release** markierte GitHub-Veröffentlichung braucht dieselben signierten Updater-Pakete für die jeweilige Plattform und ein `latest.json` wie ein stabiler Release. Der Tag muss eine semantische Version enthalten (z. B. `v0.7.0-beta.1`); die Manifest-Version muss dazu passen, Paketadressen müssen auf hochgeladene Assets dieses Releases zeigen. Das GitHub-Flag entscheidet über den Kanal. Ein alleiniger Quellcode-Tag oder die Vorabmarkierung ohne Updater-Pakete kann keine installierbare Version bereitstellen. Die vorhandene Merge-Pipeline veröffentlicht weiter stabile Versionen; dieses Updatefeature erzeugt keine zusätzlichen Vorab-Releases.
+Für einen ausdrücklich gewünschten Test vor dem Merge unterstützt `release.yml` einen eigenen Vorabpfad: Alle fünf Quelldateien enthalten weiter die nächste stabile Version (z. B. `0.6.9`), damit die PR-Versionsprüfung unverändert gilt. Ein Tag `v0.6.9-rc.1` am geprüften Commit eines bereits gepushten `codex/issue-<Nummer>-<Kurzname>`-Branches startet die drei signierten Builds. Der Tag muss exakt zur stabilen Quellversion passen; die positive `rc`-Nummer kann für weitere Tests erhöht werden. Ein stabiler Tag verlangt weiterhin einen Commit auf `main`.
+
+Nur für diesen Build setzt eine zusätzliche Tauri-Konfiguration die App- und Installerversion auf `0.6.9-rc.1`. Die Quelldateien und `main` werden dadurch nicht geändert. Pakete, Signaturen und `latest.json` tragen dieselbe Vorabversion; die Hinweise stammen aus `docs/releases/0.6.9.md`. Erst nach allen drei Builds und dem vollständigen Upload wird der Release mit `prerelease: true` veröffentlicht. `make_latest: false` erhält den stabilen Release und dessen Update-Endpunkt. Wiederholungen überschreiben keine veröffentlichte Version. Ein späterer Merge erzeugt weiterhin automatisch den stabilen Release `v0.6.9`.
+
+Ein alleiniger Quellcode-Tag oder eine Vorabmarkierung ohne signierte Updater-Pakete und vollständiges `latest.json` kann keine installierbare Version bereitstellen. In der App muss **Vorabversionen (Pre-Releases) anbieten** aktiviert sein, um diesen Testrelease angeboten zu bekommen.
+
+Grundlage des Versionsoverrides: [Tauri-Build-Konfiguration per `--config`](https://v2.tauri.app/reference/cli/) und [Tauri-Appversion](https://v2.tauri.app/reference/config/).
 
 Grundlage der Vorabauswahl: [GitHub Releases API](https://docs.github.com/en/rest/releases/releases#list-releases) und [Tauri-Updater-Konfiguration](https://v2.tauri.app/plugin/updater/).
 

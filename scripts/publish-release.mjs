@@ -3,7 +3,12 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { githubApi } from './release-github.mjs';
-import { releaseTag, shouldMakeLatest } from './release-policy.mjs';
+import {
+  parseReleaseVersion,
+  releaseTag,
+  releaseVersion,
+  shouldMakeLatest,
+} from './release-policy.mjs';
 
 export async function publishRelease(
   { version, sha, ref, tag, notes, assets },
@@ -12,7 +17,10 @@ export async function publishRelease(
 ) {
   if (releaseTag(version, sha, ref) !== tag)
     throw new Error('Prepared release tag differs.');
+  const { prerelease } = parseReleaseVersion(version);
   let release = await api('GET', `releases/tags/${tag}`, undefined, true);
+  if (release && !release.draft && release.prerelease !== prerelease)
+    throw new Error('Published release channel differs; leaving it unchanged.');
   if (release && !release.draft) return { published: false, unchanged: true };
   const expected = [
     `Lernwelt_${version}_darwin-aarch64.app.tar.gz`,
@@ -37,6 +45,7 @@ export async function publishRelease(
       name: `Lernwelt ${version}`,
       body: notes,
       draft: true,
+      prerelease,
       make_latest: 'false',
     });
   }
@@ -48,10 +57,13 @@ export async function publishRelease(
     )
   )
     throw new Error('Release upload is incomplete; keeping the draft.');
-  const latest = await api('GET', 'releases/latest', undefined, true);
+  const latest = prerelease
+    ? null
+    : await api('GET', 'releases/latest', undefined, true);
   const makeLatest = shouldMakeLatest(version, latest);
   await api('PATCH', `releases/${release.id}`, {
     draft: false,
+    prerelease,
     make_latest: makeLatest ? 'true' : 'false',
   });
   return { published: true, makeLatest };
@@ -61,14 +73,19 @@ if (
   process.argv[1] &&
   import.meta.url === pathToFileURL(resolve(process.argv[1])).href
 ) {
-  const version = JSON.parse(readFileSync('package.json', 'utf8')).version;
+  const sourceVersion = JSON.parse(
+    readFileSync('package.json', 'utf8'),
+  ).version;
+  const version = releaseVersion(sourceVersion, process.env.GITHUB_REF ?? '');
+  if (process.env.RELEASE_VERSION && process.env.RELEASE_VERSION !== version)
+    throw new Error('Prepared release version differs.');
   const result = await publishRelease(
     {
       version,
       sha: process.env.GITHUB_SHA ?? '',
       ref: process.env.GITHUB_REF ?? '',
       tag: process.env.RELEASE_TAG ?? '',
-      notes: readFileSync(`docs/releases/${version}.md`, 'utf8'),
+      notes: readFileSync(`docs/releases/${sourceVersion}.md`, 'utf8'),
       assets: readdirSync('release-upload').sort(),
     },
     githubApi,

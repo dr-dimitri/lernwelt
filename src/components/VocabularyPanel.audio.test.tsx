@@ -52,9 +52,8 @@ it.each(['koenner', 'streber'] as const)(
     expect(
       screen.queryByRole('button', { name: 'Beispielsatz anhören' }),
     ).not.toBeInTheDocument();
-    await user.click(
-      screen.getByRole('button', { name: /Weiß ich noch nicht/ }),
-    );
+    await user.click(screen.getByRole('button', { name: 'Hilfe' }));
+    await user.click(screen.getByRole('button', { name: 'Lösung zeigen' }));
     expect(
       await screen.findByRole('button', { name: 'Wort anhören' }),
     ).toBeEnabled();
