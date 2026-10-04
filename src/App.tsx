@@ -82,6 +82,7 @@ export default function App() {
   const [selected, setSelected] = useState<SubjectId>('mathematics');
   const [profileVersion, setProfileVersion] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
   const navigationRequested = useRef(false);
@@ -117,7 +118,9 @@ export default function App() {
   }
 
   return (
-    <div className="app-shell">
+    <div
+      className={`app-shell ${sidebarCollapsed ? 'is-sidebar-collapsed' : ''}`}
+    >
       <a className="skip-link" href="#main">
         Zum Inhalt
       </a>
@@ -135,14 +138,46 @@ export default function App() {
           className="brand"
           onClick={() => navigate('subjects')}
           aria-label="Lernwelt – Meine Fächer"
+          title="Lernwelt – Meine Fächer"
         >
           <span className="brand-icon" aria-hidden="true">
             L
           </span>
-          Lernwelt
-          <span className="brand-dot" aria-hidden="true">
-            .
+          <span className="brand-label">
+            Lernwelt
+            <span className="brand-dot" aria-hidden="true">
+              .
+            </span>
           </span>
+        </button>
+        <button
+          className="sidebar-toggle"
+          aria-expanded={!sidebarCollapsed}
+          aria-controls="navigation-items"
+          aria-label={
+            sidebarCollapsed
+              ? 'Seitenleiste ausklappen'
+              : 'Seitenleiste einklappen'
+          }
+          title={
+            sidebarCollapsed
+              ? 'Seitenleiste ausklappen'
+              : 'Seitenleiste einklappen'
+          }
+          onClick={() => setSidebarCollapsed((collapsed) => !collapsed)}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d={sidebarCollapsed ? 'm9 6 6 6-6 6' : 'm15 6-6 6 6 6'} />
+          </svg>
+          <span className="sidebar-toggle-label">Einklappen</span>
         </button>
         <button
           ref={menuButton}
@@ -162,6 +197,8 @@ export default function App() {
             {destinations.map((item) => (
               <button
                 key={item.id}
+                aria-label={item.label}
+                title={item.label}
                 aria-current={
                   view === item.id ||
                   (item.id === 'subjects' &&
@@ -172,7 +209,7 @@ export default function App() {
                 onClick={() => navigate(item.id)}
               >
                 <NavIcon name={item.icon} />
-                <span>{item.label}</span>
+                <span className="navigation-label">{item.label}</span>
               </button>
             ))}
           </nav>

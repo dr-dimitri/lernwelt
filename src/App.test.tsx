@@ -46,6 +46,86 @@ beforeEach(() => {
 });
 
 describe('Lernwelt', () => {
+  it('klappt die Seitenleiste per Tastatur um und behält benannte Navigationsziele', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const toggle = screen.getByRole('button', {
+      name: 'Seitenleiste einklappen',
+    });
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    toggle.focus();
+    await user.keyboard('{Enter}');
+    expect(
+      screen.getByRole('button', { name: 'Seitenleiste ausklappen' }),
+    ).toHaveFocus();
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    const navigation = screen.getByRole('navigation', {
+      name: 'Lernwelt-Bereiche',
+    });
+    for (const label of [
+      'Meine Fächer',
+      'Vokabeltrainer',
+      'Einmaleins-Trainer',
+      'Tastschreiben',
+      'Spielhalle',
+    ]) {
+      expect(
+        within(navigation).getByRole('button', { name: label }),
+      ).toHaveAttribute('title', label);
+    }
+    expect(
+      within(navigation).getByRole('button', { name: 'Meine Fächer' }),
+    ).toHaveAttribute('aria-current', 'page');
+    await user.keyboard(' ');
+    expect(toggle).toHaveAccessibleName('Seitenleiste einklappen');
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    expect(toggle).toHaveFocus();
+  });
+
+  it('behält den eingeklappten Zustand bei Bereichswechseln und erhält Eingaben beim Umschalten', async () => {
+    const user = userEvent.setup();
+    vi.mocked(desktop.getVocabularyState).mockResolvedValue(vocabularyInitial);
+    render(<App />);
+    const search = screen.getByRole('searchbox', { name: 'Fach suchen' });
+    await user.type(search, 'engl');
+    await user.click(
+      screen.getByRole('button', { name: 'Seitenleiste einklappen' }),
+    );
+    expect(search).toHaveValue('engl');
+    expect(screen.getByRole('button', { name: 'Englisch' })).toBeVisible();
+    await user.click(screen.getByRole('button', { name: 'Vokabeltrainer' }));
+    expect(
+      await screen.findByRole('button', { name: 'Antwort prüfen' }),
+    ).toBeVisible();
+    expect(
+      screen.getByRole('heading', { name: 'Vokabeltrainer', level: 1 }),
+    ).toHaveFocus();
+    expect(
+      screen.getByRole('button', { name: 'Vokabeltrainer' }),
+    ).toHaveAttribute('aria-current', 'page');
+    expect(
+      screen.getByRole('button', { name: 'Seitenleiste ausklappen' }),
+    ).toHaveAttribute('aria-expanded', 'false');
+    const answer = screen.getByRole('textbox', {
+      name: 'Deine englische Antwort',
+    });
+    await user.type(answer, 'hello');
+    await user.click(
+      screen.getByRole('button', { name: 'Seitenleiste ausklappen' }),
+    );
+    expect(answer).toHaveValue('hello');
+    await user.click(
+      screen.getByRole('button', { name: 'Seitenleiste einklappen' }),
+    );
+    expect(answer).toHaveValue('hello');
+    expect(desktop.getVocabularyState).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByRole('button', { name: 'Meine Fächer' }));
+    expect(
+      screen.getByRole('button', { name: 'Seitenleiste ausklappen' }),
+    ).toBeVisible();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveFocus();
+  });
+
   it('öffnet Natur und Technik aus der Suche und führt wieder zur Fächerübersicht', async () => {
     const user = userEvent.setup();
     vi.mocked(desktop.getLearningState).mockResolvedValue(natureInitial);

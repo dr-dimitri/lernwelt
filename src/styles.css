@@ -163,8 +163,9 @@ input::placeholder {
 
 /* Stable navigation with a strong, quiet frame around the learning space. */
 .app-shell {
+  --sidebar-width: 224px;
   display: grid;
-  grid-template-columns: 224px minmax(0, 1fr);
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
   min-height: 100dvh;
   max-width: 2400px;
   margin: auto;
@@ -206,7 +207,31 @@ input::placeholder {
 }
 .brand-dot {
   color: #ffbc96;
-  margin-left: -10px;
+}
+.sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-top: 20px;
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid #706881;
+  border-radius: 12px;
+  background: #35354f;
+  color: #f6f2ff;
+  font-size: 13px;
+  font-weight: 600;
+}
+.sidebar-toggle:hover {
+  background: #45405e;
+  border-color: #a89bdd;
+}
+.sidebar-toggle svg {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
 }
 .navigation-items {
   display: flex;
@@ -215,7 +240,7 @@ input::placeholder {
   flex-direction: column;
   overflow-y: auto;
   padding: 5px;
-  margin: 40px -5px 0;
+  margin: 20px -5px 0;
 }
 .nav-label {
   font-size: 10px;
@@ -1340,6 +1365,28 @@ main {
 }
 
 /* Adapt to available space, including large text and narrow desktop windows. */
+@media (min-width: 761px) {
+  .app-shell.is-sidebar-collapsed {
+    --sidebar-width: 80px;
+  }
+  .is-sidebar-collapsed .sidebar {
+    padding-inline: 12px;
+  }
+  .is-sidebar-collapsed .brand,
+  .is-sidebar-collapsed .primary-navigation button {
+    justify-content: center;
+    gap: 0;
+    padding-inline: 0;
+  }
+  .is-sidebar-collapsed .brand-label,
+  .is-sidebar-collapsed .sidebar-toggle-label,
+  .is-sidebar-collapsed .navigation-label,
+  .is-sidebar-collapsed .nav-label,
+  .is-sidebar-collapsed .sidebar-note,
+  .is-sidebar-collapsed .offline-note {
+    display: none;
+  }
+}
 @media (min-width: 1600px) {
   .arcade-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1353,7 +1400,7 @@ main {
     padding-inline: 22px;
   }
   .app-shell {
-    grid-template-columns: 200px minmax(0, 1fr);
+    --sidebar-width: 200px;
   }
   .sidebar {
     padding-inline: 12px;
@@ -1432,6 +1479,9 @@ main {
   }
   .brand {
     font-size: 22px;
+  }
+  .sidebar-toggle {
+    display: none;
   }
   .menu-toggle {
     display: block;
