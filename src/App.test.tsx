@@ -372,3 +372,91 @@ it('hält andere Bereiche bei hängenden Lesedaten erreichbar', async () => {
   await user.click(screen.getByRole('button', { name: /Vokabeltrainer/ }));
   expect(await screen.findByLabelText('Deine englische Antwort')).toBeVisible();
 });
+
+it('gibt nach verzögertem Fachrückweg den Fokus erst an die wieder verfügbare Themenkarte zurück', async () => {
+  const user = userEvent.setup();
+  const state = fixture();
+  state.studyCatalog!.units[0].id = 'math-roman';
+  state.studyCatalog!.units[0].name = 'Römische Zahlen';
+  vi.mocked(desktop.getLearningState).mockResolvedValue(state);
+  render(<App />);
+  const roman = await screen.findByRole('button', { name: /^Römische Zahlen/ });
+  await user.click(roman);
+  expect(screen.getByLabelText('Deine Übung')).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: 'Englisch' }));
+  await screen.findByRole('button', { name: /Schulwörter im Vokabeltrainer/ });
+
+  const finishReads: Array<() => void> = [];
+  vi.mocked(desktop.getLearningState).mockImplementation(
+    () =>
+      new Promise((resolve) => {
+        finishReads.push(() => resolve(structuredClone(state)));
+      }),
+  );
+  await user.click(screen.getByRole('button', { name: 'Mathematik' }));
+  await waitFor(() => expect(finishReads.length).toBeGreaterThan(0));
+  const returnTarget = screen.getByRole('button', { name: /^Römische Zahlen/ });
+  expect(returnTarget).toBeDisabled();
+  expect(returnTarget).not.toHaveFocus();
+  await act(async () => {
+    finishReads.splice(0).forEach((finish) => finish());
+  });
+  await waitFor(() => expect(returnTarget).toBeEnabled());
+  expect(returnTarget).toBe(roman);
+  expect(returnTarget).toHaveFocus();
+
+  const search = screen.getByRole('searchbox', { name: 'Thema suchen' });
+  await user.type(search, 'Meter');
+  expect(search).toHaveFocus();
+  expect(search).toHaveValue('Meter');
+});
+
+it('stellt nach verzögertem Missionsrückweg Auswahl und Fokus am ursprünglichen Ziel wieder her', async () => {
+  const user = userEvent.setup();
+  const state = fixture();
+  state.studyCatalog!.units[0].supplements = [
+    {
+      kind: 'mission',
+      target: missionInitial.metadata.id,
+      label: 'Ein Zaun für unseren Garten',
+    },
+  ];
+  vi.mocked(desktop.getLearningState).mockResolvedValue(state);
+  render(<App />);
+  await user.selectOptions(
+    await screen.findByRole('combobox', { name: 'Themen filtern' }),
+    'math-area',
+  );
+  await user.type(screen.getByRole('searchbox'), 'Garten');
+  const garden = screen.getByRole('button', {
+    name: /^Ein Zaun für unseren Garten/,
+  });
+  await user.click(garden);
+  await screen.findByRole('button', { name: 'Lernrunde starten' });
+
+  const finishReads: Array<() => void> = [];
+  vi.mocked(desktop.getLearningState).mockImplementation(
+    () =>
+      new Promise((resolve) => {
+        finishReads.push(() => resolve(structuredClone(state)));
+      }),
+  );
+  await user.click(screen.getByRole('button', { name: 'Zu den Themen' }));
+  await waitFor(() => expect(finishReads.length).toBeGreaterThan(0));
+  const returnTarget = screen.getByRole('button', {
+    name: /^Ein Zaun für unseren Garten/,
+  });
+  expect(returnTarget).toBeDisabled();
+  expect(returnTarget).not.toHaveFocus();
+  await act(async () => {
+    finishReads.splice(0).forEach((finish) => finish());
+  });
+  await waitFor(() => expect(returnTarget).toBeEnabled());
+  expect(returnTarget).toBe(garden);
+  expect(returnTarget).toHaveFocus();
+  expect(screen.getByRole('searchbox')).toHaveValue('Garten');
+  expect(screen.getByRole('combobox', { name: 'Themen filtern' })).toHaveValue(
+    'math-area',
+  );
+  expect(desktop.startMission).not.toHaveBeenCalled();
+});

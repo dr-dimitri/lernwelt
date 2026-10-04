@@ -284,3 +284,40 @@ it('unterscheidet Vokabelziele mit gleicher Linkbeschriftung anhand ihres vorhan
   ).toBeVisible();
   expect(unitButtons()).toHaveLength(4);
 });
+
+it('fokussiert den Katalogtitel, wenn das frühere Ziel auf der neuen Stufe keine Aufgaben hat', async () => {
+  const user = userEvent.setup();
+  const state = fixture();
+  const select = vi.fn();
+  const { rerender } = render(
+    <StudyBrowser
+      state={state}
+      subject="mathematics"
+      disabled={false}
+      onSelect={select}
+    />,
+  );
+  await user.click(screen.getByRole('button', { name: /^Wort 1Viele/ }));
+  rerender(
+    <StudyBrowser
+      state={state}
+      subject="mathematics"
+      disabled
+      onSelect={select}
+      active={false}
+    />,
+  );
+  rerender(
+    <StudyBrowser
+      state={{ ...state, difficulty: 'streber' }}
+      subject="mathematics"
+      disabled={false}
+      onSelect={select}
+      active
+    />,
+  );
+  expect(screen.getByRole('button', { name: /^Wort 1Viele/ })).toBeDisabled();
+  expect(
+    screen.getByRole('heading', { name: 'Was möchtest du üben?' }),
+  ).toHaveFocus();
+});

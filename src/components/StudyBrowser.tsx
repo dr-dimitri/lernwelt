@@ -37,15 +37,26 @@ export default function StudyBrowser({
   const heading = useRef<HTMLHeadingElement>(null);
   const selected = useRef<HTMLButtonElement | null>(null);
   const wasActive = useRef(active);
+  const wasFocusRequested = useRef(false);
+  const pendingFocus = useRef(false);
   useLayoutEffect(() => {
-    if (active && (!wasActive.current || focusOnMount)) {
-      (selected.current?.isConnected
+    // Keep the return target while its card is disabled by an outstanding read.
+    if (
+      active &&
+      (!wasActive.current || (focusOnMount && !wasFocusRequested.current))
+    ) {
+      pendingFocus.current = true;
+    }
+    wasActive.current = active;
+    wasFocusRequested.current = focusOnMount;
+    if (active && !disabled && pendingFocus.current) {
+      (selected.current?.isConnected && !selected.current.disabled
         ? selected.current
         : heading.current
       )?.focus();
+      pendingFocus.current = false;
     }
-    wasActive.current = active;
-  }, [active, focusOnMount]);
+  }, [active, disabled, focusOnMount]);
   const catalog = state.studyCatalog!;
   const areas = catalog.areas.filter((a) => a.subject === subject);
   const subjectUnits = catalog.units.filter((u) => u.subject === subject);

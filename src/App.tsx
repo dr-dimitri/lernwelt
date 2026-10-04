@@ -180,7 +180,6 @@ export default function App() {
       setView(next);
       setMenuOpen(false);
       setProfileVersion((version) => version + 1);
-      heading.current?.focus({ preventScroll: true });
       document.documentElement.scrollTop = 0;
     });
   }

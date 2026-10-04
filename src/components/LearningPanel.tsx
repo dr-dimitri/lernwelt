@@ -99,7 +99,11 @@ export default function LearningPanel({
   const [reload, setReload] = useState(0);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      // Reactivation begins with disabled cards until the fresh read settles.
+      setLoading(true);
+      return;
+    }
     let current = true;
     const version = ++revision.current;
     setLoading(true);
