@@ -126,8 +126,8 @@ export default function RomanExplanation() {
         </ol>
         <p>
           Also: <strong>XVI + XXVII = XLIII</strong>. So kannst du auch andere
-          Rechnungen lösen. Die römische Schreibweise hier braucht ein positives
-          ganzzahliges Ergebnis.
+          Rechnungen lösen. Das klappt hier für ganze Zahlen ab 1. Ergebnisse
+          wie 0, −2 oder 4,5 können wir in dieser Übung nicht römisch schreiben.
         </p>
       </article>
       <article>
