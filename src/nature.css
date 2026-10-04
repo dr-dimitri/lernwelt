@@ -219,6 +219,12 @@
   font-size: 13px;
   flex-grow: 1;
 }
+.nature-round-actions .info-panel {
+  flex: 1;
+}
+.nature-round-actions .info-panel > button {
+  width: 100%;
+}
 .nature-round .nature-hint {
   border-left: 3px solid #b8953f;
   padding: 10px 13px;
@@ -408,5 +414,103 @@
   .nature-game-picker button {
     min-height: 70px;
     padding: 10px;
+  }
+}
+
+/* Broad exercise windows put pictures and the two choices beside each other. */
+.nature-round-workspace,
+.nature-choice-columns,
+.nature-round-picture {
+  min-width: 0;
+}
+.nature-round-picture > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  margin: 10px auto;
+}
+@container (min-width: 900px) {
+  .nature-round-workspace.has-picture {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.4fr);
+    align-items: start;
+    gap: 20px;
+  }
+  .nature-choice-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 16px;
+  }
+  .nature-card-field {
+    margin-top: 12px;
+  }
+  .nature-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container (min-width: 1150px) {
+  .nature-games-layout {
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    gap: 16px 20px;
+    align-items: start;
+    align-content: start;
+  }
+  .nature-games-intro,
+  .nature-game-picker,
+  .nature-session-note {
+    grid-column: 1;
+  }
+  .nature-games-intro {
+    margin: 0;
+    padding: 16px;
+  }
+  .nature-game-picker {
+    grid-template-columns: 1fr;
+    margin: 0;
+  }
+  .nature-game-picker button {
+    min-height: 90px;
+    flex-direction: row;
+    text-align: left;
+    justify-content: flex-start;
+    padding: 12px;
+    gap: 10px;
+  }
+  .nature-session-note {
+    margin: 0;
+  }
+  .nature-games-layout > section {
+    grid-column: 2;
+    grid-row: 1 / 4;
+  }
+}
+
+@container (min-width: 900px) {
+  .nature-round:has(.nature-links):has(.nature-complete) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+  }
+  .nature-round:has(.nature-links):has(.nature-complete)
+    > :not(.nature-links, .nature-complete) {
+    grid-column: 1 / -1;
+  }
+  .nature-round:has(.nature-links):has(.nature-complete) .nature-complete {
+    align-self: start;
+  }
+}
+
+@container (min-width: 1150px) {
+  .nature-games-matter .nature-choice-columns {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+  .nature-games-matter .nature-match-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .nature-games-meadow .nature-round-picture > svg {
+    max-height: 260px;
   }
 }

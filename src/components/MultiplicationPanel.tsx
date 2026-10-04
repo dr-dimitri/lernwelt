@@ -20,6 +20,8 @@ import type {
 import { desktop } from '../lib/desktop';
 import '../multiplication.css';
 
+const robotsPerPage = 6;
+
 const designs: { id: RobotDesign; name: string }[] = [
   { id: 'scout', name: 'Entdecker' },
   { id: 'garden', name: 'Gartenfreund' },
@@ -63,6 +65,7 @@ export default function MultiplicationPanel({
   const [reload, setReload] = useState(0);
   const [paused, setPaused] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [robotPage, setRobotPage] = useState(0);
   const [draft, setDraft] = useState<ConfigurationDraft>({
     mode: 'tables',
     table: null,
@@ -95,6 +98,7 @@ export default function MultiplicationPanel({
     setPending(null);
     setPaused(false);
     setSettingsOpen(false);
+    setRobotPage(0);
     const loaded = initialMode
       ? desktop.getMultiplicationState(initialMode)
       : desktop.getMultiplicationState();
@@ -247,6 +251,11 @@ export default function MultiplicationPanel({
   const disabled = busy || !!pending;
   const task = feedback?.task ?? state?.task;
   const adventure = state?.adventure;
+  const robots = adventure?.robots ?? [];
+  const robotPages = Math.max(1, Math.ceil(robots.length / robotsPerPage));
+  const currentRobotPage = Math.min(robotPage, robotPages - 1);
+  const firstRobot = currentRobotPage * robotsPerPage;
+  const visibleRobots = robots.slice(firstRobot, firstRobot + robotsPerPage);
   const world = adventure?.world ?? 'workshop';
   const progress = adventure?.worlds[world];
   const completed = progress?.completedStages ?? 0;
@@ -352,69 +361,105 @@ export default function MultiplicationPanel({
               >
                 Dein Bauplan
               </button>
-              <InfoPanel>
+              <InfoPanel
+                className="adventure-collection"
+                onOpenChange={(open) => {
+                  if (open) setRobotPage(0);
+                }}
+              >
                 <summary>Dein Bauregal</summary>
                 <p>
                   Hier bleiben deine fertigen Bauwerke. Acht geübte Aufgaben
                   ergeben ein Bauwerk – Fehler und aufgedeckte Lösungen zählen
                   mit.
                 </p>
-                <h3>Deine Roboter</h3>
-                {adventure!.robots.length ? (
-                  <ul className="adventure-shelf">
-                    {adventure!.robots.map((robot) => (
-                      <li key={`${robot.design}-${robot.palette}`}>
-                        <RobotPortrait
-                          design={robot.design}
-                          palette={robot.palette}
-                        />
-                        <strong>
-                          {
-                            designs.find((item) => item.id === robot.design)
-                              ?.name
-                          }
-                        </strong>
-                        <small>
-                          {
-                            palettes.find((item) => item.id === robot.palette)
-                              ?.name
-                          }{' '}
-                          · {robot.count} gebaut
-                        </small>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p>Dein erster Roboter wartet noch auf seine Bauteile.</p>
-                )}
-                <h3>Deine Insel</h3>
-                <p>
-                  {adventure!.worlds.island.completedStages} Bauetappen
-                  geschafft.
-                </p>
-                <ul className="adventure-shelf">
-                  {islandBuildings.map((name, index) => (
-                    <li key={name}>
-                      <strong>
-                        {adventure!.worlds.island.completedStages > index
-                          ? '✓ '
-                          : '○ '}
-                        {name}
-                      </strong>
-                      <small>
-                        {adventure!.worlds.island.completedStages > index
-                          ? 'Gebaut'
-                          : 'Kommt noch'}
-                      </small>
-                    </li>
-                  ))}
-                </ul>
-                {adventure!.worlds.island.completedStages > 6 && (
-                  <p>
-                    Außerdem: {adventure!.worlds.island.completedStages - 6}{' '}
-                    weitere Ausbaustufen.
-                  </p>
-                )}
+                <div className="adventure-collection-columns">
+                  <section aria-labelledby="robot-shelf-title">
+                    <h3 id="robot-shelf-title">Deine Roboter</h3>
+                    {robots.length ? (
+                      <ul className="adventure-shelf">
+                        {visibleRobots.map((robot) => (
+                          <li key={`${robot.design}-${robot.palette}`}>
+                            <RobotPortrait
+                              design={robot.design}
+                              palette={robot.palette}
+                            />
+                            <strong>
+                              {
+                                designs.find((item) => item.id === robot.design)
+                                  ?.name
+                              }
+                            </strong>
+                            <small>
+                              {
+                                palettes.find(
+                                  (item) => item.id === robot.palette,
+                                )?.name
+                              }{' '}
+                              · {robot.count} gebaut
+                            </small>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>Dein erster Roboter wartet noch auf seine Bauteile.</p>
+                    )}
+                    {robotPages > 1 && (
+                      <nav
+                        className="page-controls"
+                        aria-label="Roboter im Bauregal"
+                      >
+                        <button
+                          className="secondary-button"
+                          disabled={!currentRobotPage}
+                          onClick={() => setRobotPage(currentRobotPage - 1)}
+                        >
+                          ← Vorherige Roboter
+                        </button>
+                        <span aria-live="polite">
+                          Seite {currentRobotPage + 1} von {robotPages}
+                        </span>
+                        <button
+                          className="primary-button"
+                          disabled={currentRobotPage >= robotPages - 1}
+                          onClick={() => setRobotPage(currentRobotPage + 1)}
+                        >
+                          Weitere Roboter →
+                        </button>
+                      </nav>
+                    )}
+                  </section>
+                  <section aria-labelledby="island-shelf-title">
+                    <h3 id="island-shelf-title">Deine Insel</h3>
+                    <p>
+                      {adventure!.worlds.island.completedStages} Bauetappen
+                      geschafft.
+                    </p>
+                    <ul className="adventure-shelf">
+                      {islandBuildings.map((name, index) => (
+                        <li key={name}>
+                          <strong>
+                            {adventure!.worlds.island.completedStages > index
+                              ? '✓ '
+                              : '○ '}
+                            {name}
+                          </strong>
+                          <small>
+                            {adventure!.worlds.island.completedStages > index
+                              ? 'Gebaut'
+                              : 'Kommt noch'}
+                          </small>
+                        </li>
+                      ))}
+                    </ul>
+                    {adventure!.worlds.island.completedStages > 6 && (
+                      <p>
+                        Außerdem: {adventure!.worlds.island.completedStages - 6}{' '}
+                        weitere Ausbaustufen.
+                      </p>
+                    )}
+                  </section>
+                </div>
               </InfoPanel>
             </div>
           </div>
@@ -732,91 +777,100 @@ export default function MultiplicationPanel({
           </div>
           <div className="dialog-page adventure-settings">
             {errorNotice}
-            <section>
-              <h3>Was möchtest du üben?</h3>
-              <div className="adventure-setting-options">
-                <button
-                  className="secondary-button"
-                  disabled={disabled}
-                  aria-pressed={draft.mode === 'tables'}
-                  onClick={() => setDraft({ ...draft, mode: 'tables' })}
-                >
-                  10er-Einmaleins
-                </button>
-                <button
-                  className="secondary-button"
-                  disabled={disabled}
-                  aria-pressed={draft.mode === 'squares'}
-                  onClick={() => setDraft({ ...draft, mode: 'squares' })}
-                >
-                  Quadratzahlen · 10² bis 20²
-                </button>
-              </div>
-              {draft.mode === 'tables' && (
-                <label>
-                  Deine Reihe
-                  <select
+            <div className="adventure-settings-columns">
+              <section>
+                <h3>Was möchtest du üben?</h3>
+                <div className="adventure-setting-options">
+                  <button
+                    className="secondary-button"
                     disabled={disabled}
-                    value={draft.table ?? 'mixed'}
-                    onChange={(event) =>
-                      setDraft({
-                        ...draft,
-                        table:
-                          event.target.value === 'mixed'
-                            ? null
-                            : Number(event.target.value),
-                      })
-                    }
+                    aria-pressed={draft.mode === 'tables'}
+                    onClick={() => setDraft({ ...draft, mode: 'tables' })}
                   >
-                    <option value="mixed">Gemischt · alle 100 Aufgaben</option>
-                    {Array.from({ length: 10 }, (_, index) => (
-                      <option key={index + 1} value={index + 1}>
-                        {index + 1}er-Reihe
+                    10er-Einmaleins
+                  </button>
+                  <button
+                    className="secondary-button"
+                    disabled={disabled}
+                    aria-pressed={draft.mode === 'squares'}
+                    onClick={() => setDraft({ ...draft, mode: 'squares' })}
+                  >
+                    Quadratzahlen · 10² bis 20²
+                  </button>
+                </div>
+                {draft.mode === 'tables' && (
+                  <label>
+                    Deine Reihe
+                    <select
+                      disabled={disabled}
+                      value={draft.table ?? 'mixed'}
+                      onChange={(event) =>
+                        setDraft({
+                          ...draft,
+                          table:
+                            event.target.value === 'mixed'
+                              ? null
+                              : Number(event.target.value),
+                        })
+                      }
+                    >
+                      <option value="mixed">
+                        Gemischt · alle 100 Aufgaben
                       </option>
-                    ))}
-                  </select>
-                </label>
-              )}
-            </section>
-            <section>
-              <h3>Dein Roboter</h3>
-              <div className="adventure-design-options">
-                {designs.map((design) => (
-                  <button
-                    key={design.id}
-                    aria-label={design.name}
-                    className="secondary-button"
-                    disabled={disabled}
-                    aria-pressed={draft.design === design.id}
-                    onClick={() => setDraft({ ...draft, design: design.id })}
-                  >
-                    <RobotPortrait design={design.id} palette={draft.palette} />
-                    <span>{design.name}</span>
-                  </button>
-                ))}
-              </div>
-            </section>
-            <section>
-              <h3>Deine Farben</h3>
-              <div className="adventure-setting-options">
-                {palettes.map((palette) => (
-                  <button
-                    key={palette.id}
-                    className="secondary-button"
-                    disabled={disabled}
-                    aria-pressed={draft.palette === palette.id}
-                    onClick={() => setDraft({ ...draft, palette: palette.id })}
-                  >
-                    <span
-                      className="adventure-palette-swatch"
-                      style={{ background: palette.color }}
-                      aria-hidden="true"
-                    />
-                    {palette.name}
-                  </button>
-                ))}
-              </div>
-            </section>
+                      {Array.from({ length: 10 }, (_, index) => (
+                        <option key={index + 1} value={index + 1}>
+                          {index + 1}er-Reihe
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+              </section>
+              <section className="adventure-settings-design">
+                <h3>Dein Roboter</h3>
+                <div className="adventure-design-options">
+                  {designs.map((design) => (
+                    <button
+                      key={design.id}
+                      aria-label={design.name}
+                      className="secondary-button"
+                      disabled={disabled}
+                      aria-pressed={draft.design === design.id}
+                      onClick={() => setDraft({ ...draft, design: design.id })}
+                    >
+                      <RobotPortrait
+                        design={design.id}
+                        palette={draft.palette}
+                      />
+                      <span>{design.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </section>
+              <section>
+                <h3>Deine Farben</h3>
+                <div className="adventure-setting-options">
+                  {palettes.map((palette) => (
+                    <button
+                      key={palette.id}
+                      className="secondary-button"
+                      disabled={disabled}
+                      aria-pressed={draft.palette === palette.id}
+                      onClick={() =>
+                        setDraft({ ...draft, palette: palette.id })
+                      }
+                    >
+                      <span
+                        className="adventure-palette-swatch"
+                        style={{ background: palette.color }}
+                        aria-hidden="true"
+                      />
+                      {palette.name}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            </div>
             <p>
               Deine fertigen Roboter behalten ihre Farben. Änderungen gelten für
               {stageComplete

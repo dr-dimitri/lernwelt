@@ -338,281 +338,292 @@ export default function MissionPanel({
         </div>
       )}
       {state && (
-        <>
-          <div
-            className="mission-levels"
-            aria-label="Schwierigkeitsgrad für alle Fächer"
-          >
-            {difficulties.map((level) => (
-              <button
-                key={level.id}
-                className="secondary-button"
-                aria-pressed={state.difficulty === level.id}
-                disabled={disabled}
-                onClick={() => void changeDifficulty(level.id)}
-              >
-                <span aria-hidden="true">{level.symbol} </span>
-                {level.name}
-              </button>
-            ))}
-            <span className="mission-small">
-              Deine Stufe gilt in allen Fächern. Jede Stufe merkt sich ihre
-              Runde.
-            </span>
-          </div>
-          {!state.profileReady ? (
-            <p>
-              Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst du
-              deine Lernrunde starten.
-            </p>
-          ) : step ? (
-            <>
-              <ol
-                className="mission-path"
-                aria-label="Fünf Schritte deiner Lernrunde"
-              >
-                {stepNames.map((name, index) => (
-                  <li
-                    key={name}
-                    aria-current={index === step.index ? 'step' : undefined}
-                    className={index < step.index ? 'is-done' : ''}
-                  >
-                    <span aria-hidden="true">
-                      {index < step.index ? '✓' : index + 1}
-                    </span>
-                    <span>{name}</span>
-                  </li>
-                ))}
-              </ol>
-              <article
-                className="mission-step"
-                aria-labelledby="mission-step-title"
-              >
-                <div className="mission-step-body">
-                  <p className="eyebrow">
-                    SCHRITT {step.index + 1} VON 5
-                    {step.kind === 'activity' ? ' · FREIWILLIG' : ''}
-                  </p>
-                  <h3 id="mission-step-title" ref={stepHeading} tabIndex={-1}>
-                    {step.title}
-                  </h3>
-                  <p className="mission-prompt">{step.prompt}</p>
-                  {step.instructions.length > 0 && (
-                    <ol className="mission-instructions">
-                      {step.instructions.map((instruction) => (
-                        <li key={instruction}>{instruction}</li>
-                      ))}
-                    </ol>
-                  )}
-                  {step.hint && (
-                    <aside
-                      className="mission-hint"
-                      role="status"
-                      ref={hint}
-                      tabIndex={-1}
+        <div className="mission-workspace">
+          <div className="mission-work">
+            {!state.profileReady ? (
+              <p>
+                Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst
+                du deine Lernrunde starten.
+              </p>
+            ) : step ? (
+              <>
+                <ol
+                  className="mission-path"
+                  aria-label="Fünf Schritte deiner Lernrunde"
+                >
+                  {stepNames.map((name, index) => (
+                    <li
+                      key={name}
+                      aria-current={index === step.index ? 'step' : undefined}
+                      className={index < step.index ? 'is-done' : ''}
                     >
-                      <strong>Dein Tipp</strong>
-                      <p>{step.hint}</p>
-                    </aside>
-                  )}
-                  {!feedback && step.answerKind && (
-                    <form
-                      onSubmit={(event) => {
-                        event.preventDefault();
-                        submitAnswer();
-                      }}
-                    >
-                      {step.answerKind === 'choice' ? (
-                        <fieldset
-                          className="mission-options"
-                          disabled={disabled}
-                        >
-                          <legend>Welche Erklärung passt?</legend>
-                          {step.options.map((option, index) => (
-                            <label key={option}>
-                              <input
-                                ref={index === 0 ? field : undefined}
-                                type="radio"
-                                name={answerId}
-                                value={option}
-                                checked={answer === option}
-                                onChange={() => setAnswer(option)}
-                              />
-                              <span>{option}</span>
-                            </label>
-                          ))}
-                        </fieldset>
-                      ) : (
-                        <label className="mission-answer" htmlFor={answerId}>
-                          Deine Antwort{step.unit ? ` in ${step.unit}` : ''}
-                          <input
-                            id={answerId}
-                            ref={field}
-                            inputMode="decimal"
-                            autoComplete="off"
-                            maxLength={120}
-                            value={answer}
+                      <span aria-hidden="true">
+                        {index < step.index ? '✓' : index + 1}
+                      </span>
+                      <span>{name}</span>
+                    </li>
+                  ))}
+                </ol>
+                <article
+                  className="mission-step"
+                  aria-labelledby="mission-step-title"
+                >
+                  <div className="mission-step-body">
+                    <p className="eyebrow">
+                      SCHRITT {step.index + 1} VON 5
+                      {step.kind === 'activity' ? ' · FREIWILLIG' : ''}
+                    </p>
+                    <h3 id="mission-step-title" ref={stepHeading} tabIndex={-1}>
+                      {step.title}
+                    </h3>
+                    <p className="mission-prompt">{step.prompt}</p>
+                    {step.instructions.length > 0 && (
+                      <ol className="mission-instructions">
+                        {step.instructions.map((instruction) => (
+                          <li key={instruction}>{instruction}</li>
+                        ))}
+                      </ol>
+                    )}
+                    {step.hint && (
+                      <aside
+                        className="mission-hint"
+                        role="status"
+                        ref={hint}
+                        tabIndex={-1}
+                      >
+                        <strong>Dein Tipp</strong>
+                        <p>{step.hint}</p>
+                      </aside>
+                    )}
+                    {!feedback && step.answerKind && (
+                      <form
+                        onSubmit={(event) => {
+                          event.preventDefault();
+                          submitAnswer();
+                        }}
+                      >
+                        {step.answerKind === 'choice' ? (
+                          <fieldset
+                            className="mission-options"
                             disabled={disabled}
-                            onChange={(event) => setAnswer(event.target.value)}
-                          />
-                        </label>
-                      )}
-                      <div className="mission-actions">
-                        <button
-                          className="primary-button"
-                          disabled={disabled || !answer.trim()}
-                          type="submit"
-                        >
-                          Antwort prüfen
-                        </button>
-                        <button
-                          className="secondary-button"
-                          disabled={disabled || !!step.hint}
-                          type="button"
-                          onClick={() => act('hint')}
-                        >
-                          {step.hint ? 'Tipp ist offen' : 'Gib mir einen Tipp'}
-                        </button>
-                        <button
-                          className="secondary-button"
-                          disabled={disabled}
-                          type="button"
-                          onClick={() => act('reveal')}
-                        >
-                          Lösung ansehen
-                        </button>
+                          >
+                            <legend>Welche Erklärung passt?</legend>
+                            {step.options.map((option, index) => (
+                              <label key={option}>
+                                <input
+                                  ref={index === 0 ? field : undefined}
+                                  type="radio"
+                                  name={answerId}
+                                  value={option}
+                                  checked={answer === option}
+                                  onChange={() => setAnswer(option)}
+                                />
+                                <span>{option}</span>
+                              </label>
+                            ))}
+                          </fieldset>
+                        ) : (
+                          <label className="mission-answer" htmlFor={answerId}>
+                            Deine Antwort{step.unit ? ` in ${step.unit}` : ''}
+                            <input
+                              id={answerId}
+                              ref={field}
+                              inputMode="decimal"
+                              autoComplete="off"
+                              maxLength={120}
+                              value={answer}
+                              disabled={disabled}
+                              onChange={(event) =>
+                                setAnswer(event.target.value)
+                              }
+                            />
+                          </label>
+                        )}
+                        <div className="mission-actions">
+                          <button
+                            className="primary-button"
+                            disabled={disabled || !answer.trim()}
+                            type="submit"
+                          >
+                            Antwort prüfen
+                          </button>
+                          <button
+                            className="secondary-button"
+                            disabled={disabled || !!step.hint}
+                            type="button"
+                            onClick={() => act('hint')}
+                          >
+                            {step.hint
+                              ? 'Tipp ist offen'
+                              : 'Gib mir einen Tipp'}
+                          </button>
+                          <button
+                            className="secondary-button"
+                            disabled={disabled}
+                            type="button"
+                            onClick={() => act('reveal')}
+                          >
+                            Lösung ansehen
+                          </button>
+                        </div>
+                      </form>
+                    )}
+                    {feedback && (
+                      <div
+                        className={`mission-feedback ${feedback.correct ? 'is-correct' : ''}`}
+                      >
+                        <h4 ref={feedbackHeading} tabIndex={-1}>
+                          {step.kind === 'activity'
+                            ? 'Deine Selbstkontrolle'
+                            : feedback.revealed
+                              ? 'Schauen wir uns den Weg an'
+                              : feedback.correct
+                                ? 'Das stimmt – gut gelöst!'
+                                : 'Noch nicht ganz. Entdecken wir den Weg.'}
+                        </h4>
+                        <p>{feedback.explanation}</p>
+                        {feedback.pointsAwarded > 0 && (
+                          <p className="mission-points">
+                            +{feedback.pointsAwarded}{' '}
+                            {feedback.pointsAwarded === 1
+                              ? 'Lernpunkt'
+                              : 'Lernpunkte'}
+                          </p>
+                        )}
+                        {feedback.correct === false && (
+                          <p>
+                            Fehler kosten keine Punkte. Du kannst das später
+                            wieder üben.
+                          </p>
+                        )}
                       </div>
-                    </form>
-                  )}
-                  {feedback && (
-                    <div
-                      className={`mission-feedback ${feedback.correct ? 'is-correct' : ''}`}
-                    >
-                      <h4 ref={feedbackHeading} tabIndex={-1}>
-                        {step.kind === 'activity'
-                          ? 'Deine Selbstkontrolle'
-                          : feedback.revealed
-                            ? 'Schauen wir uns den Weg an'
-                            : feedback.correct
-                              ? 'Das stimmt – gut gelöst!'
-                              : 'Noch nicht ganz. Entdecken wir den Weg.'}
-                      </h4>
-                      <p>{feedback.explanation}</p>
-                      {feedback.pointsAwarded > 0 && (
-                        <p className="mission-points">
-                          +{feedback.pointsAwarded}{' '}
-                          {feedback.pointsAwarded === 1
-                            ? 'Lernpunkt'
-                            : 'Lernpunkte'}
-                        </p>
-                      )}
-                      {feedback.correct === false && (
-                        <p>
-                          Fehler kosten keine Punkte. Du kannst das später
-                          wieder üben.
-                        </p>
-                      )}
-                    </div>
-                  )}
-                  {(feedback || step.kind === 'discover') && (
-                    <button
-                      className="primary-button"
-                      disabled={disabled}
-                      onClick={() => act('next')}
-                    >
-                      {step.kind === 'activity'
-                        ? 'Runde abschließen'
-                        : 'Nächster Schritt'}
-                    </button>
-                  )}
-                  {step.kind === 'activity' && !feedback && (
-                    <div className="mission-actions">
+                    )}
+                    {(feedback || step.kind === 'discover') && (
                       <button
                         className="primary-button"
                         disabled={disabled}
-                        onClick={() => act('reveal')}
+                        onClick={() => act('next')}
                       >
-                        Selbstkontrolle ansehen
+                        {step.kind === 'activity'
+                          ? 'Runde abschließen'
+                          : 'Nächster Schritt'}
                       </button>
-                      <button
-                        className="secondary-button"
-                        disabled={disabled}
-                        onClick={() => act('skip')}
-                      >
-                        Heute überspringen
-                      </button>
-                    </div>
-                  )}
-                </div>
-                {step.diagram && <GardenDiagram diagram={step.diagram} />}
-              </article>
-            </>
-          ) : (
-            <div className="mission-welcome">
-              <h3 ref={stepHeading} tabIndex={-1}>
-                {state.session?.completed
-                  ? 'Deine Lernrunde ist geschafft!'
-                  : 'Bereit für dein Lernabenteuer?'}
-              </h3>
-              <p>
-                {state.session?.completed
-                  ? 'Du hast das Thema auf verschiedenen Wegen entdeckt. Eine Pause gehört zum Lernen dazu.'
-                  : 'Erinnere dich, entdecke ein Beispiel und löse selbst. Danach wirst du zum Fehlerdetektiv. Zum Schluss kannst du selbst etwas ausprobieren.'}
-              </p>
-              {state.dueAt && (
+                    )}
+                    {step.kind === 'activity' && !feedback && (
+                      <div className="mission-actions">
+                        <button
+                          className="primary-button"
+                          disabled={disabled}
+                          onClick={() => act('reveal')}
+                        >
+                          Selbstkontrolle ansehen
+                        </button>
+                        <button
+                          className="secondary-button"
+                          disabled={disabled}
+                          onClick={() => act('skip')}
+                        >
+                          Heute überspringen
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  {step.diagram && <GardenDiagram diagram={step.diagram} />}
+                </article>
+              </>
+            ) : (
+              <div className="mission-welcome">
+                <h3 ref={stepHeading} tabIndex={-1}>
+                  {state.session?.completed
+                    ? 'Deine Lernrunde ist geschafft!'
+                    : 'Bereit für dein Lernabenteuer?'}
+                </h3>
                 <p>
-                  {state.due
-                    ? 'Deine Wiederholung ist jetzt dran.'
-                    : `Deine nächste Wiederholung wartet ab ${missionDate(state.dueAt)}. Vorher kannst du freiwillig üben.`}
+                  {state.session?.completed
+                    ? 'Du hast das Thema auf verschiedenen Wegen entdeckt. Eine Pause gehört zum Lernen dazu.'
+                    : 'Erinnere dich, entdecke ein Beispiel und löse selbst. Danach wirst du zum Fehlerdetektiv. Zum Schluss kannst du selbst etwas ausprobieren.'}
                 </p>
-              )}
-              <button
-                className="primary-button"
-                disabled={disabled}
-                onClick={start}
-              >
-                {state.due
-                  ? 'Jetzt wiederholen'
-                  : state.session?.completed
-                    ? 'Noch eine Runde üben'
-                    : 'Lernrunde starten'}
-              </button>
-            </div>
-          )}
-          <div className="mission-album-row">
-            <h3>Dein Themenalbum</h3>
-            <MissionAlbum state={state} />
+                {state.dueAt && (
+                  <p>
+                    {state.due
+                      ? 'Deine Wiederholung ist jetzt dran.'
+                      : `Deine nächste Wiederholung wartet ab ${missionDate(state.dueAt)}. Vorher kannst du freiwillig üben.`}
+                  </p>
+                )}
+                <button
+                  className="primary-button"
+                  disabled={disabled}
+                  onClick={start}
+                >
+                  {state.due
+                    ? 'Jetzt wiederholen'
+                    : state.session?.completed
+                      ? 'Noch eine Runde üben'
+                      : 'Lernrunde starten'}
+                </button>
+              </div>
+            )}
           </div>
-          <InfoPanel>
-            <summary>Über diese Lernrunde</summary>
-            <p>
-              Ein Thema mit {state.metadata.variantCount} Aufgabenvarianten je
-              Stufe. Noch kein vollständiger Lehrgang.
-            </p>
-            <p>
-              „Ausprobiert“ heißt: Du hast begonnen. „Selbst gelöst“ heißt: Du
-              hast eine Aufgabe beim ersten Versuch ohne Tipp oder Lösung
-              richtig beantwortet. „Später wieder geschafft“ zeigt eine selbst
-              gelöste Wiederholung nach einer Pause.
-            </p>
-            <p>
-              Bestätigte Schritte bleiben auf diesem Gerät. Du kannst die Runde
-              unterbrechen. Beim nächsten Öffnen geht es hier weiter. Noch nicht
-              abgeschickte Eingaben werden nicht gespeichert.
-            </p>
-            <p>
-              Neue richtige Aufgaben bringen je nach Stufe 1, 2 oder 3 Punkte.
-              Beispiele, aufgedeckte Lösungen und Mitmachen geben keine Punkte.
-              Bereits gelöste Aufgaben zählen nicht noch einmal.
-            </p>
-            <p>{state.metadata.description}</p>
-            <p>
-              Kompetenz: {state.metadata.competencyId}.{' '}
-              {state.metadata.curriculumVersion}. Quelle:{' '}
-              {state.metadata.source}
-            </p>
-          </InfoPanel>
-        </>
+          <aside
+            className="mission-sidebar"
+            aria-label="Deine Lernrunde im Blick"
+          >
+            <div
+              className="mission-levels"
+              aria-label="Schwierigkeitsgrad für alle Fächer"
+            >
+              {difficulties.map((level) => (
+                <button
+                  key={level.id}
+                  className="secondary-button"
+                  aria-pressed={state.difficulty === level.id}
+                  disabled={disabled}
+                  onClick={() => void changeDifficulty(level.id)}
+                >
+                  <span aria-hidden="true">{level.symbol} </span>
+                  {level.name}
+                </button>
+              ))}
+              <span className="mission-small">
+                Deine Stufe gilt in allen Fächern. Jede Stufe merkt sich ihre
+                Runde.
+              </span>
+            </div>
+            <div className="mission-album-row">
+              <h3>Dein Themenalbum</h3>
+              <MissionAlbum state={state} />
+            </div>
+            <InfoPanel paginate>
+              <summary>Über diese Lernrunde</summary>
+              <p>
+                Ein Thema mit {state.metadata.variantCount} Aufgabenvarianten je
+                Stufe. Noch kein vollständiger Lehrgang.
+              </p>
+              <p>
+                „Ausprobiert“ heißt: Du hast begonnen. „Selbst gelöst“ heißt: Du
+                hast eine Aufgabe beim ersten Versuch ohne Tipp oder Lösung
+                richtig beantwortet. „Später wieder geschafft“ zeigt eine selbst
+                gelöste Wiederholung nach einer Pause.
+              </p>
+              <p>
+                Bestätigte Schritte bleiben auf diesem Gerät. Du kannst die
+                Runde unterbrechen. Beim nächsten Öffnen geht es hier weiter.
+                Noch nicht abgeschickte Eingaben werden nicht gespeichert.
+              </p>
+              <p>
+                Neue richtige Aufgaben bringen je nach Stufe 1, 2 oder 3 Punkte.
+                Beispiele, aufgedeckte Lösungen und Mitmachen geben keine
+                Punkte. Bereits gelöste Aufgaben zählen nicht noch einmal.
+              </p>
+              <p>{state.metadata.description}</p>
+              <p>
+                Kompetenz: {state.metadata.competencyId}.{' '}
+                {state.metadata.curriculumVersion}. Quelle:{' '}
+                {state.metadata.source}
+              </p>
+            </InfoPanel>
+          </aside>
+        </div>
       )}
     </section>
   );
