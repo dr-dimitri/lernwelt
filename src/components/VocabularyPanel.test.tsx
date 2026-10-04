@@ -362,7 +362,7 @@ it('bewahrt beim abgebrochenen Hörmoduswechsel die Übersetzung und meldet sie 
     />,
   );
   const field = await screen.findByLabelText('Deine englische Antwort');
-  expect(field).toHaveFocus();
+  await waitFor(() => expect(field).toHaveFocus());
   expect(
     screen.queryByLabelText('Schwierigkeitsgrad für alle Fächer'),
   ).not.toBeInTheDocument();

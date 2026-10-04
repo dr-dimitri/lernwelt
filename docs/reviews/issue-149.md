@@ -15,7 +15,7 @@ Separater **unabhängiger Agentenreview** der UI durch Agent `prerelease` (eigen
 - Stufenwechsel verwendet die vorhandene Backendbestätigung. Fehlgeschlagenes Speichern erhält bestätigte Stufe und Eingabe. Erststart bewahrt das gewählte Ziel und zeigt dort Spitzname/Speichern. Profilfehler erhalten Eingabe; ältere Klassen bleiben beim Laden unverändert.
 - Fach- und Modulwechsel fragen bei ungesendeter Eingabe nach. Laufende Mutationen sperren die globale Navigation. Reine Lesevorgänge lassen andere funktionsfähige Bereiche erreichbar. Retry behält Aufgaben-/Sitzungsziel, Request und Nutzlast; verspätete Rückgaben nach Wechsel werden verworfen.
 - Keine Änderung an Lerninhalten, stabilen Inhalts-IDs, typisierten Commands, Antwortprüfung, Punktebuchung oder SQLite-Schema. Erstlösungspunkte 1/2/3, Trainerpunkte, Wiederholungsplanung, Abzeichenkosten und Spielkosten bleiben erhalten. Standard-Fachrunden erhalten keine neue Persistenz.
-- Fünf Versionsdateien stimmen stabil auf 0.6.9 überein. Ein expliziter RC-Tag setzt nur für den Build Version 0.6.9-rc.2. Die Release-Quelle muss einem gepushten Issue-Branch angehören; stabile Releases verlangen weiterhin `main`-Abstammung. Alle neun Assets mit drei Plattformen und Signaturen sind Voraussetzung für Veröffentlichung. `prerelease: true` und `make_latest: false` erhalten das stabile Release. Bereits veröffentlichte Tags/Releases werden nicht überschrieben.
+- Fünf Versionsdateien stimmen stabil auf 0.6.9 überein. Ein expliziter RC-Tag setzt nur für den Build Version 0.6.9-rc.3. Die Release-Quelle muss einem gepushten Issue-Branch angehören; stabile Releases verlangen weiterhin `main`-Abstammung. Alle neun Assets mit drei Plattformen und Signaturen sind Voraussetzung für Veröffentlichung. `prerelease: true` und `make_latest: false` erhalten das stabile Release. Bereits veröffentlichte Tags/Releases werden nicht überschrieben.
 
 ## Befunde und Korrekturen
 
@@ -28,6 +28,8 @@ Eine abschließende echte Browserprüfung mit um 150 ms verzögertem Datenladen 
 Die Sichtprüfung fand einen Überlauf der Spielhallenauswahl, abgeschnittene lange Wörter bei 200 % Zoom und zu kleine Worms-Schaltflächen im neuen Rahmen. Fünf Spielkarten stehen im Standardfenster nun in einer Reihe; Container-Umbrüche stellen schmale Themenflächen einspaltig dar und erhalten alle Wörter. Die Worms-Bedienflächen erhalten im neuen Rahmen mindestens 56 Pixel Höhe. Agent `special_modules` prüfte diese drei abschließenden CSS-Korrekturen unabhängig anhand von Diff und erneuerten Screenshots ohne verbleibende Blocker. Die Sonnensystemgrafik verwendet im breiten Arbeitsrahmen 420 Pixel Höhe, sodass auch Steuerung und Quellen erreichbar bleiben.
 
 Nach den Korrekturen meldeten die unabhängigen Code-Reviews keine offenen blockierenden Befunde. Dies ist keine Prüfung mit Kindern und keine Zertifizierung der Barrierefreiheit.
+
+Der erste RC2-Lauf scheiterte im neuen Vokabeltrainer-Test an einer zu frühen Fokusprüfung nach dem asynchronen Laden. `findByLabelText` garantiert die Präsenz des Felds, jedoch nicht den Abschluss des passiven Fokuseffekts. Die gleiche Fokus-Erwartung wartet jetzt mit `waitFor` auf diesen Effekt. Agent `special_modules` prüfte diese Testkorrektur unabhängig ohne Blocker; 21 Vokabeltests und Formatprüfung sind grün. Die App-Implementierung wurde dafür nicht geändert. RC2 wurde ohne Veröffentlichung beendet. Der nächste Build RC3 enthält die Testkorrektur tatsächlich; veröffentlichte Tags werden nicht verschoben.
 
 ## Prüfergebnisse
 
