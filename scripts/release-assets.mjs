@@ -85,7 +85,9 @@ if (
   import.meta.url === pathToFileURL(resolve(process.argv[1])).href
 ) {
   const version = JSON.parse(readFileSync('package.json', 'utf8')).version;
-  if (process.env.GITHUB_REF_NAME !== `v${version}`)
+  if (
+    (process.env.RELEASE_TAG ?? process.env.GITHUB_REF_NAME) !== `v${version}`
+  )
     throw new Error('Tag and app version differ.');
   prepareRelease(
     'release-assets',
