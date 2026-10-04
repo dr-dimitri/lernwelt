@@ -12,6 +12,7 @@ import LearningTable from './LearningTable';
 import NatureGames from './NatureGames';
 import NumberLine from './NumberLine';
 import RomanPractice from './RomanPractice';
+import RomanExplanation from './RomanExplanation';
 import { FlowerPicture, ParticlePicture } from './NatureArt';
 import {
   useEffect,
@@ -801,6 +802,9 @@ export default function LearningPanel({
                 <LearningTable key={table.caption} table={table} />
               ))}
             </InfoPanel>
+            {question.competencyId === 'by.math.5.numbers.roman' && (
+              <RomanExplanation />
+            )}
             {question.solved && (
               <p className="sample-note">
                 Die Punkte für diese Aufgabe hast du bereits gesammelt. Du
