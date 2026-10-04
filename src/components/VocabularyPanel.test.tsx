@@ -70,7 +70,9 @@ it('prüft die Eingabe per Enter, zeigt erst danach die Lösung und aktualisiert
   ).not.toBeInTheDocument();
   vi.mocked(desktop.getVocabularyState).mockResolvedValue(done);
   await user.click(screen.getByRole('button', { name: 'Weiter' }));
-  expect(await screen.findByText('Für jetzt geschafft!')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByText('Für jetzt geschafft!')).toHaveFocus(),
+  );
   expect(screen.getByText(/Nächste Wiederholung:/)).toBeVisible();
   expect(desktop.reviewVocabulary).toHaveBeenCalledTimes(1);
 });
@@ -99,23 +101,29 @@ it('lässt nach der Rückmeldung und nächsten Karte direkt per Tastatur weiter�
     await screen.findByLabelText('Deine englische Antwort'),
     'hello{Enter}',
   );
-  expect(
-    await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Richtig! +1 Punkt' }),
+    ).toHaveFocus(),
+  );
   await user.tab();
   expect(screen.getByRole('button', { name: 'Weiter' })).toHaveFocus();
   await user.keyboard('{Enter}');
   expect(
     await screen.findByRole('heading', { name: 'auf Wiedersehen' }),
   ).toBeVisible();
-  expect(screen.getByLabelText('Deine englische Antwort')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Deine englische Antwort')).toHaveFocus(),
+  );
   await user.keyboard('goodbye{Enter}');
   expect(desktop.reviewVocabulary).toHaveBeenLastCalledWith(
     expect.objectContaining({ cardId: 'goodbye', answer: 'goodbye' }),
   );
-  expect(
-    await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Richtig! +1 Punkt' }),
+    ).toHaveFocus(),
+  );
 });
 it('behält Eingabe und bewusst gewählten Fokus bei unverändertem Zustand', async () => {
   const user = userEvent.setup();
@@ -232,9 +240,11 @@ it.each(['hello\t', 'he\u000blo', 'hello\u007f', 'hello\u0085', 'hello\u009f'])(
     expect(desktop.reviewVocabulary).toHaveBeenCalledExactlyOnceWith(
       expect.objectContaining({ answer: 'hello' }),
     );
-    expect(
-      await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
-    ).toHaveFocus();
+    await waitFor(() =>
+      expect(
+        screen.getByRole('heading', { name: 'Richtig! +1 Punkt' }),
+      ).toHaveFocus(),
+    );
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   },
 );

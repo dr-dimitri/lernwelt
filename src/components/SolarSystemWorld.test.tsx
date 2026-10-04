@@ -323,9 +323,9 @@ it('behält Aufgabe und Antwort nach fehlgeschlagenem Stufenwechsel und leert si
   const easier = solarQuestions.find(
     (item) => item.difficulty === 'vorschule',
   )!;
-  expect(
-    await screen.findByRole('heading', { name: easier.prompt }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByRole('heading', { name: easier.prompt })).toHaveFocus(),
+  );
   expect(screen.getByRole('button', { name: /Vorschule/ })).toHaveAttribute(
     'aria-pressed',
     'true',
@@ -514,9 +514,11 @@ it('öffnet den direkten Rätselweg mit sinnvoller Fokusposition und meldet Ausw
       onActivityChange={activity}
     />,
   );
-  expect(
-    await screen.findByRole('heading', { name: firstQuestion.prompt }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: firstQuestion.prompt }),
+    ).toHaveFocus(),
+  );
   expect(screen.queryByLabelText('Schwierigkeitsgrad')).not.toBeInTheDocument();
   await user.click(screen.getByRole('radio', { name: firstAnswer }));
   expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });

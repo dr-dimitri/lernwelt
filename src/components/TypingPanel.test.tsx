@@ -1,4 +1,11 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import TypingPanel from './TypingPanel';
@@ -87,9 +94,11 @@ it('lässt den Anfangsfokus beim Seitentitel und prüft echte Eingaben erst bewu
   expect(screen.getByText(/Schau bei Zeichen 4/)).toBeVisible();
   expect(desktop.submitTyping).not.toHaveBeenCalled();
   await user.type(field, '{Backspace}jf{Enter}');
-  expect(
-    await screen.findByRole('heading', { name: 'Geschafft! +2 Punkte' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Geschafft! +2 Punkte' }),
+    ).toHaveFocus(),
+  );
   expect(desktop.submitTyping).toHaveBeenCalledWith({
     requestId: expect.any(String),
     taskId: 'station-0.koenner.1',
@@ -292,11 +301,13 @@ it('wartet auf die Desktop-Prüfung und lässt eine falsche Zeile ohne Punkte ko
   await act(async () =>
     resolve({ correct: false, pointsAwarded: 0, wallet: initial.wallet }),
   );
-  expect(
-    await screen.findByRole('heading', {
-      name: 'Fast! Du kannst die Zeile noch verbessern.',
-    }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', {
+        name: 'Fast! Du kannst die Zeile noch verbessern.',
+      }),
+    ).toHaveFocus(),
+  );
   expect(field).toBeEnabled();
   expect(
     screen.getByRole('img', {
@@ -386,9 +397,11 @@ it('sperrt doppelte Übertragung und hält bei Speicherfehler dieselbe UUID und 
   expect(screen.getByRole('combobox', { name: 'Kurs wählen' })).toBeDisabled();
   expect(screen.queryByText(/Geschafft!/)).not.toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
-  expect(
-    await screen.findByRole('heading', { name: 'Geschafft! +2 Punkte' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Geschafft! +2 Punkte' }),
+    ).toHaveFocus(),
+  );
   expect(vi.mocked(desktop.submitTyping).mock.calls[0]).toEqual(
     vi.mocked(desktop.submitTyping).mock.calls[1],
   );
@@ -416,7 +429,7 @@ it('stellt beim Stufenwechsel die passenden Zeilen bereit und erhält Eingaben b
     difficulty: 'vorschule',
   });
   await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
-  expect(field).toHaveFocus();
+  await waitFor(() => expect(field).toHaveFocus());
   expect(field).toHaveValue('');
   expect(screen.getByRole('button', { name: 'Vorschule' })).toHaveAttribute(
     'aria-pressed',
@@ -610,7 +623,7 @@ it('meldet Entwurf und Übertragung an die Fachnavigation und bewahrt die Zeile 
     />,
   );
   const field = await screen.findByLabelText('Deine Zeile');
-  expect(field).toHaveFocus();
+  await waitFor(() => expect(field).toHaveFocus());
   expect(
     screen.queryByRole('group', { name: 'Schwierigkeitsgrad für alle Fächer' }),
   ).not.toBeInTheDocument();

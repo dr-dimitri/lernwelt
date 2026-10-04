@@ -69,7 +69,7 @@ it('führt durch alle fünf Schritte mit Rückmeldung, Begründungswahl, Selbstc
     await screen.findByRole('button', { name: 'Lernrunde starten' }),
   );
   const field = await screen.findByLabelText('Deine Antwort in m');
-  expect(field).toHaveFocus();
+  await waitFor(() => expect(field).toHaveFocus());
   expect(screen.getByRole('img')).toHaveAccessibleName(
     /zwei Seiten mit Länge 7 m/,
   );
@@ -77,9 +77,11 @@ it('führt durch alle fünf Schritte mit Rückmeldung, Begründungswahl, Selbstc
     screen.queryByText(missionCorrect.explanation),
   ).not.toBeInTheDocument();
   await user.keyboard('22{Enter}');
-  expect(
-    await screen.findByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+    ).toHaveFocus(),
+  );
   expect(screen.getByText('+2 Lernpunkte')).toBeVisible();
   expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
     '10 Punkte',
@@ -87,19 +89,23 @@ it('führt durch alle fünf Schritte mit Rückmeldung, Begründungswahl, Selbstc
   await user.tab();
   expect(screen.getByRole('button', { name: 'Weiter' })).toHaveFocus();
   await user.keyboard('{Enter}');
-  expect(
-    await screen.findByRole('heading', { name: 'Einmal außen herum' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Einmal außen herum' }),
+    ).toHaveFocus(),
+  );
   expect(
     screen.queryByRole('button', { name: 'Prüfen' }),
   ).not.toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Weiter' }));
-  expect(await screen.findByLabelText('Deine Antwort in m')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Deine Antwort in m')).toHaveFocus(),
+  );
   await user.keyboard('28{Enter}');
   await screen.findByText('9 + 5 + 9 + 5 = 28 m.');
   await user.click(screen.getByRole('button', { name: 'Weiter' }));
   const options = await screen.findAllByRole('radio');
-  expect(options[0]).toHaveFocus();
+  await waitFor(() => expect(options[0]).toHaveFocus());
   await user.keyboard('{ArrowDown}');
   expect(options[1]).toBeChecked();
   await user.click(screen.getByRole('button', { name: 'Prüfen' }));
@@ -112,25 +118,31 @@ it('führt durch alle fünf Schritte mit Rückmeldung, Begründungswahl, Selbstc
   );
   await screen.findByText('24 m² ist die Fläche. Der Rand ist 22 m lang.');
   await user.click(screen.getByRole('button', { name: 'Weiter' }));
-  expect(
-    await screen.findByRole('heading', { name: 'Dein eigener Rand' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Dein eigener Rand' }),
+    ).toHaveFocus(),
+  );
   expect(
     screen.getByText('Miss die Länge und Breite der Vorderseite in cm.'),
   ).toBeVisible();
   await user.click(
     screen.getByRole('button', { name: 'Selbstkontrolle ansehen' }),
   );
-  expect(
-    await screen.findByRole('heading', { name: 'Deine Selbstkontrolle' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Deine Selbstkontrolle' }),
+    ).toHaveFocus(),
+  );
   expect(screen.queryByText('+2 Lernpunkte')).not.toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Runde abschließen' }));
-  expect(
-    await screen.findByRole('heading', {
-      name: 'Deine Lernrunde ist geschafft!',
-    }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', {
+        name: 'Deine Lernrunde ist geschafft!',
+      }),
+    ).toHaveFocus(),
+  );
   expect(screen.getByText(/Deine nächste Wiederholung wartet/)).toBeVisible();
   const album = screen.getByRole('list', {
     name: 'Dein Themenalbum auf dieser Stufe',
@@ -162,7 +174,7 @@ it('zeigt Tipp und Lösung erst nach Bestätigung, führt den Fokus zur Hilfe un
   expect(await screen.findByRole('status')).toHaveTextContent(
     'zwei lange und zwei kurze Seiten',
   );
-  expect(screen.getByRole('status')).toHaveFocus();
+  await waitFor(() => expect(screen.getByRole('status')).toHaveFocus());
   expect(desktop.actMission).toHaveBeenLastCalledWith(
     expect.objectContaining({ action: 'hint', answer: null }),
   );
@@ -172,9 +184,11 @@ it('zeigt Tipp und Lösung erst nach Bestätigung, führt den Fokus zur Hilfe un
   await user.click(screen.getByRole('button', { name: 'Hilfe' }));
   await user.click(screen.getByRole('button', { name: 'Lösung ansehen' }));
   expect(await screen.findByText(missionCorrect.explanation)).toBeVisible();
-  expect(
-    screen.getByRole('heading', { name: 'Schauen wir uns den Weg an' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Schauen wir uns den Weg an' }),
+    ).toHaveFocus(),
+  );
   expect(screen.queryByText(/\+2 Lernpunkte/)).not.toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Weiter' })).toBeEnabled();
 });
@@ -206,9 +220,11 @@ it('behält nach Speicherfehler dieselbe Request-ID und Antwort und sperrt Ände
     vi.mocked(desktop.actMission).mock.calls[1],
   );
   await act(async () => save(missionAt(0, missionCorrect)));
-  expect(
-    await screen.findByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+    ).toHaveFocus(),
+  );
 });
 
 it('wechselt frei die Stufe, lädt deren bestätigte Runde und verrät unbekannte Längen nicht', async () => {
@@ -272,7 +288,7 @@ it('nimmt gespeicherte Rückmeldung wieder auf ohne den anfänglichen Seitenfoku
       action: 'next',
     }),
   );
-  expect((await screen.findAllByRole('radio'))[0]).toHaveFocus();
+  await waitFor(() => expect(screen.getAllByRole('radio')[0]).toHaveFocus());
 });
 
 it('überspringt die optionale Mitmachaufgabe ohne Antwort oder Selbstbewertung', async () => {
@@ -286,11 +302,13 @@ it('überspringt die optionale Mitmachaufgabe ohne Antwort oder Selbstbewertung'
   expect(desktop.actMission).toHaveBeenCalledWith(
     expect.objectContaining({ action: 'skip', answer: null, stepIndex: 4 }),
   );
-  expect(
-    await screen.findByRole('heading', {
-      name: 'Deine Lernrunde ist geschafft!',
-    }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', {
+        name: 'Deine Lernrunde ist geschafft!',
+      }),
+    ).toHaveFocus(),
+  );
 });
 
 it('erlaubt Eingabekorrektur ohne Request und verliert beim Tippen oder Rerender keinen Fokus', async () => {
@@ -346,9 +364,11 @@ it.each(['22\t', '2\u000b2', '22\u007f', '22\u0085', '22\u009f'])(
     expect(desktop.actMission).toHaveBeenCalledExactlyOnceWith(
       expect.objectContaining({ answer: '22', action: 'answer' }),
     );
-    expect(
-      await screen.findByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
-    ).toHaveFocus();
+    await waitFor(() =>
+      expect(
+        screen.getByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+      ).toHaveFocus(),
+    );
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   },
 );
@@ -421,7 +441,9 @@ it('holt nach Lade- oder Speicherfehler den bestätigten Zustand erneut', async 
   render(<MissionPanel profileVersion={0} />);
   expect(await screen.findByRole('alert')).toHaveTextContent('Ladefehler');
   await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
-  expect(await screen.findByLabelText('Deine Antwort in m')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Deine Antwort in m')).toHaveFocus(),
+  );
   await user.keyboard('22{Enter}');
   expect(await screen.findByRole('alert')).toHaveTextContent(
     'Antwort verloren',
@@ -432,9 +454,11 @@ it('holt nach Lade- oder Speicherfehler den bestätigten Zustand erneut', async 
   await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
   await user.click(screen.getByRole('button', { name: 'Wechseln' }));
   expect(await screen.findByText(missionCorrect.explanation)).toBeVisible();
-  expect(
-    screen.getByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+    ).toHaveFocus(),
+  );
   expect(desktop.actMission).toHaveBeenCalledTimes(1);
   await waitFor(() =>
     expect(screen.queryByRole('alert')).not.toBeInTheDocument(),
@@ -448,11 +472,13 @@ it('fokussiert nach ausdrücklich erneutem Laden den gespeicherten Abschluss', a
     .mockResolvedValue(missionCompleted);
   render(<MissionPanel profileVersion={0} />);
   await user.click(await screen.findByRole('button', { name: 'Erneut laden' }));
-  expect(
-    await screen.findByRole('heading', {
-      name: 'Deine Lernrunde ist geschafft!',
-    }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', {
+        name: 'Deine Lernrunde ist geschafft!',
+      }),
+    ).toHaveFocus(),
+  );
 });
 
 it('belässt den Seitenfokus beim ersten Laden und bei Profilaktualisierung', async () => {
@@ -556,11 +582,13 @@ it('schließt die Naturmission mit passendem Titel und fachneutraler Rückmeldun
   await user.click(
     await screen.findByRole('button', { name: 'Heute überspringen' }),
   );
-  expect(
-    await screen.findByRole('heading', {
-      name: 'Deine Lernrunde ist geschafft!',
-    }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', {
+        name: 'Deine Lernrunde ist geschafft!',
+      }),
+    ).toHaveFocus(),
+  );
   expect(
     screen.getByRole('heading', { name: natureMissionMetadata.title }),
   ).toBeVisible();
@@ -583,7 +611,7 @@ it('öffnet die direkte Lernrunde am Antwortfeld und meldet nur ungesendete Eing
     />,
   );
   const field = await screen.findByLabelText('Deine Antwort in m');
-  expect(field).toHaveFocus();
+  await waitFor(() => expect(field).toHaveFocus());
   expect(
     screen.queryByLabelText('Schwierigkeitsgrad für alle Fächer'),
   ).not.toBeInTheDocument();
@@ -630,7 +658,9 @@ it('führt den Spitznamen-Schritt im gewählten Missionsziel aus und erhält Nam
   ).toBeVisible();
   expect(saved).not.toHaveBeenCalled();
   await user.click(screen.getByRole('button', { name: 'Speichern' }));
-  expect(await screen.findByLabelText('Deine Antwort in m')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Deine Antwort in m')).toHaveFocus(),
+  );
   expect(saved).toHaveBeenCalledOnce();
   expect(desktop.getMissionState).toHaveBeenLastCalledWith(
     'math-perimeter-garden',
