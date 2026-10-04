@@ -7,6 +7,7 @@ mod multiplication;
 mod roman;
 mod study;
 mod typing;
+mod updates;
 mod vocabulary;
 
 use database::{Profile, Progress};
@@ -204,6 +205,7 @@ pub fn run() {
         })
         .invoke_handler(tauri::generate_handler![
             get_profile,
+            updates::check_app_update,
             save_profile,
             list_progress,
             get_learning_state,

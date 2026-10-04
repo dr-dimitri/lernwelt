@@ -6,7 +6,7 @@
   "permissions": [
     "core:app:allow-version",
     "core:resources:allow-close",
-    "updater:allow-check",
+    "allow-check-app-update",
     "updater:allow-download-and-install",
     "process:allow-restart",
     "allow-get-profile",
