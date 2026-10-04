@@ -8,6 +8,7 @@ import {
 import { desktop } from '../lib/desktop';
 import InfoPanel from './InfoPanel';
 import LearningHints from './LearningHints';
+import RomanExplanation from './RomanExplanation';
 
 export default function RomanPractice({
   difficulty,
@@ -293,29 +294,7 @@ export default function RomanPractice({
           )}
         </>
       )}
-      <InfoPanel paginate>
-        <summary>Römische Zeichen · kurz erklärt</summary>
-        <p>
-          I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000. Von links
-          nach rechts zählst du die Werte zusammen: VI = 5 + 1 = 6.
-        </p>
-        <p>
-          Bei diesen Paaren ziehst du das kleine Zeichen vom großen ab: IV = 4,
-          IX = 9, XL = 40, XC = 90, CD = 400, CM = 900. Zum Beispiel: XLII = 40
-          + 2 = 42.
-        </p>
-        <p>
-          Zerlege eine Zahl in Tausender, Hunderter, Zehner und Einer. Schreibe
-          die Teile hintereinander: 2024 = MM + XX + IV = MMXXIV. I, X und C
-          stehen höchstens dreimal hintereinander; V, L und D wiederholst du
-          nicht.
-        </p>
-        <p>
-          Für 4000 bis 9999 verwenden wir hier eine Erweiterung mit weiteren M.
-          So brauchst du keine Sonderzeichen: 4000 = MMMM und 9000 = MMMMMMMMM.
-          Bei den anderen Zeichen gelten dieselben Regeln.
-        </p>
-      </InfoPanel>
+      <RomanExplanation />
       {question && (
         <InfoPanel>
           <summary>Lernziel und Quellen</summary>

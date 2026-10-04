@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import LearningPanel from './LearningPanel';
@@ -26,6 +26,7 @@ vi.mock('../lib/desktop', () => ({
 const romanRound: Question = {
   ...mathQuestion,
   id: 'roman-round',
+  competencyId: 'by.math.5.numbers.roman',
   topicId: 'numbers',
   prompt: 'Schreibe 14 als römische Zahl.',
   answerKind: 'text',
@@ -236,4 +237,77 @@ it('sperrt alte Zufallsantworten, solange der globale Stufenwechsel gespeichert 
   await act(async () => saveDifficulty('streber'));
   expect(await screen.findByLabelText(hardRandom.prompt)).toHaveValue('');
   expect(screen.queryByText('Richtig! +2 Punkte')).not.toBeInTheDocument();
+});
+
+it('macht dieselbe allgemeine Anleitung in beiden Übungsarten erreichbar und erhält Antwort, Fortschritt und Punkte', async () => {
+  const user = userEvent.setup();
+  render(<LearningPanel subject="mathematics" profileVersion={0} />);
+  await startRoman(user);
+  const regularInput = screen.getByLabelText(romanRound.prompt);
+  await user.type(regularInput, 'X');
+  const help = screen.getByRole('button', {
+    name: 'Römische Zahlen verstehen',
+  });
+  await user.click(help);
+  const guide = screen.getByRole('dialog', {
+    name: 'Römische Zahlen verstehen',
+  });
+  expect(
+    within(guide).getByRole('table', { name: 'Die römischen Zeichen' }),
+  ).toBeVisible();
+  expect(within(guide).queryByText(/XIV/)).not.toBeInTheDocument();
+  for (let page = 0; page < 5; page++) {
+    await user.click(within(guide).getByRole('button', { name: 'Weiter →' }));
+  }
+  expect(
+    within(guide).getByRole('heading', { name: 'Rechnen: erst übersetzen' }),
+  ).toBeVisible();
+  expect(within(guide).getByText('XVI + XXVII = XLIII')).toBeVisible();
+  fireEvent(guide, new Event('cancel', { cancelable: true }));
+  expect(help).toHaveFocus();
+  expect(regularInput).toHaveValue('X');
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
+  expect(screen.getByLabelText('Verfügbare Punkte')).toHaveTextContent(
+    '10 Punkte',
+  );
+
+  await user.click(screen.getByRole('button', { name: 'Zufallsübung 1–9999' }));
+  const randomInput = await screen.findByLabelText(randomQuestion.prompt);
+  await user.type(randomInput, 'XL');
+  await user.click(
+    screen.getByRole('button', { name: 'Römische Zahlen verstehen' }),
+  );
+  const randomGuide = screen.getByRole('dialog', {
+    name: 'Römische Zahlen verstehen',
+  });
+  expect(
+    within(randomGuide).getByRole('table', { name: 'Die römischen Zeichen' }),
+  ).toBeVisible();
+  for (let page = 0; page < 6; page++) {
+    await user.click(
+      within(randomGuide).getByRole('button', { name: 'Weiter →' }),
+    );
+  }
+  expect(
+    within(randomGuide).getByRole('heading', {
+      name: 'Unsere Übung für 4000–9999',
+    }),
+  ).toBeVisible();
+  expect(within(randomGuide).queryByText(/XLII/)).not.toBeInTheDocument();
+  await user.click(
+    within(randomGuide).getByRole('button', { name: 'Schließen' }),
+  );
+  expect(randomInput).toHaveValue('XL');
+  expect(desktop.getRomanQuestion).toHaveBeenCalledTimes(1);
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
+  expect(screen.getByLabelText('Verfügbare Punkte')).toHaveTextContent(
+    '10 Punkte',
+  );
+  await user.type(randomInput, 'II{Enter}');
+  expect(await screen.findByText('Richtig! +2 Punkte')).toBeVisible();
+  expect(desktop.submitAnswer).toHaveBeenCalledWith(
+    expect.any(String),
+    randomQuestion.id,
+    'XLII',
+  );
 });
