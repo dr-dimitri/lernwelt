@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 
+const EARTH_YEAR_SECONDS = 5;
+
 export default function useSolarOrbit() {
   const [running, setRunning] = useState(false);
-  const [earthYearSeconds, setEarthYearSeconds] = useState(5);
   const [earthYears, setEarthYears] = useState(0);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ export default function useSolarOrbit() {
     function tick(time: number) {
       const elapsed = Math.max(0, time - previousTime);
       previousTime = time;
-      setEarthYears((years) => years + elapsed / (earthYearSeconds * 1000));
+      setEarthYears((years) => years + elapsed / (EARTH_YEAR_SECONDS * 1000));
       frame = requestAnimationFrame(tick);
     }
 
@@ -33,13 +34,11 @@ export default function useSolarOrbit() {
       if (frame !== null) cancelAnimationFrame(frame);
       document.removeEventListener('visibilitychange', visibilityChanged);
     };
-  }, [running, earthYearSeconds]);
+  }, [running]);
 
   return {
     running,
     setRunning,
-    earthYearSeconds,
-    setEarthYearSeconds,
     earthYears,
   };
 }
