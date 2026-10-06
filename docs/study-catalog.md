@@ -16,7 +16,7 @@ Im Unterthema „Römische Zahlen“ ergänzt eine [Zufallsübung von 1 bis 9999
 
 ## Tatsächliches Angebot
 
-Der Katalog enthält **89 Unterthemen in 18 Lernbereichen** und **3.753 Fachaufgaben**: 1.767 Mathematik, 1.404 Englisch, 540 Natur und Technik sowie 42 Geographie. Die bisherigen Unterthemen bieten mindestens zwölf Aufgaben je Stufe; Sonnensystem enthält genau acht Planetenrätsel und Erdschichten genau sechs Rätsel je Stufe. Die bisherigen 615 Aufgaben bleiben erhalten; `topic-practice-v1.json` ergänzt 3.060 eigene Aufgaben. Die Erdschichten ergänzen 18 Aufgaben. Das eigene Paket `english-club-v1.json` ergänzt 36 Aufgaben in den vorhandenen Zielen `english-pronouns` und `english-be`; jeweils sechs zusätzliche Aufgaben je Stufe und Ziel. Kein Unterthema hat mehr eine leere Stufe.
+Der Katalog enthält **89 Unterthemen in 18 Lernbereichen** und **3.771 Fachaufgaben**: 1.767 Mathematik, 1.404 Englisch, 558 Natur und Technik sowie 42 Geographie. Die bisherigen Unterthemen bieten mindestens zwölf Aufgaben je Stufe; Sonnensystem enthält genau acht Planetenrätsel und Erdschichten genau sechs Rätsel je Stufe. Die bisherigen 615 Aufgaben bleiben erhalten; `topic-practice-v1.json` ergänzt 3.060 eigene Aufgaben. Die Erdschichten ergänzen 18 Aufgaben. Das eigene Paket `english-club-v1.json` ergänzt 36 Aufgaben in den vorhandenen Zielen `english-pronouns` und `english-be`; jeweils sechs zusätzliche Aufgaben je Stufe und Ziel. Das Paket `nature-nucleus-5-v1.json` ergänzt 18 Fragen (sechs je Stufe) im vorhandenen Ziel `nature-cells`. Kein Unterthema hat mehr eine leere Stufe.
 
 Die Erweiterung ist eine endliche, vorab erstellte Aufgabenbank. Zahlvarianten, Auswahlfragen, Fehlerdetektiv-Aufgaben und kurze Anwendungssituationen ergänzen sich. Einige Grundlagen werden über Stufen hinweg wiederholt; die Anzahl ist keine Zahl vollständig unabhängiger Kompetenzen. Vorschule nutzt kleinere Schritte oder weniger Antwortmöglichkeiten; Könner reguläre Aufgaben; Streber ergänzt mehrschrittige Mathematik, Fehlerprüfung, Textanwendung, Satzlücken und Schreiben gehörter Wörter. Es gibt keine KI-Erzeugung oder KI-Antwortprüfung zur Laufzeit.
 
@@ -103,7 +103,7 @@ Die Erweiterung ist eine endliche, vorab erstellte Aufgabenbank. Zahlvarianten, 
 | Natur und Technik | Stoffe und Naturphänomene     | Wasser und Stoffzustände               | NT5 1.2                                |        15 |     15 |      15 |
 | Natur und Technik | Stoffe und Naturphänomene     | Licht, Schatten und Energie            | NT5 1.2                                |        15 |     15 |      15 |
 | Natur und Technik | Stoffe und Naturphänomene     | Luft, Boden und Stoffe                 | NT5 1.2                                |        15 |     15 |      15 |
-| Natur und Technik | Lebewesen und Zellen          | Zellen und Lebewesen                   | NT5 2.2                                |        15 |     15 |      15 |
+| Natur und Technik | Lebewesen und Zellen          | Zellen und Lebewesen                   | NT5 2.2; NT5 2.1; NT5 1.1                                |        21 |     21 |      21 |
 | Natur und Technik | Der menschliche Körper        | Sinne und Reaktionen                   | NT5 2.3                                |        15 |     15 |      15 |
 | Natur und Technik | Der menschliche Körper        | Knochen, Gelenke und Muskeln           | NT5 2.3                                |        15 |     15 |      15 |
 | Natur und Technik | Der menschliche Körper        | Nahrung und Verdauung                  | NT5 2.3                                |        15 |     15 |      15 |
@@ -133,3 +133,7 @@ Die Katalogeinheit `geography-earth-layers` ergänzt Geo5 „Planet Erde“ um 1
 ## English Club
 
 „Personalpronomen und Begleiter“ hält Personalpronomen, Objektformen und vorhandene Begleiterübungen im selben bisherigen Ziel erreichbar. „to be: am, is und are“ ergänzt Aussage, Verneinung, Frage, Kurzantwort und Kurzformen. Suche findet Personalpronomen, Pronomen, to be, am is are und sein. Die [36 Aufgaben mit Inhaltsreview](english-club.md) gehören weiterhin genau einem Ziel; zusätzliche Erklärungszugänge schaffen keinen neuen Fortschritt. Simple Past ist freiwillig als eigenes Thema verlinkt.
+
+## Zellthema als Expedition
+
+Die bestehende Einheit `nature-cells` bleibt die einzige Katalogzuordnung für ihre 45 bisherigen und 18 neuen Zellkernfragen. Über ihre bisherige Themenkarte sowie eine direkte Expedition-Karte öffnet Natur und Technik die Zelllernreise. Alle Fragen verwenden denselben Backend-Fortschritt und dieselbe Erstlösungsidentität. Stationsfilter und höchstens sechs Fragen pro Runde machen die Inhalte erreichbar, ohne eine lange Pflichtrunde. [Bestandszuordnung und Quellen](cell-expedition.md).

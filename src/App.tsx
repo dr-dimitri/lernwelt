@@ -16,6 +16,7 @@ import NatureGames from './components/NatureGames';
 import AppUpdates from './components/AppUpdates';
 import SolarSystemWorld from './components/SolarSystemWorld';
 import EarthWorld from './components/EarthWorld';
+import CellWorld from './components/CellWorld';
 import TypingPanel from './components/TypingPanel';
 import CollectionPanel from './components/CollectionPanel';
 import { subjects, type SubjectId } from './domain/subjects';
@@ -32,7 +33,8 @@ type View =
   | 'typing'
   | 'nature-games'
   | 'solar'
-  | 'earth';
+  | 'earth'
+  | 'cells';
 type Activity = { dirty: boolean; busy: boolean };
 const sidebarStorageKey = 'lernwelt.sidebarCollapsed';
 function readSidebarCollapsed() {
@@ -122,7 +124,9 @@ export default function App() {
             ? 'Sonnensystem'
             : view === 'earth'
               ? 'Expedition zum Erdkern'
-              : trainers.find((item) => item.id === view)!.label;
+              : view === 'cells'
+                ? 'Expedition Zellkern'
+                : trainers.find((item) => item.id === view)!.label;
   const locked = activity.busy || difficultyBusy || settingsBusy;
   const saved = useCallback(
     () => setProfileVersion((version) => version + 1),
@@ -356,7 +360,7 @@ export default function App() {
                 disabled={locked}
                 aria-current={
                   selected === item.id &&
-                  ['learn', 'mission', 'solar', 'earth'].includes(view)
+                  ['learn', 'mission', 'solar', 'earth', 'cells'].includes(view)
                     ? 'page'
                     : undefined
                 }
@@ -367,7 +371,9 @@ export default function App() {
                 </span>
                 <span className="navigation-label">{item.name}</span>
                 {selected === item.id &&
-                  ['learn', 'mission', 'solar', 'earth'].includes(view) && (
+                  ['learn', 'mission', 'solar', 'earth', 'cells'].includes(
+                    view,
+                  ) && (
                     <span className="current-mark" aria-hidden="true">
                       ✓
                     </span>
@@ -379,7 +385,7 @@ export default function App() {
               title="Trainer & Spiele"
               disabled={locked}
               aria-current={
-                !['learn', 'mission', 'solar', 'earth'].includes(view)
+                !['learn', 'mission', 'solar', 'earth', 'cells'].includes(view)
                   ? 'page'
                   : undefined
               }
@@ -513,6 +519,7 @@ export default function App() {
                   onProfileSaved={saved}
                   onSupplement={openSupplement}
                   onNatureGames={() => navigate('nature-games')}
+                  onCells={() => navigate('cells')}
                 />
               </div>
             ))}
@@ -598,6 +605,14 @@ export default function App() {
           {view === 'mission' && (
             <MissionPanel
               topicId={missionTopic}
+              profileVersion={profileVersion}
+              externalControls
+              onActivityChange={reportActivity}
+              onProfileSaved={saved}
+            />
+          )}
+          {view === 'cells' && (
+            <CellWorld
               profileVersion={profileVersion}
               externalControls
               onActivityChange={reportActivity}

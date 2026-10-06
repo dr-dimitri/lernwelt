@@ -1,6 +1,6 @@
 [package]
 name = "lernwelt"
-version = "0.6.18"
+version = "0.6.19"
 description = "Lokale Lernanwendung für das bayerische Gymnasium"
 authors = ["Lernwelt contributors"]
 license = "MIT"

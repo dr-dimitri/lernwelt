@@ -202,9 +202,11 @@ Die Spielsteuerung und Pause stehen neben dem Spielfeld; nach dem Ende erscheint
 
 ## Natur und Technik Klasse 5
 
-**540 eigene Fragen in zwölf gezielt auswählbaren Unterthemen**, mindestens zwölf Aufgaben pro Stufe und Unterthema, sowie **24 Mitmachaufgaben** für Kinder von 10–12 Jahren. Die Inhalte orientieren sich am [LehrplanPLUS Natur und Technik 5, Gymnasium Bayern](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym), Quellenstand 25.09.2026. Naturwissenschaftliches Arbeiten und Biologie werden verbunden: Forschen, Wasser und Teilchen, Licht und Energie, Luft und Materialien, Zellen, Sinne, Bewegung, Ernährung, Atmung und Kreislauf, Entwicklung, Samenpflanzen und Grünland.
+**558 eigene Fragen in zwölf gezielt auswählbaren Unterthemen**, mindestens zwölf Aufgaben pro Stufe und Unterthema, sowie **24 Mitmachaufgaben** für Kinder von 10–12 Jahren. Die Inhalte orientieren sich am [LehrplanPLUS Natur und Technik 5, Gymnasium Bayern](https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym), Quellenstand 25.09.2026. Naturwissenschaftliches Arbeiten und Biologie werden verbunden: Forschen, Wasser und Teilchen, Licht und Energie, Luft und Materialien, Zellen, Sinne, Bewegung, Ernährung, Atmung und Kreislauf, Entwicklung, Samenpflanzen und Grünland.
 
 Über **Meine Fächer → Natur und Technik** lassen sich Fragen und Lernspiele auswählen. Kurze Fragen mit Alltagssituationen, Beobachtungen und Messwerten bieten Tipps und erklärte Lösungen. Ein Blütenschnitt und Teilchenbilder helfen beim Verstehen; Mitmachaufgaben ergänzen Zeichnen, Beobachten und Erklären. Für neue richtige Fachantworten gelten dieselben gespeicherten **1/2/3 Lernpunkte** und dieselbe freie Stufenauswahl wie in den anderen Fächern.
+
+**Expedition Zellkern** führt direkt aus der Fachübersicht und dem bestehenden Thema „Zellen und Lebewesen“ in fünf freie Stationen. Drei eigene interaktive Zellmodelle und eine echte lokal gebündelte Lichtmikroskopaufnahme laden zum Erkunden ein. Die 45 bestehenden Fragen und beide Mitmachaktivitäten bleiben mit denselben IDs erhalten; 18 neue Zellkernfragen (sechs je Stufe) ergänzen kurze Runden mit höchstens sechs Aufgaben. Tipps, Modell-/Bildvergleich, Großansicht und Selbstkontrolle sind frei nutzbar. Erstmalig richtige Antworten geben weiterhin 1/2/3 Punkte; freiwilliges Aufdecken gibt keine Punkte. [Bedienung, Bestandszuordnung, Fachquellen und konkrete Bildlizenz](docs/cell-expedition.md).
 
 Drei lokal gezeichnete Lernspiele bieten zusätzlich freies Üben ohne Zeitdruck:
 

@@ -245,3 +245,13 @@ it('sendet den begrenzten Salatmodus und vorübergehenden Ausschluss an die nati
     },
   });
 });
+
+it('fordert eine Erklärung nur über die begrenzte Aufgaben-ID an', async () => {
+  vi.mocked(invoke).mockResolvedValue('Erklärung');
+  await expect(
+    desktop.getLearningExplanation('by.nature.5.nucleus.koenner.01.v1'),
+  ).resolves.toBe('Erklärung');
+  expect(invoke).toHaveBeenCalledWith('get_learning_explanation', {
+    questionId: 'by.nature.5.nucleus.koenner.01.v1',
+  });
+});

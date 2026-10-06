@@ -1,0 +1,386 @@
+{
+  "version": 1,
+  "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
+  "curriculumVersion": "LehrplanPLUS, NT5 2.2; ergänzend 2.1 und 1.1, geprüft 06.10.2026",
+  "topics": [
+    {
+      "id": "nature-nucleus",
+      "name": "Expedition Zellkern",
+      "subject": "nature",
+      "grade": 5,
+      "curriculumRef": "NT5 2.2; NT5 2.1; NT5 1.1",
+      "description": "Zellkern entdecken und Modelle mit einer Lichtmikroskopaufnahme vergleichen. Begrenztes Lernangebot, keine vollständige Lehrplanabdeckung.",
+      "lesson": "Im Zellkern liegt ein großer Teil der Erbinformation. Sie enthält Anleitungen, die für den Aufbau und die Arbeit der Zelle wichtig sind. Viele Zellbestandteile arbeiten zusammen. Die Kernhülle grenzt den Zellkern ab; die Zellmembran begrenzt die ganze Zelle. Die Anleitungsbibliothek ist nur ein Vergleich: Im Zellkern stehen keine echten Bücher und niemand denkt dort. DNA ist ein Träger der Erbinformation, kein Pflichtwort in dieser Expedition. Modelle zeigen typische Tier- und Pflanzenzellen, keine Regel für jede Zelle. Nicht jede Pflanzenzelle besitzt Chloroplasten. Eine Lichtmikroskopaufnahme zeigt nur einige Strukturen; eine fehlende Markierung beweist nicht, dass ein Zellkern fehlt. Quelle: https://www.genome.gov/genetics-glossary/Nucleus; https://medlineplus.gov/genetics/understanding/basics/cell/",
+      "languageSequence": null,
+      "activities": []
+    }
+  ],
+  "exercises": [
+    {
+      "id": "by.nature.5.nucleus.vorschule.01.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Welcher Zellteil ist im Tierzellmodell mit A markiert?",
+      "answer": "Zellkern",
+      "hint": "A zeigt auf einen runden Bereich im Zellinneren.",
+      "furtherHints": [
+        "Die Zellmembran ist die äußere Grenze. A liegt weiter innen."
+      ],
+      "explanation": "A markiert den Zellkern. Er enthält einen großen Teil der Erbinformation.",
+      "options": ["Zellmembran", "Zellplasma", "Zellkern"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.vorschule.02.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Welcher Zellteil ist im Pflanzenzellmodell mit A markiert?",
+      "answer": "Zellkern",
+      "hint": "A zeigt auf einen kleinen runden Bereich neben dem großen hellen Raum.",
+      "furtherHints": [
+        "Der große helle Raum ist die Vakuole. A zeigt auf einen anderen Teil."
+      ],
+      "explanation": "Der markierte Zellkern liegt hier neben der großen Vakuole. Er muss nicht in der Mitte liegen.",
+      "options": ["Vakuole", "Zellwand", "Zellkern"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.vorschule.03.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Im Detailmodell ist die Grenze um den runden Zellkern mit A markiert. Wie heißt diese Grenze?",
+      "answer": "Kernhülle",
+      "hint": "Diese Hülle gehört nur zum Zellkern, nicht zur ganzen Zelle.",
+      "furtherHints": [
+        "Überlege, ob die Grenze die ganze Zelle oder nur den Zellkern umgibt."
+      ],
+      "explanation": "Die Kernhülle grenzt den Zellkern vom übrigen Zellinneren ab.",
+      "options": ["Zellwand", "Kernhülle", "Zellmembran"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.vorschule.04.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Die Aufnahme zeigt eine Wangenzelle. A markiert einen dunkelblauen ovalen Bereich. Welcher Zellteil ist das?",
+      "answer": "Zellkern",
+      "hint": "Die Färbung macht diesen Bereich besonders gut sichtbar.",
+      "furtherHints": [
+        "Die große Zelle ist eine Tierzelle und besitzt keine Zellwand oder Chloroplasten."
+      ],
+      "explanation": "Der dunkel gefärbte Bereich ist ein Zellkern. Die menschliche Wangenzelle gehört zu den Tierzellen.",
+      "options": ["Zellwand", "Chloroplast", "Zellkern"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.vorschule.05.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Die Wangenzelle wurde vor der Aufnahme mit Methylenblau gefärbt. Warum ist der Zellkern im Bild blau?",
+      "answer": "Durch die Färbung",
+      "hint": "Methylenblau ist ein Farbstoff.",
+      "furtherHints": [
+        "Ein Farbstoff wird verwendet, damit Bereiche leichter zu unterscheiden sind."
+      ],
+      "explanation": "Die Färbung hilft beim Erkennen. Die blaue Farbe ist keine natürliche Farbe aller Zellkerne.",
+      "options": [
+        "Weil alle Zellkerne von Natur aus blau sind",
+        "Durch die Färbung"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.vorschule.06.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "vorschule",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Was enthält der Zellkern, das für Aufbau und Arbeit der Zelle wichtig ist?",
+      "answer": "Einen großen Teil der Erbinformation",
+      "hint": "Erbinformation enthält Anleitungen für die Zelle.",
+      "furtherHints": [
+        "Die Information hilft der Zelle bei ihren Aufgaben. Sie ist kein denkendes Organ."
+      ],
+      "explanation": "Im Zellkern liegt ein großer Teil der Erbinformation. Das sind wichtige Anleitungen für Aufbau und Arbeit.",
+      "options": [
+        "Einen großen Teil der Erbinformation",
+        "Ein kleines Gehirn",
+        "Eine Batterie"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.koenner.01.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Im Tierzellmodell zeigt A auf die äußere Begrenzung der ganzen Zelle. Welcher Teil passt?",
+      "answer": "Zellmembran",
+      "hint": "Die typische Tierzelle hat keine Zellwand.",
+      "furtherHints": [
+        "Die Kernhülle liegt im Inneren um den Zellkern. A zeigt auf eine andere Grenze."
+      ],
+      "explanation": "Die Zellmembran begrenzt die ganze Tierzelle. Die Kernhülle begrenzt nur ihren Zellkern.",
+      "options": ["Zellmembran", "Zellwand", "Kernhülle"],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.koenner.02.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Das Pflanzenzellmodell zeigt A neben der großen Vakuole. Was passt zu diesem Zellkern?",
+      "answer": "Er kann am Rand des Zellinneren liegen.",
+      "hint": "Die große Vakuole nimmt viel Platz ein.",
+      "furtherHints": [
+        "Vergleiche die Größe des runden Bereichs mit dem großen hellen Raum."
+      ],
+      "explanation": "Zellkerne sitzen nicht immer genau in der Mitte. Im Pflanzenmodell liegt der Zellkern neben der großen Vakuole.",
+      "options": [
+        "Er kann am Rand des Zellinneren liegen.",
+        "Er muss genau in der Mitte liegen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.koenner.03.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Welche Zuordnung zu Kernhülle und Zellmembran ist richtig?",
+      "answer": "Kernhülle: Zellkern · Zellmembran: ganze Zelle",
+      "hint": "Unterscheide den kleinen Innenbereich und die ganze Zelle.",
+      "furtherHints": [
+        "Die Namen der Grenzen verraten, welchen Bereich sie jeweils abgrenzen."
+      ],
+      "explanation": "Die Kernhülle grenzt den Zellkern ab. Die Zellmembran begrenzt die ganze Zelle.",
+      "options": [
+        "Kernhülle: ganze Zelle · Zellmembran: Zellkern",
+        "Kernhülle: Zellkern · Zellmembran: ganze Zelle"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.koenner.04.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "A zeigt in der gefärbten Wangenzelle auf einen ovalen Bereich. Welche Verbindung von Teil und Aufgabe passt?",
+      "answer": "Zellkern: enthält wichtige Erbinformation",
+      "hint": "Menschen haben Tierzellen. Der markierte Teil liegt im Zellinneren.",
+      "furtherHints": [
+        "Der dunkle ovale Bereich enthält Informationen, die die Arbeit der Zelle beeinflussen."
+      ],
+      "explanation": "A markiert einen Zellkern. Dort liegt ein großer Teil der Erbinformation. Wangenzellen haben keine Chloroplasten oder Zellwand.",
+      "options": [
+        "Chloroplast: enthält Blattgrün",
+        "Zellwand: gibt eine feste äußere Form",
+        "Zellkern: enthält wichtige Erbinformation"
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.koenner.05.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Im Modell sind Grenzen scharf gezeichnet. In der Aufnahme wirken sie unscharf. Welche Erklärung passt?",
+      "answer": "Das Modell vereinfacht; die Aufnahme zeigt nur erkennbare Einzelheiten.",
+      "hint": "Eine Zeichnung wird gestaltet; eine Aufnahme hat Grenzen beim Erkennen.",
+      "furtherHints": [
+        "Überlege, ob klare gezeichnete Linien eine Messung an jeder echten Zelle sind."
+      ],
+      "explanation": "Ein Modell vereinfacht Formen und macht Teile gut erkennbar. Die Aufnahme zeigt eine echte Probe, aber nicht jede Einzelheit sicher.",
+      "options": [
+        "Das Modell beweist, dass jede Zelle genau so aussieht.",
+        "Das Modell vereinfacht; die Aufnahme zeigt nur erkennbare Einzelheiten."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.koenner.06.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "koenner",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Ein Vergleich nennt den Zellkern eine Anleitungsbibliothek. Wofür stehen die Anleitungen?",
+      "answer": "Für Erbinformation, die Aufbau und Arbeit beeinflusst.",
+      "hint": "Die Bibliothek ist nur ein Vergleich.",
+      "furtherHints": [
+        "Suche die Antwort, die den Vergleich erklärt, ohne echte Bücher oder denkende Menschen in der Zelle anzunehmen."
+      ],
+      "explanation": "Die Anleitungen stehen für Erbinformation. Im Zellkern stehen keine Bücher, und er denkt nicht wie ein Chef.",
+      "options": [
+        "Für Erbinformation, die Aufbau und Arbeit beeinflusst.",
+        "Für Bücher, die winzige Menschen lesen.",
+        "Für Befehle eines denkenden Zellchefs."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.streber.01.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Ein Zellmodell markiert den Zellkern. Was kann es über echte Zellen zeigen?",
+      "answer": "Eine typische Anordnung, aber keine Regel für jede Zelle.",
+      "hint": "Ein Modell ist eine vereinfachte Darstellung.",
+      "furtherHints": [
+        "Das Wort typisch bedeutet: ein häufiges Beispiel, keine Aussage über alle Zellen."
+      ],
+      "explanation": "Das Modell zeigt eine typische Zelle. Daraus folgt weder eine feste Form noch, dass jede Zelle einen Zellkern besitzt.",
+      "options": [
+        "Dass jede Zelle genau diese Form und einen Zellkern hat.",
+        "Eine typische Anordnung, aber keine Regel für jede Zelle."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.streber.02.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "In diesem Pflanzenzellmodell liegt der Zellkern neben der Vakuole. Ein Kind sagt: „Das muss falsch sein: Zellkerne sitzen immer mittig.“ Was passt?",
+      "answer": "Die große Vakuole kann den Zellkern zur Seite drängen.",
+      "hint": "Beachte, wie viel Raum die Vakuole braucht.",
+      "furtherHints": [
+        "Wenn ein großer Teil viel Platz braucht, können andere Teile daneben liegen."
+      ],
+      "explanation": "Die große Vakuole beansprucht viel Raum. Der Zellkern kann deshalb seitlich liegen. Eine feste Mittellage ist keine allgemeine Regel.",
+      "options": [
+        "Die große Vakuole kann den Zellkern zur Seite drängen.",
+        "Jeder Zellkern muss genau im Mittelpunkt liegen."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.streber.03.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Im Detailmodell stehen geschwungene Linien für Erbinformation. Was lässt sich daraus sicher sagen?",
+      "answer": "Die Linien sind Modellzeichen und zeigen keine echte Mikroskopaufnahme.",
+      "hint": "Die Detailansicht wurde gezeichnet. Sie ist kein stärker vergrößertes Foto.",
+      "furtherHints": [
+        "Unterscheide ein gezeichnetes Zeichen von einer Beobachtung an einer Probe."
+      ],
+      "explanation": "Die Linien sind eine vereinfachte Modellidee für Erbinformation. Die gebündelte Lichtmikroskopaufnahme zeigt keine DNA-Struktur.",
+      "options": [
+        "DNA ist im Lichtmikroskop immer als großes X sichtbar.",
+        "Die Linien sind Modellzeichen und zeigen keine echte Mikroskopaufnahme."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.streber.04.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Bei einer anderen Aufnahme ist kein Zellkern sicher erkennbar. Kannst du daraus schließen, dass die Zelle keinen besitzt?",
+      "answer": "Nein; Färbung und Aufnahme können das Erkennen begrenzen.",
+      "hint": "Unterscheide nicht erkannt und nicht vorhanden.",
+      "furtherHints": [
+        "Eine unscharfe oder anders gefärbte Probe kann Teile schwer erkennbar machen."
+      ],
+      "explanation": "Wenn etwas nicht erkennbar ist, beweist das nicht sein Fehlen. Präparat, Färbung und Aufnahme können die Sichtbarkeit begrenzen.",
+      "options": [
+        "Nein; Färbung und Aufnahme können das Erkennen begrenzen.",
+        "Ja; unsichtbar bedeutet immer nicht vorhanden."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.streber.05.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Du vergrößerst die Bilddatei der Wangenzellen auf dem Bildschirm. Was passiert?",
+      "answer": "Vorhandene Bildpunkte werden größer; neue Einzelheiten entstehen nicht.",
+      "hint": "Das Foto wurde bereits aufgenommen.",
+      "furtherHints": [
+        "Ein Computer verändert die Darstellung der vorhandenen Datei, nicht die ursprüngliche Aufnahme."
+      ],
+      "explanation": "Die Großansicht vergrößert nur die vorhandene Datei. Sie erhöht nicht die Auflösung des Mikroskops und zeigt keine neuen DNA-Einzelheiten.",
+      "options": [
+        "Das Lichtmikroskop nimmt automatisch feinere Einzelheiten auf.",
+        "Vorhandene Bildpunkte werden größer; neue Einzelheiten entstehen nicht."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    },
+    {
+      "id": "by.nature.5.nucleus.streber.06.v1",
+      "subject": "nature",
+      "topicId": "nature-nucleus",
+      "difficulty": "streber",
+      "competencyId": "by.nature.5.cells",
+      "prompt": "Ein Kind sagt: „Der Zellkern ist ein denkender Chef, der alles alleine erledigt.“ Welche Erklärung passt?",
+      "answer": "Erbinformation ist wichtig; viele Zellbestandteile arbeiten zusammen.",
+      "hint": "Eine Steuerzentrale ist nur ein Vergleich mit Grenzen.",
+      "furtherHints": [
+        "Prüfe, ob die Erklärung einen Vergleich wörtlich nimmt oder Zusammenarbeit beschreibt."
+      ],
+      "explanation": "Der Zellkern enthält wichtige Erbinformation, denkt aber nicht. Viele Zellbestandteile wirken bei Aufbau und Arbeit zusammen.",
+      "options": [
+        "Erbinformation ist wichtig; viele Zellbestandteile arbeiten zusammen.",
+        "Der Zellkern hat ein kleines Gehirn und denkt für die Zelle."
+      ],
+      "answerKind": "choice",
+      "unit": null,
+      "legacy": false
+    }
+  ]
+}

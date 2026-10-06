@@ -322,6 +322,7 @@ pub fn catalog() -> Result<&'static Catalog, String> {
                 include_str!("../content/curriculum-v1.json"),
                 include_str!("../content/english-5-v1.json"),
                 include_str!("../content/nature-5-v1.json"),
+                include_str!("../content/nature-nucleus-5-v1.json"),
                 include_str!("../content/number-line-5-v1.json"),
                 include_str!("../content/geography-solar-5-v1.json"),
                 include_str!("../content/geography-earth-5-v1.json"),
@@ -647,7 +648,17 @@ mod tests {
         );
         for topic in &content.topics {
             assert!(!topic.lesson.is_empty());
-            assert!(!topic.activities.is_empty());
+            if topic.id == "nature-nucleus" {
+                assert!(!content
+                    .topics
+                    .iter()
+                    .find(|t| t.id == "nature-cells")
+                    .unwrap()
+                    .activities
+                    .is_empty());
+            } else {
+                assert!(!topic.activities.is_empty());
+            }
             if topic.subject == Subject::English {
                 assert!(topic.language_sequence.is_some());
             } else {
@@ -850,9 +861,14 @@ mod tests {
         assert!(topics.len() >= 10);
         for topic in topics {
             assert!(topic.source.ends_with("/nt_gym"));
-            assert!(topic.curriculum_version.contains("25.09.2026"));
             assert!(topic.language_sequence.is_none());
-            assert!(!topic.activities.is_empty());
+            if topic.id == "nature-nucleus" {
+                assert!(topic.curriculum_version.contains("06.10.2026"));
+                assert!(topic.curriculum_ref.contains("NT5 2.2"));
+            } else {
+                assert!(topic.curriculum_version.contains("25.09.2026"));
+                assert!(!topic.activities.is_empty());
+            }
             for difficulty in [
                 Difficulty::Vorschule,
                 Difficulty::Koenner,
@@ -889,3 +905,6 @@ mod solar_system_tests;
 
 #[cfg(test)]
 mod earth_tests;
+
+#[cfg(test)]
+mod cell_tests;
