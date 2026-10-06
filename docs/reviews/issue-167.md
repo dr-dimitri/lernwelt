@@ -47,7 +47,6 @@ Der Browserharness nutzt eine isolierte Test-IPC-Brücke gegen das echte `src/ma
 
 Root koordiniert nach Issue #166 das Rebase auf aktuelles main, die additive Inhaltszählung und gemeinsame Command-Integration (Erdkern und Zellkern verwenden denselben Lesebefehl), Version/Releasehinweise, vollständige Abschlusschecks und nativen Smoke am Integrationsstand. Nach relevanten Änderungen diesen Review aktualisieren. PR, grüner CI-Abschluss, Merge, tatsächlich veröffentlichtes Release beider Plattformen und Branchbereinigung bleiben nach Projektworkflow erforderlich.
 
-
 ## Integrationsnachweis auf main 0.6.17
 
 Agent `/root/integrate_cells` hat den Reviewdraft in einem separaten Commit erhalten und den Zellkern-Branch auf `d05a449807dc2c3ca4bdc067ad0c1a3eaa419073` (main, Version 0.6.17) rebasiert. Dies ist ein Integrations-/Selbstprüfnachweis, keine zusätzliche unabhängige Freigabe.
@@ -60,7 +59,6 @@ Am 06.10.2026 in diesem integrierten Arbeitsbaum ausgeführt: `npm run check` vo
 
 Zu diesem Zwischenstand standen das nachfolgende Rebase auf Issue #166/main 0.6.18, die Versionsanpassung auf 0.6.19 und der unabhängige Review-/Abschlussnachweis noch aus.
 
-
 ## Zweite Integration auf main 0.6.18
 
 Agent `/root/integrate_cells` hat den gesamten Zellkern-Branch einschließlich des vorhandenen unabhängigen Reviewdrafts auf `8c46b062eb1fb6e965669418ece06c6ced9696f9` (main nach Issue #166, Version 0.6.18) rebasiert. Auch dieser Abschnitt dokumentiert Integration und Selbstprüfung; die unabhängige Freigabe des Integrationsdeltas folgt gesondert.
@@ -72,3 +70,29 @@ Der Generator lädt Erdkern, English Club und Zellkern. Ergänzende `.club.`- un
 Am 06.10.2026 ausgeführt und grün: `npm run typecheck`; gezielter Vitestlauf über App, LearningPanel, StudyBrowser, EarthWorld, CellWorld, EnglishClub, VocabularyPanel, Cell-Domain und Desktop-Brücke mit **138 Tests in neun Dateien**; beide Generator-Neuaufbautests; `npm run format:check`; Cargo fmt; Clippy für alle Targets mit `-D warnings`; vollständiger `cargo test --manifest-path src-tauri/Cargo.toml --locked` mit **194 Rusttests**, einschließlich Migration 019, Wiederöffnung, Vokabel-Salat und Zell-/Erdkern-Persistenzfälle. Rustlog: `/private/tmp/lernwelt-167-integration-018-rust.log`. Keine native App gestartet, keine Versionsanpassung oder externe Veröffentlichung vorgenommen.
 
 Root führt die Versionsanpassung auf 0.6.19, vollständige finale Prüfungen, nativen Smoke, PR/CI/Merge/Release und Branchbereinigung aus. Der unabhängige Reviewer prüft dieses Integrationsdelta und aktualisiert anschließend seinen Nachweis.
+
+## Unabhängige Nachprüfung des finalen Integrationsdeltas
+
+Agent `/root/english` hat am 06.10.2026 den vollständigen Diff `8c46b062eb1fb6e965669418ece06c6ced9696f9` → `c971804606a384b5f419978d5d8d950ff2f7e98c`, die Änderungen der beiden Rebases mit `git range-diff` und anschließend den von Root vorbereiteten Versionsdelta auf 0.6.19 unabhängig geprüft. Der Reviewer hat keine Implementierungsdateien geändert. **Keine offenen blockierenden Befunde im Code-/Inhalts-/Versionsdelta.** Der ursprüngliche unabhängige Inhalts-, Bildrechte-, UI- und Persistenzreview bleibt Bestandteil dieses Nachweises.
+
+Die Zusammenführung ist additiv: Alle Erdkern-, Club- und Zellkernansichten/-tests/-Katalogeinträge sind vorhanden. Die Erdkern-/Clubpakete, ursprünglichen Naturfragen und komplette historische Focus-Bank sind gegenüber main bytegleich; der Schema-19-Vokabelpfad einschließlich Migration 019 ist unverändert. `get_learning_explanation` existiert genau einmal und übernimmt unverändert die strengere ASCII-ID-Validierung des aktuellen main. Handler, Build-Manifest, Capability, Desktop-Client und normale antwortfreie Aufgabenprojektion sind unverändert; Zellkern ergänzt nur seine eigenen Prüfungen und Daten.
+
+Die gesamte sichtbare Inhaltsbank wurde unabhängig nachgerechnet: **3.771 eindeutige Aufgaben und genau eine Katalogzuordnung je ID**, davon 1.767 Mathematik, 1.404 Englisch, 558 Natur und Technik, 42 Geographie; 89 Einheiten in 18 Lernbereichen. Je Stufe bleiben 21 Zellfragen erreichbar. Die Dokumentationsmatrix und der Rust-Helpcount stimmen damit überein. Der Generator lädt alle dedizierten Pakete; beide Ausnahmen `.club.` und `.nucleus.` verhindern den Ersatz bestehender Focus-Aufgaben. Die erweiterten Tests prüfen zusätzlich bytegleiche Club-/Erdkerndateien, unveränderte Zuordnungen und die gesamte alte Focus-Bank auch bei gleichzeitig verdoppelten Club-/Nucleus-Ergänzungen.
+
+Unabhängig erneut ausgeführt:
+
+- `node --test scripts/build-topic-practice.test.mjs`: **zwei kombinierte Generatorregressionen grün**.
+- Gezielter Vitestlauf über CellWorld, Cell-Domain und Desktop-Brücke: **38 Tests grün**, einschließlich beider Brückentestfälle für Salat und read-only Aufdecken.
+- `cargo test --manifest-path src-tauri/Cargo.toml cell`: **drei Tests grün**; `cargo test --manifest-path src-tauri/Cargo.toml every_visible`: **zwei Tests grün** für alle Hilfen und eindeutige Katalogzuordnung.
+- `/private/tmp/lernwelt-layout-167.mjs` am integrierten App-/CSS-Stand erneut: **419 Zustände**, Dokument maximal **2400 × 1300**, alle gemessenen Dialoge ohne eigenen Overflow. Kleine Ansicht und 150-%-Schrift behalten unverändert den lesbaren vertikalen Fallback (900/1871 bzw. 2400/1687 Pixel).
+- Versionsdelta vollständig gelesen: In allen fünf Versionsdateien sind ausschließlich die App-Versionen von 0.6.18 auf **0.6.19** geändert, ohne Abhängigkeitsänderung; alle sechs Versionsprojektionen stimmen überein. Releasehinweise beschreiben den tatsächlichen Umfang. `RELEASE_BASE_SHA=8c46b062eb1fb6e965669418ece06c6ced9696f9 node scripts/check-release-version.mjs`: **Exit 0**. `git diff --check`: grün.
+
+Roots vollständiges Abschlusslog `/private/tmp/lernwelt-167-check-final.log` wurde zusätzlich gelesen: Formatierung, **476 Frontendtests**, **130 Skripttests**, TypeScript/Vite, Rustfmt, Clippy und **194 Rusttests** sind darin erfolgreich dokumentiert. Diese Ausführung wird Root zugerechnet, nicht als weiterer eigener Volltest des Reviewers ausgegeben.
+
+Die **native Start-/Bedienprüfung am finalen 0.6.19-Stand steht weiterhin aus**, weil der Mac gesperrt ist. Der Browserharness ist kein Ersatz dafür. Der Code-/Integrationsreview ist ohne offene Befunde; eine vollständige Mergefreigabe nach Projektworkflow setzt weiterhin den tatsächlichen nativen Nachweis und grüne erforderliche CI-Checks voraus. PR soll bis zur Nachprüfung Draft bleiben. Veröffentlichung beider Plattformen und Branchbereinigung folgen nach nachgewiesenem Merge; kein Releaseerfolg wird hier behauptet.
+
+## Abschlussbuild durch den koordinierenden Agenten
+
+Am finalen Versionsstand **0.6.19** bestand `npm run check:all` vollständig: 49 Frontenddateien mit 476 Tests, 130 Skript-/macOS-Pakettests, TypeScript/Vite, Cargo fmt, Clippy mit `-D warnings` und 194 Rusttests. Log: `/private/tmp/lernwelt-167-check-final.log`. Der anschließende native Build `npm run desktop:build -- --debug --bundles app --config '{"bundle":{"createUpdaterArtifacts":false}}'` endete ebenfalls mit Exit 0; das lokal gebündelte Bild und die ad-hoc signierte App liegen unter `src-tauri/target/debug/bundle/macos/Lernwelt.app`. Log: `/private/tmp/lernwelt-167-native-final.log`. Private Updater-Schlüssel werden lokal nicht benötigt; dies ist kein veröffentlichtes Release.
+
+Computer Use meldet den gesperrten Mac. Root hat den Nutzer um manuelles Entsperren gebeten und keinen nativen Start-/Bedienerfolg behauptet. Die vorbereitete App und der Draft-PR sind konkret prüfbar; vor vollständiger Mergefreigabe bleibt der native Smoke erforderlich.

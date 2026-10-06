@@ -120,3 +120,7 @@ Nach Rebase auf main `d05a449` (0.6.17) am 06.10.2026 bestanden `npm run check` 
 ### Integration mit English Club und Schema 19
 
 Das zweite Rebase auf main `8c46b06` (0.6.18) erhält Erdkern, English Club, den gemeinsamen Lesebefehl und den Schema-19-Vokabelpfad unverändert. Alle Zellkernfragen ergänzen den Bestand; insgesamt sind jetzt 3.771 sichtbare Fachaufgaben verfügbar. Generatorregressionen prüfen die gesamte unveränderte Focus-Bank und sämtliche Erdkern-/Club-Zuordnungen, auch wenn zusätzliche Club- und Zellkernfragen zusammen vorhanden sind. Am 06.10.2026 bestanden TypeScript, 138 betroffene Frontendtests, beide Generatorprüfungen, Formatierung, Cargo fmt/Clippy sowie alle 194 Rusttests. Finale Version, vollständiger Abschlusscheck und nativer Start werden am anschließenden 0.6.19-Stand geprüft.
+
+### Finaler Integrationsstand 0.6.19
+
+Erdkern und English Club sind am aktuellen main integriert; deren Inhalte, Vokabelmigration 019 und gemeinsamer read-only Command bleiben erhalten. Der vollständige finale Lauf mit 476 Frontend-, 130 Skript- und 194 Rusttests sowie der native Debug-App-Build bestanden. Die unabhängige Integrationsnachprüfung und die noch ausstehende native Startprüfung sind in [Review #167](reviews/issue-167.md) getrennt dokumentiert. Der gesperrte Mac verhindert derzeit nur den nativen Bedien-Smoke; Browser-/Buildnachweise werden nicht als dieser Smoke ausgegeben.
