@@ -469,7 +469,7 @@ def build():
  catalog_path=ROOT/'src-tauri/content/study-catalog-v1.json'
  study=json.loads(catalog_path.read_text())
  originals=[]
- for name in ['curriculum-v1.json','english-5-v1.json','nature-5-v1.json','number-line-5-v1.json','geography-solar-5-v1.json']:
+ for name in ['curriculum-v1.json','english-5-v1.json','nature-5-v1.json','number-line-5-v1.json','geography-solar-5-v1.json','geography-earth-5-v1.json']:
   originals+=json.loads((ROOT/'src-tauri/content'/name).read_text())['exercises']
  originals+=json.loads((ROOT/'src-tauri/content/english-club-v1.json').read_text())
  # Rebuilding uses the original navigation assignments and adds the same finite v1 bank.
