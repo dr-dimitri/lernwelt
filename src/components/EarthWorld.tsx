@@ -16,7 +16,6 @@ import { desktop } from '../lib/desktop';
 import EarthModel from './EarthModel';
 import EarthPhoto from './EarthPhoto';
 import EarthCoreComparison from './EarthCoreComparison';
-import InfoPanel from './InfoPanel';
 import LearningHints from './LearningHints';
 import ProfilePanel from './ProfilePanel';
 import useConfirmChange from './useConfirmChange';
@@ -518,72 +517,6 @@ export default function EarthWorld({
                   Bereit für ein Erdschichten-Rätsel?
                 </button>
               </article>
-              <InfoPanel paginate>
-                <summary>Baue deine Schicht-Erde</summary>
-                <ol>
-                  <li>
-                    Zeichne vier Kreise ineinander oder schneide vier
-                    Papierkreise aus.
-                  </li>
-                  <li>
-                    Beschrifte die Schichten von außen nach innen. Schau bei
-                    Bedarf im Modell nach.
-                  </li>
-                  <li>
-                    Markiere den flüssigen äußeren und den festen inneren Kern
-                    mit verschiedenen Zeichen.
-                  </li>
-                  <li>
-                    Erkläre jemandem, warum der innere Kern trotz großer Hitze
-                    fest ist.
-                  </li>
-                </ol>
-                <p>
-                  Selbstkontrolle: Liegt die Kruste außen? Liegt der innere Kern
-                  in der Mitte? Erkläre Druck als starkes Zusammendrücken. Hier
-                  gibt es keine automatischen Lernpunkte.
-                </p>
-              </InfoPanel>
-              <InfoPanel paginate>
-                <summary>Modellgrenzen und Quellen</summary>
-                <p>
-                  {earthModelNote} Das Innere ist eine Illustration, kein Foto.
-                  Der Mantel ist überwiegend fest und kann sich über sehr lange
-                  Zeit langsam verformen.
-                </p>
-                <p>
-                  Schalenbau:{' '}
-                  <a
-                    href="https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/geographie"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    LehrplanPLUS Geo5, Planet Erde
-                  </a>
-                  . Geprüft 06.10.2026. Begrenztes Übungsangebot, keine
-                  vollständige Lehrplanabdeckung.
-                </p>
-                <p>
-                  Fachquellen:{' '}
-                  <a
-                    href="https://www.usgs.gov/faqs/are-tectonic-plates-floating-magma"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    USGS: fester Mantel
-                  </a>{' '}
-                  ·{' '}
-                  <a
-                    href="https://www.nps.gov/subjects/geology/plate-tectonics-inner-earth-model.htm"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    NPS: Erdinneres und Druck
-                  </a>
-                  . Eigene Lernwelt-Illustrationen; keine übernommenen
-                  NPS-Diagramme.
-                </p>
-              </InfoPanel>
             </div>
           </div>
         </>

@@ -12,13 +12,7 @@
       "description": "Erkunde vier Erdschichten und prüfe dein Wissen. Ein begrenztes Lernmodul, keine vollständige Lehrplanabdeckung und keine amtliche Freigabe.",
       "lesson": "Die Erde hat Schichten. Von außen nach innen: Erdkruste, Erdmantel, äußerer Erdkern, innerer Erdkern. Die Kruste ist sehr dünn. Der Mantel besteht überwiegend aus festem Gestein. Über sehr lange Zeit verformt es sich langsam; der Mantel ist kein Lavaozean. Der Kern besteht überwiegend aus Metall. Der äußere Kern ist flüssig, der innere fest. Sehr hoher Druck hält den inneren Kern trotz großer Hitze fest. Druck bedeutet starkes Zusammendrücken. Unser Schnitt ist ein vereinfachtes Modell, kein Foto vom Erdinneren. Die Kruste ist vergrößert und die Farben helfen beim Unterscheiden. Die Schichten sind keine hohlen Räume. Die Sondenreise ist ausgedacht. Innerer und äußerer Kern sowie die Druckerklärung vertiefen den Schalenbau. Quellen: https://www.usgs.gov/faqs/are-tectonic-plates-floating-magma und https://www.nps.gov/subjects/geology/plate-tectonics-inner-earth-model.htm; Lehrplan: https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/geographie; geprüft am 06.10.2026.",
       "tables": [],
-      "activities": [
-        {
-          "title": "Baue deine Schicht-Erde",
-          "prompt": "1. Zeichne vier Kreise ineinander oder lege Papierkreise übereinander.\n2. Beschrifte von außen nach innen: Kruste, Mantel, äußerer Kern, innerer Kern.\n3. Erkläre jemandem, warum der innere Kern trotz Hitze fest ist. Du kannst auch nur mit den Fingern auf das Modell zeigen.",
-          "check": "Sind die vier Schichten richtig geordnet? Außenkern: flüssig. Innenkern: fest durch hohen Druck, also starkes Zusammendrücken. Dein Modell hat vereinfachte Dicken und Farben. Diese freiwillige Mitmachidee wird nicht automatisch geprüft und gibt keine Punkte."
-        }
-      ],
+      "activities": [],
       "languageSequence": null
     }
   ],

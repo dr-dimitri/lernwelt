@@ -656,6 +656,8 @@ mod tests {
                     .unwrap()
                     .activities
                     .is_empty());
+            } else if topic.id == "geography-earth-layers" {
+                assert!(topic.activities.is_empty());
             } else {
                 assert!(!topic.activities.is_empty());
             }
