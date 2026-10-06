@@ -1,0 +1,650 @@
+[
+  {
+    "id": "by.english.5.club.pronouns.vorschule.01.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Robin spricht über sich selbst: „___ am in the English Club.“ Welches Wort passt?",
+    "answer": "I",
+    "hint": "Wer über sich selbst spricht, sagt auf Deutsch „ich“.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "I bedeutet ich. Robin spricht selbst. Deshalb: I am in the English Club.",
+    "options": ["I", "you", "they"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.vorschule.02.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Juno spricht eine Person direkt an: „___ are my friend.“ Welches Wort passt?",
+    "answer": "you",
+    "hint": "Die Person hört Juno direkt zu. Juno spricht sie an.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "You kann du oder ihr bedeuten. Hier spricht Juno eine Person an.",
+    "options": ["he", "you", "we"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.vorschule.03.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Robin verwendet he/him. Ersetze Robin: „Robin draws a club card.“ Schreibe nur das Personalpronomen.",
+    "answer": "he",
+    "hint": "Gesucht ist das kurze Wort für Robin als handelnde Person.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "He draws a club card. He ist hier die Subjektform: Wer zeichnet? Robin.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.vorschule.04.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Juno verwendet she/her. Welches Wort ersetzt Juno in „Juno reads a book“?",
+    "answer": "she",
+    "hint": "Juno ist die Person, die liest. Die verwendeten Pronomen stehen in der Frage.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "She reads a book. She ersetzt hier Juno.",
+    "options": ["it", "she", "they"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.vorschule.05.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Pip ist unser erfundenes Roboter-Maskottchen. Für Pip verwenden wir it. „___ is our mascot.“ Welches Wort passt?",
+    "answer": "it",
+    "hint": "Pip wird im Text mit einem eigenen kurzen Wort bezeichnet.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "It is our mascot. Hier verwenden wir it für das erfundene Maskottchen Pip.",
+    "options": ["we", "it", "I"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.vorschule.06.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Du erzählst über zwei Clubmitglieder. Du gehörst nicht zu dieser Gruppe. „___ draw a poster.“ Welches Wort passt?",
+    "answer": "they",
+    "hint": "Du sprichst über mehrere andere Personen, nicht über dich.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "They draw a poster. They bedeutet sie (Mehrzahl). We würde dich einschließen.",
+    "options": ["we", "he", "they"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.vorschule.01.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Robin stellt sich vor: „I ___ Robin.“ Welche Form von be passt in die Lücke?",
+    "answer": "am",
+    "hint": "Die Form von be passt zum Wort I.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "I am Robin. Bei I steht am.",
+    "options": ["am", "is", "are"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.vorschule.02.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Juno verwendet she/her. „She ___ in the club.“ Schreibe nur die fehlende Form von be.",
+    "answer": "is",
+    "hint": "She spricht über eine einzelne Person.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "She is in the club. Bei she steht is.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.vorschule.03.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Robin sagt zu dir: „You ___ ready.“ Welches Wort fehlt?",
+    "answer": "are",
+    "hint": "Bei you ist die Form gleich, ob eine oder mehrere Personen angesprochen werden.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "You are ready. Bei you steht are.",
+    "options": ["is", "are", "am"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.vorschule.04.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Pip ist unser Roboter-Maskottchen. Für Pip verwenden wir it. „It ___ small.“ Welches Wort fehlt?",
+    "answer": "is",
+    "hint": "It beschreibt hier ein einzelnes Maskottchen.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "It is small. Bei it steht is.",
+    "options": ["am", "are", "is"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.vorschule.05.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Robin und Juno sprechen zusammen: „We ___ a team.“ Schreibe nur die Form von be.",
+    "answer": "are",
+    "hint": "We heißt wir. Mehrere Personen sprechen gemeinsam.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "We are a team. Bei we steht are.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.vorschule.06.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "vorschule",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Minidialog: „Where are the two club members?“ – „They ___ at school.“ Welches Wort fehlt in der Antwort?",
+    "answer": "are",
+    "hint": "They heißt hier sie: mehrere andere Personen.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "They are at school. Bei they steht are.",
+    "options": ["is", "am", "are"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.koenner.01.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Du und Juno macht ein Clubplakat. Ersetze „Juno and I“: „___ make a poster.“ Schreibe nur das Personalpronomen.",
+    "answer": "we",
+    "hint": "Die Gruppe enthält auch die Person, die spricht.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "We make a poster. Juno and I schließt die sprechende Person ein: wir.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.koenner.02.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Robin spricht drei Clubmitglieder direkt an: „___ are welcome!“ Welches Wort passt?",
+    "answer": "you",
+    "hint": "Im Englischen kann dasselbe Wort du und ihr bedeuten.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "You are welcome! You bedeutet hier ihr, weil Robin mehrere Personen anspricht.",
+    "options": ["they", "you", "we"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.koenner.03.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Du bittest Juno: „Please give ___ the pen.“ Der Stift soll zu dir kommen. Schreibe nur die Objektform.",
+    "answer": "me",
+    "hint": "Frage: Wem soll Juno den Stift geben? Nicht gesucht ist „Wer gibt?“.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "Please give me the pen. Me ist die Objektform von I: mir/mich.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.koenner.04.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Robin verwendet he/him. Juno ruft Robin: „I can see ___.“ Welches Wort ersetzt Robin?",
+    "answer": "him",
+    "hint": "Robin ist hier die Person, die gesehen wird. Gesucht ist die Objektform.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "I can see him. He steht als Subjekt, him als Objekt: Wen sehe ich?",
+    "options": ["he", "him", "his"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.koenner.05.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Juno verwendet she/her. Du schenkst Juno eine Karte: „This card is for ___.“ Schreibe nur die Objektform.",
+    "answer": "her",
+    "hint": "Nach for wird hier eine Objektform gebraucht.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "This card is for her. She handelt als Subjekt; her steht hier für die Empfängerin.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.koenner.06.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Robin und Juno besuchen den Club. Pip berichtet über beide: „___ are here.“ Pip gehört nicht zu dieser Gruppe. Welches Wort passt?",
+    "answer": "they",
+    "hint": "Pip spricht über zwei andere Clubmitglieder.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "They are here. They ersetzt Robin and Juno, wenn die sprechende Figur nicht dazugehört.",
+    "options": ["we", "they", "it"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.koenner.01.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Pip ist ein Roboter, kein Vogel: „It ___ a bird.“ Schreibe die beiden fehlenden Wörter als Langform.",
+    "answer": "is not",
+    "hint": "Die Aussage soll verneint werden. Setze not hinter die passende Form von be.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "It is not a bird. Is not ist die Langform; isn’t wäre die Kurzform, die hier nicht gefragt ist.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.koenner.02.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Juno und Robin sind heute nicht im Club: „They ___ in the club today.“ Schreibe die Kurzform von are not.",
+    "answer": "aren't",
+    "hint": "Eine Kurzform zieht zwei Wörter zusammen. Ein Apostroph markiert ausgelassene Buchstaben.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "They aren’t in the club today. Are not wird zu aren’t.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.koenner.03.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Robin schreibt eine Sprechblase: „I am ready.“ Schreibe nur die Kurzform von I am.",
+    "answer": "I'm",
+    "hint": "I und am werden zu einem Wort zusammengezogen.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "I’m ready. I am wird zu I’m. Das I bleibt beim normalen Schreiben groß.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.koenner.04.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Du fragst Juno: „___ you in the English Club?“ Schreibe nur das fehlende Wort.",
+    "answer": "Are",
+    "hint": "In einer Frage mit be steht die Form von be vor der Person.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "Are you in the English Club? Bei you steht are; in der Frage rückt es nach vorn.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.koenner.05.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Minidialog: „Are you ready?“ Du antwortest mit Ja. Welche positive Kurzantwort ist richtig?",
+    "answer": "Yes, I am.",
+    "hint": "Bei einer positiven Kurzantwort wird am nicht mit I zusammengezogen.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "Yes, I am. ist die richtige Kurzantwort. Yes, I’m. ist keine vollständige positive Kurzantwort.",
+    "options": ["Yes, I am.", "Yes, I'm.", "Yes, I is."],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.koenner.06.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "koenner",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Minidialog: „Is Pip a bird?“ Pip ist ein Roboter. Welche Antwort verneint die Frage in Kurzform?",
+    "answer": "No, it isn't.",
+    "hint": "Antworte mit No. Die Form von be muss zu it passen.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "No, it isn’t. Das verneint die Frage. Die Langform lautet No, it is not.",
+    "options": ["No, it isn't.", "No, it aren't.", "No, it am not."],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.streber.01.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Ein Brief ist für dich und Juno. Du sagst: „This letter is for ___.“ Welches Wort ersetzt eure Gruppe? Schreibe nur die Objektform.",
+    "answer": "us",
+    "hint": "Du formulierst aus deiner eigenen Sicht. Du gehörst zur empfangenden Gruppe.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "This letter is for us. Aus deiner Sicht sind du und Juno „wir“. Nach for steht die Objektform us.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.streber.02.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Robin und Juno erhalten Clubkarten. Du sagst: „The cards are for ___.“ Du gehörst nicht zu dieser Gruppe. Schreibe nur die Objektform.",
+    "answer": "them",
+    "hint": "Frage: Für wen sind die Karten? Es sind mehrere andere Personen.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "The cards are for them. They ist die Subjektform; them ist die Objektform für mehrere andere Personen.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.streber.03.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Juno spricht dich direkt an: „I can help ___.“ Welches Personalpronomen passt als Objekt?",
+    "answer": "you",
+    "hint": "Gesucht ist die direkt angesprochene Person. Bei diesem Wort sehen Subjekt- und Objektform gleich aus.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "I can help you. You ist hier ein Objekt. Es bleibt in beiden Formen gleich.",
+    "options": ["your", "you", "I"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.streber.04.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Pip zeigt auf ein Clubabzeichen. „I like ___.“ Welches Personalpronomen ersetzt das einzelne Abzeichen?",
+    "answer": "it",
+    "hint": "Gesucht ist eine einzelne Sache. Manche Objektformen sehen wie die Subjektform aus.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "I like it. It ersetzt hier eine einzelne Sache und ist in beiden Formen gleich.",
+    "options": ["him", "it", "they"],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.streber.05.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Fehlerdetektiv: „Me draw the club poster.“ Ersetze nur das falsche Wort am Satzanfang.",
+    "answer": "I",
+    "hint": "Wer zeichnet? Am Anfang steht die handelnde Person, also eine Subjektform.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "I draw the club poster. I ist Subjekt. Me wäre als Objekt passend, etwa Help me.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.pronouns.streber.06.v1",
+    "subject": "english",
+    "topicId": "english-family",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.pronouns",
+    "prompt": "Juno verwendet she/her. Fehlerdetektiv: „Her is in the club.“ Ersetze nur das falsche Wort.",
+    "answer": "She",
+    "hint": "Juno ist die handelnde Person, kein Objekt und keine Besitzerin vor einem Hauptwort.",
+    "furtherHints": [
+      "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
+    ],
+    "explanation": "She is in the club. She ist Subjekt. Her kann ein Objekt sein (I see her) oder ein Begleiter (her card).",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.streber.01.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Fehlerdetektiv: „You is late.“ Ersetze nur das falsche Wort.",
+    "answer": "are",
+    "hint": "You behält dieselbe Form von be für eine oder mehrere angesprochene Personen.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "You are late. Is passt zu he/she/it; bei you steht are.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.streber.02.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Robin verwendet he/him. Stelle die Frage zu „He is ready.“ Schreibe die vollständige Frage ohne zusätzliche Wörter.",
+    "answer": "Is he ready?",
+    "hint": "Bei einer Frage tauschen Subjekt und be ihre Plätze.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "Is he ready? Is steht in der Frage vor he.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.streber.03.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Minidialog: „Are Robin and Juno here?“ Beide sind hier. Welche Kurzantwort passt?",
+    "answer": "Yes, they are.",
+    "hint": "Die Frage handelt von zwei anderen Personen. Die Kurzantwort übernimmt die passende Form von be.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "Yes, they are. They ersetzt die beiden Namen. Eine positive Kurzantwort verwendet die unverkürzte Form are.",
+    "options": ["Yes, they are.", "Yes, they're.", "Yes, we is."],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.streber.04.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Minidialog: „Am I late?“ Du antwortest der fragenden Person: Nein. Schreibe die vollständige Kurzantwort mit aren’t.",
+    "answer": "No, you aren't.",
+    "hint": "Die andere Person sagt I über sich selbst. Du sprichst diese Person mit you an.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "No, you aren’t. Der Sprecherbezug wechselt von I in der Frage zu you in deiner Antwort.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.streber.05.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Fehlerdetektiv: „I isn’t a bird.“ Pip spricht hier über sich selbst. Schreibe den ganzen Satz in der Langform richtig.",
+    "answer": "I am not a bird.",
+    "hint": "Die Form von be richtet sich nach I, auch wenn ein Roboter spricht. Die Verneinung braucht not.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "I am not a bird. Bei I steht am. Die mögliche Kurzform wäre I’m not a bird; gefragt war hier die Langform.",
+    "options": [],
+    "answerKind": "text",
+    "unit": null,
+    "legacy": false
+  },
+  {
+    "id": "by.english.5.club.be.streber.06.v1",
+    "subject": "english",
+    "topicId": "english-hello",
+    "difficulty": "streber",
+    "competencyId": "by.english.5.club.be",
+    "prompt": "Juno verwendet she/her. „She is not tired.“ Welche Aussage hat dieselbe Bedeutung?",
+    "answer": "She isn't tired.",
+    "hint": "Is not kann auf zwei Arten verkürzt werden. Gesucht ist eine passende Verneinung.",
+    "furtherHints": [
+      "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
+    ],
+    "explanation": "She isn’t tired. bedeutet dasselbe wie She is not tired. Auch She’s not tired ist möglich.",
+    "options": ["She isn't tired.", "She aren't tired.", "She doesn't tired."],
+    "answerKind": "choice",
+    "unit": null,
+    "legacy": false
+  }
+]

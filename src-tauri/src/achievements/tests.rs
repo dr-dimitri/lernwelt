@@ -287,7 +287,9 @@ fn typing_counts_a_confirmed_first_solution_only_and_returns_the_updated_project
 #[test]
 fn vocabulary_counts_new_checked_reviews_including_due_repetition_but_not_reveal_wrong_or_retry() {
     let (_directory, mut connection) = setup();
-    let current = value(&vocabulary::get_state(&mut connection, "all").unwrap());
+    let current = value(
+        &vocabulary::get_state(&mut connection, "all", vocabulary::Selection::default()).unwrap(),
+    );
     let reveal = json!({"requestId":"vocab-reveal","cardId":current["card"]["card"]["id"],"deckId":"all","difficulty":"koenner","expectedReviews":0,"answer":null});
     let result = vocabulary::review(&mut connection, input(reveal)).unwrap();
     assert_eq!(tasks(&connection), 0);

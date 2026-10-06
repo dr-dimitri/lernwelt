@@ -123,8 +123,11 @@ fn finish_game(
 fn get_vocabulary_state(
     storage: State<'_, Storage>,
     deck_id: String,
+    selection: Option<vocabulary::Selection>,
 ) -> Result<vocabulary::VocabularyState, String> {
-    storage.with_connection(|connection| vocabulary::get_state(connection, &deck_id))
+    storage.with_connection(|connection| {
+        vocabulary::get_state(connection, &deck_id, selection.unwrap_or_default())
+    })
 }
 #[tauri::command]
 fn review_vocabulary(

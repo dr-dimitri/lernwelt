@@ -229,3 +229,19 @@ it.each([
     unsubscribe();
   },
 );
+
+it('sendet den begrenzten Salatmodus und vorübergehenden Ausschluss an die native Auswahl', async () => {
+  await desktop.getVocabularyState('school', {
+    mode: 'scramble',
+    excludeCardId: 'old-card',
+    previousCardId: 'last-card',
+  });
+  expect(invoke).toHaveBeenCalledWith('get_vocabulary_state', {
+    deckId: 'school',
+    selection: {
+      mode: 'scramble',
+      excludeCardId: 'old-card',
+      previousCardId: 'last-card',
+    },
+  });
+});

@@ -331,6 +331,10 @@ pub fn catalog() -> Result<&'static Catalog, String> {
             ))
             .map_err(|_| "Die zusätzlichen Übungen konnten nicht gelesen werden.".to_owned())?;
             content.exercises.extend(additional);
+            let club: Vec<Exercise> =
+                serde_json::from_str(include_str!("../content/english-club-v1.json"))
+                    .map_err(|_| "Die Clubübungen konnten nicht gelesen werden.".to_owned())?;
+            content.exercises.extend(club);
             content.validate()?;
             Ok(content)
         })
@@ -603,6 +607,18 @@ pub fn is_correct(exercise: &Exercise, answer: &str) -> bool {
         AnswerKind::Number => canonical_number(answer)
             .zip(canonical_number(&exercise.answer))
             .is_some_and(|(actual, expected)| actual == expected),
+        AnswerKind::Text if exercise.id.starts_with("by.english.5.club.") => {
+            let normalize = |value: &str| {
+                value
+                    .replace(['’', '‘'], "'")
+                    .split_whitespace()
+                    .collect::<Vec<_>>()
+                    .join(" ")
+                    .trim_end_matches(['.', '?', '!'])
+                    .to_ascii_lowercase()
+            };
+            normalize(answer) == normalize(&exercise.answer)
+        }
         AnswerKind::Text => answer.trim().eq_ignore_ascii_case(&exercise.answer),
         AnswerKind::Choice | AnswerKind::Order => answer.trim() == exercise.answer,
     }
@@ -690,7 +706,8 @@ mod tests {
                         .filter(|e| e.topic_id == topic.id
                             && e.difficulty == difficulty
                             && !e.legacy
-                            && !e.id.contains(".focus."))
+                            && !e.id.contains(".focus.")
+                            && !e.id.contains(".club."))
                         .count(),
                     3
                 );

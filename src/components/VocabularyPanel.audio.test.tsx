@@ -83,3 +83,42 @@ it('liest in Vorschule vor und stoppt beim Wechsel zur Hörrunde ohne Bewertung 
   expect(desktop.setDifficulty).not.toHaveBeenCalled();
   expect(desktop.getVocabularyState).toHaveBeenCalledTimes(1);
 });
+
+it.each(['vorschule', 'koenner', 'streber'] as const)(
+  'verrät im Salat in %s weder Lösung noch Audio vor Prüfen/Aufdecken',
+  async (difficulty) => {
+    mockAudio();
+    const user = userEvent.setup();
+    vi.mocked(desktop.getVocabularyState).mockResolvedValue({
+      ...initial,
+      difficulty,
+    });
+    render(<VocabularyPanel profileVersion={0} />);
+    await screen.findByRole('button', { name: 'Buchstabensalat' });
+    await user.click(screen.getByRole('button', { name: 'Buchstabensalat' }));
+    await screen.findByRole('group', { name: 'Buchstabenkärtchen' });
+    expect(screen.queryByText('I say hello.')).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Wort anhören' }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Beispielsatz anhören' }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByLabelText('Deine englische Antwort')).toBeVisible();
+    await user.click(screen.getByRole('button', { name: 'Hilfe' }));
+    await user.click(screen.getByRole('button', { name: 'Lösung zeigen' }));
+    expect(
+      await screen.findByRole('button', { name: 'Wort anhören' }),
+    ).toBeEnabled();
+    expect(desktop.reviewVocabulary).toHaveBeenLastCalledWith(
+      expect.objectContaining({ difficulty, mode: 'scramble', answer: null }),
+    );
+    await user.click(screen.getByRole('button', { name: 'Wörter schreiben' }));
+    expect(
+      screen.getByText('Noch nicht ganz – wir üben das wieder!'),
+    ).toBeVisible();
+    expect(
+      screen.queryByRole('button', { name: 'Prüfen' }),
+    ).not.toBeInTheDocument();
+  },
+);

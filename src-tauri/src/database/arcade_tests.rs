@@ -58,7 +58,7 @@ fn worms_migration_preserves_every_row_and_paid_legacy_round() {
         upgraded
             .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
             .unwrap(),
-        18
+        SCHEMA_VERSION
     );
     assert_eq!(
         arcade::start(&mut upgraded, "historical-runner", "runner")

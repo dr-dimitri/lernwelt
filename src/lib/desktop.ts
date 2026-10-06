@@ -12,6 +12,7 @@ import type {
 } from '../domain/multiplication';
 import type {
   VocabularyState,
+  VocabularySelection,
   VocabularyReview,
   VocabularyReviewResult,
 } from '../domain/vocabulary';
@@ -75,9 +76,12 @@ export const desktop = {
     withStateWallet(
       callDesktop<MultiplicationResult>('answer_multiplication', { input }),
     ),
-  getVocabularyState: (deckId: string) =>
+  getVocabularyState: (deckId: string, selection?: VocabularySelection) =>
     withWallet(
-      callDesktop<VocabularyState>('get_vocabulary_state', { deckId }),
+      callDesktop<VocabularyState>('get_vocabulary_state', {
+        deckId,
+        ...(selection ? { selection } : {}),
+      }),
     ),
   reviewVocabulary: (input: VocabularyReview) =>
     withStateWallet(

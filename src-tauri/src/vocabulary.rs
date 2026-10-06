@@ -3,6 +3,7 @@ use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::{Deserialize, Serialize};
 use std::{
     collections::{HashMap, HashSet},
+    hash::{BuildHasher, Hasher},
     sync::OnceLock,
     time::{SystemTime, UNIX_EPOCH},
 };
@@ -108,6 +109,63 @@ impl Bank {
         Ok(())
     }
 }
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Deserialize, Serialize)]
+#[serde(rename_all = "lowercase")]
+pub enum Mode {
+    #[default]
+    Write,
+    Scramble,
+}
+impl Mode {
+    fn as_str(self) -> &'static str {
+        match self {
+            Self::Write => "write",
+            Self::Scramble => "scramble",
+        }
+    }
+}
+#[derive(Debug, Default, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct Selection {
+    #[serde(default)]
+    mode: Mode,
+    exclude_card_id: Option<String>,
+    previous_card_id: Option<String>,
+}
+// The same eligibility contract is used for selecting and submitting a card.
+fn scramble_eligible(word: &str) -> bool {
+    let word = normalized(word);
+    let letters: Vec<_> = word.chars().filter(char::is_ascii_alphabetic).collect();
+    let parts: Vec<_> = word.split([' ', '-', '\'']).collect();
+    (3..=16).contains(&letters.len())
+        && word.split_whitespace().count() <= 3
+        && word
+            .chars()
+            .all(|c| c.is_ascii_alphabetic() || matches!(c, ' ' | '-' | '\''))
+        && letters.iter().any(|c| *c != letters[0])
+        && parts
+            .iter()
+            .any(|part| part.len() >= 3 && part.chars().any(|c| !part.starts_with(c)))
+}
+fn letter_inventory(value: &str) -> Vec<char> {
+    let mut letters: Vec<_> = normalized(value)
+        .chars()
+        .filter(char::is_ascii_alphabetic)
+        .collect();
+    letters.sort_unstable();
+    letters
+}
+fn random_index(len: usize) -> usize {
+    // RandomState is independently seeded by the standard library; no extra dependency.
+    let mut hash = std::collections::hash_map::RandomState::new().build_hasher();
+    hash.write_u128(
+        SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap_or_default()
+            .as_nanos(),
+    );
+    (hash.finish() as usize) % len
+}
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PresentedCard {
@@ -119,6 +177,8 @@ pub struct PresentedCard {
 #[serde(rename_all = "camelCase")]
 pub struct VocabularyState {
     profile_ready: bool,
+    mode: Mode,
+    temporarily_excluded: bool,
     difficulty: Difficulty,
     decks: &'static [Deck],
     source: &'static str,
@@ -141,6 +201,8 @@ pub struct ReviewInput {
     deck_id: String,
     difficulty: Difficulty,
     expected_reviews: i64,
+    #[serde(default)]
+    mode: Mode,
     answer: Option<String>,
 }
 #[derive(Debug, Serialize)]
@@ -151,6 +213,7 @@ pub struct ReviewResult {
     due_at: i64,
     correct: bool,
     points_awarded: i64,
+    spelling_hint: Option<&'static str>,
 }
 #[derive(Debug)]
 struct Progress {
@@ -190,14 +253,38 @@ fn progress(
         .map_err(db_error)?;
     rows.collect::<Result<_, _>>().map_err(db_error)
 }
+#[cfg(test)]
 fn state_at(connection: &Connection, deck: &str, time: i64) -> Result<VocabularyState, String> {
+    selected_state_at(connection, deck, time, &Selection::default(), random_index)
+}
+fn selected_state_at(
+    connection: &Connection,
+    deck: &str,
+    time: i64,
+    selection: &Selection,
+    choose: impl Fn(usize) -> usize,
+) -> Result<VocabularyState, String> {
     let bank = bank()?;
     bank.validate_deck(deck)?;
+    for id in [&selection.exclude_card_id, &selection.previous_card_id]
+        .into_iter()
+        .flatten()
+    {
+        if !bank
+            .cards
+            .iter()
+            .any(|card| &card.id == id && (deck == "all" || card.deck_id == deck))
+        {
+            return Err("Die ausgewählte Wortkarte gehört nicht zu diesem Thema.".to_owned());
+        }
+    }
     let difficulty = database::get_difficulty(connection)?;
     let saved = progress(connection, difficulty)?;
     let profile_ready = database::get_profile(connection)?.is_some();
     let mut state = VocabularyState {
         profile_ready,
+        mode: selection.mode,
+        temporarily_excluded: false,
         difficulty,
         decks: &bank.decks,
         source: &bank.source,
@@ -212,13 +299,12 @@ fn state_at(connection: &Connection, deck: &str, time: i64) -> Result<Vocabulary
         next_due_at: None,
         card: None,
     };
-    let mut first_new = None;
+    let mut new = Vec::new();
     let mut due: Vec<(&Card, &Progress)> = Vec::new();
-    for card in bank
-        .cards
-        .iter()
-        .filter(|c| deck == "all" || c.deck_id == deck)
-    {
+    for card in bank.cards.iter().filter(|c| {
+        (deck == "all" || c.deck_id == deck)
+            && (selection.mode == Mode::Write || scramble_eligible(&c.english))
+    }) {
         state.total += 1;
         if let Some(p) = saved.get(&card.id) {
             state.boxes[usize::from(p.box_number - 1)] += 1;
@@ -231,19 +317,63 @@ fn state_at(connection: &Connection, deck: &str, time: i64) -> Result<Vocabulary
             }
         } else {
             state.new_count += 1;
-            first_new.get_or_insert(card);
+            new.push(card);
+        }
+    }
+    state.temporarily_excluded = selection.exclude_card_id.as_ref().is_some_and(|id| {
+        new.iter().any(|card| &card.id == id) || due.iter().any(|(card, _)| &card.id == id)
+    });
+    state.new_count -= new
+        .iter()
+        .filter(|card| Some(&card.id) == selection.exclude_card_id.as_ref())
+        .count() as u32;
+    state.due_count -= due
+        .iter()
+        .filter(|(card, _)| Some(&card.id) == selection.exclude_card_id.as_ref())
+        .count() as u32;
+    new.retain(|card| Some(&card.id) != selection.exclude_card_id.as_ref());
+    due.retain(|(card, _)| Some(&card.id) != selection.exclude_card_id.as_ref());
+    if selection.mode == Mode::Scramble {
+        if due.len() > 1 {
+            due.retain(|(card, _)| Some(&card.id) != selection.previous_card_id.as_ref());
+        }
+        if new.len() > 1 {
+            new.retain(|card| Some(&card.id) != selection.previous_card_id.as_ref());
+        }
+        let prefer = |card: &Card| match difficulty {
+            Difficulty::Vorschule => letter_inventory(&card.english).len() <= 6,
+            Difficulty::Koenner => true,
+            Difficulty::Streber => {
+                letter_inventory(&card.english).len() >= 8 || card.english.contains(' ')
+            }
+        };
+        if due.iter().any(|(c, _)| prefer(c)) {
+            due.retain(|(c, _)| prefer(c));
+        }
+        if new.iter().any(|c| prefer(c)) {
+            new.retain(|c| prefer(c));
         }
     }
     due.sort_by_key(|(card, p)| (p.due_at, p.box_number, &card.id));
     if profile_ready {
-        state.card = if let Some((card, p)) = due.first() {
+        state.card = if let Some((card, p)) =
+            due.get(if due.is_empty() || selection.mode == Mode::Write {
+                0
+            } else {
+                choose(due.len()) % due.len()
+            }) {
             Some(PresentedCard {
                 card,
                 box_number: p.box_number,
                 reviews: p.reviews,
             })
         } else {
-            first_new.map(|card| PresentedCard {
+            new.get(if new.is_empty() || selection.mode == Mode::Write {
+                0
+            } else {
+                choose(new.len()) % new.len()
+            })
+            .map(|&card| PresentedCard {
                 card,
                 box_number: 1,
                 reviews: 0,
@@ -252,9 +382,13 @@ fn state_at(connection: &Connection, deck: &str, time: i64) -> Result<Vocabulary
     }
     Ok(state)
 }
-pub fn get_state(connection: &mut Connection, deck: &str) -> Result<VocabularyState, String> {
+pub fn get_state(
+    connection: &mut Connection,
+    deck: &str,
+    selection: Selection,
+) -> Result<VocabularyState, String> {
     let transaction = connection.transaction().map_err(db_error)?;
-    let state = state_at(&transaction, deck, now()?)?;
+    let state = selected_state_at(&transaction, deck, now()?, &selection, random_index)?;
     transaction.commit().map_err(db_error)?;
     Ok(state)
 }
@@ -297,6 +431,9 @@ fn review_at(
     if input.deck_id != "all" && input.deck_id != card.deck_id {
         return Err("Die Wortkarte gehört nicht zu diesem Thema.".to_owned());
     }
+    if input.mode == Mode::Scramble && !scramble_eligible(&card.english) {
+        return Err("Diese Wortkarte eignet sich nicht für Buchstabensalat.".to_owned());
+    }
     let tx = connection
         .transaction_with_behavior(TransactionBehavior::Immediate)
         .map_err(db_error)?;
@@ -305,8 +442,8 @@ fn review_at(
     }
     // Retried responses remain idempotent even if the current global level has since changed.
     let old = tx.query_row(
-        "SELECT card_id,difficulty,expected_reviews,known,box_number,due_at,deck_id,answer,points_awarded,automatically_checked FROM vocabulary_reviews WHERE request_id=?1 AND profile_id=1",
-        [&input.request_id], |r| Ok((r.get::<_,String>(0)?,r.get::<_,String>(1)?,r.get::<_,i64>(2)?,r.get::<_,bool>(3)?,r.get::<_,u8>(4)?,r.get::<_,i64>(5)?,r.get::<_,String>(6)?,r.get::<_,Option<String>>(7)?,r.get::<_,i64>(8)?,r.get::<_,bool>(9)?))
+        "SELECT card_id,difficulty,expected_reviews,known,box_number,due_at,deck_id,answer,points_awarded,automatically_checked,mode FROM vocabulary_reviews WHERE request_id=?1 AND profile_id=1",
+        [&input.request_id], |r| Ok((r.get::<_,String>(0)?,r.get::<_,String>(1)?,r.get::<_,i64>(2)?,r.get::<_,bool>(3)?,r.get::<_,u8>(4)?,r.get::<_,i64>(5)?,r.get::<_,String>(6)?,r.get::<_,Option<String>>(7)?,r.get::<_,i64>(8)?,r.get::<_,bool>(9)?,r.get::<_,String>(10)?))
     ).optional().map_err(db_error)?;
     if let Some((
         id,
@@ -319,6 +456,7 @@ fn review_at(
         answer,
         points_awarded,
         checked,
+        mode,
     )) = old
     {
         if id != input.card_id
@@ -327,10 +465,20 @@ fn review_at(
             || !checked
             || answer != input.answer
             || deck != input.deck_id
+            || mode != input.mode.as_str()
         {
             return Err("Diese Bewertungs-ID wurde bereits anders verwendet.".to_owned());
         }
-        let state = state_at(&tx, &input.deck_id, time)?;
+        let state = selected_state_at(
+            &tx,
+            &input.deck_id,
+            time,
+            &Selection {
+                mode: input.mode,
+                ..Selection::default()
+            },
+            random_index,
+        )?;
         tx.commit().map_err(db_error)?;
         return Ok(ReviewResult {
             state,
@@ -338,6 +486,7 @@ fn review_at(
             due_at,
             correct,
             points_awarded,
+            spelling_hint: spelling_hint(card, input),
         });
     }
     if database::get_difficulty(&tx)? != input.difficulty {
@@ -350,10 +499,17 @@ fn review_at(
     {
         return Err("Diese Karte wurde schon bewertet oder ist noch nicht fällig. Bitte lade die Karten neu.".to_owned());
     }
-    let correct = input
-        .answer
-        .as_deref()
-        .is_some_and(|answer| is_correct(card, input.difficulty, answer));
+    let correct = input.answer.as_deref().is_some_and(|answer| {
+        if input.mode == Mode::Scramble {
+            let actual = normalized(answer);
+            card.english_answers.iter().any(|expected| {
+                normalized(expected) == actual
+                    && letter_inventory(expected) == letter_inventory(&card.english)
+            })
+        } else {
+            is_correct(card, input.difficulty, answer)
+        }
+    });
     let points_awarded = i64::from(correct);
     let box_number = if correct {
         previous.map_or(2, |p| (p.box_number + 1).min(5))
@@ -376,13 +532,22 @@ fn review_at(
         params![input.card_id,input.difficulty.as_str(),box_number,input.expected_reviews+1,due_at]
     ).map_err(db_error)?;
     tx.execute(
-        "INSERT INTO vocabulary_reviews (request_id,profile_id,card_id,difficulty,expected_reviews,known,box_number,due_at,deck_id,answer,points_awarded,automatically_checked) VALUES (?1,1,?2,?3,?4,?5,?6,?7,?8,?9,?10,1)",
-        params![input.request_id,input.card_id,input.difficulty.as_str(),input.expected_reviews,correct,box_number,due_at,input.deck_id,input.answer,points_awarded]
+        "INSERT INTO vocabulary_reviews (request_id,profile_id,card_id,difficulty,expected_reviews,known,box_number,due_at,deck_id,answer,points_awarded,automatically_checked,mode) VALUES (?1,1,?2,?3,?4,?5,?6,?7,?8,?9,?10,1,?11)",
+        params![input.request_id,input.card_id,input.difficulty.as_str(),input.expected_reviews,correct,box_number,due_at,input.deck_id,input.answer,points_awarded,input.mode.as_str()]
     ).map_err(db_error)?;
     if correct {
         tx.execute("INSERT INTO point_entries (profile_id,kind,item_id,amount) VALUES (1,'vocabulary',?1,1)", [&input.request_id]).map_err(db_error)?;
     }
-    let state = state_at(&tx, &input.deck_id, time)?;
+    let state = selected_state_at(
+        &tx,
+        &input.deck_id,
+        time,
+        &Selection {
+            mode: input.mode,
+            ..Selection::default()
+        },
+        random_index,
+    )?;
     tx.commit().map_err(db_error)?;
     Ok(ReviewResult {
         state,
@@ -390,7 +555,23 @@ fn review_at(
         due_at,
         correct,
         points_awarded,
+        spelling_hint: spelling_hint(card, input),
     })
+}
+
+fn spelling_hint(card: &Card, input: &ReviewInput) -> Option<&'static str> {
+    if input.mode == Mode::Scramble
+        && input.answer.as_deref().is_some_and(|answer| {
+            card.english_answers.iter().any(|expected| {
+                normalized(expected) == normalized(answer)
+                    && letter_inventory(expected) != letter_inventory(&card.english)
+            })
+        })
+    {
+        Some("Deine Schreibweise ist auch eine englische Variante. Für diesen Buchstabensalat brauchst du alle angezeigten Buchstaben. Schau dir die passende Schreibweise an.")
+    } else {
+        None
+    }
 }
 
 // Compare explicit translations, not fuzzy guesses. Normalize typography and harmless spacing.
