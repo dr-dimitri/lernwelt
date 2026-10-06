@@ -72,6 +72,66 @@ pub enum AnswerKind {
     Number,
     Text,
     Choice,
+    Order,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(rename_all = "lowercase")]
+pub enum EarthDiagramKind {
+    Shells,
+}
+
+/// Neutral markers follow the four shells from outside to inside. No answer target is projected.
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct EarthDiagram {
+    pub kind: EarthDiagramKind,
+    pub labels: Vec<String>,
+}
+
+impl EarthDiagram {
+    fn valid_for(&self, exercise: &Exercise) -> bool {
+        exercise.is_earth_exercise()
+            && matches!(exercise.answer_kind, AnswerKind::Choice)
+            && exercise.ordering.is_none()
+            && self.labels == ["A", "B", "C", "D"]
+            && exercise.options == self.labels
+    }
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct Ordering {
+    pub items: Vec<String>,
+}
+
+impl Ordering {
+    fn valid_for(&self, exercise: &Exercise) -> bool {
+        exercise.is_earth_exercise()
+            && matches!(exercise.answer_kind, AnswerKind::Order)
+            && exercise.earth_diagram.is_none()
+            && exercise.options.is_empty()
+            && (2..=4).contains(&self.items.len())
+            && self.items.iter().all(|item| {
+                !item.trim().is_empty()
+                    && item == item.trim()
+                    && item.chars().count() <= 40
+                    && !item.contains('|')
+                    && !item.chars().any(char::is_control)
+            })
+            && self.items.iter().collect::<HashSet<_>>().len() == self.items.len()
+            && exercise.answer.chars().count() <= 120
+            && self.valid_answer(&exercise.answer)
+    }
+
+    pub fn valid_answer(&self, answer: &str) -> bool {
+        let items: Vec<_> = answer.split('|').collect();
+        items.len() == self.items.len()
+            && items.iter().copied().collect::<HashSet<_>>().len() == items.len()
+            && items
+                .iter()
+                .all(|item| self.items.iter().any(|known| known == item))
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize, Serialize)]
@@ -110,6 +170,8 @@ impl SolarSystemPlanetId {
             && matches!(exercise.answer_kind, AnswerKind::Choice)
             && exercise.number_line.is_none()
             && exercise.audio_card_id.is_none()
+            && exercise.earth_diagram.is_none()
+            && exercise.ordering.is_none()
             && exercise.answer == self.name()
             && (2..=8).contains(&exercise.options.len())
             && exercise
@@ -236,6 +298,10 @@ pub struct Exercise {
     pub audio_card_id: Option<String>,
     #[serde(default)]
     pub solar_system_planet_id: Option<SolarSystemPlanetId>,
+    #[serde(default)]
+    pub earth_diagram: Option<EarthDiagram>,
+    #[serde(default)]
+    pub ordering: Option<Ordering>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -258,6 +324,7 @@ pub fn catalog() -> Result<&'static Catalog, String> {
                 include_str!("../content/nature-5-v1.json"),
                 include_str!("../content/number-line-5-v1.json"),
                 include_str!("../content/geography-solar-5-v1.json"),
+                include_str!("../content/geography-earth-5-v1.json"),
             ])?;
             let additional: Vec<Exercise> = serde_json::from_str(include_str!(
                 "../content/topic-practice-v1.json"
@@ -359,6 +426,17 @@ impl Catalog {
             if !exercise.valid_help() {
                 return Err(invalid());
             }
+            if exercise
+                .earth_diagram
+                .as_ref()
+                .is_some_and(|diagram| !diagram.valid_for(exercise))
+                || exercise
+                    .ordering
+                    .as_ref()
+                    .is_some_and(|ordering| !ordering.valid_for(exercise))
+            {
+                return Err(invalid());
+            }
             match exercise.answer_kind {
                 AnswerKind::Number if canonical_number(&exercise.answer).is_none() => {
                     return Err(invalid());
@@ -369,6 +447,7 @@ impl Catalog {
                 {
                     return Err(invalid());
                 }
+                AnswerKind::Order if exercise.ordering.is_none() => return Err(invalid()),
                 _ => {}
             }
         }
@@ -393,6 +472,23 @@ fn valid_audio_id(id: &str) -> bool {
 }
 
 impl Exercise {
+    fn is_earth_exercise(&self) -> bool {
+        self.subject == Subject::Geography
+            && self.topic_id == "geography-earth-layers"
+            && !self.legacy
+            && self.number_line.is_none()
+            && self.audio_card_id.is_none()
+            && self.solar_system_planet_id.is_none()
+            && self.unit.is_none()
+    }
+
+    pub fn valid_structured_answer(&self, answer: &str) -> bool {
+        self.ordering
+            .as_ref()
+            .is_none_or(|ordering| ordering.valid_answer(answer))
+            && (self.earth_diagram.is_none() || self.options.iter().any(|option| option == answer))
+    }
+
     fn valid_help(&self) -> bool {
         let valid_text = |text: &str| {
             !text.trim().is_empty()
@@ -458,7 +554,7 @@ fn normalized_answer(kind: &AnswerKind, answer: &str) -> Option<String> {
     match kind {
         AnswerKind::Number => canonical_number(answer),
         AnswerKind::Text => Some(answer.trim().to_ascii_lowercase()),
-        AnswerKind::Choice => Some(answer.trim().to_owned()),
+        AnswerKind::Choice | AnswerKind::Order => Some(answer.trim().to_owned()),
     }
 }
 
@@ -508,7 +604,7 @@ pub fn is_correct(exercise: &Exercise, answer: &str) -> bool {
             .zip(canonical_number(&exercise.answer))
             .is_some_and(|(actual, expected)| actual == expected),
         AnswerKind::Text => answer.trim().eq_ignore_ascii_case(&exercise.answer),
-        AnswerKind::Choice => answer.trim() == exercise.answer,
+        AnswerKind::Choice | AnswerKind::Order => answer.trim() == exercise.answer,
     }
 }
 
@@ -773,3 +869,6 @@ mod practice_tests;
 
 #[cfg(test)]
 mod solar_system_tests;
+
+#[cfg(test)]
+mod earth_tests;

@@ -61,7 +61,9 @@ export interface Question {
   hint: string;
   furtherHints: string[];
   options: string[];
-  answerKind: 'number' | 'text' | 'choice';
+  answerKind: 'number' | 'text' | 'choice' | 'order';
+  earthDiagram?: { kind: 'shells'; labels: string[] } | null;
+  ordering?: { items: string[] } | null;
   unit: string | null;
   numberLine?: NumberLineDiagram | null;
   audioCardId?: string;

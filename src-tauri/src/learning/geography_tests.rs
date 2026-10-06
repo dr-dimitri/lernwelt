@@ -15,13 +15,13 @@ fn setup() -> (tempfile::TempDir, Connection) {
 }
 
 #[test]
-fn every_geography_question_awards_once_and_exposes_its_own_topic_metadata() {
+fn every_solar_question_awards_once_and_exposes_its_own_topic_metadata() {
     let (directory, mut connection) = setup();
     let exercises: Vec<_> = content::catalog()
         .unwrap()
         .exercises
         .iter()
-        .filter(|e| e.subject == Subject::Geography && !e.legacy)
+        .filter(|e| e.topic_id == "geography-solar-system" && !e.legacy)
         .collect();
     assert!(exercises.len() == 24);
     let mut total = 0;
@@ -65,7 +65,7 @@ fn every_geography_question_awards_once_and_exposes_its_own_topic_metadata() {
         state
             .questions
             .iter()
-            .filter(|q| q.subject == Subject::Geography && q.solved)
+            .filter(|q| q.topic_id == "geography-solar-system" && q.solved)
             .count(),
         exercises.len()
     );
@@ -84,7 +84,7 @@ fn every_geography_question_awards_once_and_exposes_its_own_topic_metadata() {
         .as_array()
         .unwrap()
         .iter()
-        .filter(|q| q["subject"] == "geography")
+        .filter(|q| q["topicId"] == "geography-solar-system")
     {
         assert!(question.get("answer").is_none());
         assert!(question.get("explanation").is_none());
@@ -165,5 +165,263 @@ fn failed_geography_receipt_rolls_back_progress_and_points() {
         retried.points_awarded,
         points_for_difficulty(exercise.difficulty)
     );
+    assert_eq!(database::list_progress(&connection).unwrap()[0].attempts, 1);
+}
+
+fn earth_tasks() -> Vec<&'static content::Exercise> {
+    content::catalog()
+        .unwrap()
+        .exercises
+        .iter()
+        .filter(|task| task.topic_id == "geography-earth-layers")
+        .collect()
+}
+
+fn valid_wrong_answer(task: &content::Exercise) -> String {
+    if let Some(ordering) = &task.ordering {
+        ordering.items.join("|")
+    } else {
+        task.options
+            .iter()
+            .find(|option| **option != task.answer)
+            .unwrap()
+            .clone()
+    }
+}
+
+#[test]
+fn all_earth_questions_award_once_by_level_with_persistent_idempotent_retries() {
+    let (directory, mut connection) = setup();
+    let solar_id = "by.geography.5.solar.mercury.vorschule.v1";
+    let old_solar = submit_answer(&mut connection, "before-earth", solar_id, "Merkur").unwrap();
+    assert_eq!(old_solar.points_awarded, 1);
+    let tasks = earth_tasks();
+    assert_eq!(tasks.len(), 18);
+    let mut total = 1;
+    for (index, task) in tasks.iter().enumerate() {
+        database::set_difficulty(&connection, "streber").unwrap();
+        let wrong = submit_answer(
+            &mut connection,
+            &format!("earth-wrong-{index}"),
+            &task.id,
+            &valid_wrong_answer(task),
+        )
+        .unwrap();
+        assert!(!wrong.correct, "{}", task.id);
+        assert_eq!(wrong.points_awarded, 0);
+        database::set_difficulty(&connection, "vorschule").unwrap();
+        let request = format!("earth-correct-{index}");
+        let correct = submit_answer(&mut connection, &request, &task.id, &task.answer).unwrap();
+        assert!(correct.correct, "{}", task.id);
+        assert_eq!(
+            correct.points_awarded,
+            points_for_difficulty(task.difficulty)
+        );
+        total += correct.points_awarded;
+        let retry = submit_answer(&mut connection, &request, &task.id, &task.answer).unwrap();
+        assert_eq!(retry.points_awarded, correct.points_awarded);
+        assert_eq!(retry.wallet.balance, total);
+        let repeated = submit_answer(
+            &mut connection,
+            &format!("earth-again-{index}"),
+            &task.id,
+            &task.answer,
+        )
+        .unwrap();
+        assert_eq!(repeated.points_awarded, 0);
+    }
+    assert_eq!(total, 37);
+    database::save_profile(
+        &connection,
+        database::Profile {
+            display_name: "Samira".to_owned(),
+            grade: 6,
+        },
+    )
+    .unwrap();
+    drop(connection);
+    let mut reopened = database::open(&directory.path().join("geography.sqlite3")).unwrap();
+    let replay = submit_answer(&mut reopened, "before-earth", solar_id, "Merkur").unwrap();
+    assert_eq!(replay.points_awarded, 1);
+    for (index, task) in tasks.iter().enumerate() {
+        let retry = submit_answer(
+            &mut reopened,
+            &format!("earth-correct-{index}"),
+            &task.id,
+            &task.answer,
+        )
+        .unwrap();
+        assert_eq!(retry.points_awarded, points_for_difficulty(task.difficulty));
+        assert_eq!(retry.wallet.balance, 37);
+    }
+    let state = get_state(&mut reopened).unwrap();
+    assert_eq!(
+        state
+            .questions
+            .iter()
+            .filter(|question| question.topic_id == "geography-earth-layers" && question.solved)
+            .count(),
+        18
+    );
+    assert_eq!(
+        database::get_profile(&reopened)
+            .unwrap()
+            .unwrap()
+            .display_name,
+        "Samira"
+    );
+    assert_eq!(state.wallet.balance, 37);
+    let progress = database::list_progress(&reopened).unwrap();
+    assert_eq!(progress.iter().map(|p| p.attempts).sum::<u32>(), 55);
+    assert_eq!(progress.iter().map(|p| p.correct).sum::<u32>(), 37);
+    let count: i64 = reopened
+        .query_row("SELECT COUNT(*) FROM point_entries", [], |row| row.get(0))
+        .unwrap();
+    assert_eq!(count, 19);
+}
+
+#[test]
+fn earth_projection_contains_neutral_diagrams_and_shuffled_items_without_answer_keys() {
+    let mut connection = database::open(std::path::Path::new(":memory:")).unwrap();
+    let state = serde_json::to_value(get_state(&mut connection).unwrap()).unwrap();
+    let questions: Vec<_> = state["questions"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .filter(|question| question["topicId"] == "geography-earth-layers")
+        .collect();
+    assert_eq!(questions.len(), 18);
+    for question in questions {
+        for secret in [
+            "answer",
+            "explanation",
+            "commonMistakes",
+            "earthLayerId",
+            "correctOrder",
+        ] {
+            assert!(question.get(secret).is_none(), "{secret}");
+        }
+        assert!(question.get("solarSystemPlanetId").is_none());
+        if let Some(diagram) = question.get("earthDiagram") {
+            assert_eq!(diagram.as_object().unwrap().len(), 2);
+            assert_eq!(diagram["kind"], "shells");
+            assert_eq!(diagram["labels"], serde_json::json!(["A", "B", "C", "D"]));
+            assert_eq!(question["options"], diagram["labels"]);
+        }
+        if let Some(ordering) = question.get("ordering") {
+            assert_eq!(ordering.as_object().unwrap().len(), 1);
+            assert_eq!(question["answerKind"], "order");
+        }
+    }
+}
+
+#[test]
+fn earth_diagrams_and_ordering_reject_invalid_answers_without_database_mutation() {
+    let (directory, mut connection) = setup();
+    let tasks = earth_tasks();
+    let diagram = tasks
+        .iter()
+        .find(|task| task.earth_diagram.is_some())
+        .unwrap();
+    let order = tasks.iter().find(|task| task.ordering.is_some()).unwrap();
+    for answer in ["E", "Erdkruste", "A|B", "a"] {
+        assert!(submit_answer(&mut connection, "invalid-diagram", &diagram.id, answer).is_err());
+    }
+    for answer in [
+        "Erdkruste",
+        "Erdkruste|Erdkruste",
+        "Erdkruste|fremd",
+        "Erdkruste|Erdmantel|Erdkruste",
+        "Erdkruste |Erdmantel",
+    ] {
+        assert!(submit_answer(&mut connection, "invalid-order", &order.id, answer).is_err());
+    }
+    let mut without_profile =
+        database::open(&directory.path().join("earth-no-profile.sqlite3")).unwrap();
+    assert!(submit_answer(
+        &mut without_profile,
+        "missing-profile",
+        &order.id,
+        &order.answer
+    )
+    .is_err());
+    assert!(database::list_progress(&without_profile)
+        .unwrap()
+        .is_empty());
+    assert_eq!(wallet(&without_profile).unwrap().balance, 0);
+    assert!(database::list_progress(&connection).unwrap().is_empty());
+    assert_eq!(wallet(&connection).unwrap().balance, 0);
+    let receipt_count: i64 = connection
+        .query_row("SELECT COUNT(*) FROM answer_submissions", [], |row| {
+            row.get(0)
+        })
+        .unwrap();
+    assert_eq!(receipt_count, 0);
+    let correct =
+        submit_answer(&mut connection, "earth-confirmed", &order.id, &order.answer).unwrap();
+    assert!(submit_answer(
+        &mut connection,
+        "earth-confirmed",
+        &order.id,
+        &valid_wrong_answer(order)
+    )
+    .is_err());
+    assert_eq!(wallet(&connection).unwrap().balance, correct.points_awarded);
+    assert_eq!(database::list_progress(&connection).unwrap()[0].attempts, 1);
+}
+
+#[test]
+fn earth_readonly_explanation_is_available_without_profile_and_never_awards_or_records_attempts() {
+    let directory = tempfile::tempdir().unwrap();
+    let path = directory.path().join("earth-help.sqlite3");
+    let mut connection = database::open(&path).unwrap();
+    for task in earth_tasks() {
+        assert_eq!(get_explanation(&task.id).unwrap(), task.explanation);
+        assert_eq!(get_explanation(&task.id).unwrap(), task.explanation);
+    }
+    for invalid in [
+        "",
+        "sample.english.cat.v1",
+        "by.geography.5.earth.unknown.v1",
+        "by.geography.5.earth;DROP TABLE",
+        &"x".repeat(161),
+    ] {
+        assert!(get_explanation(invalid).is_err());
+    }
+    assert!(!get_state(&mut connection).unwrap().profile_ready);
+    assert_eq!(wallet(&connection).unwrap().balance, 0);
+    assert!(database::list_progress(&connection).unwrap().is_empty());
+    let receipt_count: i64 = connection
+        .query_row("SELECT COUNT(*) FROM answer_submissions", [], |row| {
+            row.get(0)
+        })
+        .unwrap();
+    assert_eq!(receipt_count, 0);
+    drop(connection);
+    let reopened = database::open(&path).unwrap();
+    assert_eq!(wallet(&reopened).unwrap().balance, 0);
+    assert!(database::list_progress(&reopened).unwrap().is_empty());
+}
+
+#[test]
+fn earth_receipt_failure_rolls_back_then_retry_from_another_connection_awards_once() {
+    let (directory, mut connection) = setup();
+    let task = earth_tasks()
+        .into_iter()
+        .find(|task| task.difficulty == Difficulty::Streber && task.ordering.is_some())
+        .unwrap();
+    connection.execute_batch("CREATE TRIGGER reject_earth_receipt BEFORE INSERT ON answer_submissions BEGIN SELECT RAISE(ABORT,'test write failure'); END;").unwrap();
+    assert!(submit_answer(&mut connection, "earth-retry", &task.id, &task.answer).is_err());
+    assert!(database::list_progress(&connection).unwrap().is_empty());
+    assert_eq!(wallet(&connection).unwrap().balance, 0);
+    connection
+        .execute_batch("DROP TRIGGER reject_earth_receipt;")
+        .unwrap();
+    let mut second = database::open(&directory.path().join("geography.sqlite3")).unwrap();
+    let correct = submit_answer(&mut second, "earth-retry", &task.id, &task.answer).unwrap();
+    assert_eq!(correct.points_awarded, 3);
+    let retry = submit_answer(&mut connection, "earth-retry", &task.id, &task.answer).unwrap();
+    assert_eq!(retry.points_awarded, 3);
+    assert_eq!(retry.wallet.balance, 3);
     assert_eq!(database::list_progress(&connection).unwrap()[0].attempts, 1);
 }

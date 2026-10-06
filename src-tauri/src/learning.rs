@@ -1,4 +1,6 @@
-use crate::content::{self, AnswerKind, Difficulty, NumberLine, SolarSystemPlanetId, Topic};
+use crate::content::{
+    self, AnswerKind, Difficulty, EarthDiagram, NumberLine, Ordering, SolarSystemPlanetId, Topic,
+};
 use crate::database::{self, Subject};
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use serde::Serialize;
@@ -56,6 +58,10 @@ pub struct Question {
     audio_card_id: Option<&'static str>,
     #[serde(skip_serializing_if = "Option::is_none")]
     solar_system_planet_id: Option<SolarSystemPlanetId>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    earth_diagram: Option<&'static EarthDiagram>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    ordering: Option<&'static Ordering>,
 }
 
 #[derive(Debug, Serialize)]
@@ -164,6 +170,8 @@ pub fn get_state(connection: &mut Connection) -> Result<LearningState, String> {
                 number_line: exercise.number_line.as_ref(),
                 audio_card_id: exercise.audio_card_id.as_deref(),
                 solar_system_planet_id: exercise.solar_system_planet_id,
+                earth_diagram: exercise.earth_diagram.as_ref(),
+                ordering: exercise.ordering.as_ref(),
             })
         })
         .collect::<Result<Vec<_>, String>>()?;
@@ -214,6 +222,24 @@ pub(crate) fn record_exercise_result(
     Ok(points)
 }
 
+/// Explicitly requested help is read-only and works without a saved profile or database.
+pub fn get_explanation(question_id: &str) -> Result<String, String> {
+    if question_id.is_empty()
+        || question_id.len() > 160
+        || !question_id
+            .bytes()
+            .all(|byte| byte.is_ascii_alphanumeric() || byte == b'.' || byte == b'-')
+    {
+        return Err("Diese Aufgabe ist nicht verfügbar.".to_owned());
+    }
+    content::catalog()?
+        .exercises
+        .iter()
+        .find(|exercise| exercise.id == question_id && !exercise.legacy)
+        .map(|exercise| exercise.explanation.clone())
+        .ok_or_else(|| "Diese Aufgabe ist nicht verfügbar.".to_owned())
+}
+
 pub fn submit_answer(
     connection: &mut Connection,
     request_id: &str,
@@ -246,6 +272,9 @@ pub fn submit_answer(
             .map_err(|_| "Diese Aufgabe ist nicht verfügbar.")?;
         &generated
     };
+    if !exercise.valid_structured_answer(answer) {
+        return Err("Bitte wähle die Bereiche oder ordne alle Bausteine genau einmal.".to_owned());
+    }
     let transaction = connection
         .transaction_with_behavior(TransactionBehavior::Immediate)
         .map_err(db_error)?;

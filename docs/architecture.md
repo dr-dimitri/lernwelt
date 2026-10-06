@@ -244,3 +244,9 @@ Die Persistenztests schließen alle Themen und Stufen mit vier Runden ab, prüfe
 Die optionale `audioCardId` einer Englischaufgabe darf ausschließlich auf eine Karte des gebündelten Audio-Manifests verweisen. Die Lernzustandsprojektion liefert diese ID, aber keine Antwort oder Lösungserklärung. Das Frontend verwendet daraus nur die bekannten lokalen Wort- und Satzdateien. Es gibt keinen frei wählbaren Audio-Pfad, neuen Command oder neue Berechtigung. Aufgaben-, Stufen- und Ansichtswechsel stoppen die Wiedergabe.
 
 Wortschatz-Ergänzungslinks besitzen ein geprüftes Ziel aus den 18 bekannten Deck-IDs bzw. `all`. Der Trainer startet im Zieldeck und behält seine eigene Auswahl und unveränderten Punkte-/Wiederholungsregeln.
+
+## Erdschichten (Issue #165, ohne Schemaänderung)
+
+`geography-earth-5-v1.json` ergänzt 18 Aufgaben und die Katalogeinheit `geography-earth-layers`; alte Sonnenaufgaben und Belege bleiben unverändert. `earthDiagram` enthält ausschließlich den begrenzten Typ `shells` und neutrale Marker A–D. `ordering` enthält zwei bis vier eindeutige Bausteine in gemischter Folge; der neue Antworttyp `order` prüft eine vollständige Pipe-getrennte Permutation vor SQLite-Mutation. Lösungsschlüssel werden nicht projiziert. Der bestehende `submit_answer`-Transaktions-/Journalweg vergütet nur Erstlösungen je Aufgabenstufe.
+
+`get_learning_explanation(questionId)` ist ein begrenzter, registrierter Lesebefehl für freiwilliges Aufdecken. Rust weist unbekannte, historische oder überlange IDs ab; die Erklärung hat keine Punkte-/Versuchsmutation und benötigt keine DB-Verbindung. `EarthWorld` sperrt den aufgedeckten Abruf, behält identische Schreib-Retries und trennt offene Eingaben von bestätigten Antworten. Freies Entdecken sowie lokale SVG-/NASA-Bilder funktionieren ohne Profil/IPC. [Bedienung und Fachquellen](earth-expedition.md).

@@ -95,6 +95,8 @@ export const desktop = {
   listProgress: () => callDesktop<LearningProgress[]>('list_progress'),
   getLearningState: () =>
     withWallet(callDesktop<LearningState>('get_learning_state')),
+  getLearningExplanation: (questionId: string) =>
+    callDesktop<string>('get_learning_explanation', { questionId }),
   getRomanQuestion: (direction: RomanDirection, previousQuestionId?: string) =>
     callDesktop<RomanQuestion>('get_roman_question', {
       direction,

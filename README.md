@@ -79,6 +79,8 @@ Details: [Architektur](docs/architecture.md), [Reviewnachweise](docs/reviews/).
 
 ## Deine Lernrunde
 
+Geographie bietet außerdem die **Expedition zum Erdkern**: vier Erdschichten im interaktiven Schnittmodell, eine fiktive Sondenreise und ein Vergleich von äußerem und innerem Kern. **Erdschichten üben** öffnet sechs kurze Rätsel je Stufe mit Grafikauswahl, Reihenfolgen und Begründungen. Das lokale Erdfoto und eigene Illustrationen funktionieren offline; Entdecken ist ohne Profil möglich. [Bedienung, Inhalte und Bildquellen](docs/earth-expedition.md).
+
 Die direkten Fachziele bieten drei Lernreisen: **Ein Zaun für unseren Garten** (Mathematik), **Ein Tag an unserer Schule** (Englisch, erste Fremdsprache) und **Auf Forschertour: genau hinschauen** (Natur und Technik). Die Auswahl zeigt für jedes Thema auf der gewählten Stufe offene Schritte und fällige Wiederholungen. Fünf kurze Schritte verbinden Erinnern, ein anschauliches Beispiel, eigenes Lösen, Fehlerdetektiv und eine freiwillige Mitmachaufgabe.
 
 Alle drei Stufen sind frei wählbar. Jedes Thema und jede Stufe behalten ihre eigene offene Runde, auch nach Themenwechsel und Neustart. Die App plant Wiederholungen lokal und bietet drei geprüfte Varianten je Thema und Stufe. Englisch übt Wortschatz, kurze Lesetexte und Simple Present; Natur und Technik verbindet Beobachtungen, Messwerte und die Planung fairer Vergleiche. Die neuen Pakete enthalten jeweils 27 eigene automatisch prüfbare Aufgaben plus Beispiele und Mitmachaufträge.

@@ -23,7 +23,12 @@ fn selectable_units_meet_subject_specific_scope_without_duplicate_tasks() {
                 .filter(|e| unit.exercise_ids.contains(&e.id) && e.difficulty == level)
                 .collect();
             if unit.subject == Subject::Geography {
-                assert_eq!(tasks.len(), 8, "{} {}", unit.id, level.as_str());
+                let expected = match unit.id.as_str() {
+                    "geography-solar-system" => 8,
+                    "geography-earth-layers" => 6,
+                    _ => panic!("unexpected geography unit {}", unit.id),
+                };
+                assert_eq!(tasks.len(), expected, "{} {}", unit.id, level.as_str());
             } else {
                 assert!(tasks.len() >= 12, "{} {}", unit.id, level.as_str());
             }
@@ -137,6 +142,7 @@ fn original_packages_and_legacy_receipts_keep_all_their_answer_meanings() {
         include_str!("../../content/english-5-v1.json"),
         include_str!("../../content/nature-5-v1.json"),
         include_str!("../../content/number-line-5-v1.json"),
+        include_str!("../../content/geography-solar-5-v1.json"),
     ] {
         let original: Catalog = serde_json::from_str(package).unwrap();
         for task in original.exercises {

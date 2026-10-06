@@ -15,6 +15,7 @@ import MissionPanel from './components/MissionPanel';
 import NatureGames from './components/NatureGames';
 import AppUpdates from './components/AppUpdates';
 import SolarSystemWorld from './components/SolarSystemWorld';
+import EarthWorld from './components/EarthWorld';
 import TypingPanel from './components/TypingPanel';
 import CollectionPanel from './components/CollectionPanel';
 import { subjects, type SubjectId } from './domain/subjects';
@@ -30,7 +31,8 @@ type View =
   | 'multiplication'
   | 'typing'
   | 'nature-games'
-  | 'solar';
+  | 'solar'
+  | 'earth';
 type Activity = { dirty: boolean; busy: boolean };
 const sidebarStorageKey = 'lernwelt.sidebarCollapsed';
 function readSidebarCollapsed() {
@@ -84,6 +86,7 @@ export default function App() {
   const [multiplicationMode, setMultiplicationMode] = useState<'squares'>();
   const [missionTopic, setMissionTopic] = useState<string>();
   const [solarMode, setSolarMode] = useState<'discover' | 'quiz'>('discover');
+  const [earthMode, setEarthMode] = useState<'discover' | 'quiz'>('discover');
   const [profileVersion, setProfileVersion] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] =
@@ -117,7 +120,9 @@ export default function App() {
           ? 'Deine Lernrunde'
           : view === 'solar'
             ? 'Sonnensystem'
-            : trainers.find((item) => item.id === view)!.label;
+            : view === 'earth'
+              ? 'Expedition zum Erdkern'
+              : trainers.find((item) => item.id === view)!.label;
   const locked = activity.busy || difficultyBusy || settingsBusy;
   const saved = useCallback(
     () => setProfileVersion((version) => version + 1),
@@ -351,7 +356,7 @@ export default function App() {
                 disabled={locked}
                 aria-current={
                   selected === item.id &&
-                  ['learn', 'mission', 'solar'].includes(view)
+                  ['learn', 'mission', 'solar', 'earth'].includes(view)
                     ? 'page'
                     : undefined
                 }
@@ -362,7 +367,7 @@ export default function App() {
                 </span>
                 <span className="navigation-label">{item.name}</span>
                 {selected === item.id &&
-                  ['learn', 'mission', 'solar'].includes(view) && (
+                  ['learn', 'mission', 'solar', 'earth'].includes(view) && (
                     <span className="current-mark" aria-hidden="true">
                       ✓
                     </span>
@@ -374,7 +379,7 @@ export default function App() {
               title="Trainer & Spiele"
               disabled={locked}
               aria-current={
-                !['learn', 'mission', 'solar'].includes(view)
+                !['learn', 'mission', 'solar', 'earth'].includes(view)
                   ? 'page'
                   : undefined
               }
@@ -539,6 +544,30 @@ export default function App() {
                     <span>{description}</span>
                   </button>
                 ))}
+                {[
+                  [
+                    'discover',
+                    'Expedition zum Erdkern',
+                    'Öffne die Erde und erkunde ihre vier Schichten.',
+                  ],
+                  [
+                    'quiz',
+                    'Erdschichten üben',
+                    'Grafikrätsel, Reihenfolgen und kleine Denkfragen.',
+                  ],
+                ].map(([mode, label, description]) => (
+                  <button
+                    className="study-card"
+                    key={`earth-${mode}`}
+                    onClick={() => {
+                      setEarthMode(mode as 'discover' | 'quiz');
+                      navigate('earth');
+                    }}
+                  >
+                    <strong>{label}</strong>
+                    <span>{description}</span>
+                  </button>
+                ))}
               </div>
             </section>
           )}
@@ -578,6 +607,15 @@ export default function App() {
           {view === 'solar' && (
             <SolarSystemWorld
               initialMode={solarMode}
+              profileVersion={profileVersion}
+              externalControls
+              onActivityChange={reportActivity}
+              onProfileSaved={saved}
+            />
+          )}
+          {view === 'earth' && (
+            <EarthWorld
+              initialMode={earthMode}
               profileVersion={profileVersion}
               externalControls
               onActivityChange={reportActivity}

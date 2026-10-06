@@ -55,6 +55,11 @@ fn get_learning_state(storage: State<'_, Storage>) -> Result<learning::LearningS
 }
 
 #[tauri::command]
+fn get_learning_explanation(question_id: String) -> Result<String, String> {
+    learning::get_explanation(&question_id)
+}
+
+#[tauri::command]
 fn get_roman_question(
     storage: State<'_, Storage>,
     direction: roman::Direction,
@@ -210,6 +215,7 @@ pub fn run() {
             save_profile,
             list_progress,
             get_learning_state,
+            get_learning_explanation,
             get_roman_question,
             set_difficulty,
             submit_answer,

@@ -17,7 +17,7 @@ fn solar_package_has_eight_distinct_planets_per_level_and_its_own_sources() {
     let topic = content
         .topics
         .iter()
-        .find(|topic| topic.subject == Subject::Geography)
+        .find(|topic| topic.id == "geography-solar-system")
         .unwrap();
     assert_eq!(topic.id, "geography-solar-system");
     assert_eq!(topic.grade, 5);
@@ -54,7 +54,7 @@ fn solar_package_has_eight_distinct_planets_per_level_and_its_own_sources() {
         let tasks: Vec<_> = content
             .exercises
             .iter()
-            .filter(|task| task.subject == Subject::Geography && task.difficulty == level)
+            .filter(|task| task.topic_id == topic.id && task.difficulty == level)
             .collect();
         assert_eq!(tasks.len(), 8);
         assert_eq!(
