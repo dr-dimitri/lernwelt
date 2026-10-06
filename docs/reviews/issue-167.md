@@ -58,4 +58,17 @@ Der Inhaltsgenerator lädt beide dedizierten Pakete. Seine zwei echten Neuaufbau
 
 Am 06.10.2026 in diesem integrierten Arbeitsbaum ausgeführt: `npm run check` vollständig grün (47 Dateien / 446 Frontendtests, 130 Skripttests, Formatierung, TypeScript und Vite-Build); `npm run check:rust` vollständig grün (fmt, Clippy mit `-D warnings`, 186 Rusttests). Vorab wurden 78 betroffene Frontendtests und die drei Zell-Rusttests gezielt ausgeführt, ebenfalls grün. Logs: `/private/tmp/lernwelt-167-integration-check.log`, `/private/tmp/lernwelt-167-integration-rust.log`. Die native App wurde bei der Integration nicht gestartet; ihr Schema-18-Stand darf die inzwischen auf Schema 19 migrierte Nutzerdatei nicht öffnen.
 
-Das nachfolgende Rebase auf Issue #166/main 0.6.18, die Versionsanpassung auf 0.6.19 und deren unabhängiger Review-/Abschlussnachweis bleiben Root zugeordnet.
+Zu diesem Zwischenstand standen das nachfolgende Rebase auf Issue #166/main 0.6.18, die Versionsanpassung auf 0.6.19 und der unabhängige Review-/Abschlussnachweis noch aus.
+
+
+## Zweite Integration auf main 0.6.18
+
+Agent `/root/integrate_cells` hat den gesamten Zellkern-Branch einschließlich des vorhandenen unabhängigen Reviewdrafts auf `8c46b062eb1fb6e965669418ece06c6ced9696f9` (main nach Issue #166, Version 0.6.18) rebasiert. Auch dieser Abschnitt dokumentiert Integration und Selbstprüfung; die unabhängige Freigabe des Integrationsdeltas folgt gesondert.
+
+Additive Konfliktauflösung: Die vollständigen English-Club-, Erdkern- und Zellkern-Dokumentationsabschnitte sowie alle drei Hauptansichten/Katalogzuordnungen bleiben erhalten. Der Help-Test zählt jetzt 3.771 sichtbare Aufgaben (3.753 auf diesem main plus 18 Zellkernfragen); die aktuelle Katalogmatrix nennt ebenfalls 3.771 insgesamt, 558 Naturfragen und 21 Zellfragen je Stufe. Der Desktop-Brückentest für den Salatmodus und der Zellkern-Aufdecktest bestehen nebeneinander. Die Erdkern-/Club-Pakete, sämtliche Originalpakete und die historische `.focus.`-Bank sind im Diff gegen dieses main unverändert. Question-Projektion, gemeinsamer `get_learning_explanation`-Command/Handler/Registrierung/Client und Schema-19-Vokabelpfad samt Migration 019 bleiben ebenfalls unverändert.
+
+Der Generator lädt Erdkern, English Club und Zellkern. Ergänzende `.club.`- und `.nucleus.`-Fragen zählen beide nicht als Ersatz für die historische Focus-Bank. Die zwei Regressionen führen den echten Neuaufbau auf isolierten Inhaltskopien aus und prüfen nun den vollständigen unveränderten Focus-Bestand, alle 45 ursprünglichen Zellfragen, 18 neue Zellkernfragen, unveränderte Club-/Erdkerndateien und deren Zuordnung. Mit zwölf ergänzenden Club- und Zellkernfragen je Stufe bleibt die Focus-Bank vollständig erhalten; auch die hinzugefügten Club-IDs bleiben genau einem Ziel zugeordnet.
+
+Am 06.10.2026 ausgeführt und grün: `npm run typecheck`; gezielter Vitestlauf über App, LearningPanel, StudyBrowser, EarthWorld, CellWorld, EnglishClub, VocabularyPanel, Cell-Domain und Desktop-Brücke mit **138 Tests in neun Dateien**; beide Generator-Neuaufbautests; `npm run format:check`; Cargo fmt; Clippy für alle Targets mit `-D warnings`; vollständiger `cargo test --manifest-path src-tauri/Cargo.toml --locked` mit **194 Rusttests**, einschließlich Migration 019, Wiederöffnung, Vokabel-Salat und Zell-/Erdkern-Persistenzfälle. Rustlog: `/private/tmp/lernwelt-167-integration-018-rust.log`. Keine native App gestartet, keine Versionsanpassung oder externe Veröffentlichung vorgenommen.
+
+Root führt die Versionsanpassung auf 0.6.19, vollständige finale Prüfungen, nativen Smoke, PR/CI/Merge/Release und Branchbereinigung aus. Der unabhängige Reviewer prüft dieses Integrationsdelta und aktualisiert anschließend seinen Nachweis.

@@ -115,3 +115,8 @@ Das native Debug-App-Bundle wurde erfolgreich mit `npm run desktop:build -- --de
 ### Integration mit der Erdkern-Expedition
 
 Nach Rebase auf main `d05a449` (0.6.17) am 06.10.2026 bestanden `npm run check` mit 446 Frontend- und 130 Skripttests sowie `npm run check:rust` mit 186 Rusttests, Formatierung, TypeScript/Vite, Rustfmt und Clippy. Beide Expeditionen behalten ihre Katalogeinträge und verwenden denselben begrenzten Lesebefehl zum freiwilligen Aufdecken. Die Inhaltsgeneratorprüfung bewahrt zusätzlich die Erdkern-Datei und ihre Katalog-IDs. Das spätere Rebase auf 0.6.18 und der finale native Integrationsstand sind separat zu prüfen.
+
+
+### Integration mit English Club und Schema 19
+
+Das zweite Rebase auf main `8c46b06` (0.6.18) erhält Erdkern, English Club, den gemeinsamen Lesebefehl und den Schema-19-Vokabelpfad unverändert. Alle Zellkernfragen ergänzen den Bestand; insgesamt sind jetzt 3.771 sichtbare Fachaufgaben verfügbar. Generatorregressionen prüfen die gesamte unveränderte Focus-Bank und sämtliche Erdkern-/Club-Zuordnungen, auch wenn zusätzliche Club- und Zellkernfragen zusammen vorhanden sind. Am 06.10.2026 bestanden TypeScript, 138 betroffene Frontendtests, beide Generatorprüfungen, Formatierung, Cargo fmt/Clippy sowie alle 194 Rusttests. Finale Version, vollständiger Abschlusscheck und nativer Start werden am anschließenden 0.6.19-Stand geprüft.
