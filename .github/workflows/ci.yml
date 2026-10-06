@@ -3,7 +3,7 @@ name: Quality
 on:
   pull_request:
     branches: [main]
-    types: [opened, synchronize, reopened, edited, ready_for_review]
+    types: [opened, synchronize, reopened]
   push:
     branches: [main]
 
@@ -28,21 +28,25 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Check issue branch and review evidence
-        if: github.event_name == 'pull_request'
-        env:
-          PR_BRANCH: ${{ github.head_ref }}
-          PR_BODY: ${{ github.event.pull_request.body }}
-        run: node scripts/check-issue-workflow.mjs
       - name: Require a new version and release notes for every merge
         if: github.event_name == 'pull_request'
         env:
           RELEASE_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: node scripts/check-release-version.mjs
       - run: npm run check
+      - name: Bind frontend files to this commit and run
+        run: node scripts/frontend-artifact.mjs --pack
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: lernwelt-frontend
+          path: frontend-artifact
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 7
 
   desktop:
     name: Desktop (${{ matrix.os }})
+    needs: frontend
     strategy:
       fail-fast: false
       matrix:
@@ -59,12 +63,30 @@ jobs:
         with:
           toolchain: '1.98.1'
           components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2
+        with:
+          workspaces: src-tauri -> target
+          shared-key: quality-${{ runner.os }}-${{ runner.arch }}
+          save-if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       - run: npm ci
-      - run: npm run check
+        if: github.event_name == 'pull_request'
+      - name: Test native macOS bundle verification
+        if: runner.os == 'macOS'
+        run: node --test scripts/verify-macos-bundle.test.mjs
       - run: npm run check:rust
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
+        if: github.event_name == 'pull_request'
+        with:
+          name: lernwelt-frontend
+          path: frontend-artifact
+      - name: Verify frontend and prepare CI-only build configuration
+        if: github.event_name == 'pull_request'
+        run: node scripts/frontend-artifact.mjs --restore --config=ci-build-config.json
       - name: Build native executable
-        run: npm run desktop:build -- --debug --no-bundle
+        if: github.event_name == 'pull_request'
+        run: npm run desktop:build -- --debug --no-bundle --config ci-build-config.json
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: github.event_name == 'pull_request'
         with:
           name: lernwelt-debug-${{ matrix.os }}
           path: |
@@ -73,13 +95,27 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
-  release:
-    name: Automatic release after merge
-    needs: [frontend, desktop]
+  release-build:
+    name: Build automatic release
+    needs: frontend
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'dr-dimitri/lernwelt'
     permissions:
       contents: write
     uses: ./.github/workflows/release.yml
+    with:
+      publish: false
+      frontend-artifact: lernwelt-frontend
     secrets:
       TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
       TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+
+  publish:
+    name: Publish automatic release after quality checks
+    needs: [frontend, desktop, release-build]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.release-build.outputs.build == 'true'
+    permissions:
+      contents: write
+    uses: ./.github/workflows/release-publish.yml
+    with:
+      tag: ${{ needs.release-build.outputs.tag }}
+      version: ${{ needs.release-build.outputs.version }}

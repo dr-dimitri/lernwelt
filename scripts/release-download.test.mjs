@@ -52,7 +52,7 @@ function temporary(t) {
 
 function workflowDownloads(version) {
   const workflow = readFileSync(
-    new URL('../.github/workflows/release.yml', import.meta.url),
+    new URL('../.github/workflows/release-publish.yml', import.meta.url),
     'utf8',
   );
   const downloads = [
@@ -69,7 +69,7 @@ function workflowDownloads(version) {
         runInNewContext(
           expression,
           {
-            needs: { prepare: { outputs: { version } } },
+            inputs: { version },
             contains: (value, part) => value.includes(part),
           },
           { timeout: 1000 },
