@@ -51,3 +51,7 @@ Die richtige Erstlösung einer Bildschirmaufgabe ist an die vorhandenen 1/2/3 Le
 ## Prüfnachweise
 
 Der Katalog wird mit den vorhandenen Schema-, Referenz- und Antwortprüfungen des Projekts getestet. Zu prüfen sind insbesondere eindeutige IDs, auflösbare Themenverweise, neun Fragen und zwei Aktivitäten je Thema, drei Fragen pro Stufe, jeweils genau eine richtige Auswahlantwort sowie die unveränderte Wiederholungs- und Punktebehandlung. Die tatsächlich ausgeführten Integrationsprüfungen und der separate Inhaltsreview werden in `docs/reviews/issue-78.md` dokumentiert.
+
+## Expedition Zellkern
+
+Das vorhandene Zellthema integriert die 45 bisherigen Fragen und beide Aktivitäten mit unveränderten IDs/Antworten/Stufen. 18 zusätzliche Fragen (sechs je Stufe) vertiefen NT5 2.2, ergänzend 2.1 und 1.1: Zellkern erkennen, Aufgabe verbinden, Modell und Lichtmikroskopaufnahme vergleichen. Drei eigene interaktive Modelle und die lokal gebündelte CC-BY-SA-4.0-Wangenaufnahme verbinden Entdecken mit kurzen Runden. Der gesamte Naturbestand umfasst dadurch 558 Fragen. Keine vollständige Lehrplanabdeckung. Stand 06.10.2026. [Vollständige Zuordnung, Fachgrenzen und konkrete Bildnachweise](cell-expedition.md).

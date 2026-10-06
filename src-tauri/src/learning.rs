@@ -999,3 +999,6 @@ mod help_tests;
 
 #[cfg(test)]
 mod practice_tests;
+
+#[cfg(test)]
+mod cell_tests;

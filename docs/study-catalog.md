@@ -133,3 +133,7 @@ Die Katalogeinheit `geography-earth-layers` ergänzt Geo5 „Planet Erde“ um 1
 ## English Club
 
 „Personalpronomen und Begleiter“ hält Personalpronomen, Objektformen und vorhandene Begleiterübungen im selben bisherigen Ziel erreichbar. „to be: am, is und are“ ergänzt Aussage, Verneinung, Frage, Kurzantwort und Kurzformen. Suche findet Personalpronomen, Pronomen, to be, am is are und sein. Die [36 Aufgaben mit Inhaltsreview](english-club.md) gehören weiterhin genau einem Ziel; zusätzliche Erklärungszugänge schaffen keinen neuen Fortschritt. Simple Past ist freiwillig als eigenes Thema verlinkt.
+
+## Zellthema als Expedition
+
+Die bestehende Einheit `nature-cells` bleibt die einzige Katalogzuordnung für ihre 45 bisherigen und 18 neuen Zellkernfragen. Über ihre bisherige Themenkarte sowie eine direkte Expedition-Karte öffnet Natur und Technik die Zelllernreise. Alle Fragen verwenden denselben Backend-Fortschritt und dieselbe Erstlösungsidentität. Stationsfilter und höchstens sechs Fragen pro Runde machen die Inhalte erreichbar, ohne eine lange Pflichtrunde. [Bestandszuordnung und Quellen](cell-expedition.md).

@@ -38,6 +38,7 @@ export default function LearningPanel({
   profileVersion,
   onSupplement,
   onNatureGames,
+  onCells,
   active = true,
   externalControls = false,
   catalogRequest = 0,
@@ -48,6 +49,7 @@ export default function LearningPanel({
   profileVersion: number;
   onSupplement?: (link: StudySupplement) => void;
   onNatureGames?: () => void;
+  onCells?: () => void;
   active?: boolean;
   externalControls?: boolean;
   catalogRequest?: number;
@@ -249,6 +251,10 @@ export default function LearningPanel({
   }, [roundIds, roundFinished, active, needsProfile]);
 
   function startUnit(unit: StudyUnit, offset = 0) {
+    if (unit.id === 'nature-cells' && onCells) {
+      onCells();
+      return;
+    }
     setRomanRandom(false);
     returningTopics.current = false;
     if (!state) return;
@@ -699,6 +705,7 @@ export default function LearningPanel({
             onSelect={startUnit}
             onSupplement={onSupplement}
             onNatureGames={onNatureGames}
+            onCells={onCells}
             active={active && browsing}
             focusOnMount={returningTopics.current}
           />

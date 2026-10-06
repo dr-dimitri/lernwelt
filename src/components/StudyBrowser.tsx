@@ -19,6 +19,7 @@ export default function StudyBrowser({
   onSelect,
   onSupplement,
   onNatureGames,
+  onCells,
   active = true,
   focusOnMount = false,
 }: {
@@ -28,6 +29,7 @@ export default function StudyBrowser({
   onSelect: (unit: StudyUnit) => void;
   onSupplement?: (link: StudySupplement) => void;
   onNatureGames?: () => void;
+  onCells?: () => void;
   active?: boolean;
   focusOnMount?: boolean;
 }) {
@@ -100,6 +102,15 @@ export default function StudyBrowser({
       query,
     )
       ? [{ key: 'nature-games', link: null, unit: null }]
+      : []),
+    ...(subject === 'nature' &&
+    onCells &&
+    !areaId &&
+    matchesStudyText(
+      'Expedition Zellkern Zellen entdecken Mikroskop Erbinformation',
+      query,
+    )
+      ? [{ key: 'cells', link: null, unit: null }]
       : []),
     ...supplementMatches.map(({ link, unit }) => ({
       key: `${link.kind}:${link.target}`,
@@ -200,17 +211,24 @@ export default function StudyBrowser({
                   selected.current = event.currentTarget;
                   if (link) onSupplement?.(link);
                   else if (unit) onSelect(unit);
+                  else if (key === 'cells') onCells?.();
                   else onNatureGames?.();
                 }}
               >
-                <strong>{link?.label ?? unit?.name ?? 'Naturspiele'}</strong>
+                <strong>
+                  {link?.label ??
+                    unit?.name ??
+                    (key === 'cells' ? 'Expedition Zellkern' : 'Naturspiele')}
+                </strong>
                 {link && <span className="study-context">{unit?.name}</span>}
                 <span>
                   {areas.find((area) => area.id === unit?.areaId)?.name}
                 </span>
                 <span>
                   {unit?.goal ??
-                    'Entdecke Blüten und Futterketten. Ohne Lernpunkte.'}
+                    (key === 'cells'
+                      ? 'Erkunde eine Zelle und vergleiche Modell und echtes Mikroskopbild.'
+                      : 'Entdecke Blüten und Futterketten. Ohne Lernpunkte.')}
                 </span>
                 <small>
                   {!unit
@@ -222,7 +240,9 @@ export default function StudyBrowser({
                         : 'Auf dieser Stufe noch keine Aufgaben'}
                 </small>
                 <span className="study-action">
-                  {link || !unit ? 'Öffnen →' : 'Kurze Runde starten →'}
+                  {link || !unit || (unit.id === 'nature-cells' && onCells)
+                    ? 'Öffnen →'
+                    : 'Kurze Runde starten →'}
                 </span>
               </button>
             );

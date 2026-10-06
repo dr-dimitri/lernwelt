@@ -4122,11 +4122,14 @@
       "keywords": [
         "Mikroskop",
         "Zellwand",
-        "Chloroplasten"
+        "Chloroplasten",
+        "Zellkern",
+        "Erbinformation",
+        "Expedition"
       ],
-      "curriculumRef": "NT5 2.2",
+      "curriculumRef": "NT5 2.2; NT5 2.1; NT5 1.1",
       "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/nt_gym",
-      "curriculumVersion": "LehrplanPLUS, geprüft 02.10.2026",
+      "curriculumVersion": "LehrplanPLUS, geprüft 06.10.2026",
       "languageSequence": null,
       "exerciseIds": [
         "by.nature.5.cells.1.v1",
@@ -4173,7 +4176,25 @@
         "by.nature.5.focus.cells.streber.09.v1",
         "by.nature.5.focus.cells.streber.10.v1",
         "by.nature.5.focus.cells.streber.11.v1",
-        "by.nature.5.focus.cells.streber.12.v1"
+        "by.nature.5.focus.cells.streber.12.v1",
+        "by.nature.5.nucleus.vorschule.01.v1",
+        "by.nature.5.nucleus.vorschule.02.v1",
+        "by.nature.5.nucleus.vorschule.03.v1",
+        "by.nature.5.nucleus.vorschule.04.v1",
+        "by.nature.5.nucleus.vorschule.05.v1",
+        "by.nature.5.nucleus.vorschule.06.v1",
+        "by.nature.5.nucleus.koenner.01.v1",
+        "by.nature.5.nucleus.koenner.02.v1",
+        "by.nature.5.nucleus.koenner.03.v1",
+        "by.nature.5.nucleus.koenner.04.v1",
+        "by.nature.5.nucleus.koenner.05.v1",
+        "by.nature.5.nucleus.koenner.06.v1",
+        "by.nature.5.nucleus.streber.01.v1",
+        "by.nature.5.nucleus.streber.02.v1",
+        "by.nature.5.nucleus.streber.03.v1",
+        "by.nature.5.nucleus.streber.04.v1",
+        "by.nature.5.nucleus.streber.05.v1",
+        "by.nature.5.nucleus.streber.06.v1"
       ],
       "supplements": []
     },
