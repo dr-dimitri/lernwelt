@@ -92,7 +92,9 @@ function fixture(): LearningState {
   return state;
 }
 beforeEach(() => {
+  vi.restoreAllMocks();
   vi.resetAllMocks();
+  localStorage.clear();
   vi.mocked(desktop.getLearningState).mockResolvedValue(fixture());
   vi.mocked(desktop.getProfile).mockResolvedValue({
     displayName: 'Alex',
@@ -107,6 +109,158 @@ beforeEach(() => {
     async (difficulty) => difficulty,
   );
 });
+it('klappt die Fachleiste per Tastatur ein und aus und erhält den Schalterfokus', async () => {
+  const user = userEvent.setup();
+  const { unmount } = render(<App />);
+  await screen.findByRole('searchbox');
+  const toggle = screen.getByRole('button', {
+    name: 'Seitenleiste einklappen',
+  });
+  expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  toggle.focus();
+  await user.keyboard('{Enter}');
+  expect(toggle).toHaveAccessibleName('Seitenleiste ausklappen');
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(toggle).toHaveFocus();
+  expect(localStorage.getItem('lernwelt.sidebarCollapsed')).toBe('true');
+  unmount();
+  render(<App />);
+  const restored = screen.getByRole('button', {
+    name: 'Seitenleiste ausklappen',
+  });
+  expect(restored).toHaveAttribute('aria-expanded', 'false');
+  await screen.findByRole('searchbox');
+  restored.focus();
+  await user.keyboard(' ');
+  expect(restored).toHaveAccessibleName('Seitenleiste einklappen');
+  expect(restored).toHaveAttribute('aria-expanded', 'true');
+  expect(restored).toHaveFocus();
+  expect(localStorage.getItem('lernwelt.sidebarCollapsed')).toBe('false');
+});
+
+it('erhält alle fünf zugänglich benannten Ziele und das aktive Fach in der schmalen Leiste', async () => {
+  const user = userEvent.setup();
+  localStorage.setItem('lernwelt.sidebarCollapsed', 'true');
+  render(<App />);
+  const sidebar = screen.getByRole('complementary', {
+    name: 'Lernwelt-Navigation',
+  });
+  expect(sidebar.parentElement).toHaveClass('is-sidebar-collapsed');
+  const nav = screen.getByRole('navigation', { name: 'Lernwelt-Bereiche' });
+  for (const name of [
+    'Mathematik',
+    'Englisch',
+    'Natur und Technik',
+    'Geographie',
+    'Trainer & Spiele',
+  ]) {
+    const target = within(nav).getByRole('button', { name });
+    expect(target).toHaveAttribute('title', name);
+    expect(target).toBeEnabled();
+  }
+  expect(
+    within(nav).getByRole('button', { name: 'Mathematik' }),
+  ).toHaveAttribute('aria-current', 'page');
+  await user.click(within(nav).getByRole('button', { name: 'Englisch' }));
+  await screen.findByRole('button', { name: /Schulwörter im Vokabeltrainer/ });
+  const english = within(nav).getByRole('button', { name: 'Englisch' });
+  expect(english).toHaveAttribute('aria-current', 'page');
+  expect(within(english).getByText('✓')).toBeInTheDocument();
+  expect(sidebar.parentElement).toHaveClass('is-sidebar-collapsed');
+});
+
+it.each(['false', '', 'kaputt', '1', 'TRUE'])(
+  'verwendet bei lokalem Wert %j eine bedienbare breite Leiste',
+  async (value) => {
+    const user = userEvent.setup();
+    localStorage.setItem('lernwelt.sidebarCollapsed', value);
+    render(<App />);
+    const toggle = screen.getByRole('button', {
+      name: 'Seitenleiste einklappen',
+    });
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await user.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    expect(localStorage.getItem('lernwelt.sidebarCollapsed')).toBe('true');
+  },
+);
+
+it('bleibt bei nicht verfügbarem lokalem Speicher ein- und ausklappbar', async () => {
+  const user = userEvent.setup();
+  vi.spyOn(window, 'localStorage', 'get').mockImplementation(() => {
+    throw new Error('Speicher nicht verfügbar');
+  });
+  render(<App />);
+  const toggle = screen.getByRole('button', {
+    name: 'Seitenleiste einklappen',
+  });
+  await user.click(toggle);
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(toggle).toHaveFocus();
+  await user.click(toggle);
+  expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  expect(toggle).toHaveFocus();
+  expect(await screen.findByRole('searchbox')).toBeVisible();
+});
+
+it('erhält die Layoutwahl trotz Schreibfehler im lokalen Speicher', async () => {
+  const user = userEvent.setup();
+  vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+    throw new Error('Speicher voll');
+  });
+  render(<App />);
+  const toggle = screen.getByRole('button', {
+    name: 'Seitenleiste einklappen',
+  });
+  await user.click(toggle);
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(toggle).toHaveFocus();
+  expect(await screen.findByRole('searchbox')).toBeVisible();
+});
+
+it('klappt eine laufende Übung ohne Antwortverlust oder Wechselbestätigung ein', async () => {
+  const user = userEvent.setup();
+  render(<App />);
+  await user.click(
+    await screen.findByRole('button', { name: /Längen umrechnen/ }),
+  );
+  const answer = screen.getByLabelText('Was ist 17 + 25?');
+  await user.type(answer, '41');
+  const readCount = vi.mocked(desktop.getLearningState).mock.calls.length;
+  const toggle = screen.getByRole('button', {
+    name: 'Seitenleiste einklappen',
+  });
+  await user.click(toggle);
+  expect(toggle).toHaveFocus();
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(answer).toHaveValue('41');
+  expect(screen.getByLabelText('Was ist 17 + 25?')).toBe(answer);
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(desktop.getLearningState).toHaveBeenCalledTimes(readCount);
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
+  expect(desktop.setDifficulty).not.toHaveBeenCalled();
+  await user.click(screen.getByRole('button', { name: 'Englisch' }));
+  expect(screen.getByRole('dialog', { name: 'Wechseln?' })).toBeVisible();
+  await user.keyboard('{Escape}');
+  expect(answer).toHaveValue('41');
+});
+
+it('trennt das kleine Menü von der gespeicherten Desktopbreite und erhält Escape-Rückfokus', async () => {
+  const user = userEvent.setup();
+  localStorage.setItem('lernwelt.sidebarCollapsed', 'true');
+  render(<App />);
+  const menu = screen.getByRole('button', { name: 'Menü öffnen' });
+  await user.click(menu);
+  screen.getByRole('button', { name: 'Englisch' }).focus();
+  await user.keyboard('{Escape}');
+  expect(menu).toHaveFocus();
+  expect(menu).toHaveAttribute('aria-expanded', 'false');
+  expect(
+    screen.getByRole('button', { name: 'Seitenleiste ausklappen' }),
+  ).toHaveAttribute('aria-expanded', 'false');
+  expect(localStorage.getItem('lernwelt.sidebarCollapsed')).toBe('true');
+});
+
 it('bietet vier beschriftete Fächer und startet ein sichtbares Thema direkt', async () => {
   const user = userEvent.setup();
   render(<App />);
@@ -201,6 +355,18 @@ it('sperrt Navigation während Antwortübertragung und bietet Rückmeldung inlin
   expect(
     screen.getByRole('button', { name: 'Wird gespeichert …' }),
   ).toBeDisabled();
+  const answer = screen.getByLabelText('Was ist 17 + 25?');
+  const toggle = screen.getByRole('button', {
+    name: 'Seitenleiste einklappen',
+  });
+  expect(toggle).toBeEnabled();
+  await user.click(toggle);
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(toggle).toHaveFocus();
+  expect(answer).toHaveValue('42');
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(desktop.submitAnswer).toHaveBeenCalledOnce();
+  expect(screen.getByRole('button', { name: 'Englisch' })).toBeDisabled();
   await act(async () =>
     resolve({
       correct: true,

@@ -26,6 +26,14 @@ type View =
   | 'nature-games'
   | 'solar';
 type Activity = { dirty: boolean; busy: boolean };
+const sidebarStorageKey = 'lernwelt.sidebarCollapsed';
+function readSidebarCollapsed() {
+  try {
+    return window.localStorage.getItem(sidebarStorageKey) === 'true';
+  } catch {
+    return false;
+  }
+}
 const trainers = [
   {
     id: 'vocabulary',
@@ -72,6 +80,8 @@ export default function App() {
   const [solarMode, setSolarMode] = useState<'discover' | 'quiz'>('discover');
   const [profileVersion, setProfileVersion] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] =
+    useState(readSidebarCollapsed);
   const [activity, setActivity] = useState<Activity>({
     dirty: false,
     busy: false,
@@ -153,6 +163,15 @@ export default function App() {
       setPendingChange(() => action);
     } else action();
   }
+  function toggleSidebar() {
+    const next = !sidebarCollapsed;
+    setSidebarCollapsed(next);
+    try {
+      window.localStorage.setItem(sidebarStorageKey, String(next));
+    } catch {
+      // The layout remains usable when local storage is unavailable.
+    }
+  }
   function stay() {
     confirmation.current?.close();
     setPendingChange(null);
@@ -218,7 +237,9 @@ export default function App() {
   }
 
   return (
-    <div className="app-shell direct-topics-shell">
+    <div
+      className={`app-shell direct-topics-shell ${sidebarCollapsed ? 'is-sidebar-collapsed' : ''}`}
+    >
       <a className="skip-link" href="#main">
         Zum Inhalt
       </a>
@@ -235,6 +256,7 @@ export default function App() {
         <button
           className="brand"
           aria-label="Lernwelt – Zu den Themen"
+          title="Lernwelt – Zu den Themen"
           disabled={locked}
           onClick={() => navigate('learn', selected, true)}
         >
@@ -242,6 +264,36 @@ export default function App() {
             L
           </span>
           <span className="brand-label">Lernwelt</span>
+        </button>
+        <button
+          className="sidebar-toggle"
+          type="button"
+          aria-expanded={!sidebarCollapsed}
+          aria-controls="navigation-items"
+          aria-label={
+            sidebarCollapsed
+              ? 'Seitenleiste ausklappen'
+              : 'Seitenleiste einklappen'
+          }
+          title={
+            sidebarCollapsed
+              ? 'Seitenleiste ausklappen'
+              : 'Seitenleiste einklappen'
+          }
+          onClick={toggleSidebar}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d={sidebarCollapsed ? 'm9 6 6 6-6 6' : 'm15 6-6 6 6 6'} />
+          </svg>
+          <span className="sidebar-toggle-label">Einklappen</span>
         </button>
         <button
           ref={menuButton}
@@ -261,6 +313,8 @@ export default function App() {
             {subjects.map((item) => (
               <button
                 key={item.id}
+                aria-label={item.name}
+                title={item.name}
                 disabled={locked}
                 aria-current={
                   selected === item.id &&
@@ -283,6 +337,8 @@ export default function App() {
               </button>
             ))}
             <button
+              aria-label="Trainer & Spiele"
+              title="Trainer & Spiele"
               disabled={locked}
               aria-current={
                 !['learn', 'mission', 'solar'].includes(view)

@@ -37,11 +37,11 @@ Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale mac
 
 ## Bedienung
 
-Der Einstieg zeigt **Mathematik** mit direkten Themen. Vier dauerhaft beschriftete Fächer führen zu Mathematik, Englisch, Natur und Technik sowie Geographie. Ein sichtbares Thema öffnet sofort eine Runde mit höchstens sechs Aufgaben. **Thema suchen**, der optionale Lernbereichsfilter und Seiten mit höchstens sechs Zielen machen alle vorhandenen Unterthemen erreichbar. **Zu den Themen** stellt Suche, Filter, Seite und Fokus während der Sitzung wieder her. Geographie bietet **Sonnensystem entdecken** und **Planeten erraten**. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md).
+Der Einstieg zeigt **Mathematik** mit direkten Themen. Vier beschriftete Fächer führen zu Mathematik, Englisch, Natur und Technik sowie Geographie. **Seitenleiste einklappen** schafft mehr Platz für die Aufgabe; die schmale Leiste bietet weiterhin alle Ziele als Zeichen mit Namenshinweisen bei Mauszeiger und Tastaturfokus. **Seitenleiste ausklappen** zeigt die Namen wieder dauerhaft. Diese Wahl bleibt auf dem Gerät gespeichert. Ein sichtbares Thema öffnet sofort eine Runde mit höchstens sechs Aufgaben. **Thema suchen**, der optionale Lernbereichsfilter und Seiten mit höchstens sechs Zielen machen alle vorhandenen Unterthemen erreichbar. **Zu den Themen** stellt Suche, Filter, Seite und Fokus während der Sitzung wieder her. Geographie bietet **Sonnensystem entdecken** und **Planeten erraten**. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md).
 
 **Trainer & Spiele** erschließt Vokabeln, Einmaleins, Tastschreiben, Naturspiele und die Spielhalle. Die Fächer bieten außerdem passende konkrete Vokabeldecks und drei Lernreisen. **Stufe: …** öffnet jederzeit die drei freien Stufen. Bei ungesendeten Eingaben fragt ein Wechsel **Bleiben / Wechseln**; laufende Speicherungen sperren Wechsel. Profil, Sammlung/Abzeichen und App-Updates stehen als beschriftete Einstiege oben. Im kleinen Fenster öffnet **Menü öffnen** die Fachnavigation; Escape schließt es und gibt den Fokus zurück. [Gestaltung](docs/interface.md).
 
-Diese Oberfläche wird für Issue #149 zunächst ausschließlich als **0.6.9-rc.1** veröffentlicht; die stabile Downloadversion bleibt 0.6.8.
+Diese Oberfläche wird für Issue #149 zunächst ausschließlich als Vorabversion veröffentlicht. Issue #151 ergänzt die einklappbare Fachleiste im folgenden Vorabtest; die stabile Downloadversion bleibt 0.6.8. [Änderungen für den folgenden Test](docs/releases/0.6.10.md).
 
 ## App aktualisieren
 

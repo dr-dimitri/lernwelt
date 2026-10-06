@@ -2196,6 +2196,15 @@ main {
 .direct-topics-shell .primary-navigation button:hover {
   background: #e7e0f4;
 }
+.direct-topics-shell .sidebar-toggle {
+  color: #4f465e;
+  background: #fff;
+  border-color: #a894cf;
+  font-size: 15px;
+}
+.direct-topics-shell .sidebar-toggle:hover {
+  background: #e7e0f4;
+}
 .direct-topics-shell .primary-navigation button[aria-current='page'] {
   background: #e4daf9;
   border-color: #a894cf;
@@ -2434,6 +2443,55 @@ main {
   .direct-topics-shell .solar-space {
     height: 420px;
     max-height: 420px;
+  }
+}
+
+@media (min-width: 761px) {
+  .direct-topics-shell.is-sidebar-collapsed {
+    --sidebar-width: 96px;
+  }
+  .direct-topics-shell.is-sidebar-collapsed .sidebar {
+    padding-inline: 16px;
+  }
+  .direct-topics-shell.is-sidebar-collapsed main {
+    max-width: none;
+  }
+  .direct-topics-shell.is-sidebar-collapsed .navigation-items {
+    overflow: visible;
+  }
+  .direct-topics-shell.is-sidebar-collapsed .primary-navigation button {
+    position: relative;
+    justify-content: center;
+    gap: 0;
+    padding-inline: 0;
+  }
+  .direct-topics-shell.is-sidebar-collapsed .current-mark {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 12px;
+  }
+  .direct-topics-shell.is-sidebar-collapsed
+    .primary-navigation
+    button:is(:hover, :focus-visible)
+    .navigation-label {
+    display: block;
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: max-content;
+    max-width: min(260px, calc(100vw - 120px));
+    padding: 10px 14px;
+    border: 1px solid #a894cf;
+    border-radius: 10px;
+    background: #fff;
+    color: #413064;
+    box-shadow: 0 4px 16px #25263d20;
+    font-size: 17px;
+    font-weight: 650;
+    line-height: 1.4;
+    z-index: 5;
   }
 }
 
