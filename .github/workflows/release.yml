@@ -111,14 +111,14 @@ jobs:
         with:
           node-version: '24'
       - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
-        if: contains(needs.prepare.outputs.version, '-rc.')
         with:
           name: darwin-aarch64
           path: release-assets/darwin-aarch64
       - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
         if: ${{ !contains(needs.prepare.outputs.version, '-rc.') }}
         with:
-          path: release-assets
+          name: windows-x86_64
+          path: release-assets/windows-x86_64
       - name: Assemble complete update manifest
         run: node scripts/release-assets.mjs
       - name: Publish completed release

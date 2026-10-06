@@ -33,6 +33,16 @@ const windows = {
     'nsis/Lernwelt-setup.exe.sig': signature,
   },
 };
+const debugArtifacts = [
+  {
+    name: 'lernwelt-debug-macos-latest',
+    files: { lernwelt: 'macOS debug executable' },
+  },
+  {
+    name: 'lernwelt-debug-windows-latest',
+    files: { 'lernwelt.exe': 'Windows debug executable' },
+  },
+];
 
 function temporary(t) {
   const directory = mkdtempSync(path.join(tmpdir(), 'lernwelt download test '));
@@ -40,7 +50,7 @@ function temporary(t) {
   return directory;
 }
 
-function workflowDownload(version) {
+function workflowDownloads(version) {
   const workflow = readFileSync(
     new URL('../.github/workflows/release.yml', import.meta.url),
     'utf8',
@@ -52,17 +62,18 @@ function workflowDownload(version) {
   ].map(([, revision, block]) => {
     assert.equal(revision, pinnedAction);
     const condition = /^ {8}if: (.+)$/m.exec(block)?.[1];
-    assert.ok(condition, 'Each download must select its release channel.');
-    const expression = condition.replace(/^\$\{\{\s*|\s*\}\}$/g, '');
+    const expression = condition?.replace(/^\$\{\{\s*|\s*\}\}$/g, '');
     return {
-      enabled: runInNewContext(
-        expression,
-        {
-          needs: { prepare: { outputs: { version } } },
-          contains: (value, part) => value.includes(part),
-        },
-        { timeout: 1000 },
-      ),
+      enabled:
+        !expression ||
+        runInNewContext(
+          expression,
+          {
+            needs: { prepare: { outputs: { version } } },
+            contains: (value, part) => value.includes(part),
+          },
+          { timeout: 1000 },
+        ),
       inputs: Object.fromEntries(
         [...block.matchAll(/^ {10}([\w-]+): (.+)$/gm)].map(([, key, value]) => [
           key,
@@ -72,18 +83,23 @@ function workflowDownload(version) {
     };
   });
   const enabled = downloads.filter((download) => download.enabled);
-  assert.equal(enabled.length, 1, 'Exactly one channel download must run.');
-  return enabled[0].inputs;
+  assert.ok(enabled.length, 'At least one named download must run.');
+  for (const download of downloads)
+    assert.ok(
+      download.inputs.name,
+      'Release downloads must select a named artifact.',
+    );
+  return enabled.map((download) => download.inputs);
 }
 
 function downloadLayout(directory, inputs, available) {
   const artifacts = inputs.name
     ? available.filter((artifact) => artifact.name === inputs.name)
     : available;
-  assert.ok(artifacts.length, 'The requested artifact must exist.');
+  if (!artifacts.length) throw new Error(`Artifact '${inputs.name}' not found`);
   for (const artifact of artifacts) {
     // Pinned upstream path decision, independent of Lernwelt's workflow:
-    // https://github.com/actions/download-artifact/blob/634f93cb2916e3fdff6788551b99b062d0335ce0/src/download-artifact.ts#L155-L165
+    // https://github.com/actions/download-artifact/blob/634f93cb2916e3fdff6788551b99b062d0335ce0/src/download-artifact.ts#L158-L168
     const destination = runInNewContext(
       'isSingleArtifactDownload || inputs.mergeMultiple || artifacts.length === 1 ? resolvedPath : path.join(resolvedPath, artifact.name)',
       {
@@ -104,33 +120,44 @@ function downloadLayout(directory, inputs, available) {
   }
 }
 
+function assembleWorkflow(directory, version, available) {
+  for (const inputs of workflowDownloads(version))
+    downloadLayout(directory, inputs, available);
+  const output = path.join(directory, 'release-upload');
+  const manifest = prepareRelease(
+    path.join(directory, 'release-assets'),
+    output,
+    version,
+    'Neue Version',
+  );
+  return { output, manifest };
+}
+
 test('the RC workflow download assembles its single artifact into exactly four publishable files', (t) => {
+  assert.deepEqual(
+    workflowDownloads('0.6.15-rc.1').map((inputs) => inputs.name),
+    ['darwin-aarch64'],
+  );
   for (const available of [
     [appleSilicon],
-    [
-      appleSilicon,
-      { name: 'unrelated-debug', files: { 'lernwelt-debug': 'debug' } },
-    ],
+    [appleSilicon, windows, ...debugArtifacts],
   ]) {
     const directory = temporary(t);
-    downloadLayout(directory, workflowDownload('0.6.14-rc.2'), available);
-    const output = path.join(directory, 'release-upload');
-    const manifest = prepareRelease(
-      path.join(directory, 'release-assets'),
-      output,
-      '0.6.14-rc.2',
-      'Vorab testen',
+    const { output, manifest } = assembleWorkflow(
+      directory,
+      '0.6.15-rc.1',
+      available,
     );
     assert.deepEqual(Object.keys(manifest.platforms), ['darwin-aarch64']);
     assert.deepEqual(readdirSync(output).sort(), [
-      'Lernwelt_0.6.14-rc.2_darwin-aarch64.app.tar.gz',
-      'Lernwelt_0.6.14-rc.2_darwin-aarch64.app.tar.gz.sig',
-      'Lernwelt_0.6.14-rc.2_darwin-aarch64.dmg',
+      'Lernwelt_0.6.15-rc.1_darwin-aarch64.app.tar.gz',
+      'Lernwelt_0.6.15-rc.1_darwin-aarch64.app.tar.gz.sig',
+      'Lernwelt_0.6.15-rc.1_darwin-aarch64.dmg',
       'latest.json',
     ]);
     assert.equal(
       readFileSync(
-        path.join(output, 'Lernwelt_0.6.14-rc.2_darwin-aarch64.app.tar.gz'),
+        path.join(output, 'Lernwelt_0.6.15-rc.1_darwin-aarch64.app.tar.gz'),
         'utf8',
       ),
       'Apple Silicon updater',
@@ -142,30 +169,112 @@ test('the RC workflow download assembles its single artifact into exactly four p
   }
 });
 
-test('the stable workflow retains the unfiltered multi-artifact layout and six-file manifest', (t) => {
+test('the stable workflow selects only release artifacts from a run with both Quality debug artifacts', (t) => {
   const directory = temporary(t);
-  const inputs = workflowDownload('0.6.14');
-  assert.equal(inputs.name, undefined);
-  downloadLayout(directory, inputs, [appleSilicon, windows]);
-  const output = path.join(directory, 'release-upload');
-  const manifest = prepareRelease(
-    path.join(directory, 'release-assets'),
-    output,
-    '0.6.14',
-    'Neue Version',
+  assert.deepEqual(
+    workflowDownloads('0.6.15').map((inputs) => inputs.name),
+    ['darwin-aarch64', 'windows-x86_64'],
   );
+  const { output, manifest } = assembleWorkflow(directory, '0.6.15', [
+    appleSilicon,
+    windows,
+    ...debugArtifacts,
+  ]);
   assert.deepEqual(Object.keys(manifest.platforms), [
     'darwin-aarch64',
     'windows-x86_64',
   ]);
-  assert.equal(readdirSync(output).length, 6);
+  assert.deepEqual(readdirSync(output).sort(), [
+    'Lernwelt_0.6.15_darwin-aarch64.app.tar.gz',
+    'Lernwelt_0.6.15_darwin-aarch64.app.tar.gz.sig',
+    'Lernwelt_0.6.15_darwin-aarch64.dmg',
+    'Lernwelt_0.6.15_windows-x86_64-setup.exe',
+    'Lernwelt_0.6.15_windows-x86_64-setup.exe.sig',
+    'latest.json',
+  ]);
   assert.equal(
     readFileSync(
-      path.join(output, 'Lernwelt_0.6.14_windows-x86_64-setup.exe'),
+      path.join(output, 'Lernwelt_0.6.15_windows-x86_64-setup.exe'),
       'utf8',
     ),
     'Windows installer',
   );
+  assert.deepEqual(
+    JSON.parse(readFileSync(path.join(output, 'latest.json'), 'utf8')),
+    manifest,
+  );
+});
+
+test('a missing selected artifact blocks assembly without producing publishable output', async (t) => {
+  for (const { version, missing } of [
+    { version: '0.6.15-rc.1', missing: 'darwin-aarch64' },
+    { version: '0.6.15', missing: 'darwin-aarch64' },
+    { version: '0.6.15', missing: 'windows-x86_64' },
+  ]) {
+    await t.test(`${version}: missing ${missing}`, (child) => {
+      const directory = temporary(child);
+      const available = [appleSilicon, windows, ...debugArtifacts].filter(
+        (artifact) => artifact.name !== missing,
+      );
+      assert.throws(
+        () => assembleWorkflow(directory, version, available),
+        new RegExp(`Artifact '${missing}' not found`),
+      );
+      assert.equal(existsSync(path.join(directory, 'release-upload')), false);
+    });
+  }
+});
+
+test('named downloads preserve validation of files and signatures inside the Mac release artifact', async (t) => {
+  for (const { name, files, error } of [
+    {
+      name: 'embedded debug executable',
+      files: { ...appleSilicon.files, 'macos/lernwelt-debug': 'debug' },
+      error: /Unexpected release artifact/,
+    },
+    {
+      name: 'invalid updater signature',
+      files: {
+        ...appleSilicon.files,
+        'macos/Lernwelt.app.tar.gz.sig': 'broken signature',
+      },
+      error: /Invalid updater signature/,
+    },
+  ]) {
+    await t.test(name, (child) => {
+      const directory = temporary(child);
+      assert.throws(
+        () =>
+          assembleWorkflow(directory, '0.6.15-rc.1', [
+            { ...appleSilicon, files },
+          ]),
+        error,
+      );
+      assert.equal(existsSync(path.join(directory, 'release-upload')), false);
+    });
+  }
+});
+
+test('the old unfiltered stable download includes Quality debug directories and fails before output', (t) => {
+  const directory = temporary(t);
+  downloadLayout(directory, { path: 'release-assets' }, [
+    appleSilicon,
+    windows,
+    ...debugArtifacts,
+  ]);
+  const root = path.join(directory, 'release-assets');
+  assert.deepEqual(readdirSync(root).sort(), [
+    'darwin-aarch64',
+    'lernwelt-debug-macos-latest',
+    'lernwelt-debug-windows-latest',
+    'windows-x86_64',
+  ]);
+  const output = path.join(directory, 'release-upload');
+  assert.throws(
+    () => prepareRelease(root, output, '0.6.15', ''),
+    /Expected exactly release artifact directories/,
+  );
+  assert.equal(existsSync(output), false);
 });
 
 test('the old unfiltered single-artifact download layout fails before any manifest is produced', (t) => {
