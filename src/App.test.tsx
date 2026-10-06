@@ -764,3 +764,64 @@ it('behauptet nach fehlgeschlagenem Profilladen und anschließend bestätigtem T
   ).not.toBeInTheDocument();
   expect(within(overview).getAllByRole('article')).toHaveLength(6);
 });
+
+it('verwirft den bestätigten Erststartstatus beim Profil-Neuladen nach dem Speichern', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState).mockResolvedValue({
+    ...fixture(),
+    profileReady: false,
+  });
+  vi.mocked(desktop.getProfile).mockResolvedValue(null);
+  vi.mocked(desktop.saveProfile).mockImplementation(async (profile) => {
+    vi.mocked(desktop.getLearningState).mockRejectedValue(
+      new Error('Die Lerndaten konnten nicht erneut geladen werden.'),
+    );
+    return profile;
+  });
+  render(<App />);
+  const initialBadge = await screen.findByRole('button', {
+    name: 'Dein Lernabzeichen: Startklar',
+  });
+  await waitFor(() => expect(initialBadge).toBeEnabled());
+  await user.click(initialBadge);
+  const initialOverview = screen.getByRole('dialog', {
+    name: 'Deine Lernabzeichen',
+  });
+  expect(
+    within(initialOverview).getByText(/Speichere deinen Spitznamen/),
+  ).toBeVisible();
+  await user.click(
+    within(initialOverview).getByRole('button', { name: 'Schließen' }),
+  );
+  await user.click(screen.getByRole('button', { name: /Längen umrechnen/ }));
+  const nickname = await screen.findByRole('textbox', {
+    name: 'Name oder Spitzname',
+  });
+  await waitFor(() => expect(nickname).toBeEnabled());
+  await user.type(nickname, 'Mia');
+  await user.click(screen.getByRole('button', { name: 'Speichern' }));
+  await screen.findByRole('button', { name: 'Lernabzeichen nicht verfügbar' });
+  expect(desktop.saveProfile).toHaveBeenCalledWith({
+    displayName: 'Mia',
+    grade: 5,
+  });
+  await act(async () => {
+    // A confirmed trainer wallet cannot reconfirm the invalidated profile flag.
+    publishWallet(fixture().wallet);
+  });
+  const badge = await screen.findByRole('button', {
+    name: 'Dein Lernabzeichen: Startklar',
+  });
+  await waitFor(() => expect(badge).toBeEnabled());
+  await user.click(badge);
+  const overview = screen.getByRole('dialog', { name: 'Deine Lernabzeichen' });
+  await waitFor(() =>
+    expect(
+      within(overview).getByRole('button', { name: 'Schließen' }),
+    ).toHaveFocus(),
+  );
+  expect(
+    within(overview).queryByText(/Speichere deinen Spitznamen/),
+  ).not.toBeInTheDocument();
+  expect(within(overview).getAllByRole('article')).toHaveLength(6);
+});

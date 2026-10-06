@@ -10,7 +10,11 @@ import { validWallet } from '../lib/wallet-updates';
 function BadgeImage({ src, size }: { src: string; size: number }) {
   const [failed, setFailed] = useState(false);
   return failed ? (
-    <span className="badge-image-fallback" aria-hidden="true">
+    <span
+      className="badge-image-fallback"
+      aria-hidden="true"
+      style={{ width: size, height: size }}
+    >
       ✦
     </span>
   ) : (
@@ -91,7 +95,7 @@ export default function AchievementBadge({
         onClick={() => setOpen(true)}
       >
         {current && !unavailable && (
-          <BadgeImage key={current.id} src={current.image} size={64} />
+          <BadgeImage key={current.id} src={current.image} size={56} />
         )}
         <span>
           <small>Dein Lernabzeichen</small>

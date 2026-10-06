@@ -99,6 +99,10 @@ Die Workflow-Prüfung kontrolliert Issue-Branch, genau eine passende Abschlussve
 
 ## Punktebuchungen (Schema 2)
 
+Die automatisch erreichten Lernabzeichen sind eine reine Leseprojektion des Journals. `learning::wallet` berechnet Guthaben, die Summe positiver Buchungen und die Anzahl positiver Einträge der Arten `answer`, `vocabulary` und `multiplication` in einer Abfrage. `achievements::progress` verwendet den gemeinsamen, eingebetteten Katalog `content/achievements-v1.json`. Der Katalog beginnt bei 0/0; beide Schwellen steigen strikt. `Wallet.achievements` enthält die Zahl bestätigter Lösungen, den aktuellen Rang, alle erreichten IDs und die nächste ID. Es gibt keine Migration, neue Buchung oder zusätzliche IPC-Funktion. Bestehende Belege und gekaufte Belohnungen bleiben erhalten.
+
+Die vorhandenen typisierten Desktop-Antworten geben den bestätigten Wallet an den Header weiter. Ältere Ladeantworten dürfen erreichte Lebenszeitwerte oder Ränge nicht zurücksetzen; echte neue Bestätigungen werden auch bei vertauschter Antwortreihenfolge angezeigt. Das Frontend berechnet keine Freischaltung und führt keine zusätzliche Datenbankabfrage pro Antwort aus. Unbekannte bzw. fehlerhafte Daten bleiben als Lade-/Fehlerzustand sichtbar. Alle sechs PNGs sind lokal gebündelt. [Regeln und Stufen](achievements.md), [Bildprompts](assets/learning-badges.md).
+
 `point_entries` ist das lokale Buchungsjournal: positive Beträge für erstmalig korrekt gelöste Aufgaben, negative Beträge für einmalige Abzeichen. Guthaben und insgesamt verdiente Punkte werden daraus berechnet. Eine eindeutige Kombination aus Profil, Buchungsart und Aufgaben-/Belohnungs-ID verhindert doppelte Gutschriften oder Käufe.
 
 `answer_submissions` speichert Request-ID, Aufgabe, Antwort und Ergebnis. Derselbe Request wird ohne erneute Fortschritts- oder Punktebuchung beantwortet; dieselbe ID mit anderen Argumenten wird abgewiesen. Nach einem Transportfehler behält die UI die ID für einen Retry derselben Antwort. Ein erneuter Übungsversuch verwendet eine neue ID, kann aber für dieselbe Aufgabe keine weiteren Punkte erhalten.
@@ -123,7 +127,6 @@ Die vier `sample.*.v1`-Aufgaben stammen aus eigenen Lernwelt-Beispielen (Stand 2
 
 Migration 018 erweitert ausschließlich die erlaubten Spiel-IDs von `game_sessions` um `worms`. Alle bisherigen Spalten, Zeilen und Zeitstempel werden innerhalb der vorhandenen Migrationstransaktion kopiert; der Index für genau eine offene Runde wird wiederhergestellt. Rust erweitert die Spiel-Allowlist und verwendet weiterhin dieselben begrenzten Start-/Ende-Commands, Idempotenzschlüssel und Guthabenregeln. Es gibt keine neue IPC-Funktion oder Berechtigung und keine gespeicherten Wurmpositionen. Migration von Schema 17, vollständige Datenbewahrung, erneutes Öffnen, bezahlte Alt-Runden, Rollback nach Tabellentausch und ungültige Eingaben werden geprüft. [Spielregeln und Grenzen](worms.md).
 
-
 ## Punkte nach Schwierigkeit (Schema 5)
 
 Rust bestimmt die Prämie anhand von `exercise.difficulty`: Vorschule 1, Könner 2, Streber 3. Die aktuell gewählte Einstellung und vom Frontend übergebene Werte ändern diese Zuordnung nicht. `get_learning_state` liefert `pointsByDifficulty` für alle drei Stufen; die UI zeigt damit auch nach einem Stufenwechsel sofort die passende Prämie. Falsche Antworten oder neue Versuche auf bereits gelöste Aufgaben geben weiterhin 0 zusätzliche Punkte.
@@ -143,7 +146,6 @@ Migration 006 ergänzt nur `vocabulary_progress` und `vocabulary_reviews`. Forts
 Bewertung und Request-Beleg werden in einer Immediate-Transaktion gespeichert. Eindeutige Request-ID + unveränderte Nutzlast ermöglicht gefahrlose Wiederholung nach unklaren Transportfehlern. `expectedReviews` verhindert verlorene Updates durch alte Ansichten oder mehrere Prozesse; noch nicht fällige Karten und eine abweichende globale Stufe werden abgewiesen. Karte, Thema, Profil und Requestformat werden geprüft; unbekannte Inputfelder sind nicht erlaubt. Seit Schema 7 ersetzt automatische Antwortprüfung die Selbsteinschätzung. Die UI verbirgt die deutsche/englische Lösung bis zum Prüfen oder freiwilligen Aufdecken und sperrt weitere Antworten bei einem offenen Speicherfehler. Sie zeigt das bestätigte Ergebnis vor dem Laden der nächsten Karte. Erneutes Laden liest den tatsächlichen Stand, ohne eine Bewertung nachzuholen.
 
 Tests verwenden eine interne explizite Zeit, die nicht über IPC erreichbar ist. Migrationstests öffnen eine echte Schema-5-Datei erneut und prüfen Profil, Stufe, Fortschritt, Antwort-Replay, Abzeichen, Punkte und offene Spielrunde. Rollback wird sowohl beim Upgrade als auch bei einer fehlgeschlagenen Bewertung geprüft. Die Geräteuhr kann Fälligkeiten beeinflussen; kein manipulationssicheres System oder automatischer Hintergrunddienst.
-
 
 ## Geprüfte Vokabelantworten und Punkte (Schema 7)
 
@@ -166,6 +168,7 @@ Zwei weitere begrenzte Commands: `get_multiplication_state(mode)` und `answer_mu
 Belegschlüssel `(profile_id, mode, sequence)` erlaubt genau eine Bewertung je angebotenem Versuch. Identische Wiederholungen liefern das ursprüngliche Ergebnis und aktuelles Guthaben, abweichende Antworten auf alte Versuche werden abgewiesen. Jeder korrekte neue Versuch bucht +1 in `point_entries` mit Art `multiplication`; Beleg und Journal liegen in derselben Immediate-Transaktion. Zwei Verbindungen können denselben Versuch nicht doppelt buchen. Falsch/Aufdecken speichert den Versuch ohne Punkte; Korrektur nach gezeigter Lösung gibt keine Punkte für denselben Versuch.
 
 Migration 009 erhält alle bisherigen Journalzeilen einschließlich IDs und Zeitstempel und erweitert die erlaubten Arten um `multiplication` mit exakt +1. Neues Antwortjournal getrennt vom Curriculum- und Vokabelfortschritt. UI hält die bestätigte Rückmeldung bis zum bewussten Weitergehen; Speicherfehler behalten die identische Antwort für Retry, Neuladen holt den bestätigten Stand. Profilwechsel/Unmount ignorieren veraltete Antworten. Keine zusätzlichen Abhängigkeiten, keine externe Kommunikation, keine Zeitvorgaben.
+
 ## Quadratzahlenrunden (Schema 10)
 
 Migration 010 ergänzt `square_round_tasks` (Profil, globale Versuchsequenz, Faktor, Rundennummer und Position). Jede neue Quadratzahlenrunde materialisiert genau 20 Versuche: SQLite `random()` wählt fünf verschiedene Faktoren aus 1–25, danach werden vier Kopien jedes Faktors zufällig sortiert. Keine neue Zufallsbibliothek. Runde und Reihenfolge werden einmal innerhalb einer Immediate-Transaktion gespeichert und bei erneutem Laden unverändert gelesen. Auch parallele Verbindungen erhalten denselben Plan. Der Lese-Command kann dafür eine neue Runde anlegen; ohne Profil entstehen keine Aufgaben.
@@ -177,7 +180,6 @@ Die letzte Antwort, ihr Punkt und die Vorbereitung der folgenden Runde werden ge
 ## Quadratzahlen ab 10 (Schema 11)
 
 Neue Runden wählen fünf Faktoren aus 10–25. Migration 011 entfernt ausschließlich noch unbeantwortete Aufgabenpläne, sodass auch direkt nach dem Update keine alte offene Aufgabe unter 10 angeboten wird. Beantwortete Faktoren bleiben für Replays unverändert; Statistik und Guthaben bleiben erhalten. Die erste neu angelegte Runde startet nach der letzten beantworteten Sequenz mit einer neuen Rundennummer. Die sichtbare Bezeichnung des unveränderten kleinen Einmaleins lautet „10er-Einmaleins“.
-
 
 ## Sternenlabyrinth (Schema 12)
 

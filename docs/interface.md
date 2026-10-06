@@ -39,3 +39,9 @@ Für die Neugestaltung wurden Startseite, Such-Leerzustand, Fachaufgaben, Rückm
 ## Aufgaben auf einer Bildschirmseite (Issue #135)
 
 Die verbindliche Vorgabe steht in `AGENTS.md`. Zur Prüfung gehören Fachaufgaben aller Stufen, römische Zufallsübungen, Lernrunden, Vokabel- und Einmaleinstrainer, Tastschreiben, Natur-Lernspiele und Planetenrätsel. Geöffnete Tipps, Rückmeldungen und Hilfsdialoge sowie Lade-, Fehler- und Abschlusszustände werden einbezogen. Tabellen und lange Listen bleiben vollständig durch Seitenwahl erreichbar. Eine reine `overflow: hidden`-Sperre gilt nicht als bestandene Prüfung. Automatische Geometriemessungen in einer echten Browser-Engine und visuelle Sichtprüfung ergänzen die Verhaltenstests; JSDOM allein kann Scrollfreiheit nicht nachweisen. [Prüfergebnisse und Grenzen](reviews/issue-135.md).
+
+## Lernabzeichen
+
+Das aktuelle illustrierte Lernabzeichen steht oben rechts neben den Einstellungen. Ein Klick öffnet die Übersicht mit allen sechs Rängen, insgesamt verdienten Punkten, richtig gelösten Aufgaben und beiden nächsten Zielen. Escape oder Schließen geben den Fokus zurück; eine offene Antwort bleibt erhalten. Der Rang ändert sich erst mit einer bestätigten Desktop-Antwort. Fehler beim Laden zeigen einen erneuten Ladeversuch; ein unbekanntes Profil wird nicht als bestätigter Erststart ausgegeben.
+
+Bei 2400 × 1300 passen Übersicht und Aufgaben auch mit beiden Leistenbreiten auf eine Seite. Kleine Fenster und vergrößerte Darstellung verwenden lesbare Umbrüche und einen Scroll-Fallback. Die bisherigen gekauften Sammelobjekte bleiben in der Sammlung.

@@ -142,6 +142,7 @@ export default function App() {
 
   useEffect(() => {
     let active = true;
+    setProfileReady(null);
     const readRevision = walletRevision();
     desktop
       .getLearningState()

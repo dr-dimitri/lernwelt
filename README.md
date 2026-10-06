@@ -87,12 +87,13 @@ Tipps, Aufdecken und selbstständige erste Antworten werden unterschieden. Der T
 
 Nach dem Speichern eines Lernprofils können die Aufgaben in Mathematik, Englisch sowie Natur und Technik beantwortet werden. Jede Lernaufgabe in den Themenbereichen bringt bei der ersten korrekten Lösung **1 Punkt in Vorschule**, **2 Punkte in Könner** oder **3 Punkte in Streber**. Maßgeblich ist die Stufe der Aufgabe. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
 
-Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Abzeichen **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Bereits gebuchte Punkte bleiben bei Regeländerungen erhalten; es gibt keine rückwirkende Neuberechnung. Weitere Belohnungen lassen sich ergänzen.
+**Dein Lernabzeichen** steht oben rechts. Sechs illustrierte Fuchs-Medaillen bauen aufeinander auf: Jede nächste Stufe braucht sowohl mehr insgesamt verdiente Punkte als auch mehr richtig gelöste Aufgaben. Ein Klick zeigt die erreichten Ränge und die nächsten Ziele. Spiele und Sammelkäufe senken deinen Rang nicht. [Stufen und Zählweise](docs/achievements.md).
+
+Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Sammelobjekte **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Bereits gebuchte Punkte bleiben bei Regeländerungen erhalten; es gibt keine rückwirkende Neuberechnung. Weitere Belohnungen lassen sich ergänzen.
 
 Antworten werden lokal im Rust-Backend geprüft. Gutschrift und Lernfortschritt werden gemeinsam gespeichert; Einlösen prüft das Guthaben und bucht atomar ab. Doppelte Requests erzeugen keine doppelten Buchungen. Das lokale System bietet keine manipulationssichere Währung und hat keinen Geldwert.
 
 Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri/content/curriculum-v1.json`. Bestehende Aufgaben-IDs behalten ihre Bedeutung; alte Beispielaufgaben beider Fächer bleiben für gespeicherte Buchungen und Wiederholungsrequests intern auflösbar.
-
 
 ## Mathematik Klasse 5
 
