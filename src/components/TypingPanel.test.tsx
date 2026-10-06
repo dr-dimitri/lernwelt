@@ -1,3 +1,4 @@
+import { initialAchievements } from '../test/wallet-fixture';
 import {
   act,
   fireEvent,
@@ -25,7 +26,12 @@ const levels: Difficulty[] = ['vorschule', 'koenner', 'streber'];
 const initial: TypingState = {
   profileReady: true,
   difficulty: 'koenner',
-  wallet: { balance: 8, totalEarned: 8, rewards: [] },
+  wallet: {
+    achievements: initialAchievements(),
+    balance: 8,
+    totalEarned: 8,
+    rewards: [],
+  },
   stations: Array.from({ length: 12 }, (_, index) => ({
     id: `station-${index}`,
     title:
@@ -63,7 +69,12 @@ const initial: TypingState = {
 const success: TypingResult = {
   correct: true,
   pointsAwarded: 2,
-  wallet: { balance: 10, totalEarned: 10, rewards: [] },
+  wallet: {
+    achievements: initialAchievements(),
+    balance: 10,
+    totalEarned: 10,
+    rewards: [],
+  },
 };
 
 beforeEach(() => {

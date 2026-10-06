@@ -1,3 +1,4 @@
+mod achievements;
 mod arcade;
 mod content;
 mod database;

@@ -1,3 +1,4 @@
+import { initialAchievements } from '../test/wallet-fixture';
 import {
   act,
   fireEvent,
@@ -57,6 +58,7 @@ it('sammelt Punkte und löst ein Abzeichen gegen das Guthaben ein', async () => 
     '20 Punkte',
   );
   vi.mocked(desktop.redeemReward).mockResolvedValue({
+    achievements: initialAchievements(),
     balance: 0,
     totalEarned: 20,
     rewards: [{ ...initial.wallet.rewards[0], owned: true }],

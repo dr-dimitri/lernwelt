@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import InfoPanel from './components/InfoPanel';
+import AchievementBadge from './components/AchievementBadge';
+import {
+  subscribeWallet,
+  validWallet,
+  walletRevision,
+} from './lib/wallet-updates';
 import MultiplicationPanel from './components/MultiplicationPanel';
 import VocabularyPanel from './components/VocabularyPanel';
 import ArcadePanel from './components/ArcadePanel';
@@ -12,7 +18,7 @@ import SolarSystemWorld from './components/SolarSystemWorld';
 import TypingPanel from './components/TypingPanel';
 import CollectionPanel from './components/CollectionPanel';
 import { subjects, type SubjectId } from './domain/subjects';
-import { difficulties, type Difficulty } from './domain/learning';
+import { difficulties, type Difficulty, type Wallet } from './domain/learning';
 import { desktop } from './lib/desktop';
 
 type View =
@@ -87,6 +93,9 @@ export default function App() {
     busy: false,
   });
   const [difficulty, setDifficulty] = useState<Difficulty>();
+  const [headerWallet, setHeaderWallet] = useState<Wallet | null>(null);
+  const [badgeError, setBadgeError] = useState('');
+  const [profileReady, setProfileReady] = useState<boolean | null>(null);
   const [difficultyBusy, setDifficultyBusy] = useState(false);
   const [settingsBusy, setSettingsBusy] = useState(false);
   const [difficultyError, setDifficultyError] = useState('');
@@ -122,19 +131,42 @@ export default function App() {
     );
   }, []);
 
+  useEffect(
+    () =>
+      subscribeWallet((wallet) => {
+        setHeaderWallet(wallet);
+        setBadgeError('');
+      }),
+    [],
+  );
+
   useEffect(() => {
     let active = true;
+    const readRevision = walletRevision();
     desktop
       .getLearningState()
       .then((state) => {
         if (active) {
           setDifficulty(state.difficulty);
           setDifficultyError('');
+          setProfileReady(state.profileReady);
+          if (walletRevision() === readRevision) {
+            if (validWallet(state.wallet)) {
+              setHeaderWallet(state.wallet);
+              setBadgeError('');
+            } else
+              setBadgeError(
+                'Deine Lernabzeichen konnten nicht gelesen werden.',
+              );
+          }
         }
       })
       .catch(() => {
-        if (active)
+        if (active) {
           setDifficultyError('Deine Stufe konnte nicht geladen werden.');
+          if (walletRevision() === readRevision)
+            setBadgeError('Deine Lernabzeichen konnten nicht geladen werden.');
+        }
       });
     return () => {
       active = false;
@@ -422,6 +454,13 @@ export default function App() {
             </InfoPanel>
             <AppUpdates disabled={locked} onBeforeInstall={guard} />
           </div>
+          <AchievementBadge
+            wallet={headerWallet}
+            error={badgeError}
+            profileReady={profileReady}
+            disabled={locked}
+            onReload={() => setDifficultyReload((value) => value + 1)}
+          />
         </header>
         {difficultyError && (
           <div className="global-error" role="alert">

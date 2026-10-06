@@ -1,3 +1,4 @@
+import { initialAchievements } from './wallet-fixture';
 import type { VocabularyState } from '../domain/vocabulary';
 export const vocabularyInitial: VocabularyState = {
   profileReady: true,
@@ -14,7 +15,12 @@ export const vocabularyInitial: VocabularyState = {
   boxes: [0, 0, 0, 0, 0],
   total: 370,
   catalogTotal: 370,
-  wallet: { balance: 8, totalEarned: 28, rewards: [] },
+  wallet: {
+    achievements: initialAchievements(),
+    balance: 8,
+    totalEarned: 28,
+    rewards: [],
+  },
   nextDueAt: null,
   card: {
     card: {

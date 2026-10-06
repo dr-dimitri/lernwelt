@@ -1,3 +1,4 @@
+import { initialAchievements } from '../test/wallet-fixture';
 import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
@@ -24,7 +25,12 @@ vi.mock('./GameStage', () => ({
 const initial: ArcadeState = {
   profileReady: true,
   entryCost: 10,
-  wallet: { balance: 20, totalEarned: 20, rewards: [] },
+  wallet: {
+    achievements: initialAchievements(),
+    balance: 20,
+    totalEarned: 20,
+    rewards: [],
+  },
   activeSession: null,
   bestScores: [],
 };

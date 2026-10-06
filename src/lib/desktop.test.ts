@@ -109,3 +109,117 @@ it('übermittelt die Themenwahl der Lernrunde und lässt alte Gartenstarts ohne 
     input: { requestId: 'legacy', difficulty: 'koenner' },
   });
 });
+
+it.each([
+  {
+    name: 'Fach- und Planetenantwort',
+    command: 'submit_answer',
+    nested: false,
+    call: () => desktop.submitAnswer('test-1', 'math', '42'),
+  },
+  {
+    name: 'römische Zufallsantwort',
+    command: 'submit_answer',
+    nested: false,
+    call: () =>
+      desktop.submitAnswer(
+        'roman-1',
+        'by.math.5.roman-random.decimal-to-roman.koenner.42.v1',
+        'XLII',
+      ),
+  },
+  {
+    name: 'Tastschreiben',
+    command: 'submit_typing',
+    nested: false,
+    call: () =>
+      desktop.submitTyping({
+        requestId: 'typing-1',
+        taskId: 'typing-1',
+        answer: 'fj',
+      }),
+  },
+  {
+    name: 'Missionsantwort',
+    command: 'act_mission',
+    nested: false,
+    call: () =>
+      desktop.actMission({
+        requestId: 'mission-1',
+        sessionId: 'mission-1',
+        stepIndex: 0,
+        action: 'answer',
+        answer: '22',
+      }),
+  },
+  {
+    name: 'Missionsstart',
+    command: 'start_mission',
+    nested: false,
+    call: () =>
+      desktop.startMission({ requestId: 'start-1', difficulty: 'koenner' }),
+  },
+  {
+    name: 'Vokabelantwort',
+    command: 'review_vocabulary',
+    nested: true,
+    call: () =>
+      desktop.reviewVocabulary({
+        requestId: 'word-1',
+        cardId: 'word-1',
+        deckId: 'school',
+        difficulty: 'koenner',
+        expectedReviews: 0,
+        answer: 'school',
+      }),
+  },
+  {
+    name: 'Einmaleinsantwort',
+    command: 'answer_multiplication',
+    nested: true,
+    call: () =>
+      desktop.answerMultiplication({
+        mode: 'tables',
+        sequence: 0,
+        answer: '16',
+      }),
+  },
+  {
+    name: 'bezahlter Spielstart',
+    command: 'start_game',
+    nested: false,
+    call: () => desktop.startGame('game-1', 'blocks'),
+  },
+  {
+    name: 'Spielabschluss',
+    command: 'finish_game',
+    nested: false,
+    call: () => desktop.finishGame('game-1', 20),
+  },
+  {
+    name: 'gekaufte Sammelbelohnung',
+    command: 'redeem_reward',
+    nested: false,
+    direct: true,
+    call: () => desktop.redeemReward('star'),
+  },
+])(
+  'meldet bestätigten Wallet sofort aus $name, ohne Zusatzabfrage',
+  async ({ command, nested, direct, call }) => {
+    const { subscribeWallet } = await import('./wallet-updates');
+    const { initial } = await import('../test/learning-fixture');
+    const listener = vi.fn();
+    const unsubscribe = subscribeWallet(listener);
+    const result = direct
+      ? initial.wallet
+      : nested
+        ? { state: { wallet: initial.wallet } }
+        : { wallet: initial.wallet };
+    vi.mocked(invoke).mockResolvedValue(result);
+    await expect(call()).resolves.toBe(result);
+    expect(listener).toHaveBeenCalledExactlyOnceWith(initial.wallet);
+    expect(invoke).toHaveBeenCalledTimes(1);
+    expect(vi.mocked(invoke).mock.calls[0][0]).toBe(command);
+    unsubscribe();
+  },
+);

@@ -1,3 +1,4 @@
+import type { AchievementProgress } from './achievements';
 import type { StudyCatalog } from './study';
 import type { SubjectId } from './subjects';
 import type { NumberLineDiagram } from './number-line';
@@ -80,6 +81,7 @@ export interface Wallet {
   balance: number;
   totalEarned: number;
   rewards: Reward[];
+  achievements: AchievementProgress;
 }
 
 export interface LearningState {

@@ -2,6 +2,7 @@ import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import App from './App';
+import { publishWallet } from './lib/wallet-updates';
 import { desktop } from './lib/desktop';
 import { initial, mathQuestion } from './test/learning-fixture';
 import { vocabularyInitial } from './test/vocabulary-fixture';
@@ -625,4 +626,141 @@ it('stellt nach verzögertem Missionsrückweg Auswahl und Fokus am ursprünglich
     'math-area',
   );
   expect(desktop.startMission).not.toHaveBeenCalled();
+});
+
+it('zeigt das neu bestätigte Lernabzeichen sofort nach einer Antwort ohne Fachwechsel oder Zusatzabfrage', async () => {
+  const user = userEvent.setup();
+  const state = fixture();
+  state.wallet = {
+    ...state.wallet,
+    balance: 8,
+    totalEarned: 8,
+    achievements: {
+      completedTasks: 4,
+      currentId: 'startklar',
+      unlockedIds: ['startklar'],
+      nextId: 'funkenfinder',
+    },
+  };
+  vi.mocked(desktop.getLearningState).mockResolvedValue(state);
+  const confirmedWallet = {
+    ...state.wallet,
+    balance: 10,
+    totalEarned: 10,
+    achievements: {
+      completedTasks: 5,
+      currentId: 'funkenfinder',
+      unlockedIds: ['startklar', 'funkenfinder'],
+      nextId: 'lernfuchs',
+    },
+  };
+  vi.mocked(desktop.submitAnswer).mockImplementation(async () => {
+    publishWallet(confirmedWallet);
+    return {
+      correct: true,
+      pointsAwarded: 2,
+      explanation: '17 + 25 = 42.',
+      mistakeHint: null,
+      wallet: confirmedWallet,
+    };
+  });
+  render(<App />);
+  await screen.findByRole('button', { name: 'Dein Lernabzeichen: Startklar' });
+  await user.click(
+    await screen.findByRole('button', { name: /Längen umrechnen/ }),
+  );
+  await user.type(screen.getByLabelText('Was ist 17 + 25?'), '42');
+  const reads = vi.mocked(desktop.getLearningState).mock.calls.length;
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
+  expect(
+    await screen.findByRole('button', {
+      name: 'Dein Lernabzeichen: Funkenfinder',
+    }),
+  ).toBeVisible();
+  expect(screen.getByText('Richtig! +2 Punkte')).toBeVisible();
+  expect(
+    screen.getByRole('heading', { name: 'Mathematik', level: 1 }),
+  ).toBeVisible();
+  expect(desktop.getLearningState).toHaveBeenCalledTimes(reads);
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+});
+
+it('erhält eine ungesendete Antwort beim Öffnen und Schließen der Lernabzeichenübersicht', async () => {
+  const user = userEvent.setup();
+  render(<App />);
+  await user.click(
+    await screen.findByRole('button', { name: /Längen umrechnen/ }),
+  );
+  await user.type(screen.getByLabelText('Was ist 17 + 25?'), '41');
+  const reads = vi.mocked(desktop.getLearningState).mock.calls.length;
+  await user.click(
+    screen.getByRole('button', { name: 'Dein Lernabzeichen: Startklar' }),
+  );
+  const overview = screen.getByRole('dialog', { name: 'Deine Lernabzeichen' });
+  await waitFor(() =>
+    expect(
+      within(overview).getByRole('button', { name: 'Schließen' }),
+    ).toHaveFocus(),
+  );
+  expect(
+    screen.queryByRole('dialog', { name: 'Wechseln?' }),
+  ).not.toBeInTheDocument();
+  await user.click(within(overview).getByRole('button', { name: 'Schließen' }));
+  expect(
+    screen.getByRole('button', { name: 'Dein Lernabzeichen: Startklar' }),
+  ).toHaveFocus();
+  expect(screen.getByLabelText('Was ist 17 + 25?')).toHaveValue('41');
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
+  expect(desktop.getLearningState).toHaveBeenCalledTimes(reads);
+});
+
+it('befördert das Abzeichen bei einer fehlgeschlagenen Antwortspeicherung nicht', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.submitAnswer).mockRejectedValue(
+    new Error('Die Antwort konnte nicht gespeichert werden.'),
+  );
+  render(<App />);
+  await user.click(
+    await screen.findByRole('button', { name: /Längen umrechnen/ }),
+  );
+  await user.type(screen.getByLabelText('Was ist 17 + 25?'), '42');
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Die Antwort konnte nicht gespeichert werden.',
+  );
+  expect(
+    screen.getByRole('button', { name: 'Dein Lernabzeichen: Startklar' }),
+  ).toBeVisible();
+  expect(
+    screen.queryByRole('button', { name: 'Dein Lernabzeichen: Funkenfinder' }),
+  ).not.toBeInTheDocument();
+  expect(screen.getByLabelText('Was ist 17 + 25?')).toHaveValue('42');
+});
+
+it('behauptet nach fehlgeschlagenem Profilladen und anschließend bestätigtem Trainer-Wallet keinen Erststart', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState).mockRejectedValue(
+    new Error('Die Lerndaten konnten nicht geladen werden.'),
+  );
+  render(<App />);
+  await screen.findByRole('button', { name: 'Lernabzeichen nicht verfügbar' });
+  await act(async () => {
+    // Trainer responses confirm the wallet, but contain no profileReady field.
+    publishWallet(fixture().wallet);
+  });
+  const trigger = await screen.findByRole('button', {
+    name: 'Dein Lernabzeichen: Startklar',
+  });
+  await waitFor(() => expect(trigger).toBeEnabled());
+  await user.click(trigger);
+  const overview = screen.getByRole('dialog', { name: 'Deine Lernabzeichen' });
+  await waitFor(() =>
+    expect(
+      within(overview).getByRole('button', { name: 'Schließen' }),
+    ).toHaveFocus(),
+  );
+  expect(
+    within(overview).queryByText(/Speichere deinen Spitznamen/),
+  ).not.toBeInTheDocument();
+  expect(within(overview).getAllByRole('article')).toHaveLength(6);
 });

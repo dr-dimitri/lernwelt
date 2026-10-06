@@ -1,3 +1,4 @@
+import { initialAchievements } from './wallet-fixture';
 import type { LearningState, Question, Topic } from '../domain/learning';
 
 export const mathQuestion: Question = {
@@ -62,6 +63,7 @@ export const initial: LearningState = {
     },
   ],
   wallet: {
+    achievements: initialAchievements(),
     balance: 10,
     totalEarned: 10,
     rewards: [

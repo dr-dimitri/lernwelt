@@ -1,3 +1,4 @@
+import { initialAchievements } from './wallet-fixture';
 import type {
   MultiplicationState,
   MultiplicationResult,
@@ -24,7 +25,12 @@ export const multiplicationInitial: MultiplicationState = {
   },
   answered: 0,
   correct: 0,
-  wallet: { balance: 9, totalEarned: 29, rewards: [] },
+  wallet: {
+    achievements: initialAchievements(),
+    balance: 9,
+    totalEarned: 29,
+    rewards: [],
+  },
   adventure: {
     revision: 0,
     world: 'workshop',
@@ -70,7 +76,12 @@ export const multiplicationSuccess: MultiplicationResult = {
     },
     answered: 1,
     correct: 1,
-    wallet: { balance: 10, totalEarned: 30, rewards: [] },
+    wallet: {
+      achievements: initialAchievements(),
+      balance: 10,
+      totalEarned: 30,
+      rewards: [],
+    },
     adventure: {
       ...multiplicationInitial.adventure,
       revision: 1,
