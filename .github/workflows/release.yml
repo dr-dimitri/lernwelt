@@ -4,6 +4,22 @@ on:
   push:
     tags: ['v*']
   workflow_call:
+    inputs:
+      publish:
+        description: Publish after this workflow's checks; main gates publication in Quality.
+        type: boolean
+        default: true
+      frontend-artifact:
+        description: Checked frontend artifact from this workflow run, empty for standalone builds.
+        type: string
+        default: ''
+    outputs:
+      tag:
+        value: ${{ jobs.prepare.outputs.tag }}
+      version:
+        value: ${{ jobs.prepare.outputs.version }}
+      build:
+        value: ${{ jobs.prepare.outputs.build }}
     secrets:
       TAURI_SIGNING_PRIVATE_KEY:
         required: true
@@ -67,12 +83,25 @@ jobs:
           toolchain: '1.98.1'
           components: rustfmt, clippy
           targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2
+        with:
+          workspaces: src-tauri -> target
+          shared-key: release-${{ runner.os }}-${{ runner.arch }}-${{ matrix.target }}
+          save-if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       - run: npm ci
       - name: Verify release source and prepare Tauri version override
         shell: bash
         run: node scripts/release-source.mjs --write-build-config
       - run: npm run check:all
         if: github.ref_type == 'tag'
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
+        if: inputs.frontend-artifact != ''
+        with:
+          name: ${{ inputs.frontend-artifact }}
+          path: frontend-artifact
+      - name: Verify frontend and extend CI-only release configuration
+        if: inputs.frontend-artifact != ''
+        run: node scripts/frontend-artifact.mjs --restore --config=release-build-config.json
       - name: Build signed update and installer
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
@@ -94,34 +123,10 @@ jobs:
 
   publish:
     needs: [prepare, build]
-    env:
-      RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
-      RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
-    concurrency:
-      group: release-publish
-      cancel-in-progress: false
-      queue: max
-    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag' || inputs.publish
     permissions:
       contents: write
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
-        with:
-          node-version: '24'
-      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
-        with:
-          name: darwin-aarch64
-          path: release-assets/darwin-aarch64
-      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
-        if: ${{ !contains(needs.prepare.outputs.version, '-rc.') }}
-        with:
-          name: windows-x86_64
-          path: release-assets/windows-x86_64
-      - name: Assemble complete update manifest
-        run: node scripts/release-assets.mjs
-      - name: Publish completed release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: node scripts/publish-release.mjs
+    uses: ./.github/workflows/release-publish.yml
+    with:
+      tag: ${{ needs.prepare.outputs.tag }}
+      version: ${{ needs.prepare.outputs.version }}

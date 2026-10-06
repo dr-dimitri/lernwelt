@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle stabile Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS Apple Silicon und Windows x64. Version **0.6.15** übernimmt die direkte Themenauswahl, einklappbare Navigation, Lernabzeichen und vollständig signierte macOS-Bundles aus dem Vorabtest. Windows-Builds laufen ausschließlich auf `main`; Vorabversionen enthalten nur Apple Silicon. Vorhandene Windows-Vorabpakete und Intel-Mac-Installer stehen weiter unter [bisherige Releases](https://github.com/dr-dimitri/lernwelt/releases) bereit; neue Intel-Pakete baut die CI nicht mehr. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Änderungen und Installationshinweise](docs/releases/0.6.15.md).
+Die [aktuelle stabile Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS Apple Silicon und Windows x64. Version **0.6.16** beschleunigt den Buildablauf mit Rust-Caching, einem gemeinsamen Frontendbuild und parallelen Release-Builds. Direkte Themenauswahl, einklappbare Navigation, Lernabzeichen und vollständig signierte macOS-Bundles bleiben erhalten. Windows-Builds laufen ausschließlich auf `main`; Vorabversionen enthalten nur Apple Silicon. Vorhandene Windows-Vorabpakete und Intel-Mac-Installer stehen weiter unter [bisherige Releases](https://github.com/dr-dimitri/lernwelt/releases) bereit; neue Intel-Pakete baut die CI nicht mehr. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Änderungen und Installationshinweise](docs/releases/0.6.16.md).
 
 ## Mitarbeit
 
@@ -69,7 +69,9 @@ npm run test:watch      # Frontend-Tests während der Entwicklung
 npm run format         # Frontend- und Konfigurationsformatierung anwenden
 ```
 
-Rust-Prüfungen benötigen `rustfmt` und `clippy`. In CI wird Rust 1.98.1 mit Node.js 24 verwendet. GitHub Actions prüft Pull Requests auf macOS, nach dem Merge auf `main` zusätzlich auf Windows, und erstellt native Debug-Programme als kurzlebige Prüfartefakte. Diese sind keine signierten Installer. `npm run desktop:build` baut lokal ein Release-Artefakt.
+Rust-Prüfungen benötigen `rustfmt` und `clippy`. In CI wird Rust 1.98.1 mit Node.js 24 verwendet. GitHub Actions prüft Pull Requests auf macOS, nach dem Merge auf `main` zusätzlich auf Windows. Der Frontendlauf prüft und baut einmal; native Jobs übernehmen dessen Frontendartefakt aus demselben Lauf und prüfen die Commit-Zuordnung. Rust-Abhängigkeiten werden getrennt nach Buildvariante gecacht; Main-Läufe füllen den Cache auch für nachfolgende PRs. Native macOS-Bundle-Tests bleiben auf macOS.
+
+PRs erstellen ein natives Debug-Programm als kurzlebiges Prüfartefakt, keinen signierten Installer. Auf `main` laufen Rust-Prüfungen und signierte Release-Builds parallel; erst nach allen erfolgreichen Jobs werden beide Plattformpakete veröffentlicht. Änderungen an einer PR-Beschreibung prüfen den Issue- und Reviewnachweis separat, ohne Codejobs neu zu starten. `npm run desktop:build` baut lokal weiterhin eigenständig ein Release-Artefakt. Für kurze lokale Entwicklungsschritte eignen sich `desktop:dev`, `test:watch` und gezielte `cargo test`-Aufrufe; vor dem Abschluss bleiben die vollständigen passenden Prüfungen erforderlich.
 
 Der CI-Workflow kontrolliert bei Pull Requests den Issue-Branch, die passende `Closes #…`-Verknüpfung und die Reviewdatei. Das ersetzt nicht den inhaltlichen Review. Branch Protection ist nicht automatisch eingerichtet.
 

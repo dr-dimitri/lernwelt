@@ -414,22 +414,23 @@ fn legacy_rows(connection: &Connection) -> Vec<Vec<Vec<rusqlite::types::Value>>>
 
 #[test]
 fn all_legacy_solutions_transfer_without_rewriting_history_or_rewarding_again() {
-    let (directory, connection) = setup();
+    let (directory, mut connection) = setup();
     let content = content().unwrap();
     // Represent a database already written by v0.5.0, independently of the new submit path.
+    let transaction = connection.transaction().unwrap();
     for task in content.legacy.stations.iter().flat_map(|s| &s.tasks) {
         let amount = match task.difficulty {
             Difficulty::Vorschule => 1,
             Difficulty::Koenner => 2,
             Difficulty::Streber => 3,
         };
-        connection
+        transaction
             .execute(
                 "INSERT INTO typing_progress VALUES (1,?1,?2,4,1,1,'2026-10-03 10:11:12')",
                 params![task.id, task.difficulty.as_str()],
             )
             .unwrap();
-        connection
+        transaction
             .execute(
                 "INSERT INTO typing_submissions VALUES (?1,1,?2,?3,?4,1,?5,'2026-10-03 10:11:12')",
                 params![
@@ -441,11 +442,12 @@ fn all_legacy_solutions_transfer_without_rewriting_history_or_rewarding_again() 
                 ],
             )
             .unwrap();
-        connection.execute(
+        transaction.execute(
             "INSERT INTO point_entries (profile_id,kind,item_id,amount,created_at) VALUES (1,'answer',?1,?2,'2026-10-03 10:11:12')",
             params![task.id, amount],
         ).unwrap();
     }
+    transaction.commit().unwrap();
     let before = legacy_rows(&connection);
     drop(connection);
     let mut reopened = database::open(&directory.path().join("typing.sqlite3")).unwrap();

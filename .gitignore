@@ -1,5 +1,8 @@
 node_modules/
 dist/
+frontend-artifact/
+ci-build-config.json
+release-build-config.json
 src-tauri/target/
 *.local
 .DS_Store

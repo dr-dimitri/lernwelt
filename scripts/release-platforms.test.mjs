@@ -102,7 +102,11 @@ test('the actual Quality matrix schedules Windows only for a push to main, irres
     }),
     ['macos-latest', 'windows-latest'],
   );
-  assert.ok(workflow.includes('node scripts/check-issue-workflow.mjs'));
+  const metadataWorkflow = readFileSync(
+    new URL('../.github/workflows/pr-metadata.yml', import.meta.url),
+    'utf8',
+  );
+  assert.ok(metadataWorkflow.includes('node scripts/check-issue-workflow.mjs'));
   assert.ok(workflow.includes('npm run check:rust'));
 });
 
