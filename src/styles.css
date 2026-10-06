@@ -2495,6 +2495,15 @@ main {
   }
 }
 
+@media (min-width: 761px) and (max-height: 650px) {
+  .direct-topics-shell.is-sidebar-collapsed .sidebar {
+    position: static;
+    height: auto;
+    min-height: 100dvh;
+    align-self: start;
+  }
+}
+
 .direct-topics-shell .study-browser,
 .direct-topics-shell .direct-goals {
   container-type: inline-size;
