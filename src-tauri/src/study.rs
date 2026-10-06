@@ -185,7 +185,7 @@ mod tests {
         let content = crate::content::catalog().unwrap();
         let study = catalog(content).unwrap();
         assert_eq!(study.areas.len(), 18);
-        assert_eq!(study.units.len(), 88);
+        assert_eq!(study.units.len(), 89);
         study.validate(content).unwrap();
         let projection = serde_json::to_value(study).unwrap();
         assert!(projection["units"][0].get("answer").is_none());

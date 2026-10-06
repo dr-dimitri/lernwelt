@@ -125,3 +125,7 @@ Englisch richtet sich an die erste Fremdsprache. Zeichnen, freies Schreiben und 
 ## Direkte Themenwahl (Issue #149, Vorabversion)
 
 Die vier Fächer sind dauerhaft beschriftet erreichbar. Unterthemen und passende bestehende Trainer-/Lernreiseziele öffnen unmittelbar; ein Lernbereich ist nur optionaler Filter und Kontext. Höchstens sechs Ziele erscheinen je Seite, auch bei Suchtreffern. Alle vorhandenen Einheiten bleiben im Katalog. Suche, Filter und Seite werden je Fach während der Sitzung gehalten, bei verkleinerten Treffermengen wird der Seitenindex begrenzt. Der Rückweg führt zum ursprünglichen Ziel und gibt den Tastaturfokus zurück. Quellen und Kompetenzbezüge bleiben in Hilfe erreichbar. IDs, Aufgaben, Antwortprüfung und Punktehistorie sind unverändert; eine Datenbankmigration ist nicht nötig.
+
+## Expedition zum Erdkern (Issue #165)
+
+Die Katalogeinheit `geography-earth-layers` ergänzt Geo5 „Planet Erde“ um 18 Fragen zum Schalenbau, sechs je Stufe. Geographie öffnet sie über **Expedition zum Erdkern** bzw. **Erdschichten üben**; die 24 bestehenden Sonnensystem-Fragen bleiben unter ihren ursprünglichen IDs erreichbar. Grafik-/Reihenfolge-/Begründungsaufgaben verwenden den bestehenden Erstlösungsstand. [Inhaltsmatrix, Quellen und Modellgrenzen](earth-expedition.md).

@@ -62,7 +62,7 @@ fn new_topic_answers_persist_and_keep_old_points_and_request_receipts() {
     );
     let state = get_state(&mut connection).unwrap();
     assert_eq!(state.questions.iter().filter(|q| q.solved).count(), 4);
-    assert_eq!(state.study_catalog.units.len(), 88);
+    assert_eq!(state.study_catalog.units.len(), 89);
     let public = serde_json::to_value(state).unwrap();
     for question in public["questions"].as_array().unwrap() {
         assert!(question.get("answer").is_none());

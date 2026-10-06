@@ -6805,6 +6805,50 @@
         "by.geography.5.solar.neptune.streber.v1"
       ],
       "supplements": []
+    },
+    {
+      "id": "geography-earth-layers",
+      "areaId": "geography-earth",
+      "subject": "geography",
+      "grade": 5,
+      "name": "Expedition zum Erdkern",
+      "goal": "Erkenne vier Erdschichten, ordne sie und erkläre den festen inneren Kern.",
+      "keywords": [
+        "Erde",
+        "Erdkruste",
+        "Erdmantel",
+        "Erdkern",
+        "Schalenbau",
+        "Druck",
+        "fest",
+        "flüssig",
+        "Modell"
+      ],
+      "curriculumRef": "Geo5 2: Aufbau und Gestalt der Erde: Schalenbau; Informationen aus Bildern und Modellen",
+      "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/geographie",
+      "curriculumVersion": "LehrplanPLUS Bayern · Geographie 5 · Geo5 Lernbereich 2 · Fakten: USGS und NPS · Quellenstand 06.10.2026",
+      "languageSequence": null,
+      "exerciseIds": [
+        "by.geography.5.earth.crust-picture.vorschule.v1",
+        "by.geography.5.earth.mantle-picture.vorschule.v1",
+        "by.geography.5.earth.inner-picture.vorschule.v1",
+        "by.geography.5.earth.first-shells.vorschule.v1",
+        "by.geography.5.earth.outer-state.vorschule.v1",
+        "by.geography.5.earth.model-picture.vorschule.v1",
+        "by.geography.5.earth.between-picture.koenner.v1",
+        "by.geography.5.earth.slow-rock-picture.koenner.v1",
+        "by.geography.5.earth.all-shells.koenner.v1",
+        "by.geography.5.earth.return-shells.koenner.v1",
+        "by.geography.5.earth.core-material.koenner.v1",
+        "by.geography.5.earth.core-comparison.koenner.v1",
+        "by.geography.5.earth.liquid-metal-picture.streber.v1",
+        "by.geography.5.earth.materials-to-centre.streber.v1",
+        "by.geography.5.earth.pressure-reason.streber.v1",
+        "by.geography.5.earth.mantle-correction.streber.v1",
+        "by.geography.5.earth.thick-crust-model.streber.v1",
+        "by.geography.5.earth.journey-model.streber.v1"
+      ],
+      "supplements": []
     }
   ]
 }

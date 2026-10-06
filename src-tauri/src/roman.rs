@@ -178,6 +178,8 @@ fn exercise(direction: Direction, difficulty: Difficulty, value: u16) -> Exercis
         number_line: None,
         audio_card_id: None,
         solar_system_planet_id: None,
+        earth_diagram: None,
+        ordering: None,
     }
 }
 

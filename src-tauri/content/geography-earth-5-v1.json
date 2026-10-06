@@ -1,0 +1,513 @@
+{
+  "version": 1,
+  "source": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/geographie",
+  "curriculumVersion": "LehrplanPLUS Bayern · Geographie 5 · Geo5 Lernbereich 2 · Fakten: USGS und NPS · Quellenstand 06.10.2026",
+  "topics": [
+    {
+      "id": "geography-earth-layers",
+      "name": "Expedition zum Erdkern",
+      "subject": "geography",
+      "grade": 5,
+      "curriculumRef": "Geo5 2: Aufbau und Gestalt der Erde: Schalenbau; Informationen aus Bildern und Modellen",
+      "description": "Erkunde vier Erdschichten und prüfe dein Wissen. Ein begrenztes Lernmodul, keine vollständige Lehrplanabdeckung und keine amtliche Freigabe.",
+      "lesson": "Die Erde hat Schichten. Von außen nach innen: Erdkruste, Erdmantel, äußerer Erdkern, innerer Erdkern. Die Kruste ist sehr dünn. Der Mantel besteht überwiegend aus festem Gestein. Über sehr lange Zeit verformt es sich langsam; der Mantel ist kein Lavaozean. Der Kern besteht überwiegend aus Metall. Der äußere Kern ist flüssig, der innere fest. Sehr hoher Druck hält den inneren Kern trotz großer Hitze fest. Druck bedeutet starkes Zusammendrücken. Unser Schnitt ist ein vereinfachtes Modell, kein Foto vom Erdinneren. Die Kruste ist vergrößert und die Farben helfen beim Unterscheiden. Die Schichten sind keine hohlen Räume. Die Sondenreise ist ausgedacht. Innerer und äußerer Kern sowie die Druckerklärung vertiefen den Schalenbau. Quellen: https://www.usgs.gov/faqs/are-tectonic-plates-floating-magma und https://www.nps.gov/subjects/geology/plate-tectonics-inner-earth-model.htm; Lehrplan: https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/geographie; geprüft am 06.10.2026.",
+      "tables": [],
+      "activities": [
+        {
+          "title": "Baue deine Schicht-Erde",
+          "prompt": "1. Zeichne vier Kreise ineinander oder lege Papierkreise übereinander.\n2. Beschrifte von außen nach innen: Kruste, Mantel, äußerer Kern, innerer Kern.\n3. Erkläre jemandem, warum der innere Kern trotz Hitze fest ist. Du kannst auch nur mit den Fingern auf das Modell zeigen.",
+          "check": "Sind die vier Schichten richtig geordnet? Außenkern: flüssig. Innenkern: fest durch hohen Druck, also starkes Zusammendrücken. Dein Modell hat vereinfachte Dicken und Farben. Diese freiwillige Mitmachidee wird nicht automatisch geprüft und gibt keine Punkte."
+        }
+      ],
+      "languageSequence": null
+    }
+  ],
+  "exercises": [
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.crust-picture.vorschule.v1",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.earth.layers",
+      "prompt": "Wähle die Erdkruste im Bild.",
+      "answer": "A",
+      "hint": "Die Erdkruste liegt ganz außen. Auf ihr leben wir.",
+      "furtherHints": [
+        "Suche den schmalen Rand des Schnittbilds."
+      ],
+      "explanation": "Bereich A ist die Erdkruste. Sie ist die dünne äußere Gesteinsschicht. Im Modell ist sie dicker gezeichnet, damit du sie gut siehst.",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answerKind": "choice",
+      "earthDiagram": {
+        "kind": "shells",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      }
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.mantle-picture.vorschule.v1",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.earth.layers",
+      "prompt": "Wähle den Erdmantel im Bild.",
+      "answer": "B",
+      "hint": "Der Mantel liegt direkt unter der Kruste.",
+      "furtherHints": [
+        "Suche die breite Schicht zwischen dem äußeren Rand und den zwei innersten Bereichen."
+      ],
+      "explanation": "Bereich B ist der Erdmantel. Er besteht überwiegend aus festem Gestein. Über sehr lange Zeit kann sich dieses Gestein langsam verformen.",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answerKind": "choice",
+      "earthDiagram": {
+        "kind": "shells",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      }
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.inner-picture.vorschule.v1",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.earth.layers",
+      "prompt": "Wähle den inneren Erdkern im Bild.",
+      "answer": "D",
+      "hint": "Der innere Kern liegt in der Mitte der Erde.",
+      "furtherHints": [
+        "Suche den kleinsten Bereich ganz in der Mitte."
+      ],
+      "explanation": "Bereich D ist der innere Erdkern. Er besteht überwiegend aus Metall und ist fest.",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answerKind": "choice",
+      "earthDiagram": {
+        "kind": "shells",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      }
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.first-shells.vorschule.v1",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.earth.layers",
+      "prompt": "Ordne diese zwei Schichten von außen nach innen.",
+      "answer": "Erdkruste|Erdmantel",
+      "hint": "Beginne dort, wo wir leben: an der Oberfläche.",
+      "furtherHints": [
+        "Der Mantel liegt unter der Kruste."
+      ],
+      "explanation": "Von außen nach innen folgt auf die Erdkruste der Erdmantel. Das Modell zeigt Schichten aus Material, keine leeren Räume.",
+      "options": [],
+      "answerKind": "order",
+      "ordering": {
+        "items": [
+          "Erdmantel",
+          "Erdkruste"
+        ]
+      }
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.outer-state.vorschule.v1",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.earth.core-states",
+      "prompt": "Wie ist das Metall im äußeren Erdkern?",
+      "answer": "Flüssig",
+      "hint": "Außenkern und Innenkern haben verschiedene Zustände.",
+      "furtherHints": [
+        "Beim Außenkern kann das Metall fließen. Beim Innenkern ist es fest."
+      ],
+      "explanation": "Im äußeren Erdkern ist das Metall flüssig. Im inneren Erdkern ist es fest.",
+      "options": [
+        "Fest",
+        "Flüssig",
+        "Gasförmig"
+      ],
+      "answerKind": "choice"
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.model-picture.vorschule.v1",
+      "difficulty": "vorschule",
+      "competencyId": "by.geography.5.2.earth.models",
+      "prompt": "Was zeigt unser Schnittbild der Erde?",
+      "answer": "Ein vereinfachtes Modell",
+      "hint": "Ein Modell macht etwas sichtbar, das wir so nicht direkt sehen können.",
+      "furtherHints": [
+        "Niemand hat ein Foto von diesen vier Schichten im Erdinneren gemacht."
+      ],
+      "explanation": "Das Schnittbild ist eine Illustration: ein vereinfachtes Modell. Es ist kein Foto vom Erdinneren. Farben helfen beim Unterscheiden.",
+      "options": [
+        "Ein Foto vom Erdinneren",
+        "Ein vereinfachtes Modell",
+        "Eine echte Tunnelkarte"
+      ],
+      "answerKind": "choice"
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.between-picture.koenner.v1",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.earth.layers",
+      "prompt": "Welche Schicht liegt zwischen dem Erdmantel und dem inneren Kern? Wähle sie im Bild.",
+      "answer": "C",
+      "hint": "Schau auf die beiden Bereiche in der Mitte.",
+      "furtherHints": [
+        "Gesucht ist die Schicht, die den innersten Bereich direkt umgibt."
+      ],
+      "explanation": "Bereich C ist der äußere Erdkern. Er liegt zwischen dem Mantel und dem inneren Kern.",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answerKind": "choice",
+      "earthDiagram": {
+        "kind": "shells",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      }
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.slow-rock-picture.koenner.v1",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.earth.mantle",
+      "prompt": "Welche Schicht besteht überwiegend aus Gestein, das sich über sehr lange Zeit langsam verformen kann? Wähle sie im Bild.",
+      "answer": "B",
+      "hint": "Gesucht ist weder die dünne Kruste noch der Metallkern.",
+      "furtherHints": [
+        "Unter der Kruste liegt die breite Gesteinsschicht."
+      ],
+      "explanation": "Bereich B ist der Erdmantel. Sein Gestein ist überwiegend fest und kann sich über sehr lange Zeit langsam verformen. Der Mantel ist kein weltweiter Lavaozean.",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answerKind": "choice",
+      "earthDiagram": {
+        "kind": "shells",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      }
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.all-shells.koenner.v1",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.earth.layers",
+      "prompt": "Ordne alle vier Erdschichten von außen nach innen.",
+      "answer": "Erdkruste|Erdmantel|Äußerer Erdkern|Innerer Erdkern",
+      "hint": "Beginne mit der Oberfläche und ende in der Mitte.",
+      "furtherHints": [
+        "Die beiden Kernschichten kommen nach dem Mantel. Der innere Kern liegt in der Mitte."
+      ],
+      "explanation": "Von außen nach innen: Erdkruste, Erdmantel, äußerer Erdkern, innerer Erdkern. Jede Schicht liegt um die nächste.",
+      "options": [],
+      "answerKind": "order",
+      "ordering": {
+        "items": [
+          "Äußerer Erdkern",
+          "Erdkruste",
+          "Innerer Erdkern",
+          "Erdmantel"
+        ]
+      }
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.return-shells.koenner.v1",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.earth.layers",
+      "prompt": "Du startest in der Mitte des Modells. Ordne die drei Schichten auf dem Weg vom inneren Kern zur Kruste.",
+      "answer": "Äußerer Erdkern|Erdmantel|Erdkruste",
+      "hint": "Der innere Kern ist dein Start und gehört deshalb nicht zu den Bausteinen.",
+      "furtherHints": [
+        "Direkt um den inneren Kern liegt der äußere Kern. Die Kruste ist das Ziel."
+      ],
+      "explanation": "Vom inneren Kern zur Oberfläche folgt zuerst der äußere Kern, dann der Mantel und zuletzt die Kruste. Die Modellreise ist ausgedacht, keine mögliche Bohrreise.",
+      "options": [],
+      "answerKind": "order",
+      "ordering": {
+        "items": [
+          "Erdkruste",
+          "Äußerer Erdkern",
+          "Erdmantel"
+        ]
+      }
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.core-material.koenner.v1",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.earth.materials",
+      "prompt": "Woraus bestehen äußerer und innerer Erdkern überwiegend?",
+      "answer": "Aus Metall",
+      "hint": "Mantel und Kern bestehen überwiegend aus verschiedenen Materialien.",
+      "furtherHints": [
+        "Eisen ist ein Metall. Im Kern gibt es sehr viel Eisen."
+      ],
+      "explanation": "Beide Kernschichten bestehen überwiegend aus Metall, vor allem Eisen. Der Mantel besteht überwiegend aus Gestein.",
+      "options": [
+        "Aus Luft",
+        "Aus Gestein",
+        "Aus Metall"
+      ],
+      "answerKind": "choice"
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.core-comparison.koenner.v1",
+      "difficulty": "koenner",
+      "competencyId": "by.geography.5.2.earth.core-states",
+      "prompt": "Welche Aussage vergleicht die beiden Kernschichten richtig?",
+      "answer": "Äußerer Kern flüssig, innerer Kern fest.",
+      "hint": "Beide Kernschichten sind heiß. Trotzdem haben sie nicht denselben Zustand.",
+      "furtherHints": [
+        "Der innere Kern wird stärker zusammengedrückt."
+      ],
+      "explanation": "Der äußere Erdkern ist flüssig. Der innere Erdkern ist fest. Sehr hoher Druck hält ihn trotz großer Hitze fest. Druck bedeutet hier starkes Zusammendrücken.",
+      "options": [
+        "Beide Kernschichten sind flüssig.",
+        "Äußerer Kern fest, innerer Kern flüssig.",
+        "Äußerer Kern flüssig, innerer Kern fest."
+      ],
+      "answerKind": "choice"
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.liquid-metal-picture.streber.v1",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.earth.core-states",
+      "prompt": "Die gesuchte Schicht besteht überwiegend aus Metall und ist flüssig. Wähle sie im Bild.",
+      "answer": "C",
+      "hint": "Der Gesteinsmantel passt nicht. Vergleiche die beiden Kernschichten.",
+      "furtherHints": [
+        "Die Schicht in der Mitte ist fest. Gesucht ist die Schicht direkt darum."
+      ],
+      "explanation": "Bereich C ist der äußere Erdkern. Er ist flüssig und besteht überwiegend aus Metall. Der innere Erdkern ist dagegen fest.",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answerKind": "choice",
+      "earthDiagram": {
+        "kind": "shells",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      }
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.materials-to-centre.streber.v1",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.earth.materials",
+      "prompt": "Ordne diese Materialien auf dem Weg vom Mantel zur Erdmitte.",
+      "answer": "Gesteinsmantel|Flüssiger Metallkern|Fester Metallkern",
+      "hint": "Beginne mit dem Material unter der Kruste.",
+      "furtherHints": [
+        "Die beiden Metallbereiche kommen nach dem Mantel. Der innere Kern ist fest."
+      ],
+      "explanation": "Vom Mantel zur Mitte folgen überwiegend festes Mantelgestein, flüssiges Metall des äußeren Kerns und festes Metall des inneren Kerns.",
+      "options": [],
+      "answerKind": "order",
+      "ordering": {
+        "items": [
+          "Fester Metallkern",
+          "Gesteinsmantel",
+          "Flüssiger Metallkern"
+        ]
+      }
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.pressure-reason.streber.v1",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.earth.pressure",
+      "prompt": "Der innere Kern ist sehr heiß. Warum ist er trotzdem fest?",
+      "answer": "Sehr hoher Druck hält das Metall fest.",
+      "hint": "Druck bedeutet hier starkes Zusammendrücken.",
+      "furtherHints": [
+        "In der Erdmitte wirkt besonders großer Druck auf das Metall."
+      ],
+      "explanation": "Sehr hoher Druck wirkt im inneren Kern. Dieses starke Zusammendrücken hält das Metall trotz großer Hitze fest. Beim Zustand zählt also nicht nur die Hitze.",
+      "options": [
+        "Dort gibt es keine Hitze.",
+        "Sehr hoher Druck hält das Metall fest.",
+        "Der innere Kern besteht aus Eis."
+      ],
+      "answerKind": "choice"
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.mantle-correction.streber.v1",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.earth.mantle",
+      "prompt": "Jemand sagt: „Der ganze Erdmantel ist ein Lavaozean.“ Welche Antwort verbessert die Aussage?",
+      "answer": "Der Mantel ist überwiegend fest und verformt sich sehr langsam.",
+      "hint": "Denke an den Unterschied zwischen einem Stoff und seinem Verhalten über lange Zeit.",
+      "furtherHints": [
+        "Langsames Verformen bedeutet nicht, dass alles geschmolzen ist."
+      ],
+      "explanation": "Der Mantel besteht überwiegend aus festem Gestein. Über sehr lange Zeit kann es sich langsam verformen. Kleine Bereiche können geschmolzen sein; der ganze Mantel ist kein Lavaozean.",
+      "options": [
+        "Der Mantel ist überall flüssige Lava.",
+        "Der Mantel ist überwiegend fest und verformt sich sehr langsam.",
+        "Der Mantel besteht nur aus Luft."
+      ],
+      "answerKind": "choice"
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.thick-crust-model.streber.v1",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.earth.models",
+      "prompt": "Im Modell ist die Kruste gut sichtbar und recht dick. Was folgt daraus?",
+      "answer": "Die echte Kruste ist im Verhältnis viel dünner.",
+      "hint": "Das Modell soll dir das Auswählen der Kruste leicht machen.",
+      "furtherHints": [
+        "Die Schichtdicken wurden vereinfacht. Miss keine echten Dicken aus diesem Bild."
+      ],
+      "explanation": "Die echte Kruste ist im Vergleich zur Erde sehr dünn. Unser Modell vergrößert sie für die Bedienung. Die Größen im Bild sind deshalb kein genauer Maßstab.",
+      "options": [
+        "Die echte Kruste ist im Verhältnis viel dünner.",
+        "Die Kruste ist in echt die dickste Erdschicht.",
+        "Alle Größen im Modell sind genau wie in echt."
+      ],
+      "answerKind": "choice"
+    },
+    {
+      "subject": "geography",
+      "topicId": "geography-earth-layers",
+      "unit": null,
+      "legacy": false,
+      "commonMistakes": [],
+      "id": "by.geography.5.earth.journey-model.streber.v1",
+      "difficulty": "streber",
+      "competencyId": "by.geography.5.2.earth.models",
+      "prompt": "Warum kann unsere Forschungssonde nur im Modell zur Erdmitte reisen?",
+      "answer": "Hitze und Druck verhindern eine solche echte Reise.",
+      "hint": "Die Schichten sind gefüllte Bereiche aus Gestein oder Metall.",
+      "furtherHints": [
+        "Druck bedeutet starkes Zusammendrücken. Im Erdinneren sind Hitze und Druck sehr groß."
+      ],
+      "explanation": "Die Sonde gehört zur ausgedachten Modellreise. Im echten Erdinneren wirken enorme Hitze und enormer Druck. Die Schichten sind keine hohlen Räume oder Tunnel.",
+      "options": [
+        "Zwischen allen Schichten sind breite leere Tunnel.",
+        "Hitze und Druck verhindern eine solche echte Reise.",
+        "Die Sonde zeigt eine heute mögliche Bohrreise."
+      ],
+      "answerKind": "choice"
+    }
+  ]
+}

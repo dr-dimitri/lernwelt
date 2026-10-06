@@ -6,6 +6,7 @@ fn main() {
             "save_profile",
             "list_progress",
             "get_learning_state",
+            "get_learning_explanation",
             "get_roman_question",
             "set_difficulty",
             "submit_answer",

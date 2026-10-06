@@ -10,6 +10,12 @@ beforeEach(() => {
 });
 
 describe('Desktop-Schnittstelle', () => {
+  it('fordert einen Lösungsweg nur ausdrücklich per Aufgaben-ID an', async () => {
+    await desktop.getLearningExplanation('by.geography.5.earth.example.v1');
+    expect(invoke).toHaveBeenCalledExactlyOnceWith('get_learning_explanation', {
+      questionId: 'by.geography.5.earth.example.v1',
+    });
+  });
   it('lädt römische Zufallsaufgaben mit Richtung und vorheriger Aufgabe ohne Lösungsschlüssel', async () => {
     await desktop.getRomanQuestion('decimal-to-roman');
     expect(invoke).toHaveBeenCalledWith('get_roman_question', {

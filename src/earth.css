@@ -1,0 +1,403 @@
+.earth-world {
+  --earth-dark: #173c3b;
+  --earth-teal: #23695d;
+  line-height: 1.5;
+}
+.earth-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+.earth-intro h2 {
+  font-size: 34px;
+  margin: 4px 0 8px;
+  letter-spacing: -0.6px;
+}
+.earth-intro p {
+  margin: 6px 0;
+}
+.earth-pass {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 12px;
+  background: #e7f1e8;
+  padding: 16px 20px;
+  border-radius: 18px;
+}
+.earth-pass > span {
+  grid-row: span 2;
+  font-size: 34px;
+  color: var(--earth-teal);
+}
+.earth-mode,
+.earth-levels,
+.earth-view-switch,
+.earth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.earth-stations {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.earth-stations button,
+.earth-layer-picker button,
+.earth-comparison-controls button,
+.earth-order-pool button,
+.earth-levels button {
+  min-height: 48px;
+  padding: 12px 16px;
+  border: 1px solid #94b6ad;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--earth-dark);
+  font-size: 16px;
+  text-align: left;
+}
+.earth-stations button > span {
+  margin-right: 12px;
+  font-size: 23px;
+}
+.earth-stations button[aria-pressed='true'],
+.earth-comparison-controls button[aria-pressed='true'],
+.earth-levels button[aria-pressed='true'] {
+  background: #e0eee7;
+  box-shadow: inset 0 -4px #23695d;
+  font-weight: 700;
+}
+.earth-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.earth-model {
+  background: var(--earth-dark);
+  color: #fff;
+  border-radius: 22px;
+  padding: 20px;
+}
+.earth-model-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+.earth-cutaway {
+  display: block;
+  width: 100%;
+  max-height: 470px;
+}
+.earth-cutaway [role='button'] {
+  cursor: pointer;
+}
+.earth-cutaway [role='button']:focus-visible {
+  stroke: #193b70;
+  stroke-width: 8px;
+  outline: none;
+}
+.earth-layer-picker {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.earth-layer-picker button {
+  background: #265454;
+  color: white;
+  border-color: #91bfb4;
+}
+.earth-layer-picker button[aria-pressed='true'] {
+  color: #173c3b;
+  background: #fff0ba;
+  border-color: #fff;
+  font-weight: 700;
+}
+.earth-neutral-note {
+  font-size: 16px;
+  margin: 14px 0 0;
+}
+.earth-view-switch {
+  margin-top: 14px;
+}
+.earth-travel {
+  display: grid;
+  gap: 6px;
+  margin-top: 14px;
+  font-weight: 700;
+}
+.earth-travel input {
+  width: 100%;
+  accent-color: var(--earth-teal);
+}
+.earth-travel span {
+  color: var(--muted);
+  font-size: 14px;
+}
+.earth-fact,
+.earth-answer-card,
+.earth-comparison,
+.earth-surface,
+.earth-end {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 24px;
+  border-radius: 22px;
+}
+.earth-fact h3 {
+  font-size: 32px;
+  margin: 5px 0;
+  color: var(--earth-dark);
+}
+.earth-tagline {
+  font-size: 20px;
+}
+.earth-fact dl {
+  display: flex;
+  gap: 18px;
+  background: #ecf3ee;
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+.earth-fact dt {
+  font-size: 13px;
+  color: var(--muted);
+}
+.earth-fact dd {
+  margin: 3px 0 0;
+  font-weight: 700;
+}
+.earth-fact li {
+  margin-block: 10px;
+}
+.earth-model-note {
+  border-left: 4px solid #b89357;
+  padding-left: 14px;
+  color: #63563e;
+  font-size: 16px;
+}
+.earth-detail .info-panel {
+  margin-top: 14px;
+}
+.earth-detail > details {
+  margin-top: 14px;
+}
+.earth-core-picture {
+  width: 100%;
+  display: block;
+  max-height: 410px;
+}
+.earth-comparison-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.earth-photo figure {
+  margin: 0;
+}
+.earth-photo img {
+  display: block;
+  width: 100%;
+  height: 390px;
+  object-fit: contain;
+  background: #111;
+  border-radius: 16px;
+}
+.earth-photo figcaption {
+  margin: 12px 0;
+}
+.earth-photo figcaption p {
+  margin: 6px 0;
+}
+.earth-photo-error {
+  background: #eef3ef;
+  padding: 24px;
+  border-radius: 14px;
+}
+.earth-photo-dialog {
+  width: min(1000px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+}
+.earth-photo-dialog figure {
+  margin: 20px;
+}
+.earth-photo-dialog img {
+  display: block;
+  width: 100%;
+  height: min(58dvh, 700px);
+  object-fit: contain;
+  background: #111;
+}
+.earth-photo-dialog figcaption {
+  margin-top: 12px;
+}
+.earth-error {
+  padding: 12px 18px;
+  background: #fff0e8;
+  border: 1px solid #be8471;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.earth-error p {
+  margin: 0 0 8px;
+}
+.earth-question-heading h3 {
+  font-size: 26px;
+  line-height: 1.4;
+  margin: 8px 0 16px;
+  max-width: 1400px;
+}
+.earth-quiz-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+}
+.earth-quiz-layout.has-model {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+}
+.earth-quiz-layout:not(.has-model) {
+  max-width: 1420px;
+}
+.earth-answer-card fieldset {
+  padding: 0;
+  border: 0;
+  margin: 0 0 20px;
+  min-width: 0;
+}
+.earth-answer-card legend {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.earth-answer-options {
+  display: grid;
+  gap: 10px;
+}
+.earth-answer-options label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 13px 16px;
+  margin: 0;
+  font-size: 18px;
+  cursor: pointer;
+}
+.earth-answer-options label.is-selected {
+  border-color: var(--earth-teal);
+  background: #e7f2ec;
+}
+.earth-answer-options input {
+  width: 20px;
+  height: 20px;
+  min-height: 0;
+  margin: 0;
+  accent-color: var(--earth-teal);
+}
+.earth-order-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.earth-order-result {
+  min-height: 30px;
+  margin-block: 12px;
+}
+.earth-order-result li {
+  padding: 6px;
+}
+.earth-order-result button {
+  min-height: 36px;
+  margin-left: 20px;
+  border-radius: 7px;
+  background: #edf3f0;
+  padding: 6px 12px;
+}
+.earth-actions {
+  margin-bottom: 12px;
+}
+.earth-feedback {
+  padding: 16px;
+  margin-top: 14px;
+  border-radius: 12px;
+  background: #fff2da;
+}
+.earth-feedback.correct {
+  background: #e4f3e7;
+}
+.earth-feedback p {
+  margin: 8px 0;
+}
+.earth-points-note {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 14px 0 0;
+}
+.earth-end button {
+  margin: 8px 12px 0 0;
+}
+.earth-world button:focus-visible,
+.earth-world input:focus-visible {
+  outline: 3px solid #274f93;
+  outline-offset: 4px;
+}
+@media (min-width: 1400px) {
+  .earth-world:has(.earth-error) .earth-cutaway {
+    max-height: 390px;
+  }
+}
+@media (max-width: 1000px) {
+  .earth-workspace,
+  .earth-quiz-layout.has-model {
+    grid-template-columns: 1fr;
+  }
+  .earth-intro {
+    flex-wrap: wrap;
+  }
+  .earth-stations {
+    grid-template-columns: 1fr;
+  }
+  .earth-intro h2 {
+    font-size: 28px;
+  }
+  .earth-cutaway {
+    max-height: 420px;
+  }
+  .earth-pass {
+    padding: 10px 14px;
+  }
+  .earth-photo img {
+    height: 280px;
+  }
+}
+
+@media (min-width: 1001px) {
+  .earth-quiz-layout.has-model .earth-answer-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1001px) {
+  .earth-quiz-layout:not(.has-model) .earth-answer-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+}
+.earth-cutaway [role='button']:focus-visible path {
+  stroke: #fff;
+  stroke-width: 7px;
+  stroke-dasharray: 6 3;
+}
+.earth-answer-card fieldset:disabled {
+  opacity: 1;
+}
