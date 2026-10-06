@@ -401,3 +401,157 @@ it('hält andere Fächer erreichbar, solange nur die Modul-Daten geladen werden'
   );
   expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
 });
+
+it('übt Buchstabensalat auf Englisch, nutzt einzelne Kärtchen und behält Mischung bei Tipps und Retry', async () => {
+  const user = userEvent.setup();
+  const apple = {
+    ...initial,
+    card: {
+      ...initial.card!,
+      card: {
+        ...initial.card!.card,
+        id: 'apple',
+        english: 'apple',
+        german: 'Apfel',
+        example: 'I eat an apple.',
+        cloze: 'I eat an ___.',
+      },
+    },
+  };
+  vi.mocked(desktop.getVocabularyState).mockResolvedValue(apple);
+  vi.mocked(desktop.reviewVocabulary)
+    .mockRejectedValueOnce(new Error('Salat speichern fehlgeschlagen'))
+    .mockResolvedValue(success);
+  const { rerender } = render(<VocabularyPanel profileVersion={0} />);
+  await screen.findByLabelText('Deine englische Antwort');
+  await user.click(screen.getByRole('button', { name: 'Buchstabensalat' }));
+  await screen.findByRole('group', { name: 'Buchstabenkärtchen' });
+  expect(desktop.getVocabularyState).toHaveBeenLastCalledWith('all', {
+    mode: 'scramble',
+    previousCardId: 'apple',
+  });
+  const mixed = screen.getByLabelText('Gemischte Buchstaben').textContent;
+  expect(mixed).not.toBe('apple');
+  expect(screen.queryByText('I eat an apple.')).not.toBeInTheDocument();
+  const pTiles = screen.getAllByRole('button', { name: /^Buchstabe p/ });
+  expect(pTiles).toHaveLength(2);
+  await user.click(pTiles[0]);
+  expect(pTiles[0]).toBeDisabled();
+  expect(pTiles[1]).toBeEnabled();
+  await user.click(
+    screen.getByRole('button', { name: 'Letzten Buchstaben entfernen' }),
+  );
+  expect(pTiles[0]).toBeEnabled();
+  expect(screen.getByLabelText('Deine englische Antwort')).toHaveValue('');
+  await user.click(screen.getByRole('button', { name: 'Hilfe' }));
+  await user.click(
+    screen.getByRole('button', { name: 'Anfangsbuchstaben-Tipp' }),
+  );
+  expect(screen.getByText(/Das Wort beginnt mit/)).toHaveTextContent('a');
+  await user.click(screen.getByRole('button', { name: 'Schließen' }));
+  rerender(<VocabularyPanel profileVersion={0} />);
+  expect(screen.getByLabelText('Gemischte Buchstaben')).toHaveTextContent(
+    mixed!,
+  );
+  await user.type(
+    screen.getByLabelText('Deine englische Antwort'),
+    'APPLE{Enter}',
+  );
+  await screen.findByText('Salat speichern fehlgeschlagen');
+  expect(screen.getByLabelText('Gemischte Buchstaben')).toHaveTextContent(
+    mixed!,
+  );
+  expect(
+    screen.getByRole('button', { name: 'Buchstabensalat' }),
+  ).toBeDisabled();
+  expect(
+    screen.getByRole('button', { name: 'Karten neu laden' }),
+  ).toBeDisabled();
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
+  await screen.findByText('Richtig! +1 Punkt');
+  expect(vi.mocked(desktop.reviewVocabulary).mock.calls[0]).toEqual(
+    vi.mocked(desktop.reviewVocabulary).mock.calls[1],
+  );
+  expect(desktop.reviewVocabulary).toHaveBeenLastCalledWith(
+    expect.objectContaining({
+      mode: 'scramble',
+      answer: 'APPLE',
+      cardId: 'apple',
+    }),
+  );
+  expect(screen.getByText('I eat an apple.')).toBeVisible();
+});
+it('behandelt Vorschule-Exposition mit anderer Karte und ehrlichem leeren Zustand ohne Bewertung', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getVocabularyState)
+    .mockResolvedValueOnce({ ...initial, difficulty: 'vorschule' })
+    .mockResolvedValue({
+      ...initial,
+      difficulty: 'vorschule',
+      mode: 'scramble',
+      card: null,
+      temporarilyExcluded: true,
+      newCount: 0,
+    });
+  render(<VocabularyPanel profileVersion={0} />);
+  await screen.findByLabelText('Deine deutsche Übersetzung');
+  await user.click(screen.getByRole('button', { name: 'Buchstabensalat' }));
+  expect(
+    await screen.findByText('Gerade keine passende Salatkarte'),
+  ).toBeVisible();
+  expect(desktop.getVocabularyState).toHaveBeenLastCalledWith('all', {
+    mode: 'scramble',
+    excludeCardId: 'hello',
+    previousCardId: 'hello',
+  });
+  expect(screen.getByText(/Die eben gezeigte Karte lassen wir/)).toBeVisible();
+  await user.click(
+    screen.getByRole('button', { name: 'Fällige Karten laden' }),
+  );
+  await waitFor(() =>
+    expect(desktop.getVocabularyState).toHaveBeenLastCalledWith('all', {
+      mode: 'scramble',
+      excludeCardId: 'hello',
+      previousCardId: 'hello',
+    }),
+  );
+  expect(desktop.reviewVocabulary).not.toHaveBeenCalled();
+});
+it('erhält bestätigte und aufgedeckte Ergebnisse beim Moduswechsel statt erneut Punkte anzubieten', async () => {
+  const user = userEvent.setup();
+  render(<VocabularyPanel profileVersion={0} />);
+  await user.type(
+    await screen.findByLabelText('Deine englische Antwort'),
+    'hello{Enter}',
+  );
+  await screen.findByText('Richtig! +1 Punkt');
+  await user.click(screen.getByRole('button', { name: 'Buchstabensalat' }));
+  expect(screen.getByText('Richtig! +1 Punkt')).toBeVisible();
+  expect(
+    screen.queryByRole('button', { name: 'Prüfen' }),
+  ).not.toBeInTheDocument();
+  expect(desktop.getVocabularyState).toHaveBeenCalledTimes(1);
+  expect(desktop.reviewVocabulary).toHaveBeenCalledTimes(1);
+});
+it('überspringt ohne Bewertung und setzt Ausschlüsse beim Themenwechsel zurück', async () => {
+  const user = userEvent.setup();
+  render(<VocabularyPanel profileVersion={0} />);
+  await screen.findByLabelText('Deine englische Antwort');
+  await user.click(screen.getByRole('button', { name: 'Buchstabensalat' }));
+  await screen.findByRole('group', { name: 'Buchstabenkärtchen' });
+  await user.click(screen.getByRole('button', { name: 'Überspringen' }));
+  await waitFor(() =>
+    expect(desktop.getVocabularyState).toHaveBeenLastCalledWith('all', {
+      mode: 'scramble',
+      excludeCardId: 'hello',
+      previousCardId: 'hello',
+    }),
+  );
+  expect(desktop.reviewVocabulary).not.toHaveBeenCalled();
+  await user.selectOptions(screen.getByLabelText('Dein Wortthema'), 'family');
+  await waitFor(() =>
+    expect(desktop.getVocabularyState).toHaveBeenLastCalledWith('family', {
+      mode: 'scramble',
+    }),
+  );
+});

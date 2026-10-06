@@ -9,7 +9,15 @@ import type {
   VocabularyState,
   VocabularyReview,
   VocabularyReviewResult,
+  VocabularyMode,
+  VocabularySelection,
 } from '../domain/vocabulary';
+import {
+  scrambleWord,
+  letterTiles,
+  assembleTiles,
+  type LetterTile,
+} from '../domain/vocabulary-scramble';
 import { desktop } from '../lib/desktop';
 import { validateAnswerCharacters } from '../lib/answer-input';
 
@@ -34,6 +42,7 @@ type Feedback = {
   presented: NonNullable<VocabularyState['card']>;
   difficulty: Difficulty;
   answer: string | null;
+  mode: VocabularyMode;
 };
 
 export default function VocabularyPanel({
@@ -49,7 +58,11 @@ export default function VocabularyPanel({
   onActivityChange?: (activity: { dirty: boolean; busy: boolean }) => void;
   onProfileSaved?: () => void;
 }) {
-  const [mode, setMode] = useState<'write' | 'listen'>('write');
+  const [mode, setMode] = useState<'write' | 'listen' | 'scramble'>('write');
+  const selection = useRef<VocabularySelection>({ mode: 'write' });
+  const [mixed, setMixed] = useState('');
+  const [chosen, setChosen] = useState<LetterTile[]>([]);
+  const [firstLetter, setFirstLetter] = useState(false);
   const [state, setState] = useState<VocabularyState | null>(null);
   const [deck, setDeck] = useState(initialDeck);
   const [reload, setReload] = useState(0);
@@ -66,14 +79,14 @@ export default function VocabularyPanel({
   const focusNextCard = useRef(false);
 
   const { requestChange, confirmation } = useConfirmChange(
-    (mode === 'write' && !!answer && !feedback) || !!pending,
+    (mode !== 'listen' && !!answer && !feedback) || !!pending,
     busy,
   );
 
   useEffect(() => {
     if (externalControls && state && !state.profileReady) return;
     onActivityChange?.({
-      dirty: (mode === 'write' && !!answer && !feedback) || !!pending,
+      dirty: (mode !== 'listen' && !!answer && !feedback) || !!pending,
       busy: busy && (!!pending || !!state),
     });
   }, [
@@ -96,11 +109,17 @@ export default function VocabularyPanel({
     setFeedback(null);
     setAnswer('');
     inFlight.current = true;
-    void desktop
-      .getVocabularyState(deck)
+    const load =
+      selection.current.mode === 'write'
+        ? desktop.getVocabularyState(deck)
+        : desktop.getVocabularyState(deck, selection.current);
+    void load
       .then((value) => {
         if (current === revision.current) {
           setState(value);
+          setMixed(value.card ? scrambleWord(value.card.card.english) : '');
+          setChosen([]);
+          setFirstLetter(false);
           if (externalControls && value.profileReady)
             focusNextCard.current = true;
         }
@@ -128,9 +147,15 @@ export default function VocabularyPanel({
     setFeedback(null);
     try {
       await desktop.setDifficulty(difficulty);
-      const next = await desktop.getVocabularyState(deck);
+      selection.current = { mode: mode === 'scramble' ? 'scramble' : 'write' };
+      const next = await (selection.current.mode === 'write'
+        ? desktop.getVocabularyState(deck)
+        : desktop.getVocabularyState(deck, selection.current));
       if (current !== revision.current) return;
       setState(next);
+      setMixed(next.card ? scrambleWord(next.card.card.english) : '');
+      setChosen([]);
+      setFirstLetter(false);
       setAnswer('');
     } catch (err) {
       if (current !== revision.current) return;
@@ -142,6 +167,41 @@ export default function VocabularyPanel({
         setBusy(false);
       }
     }
+  }
+  async function changeMode(next: 'write' | 'listen' | 'scramble') {
+    if (inFlight.current || pending || next === mode) return;
+    setMode(next);
+    // A checked/revealed card stays checked through every mode switch.
+    if (next === 'listen' || feedback || next === selection.current.mode)
+      return;
+    const exposed =
+      selection.current.mode === 'write' &&
+      state?.difficulty === 'vorschule' &&
+      state.card;
+    selection.current = {
+      mode: next,
+      ...(next === 'scramble' && exposed
+        ? { excludeCardId: exposed.card.id }
+        : {}),
+      ...(state?.card ? { previousCardId: state.card.card.id } : {}),
+    };
+    setReload((value) => value + 1);
+  }
+  function nextCard(skip = false) {
+    if (busy || pending) return;
+    const shown = feedback?.presented ?? state?.card;
+    if (
+      shown ||
+      selection.current.mode !== (mode === 'scramble' ? 'scramble' : 'write')
+    ) {
+      selection.current = {
+        mode: mode === 'scramble' ? 'scramble' : 'write',
+        ...(skip && shown ? { excludeCardId: shown.card.id } : {}),
+        ...(shown ? { previousCardId: shown.card.id } : {}),
+      };
+    }
+    focusNextCard.current = true;
+    setReload((value) => value + 1);
   }
   async function submit(value: string | null) {
     if (inFlight.current || !state?.card || !state.profileReady || feedback)
@@ -161,6 +221,9 @@ export default function VocabularyPanel({
       deckId: deck,
       difficulty: state.difficulty,
       expectedReviews: state.card.reviews,
+      ...(selection.current.mode === 'scramble'
+        ? { mode: 'scramble' as const }
+        : {}),
       answer: value,
     };
     const current = revision.current;
@@ -176,6 +239,7 @@ export default function VocabularyPanel({
         presented: state.card,
         difficulty: request.difficulty,
         answer: request.answer,
+        mode: request.mode ?? 'write',
       });
       setState(result.state);
       setPending(null);
@@ -204,54 +268,22 @@ export default function VocabularyPanel({
   const card = presented?.card;
   const difficulty = feedback?.difficulty ?? state?.difficulty ?? 'koenner';
   const disabled = busy || !!pending;
+  const scrambling = (feedback?.mode ?? selection.current.mode) === 'scramble';
+  const tiles = letterTiles(mixed);
   const front =
     card &&
-    (difficulty === 'vorschule'
-      ? card.english
-      : difficulty === 'koenner'
-        ? card.german
-        : card.cloze);
+    (scrambling
+      ? card.german
+      : difficulty === 'vorschule'
+        ? card.english
+        : difficulty === 'koenner'
+          ? card.german
+          : card.cloze);
   const back =
-    card && (difficulty === 'vorschule' ? card.german : card.english);
-  return (
-    <section
-      className="detail-panel vocabulary-panel"
-      aria-labelledby="vocabulary-title"
-      aria-busy={busy}
-    >
-      <p className="eyebrow">ENGLISCH · KLASSE 5 · 1. FREMDSPRACHE</p>
-      <h2 id="vocabulary-title">Vokabeltrainer</h2>
-      <p>
-        {mode === 'write'
-          ? 'Tippe deine Übersetzung ein. Jede richtige Antwort bringt 1 Punkt – auch wenn du ein Wort später wiederholst. Fehler kosten nichts.'
-          : 'Mach eine kurze Pause vom Schreiben und entdecke englische Wörter mit deinen Ohren.'}
-      </p>
-      <div className="card-actions" role="group" aria-label="Übungsart">
-        <button
-          type="button"
-          className="secondary-button"
-          aria-pressed={mode === 'write'}
-          disabled={disabled}
-          onClick={() => requestChange(() => setMode('write'))}
-        >
-          Wörter schreiben
-        </button>
-        <button
-          type="button"
-          className="secondary-button"
-          aria-pressed={mode === 'listen'}
-          disabled={disabled || !state}
-          onClick={() => requestChange(() => setMode('listen'))}
-        >
-          3 Wörter hören
-        </button>
-      </div>
-      {state && (
-        <div className="points-balance" aria-label="Verfügbare Lernpunkte">
-          {state.wallet.balance}{' '}
-          {state.wallet.balance === 1 ? 'Punkt' : 'Punkte'}
-        </div>
-      )}
+    card &&
+    (!scrambling && difficulty === 'vorschule' ? card.german : card.english);
+  const notices = (
+    <>
       {busy && (
         <p role="status">Wortkarten werden geladen oder gespeichert …</p>
       )}
@@ -269,11 +301,64 @@ export default function VocabularyPanel({
           )}
         </div>
       )}
-      {mode === 'write' && (
+    </>
+  );
+  return (
+    <section
+      className="detail-panel vocabulary-panel"
+      aria-labelledby="vocabulary-title"
+      aria-busy={busy}
+    >
+      <p className="eyebrow">ENGLISCH · KLASSE 5 · 1. FREMDSPRACHE</p>
+      <h2 id="vocabulary-title">Vokabeltrainer</h2>
+      <p>
+        {mode === 'scramble'
+          ? 'Finde das englische Wort. Nutze alle Buchstaben. Jede richtige Antwort bringt 1 Punkt. Fehler kosten nichts.'
+          : mode === 'write'
+            ? 'Tippe deine Übersetzung ein. Jede richtige Antwort bringt 1 Punkt – auch wenn du ein Wort später wiederholst. Fehler kosten nichts.'
+            : 'Mach eine kurze Pause vom Schreiben und entdecke englische Wörter mit deinen Ohren.'}
+      </p>
+      <div className="card-actions" role="group" aria-label="Übungsart">
+        <button
+          type="button"
+          className="secondary-button"
+          aria-pressed={mode === 'write'}
+          disabled={disabled}
+          onClick={() => requestChange(() => void changeMode('write'))}
+        >
+          Wörter schreiben
+        </button>
+        <button
+          type="button"
+          className="secondary-button"
+          aria-pressed={mode === 'scramble'}
+          disabled={disabled || !state}
+          onClick={() => requestChange(() => void changeMode('scramble'))}
+        >
+          Buchstabensalat
+        </button>
+        <button
+          type="button"
+          className="secondary-button"
+          aria-pressed={mode === 'listen'}
+          disabled={disabled || !state}
+          onClick={() => requestChange(() => void changeMode('listen'))}
+        >
+          3 Wörter hören
+        </button>
+      </div>
+      {state && (
+        <div className="points-balance" aria-label="Verfügbare Lernpunkte">
+          {state.wallet.balance}{' '}
+          {state.wallet.balance === 1 ? 'Punkt' : 'Punkte'}
+        </div>
+      )}
+      {(!state || mode === 'listen') && notices}
+      {mode !== 'listen' && (
         <button
           className="secondary-button"
-          disabled={busy}
-          onClick={() => requestChange(() => setReload((v) => v + 1))}
+          disabled={disabled}
+          onClick={() => requestChange(() => nextCard())}
         >
           {error ? 'Karten neu laden' : 'Fällige Karten laden'}
         </button>
@@ -285,7 +370,7 @@ export default function VocabularyPanel({
           initialDeck={deck}
         />
       )}
-      {state && mode === 'write' && (
+      {state && mode !== 'listen' && (
         <div className="vocabulary-workspace">
           <div className="vocabulary-settings">
             <h3>
@@ -293,6 +378,7 @@ export default function VocabularyPanel({
                 ? 'Dein Wortthema'
                 : 'Wie möchtest du Wörter üben?'}
             </h3>
+            {notices}
             {!externalControls && (
               <div
                 className="level-grid"
@@ -310,7 +396,16 @@ export default function VocabularyPanel({
                   >
                     <span aria-hidden="true">{level.symbol}</span>
                     <strong>{level.name}</strong>
-                    <small>{modes[level.id]}</small>
+                    <small>
+                      {mode === 'scramble'
+                        ? {
+                            vorschule:
+                              'Kurze englische Wörter · freiwilliger Tipp',
+                            koenner: 'Englische Wörter aus Buchstaben finden',
+                            streber: 'Längere Wörter und Satzlücken',
+                          }[level.id]
+                        : modes[level.id]}
+                    </small>
                   </button>
                 ))}
               </div>
@@ -318,10 +413,12 @@ export default function VocabularyPanel({
             <InfoPanel>
               <summary>Stufen & Punkte</summary>
               <p className="sample-note">
-                Deine Stufe gilt auch in den anderen Fächern. Wir merken uns
-                deine Wortkarten für jede Stufe getrennt. Hier gibt es in jeder
-                Stufe 1 Punkt pro richtiger Antwort. Deine Punkte kannst du für
-                Spiele und Belohnungen verwenden.
+                Schreiben und Buchstabensalat teilen dieselben Karteifächer und
+                Termine. Salat fragt auf jeder Stufe Englisch ab, auch in
+                Vorschule. Deine Stufe gilt auch in den anderen Fächern. Wir
+                merken uns deine Wortkarten für jede Stufe getrennt. Hier gibt
+                es in jeder Stufe 1 Punkt pro richtiger Antwort. Deine Punkte
+                kannst du für Spiele und Belohnungen verwenden.
               </p>
             </InfoPanel>
             <label className="vocabulary-deck">
@@ -331,7 +428,12 @@ export default function VocabularyPanel({
                 disabled={disabled}
                 onChange={(event) => {
                   const next = event.target.value;
-                  requestChange(() => setDeck(next));
+                  requestChange(() => {
+                    selection.current = {
+                      mode: mode === 'scramble' ? 'scramble' : 'write',
+                    };
+                    setDeck(next);
+                  });
                 }}
               >
                 <option value="all">
@@ -395,24 +497,95 @@ export default function VocabularyPanel({
                   ? 'NEUES WORT'
                   : `WIEDERHOLUNG · FACH ${presented.boxNumber}`}
               </p>
-              <p>{modes[difficulty]}</p>
-              {difficulty === 'streber' && <p>Gesuchtes Wort: {card.german}</p>}
+              <p>
+                {scrambling
+                  ? 'Welche englische Vokabel passt? Nutze alle Buchstaben.'
+                  : modes[difficulty]}
+              </p>
+              {difficulty === 'streber' && !scrambling && (
+                <p>Gesuchtes Wort: {card.german}</p>
+              )}
               <h3
                 id="card-prompt"
-                lang={difficulty === 'koenner' ? 'de' : 'en'}
+                lang={scrambling || difficulty === 'koenner' ? 'de' : 'en'}
               >
                 {front}
               </h3>
-              {!feedback && difficulty === 'vorschule' && (
+              {!feedback && !scrambling && difficulty === 'vorschule' && (
                 <p lang="en">{card.example}</p>
               )}
-              {feedback || difficulty === 'vorschule' ? (
+              {feedback || (!scrambling && difficulty === 'vorschule') ? (
                 <VocabularyAudio cardId={card.id} disabled={disabled} />
               ) : (
                 <p className="sample-note">
                   Nach deiner Antwort kannst du das englische Wort und den
                   Beispielsatz anhören.
                 </p>
+              )}
+              {!feedback && scrambling && (
+                <div className="scramble-exercise">
+                  {difficulty === 'streber' && <p lang="en">{card.cloze}</p>}
+                  <p
+                    className="scramble-mixed"
+                    lang="en"
+                    aria-label="Gemischte Buchstaben"
+                  >
+                    {mixed}
+                  </p>
+                  <div
+                    className="scramble-tiles"
+                    role="group"
+                    aria-label="Buchstabenkärtchen"
+                  >
+                    {tiles.map((tile) => (
+                      <button
+                        key={tile.id}
+                        type="button"
+                        className="secondary-button"
+                        disabled={
+                          disabled || chosen.some((item) => item.id === tile.id)
+                        }
+                        aria-label={`Buchstabe ${tile.letter}, Kärtchen ${tile.id + 1}`}
+                        onClick={() => {
+                          const next = [...chosen, tile];
+                          setChosen(next);
+                          setAnswer(assembleTiles(mixed, next));
+                        }}
+                      >
+                        {tile.letter}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="card-actions">
+                    <button
+                      type="button"
+                      className="secondary-button"
+                      disabled={disabled || !answer}
+                      onClick={() => {
+                        const next = chosen.slice(0, -1);
+                        setChosen(next);
+                        setAnswer(
+                          chosen.length
+                            ? assembleTiles(mixed, next)
+                            : answer.slice(0, -1),
+                        );
+                      }}
+                    >
+                      Letzten Buchstaben entfernen
+                    </button>
+                    <button
+                      type="button"
+                      className="secondary-button"
+                      disabled={disabled || !answer}
+                      onClick={() => {
+                        setChosen([]);
+                        setAnswer('');
+                      }}
+                    >
+                      Zurücksetzen
+                    </button>
+                  </div>
+                </div>
               )}
               {!feedback ? (
                 <form
@@ -422,7 +595,7 @@ export default function VocabularyPanel({
                   }}
                 >
                   <label>
-                    {difficulty === 'vorschule'
+                    {!scrambling && difficulty === 'vorschule'
                       ? 'Deine deutsche Übersetzung'
                       : 'Deine englische Antwort'}
                     <input
@@ -433,14 +606,18 @@ export default function VocabularyPanel({
                       autoComplete="off"
                       autoCapitalize="off"
                       spellCheck={false}
-                      onChange={(event) => setAnswer(event.target.value)}
+                      onChange={(event) => {
+                        setAnswer(event.target.value);
+                        setChosen([]);
+                      }}
                       aria-describedby="vocabulary-answer-help"
                     />
                   </label>
                   <p id="vocabulary-answer-help">
-                    Eine passende Übersetzung reicht. Schreibe nur das gesuchte
-                    Wort oder die Wortgruppe. Groß- und Kleinschreibung ist hier
-                    egal.
+                    {scrambling
+                      ? 'Benutze hier alle Buchstaben der angezeigten Schreibweise. Leerzeichen und Trennzeichen bleiben an ihrem Platz.'
+                      : 'Eine passende Übersetzung reicht. Schreibe nur das gesuchte Wort oder die Wortgruppe.'}{' '}
+                    Groß- und Kleinschreibung ist hier egal.
                   </p>
                   <div className="card-actions">
                     <button
@@ -452,6 +629,24 @@ export default function VocabularyPanel({
                     </button>
                     <InfoPanel returnFocusRef={answerField}>
                       <summary>Hilfe</summary>
+                      {scrambling && (
+                        <>
+                          <button
+                            type="button"
+                            className="secondary-button"
+                            disabled={disabled}
+                            onClick={() => setFirstLetter(true)}
+                          >
+                            Anfangsbuchstaben-Tipp
+                          </button>
+                          {firstLetter && (
+                            <p>
+                              Das Wort beginnt mit{' '}
+                              <strong lang="en">{card.english[0]}</strong>.
+                            </p>
+                          )}
+                        </>
+                      )}
                       <p>
                         Du weißt das Wort noch nicht? Schau die Lösung an. Die
                         Karte kommt später wieder. Dafür gibt es keine Punkte.
@@ -466,6 +661,16 @@ export default function VocabularyPanel({
                         Lösung zeigen
                       </button>
                     </InfoPanel>
+                    {scrambling && (
+                      <button
+                        type="button"
+                        className="secondary-button"
+                        disabled={disabled}
+                        onClick={() => requestChange(() => nextCard(true))}
+                      >
+                        Überspringen
+                      </button>
+                    )}
                   </div>
                 </form>
               ) : (
@@ -475,6 +680,9 @@ export default function VocabularyPanel({
                       ? `Richtig! +${feedback.result.pointsAwarded} Punkt`
                       : 'Noch nicht ganz – wir üben das wieder!'}
                   </h4>
+                  {feedback.result.spellingHint && (
+                    <p>{feedback.result.spellingHint}</p>
+                  )}
                   {feedback.answer !== null && (
                     <p>Deine Antwort: {feedback.answer}</p>
                   )}
@@ -484,9 +692,14 @@ export default function VocabularyPanel({
                         ? 'Eine passende Lösung'
                         : 'Die Lösung'}
                     </p>
-                    <strong lang={difficulty === 'vorschule' ? 'de' : 'en'}>
+                    <strong
+                      lang={
+                        !scrambling && difficulty === 'vorschule' ? 'de' : 'en'
+                      }
+                    >
                       {back}
                     </strong>
+                    <p>{card.german}</p>
                     <p lang="en">{card.example}</p>
                   </div>
                   <p>
@@ -498,8 +711,7 @@ export default function VocabularyPanel({
                     className="primary-button"
                     disabled={busy}
                     onClick={() => {
-                      focusNextCard.current = true;
-                      setReload((v) => v + 1);
+                      nextCard();
                     }}
                   >
                     Weiter
@@ -511,8 +723,24 @@ export default function VocabularyPanel({
           {state.profileReady && !card && (
             <div className="flashcard">
               <h3 ref={completedHeading} tabIndex={-1}>
-                Für jetzt geschafft!
+                {mode === 'scramble' &&
+                (state.total === 0 || state.temporarilyExcluded)
+                  ? 'Gerade keine passende Salatkarte'
+                  : 'Für jetzt geschafft!'}
               </h3>
+              {mode === 'scramble' && state.temporarilyExcluded && (
+                <p>
+                  Die eben gezeigte Karte lassen wir für diesen Wechsel aus. Sie
+                  bleibt unverändert. Wähle ein anderes Thema oder Wörter
+                  schreiben.
+                </p>
+              )}
+              {mode === 'scramble' && state.total === 0 && (
+                <p>
+                  Dieses Thema enthält gerade keine mischbaren Wörter. Wähle ein
+                  anderes Thema oder Wörter schreiben.
+                </p>
+              )}
               <p>
                 In diesem Thema ist gerade keine Karte fällig. Eine Pause gehört
                 zum Lernen dazu.

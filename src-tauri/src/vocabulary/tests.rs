@@ -19,6 +19,7 @@ fn input(card: &str, n: i64, known: bool) -> ReviewInput {
         deck_id: "hello".to_owned(),
         difficulty: Difficulty::Koenner,
         expected_reviews: n,
+        mode: Mode::Write,
         answer: Some(if known {
             bank()
                 .unwrap()
@@ -531,4 +532,315 @@ fn failed_v7_migration_restores_original_journal_and_schema() {
     assert!(c
         .prepare("SELECT points_awarded FROM vocabulary_reviews")
         .is_err());
+}
+
+fn word(value: &str) -> &'static Card {
+    bank()
+        .unwrap()
+        .cards
+        .iter()
+        .find(|c| c.english == value)
+        .unwrap()
+}
+fn salad(
+    card: &Card,
+    difficulty: Difficulty,
+    request_id: &str,
+    answer: Option<&str>,
+) -> ReviewInput {
+    ReviewInput {
+        request_id: request_id.into(),
+        card_id: card.id.clone(),
+        deck_id: card.deck_id.clone(),
+        difficulty,
+        expected_reviews: 0,
+        mode: Mode::Scramble,
+        answer: answer.map(str::to_owned),
+    }
+}
+#[test]
+fn scramble_selection_skips_the_first_unsuitable_due_card_and_reports_only_its_pool() {
+    let dir = tempfile::tempdir().unwrap();
+    let c = setup(&dir.path().join("selection.db"));
+    let pe = word("PE");
+    let school = word("school");
+    for (card, due) in [(pe, 1), (school, 2)] {
+        c.execute(
+            "INSERT INTO vocabulary_progress VALUES (1,?1,'koenner',2,1,?2)",
+            params![card.id, due],
+        )
+        .unwrap();
+    }
+    assert_eq!(
+        state_at(&c, "school", 10).unwrap().card.unwrap().card.id,
+        pe.id
+    );
+    let selection = Selection {
+        mode: Mode::Scramble,
+        ..Selection::default()
+    };
+    let state = selected_state_at(&c, "school", 10, &selection, |_| 0).unwrap();
+    assert_eq!(state.card.unwrap().card.id, school.id);
+    assert_eq!(state.due_count, 1);
+    let eligible = bank()
+        .unwrap()
+        .cards
+        .iter()
+        .filter(|c| c.deck_id == "school" && scramble_eligible(&c.english))
+        .count() as u32;
+    assert_eq!((state.total, state.new_count), (eligible, eligible - 1));
+    assert_eq!(state.boxes, [0, 1, 0, 0, 0]);
+    assert!(state.next_due_at.is_none());
+    let a = selected_state_at(&c, "hello", 10, &selection, |_| 0)
+        .unwrap()
+        .card
+        .unwrap()
+        .card
+        .id
+        .clone();
+    let b = selected_state_at(&c, "hello", 10, &selection, |len| len - 1)
+        .unwrap()
+        .card
+        .unwrap()
+        .card
+        .id
+        .clone();
+    assert_ne!(a, b);
+    let avoid = Selection {
+        mode: Mode::Scramble,
+        previous_card_id: Some(a.clone()),
+        exclude_card_id: None,
+    };
+    assert_ne!(
+        selected_state_at(&c, "hello", 10, &avoid, |_| 0)
+            .unwrap()
+            .card
+            .unwrap()
+            .card
+            .id,
+        a
+    );
+}
+#[test]
+fn scramble_exposure_exclusion_is_temporary_without_progress_and_can_explain_an_empty_pool() {
+    let dir = tempfile::tempdir().unwrap();
+    let c = setup(&dir.path().join("exposure.db"));
+    database::set_difficulty(&c, "vorschule").unwrap();
+    let open = word("hello");
+    for card in bank()
+        .unwrap()
+        .cards
+        .iter()
+        .filter(|c| c.deck_id == "hello" && c.id != open.id)
+    {
+        c.execute(
+            "INSERT INTO vocabulary_progress VALUES (1,?1,'vorschule',2,1,100)",
+            [&card.id],
+        )
+        .unwrap();
+    }
+    let selection = Selection {
+        mode: Mode::Scramble,
+        exclude_card_id: Some(open.id.clone()),
+        previous_card_id: None,
+    };
+    let state = selected_state_at(&c, "hello", 10, &selection, |_| 0).unwrap();
+    assert!(state.card.is_none());
+    assert!(state.temporarily_excluded);
+    assert_eq!((state.new_count, state.due_count), (0, 0));
+    assert_eq!(state.next_due_at, Some(100));
+    assert!(!progress(&c, Difficulty::Vorschule)
+        .unwrap()
+        .contains_key(&open.id));
+    assert_eq!(
+        selected_state_at(
+            &c,
+            "hello",
+            10,
+            &Selection {
+                mode: Mode::Scramble,
+                ..Selection::default()
+            },
+            |_| 0
+        )
+        .unwrap()
+        .card
+        .unwrap()
+        .card
+        .id,
+        open.id
+    );
+}
+#[test]
+fn scramble_checks_english_in_every_level_and_rejects_other_letter_inventories() {
+    let dir = tempfile::tempdir().unwrap();
+    let mut c = setup(&dir.path().join("english.db"));
+    for (i, difficulty) in [
+        Difficulty::Vorschule,
+        Difficulty::Koenner,
+        Difficulty::Streber,
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        database::set_difficulty(&c, difficulty.as_str()).unwrap();
+        let apple = word("apple");
+        let request = salad(apple, difficulty, &format!("apple-{i}"), Some("  APPLE! "));
+        assert_eq!(review_at(&mut c, &request, 10).unwrap().points_awarded, 1);
+        let wrong = salad(
+            word("school"),
+            difficulty,
+            &format!("german-{i}"),
+            Some("Schule"),
+        );
+        assert!(!review_at(&mut c, &wrong, 10).unwrap().correct);
+    }
+    let colour = word("colour");
+    let different = salad(colour, Difficulty::Streber, "colour-variant", Some("color"));
+    let result = review_at(&mut c, &different, 10).unwrap();
+    assert!(!result.correct);
+    assert!(result.spelling_hint.is_some());
+    let canonical = ReviewInput {
+        request_id: "colour-canonical".into(),
+        expected_reviews: 1,
+        answer: Some("COLOUR".into()),
+        ..different
+    };
+    assert!(review_at(&mut c, &canonical, 70).unwrap().correct);
+    assert!(scramble_eligible("exercise book"));
+    assert!(scramble_eligible("T-shirt"));
+    assert!(scramble_eligible("o’clock"));
+    let request = salad(
+        word("o’clock"),
+        Difficulty::Streber,
+        "apostrophe",
+        Some("o'clock"),
+    );
+    assert!(review_at(&mut c, &request, 10).unwrap().correct);
+}
+#[test]
+fn scramble_ineligible_submit_invalid_mode_and_changed_retry_do_not_mutate() {
+    let dir = tempfile::tempdir().unwrap();
+    let mut c = setup(&dir.path().join("invalid.db"));
+    let request = salad(word("PE"), Difficulty::Koenner, "pe", Some("PE"));
+    assert!(review_at(&mut c, &request, 10).is_err());
+    assert!(progress(&c, Difficulty::Koenner).unwrap().is_empty());
+    assert_eq!(learning::wallet(&c).unwrap().balance, 0);
+    assert!(serde_json::from_str::<ReviewInput>(r#"{"requestId":"x","cardId":"x","deckId":"hello","difficulty":"koenner","expectedReviews":0,"mode":"anagram","answer":"hello"}"#).is_err());
+    let request = salad(
+        word("hello"),
+        Difficulty::Koenner,
+        "retry-mode",
+        Some("hello"),
+    );
+    let result = review_at(&mut c, &request, 10).unwrap();
+    database::set_difficulty(&c, "streber").unwrap();
+    let retry = review_at(&mut c, &request, 20).unwrap();
+    assert_eq!((result.points_awarded, retry.points_awarded), (1, 1));
+    let changed = ReviewInput {
+        mode: Mode::Write,
+        ..request
+    };
+    assert!(review_at(&mut c, &changed, 20).is_err());
+    assert_eq!(learning::wallet(&c).unwrap().balance, 1);
+}
+#[test]
+fn modes_share_due_state_and_reveals_cannot_be_rewarded_again() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("shared.db");
+    let mut c = setup(&path);
+    let mut request = salad(word("hello"), Difficulty::Koenner, "salad-reveal", None);
+    let revealed = review_at(&mut c, &request, 10).unwrap();
+    assert_eq!(revealed.points_awarded, 0);
+    request.request_id = "write-too-early".into();
+    request.mode = Mode::Write;
+    request.answer = Some("hello".into());
+    request.expected_reviews = 1;
+    assert!(review_at(&mut c, &request, 11).is_err());
+    assert_eq!(review_at(&mut c, &request, 70).unwrap().points_awarded, 1);
+    request.request_id = "salad-too-early".into();
+    request.mode = Mode::Scramble;
+    request.expected_reviews = 2;
+    assert!(review_at(&mut c, &request, 71).is_err());
+    assert_eq!(
+        review_at(&mut c, &request, 86_470).unwrap().points_awarded,
+        1
+    );
+    drop(c);
+    let mut c = database::open(&path).unwrap();
+    assert_eq!(
+        review_at(&mut c, &request, 86_471).unwrap().points_awarded,
+        1
+    );
+    assert_eq!(learning::wallet(&c).unwrap().balance, 2);
+    assert_eq!(
+        progress(&c, Difficulty::Koenner).unwrap()[&word("hello").id].reviews,
+        3
+    );
+}
+#[test]
+fn schema_19_preserves_write_receipts_and_rolls_back_a_failed_migration() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("old18.db");
+    let mut c = setup(&path);
+    let id = first(&c, 10);
+    let request = input(&id, 0, true);
+    review_at(&mut c, &request, 10).unwrap();
+    c.execute_batch("ALTER TABLE vocabulary_reviews DROP COLUMN mode; PRAGMA user_version=18;")
+        .unwrap();
+    drop(c);
+    let mut c = database::open(&path).unwrap();
+    assert_eq!(review_at(&mut c, &request, 11).unwrap().points_awarded, 1);
+    assert_eq!(learning::wallet(&c).unwrap().balance, 1);
+    assert_eq!(progress(&c, Difficulty::Koenner).unwrap()[&id].reviews, 1);
+    // A duplicate column forces the migration to abort; neither receipts nor points change.
+    c.pragma_update(None, "user_version", 18).unwrap();
+    drop(c);
+    assert!(database::open(&path).is_err());
+    let c = Connection::open(&path).unwrap();
+    assert_eq!(
+        c.pragma_query_value(None, "user_version", |r| r.get::<_, i64>(0))
+            .unwrap(),
+        18
+    );
+    assert_eq!(
+        c.query_row("SELECT count(*) FROM vocabulary_reviews", [], |r| r
+            .get::<_, i64>(0))
+            .unwrap(),
+        1
+    );
+    assert_eq!(learning::wallet(&c).unwrap().balance, 1);
+}
+
+#[test]
+fn scramble_storage_failure_invalid_answers_and_skip_selection_leave_no_partial_booking() {
+    let dir = tempfile::tempdir().unwrap();
+    let mut c = setup(&dir.path().join("atomic-scramble.db"));
+    let card = word("hello");
+    for invalid in ["", " ", "a\nword", &"x".repeat(161)] {
+        let request = salad(card, Difficulty::Koenner, "invalid-scramble", Some(invalid));
+        assert!(review_at(&mut c, &request, 10).is_err());
+    }
+    c.execute_batch("CREATE TRIGGER fail_scramble_point BEFORE INSERT ON point_entries BEGIN SELECT RAISE(ABORT,'test'); END;").unwrap();
+    let request = salad(card, Difficulty::Koenner, "atomic-scramble", Some("hello"));
+    assert!(review_at(&mut c, &request, 10).is_err());
+    assert!(progress(&c, Difficulty::Koenner).unwrap().is_empty());
+    assert_eq!(
+        c.query_row("SELECT count(*) FROM vocabulary_reviews", [], |r| r
+            .get::<_, i64>(0))
+            .unwrap(),
+        0
+    );
+    assert_eq!(learning::wallet(&c).unwrap().balance, 0);
+    let skip = Selection {
+        mode: Mode::Scramble,
+        exclude_card_id: Some(card.id.clone()),
+        previous_card_id: Some(card.id.clone()),
+    };
+    let other = selected_state_at(&c, "hello", 10, &skip, |_| 0).unwrap();
+    assert_ne!(other.card.unwrap().card.id, card.id);
+    assert!(progress(&c, Difficulty::Koenner).unwrap().is_empty());
+    c.execute_batch("DROP TRIGGER fail_scramble_point;")
+        .unwrap();
+    assert_eq!(review_at(&mut c, &request, 10).unwrap().points_awarded, 1);
 }

@@ -11,7 +11,7 @@ mod geography_tests;
 #[cfg(test)]
 mod arcade_tests;
 
-pub(crate) const SCHEMA_VERSION: i64 = 18;
+pub(crate) const SCHEMA_VERSION: i64 = 19;
 const DATABASE_ERROR: &str = "Die lokalen Lerndaten konnten nicht verarbeitet werden.";
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -166,6 +166,11 @@ fn migrate(connection: &mut Connection) -> Result<(), String> {
     if version < 18 {
         transaction
             .execute_batch(include_str!("../migrations/018_worms.sql"))
+            .map_err(database_error)?;
+    }
+    if version < 19 {
+        transaction
+            .execute_batch(include_str!("../migrations/019_vocabulary_modes.sql"))
             .map_err(database_error)?;
     }
     transaction

@@ -168,3 +168,51 @@ fn rejects_unknown_audio_or_audio_attached_to_a_different_subject() {
     content.exercises[0].audio_card_id = Some("by.english.5.vocab.hello.hello.v1".into());
     assert!(content.validate().is_err());
 }
+
+#[test]
+fn english_club_has_six_pronoun_and_six_be_decisions_per_level_with_exact_safe_answers() {
+    let content = catalog().unwrap();
+    let study = crate::study::catalog(content).unwrap();
+    let tasks: Vec<_> = content
+        .exercises
+        .iter()
+        .filter(|e| e.id.starts_with("by.english.5.club."))
+        .collect();
+    assert_eq!(tasks.len(), 36);
+    for level in [
+        Difficulty::Vorschule,
+        Difficulty::Koenner,
+        Difficulty::Streber,
+    ] {
+        for (kind, target) in [("pronouns", "english-pronouns"), ("be", "english-be")] {
+            let unit = study.units.iter().find(|u| u.id == target).unwrap();
+            let matching: Vec<_> = tasks
+                .iter()
+                .filter(|e| e.difficulty == level && e.competency_id.ends_with(kind))
+                .collect();
+            assert_eq!(matching.len(), 6);
+            for e in matching {
+                assert!(unit.exercise_ids.contains(&e.id));
+                assert!(is_correct(e, &e.answer));
+                assert!(!e.hint.is_empty());
+                assert!(!e.explanation.is_empty());
+            }
+        }
+    }
+    let find = |suffix: &str| tasks.iter().find(|e| e.id.ends_with(suffix)).unwrap();
+    assert!(is_correct(find("be.koenner.02.v1"), "AREN’T"));
+    assert!(is_correct(find("be.koenner.03.v1"), "i‘m"));
+    assert!(is_correct(find("be.streber.04.v1"), "no, you aren’t"));
+    assert!(!is_correct(find("be.koenner.05.v1"), "Yes, I'm."));
+    assert!(!is_correct(find("be.streber.03.v1"), "Yes, they're."));
+    assert!(!is_correct(find("be.streber.05.v1"), "I'm not a bird.")); // explicitly requested long form
+    for expected in [
+        "I", "you", "he", "she", "it", "we", "they", "me", "him", "her", "us", "them",
+    ] {
+        assert!(
+            tasks.iter().any(|e| e.competency_id.ends_with("pronouns")
+                && e.answer.eq_ignore_ascii_case(expected)),
+            "{expected}"
+        );
+    }
+}

@@ -1,0 +1,40 @@
+# Review zu Issue #166
+
+## Umfang und Reviewart
+
+Separater **Selbstreview** des umsetzenden Agenten nach der Implementierung; keine unabhängige Freigabe. Geprüft wurden der gesamte Umsetzungsdiff, das Issue, alle 36 neuen Fragen samt Tipp/weiterem Tipp/Lösung und die neuen Komponenten/IPC-/Persistenzpfade. Ein unabhängiger Review und ein nativer Start-/Bedien-Smoke werden vom koordinierenden Agenten ergänzt; Version, PR, Merge, Release und Branchbereinigung folgen getrennt.
+
+- 36 eigene English-Club-Aufgaben, je Stufe sechs Personalpronomen- und sechs be-Aufgaben, im bisherigen Themenkatalog. Auswahl/Zuordnung, Lücke, Minidialog und Fehlerdetektiv; sieben Subjektformen und häufige Objektformen. Eigene SVG-Szene, paginierter Merkzettel, getrennte Begleiter-Erklärung, freiwillige Clubkarte und Simple-Past-Rückblick. [Frage-für-Frage-Matrix und Inhaltsreview](../english-club.md).
+- Buchstabensalat im vorhandenen Vokabeltrainer: Eingabe und individuelle tastaturbedienbare Kärtchen, feste Trennzeichen, begrenztes Mischen mit garantiert verändertem Fallback, freiwilliger Anfangsbuchstabe, englische Prüfung in allen Stufen. Vor Prüfen/Aufdecken bleiben Beispiel und Audio verborgen.
+- Rust validiert Modus, geeignete Karte, Thema, Stufe, Reviewzähler und Antwort. Geeignete fällige Karten kommen zufällig vor geeigneten neuen Karten; Stufenpräferenzen sperren keine übrigen geeigneten Karten. Eignung gilt ebenfalls beim Submit. Zählwerte und nächster Termin gehören zum tatsächlich geeigneten Pool.
+- Schreiben und Salat teilen vorhandene Karteifächer/Fälligkeiten. Exposition in Vorschule wird als flüchtiger Auswahl-Ausschluss behandelt. Keine dauerhafte Kartensperre/zusätzliche Fortschrittsebene. Bewertete/aufgedeckte Rückmeldungen bleiben bei Moduswechseln erhalten; pending Requests sperren Wechsel und Neuladen.
+- Migration 019 ergänzt den Belegmodus mit historischem Default `write`, erhält Reviews/IDs/Punkte und wird transaktional ausgeführt. Replay vergleicht zusätzlich den Modus. Fortschritt, Beleg und ein etwaiger Punkt bleiben atomar.
+
+## Befunde und Korrekturen
+
+Keine offenen blockierenden Befunde im Selbstreview.
+
+1. Der Sprecherbezug der neuen us-Aufgabe war unnötig umständlich. Das direkte „Du sagst“ und die ausdrückliche Objektform machen die gesuchte Perspektive eindeutig. Personenpronomen sind im Text vorgegeben; das Bild entscheidet keine Geschlechtszuordnung.
+2. Die erste UI-Fassung hätte beim Neuladen einer leeren Expositions-Auswahl den vorübergehenden Ausschluss gelöscht. Der Ausschluss bleibt nun beim bloßen Reload erhalten; Themen-/Stufenwechsel oder die nächste tatsächliche Karte erzeugen den neuen Auswahlzustand. Beobachtbares UI-/Rust-Verhalten wird geprüft.
+3. Die Salat-Speicheransicht mit einer langen Streber-Wortgruppe überschritt die Standardhöhe um 53 Pixel. Status, Fehler und Retry stehen jetzt im freien Einstellungsbereich neben der Karte. Alle Layoutzustände wurden danach erneut geprüft.
+4. Der bestehende Aufgabenbank-Generator benötigt das neue Paket bei der ID-Auflösung. Er lädt es jetzt mit, zählt es bei der Entscheidung zum Erhalt der bisherigen `.focus.`-Bank getrennt und erhält sämtliche bisherigen Aufgaben. Rebuild erzeugt dieselbe bisherige 3.060-Aufgabenbank.
+5. Versionsgebundene Rückstufungs-Testfixtures entfernen beim Simulieren eines alten Schemas die neue Modusspalte. Schemaassertionen verwenden die aktuelle Version; historische Daten/Replays bleiben geprüft. Ein Clippy-Hinweis zur Zeichenprüfung wurde behoben.
+6. `color` ist im normalen Schreibmodus weiterhin eine hinterlegte Alternative zu `colour`. Im Salat wird die andere Buchstabenanzahl abgewiesen und nach der Bewertung freundlich erklärt.
+
+## Tatsächlich ausgeführte Prüfungen
+
+- `npm run check:all` außerhalb der Sandbox: Prettier, **437 Frontendtests**, **128 Node-/macOS-Bundletests**, TypeScript, Vite, Rustfmt, Clippy mit `-D warnings` und **182 Rusttests** grün. Der erste Sandboxlauf scheiterte beim Erstellen lokaler Test-DMGs; der vollständige Lauf wurde ohne diese Sandboxbeschränkung wiederholt.
+- Nach den letzten UI-Nachbesserungen: die betroffenen **28 Vokabel-UI-/Audio-Tests**, Prettier und TypeScript erneut grün. Der vollständige Abschlusslauf `npm run check:all` wurde anschließend erneut erfolgreich ausgeführt: **437 Frontendtests, 128 Node-/macOS-Pakettests, 182 Rusttests**, Formatierung, TypeScript/Vite und Clippy mit `-D warnings` grün.
+- `python3 scripts/build-topic-practice.py`: 3.060 bestehende zusätzliche Aufgaben, insgesamt 3.735 sichtbare Fachaufgaben; kein Diff in `topic-practice-v1.json`. Katalog-/Contenttests prüfen genau eine Zuordnung, alte Antwortbedeutungen und sechs neue Aufgaben je Stufe/Ziel.
+- Domainprüfungen: apple/school/letter mit wiederholten Buchstaben, Wortgruppen, Apostroph/Bindestrich, unveränderte Zufallsversuche/Fallback, kurze/ungeeignete Wörter und getrennte Kärtchen-IDs.
+- Rustprüfungen: ungeeignete erste fällige Karte verdeckt keine spätere geeignete Karte; zufällige Auswahl/vorige Karte, Counts/Fälligkeit, Exposition ohne Fortschrittsmutation, Englisch in Vorschule, falsche/deutsche Antwort, abweichender Variantenbestand, typografischer Apostroph, leer/zu lang/Steuerzeichen, Aufdecken/Überspringen, atomarer Speicherfehler, Retry/abweichender Modus, shared Fälligkeit, Reopen und Migration mit Rollback.
+- Nativer Debug-App-Build nach den finalen UI-Korrekturen: `npm run desktop:build -- --debug --bundles app --config '{"bundle":{"createUpdaterArtifacts":false}}'` grün. Die temporäre Buildoption verändert keine Repository-Konfiguration. Der vorherige Lauf ohne Override baute/signierte die App, scheiterte aber erwartbar an fehlendem privaten Updater-Signaturschlüssel; CI bleibt für signierte Veröffentlichungen zuständig.
+- Isolierter Playwright-Test gegen echtes `src/main.tsx`/App-DOM mit Test-IPC-Brücke und eigenen Fixtures: **153 Zustände bei 2400 × 1300**, Dokument und sichtbare Dialoge/Flashcards ohne Horizontal-/Vertikaloverflow. Alle 36 Grammatikfragen offen/Tipp/richtig, sechs Abschlüsse, falsche Antwort/Lösungsweg, vier Merkzettelseiten, Speichern/Fehler/Retry; Salat in allen Stufen mit Wortgruppe, Tipp, richtig/falsch/Aufdecken, geteiltem bestätigtem Moduswechsel, leerer Auswahl/Exposition, Laden/Retry und Tastaturkärtchen. Retry-Nutzlast und stabile Mischung separat geprüft.
+- Tastatur: Tab/Enter-Kärtchen, Zurücksetzen, native Dialog-Escape/Fokusrückgabe. Kleine Ansicht **900 × 700**: 900 Pixel Dokumentbreite, lesbarer Vertikalfallback (1.712 Pixel). Tatsächlich um 50 % vergrößerte Absatz-/Label-/Button-/Eingabetexte bei 2400 × 1300: kein Horizontaloverflow, Vertikalfallback (1.366 Pixel). Eigene Szene/Kärtchen haben keine Animation.
+- Visuelle Inspektion repräsentativer Screenshots inklusive Streber-Wortgruppe und Speicherfehler. Temporärer Harness/Ergebnisse: `/private/tmp/lernwelt-layout-166.mjs`, `/private/tmp/english-layout-results.json`, `/private/tmp/english-*.png`; keine Testschnittstelle oder Zielantworten im Produktionsfrontend ergänzt.
+
+## Grenzen und verbleibender Abschluss
+
+Browser-Harness prüft echte DOM-/CSS-/Tastaturzustände mit isolierten Testantworten; Backend-Auswahl/Prüfung/Persistenz sind davon getrennt durch Rusttests geprüft. Er ersetzt keinen nativen Bedien-Smoke, keine Erprobung mit Kindern und keine Windows-GUI-Prüfung. Der koordinierende Agent ergänzt nativen Start und unabhängigen Review vor Integration. Der bestehende Vite-Hinweis zu einem großen JavaScript-Chunk bleibt; keine neue Laufzeitabhängigkeit, Cloud, Schrift- oder Trackingquelle.
+
+Versionsbump/Releasehinweise, aktuelles-main-Rebase, PR/Checks, Merge, automatische Release-Veröffentlichung beider Plattformen und Branchbereinigung sind noch nicht Gegenstand dieses vorläufigen Umsetzungscommits. Issue #166 wird erst nach diesen Nachweisen als erledigt behandelt.

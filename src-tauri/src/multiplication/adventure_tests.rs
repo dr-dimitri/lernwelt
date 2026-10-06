@@ -369,7 +369,7 @@ fn failed_configuration_rolls_back_settings_and_preserves_offered_task() {
 }
 
 fn drop_adventure(c: &Connection) {
-    c.execute_batch("DROP TABLE typing_submissions; DROP TABLE typing_progress; DROP TABLE multiplication_configurations; DROP TABLE multiplication_review_queue; DROP TABLE multiplication_tasks; DROP TABLE multiplication_cursors; DROP TABLE multiplication_robots; DROP TABLE multiplication_worlds; DROP TABLE multiplication_settings; PRAGMA user_version=13;").unwrap();
+    c.execute_batch("ALTER TABLE vocabulary_reviews DROP COLUMN mode; DROP TABLE typing_submissions; DROP TABLE typing_progress; DROP TABLE multiplication_configurations; DROP TABLE multiplication_review_queue; DROP TABLE multiplication_tasks; DROP TABLE multiplication_cursors; DROP TABLE multiplication_robots; DROP TABLE multiplication_worlds; DROP TABLE multiplication_settings; PRAGMA user_version=13;").unwrap();
 }
 
 #[test]

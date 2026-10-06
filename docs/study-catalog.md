@@ -16,7 +16,7 @@ Im Unterthema „Römische Zahlen“ ergänzt eine [Zufallsübung von 1 bis 9999
 
 ## Tatsächliches Angebot
 
-Der Katalog enthält **88 Unterthemen in 18 Lernbereichen** und **3.699 Fachaufgaben**: 1.767 Mathematik, 1.368 Englisch, 540 Natur und Technik sowie 24 Geographie. Die bisherigen Unterthemen bieten mindestens zwölf Aufgaben je Stufe; Sonnensystem enthält genau acht Planetenrätsel je Stufe. Die bisherigen 615 Aufgaben bleiben erhalten; `topic-practice-v1.json` ergänzt 3.060 eigene Aufgaben. Kein Unterthema hat mehr eine leere Stufe.
+Der Katalog enthält **88 Unterthemen in 18 Lernbereichen** und **3.735 Fachaufgaben**: 1.767 Mathematik, 1.404 Englisch, 540 Natur und Technik sowie 24 Geographie. Die bisherigen Unterthemen bieten mindestens zwölf Aufgaben je Stufe; Sonnensystem enthält genau acht Planetenrätsel je Stufe. Die bisherigen 615 Aufgaben bleiben erhalten; `topic-practice-v1.json` ergänzt 3.060 eigene Aufgaben. Das eigene Paket `english-club-v1.json` ergänzt 36 Aufgaben in den vorhandenen Zielen `english-pronouns` und `english-be`; jeweils sechs zusätzliche Aufgaben je Stufe und Ziel. Kein Unterthema hat mehr eine leere Stufe.
 
 Die Erweiterung ist eine endliche, vorab erstellte Aufgabenbank. Zahlvarianten, Auswahlfragen, Fehlerdetektiv-Aufgaben und kurze Anwendungssituationen ergänzen sich. Einige Grundlagen werden über Stufen hinweg wiederholt; die Anzahl ist keine Zahl vollständig unabhängiger Kompetenzen. Vorschule nutzt kleinere Schritte oder weniger Antwortmöglichkeiten; Könner reguläre Aufgaben; Streber ergänzt mehrschrittige Mathematik, Fehlerprüfung, Textanwendung, Satzlücken und Schreiben gehörter Wörter. Es gibt keine KI-Erzeugung oder KI-Antwortprüfung zur Laufzeit.
 
@@ -64,9 +64,9 @@ Die Erweiterung ist eine endliche, vorab erstellte Aufgabenbank. Zahlvarianten, 
 | Mathematik | Flächen und Körper | Flächeneinheiten umrechnen | M5 4.2 | 17 | 17 | 17 |
 | Mathematik | Flächen und Körper | Flächen zerlegen und schätzen | M5 4.2 | 15 | 15 | 15 |
 | Mathematik | Flächen und Körper | Quaderoberfläche | M5 4.2 | 13 | 13 | 13 |
-| Englisch | Grammatik gezielt üben | be: am, is und are | E5 1.2 Grammatik | 14 | 15 | 13 |
+| Englisch | Grammatik gezielt üben | to be: am, is und are | E5 1.2 Grammatik | 20 | 21 | 19 |
 | Englisch | Grammatik gezielt üben | Nomen, Plural und Genitiv | E5 1.2 Grammatik | 13 | 14 | 14 |
-| Englisch | Grammatik gezielt üben | Begleiter und Pronomen | E5 1.2 Grammatik | 14 | 16 | 16 |
+| Englisch | Grammatik gezielt üben | Personalpronomen und Begleiter | E5 1.2 Grammatik | 20 | 22 | 22 |
 | Englisch | Grammatik gezielt üben | Orte und Präpositionen | E5 1.2 Grammatik | 13 | 12 | 12 |
 | Englisch | Grammatik gezielt üben | Artikel und have got | E5 1.2 Grammatik | 14 | 14 | 14 |
 | Englisch | Grammatik gezielt üben | Simple Present | E5 1.2 Grammatik | 13 | 15 | 16 |
@@ -129,3 +129,7 @@ Die vier Fächer sind dauerhaft beschriftet erreichbar. Unterthemen und passende
 ## Expedition zum Erdkern (Issue #165)
 
 Die Katalogeinheit `geography-earth-layers` ergänzt Geo5 „Planet Erde“ um 18 Fragen zum Schalenbau, sechs je Stufe. Geographie öffnet sie über **Expedition zum Erdkern** bzw. **Erdschichten üben**; die 24 bestehenden Sonnensystem-Fragen bleiben unter ihren ursprünglichen IDs erreichbar. Grafik-/Reihenfolge-/Begründungsaufgaben verwenden den bestehenden Erstlösungsstand. [Inhaltsmatrix, Quellen und Modellgrenzen](earth-expedition.md).
+
+## English Club
+
+„Personalpronomen und Begleiter“ hält Personalpronomen, Objektformen und vorhandene Begleiterübungen im selben bisherigen Ziel erreichbar. „to be: am, is und are“ ergänzt Aussage, Verneinung, Frage, Kurzantwort und Kurzformen. Suche findet Personalpronomen, Pronomen, to be, am is are und sein. Die [36 Aufgaben mit Inhaltsreview](english-club.md) gehören weiterhin genau einem Ziel; zusätzliche Erklärungszugänge schaffen keinen neuen Fortschritt. Simple Past ist freiwillig als eigenes Thema verlinkt.

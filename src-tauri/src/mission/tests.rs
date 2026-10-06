@@ -570,7 +570,7 @@ fn migration_from_twelve_preserves_existing_data_and_does_not_infer_mastery() {
     )
     .unwrap();
     learning::submit_answer(&mut c, "historical-answer", "sample.english.cat.v1", "cat").unwrap();
-    c.execute_batch("INSERT INTO point_entries(profile_id,kind,item_id,amount) VALUES(1,'answer','historical',50),(1,'reward','star',-20),(1,'game','open-game',-10); INSERT INTO game_sessions VALUES('open-game',1,'maze',NULL,'2026-09-24'); DROP TABLE typing_submissions; DROP TABLE typing_progress; DROP TABLE multiplication_configurations; DROP TABLE multiplication_review_queue; DROP TABLE multiplication_tasks; DROP TABLE multiplication_cursors; DROP TABLE multiplication_robots; DROP TABLE multiplication_worlds; DROP TABLE multiplication_settings; DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress; PRAGMA user_version=12;").unwrap();
+    c.execute_batch("INSERT INTO point_entries(profile_id,kind,item_id,amount) VALUES(1,'answer','historical',50),(1,'reward','star',-20),(1,'game','open-game',-10); INSERT INTO game_sessions VALUES('open-game',1,'maze',NULL,'2026-09-24'); ALTER TABLE vocabulary_reviews DROP COLUMN mode; DROP TABLE typing_submissions; DROP TABLE typing_progress; DROP TABLE multiplication_configurations; DROP TABLE multiplication_review_queue; DROP TABLE multiplication_tasks; DROP TABLE multiplication_cursors; DROP TABLE multiplication_robots; DROP TABLE multiplication_worlds; DROP TABLE multiplication_settings; DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress; PRAGMA user_version=12;").unwrap();
     let balance = learning::wallet(&c).unwrap().balance;
     let progress_count = database::list_progress(&c).unwrap().len();
     drop(c);
@@ -616,7 +616,7 @@ fn migration_from_twelve_preserves_existing_data_and_does_not_infer_mastery() {
 #[test]
 fn migration_failure_preserves_schema_version_and_previous_history() {
     let (dir, c) = setup();
-    c.execute_batch("DROP TABLE typing_submissions; DROP TABLE typing_progress; DROP TABLE multiplication_configurations; DROP TABLE multiplication_review_queue; DROP TABLE multiplication_tasks; DROP TABLE multiplication_cursors; DROP TABLE multiplication_robots; DROP TABLE multiplication_worlds; DROP TABLE multiplication_settings; DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress; CREATE TABLE mission_sessions(collision TEXT); PRAGMA user_version=12; INSERT INTO point_entries(profile_id,kind,item_id,amount) VALUES(1,'answer','saved',3);").unwrap();
+    c.execute_batch("ALTER TABLE vocabulary_reviews DROP COLUMN mode; DROP TABLE typing_submissions; DROP TABLE typing_progress; DROP TABLE multiplication_configurations; DROP TABLE multiplication_review_queue; DROP TABLE multiplication_tasks; DROP TABLE multiplication_cursors; DROP TABLE multiplication_robots; DROP TABLE multiplication_worlds; DROP TABLE multiplication_settings; DROP TABLE mission_requests; DROP TABLE mission_steps; DROP TABLE mission_sessions; DROP TABLE mission_progress; CREATE TABLE mission_sessions(collision TEXT); PRAGMA user_version=12; INSERT INTO point_entries(profile_id,kind,item_id,amount) VALUES(1,'answer','saved',3);").unwrap();
     drop(c);
     assert!(database::open(&dir.path().join("mission.db")).is_err());
     let c = Connection::open(dir.path().join("mission.db")).unwrap();

@@ -1,4 +1,10 @@
 import type { Difficulty, Wallet } from './learning';
+export type VocabularyMode = 'write' | 'scramble';
+export interface VocabularySelection {
+  mode: VocabularyMode;
+  excludeCardId?: string;
+  previousCardId?: string;
+}
 export interface VocabularyCard {
   id: string;
   deckId: string;
@@ -10,6 +16,8 @@ export interface VocabularyCard {
 }
 export interface VocabularyState {
   profileReady: boolean;
+  mode?: VocabularyMode;
+  temporarilyExcluded?: boolean;
   difficulty: Difficulty;
   decks: { id: string; name: string }[];
   source: string;
@@ -30,6 +38,7 @@ export interface VocabularyReview {
   deckId: string;
   difficulty: Difficulty;
   expectedReviews: number;
+  mode?: VocabularyMode;
   answer: string | null;
 }
 export interface VocabularyReviewResult {
@@ -38,4 +47,5 @@ export interface VocabularyReviewResult {
   dueAt: number;
   correct: boolean;
   pointsAwarded: number;
+  spellingHint?: string | null;
 }

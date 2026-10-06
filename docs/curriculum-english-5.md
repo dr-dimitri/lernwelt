@@ -1,5 +1,7 @@
 # Englisch 5 · erste Fremdsprache
 
+**Erweiterung vom 06.10.2026:** Die 36 eigenen English-Club-Aufgaben ergänzen die bestehenden Pronomen-/be-Ziele; insgesamt sind es 1.404 Englisch-Fachaufgaben. [Club-Inhaltsmatrix und Grenzen](english-club.md).
+
 **Erweiterung vom 02.10.2026:** Einschließlich der neuen Themenpakete stehen 1.368 Englisch-Fachaufgaben zur Verfügung. Die [aktuelle Unterthemenmatrix](study-catalog.md) zeigt den Umfang je Stufe. Die folgenden Paketangaben beschreiben den unveränderten ursprünglichen Bestand; IDs, Antworten und Fortschritt bleiben erhalten.
 
 Stand: 24.09.2026. Paket `src-tauri/content/english-5-v1.json`, Version 1; 108 eigene Bildschirmaufgaben, 24 Aktivitäten. Jede der zwölf Themenkacheln bietet drei Aufgaben in Vorschule, Könner und Streber. Die spielerischen Stufennamen bezeichnen Aufgabenanforderungen, keine Altersgruppen. Dieses Angebot richtet sich an Kinder in Klasse 5.

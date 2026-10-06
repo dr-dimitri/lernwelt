@@ -1,3 +1,4 @@
+import { EnglishClubPicture, EnglishClubNotes } from './EnglishClub';
 import VocabularyAudio from './VocabularyAudio';
 import ProfilePanel from './ProfilePanel';
 import StudyBrowser from './StudyBrowser';
@@ -843,6 +844,9 @@ export default function LearningPanel({
                     disabled={busy || loading}
                   />
                 )}
+                {question.id.startsWith('by.english.5.club.') && (
+                  <EnglishClubPicture />
+                )}
                 <form onSubmit={submit}>
                   <fieldset disabled={!enabled || !!visibleResult?.correct}>
                     {question.numberLine?.mode === 'place' ? (
@@ -1025,6 +1029,19 @@ export default function LearningPanel({
                   question={question}
                   compact={externalControls}
                 />
+                {['english-pronouns', 'english-be'].includes(
+                  studyUnit?.id ?? '',
+                ) && (
+                  <EnglishClubNotes
+                    disabled={busy || loading}
+                    onPast={() => {
+                      const past = state?.studyCatalog?.units.find(
+                        (unit) => unit.id === 'english-past',
+                      );
+                      if (past) requestNavigation(() => startUnit(past));
+                    }}
+                  />
+                )}
                 <InfoPanel
                   paginate
                   className="lesson"
