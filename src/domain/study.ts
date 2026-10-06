@@ -57,15 +57,21 @@ export function matchesUnit(
   area: StudyArea | undefined,
   query: string,
 ): boolean {
+  return matchesStudyText(
+    [unit.name, unit.goal, ...unit.keywords, area?.name ?? ''].join(' '),
+    query,
+  );
+}
+
+/** Reuses the catalog's normalization for existing module destinations. */
+export function matchesStudyText(text: string, query: string): boolean {
   const normalize = (text: string) =>
     text
       .toLocaleLowerCase('de')
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/ß/g, 'ss');
-  const haystack = normalize(
-    [unit.name, unit.goal, ...unit.keywords, area?.name ?? ''].join(' '),
-  );
+  const haystack = normalize(text);
   return normalize(query)
     .trim()
     .split(/\s+/)

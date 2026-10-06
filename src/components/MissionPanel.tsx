@@ -10,6 +10,8 @@ import type {
 import { desktop } from '../lib/desktop';
 import { validateAnswerCharacters } from '../lib/answer-input';
 import InfoPanel from './InfoPanel';
+import ProfilePanel from './ProfilePanel';
+import useConfirmChange from './useConfirmChange';
 import { MissionAlbum, missionDate } from './MissionCard';
 import '../mission.css';
 
@@ -88,9 +90,15 @@ function GardenDiagram({ diagram }: { diagram: MissionDiagram }) {
 export default function MissionPanel({
   profileVersion,
   topicId,
+  externalControls = false,
+  onActivityChange,
+  onProfileSaved,
 }: {
   profileVersion: number;
   topicId?: string;
+  externalControls?: boolean;
+  onActivityChange?: (activity: { dirty: boolean; busy: boolean }) => void;
+  onProfileSaved?: () => void;
 }) {
   const [state, setState] = useState<MissionState | null>(null);
   const [busy, setBusy] = useState(true);
@@ -109,6 +117,19 @@ export default function MissionPanel({
   const hint = useRef<HTMLElement>(null);
   const answerId = useId();
 
+  const { requestChange, confirmation } = useConfirmChange(
+    (!!answer && !state?.session?.currentStep?.feedback) || !!pending,
+    busy,
+  );
+
+  useEffect(() => {
+    if (externalControls && state && !state.profileReady) return;
+    onActivityChange?.({
+      dirty: (!!answer && !state?.session?.currentStep?.feedback) || !!pending,
+      busy: busy && (!!pending || !!state),
+    });
+  }, [answer, state, pending, busy, externalControls, onActivityChange]);
+
   useEffect(() => {
     const current = ++revision.current;
     const restoreFocus = reloadRequested.current;
@@ -125,7 +146,7 @@ export default function MissionPanel({
       .then((value) => {
         if (current !== revision.current) return;
         setState(value);
-        if (restoreFocus)
+        if (restoreFocus || externalControls)
           focus.current = value.session?.currentStep?.feedback
             ? 'feedback'
             : 'step';
@@ -142,7 +163,7 @@ export default function MissionPanel({
     return () => {
       ++revision.current;
     };
-  }, [profileVersion, reload, topicId]);
+  }, [profileVersion, reload, topicId, externalControls]);
 
   useEffect(() => {
     if (busy || pending || error) return;
@@ -321,7 +342,7 @@ export default function MissionPanel({
                 disabled={busy}
                 onClick={() => void run(pending)}
               >
-                Speichern erneut versuchen
+                Erneut versuchen
               </button>
             )}
             <button
@@ -329,10 +350,10 @@ export default function MissionPanel({
               disabled={busy}
               onClick={() => {
                 reloadRequested.current = true;
-                setReload((value) => value + 1);
+                requestChange(() => setReload((value) => value + 1));
               }}
             >
-              Runde neu laden
+              Erneut laden
             </button>
           </div>
         </div>
@@ -341,10 +362,21 @@ export default function MissionPanel({
         <div className="mission-workspace">
           <div className="mission-work">
             {!state.profileReady ? (
-              <p>
-                Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst
-                du deine Lernrunde starten.
-              </p>
+              externalControls ? (
+                <ProfilePanel
+                  compact
+                  onActivityChange={onActivityChange}
+                  onSaved={() => {
+                    setReload((value) => value + 1);
+                    onProfileSaved?.();
+                  }}
+                />
+              ) : (
+                <p>
+                  Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst
+                  du deine Lernrunde starten.
+                </p>
+              )
             ) : step ? (
               <>
                 <ol
@@ -445,7 +477,7 @@ export default function MissionPanel({
                             disabled={disabled || !answer.trim()}
                             type="submit"
                           >
-                            Antwort prüfen
+                            {busy ? 'Wird gespeichert …' : 'Prüfen'}
                           </button>
                           <button
                             className="secondary-button"
@@ -453,18 +485,24 @@ export default function MissionPanel({
                             type="button"
                             onClick={() => act('hint')}
                           >
-                            {step.hint
-                              ? 'Tipp ist offen'
-                              : 'Gib mir einen Tipp'}
+                            {step.hint ? 'Tipp ist offen' : 'Tipp'}
                           </button>
-                          <button
-                            className="secondary-button"
-                            disabled={disabled}
-                            type="button"
-                            onClick={() => act('reveal')}
-                          >
-                            Lösung ansehen
-                          </button>
+                          <InfoPanel returnFocusRef={field}>
+                            <summary>Hilfe</summary>
+                            <p>
+                              Du kannst dir die Lösung mit ihrem Weg ansehen.
+                              Dafür gibt es keine Punkte.
+                            </p>
+                            <button
+                              className="secondary-button"
+                              disabled={disabled}
+                              type="button"
+                              data-close-info
+                              onClick={() => act('reveal')}
+                            >
+                              Lösung ansehen
+                            </button>
+                          </InfoPanel>
                         </div>
                       </form>
                     )}
@@ -506,7 +544,7 @@ export default function MissionPanel({
                       >
                         {step.kind === 'activity'
                           ? 'Runde abschließen'
-                          : 'Nächster Schritt'}
+                          : 'Weiter'}
                       </button>
                     )}
                     {step.kind === 'activity' && !feedback && (
@@ -568,27 +606,31 @@ export default function MissionPanel({
             className="mission-sidebar"
             aria-label="Deine Lernrunde im Blick"
           >
-            <div
-              className="mission-levels"
-              aria-label="Schwierigkeitsgrad für alle Fächer"
-            >
-              {difficulties.map((level) => (
-                <button
-                  key={level.id}
-                  className="secondary-button"
-                  aria-pressed={state.difficulty === level.id}
-                  disabled={disabled}
-                  onClick={() => void changeDifficulty(level.id)}
-                >
-                  <span aria-hidden="true">{level.symbol} </span>
-                  {level.name}
-                </button>
-              ))}
-              <span className="mission-small">
-                Deine Stufe gilt in allen Fächern. Jede Stufe merkt sich ihre
-                Runde.
-              </span>
-            </div>
+            {!externalControls && (
+              <div
+                className="mission-levels"
+                aria-label="Schwierigkeitsgrad für alle Fächer"
+              >
+                {difficulties.map((level) => (
+                  <button
+                    key={level.id}
+                    className="secondary-button"
+                    aria-pressed={state.difficulty === level.id}
+                    disabled={disabled}
+                    onClick={() =>
+                      requestChange(() => void changeDifficulty(level.id))
+                    }
+                  >
+                    <span aria-hidden="true">{level.symbol} </span>
+                    {level.name}
+                  </button>
+                ))}
+                <span className="mission-small">
+                  Deine Stufe gilt in allen Fächern. Jede Stufe merkt sich ihre
+                  Runde.
+                </span>
+              </div>
+            )}
             <div className="mission-album-row">
               <h3>Dein Themenalbum</h3>
               <MissionAlbum state={state} />
@@ -625,6 +667,7 @@ export default function MissionPanel({
           </aside>
         </div>
       )}
+      {confirmation}
     </section>
   );
 }

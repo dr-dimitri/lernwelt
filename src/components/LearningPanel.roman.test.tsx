@@ -112,9 +112,8 @@ beforeEach(() => {
 
 async function startRoman(user: ReturnType<typeof userEvent.setup>) {
   await user.click(
-    await screen.findByRole('button', { name: /Zahlen entdecken/ }),
+    await screen.findByRole('button', { name: /Römische Zahlen/ }),
   );
-  await user.click(screen.getByRole('button', { name: /Römische Zahlen/ }));
   await screen.findByLabelText(romanRound.prompt);
 }
 
@@ -145,13 +144,10 @@ it('ergänzt math-roman um Zufallsübungen und kehrt zur bisherigen Runde und Th
   await user.click(screen.getByRole('button', { name: 'Zufallsübung 1–9999' }));
   await screen.findByLabelText(randomQuestion.prompt);
   await user.click(screen.getByRole('button', { name: '← Themenübersicht' }));
-  expect(
-    screen.getByRole('heading', { name: 'Was möchtest du üben?' }),
-  ).toHaveFocus();
+  expect(screen.getByRole('button', { name: /Römische Zahlen/ })).toHaveFocus();
   expect(
     screen.queryByLabelText(randomQuestion.prompt),
   ).not.toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: /Zahlen entdecken/ }));
   await user.click(screen.getByRole('button', { name: /Plus & Minus/ }));
   expect(await screen.findByLabelText(mathQuestion.prompt)).toBeVisible();
   expect(
@@ -198,9 +194,9 @@ it('behält ohne Lernprofil die Zufallsoption und die Hinweise, sperrt aber die 
   await startRoman(user);
   await user.click(screen.getByRole('button', { name: 'Zufallsübung 1–9999' }));
   expect(await screen.findByLabelText(randomQuestion.prompt)).toBeDisabled();
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeDisabled();
   expect(screen.getByText(/Speichere dein Lernprofil/)).toBeVisible();
-  await user.click(screen.getByRole('button', { name: 'Gib mir einen Tipp' }));
+  await user.click(screen.getByRole('button', { name: 'Tipp' }));
   expect(screen.getByText(randomQuestion.hint)).toBeVisible();
   expect(desktop.submitAnswer).not.toHaveBeenCalled();
   expect(screen.getByLabelText('Verfügbare Punkte')).toHaveTextContent(
@@ -227,7 +223,7 @@ it('sperrt alte Zufallsantworten, solange der globale Stufenwechsel gespeichert 
   await user.type(input, 'XLII');
   await user.click(screen.getByRole('button', { name: /Streber/ }));
   expect(input).toBeDisabled();
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeDisabled();
   expect(screen.getByRole('button', { name: 'Römisch → Zahl' })).toBeDisabled();
   expect(
     screen.getByRole('button', { name: 'Neue Zufallszahl →' }),

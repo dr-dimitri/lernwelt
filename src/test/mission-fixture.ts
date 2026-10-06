@@ -1,3 +1,4 @@
+import { initialAchievements } from './wallet-fixture';
 import type {
   MissionFeedback,
   MissionState,
@@ -29,7 +30,12 @@ export const missionInitial: MissionState = {
   },
   dueAt: null,
   due: false,
-  wallet: { balance: 8, totalEarned: 8, rewards: [] },
+  wallet: {
+    achievements: initialAchievements(),
+    balance: 8,
+    totalEarned: 8,
+    rewards: [],
+  },
   session: null,
 };
 

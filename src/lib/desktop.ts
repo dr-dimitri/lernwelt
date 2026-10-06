@@ -1,3 +1,8 @@
+import {
+  withWallet,
+  withStateWallet,
+  withDirectWallet,
+} from './wallet-updates';
 import type {
   MultiplicationMode,
   MultiplicationInput,
@@ -48,35 +53,48 @@ async function callDesktop<T>(
 }
 
 export const desktop = {
-  getTypingState: () => callDesktop<TypingState>('get_typing_state'),
+  getTypingState: () =>
+    withWallet(callDesktop<TypingState>('get_typing_state')),
   submitTyping: (input: TypingInput) =>
-    callDesktop<TypingResult>('submit_typing', { input }),
+    withWallet(callDesktop<TypingResult>('submit_typing', { input })),
   getMissionState: (topicId?: string) =>
-    callDesktop<MissionState>('get_mission_state', { topicId }),
+    withWallet(callDesktop<MissionState>('get_mission_state', { topicId })),
   startMission: (input: MissionStartInput) =>
-    callDesktop<MissionState>('start_mission', { input }),
+    withWallet(callDesktop<MissionState>('start_mission', { input })),
   actMission: (input: MissionActionInput) =>
-    callDesktop<MissionState>('act_mission', { input }),
+    withWallet(callDesktop<MissionState>('act_mission', { input })),
   getMultiplicationState: (mode?: MultiplicationMode) =>
-    callDesktop<MultiplicationState>('get_multiplication_state', { mode }),
+    withWallet(
+      callDesktop<MultiplicationState>('get_multiplication_state', { mode }),
+    ),
   configureMultiplication: (input: MultiplicationConfiguration) =>
-    callDesktop<MultiplicationState>('configure_multiplication', { input }),
+    withWallet(
+      callDesktop<MultiplicationState>('configure_multiplication', { input }),
+    ),
   answerMultiplication: (input: MultiplicationInput) =>
-    callDesktop<MultiplicationResult>('answer_multiplication', { input }),
+    withStateWallet(
+      callDesktop<MultiplicationResult>('answer_multiplication', { input }),
+    ),
   getVocabularyState: (deckId: string) =>
-    callDesktop<VocabularyState>('get_vocabulary_state', { deckId }),
+    withWallet(
+      callDesktop<VocabularyState>('get_vocabulary_state', { deckId }),
+    ),
   reviewVocabulary: (input: VocabularyReview) =>
-    callDesktop<VocabularyReviewResult>('review_vocabulary', { input }),
-  getArcadeState: () => callDesktop<ArcadeState>('get_arcade_state'),
+    withStateWallet(
+      callDesktop<VocabularyReviewResult>('review_vocabulary', { input }),
+    ),
+  getArcadeState: () =>
+    withWallet(callDesktop<ArcadeState>('get_arcade_state')),
   startGame: (sessionId: string, gameId: GameId) =>
-    callDesktop<ArcadeState>('start_game', { sessionId, gameId }),
+    withWallet(callDesktop<ArcadeState>('start_game', { sessionId, gameId })),
   finishGame: (sessionId: string, score: number) =>
-    callDesktop<ArcadeState>('finish_game', { sessionId, score }),
+    withWallet(callDesktop<ArcadeState>('finish_game', { sessionId, score })),
   getProfile: () => callDesktop<LearnerProfile | null>('get_profile'),
   saveProfile: (profile: LearnerProfile) =>
     callDesktop<LearnerProfile>('save_profile', { profile }),
   listProgress: () => callDesktop<LearningProgress[]>('list_progress'),
-  getLearningState: () => callDesktop<LearningState>('get_learning_state'),
+  getLearningState: () =>
+    withWallet(callDesktop<LearningState>('get_learning_state')),
   getRomanQuestion: (direction: RomanDirection, previousQuestionId?: string) =>
     callDesktop<RomanQuestion>('get_roman_question', {
       direction,
@@ -85,11 +103,13 @@ export const desktop = {
   setDifficulty: (difficulty: Difficulty) =>
     callDesktop<Difficulty>('set_difficulty', { difficulty }),
   submitAnswer: (requestId: string, questionId: string, answer: string) =>
-    callDesktop<AnswerResult>('submit_answer', {
-      requestId,
-      questionId,
-      answer,
-    }),
+    withWallet(
+      callDesktop<AnswerResult>('submit_answer', {
+        requestId,
+        questionId,
+        answer,
+      }),
+    ),
   redeemReward: (rewardId: string) =>
-    callDesktop<Wallet>('redeem_reward', { rewardId }),
+    withDirectWallet(callDesktop<Wallet>('redeem_reward', { rewardId })),
 };

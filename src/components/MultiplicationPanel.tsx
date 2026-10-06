@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import InfoPanel from './InfoPanel';
+import ProfilePanel from './ProfilePanel';
+import useConfirmChange from './useConfirmChange';
 import {
   AdventureScene,
   MultiplicationHint,
@@ -52,9 +54,15 @@ const message = (error: unknown) =>
 export default function MultiplicationPanel({
   profileVersion,
   initialMode,
+  externalControls = false,
+  onActivityChange,
+  onProfileSaved,
 }: {
   profileVersion: number;
   initialMode?: MultiplicationMode;
+  externalControls?: boolean;
+  onActivityChange?: (activity: { dirty: boolean; busy: boolean }) => void;
+  onProfileSaved?: () => void;
 }) {
   const [state, setState] = useState<MultiplicationState | null>(null);
   const [answer, setAnswer] = useState('');
@@ -84,6 +92,37 @@ export default function MultiplicationPanel({
   const settingsButton = useRef<HTMLButtonElement>(null);
   const errorBox = useRef<HTMLDivElement>(null);
 
+  const { requestChange, confirmation } = useConfirmChange(
+    (!!answer && !feedback) || !!pending,
+    busy,
+  );
+
+  useEffect(() => {
+    if (externalControls && state && !state.profileReady) return;
+    onActivityChange?.({
+      dirty:
+        (!!answer && !feedback) ||
+        !!pending ||
+        (settingsOpen &&
+          !!state &&
+          (draft.mode !== state.mode ||
+            draft.table !== state.adventure.table ||
+            draft.design !== state.adventure.design ||
+            draft.palette !== state.adventure.palette)),
+      busy: busy && !!pending,
+    });
+  }, [
+    answer,
+    feedback,
+    pending,
+    busy,
+    settingsOpen,
+    draft,
+    state,
+    externalControls,
+    onActivityChange,
+  ]);
+
   useEffect(() => {
     const current = ++revision.current;
     const restoreFocus = requestedReload.current;
@@ -106,7 +145,7 @@ export default function MultiplicationPanel({
       .then((value) => {
         if (current !== revision.current) return;
         setState(value);
-        if (restoreFocus) requestedFocus.current = 'task';
+        if (restoreFocus || externalControls) requestedFocus.current = 'task';
       })
       .catch((reason: unknown) => {
         if (current === revision.current) setError(message(reason));
@@ -120,7 +159,7 @@ export default function MultiplicationPanel({
     return () => {
       ++revision.current;
     };
-  }, [reload, profileVersion, initialMode]);
+  }, [reload, profileVersion, initialMode, externalControls]);
 
   useEffect(() => {
     if (busy || settingsOpen) return;
@@ -295,15 +334,15 @@ export default function MultiplicationPanel({
             disabled={busy}
             onClick={() => void perform(pending)}
           >
-            Speichern erneut versuchen
+            Erneut versuchen
           </button>
         )}
         <button
           className="secondary-button"
           disabled={busy}
-          onClick={reloadState}
+          onClick={() => requestChange(reloadState)}
         >
-          Trainer neu laden
+          Erneut laden
         </button>
       </div>
     </div>
@@ -340,14 +379,18 @@ export default function MultiplicationPanel({
               <button
                 aria-pressed={world === 'workshop'}
                 disabled={disabled || !state.profileReady}
-                onClick={() => configure({ world: 'workshop' })}
+                onClick={() =>
+                  requestChange(() => configure({ world: 'workshop' }))
+                }
               >
                 Roboterwerkstatt
               </button>
               <button
                 aria-pressed={world === 'island'}
                 disabled={disabled || !state.profileReady}
-                onClick={() => configure({ world: 'island' })}
+                onClick={() =>
+                  requestChange(() => configure({ world: 'island' }))
+                }
               >
                 Einmaleins-Insel
               </button>
@@ -464,10 +507,21 @@ export default function MultiplicationPanel({
             </div>
           </div>
           {!state.profileReady ? (
-            <p>
-              Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst du
-              losrechnen und bauen.
-            </p>
+            externalControls ? (
+              <ProfilePanel
+                compact
+                onActivityChange={onActivityChange}
+                onSaved={() => {
+                  setReload((value) => value + 1);
+                  onProfileSaved?.();
+                }}
+              />
+            ) : (
+              <p>
+                Speichere dein Lernprofil über „Dein Profil“ oben. Dann kannst
+                du losrechnen und bauen.
+              </p>
+            )
           ) : (
             <>
               <div className="adventure-workspace">
@@ -564,7 +618,7 @@ export default function MultiplicationPanel({
                               type="submit"
                               disabled={disabled || !answer.trim()}
                             >
-                              Antwort prüfen
+                              {busy ? 'Wird gespeichert …' : 'Prüfen'}
                             </button>
                           </form>
                           <div className="adventure-actions">
@@ -572,19 +626,28 @@ export default function MultiplicationPanel({
                               key={`${state.mode}-${task.sequence}`}
                               returnFocusRef={field}
                             >
-                              <summary>Zeig mir einen Rechentipp</summary>
+                              <summary>Tipp</summary>
                               <MultiplicationHint
                                 left={task.left}
                                 right={task.right}
                               />
                             </InfoPanel>
-                            <button
-                              className="secondary-button"
-                              disabled={disabled}
-                              onClick={() => submit(null)}
-                            >
-                              Lösung zeigen
-                            </button>
+                            <InfoPanel returnFocusRef={field}>
+                              <summary>Hilfe</summary>
+                              <p>
+                                Schau dir die Lösung an, wenn du noch nicht
+                                weiterweißt. Dein Bauwerk wächst trotzdem. Dafür
+                                gibt es keine Punkte.
+                              </p>
+                              <button
+                                className="secondary-button"
+                                disabled={disabled}
+                                data-close-info
+                                onClick={() => submit(null)}
+                              >
+                                Lösung zeigen
+                              </button>
+                            </InfoPanel>
                           </div>
                         </>
                       ) : (
@@ -614,13 +677,13 @@ export default function MultiplicationPanel({
                             <button
                               className="primary-button"
                               disabled={disabled}
-                              onClick={reloadState}
+                              onClick={() => requestChange(reloadState)}
                             >
-                              Nächste Aufgabe
+                              Weiter
                             </button>
                           )}
                           <InfoPanel>
-                            <summary>Rechenweg ansehen</summary>
+                            <summary>Hilfe</summary>
                             <MultiplicationHint
                               left={task.left}
                               right={task.right}
@@ -881,13 +944,16 @@ export default function MultiplicationPanel({
             <button
               className="primary-button"
               disabled={disabled}
-              onClick={() => configure({ ...draft, review: false })}
+              onClick={() =>
+                requestChange(() => configure({ ...draft, review: false }))
+              }
             >
               Bauplan speichern
             </button>
           </div>
         </dialog>
       )}
+      {confirmation}
     </section>
   );
 }

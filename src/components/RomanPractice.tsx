@@ -9,6 +9,8 @@ import { desktop } from '../lib/desktop';
 import InfoPanel from './InfoPanel';
 import LearningHints from './LearningHints';
 import RomanExplanation from './RomanExplanation';
+import useConfirmChange from './useConfirmChange';
+import { validateAnswerCharacters } from '../lib/answer-input';
 
 export default function RomanPractice({
   difficulty,
@@ -16,12 +18,14 @@ export default function RomanPractice({
   disabled,
   onBusyChange,
   onWalletChange,
+  onActivityChange,
 }: {
   difficulty: Difficulty;
   profileReady: boolean;
   disabled: boolean;
   onBusyChange: (busy: boolean) => void;
   onWalletChange: (wallet: Wallet) => void;
+  onActivityChange?: (activity: { dirty: boolean; busy: boolean }) => void;
 }) {
   const [direction, setDirection] =
     useState<RomanDirection>('decimal-to-roman');
@@ -34,6 +38,8 @@ export default function RomanPractice({
   const [error, setError] = useState('');
   const previousId = useRef<string | undefined>(undefined);
   const practice = useRef<HTMLDivElement>(null);
+  const field = useRef<HTMLInputElement>(null);
+  const feedback = useRef<HTMLDivElement>(null);
   const active = useRef(true);
   const inFlight = useRef(false);
   const generation = useRef(0);
@@ -42,6 +48,22 @@ export default function RomanPractice({
     questionId: string;
     answer: string;
   } | null>(null);
+
+  const { requestChange, confirmation } = useConfirmChange(
+    (!!answer && !result) || !!pending.current,
+    busy || disabled,
+  );
+
+  useEffect(() => {
+    onActivityChange?.({
+      dirty: (!!answer && !result) || !!pending.current,
+      busy: busy && !!pending.current,
+    });
+  }, [answer, result, busy, onActivityChange]);
+
+  useEffect(() => {
+    if (result) feedback.current?.focus({ preventScroll: true });
+  }, [result]);
 
   useEffect(() => {
     active.current = true;
@@ -60,7 +82,7 @@ export default function RomanPractice({
     setError('');
     setBusy(true);
     setFetching(true);
-    onBusyChange(true);
+    onBusyChange(!onActivityChange);
     pending.current = null;
     desktop
       .getRomanQuestion(direction, previousId.current)
@@ -86,14 +108,14 @@ export default function RomanPractice({
     return () => {
       current = false;
     };
-  }, [difficulty, direction, refresh, onBusyChange]);
+  }, [difficulty, direction, refresh, onBusyChange, onActivityChange]);
 
   useEffect(() => {
     if (question) practice.current?.focus();
   }, [question?.id]);
 
-  async function submit(event: SubmitEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function submit(event?: SubmitEvent<HTMLFormElement>) {
+    event?.preventDefault();
     if (
       !question ||
       question.difficulty !== difficulty ||
@@ -104,6 +126,12 @@ export default function RomanPractice({
       !answer.trim()
     )
       return;
+    const validationError = validateAnswerCharacters(answer);
+    if (validationError && !pending.current) {
+      setError(validationError);
+      field.current?.focus();
+      return;
+    }
     inFlight.current = true;
     const submittedGeneration = generation.current;
     setBusy(true);
@@ -124,8 +152,8 @@ export default function RomanPractice({
     try {
       const value = await desktop.submitAnswer(
         pending.current.id,
-        question.id,
-        answer,
+        pending.current.questionId,
+        pending.current.answer,
       );
       if (!active.current || generation.current !== submittedGeneration) return;
       setResult(value);
@@ -167,7 +195,10 @@ export default function RomanPractice({
             className="secondary-button"
             aria-pressed={direction === item.id}
             disabled={busy || disabled}
-            onClick={() => setDirection(item.id)}
+            onClick={() => {
+              if (item.id !== direction)
+                requestChange(() => setDirection(item.id));
+            }}
           >
             {item.label}
           </button>
@@ -175,7 +206,7 @@ export default function RomanPractice({
         <button
           className="secondary-button"
           disabled={busy || disabled}
-          onClick={() => setRefresh((value) => value + 1)}
+          onClick={() => requestChange(() => setRefresh((value) => value + 1))}
         >
           Neue Zufallszahl →
         </button>
@@ -188,13 +219,24 @@ export default function RomanPractice({
       {error && (
         <div role="alert">
           <p className="error-message">{error}</p>
+          {pending.current && (
+            <button
+              className="primary-button"
+              disabled={busy || disabled}
+              onClick={() => void submit()}
+            >
+              {busy ? 'Wird gespeichert …' : 'Erneut versuchen'}
+            </button>
+          )}
           {!question && (
             <button
               className="secondary-button"
               disabled={busy || disabled}
-              onClick={() => setRefresh((value) => value + 1)}
+              onClick={() =>
+                requestChange(() => setRefresh((value) => value + 1))
+              }
             >
-              Noch einmal laden
+              Erneut laden
             </button>
           )}
         </div>
@@ -203,7 +245,13 @@ export default function RomanPractice({
         <>
           <form onSubmit={submit}>
             <fieldset
-              disabled={busy || disabled || !profileReady || !!result?.correct}
+              disabled={
+                busy ||
+                disabled ||
+                !profileReady ||
+                !!pending.current ||
+                !!result?.correct
+              }
             >
               <label className="answer-label" htmlFor="roman-answer">
                 {question.prompt}
@@ -214,6 +262,7 @@ export default function RomanPractice({
               <div className="answer-row">
                 <input
                   id="roman-answer"
+                  ref={field}
                   value={answer}
                   maxLength={120}
                   required
@@ -229,13 +278,20 @@ export default function RomanPractice({
                     setResult(null);
                   }}
                 />
-                <button className="primary-button" type="submit">
-                  {busy ? 'Bitte warten …' : 'Antwort prüfen'}
+                <button
+                  className={
+                    result?.correct || (pending.current && !busy)
+                      ? 'secondary-button'
+                      : 'primary-button'
+                  }
+                  type="submit"
+                >
+                  {busy ? 'Wird gespeichert …' : 'Prüfen'}
                 </button>
               </div>
             </fieldset>
           </form>
-          <LearningHints key={question.id} question={question} />
+          <LearningHints compact key={question.id} question={question} />
           {question.solved && (
             <p className="sample-note">
               Die Punkte für diese Zahl, Richtung und Stufe hast du bereits
@@ -243,57 +299,50 @@ export default function RomanPractice({
             </p>
           )}
           {result && (
-            <InfoPanel
-              autoOpen
-              returnFocusRef={practice}
-              className="feedback-panel"
+            <div
+              className={`answer-feedback ${result.correct ? 'correct' : ''}`}
+              role="status"
+              ref={feedback}
+              tabIndex={-1}
             >
-              <summary>Deine Rückmeldung</summary>
-              <div
-                className={`answer-feedback ${result.correct ? 'correct' : ''}`}
-                role="status"
+              <strong>
+                {result.correct
+                  ? result.pointsAwarded > 0
+                    ? `Richtig! +${result.pointsAwarded} ${result.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
+                    : 'Richtig! Diese Aufgabe hast du bereits gelöst.'
+                  : 'Noch nicht richtig. Versuch es noch einmal!'}
+              </strong>
+              {result.correct ? (
+                <p>{result.explanation}</p>
+              ) : (
+                <>
+                  {result.mistakeHint && (
+                    <p className="hint-box">{result.mistakeHint}</p>
+                  )}
+                  <p>
+                    Die Tipps helfen dir Schritt für Schritt. Du kannst auch den
+                    Lösungsweg anschauen.
+                  </p>
+                  <InfoPanel key={question.id}>
+                    <summary>Hilfe</summary>
+                    <p>{result.explanation}</p>
+                  </InfoPanel>
+                </>
+              )}
+              <button
+                className="primary-button"
+                onClick={() => {
+                  if (result.correct) setRefresh((value) => value + 1);
+                  else setResult(null);
+                }}
               >
-                <strong>
-                  {result.correct
-                    ? result.pointsAwarded > 0
-                      ? `Richtig! +${result.pointsAwarded} ${result.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
-                      : 'Richtig! Diese Aufgabe hast du bereits gelöst.'
-                    : 'Noch nicht richtig. Versuch es noch einmal!'}
-                </strong>
-                {result.correct ? (
-                  <p>{result.explanation}</p>
-                ) : (
-                  <>
-                    {result.mistakeHint && (
-                      <p className="hint-box">{result.mistakeHint}</p>
-                    )}
-                    <p>
-                      Die Tipps helfen dir Schritt für Schritt. Du kannst auch
-                      den Lösungsweg anschauen.
-                    </p>
-                    <InfoPanel key={question.id}>
-                      <summary>Lösungsweg anschauen</summary>
-                      <p>{result.explanation}</p>
-                    </InfoPanel>
-                  </>
-                )}
-                <button
-                  className="primary-button"
-                  data-close-info
-                  onClick={() => {
-                    if (result.correct) setRefresh((value) => value + 1);
-                    else setResult(null);
-                  }}
-                >
-                  {result.correct
-                    ? 'Weiter zur nächsten Zufallszahl'
-                    : 'Noch einmal versuchen'}
-                </button>
-              </div>
-            </InfoPanel>
+                {result.correct ? 'Weiter' : 'Noch einmal versuchen'}
+              </button>
+            </div>
           )}
         </>
       )}
+      {confirmation}
       <RomanExplanation />
       {question && (
         <InfoPanel>

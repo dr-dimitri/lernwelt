@@ -1,0 +1,50 @@
+[
+  {
+    "id": "startklar",
+    "name": "Startklar",
+    "description": "Deine Entdeckungsreise beginnt.",
+    "requiredPoints": 0,
+    "requiredTasks": 0,
+    "image": "/badges/startklar.png"
+  },
+  {
+    "id": "funkenfinder",
+    "name": "Funkenfinder",
+    "description": "Deine ersten Lösungen bringen Wissen zum Leuchten.",
+    "requiredPoints": 10,
+    "requiredTasks": 5,
+    "image": "/badges/funkenfinder.png"
+  },
+  {
+    "id": "lernfuchs",
+    "name": "Lernfuchs",
+    "description": "Du sammelst Lösungen und gehst neugierig weiter.",
+    "requiredPoints": 50,
+    "requiredTasks": 20,
+    "image": "/badges/lernfuchs.png"
+  },
+  {
+    "id": "wissenspilot",
+    "name": "Wissenspilot",
+    "description": "Mit jeder Übung entdeckst du mehr von deiner Lernwelt.",
+    "requiredPoints": 150,
+    "requiredTasks": 60,
+    "image": "/badges/wissenspilot.png"
+  },
+  {
+    "id": "sternentueftler",
+    "name": "Sternentüftler",
+    "description": "Du bleibst dran und bringst viele Ideen zum Leuchten.",
+    "requiredPoints": 400,
+    "requiredTasks": 150,
+    "image": "/badges/sternentueftler.png"
+  },
+  {
+    "id": "lernwelt-legende",
+    "name": "Lernwelt-Legende",
+    "description": "Ein großer Meilenstein auf deiner Entdeckungsreise.",
+    "requiredPoints": 1000,
+    "requiredTasks": 400,
+    "image": "/badges/lernwelt-legende.png"
+  }
+]

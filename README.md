@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.6.7 ergänzt eine einklappbare Seitenleiste: Die Navigation bleibt als schmale Symbolleiste erreichbar und schafft mehr Platz für die Aufgabe. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Alle Änderungen und Installationshinweise](docs/releases/0.6.7.md).
+Die [aktuelle stabile Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS Apple Silicon und Windows x64. Version **0.6.15** übernimmt die direkte Themenauswahl, einklappbare Navigation, Lernabzeichen und vollständig signierte macOS-Bundles aus dem Vorabtest. Windows-Builds laufen ausschließlich auf `main`; Vorabversionen enthalten nur Apple Silicon. Vorhandene Windows-Vorabpakete und Intel-Mac-Installer stehen weiter unter [bisherige Releases](https://github.com/dr-dimitri/lernwelt/releases) bereit; neue Intel-Pakete baut die CI nicht mehr. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Änderungen und Installationshinweise](docs/releases/0.6.15.md).
 
 ## Mitarbeit
 
@@ -33,17 +33,21 @@ npm run desktop:build -- --bundles app  # macOS .app
 npm run desktop:build -- --bundles nsis # Windows Installer, auf Windows ausführen
 ```
 
-Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale macOS-App ist noch nicht signiert oder notarisiert. Mathematik Klasse 5 enthält ein offline gebündeltes Übungspaket für alle sieben Lernbereiche; Englisch Klasse 5 bietet zwölf eigene Themen für die erste Fremdsprache.
+Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die macOS-App erhält eine vollständige Ad-hoc-Signatur, aber keine Apple-Developer-ID oder Notarisierung. Beim ersten Start eines heruntergeladenen Pakets kann macOS eine Freigabe unter **Systemeinstellungen → Datenschutz & Sicherheit → Dennoch öffnen** verlangen; [Apple beschreibt den Ablauf](https://support.apple.com/de-de/guide/mac-help/mh40616/mac). Mathematik Klasse 5 enthält ein offline gebündeltes Übungspaket für alle sieben Lernbereiche; Englisch Klasse 5 bietet zwölf eigene Themen für die erste Fremdsprache.
 
 ## Bedienung
 
-Die Startseite **Meine Fächer** bietet eine durchsuchbare Fächerübersicht. Mathematik, Englisch sowie Natur und Technik öffnen einen Lehrplan-Themenkatalog: Lernbereich und Unterthema auswählen oder nach einem Begriff wie „Längen“ oder „Simple Present“ suchen. 88 Unterthemen in 18 Lernbereichen stehen zur Auswahl. Die bisherigen Fächer führen zu kurzen Runden mit höchstens sechs Aufgaben; Geographie öffnet eine eigene Sonnensystemwelt mit acht Planetenrätseln je Stufe. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md). Die Seitennavigation führt zu Fächern, Vokabeltrainer, Einmaleins-Trainer, Tastschreiben und Spielhalle. **Einklappen** reduziert sie auf Symbole; der Pfeil klappt sie wieder aus. Beim Darüberfahren erscheinen die Namen, die aktuelle Auswahl bleibt markiert. Die Einstellung gilt bis zum Schließen der App. Im schmalen Fenster öffnet **Menü öffnen** dieselben Bereiche mit Beschriftungen. **Alle Fächer** führt aus einer Übung zurück zur Auswahl, **Dein Profil** bleibt oben erreichbar. [Gestaltung und Apple-HIG-Bezug](docs/interface.md).
+Der Einstieg zeigt **Mathematik** mit direkten Themen. Vier beschriftete Fächer führen zu Mathematik, Englisch, Natur und Technik sowie Geographie. **Seitenleiste einklappen** schafft mehr Platz für die Aufgabe; die schmale Leiste bietet weiterhin alle Ziele als Zeichen mit Namenshinweisen bei Mauszeiger und Tastaturfokus. **Seitenleiste ausklappen** zeigt die Namen wieder dauerhaft. Diese Wahl bleibt auf dem Gerät gespeichert. Ein sichtbares Thema öffnet sofort eine Runde mit höchstens sechs Aufgaben. **Thema suchen**, der optionale Lernbereichsfilter und Seiten mit höchstens sechs Zielen machen alle vorhandenen Unterthemen erreichbar. **Zu den Themen** stellt Suche, Filter, Seite und Fokus während der Sitzung wieder her. Geographie bietet **Sonnensystem entdecken** und **Planeten erraten**. [Auswahl, Inhaltsmatrix und Grenzen](docs/study-catalog.md).
+
+**Trainer & Spiele** erschließt Vokabeln, Einmaleins, Tastschreiben, Naturspiele und die Spielhalle. Die Fächer bieten außerdem passende konkrete Vokabeldecks und drei Lernreisen. **Stufe: …** öffnet jederzeit die drei freien Stufen. Bei ungesendeten Eingaben fragt ein Wechsel **Bleiben / Wechseln**; laufende Speicherungen sperren Wechsel. Profil, Sammlung/Abzeichen und App-Updates stehen als beschriftete Einstiege oben. Im kleinen Fenster öffnet **Menü öffnen** die Fachnavigation; Escape schließt es und gibt den Fokus zurück. [Gestaltung](docs/interface.md).
+
+Die zuvor in Vorabversionen geprüfte Oberfläche ist ab **0.6.15** im stabilen Kanal enthalten. [Änderungen dieser Version](docs/releases/0.6.15.md).
 
 ## App aktualisieren
 
 Über **App aktualisieren** oben im Fenster kannst du neue Versionen prüfen, herunterladen und installieren. Lernwelt prüft standardmäßig einmal beim Start; diese Prüfung ist abschaltbar und bleibt lokal gespeichert. Standardmäßig werden nur stabile Releases angeboten. Mit **Vorabversionen (Pre-Releases) anbieten** kannst du zusätzlich auf GitHub als Vorabversion markierte Veröffentlichungen wählen. Diese Auswahl wird getrennt von der Startprüfung lokal gespeichert. Die Installation startet erst nach deinem Klick. Neue Pakete werden vor der Installation mit einer Signatur geprüft. Der Lernbetrieb funktioniert weiterhin offline; Profile und Antworten werden nicht übertragen.
 
-Die erste Installation einer Version mit Updater erfolgt über den GitHub-Release. Die bisherige Version 0.1.0 kann sich noch nicht selbst aktualisieren. macOS (Apple Silicon und Intel) sowie Windows x64 erhalten eigene Pakete. Die Pakete sind für den Updater signiert, haben aber noch keine Apple-Notarisierung oder Windows-Herausgebersignatur. [Bedienung und Release-Prozess](docs/app-updates.md).
+Die erste Installation einer Version mit Updater erfolgt über den GitHub-Release. Die bisherige Version 0.1.0 kann sich noch nicht selbst aktualisieren. macOS Apple Silicon sowie Windows x64 erhalten eigene Pakete. Die Pakete sind für den Updater signiert, haben aber noch keine Apple-Notarisierung oder Windows-Herausgebersignatur. [Bedienung und Release-Prozess](docs/app-updates.md).
 
 ## Lokale Daten
 
@@ -65,7 +69,7 @@ npm run test:watch      # Frontend-Tests während der Entwicklung
 npm run format         # Frontend- und Konfigurationsformatierung anwenden
 ```
 
-Rust-Prüfungen benötigen `rustfmt` und `clippy`. In CI wird Rust 1.98.1 mit Node.js 24 verwendet. GitHub Actions prüft Pull Requests auf macOS und Windows und erstellt native Debug-Programme als kurzlebige Prüfartefakte. Diese sind keine signierten Installer. `npm run desktop:build` baut lokal ein Release-Artefakt.
+Rust-Prüfungen benötigen `rustfmt` und `clippy`. In CI wird Rust 1.98.1 mit Node.js 24 verwendet. GitHub Actions prüft Pull Requests auf macOS, nach dem Merge auf `main` zusätzlich auf Windows, und erstellt native Debug-Programme als kurzlebige Prüfartefakte. Diese sind keine signierten Installer. `npm run desktop:build` baut lokal ein Release-Artefakt.
 
 Der CI-Workflow kontrolliert bei Pull Requests den Issue-Branch, die passende `Closes #…`-Verknüpfung und die Reviewdatei. Das ersetzt nicht den inhaltlichen Review. Branch Protection ist nicht automatisch eingerichtet.
 
@@ -73,7 +77,7 @@ Details: [Architektur](docs/architecture.md), [Reviewnachweise](docs/reviews/).
 
 ## Deine Lernrunde
 
-Auf **Meine Fächer** zeigt **Deine Lernrunden** drei Themen: **Ein Zaun für unseren Garten** (Mathematik), **Ein Tag an unserer Schule** (Englisch, erste Fremdsprache) und **Auf Forschertour: genau hinschauen** (Natur und Technik). Die Auswahl zeigt für jedes Thema auf der gewählten Stufe offene Schritte und fällige Wiederholungen. Fünf kurze Schritte verbinden Erinnern, ein anschauliches Beispiel, eigenes Lösen, Fehlerdetektiv und eine freiwillige Mitmachaufgabe.
+Die direkten Fachziele bieten drei Lernreisen: **Ein Zaun für unseren Garten** (Mathematik), **Ein Tag an unserer Schule** (Englisch, erste Fremdsprache) und **Auf Forschertour: genau hinschauen** (Natur und Technik). Die Auswahl zeigt für jedes Thema auf der gewählten Stufe offene Schritte und fällige Wiederholungen. Fünf kurze Schritte verbinden Erinnern, ein anschauliches Beispiel, eigenes Lösen, Fehlerdetektiv und eine freiwillige Mitmachaufgabe.
 
 Alle drei Stufen sind frei wählbar. Jedes Thema und jede Stufe behalten ihre eigene offene Runde, auch nach Themenwechsel und Neustart. Die App plant Wiederholungen lokal und bietet drei geprüfte Varianten je Thema und Stufe. Englisch übt Wortschatz, kurze Lesetexte und Simple Present; Natur und Technik verbindet Beobachtungen, Messwerte und die Planung fairer Vergleiche. Die neuen Pakete enthalten jeweils 27 eigene automatisch prüfbare Aufgaben plus Beispiele und Mitmachaufträge.
 
@@ -83,12 +87,13 @@ Tipps, Aufdecken und selbstständige erste Antworten werden unterschieden. Der T
 
 Nach dem Speichern eines Lernprofils können die Aufgaben in Mathematik, Englisch sowie Natur und Technik beantwortet werden. Jede Lernaufgabe in den Themenbereichen bringt bei der ersten korrekten Lösung **1 Punkt in Vorschule**, **2 Punkte in Könner** oder **3 Punkte in Streber**. Maßgeblich ist die Stufe der Aufgabe. Falsche Antworten und Wiederholungen ziehen nichts ab; bereits gelöste Aufgaben geben keine weiteren Punkte. Bestehender Fortschritt aus älteren Versionen bleibt erhalten, erhält aber keine rückwirkenden Punkte.
 
-Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Abzeichen **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Bereits gebuchte Punkte bleiben bei Regeländerungen erhalten; es gibt keine rückwirkende Neuberechnung. Weitere Belohnungen lassen sich ergänzen.
+**Dein Lernabzeichen** steht oben rechts. Sechs illustrierte Fuchs-Medaillen bauen aufeinander auf: Jede nächste Stufe braucht sowohl mehr insgesamt verdiente Punkte als auch mehr richtig gelöste Aufgaben. Ein Klick zeigt die erreichten Ränge und die nächsten Ziele. Spiele und Sammelkäufe senken deinen Rang nicht. [Stufen und Zählweise](docs/achievements.md).
+
+Das Punktekonto zeigt verfügbares Guthaben und insgesamt verdiente Punkte. Die Sammelobjekte **Sternsammler** und **Lernfuchs** kosten jeweils **20 Punkte**, sind einmalig einlösbar und bleiben nach einem Neustart in der Sammlung. Bereits gebuchte Punkte bleiben bei Regeländerungen erhalten; es gibt keine rückwirkende Neuberechnung. Weitere Belohnungen lassen sich ergänzen.
 
 Antworten werden lokal im Rust-Backend geprüft. Gutschrift und Lernfortschritt werden gemeinsam gespeichert; Einlösen prüft das Guthaben und bucht atomar ab. Doppelte Requests erzeugen keine doppelten Buchungen. Das lokale System bietet keine manipulationssichere Währung und hat keinen Geldwert.
 
 Die Aufgaben stehen getrennt von Antwortprüfung und Punktebuchung in `src-tauri/content/curriculum-v1.json`. Bestehende Aufgaben-IDs behalten ihre Bedeutung; alte Beispielaufgaben beider Fächer bleiben für gespeicherte Buchungen und Wiederholungsrequests intern auflösbar.
-
 
 ## Mathematik Klasse 5
 

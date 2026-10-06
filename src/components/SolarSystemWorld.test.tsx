@@ -185,13 +185,9 @@ it('markiert nach Pluto-Auswahl alle acht Rätsel ohne Namensleck oder Pluto als
     expect(
       screen.queryByRole('button', { name: `${target.order} ${answer}` }),
     ).not.toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: 'Antwort prüfen' }),
-    ).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Prüfen' })).toBeDisabled();
     if (index < questions.length - 1) {
-      await user.click(
-        screen.getByRole('button', { name: 'Nächster Planet →' }),
-      );
+      await user.click(screen.getByRole('button', { name: 'Weiter' }));
     }
   }
 });
@@ -207,7 +203,7 @@ it('ermutigt nach einer falschen Antwort und vergibt Punkte nur nach bestätigte
   await startQuiz(user);
   const wrong = firstQuestion.options.find((option) => option !== firstAnswer)!;
   await user.click(screen.getByRole('radio', { name: wrong }));
-  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   expect(await screen.findByRole('status')).toHaveTextContent(
     'Du kannst es nochmal versuchen!',
   );
@@ -220,13 +216,13 @@ it('ermutigt nach einer falschen Antwort und vergibt Punkte nur nach bestätigte
   expect(
     screen.queryByText(solarResultFor(firstQuestion).explanation),
   ).not.toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: 'Lösung verstehen' }));
-  expect(
-    screen.getByRole('dialog', { name: 'Lösung verstehen' }),
-  ).toHaveTextContent(solarResultFor(firstQuestion).explanation);
+  await user.click(screen.getByRole('button', { name: 'Hilfe' }));
+  expect(screen.getByRole('dialog', { name: 'Hilfe' })).toHaveTextContent(
+    solarResultFor(firstQuestion).explanation,
+  );
   await user.click(screen.getByRole('button', { name: 'Schließen' }));
   await user.click(screen.getByRole('radio', { name: firstAnswer }));
-  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   expect(await screen.findByRole('status')).toHaveTextContent(
     'Richtig! +2 Punkte',
   );
@@ -235,7 +231,7 @@ it('ermutigt nach einer falschen Antwort und vergibt Punkte nur nach bestätigte
   );
   expect(screen.getByRole('radio', { name: firstAnswer })).toBeChecked();
   expect(screen.getByRole('radio', { name: firstAnswer })).toBeDisabled();
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeDisabled();
   expect(screen.getByText(/Schon gelöst/)).toBeVisible();
   expect(
     vi.mocked(desktop.submitAnswer).mock.calls.map((call) => call.slice(1)),
@@ -252,7 +248,7 @@ it('behält beim Speicherfehler Guthaben und Auswahl und sendet beim Retry dense
     .mockResolvedValueOnce(solarResultFor(firstQuestion));
   await startQuiz(user);
   await user.click(screen.getByRole('radio', { name: firstAnswer }));
-  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   expect(await screen.findByRole('alert')).toHaveTextContent(
     'Speichern fehlgeschlagen',
   );
@@ -260,7 +256,7 @@ it('behält beim Speicherfehler Guthaben und Auswahl und sendet beim Retry dense
   expect(screen.getByLabelText('Verfügbare Punkte')).toHaveTextContent(
     '10 Punkte',
   );
-  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   await screen.findByText('Richtig! +2 Punkte');
   const calls = vi.mocked(desktop.submitAnswer).mock.calls;
   expect(calls[0]).toEqual(calls[1]);
@@ -278,15 +274,17 @@ it('sperrt Antworten, Stufe, Weitergehen und Moduswechsel während der Buchung',
   );
   await startQuiz(user);
   await user.click(screen.getByRole('radio', { name: firstAnswer }));
-  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
-  expect(screen.getByRole('button', { name: 'Wird geprüft …' })).toBeDisabled();
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
+  expect(
+    screen.getByRole('button', { name: 'Wird gespeichert …' }),
+  ).toBeDisabled();
   for (const radio of screen.getAllByRole('radio'))
     expect(radio).toBeDisabled();
   for (const name of [
     /Vorschule/,
     /Könner/,
     /Streber/,
-    'Nächster Planet →',
+    'Weiter',
     'Planeten entdecken',
     'Planeten erraten',
   ]) {
@@ -297,9 +295,7 @@ it('sperrt Antworten, Stufe, Weitergehen und Moduswechsel während der Buchung',
   await act(async () => {
     finish(solarResultFor(firstQuestion));
   });
-  expect(
-    screen.getByRole('button', { name: 'Nächster Planet →' }),
-  ).toBeEnabled();
+  expect(screen.getByRole('button', { name: 'Weiter' })).toBeEnabled();
 });
 
 it('behält Aufgabe und Antwort nach fehlgeschlagenem Stufenwechsel und leert sie nach Erfolg', async () => {
@@ -310,6 +306,7 @@ it('behält Aufgabe und Antwort nach fehlgeschlagenem Stufenwechsel und leert si
   await startQuiz(user);
   await user.click(screen.getByRole('radio', { name: firstAnswer }));
   await user.click(screen.getByRole('button', { name: /Vorschule/ }));
+  await user.click(screen.getByRole('button', { name: 'Wechseln' }));
   expect(await screen.findByRole('alert')).toHaveTextContent(
     'Stufe konnte nicht gespeichert werden',
   );
@@ -322,12 +319,13 @@ it('behält Aufgabe und Antwort nach fehlgeschlagenem Stufenwechsel und leert si
     'true',
   );
   await user.click(screen.getByRole('button', { name: /Vorschule/ }));
+  await user.click(screen.getByRole('button', { name: 'Wechseln' }));
   const easier = solarQuestions.find(
     (item) => item.difficulty === 'vorschule',
   )!;
-  expect(
-    await screen.findByRole('heading', { name: easier.prompt }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByRole('heading', { name: easier.prompt })).toHaveFocus(),
+  );
   expect(screen.getByRole('button', { name: /Vorschule/ })).toHaveAttribute(
     'aria-pressed',
     'true',
@@ -335,7 +333,7 @@ it('behält Aufgabe und Antwort nach fehlgeschlagenem Stufenwechsel und leert si
   expect(
     screen.queryByRole('radio', { checked: true }),
   ).not.toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeDisabled();
   expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   expect(
     screen.getByText(/Eine neue richtige Lösung bringt 1 Punkt/),
@@ -387,7 +385,7 @@ it('zeigt Ladefehler ohne erfundenes Guthaben, lässt Entdecken zu und kann erne
   expect(screen.getByRole('article', { name: 'Mars' })).toBeVisible();
   await user.click(screen.getByRole('button', { name: 'Planeten erraten' }));
   expect(screen.getByText(/Für gespeicherte Rätsel/)).toBeVisible();
-  await user.click(screen.getByRole('button', { name: 'Lernrunde neu laden' }));
+  await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
   expect(
     await screen.findByRole('heading', { name: firstQuestion.prompt }),
   ).toBeVisible();
@@ -419,7 +417,7 @@ it('erlaubt ohne Profil das Entdecken, aktiviert Antworten aber erst nach gespei
   );
   expect(screen.queryByText(/Speichere oben/)).not.toBeInTheDocument();
   await user.click(screen.getByRole('radio', { name: firstAnswer }));
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeEnabled();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeEnabled();
 });
 
 it('führt durch acht Rätsel, setzt Auswahl und Fokus beim Weitergehen zurück und startet erneut', async () => {
@@ -443,13 +441,13 @@ it('führt durch acht Rätsel, setzt Auswahl und Fokus beim Weitergehen zurück 
     await user.click(
       screen.getByRole('radio', { name: solarAnswerFor(question) }),
     );
-    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+    await user.click(screen.getByRole('button', { name: 'Prüfen' }));
     expect(await screen.findByRole('status')).toHaveTextContent(
       'Richtig! +2 Punkte',
     );
     await user.click(
       screen.getByRole('button', {
-        name: index === 7 ? 'Reise abschließen' : 'Nächster Planet →',
+        name: index === 7 ? 'Reise abschließen' : 'Weiter',
       }),
     );
   }
@@ -476,7 +474,7 @@ it('führt durch acht Rätsel, setzt Auswahl und Fokus beim Weitergehen zurück 
     pointsAwarded: 0,
   });
   await user.click(screen.getByRole('radio', { name: firstAnswer }));
-  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   expect(await screen.findByRole('status')).toHaveTextContent(
     'Diesen Planeten hast du schon gelöst.',
   );
@@ -488,7 +486,7 @@ it('führt durch acht Rätsel, setzt Auswahl und Fokus beim Weitergehen zurück 
 it('kann ein Rätsel ohne Antwort überspringen, ohne dafür Punkte oder Versuche zu speichern', async () => {
   const user = userEvent.setup();
   await startQuiz(user);
-  await user.click(screen.getByRole('button', { name: 'Nächster Planet →' }));
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
   expect(
     screen.getByRole('heading', { name: questions[1].prompt }),
   ).toHaveFocus();
@@ -496,4 +494,51 @@ it('kann ein Rätsel ohne Antwort überspringen, ohne dafür Punkte oder Versuch
     '10 Punkte',
   );
   expect(desktop.submitAnswer).not.toHaveBeenCalled();
+});
+
+it('öffnet den direkten Rätselweg mit sinnvoller Fokusposition und meldet Auswahl sowie Buchung an die Navigation', async () => {
+  const user = userEvent.setup();
+  const activity = vi.fn();
+  let finish!: (value: AnswerResult) => void;
+  vi.mocked(desktop.submitAnswer).mockImplementation(
+    () =>
+      new Promise((resolve) => {
+        finish = resolve;
+      }),
+  );
+  render(
+    <SolarSystemWorld
+      profileVersion={0}
+      initialMode="quiz"
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: firstQuestion.prompt }),
+    ).toHaveFocus(),
+  );
+  expect(screen.queryByLabelText('Schwierigkeitsgrad')).not.toBeInTheDocument();
+  await user.click(screen.getByRole('radio', { name: firstAnswer }));
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: true });
+  await act(async () => finish(solarResultFor(firstQuestion)));
+  expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
+});
+
+it('hält andere Fächer erreichbar, solange nur die Modul-Daten geladen werden', () => {
+  vi.mocked(desktop.getLearningState).mockImplementation(
+    () => new Promise(() => {}),
+  );
+  const activity = vi.fn();
+  render(
+    <SolarSystemWorld
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
 });

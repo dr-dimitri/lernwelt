@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import LearningPanel from './LearningPanel';
@@ -10,6 +10,8 @@ import type { LearningState } from '../domain/learning';
 vi.mock('../lib/desktop', () => ({
   desktop: {
     getLearningState: vi.fn(),
+    getProfile: vi.fn(),
+    saveProfile: vi.fn(),
     setDifficulty: vi.fn(),
     submitAnswer: vi.fn(),
     redeemReward: vi.fn(),
@@ -74,11 +76,10 @@ beforeEach(() => {
 });
 async function start(user: ReturnType<typeof userEvent.setup>) {
   await user.click(
-    await screen.findByRole('button', { name: /Größen und Einheiten/ }),
+    await screen.findByRole('button', { name: /^Längen umrechnen/ }),
   );
-  await user.click(screen.getByRole('button', { name: /Längen umrechnen/ }));
 }
-it('führt vom Fach über Bereich und Unterthema zu einer Runde mit sechs Aufgaben', async () => {
+it('führt direkt vom Fach zum Thema und zu einer Runde mit sechs Aufgaben', async () => {
   const user = userEvent.setup();
   render(<LearningPanel subject="mathematics" profileVersion={0} />);
   await screen.findByRole('heading', { name: 'Was möchtest du üben?' });
@@ -92,7 +93,7 @@ it('führt vom Fach über Bereich und Unterthema zu einer Runde mit sechs Aufgab
   ).toBeVisible();
   await user.click(screen.getByRole('button', { name: '← Themenübersicht' }));
   expect(
-    screen.getByRole('heading', { name: 'Was möchtest du üben?' }),
+    screen.getByRole('button', { name: /^Längen umrechnen/ }),
   ).toHaveFocus();
 });
 it('findet Fachbegriffe und zeigt einen verständlichen Such-Leerzustand', async () => {
@@ -103,14 +104,14 @@ it('findet Fachbegriffe und zeigt einen verständlichen Such-Leerzustand', async
     'zentimeter',
   );
   expect(
-    screen.getByRole('button', { name: /Längen umrechnen/ }),
+    screen.getByRole('button', { name: /^Längen umrechnen/ }),
   ).toBeVisible();
   await user.clear(screen.getByRole('searchbox'));
   await user.type(screen.getByRole('searchbox'), 'xyz');
   expect(screen.getByText('Hier haben wir nichts gefunden.')).toBeVisible();
   await user.click(screen.getByRole('button', { name: 'Suche löschen' }));
   expect(
-    screen.getByRole('button', { name: /Größen und Einheiten/ }),
+    screen.getByRole('button', { name: /^Längen umrechnen/ }),
   ).toBeVisible();
 });
 it('beendet die Runde ohne Endlosschleife und erlaubt übersprungene Aufgaben erneut', async () => {
@@ -194,4 +195,194 @@ it('behält den Eingabefokus, wenn ein später Animationsframe ausgeführt wird'
   } finally {
     raf.mockRestore();
   }
+});
+
+it('bestätigt ungesendete Eingaben vor Themenwechsel und erhält sie beim Bleiben', async () => {
+  const user = userEvent.setup();
+  const activity = vi.fn();
+  render(
+    <LearningPanel
+      subject="mathematics"
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  await start(user);
+  const input = screen.getByLabelText('Wandle Länge 0 um.');
+  await user.type(input, '42');
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });
+  await user.click(screen.getByRole('button', { name: 'Zu den Themen' }));
+  expect(
+    screen.getByRole('dialog', { name: 'Möchtest du wechseln?' }),
+  ).toBeVisible();
+  expect(screen.getByRole('button', { name: 'Bleiben' })).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: 'Bleiben' }));
+  expect(input).toHaveValue('42');
+  expect(screen.getByRole('button', { name: 'Zu den Themen' })).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: 'Zu den Themen' }));
+  await user.click(screen.getByRole('button', { name: 'Wechseln' }));
+  expect(
+    screen.getByRole('button', { name: /^Längen umrechnen/ }),
+  ).toHaveFocus();
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
+});
+
+it('hält Frage und Eingabe bei Tipp und Inlinefeedback stabil und zeigt genau eine Hauptaktion', async () => {
+  const user = userEvent.setup();
+  render(
+    <LearningPanel subject="mathematics" profileVersion={0} externalControls />,
+  );
+  await start(user);
+  const input = screen.getByLabelText('Wandle Länge 0 um.');
+  await user.type(input, '42');
+  await user.click(screen.getByRole('button', { name: 'Tipp' }));
+  expect(screen.getByText(mathQuestion.hint)).toBeVisible();
+  expect(input).toHaveValue('42');
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
+  expect(await screen.findByText('Richtig! +2 Punkte')).toBeVisible();
+  expect(screen.getByLabelText('Wandle Länge 0 um.')).toBe(input);
+  expect(input).toHaveValue('42');
+  expect(
+    screen.queryByRole('button', { name: 'Prüfen' }),
+  ).not.toBeInTheDocument();
+  expect(
+    document.querySelectorAll('.exercise-main .primary-button'),
+  ).toHaveLength(1);
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
+  expect(screen.getByLabelText('Wandle Länge 1 um.')).toHaveValue('');
+});
+
+it('sperrt die unklare Antwort nach Speicherfehler und versucht die identische Nutzlast erneut', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.submitAnswer).mockRejectedValueOnce(
+    new Error('Speichern fehlgeschlagen.'),
+  );
+  render(
+    <LearningPanel subject="mathematics" profileVersion={0} externalControls />,
+  );
+  await start(user);
+  const input = screen.getByLabelText('Wandle Länge 0 um.');
+  await user.type(input, '42');
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Speichern fehlgeschlagen.',
+  );
+  expect(input).toHaveValue('42');
+  expect(input).toBeDisabled();
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
+  expect(await screen.findByText('Richtig! +2 Punkte')).toBeVisible();
+  expect(vi.mocked(desktop.submitAnswer).mock.calls[0]).toEqual(
+    vi.mocked(desktop.submitAnswer).mock.calls[1],
+  );
+});
+
+it('lädt inaktive Fächer nicht, behält beim Fachrückweg die Suche und fokussiert das Thema', async () => {
+  const user = userEvent.setup();
+  const { rerender } = render(
+    <LearningPanel
+      subject="mathematics"
+      profileVersion={0}
+      externalControls
+      active={false}
+    />,
+  );
+  expect(desktop.getLearningState).not.toHaveBeenCalled();
+  rerender(
+    <LearningPanel
+      subject="mathematics"
+      profileVersion={0}
+      externalControls
+      active
+    />,
+  );
+  await user.type(await screen.findByRole('searchbox'), 'Zentimeter');
+  await start(user);
+  await user.click(screen.getByRole('button', { name: 'Zu den Themen' }));
+  rerender(
+    <LearningPanel
+      subject="mathematics"
+      profileVersion={0}
+      externalControls
+      active={false}
+    />,
+  );
+  rerender(
+    <LearningPanel
+      subject="mathematics"
+      profileVersion={1}
+      externalControls
+      active
+    />,
+  );
+  await waitFor(() => expect(screen.getByRole('searchbox')).toBeEnabled());
+  expect(screen.getByRole('searchbox')).toHaveValue('Zentimeter');
+  expect(
+    screen.getByRole('button', { name: /^Längen umrechnen/ }),
+  ).toHaveFocus();
+});
+
+it('zeigt im gewählten Lernweg den Spitznamenschritt und setzt nach gespeichertem Profil dasselbe Ziel fort', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState)
+    .mockResolvedValueOnce({ ...fixture(), profileReady: false })
+    .mockResolvedValueOnce(fixture());
+  vi.mocked(desktop.getProfile).mockResolvedValue(null);
+  vi.mocked(desktop.saveProfile).mockResolvedValue({
+    displayName: 'Mia',
+    grade: 5,
+  });
+  const saved = vi.fn();
+  const { rerender } = render(
+    <LearningPanel
+      subject="mathematics"
+      profileVersion={0}
+      externalControls
+      onProfileSaved={saved}
+    />,
+  );
+  await start(user);
+  expect(
+    screen.getByRole('heading', { name: 'Längen umrechnen' }),
+  ).toBeVisible();
+  expect(
+    screen.queryByRole('button', { name: 'Prüfen' }),
+  ).not.toBeInTheDocument();
+  await user.type(await screen.findByLabelText('Name oder Spitzname'), 'Mia');
+  await user.click(screen.getByRole('button', { name: 'Speichern' }));
+  expect(saved).toHaveBeenCalledOnce();
+  rerender(
+    <LearningPanel
+      subject="mathematics"
+      profileVersion={1}
+      externalControls
+      onProfileSaved={saved}
+    />,
+  );
+  expect(await screen.findByLabelText('Wandle Länge 0 um.')).toBeVisible();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeEnabled();
+});
+
+it('prüft nach fehlgeschlagenem Neuladen keine alte Aufgabe auf einer unbestätigten Ansicht', async () => {
+  const user = userEvent.setup();
+  vi.mocked(desktop.getLearningState)
+    .mockResolvedValueOnce(fixture())
+    .mockRejectedValueOnce(
+      new Error('Der neue Lernstand konnte nicht geladen werden.'),
+    );
+  const { rerender } = render(
+    <LearningPanel subject="mathematics" profileVersion={0} externalControls />,
+  );
+  await start(user);
+  rerender(
+    <LearningPanel subject="mathematics" profileVersion={1} externalControls />,
+  );
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Der neue Lernstand konnte nicht geladen werden.',
+  );
+  expect(screen.getByLabelText('Wandle Länge 0 um.')).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Erneut laden' })).toBeEnabled();
+  expect(desktop.submitAnswer).not.toHaveBeenCalled();
 });

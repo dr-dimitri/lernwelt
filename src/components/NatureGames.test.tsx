@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import NatureGames from './NatureGames';
 
 it('erlaubt falsche Versuche, erklärt richtige Zuordnungen und schließt das Stoff-Labor ab', async () => {
@@ -52,11 +52,11 @@ it('ordnet Blütenfunktionen zu und setzt Tipps und Auswahl beim Neustart zurüc
   const user = userEvent.setup();
   render(<NatureGames difficulty="koenner" />);
   await user.click(screen.getByRole('button', { name: /Pflanzen-Werkstatt/ }));
-  await user.click(screen.getByRole('button', { name: 'Forscher-Tipp' }));
+  await user.click(screen.getByRole('button', { name: 'Tipp' }));
   expect(screen.getByText(/Pollen = Blütenstaub/)).toBeVisible();
-  expect(screen.getByRole('dialog', { name: 'Forscher-Tipp' })).toBeVisible();
+  expect(screen.getByRole('dialog', { name: 'Tipp' })).toBeVisible();
   await user.click(screen.getByRole('button', { name: 'Schließen' }));
-  expect(screen.getByRole('button', { name: 'Forscher-Tipp' })).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Tipp' })).toHaveFocus();
   await user.click(
     screen.getByRole('button', { name: 'Hier liegen die Samenanlagen' }),
   );
@@ -166,8 +166,25 @@ it('ist vollständig mit der Tastatur bedienbar und startet beim Spielwechsel ne
     screen.getByRole('button', { name: 'Unsichtbarer Wasserdampf' }),
   ).toHaveFocus();
   await user.click(screen.getByRole('button', { name: /Wiesen-Netz/ }));
+  await user.click(screen.getByRole('button', { name: 'Wechseln' }));
   expect(screen.getByText('0 von 2 Verbindungen')).toBeVisible();
   await user.click(screen.getByRole('button', { name: /Stoff-Labor/ }));
   expect(screen.getByText('0 von 3 entdeckt')).toBeVisible();
   expect(screen.getByText(/ohne Lernpunkte/)).toBeVisible();
+});
+
+it('meldet eine angefangene Entdeckerrunde und bewahrt sie beim Abbrechen eines Spielwechsels', async () => {
+  const user = userEvent.setup();
+  const activity = vi.fn();
+  render(<NatureGames difficulty="vorschule" onActivityChange={activity} />);
+  await user.click(screen.getByRole('button', { name: 'Ein Eiswürfel' }));
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });
+  await user.click(screen.getByRole('button', { name: 'Fest' }));
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });
+  const meadow = screen.getByRole('button', { name: 'Wiesen-Netz' });
+  await user.click(meadow);
+  expect(screen.getByRole('button', { name: 'Bleiben' })).toHaveFocus();
+  await user.keyboard('{Escape}');
+  expect(meadow).toHaveFocus();
+  expect(screen.getByText('1 von 3 entdeckt')).toBeVisible();
 });

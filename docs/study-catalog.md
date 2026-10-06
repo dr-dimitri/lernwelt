@@ -6,9 +6,9 @@ Der Katalog `src-tauri/content/study-catalog-v1.json` ist die maschinenlesbare I
 
 ## Auswahl und Runden
 
-In Mathematik, Englisch sowie Natur und Technik startet Meine Fächer → Fach → Lernbereich → Unterthema direkt eine Runde mit höchstens sechs Aufgaben. Die Suche durchsucht Unterthema, Lernziel, Lernbereich und Stichwörter; Großschreibung und Umlaute werden normalisiert. Die Stufen bleiben frei wählbar. Noch nicht gelöste Aufgaben kommen zuerst. Nach der letzten Aufgabe endet die Runde ausdrücklich; übersprungene und falsch gelöste Aufgaben bleiben für neue Runden verfügbar. Gelöste Aufgaben können wiederholt werden, ohne erneute Erstlösungspunkte.
+In Mathematik, Englisch sowie Natur und Technik startet ein direktes Unterthema im gewählten Fach eine Runde mit höchstens sechs Aufgaben. Die Suche durchsucht Unterthema, Lernziel, Lernbereich und Stichwörter; Großschreibung und Umlaute werden normalisiert. Die Stufen bleiben frei wählbar. Noch nicht gelöste Aufgaben kommen zuerst. Nach der letzten Aufgabe endet die Runde ausdrücklich; übersprungene und falsch gelöste Aufgaben bleiben für neue Runden verfügbar. Gelöste Aufgaben können wiederholt werden, ohne erneute Erstlösungspunkte.
 
-Der Rückweg führt zur Themenübersicht und setzt den Tastaturfokus auf ihre Überschrift. Hinweise, Quellen und weitere Angebote öffnen bei Bedarf. Der Einmaleins-Link zu Quadratzahlen öffnet diesen Rechenmodus; Lernrunden öffnen das konkrete Thema. Wortschatz-Unterthemen öffnen ihr konkretes Wortthema im Vokabeltrainer; dort bleibt die eigene Themenwahl verfügbar. Hörübungen verwenden bereits gebündelte Wort- und Satz-Audios.
+Der Rückweg führt zur zuletzt benutzten Themenübersicht, erhält Suche/Filter/Seite und setzt den Tastaturfokus auf die ursprüngliche Zielkarte. Hinweise, Quellen und weitere Angebote öffnen bei Bedarf. Der Einmaleins-Link zu Quadratzahlen öffnet diesen Rechenmodus; Lernrunden öffnen das konkrete Thema. Wortschatz-Unterthemen öffnen ihr konkretes Wortthema im Vokabeltrainer; dort bleibt die eigene Themenwahl verfügbar. Hörübungen verwenden bereits gebündelte Wort- und Satz-Audios.
 
 Geographie öffnet eine [eigene Sonnensystemwelt](solar-system.md) mit Entdeckungsmodus, NASA-Bildern und acht Rätseln pro Stufe. Die Aufgabe ist auch in der Katalogmatrix unter „Planet Erde“ zugeordnet.
 
@@ -121,3 +121,7 @@ Die Erweiterung ist eine endliche, vorab erstellte Aufgabenbank. Zahlvarianten, 
 - https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/5/geographie
 
 Englisch richtet sich an die erste Fremdsprache. Zeichnen, freies Schreiben und Sprechen, Messpraxis und Versuchsaufbau werden über angeleitete Mitmachangebote mit Selbstkontrolle unterstützt. Automatische Bewertung bleibt auf eindeutig prüfbare Antworten begrenzt. Die ursprünglichen Mathematikangebote zu allen 39 Kompetenzerwartungen bleiben erhalten; neue Navigation ist keine weitergehende Vollständigkeitsbehauptung.
+
+## Direkte Themenwahl (Issue #149, Vorabversion)
+
+Die vier Fächer sind dauerhaft beschriftet erreichbar. Unterthemen und passende bestehende Trainer-/Lernreiseziele öffnen unmittelbar; ein Lernbereich ist nur optionaler Filter und Kontext. Höchstens sechs Ziele erscheinen je Seite, auch bei Suchtreffern. Alle vorhandenen Einheiten bleiben im Katalog. Suche, Filter und Seite werden je Fach während der Sitzung gehalten, bei verkleinerten Treffermengen wird der Seitenindex begrenzt. Der Rückweg führt zum ursprünglichen Ziel und gibt den Tastaturfokus zurück. Quellen und Kompetenzbezüge bleiben in Hilfe erreichbar. IDs, Aufgaben, Antwortprüfung und Punktehistorie sind unverändert; eine Datenbankmigration ist nicht nötig.

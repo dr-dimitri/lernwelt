@@ -1,160 +1,229 @@
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import type { LearningState } from '../domain/learning';
 import type { SubjectId } from '../domain/subjects';
-import { matchesUnit, unitQuestions, type StudyUnit } from '../domain/study';
+import {
+  matchesUnit,
+  matchesStudyText,
+  unitQuestions,
+  type StudyUnit,
+  type StudySupplement,
+} from '../domain/study';
 
-const unitsPerPage = 12;
+const unitsPerPage = 6;
 
+/** Selection only: the practice stays outside this catalog. */
 export default function StudyBrowser({
   state,
   subject,
   disabled,
   onSelect,
+  onSupplement,
+  onNatureGames,
+  active = true,
   focusOnMount = false,
 }: {
   state: LearningState;
   subject: SubjectId;
   disabled: boolean;
   onSelect: (unit: StudyUnit) => void;
+  onSupplement?: (link: StudySupplement) => void;
+  onNatureGames?: () => void;
+  active?: boolean;
   focusOnMount?: boolean;
 }) {
   const [areaId, setAreaId] = useState('');
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(0);
   const heading = useRef<HTMLHeadingElement>(null);
-  useEffect(() => {
-    if (focusOnMount) heading.current?.focus();
-  }, [focusOnMount]);
-  useEffect(() => {
-    setPage(0);
-  }, [state.difficulty, subject]);
+  const selected = useRef<HTMLButtonElement | null>(null);
+  const wasActive = useRef(active);
+  const wasFocusRequested = useRef(false);
+  const pendingFocus = useRef(false);
+  useLayoutEffect(() => {
+    // Keep the return target while its card is disabled by an outstanding read.
+    if (
+      active &&
+      (!wasActive.current || (focusOnMount && !wasFocusRequested.current))
+    ) {
+      pendingFocus.current = true;
+    }
+    wasActive.current = active;
+    wasFocusRequested.current = focusOnMount;
+    if (active && !disabled && pendingFocus.current) {
+      (selected.current?.isConnected && !selected.current.disabled
+        ? selected.current
+        : heading.current
+      )?.focus();
+      pendingFocus.current = false;
+    }
+  }, [active, disabled, focusOnMount]);
   const catalog = state.studyCatalog!;
   const areas = catalog.areas.filter((a) => a.subject === subject);
-  const selectedArea = areas.find((a) => a.id === areaId);
-  const searching = query.trim().length > 0;
-  const matches = catalog.units.filter(
+  const subjectUnits = catalog.units.filter((u) => u.subject === subject);
+  const matches = subjectUnits.filter(
     (u) =>
-      u.subject === subject &&
-      (searching
-        ? matchesUnit(
-            u,
-            areas.find((a) => a.id === u.areaId),
-            query,
-          )
-        : u.areaId === selectedArea?.id),
+      (!areaId || u.areaId === areaId) &&
+      matchesUnit(
+        u,
+        areas.find((a) => a.id === u.areaId),
+        query,
+      ),
   );
-  const pageCount = Math.ceil(matches.length / unitsPerPage);
+  const links = new Map<string, { link: StudySupplement; unit: StudyUnit }>();
+  if (onSupplement) {
+    for (const unit of subjectUnits) {
+      for (const link of unit.supplements) {
+        const key = `${link.kind}:${link.target}`;
+        if (!links.has(key)) links.set(key, { link, unit });
+      }
+    }
+  }
+  const supplementMatches = [...links.values()].filter(
+    ({ link, unit }) =>
+      (!areaId || unit.areaId === areaId) &&
+      matchesUnit(
+        { ...unit, name: link.label },
+        areas.find((a) => a.id === unit.areaId),
+        query,
+      ),
+  );
+  const destinations: {
+    key: string;
+    link: StudySupplement | null;
+    unit: StudyUnit | null;
+  }[] = [
+    ...(subject === 'nature' &&
+    onNatureGames &&
+    !areaId &&
+    matchesStudyText(
+      'Naturspiele Entdecken ausprobieren Pflanzen Tiere Futter',
+      query,
+    )
+      ? [{ key: 'nature-games', link: null, unit: null }]
+      : []),
+    ...supplementMatches.map(({ link, unit }) => ({
+      key: `${link.kind}:${link.target}`,
+      link,
+      unit,
+    })),
+    ...matches.map((unit) => ({ key: unit.id, link: null, unit })),
+  ];
+  const pageCount = Math.ceil(destinations.length / unitsPerPage);
   const currentPage = Math.min(page, Math.max(0, pageCount - 1));
-  const visibleUnits = matches.slice(
+  const visible = destinations.slice(
     currentPage * unitsPerPage,
     (currentPage + 1) * unitsPerPage,
   );
-  const enterArea = (id: string) => {
-    if (disabled) return;
-    setAreaId(id);
-    setQuery('');
-    setPage(0);
-    heading.current?.focus();
-  };
   const turnPage = (next: number) => {
     if (disabled) return;
     setPage(next);
     heading.current?.focus();
   };
   return (
-    <section className="study-browser" aria-label="Lehrplanthemen">
+    <section
+      className="study-browser"
+      aria-label="Lehrplanthemen"
+      hidden={!active}
+    >
       <div className="study-browser-heading">
         <div>
           <p className="eyebrow">
             KLASSE 5{subject === 'english' ? ' · 1. FREMDSPRACHE' : ''}
           </p>
           <h3 ref={heading} tabIndex={-1}>
-            {selectedArea && !searching
-              ? selectedArea.name
-              : 'Was möchtest du üben?'}
+            Was möchtest du üben?
           </h3>
+          <p>Wähle ein Thema. Deine Runde hat höchstens sechs Aufgaben.</p>
         </div>
-        <label className="study-search">
-          Thema suchen
-          <input
-            type="search"
-            value={query}
-            disabled={disabled}
-            placeholder={
-              subject === 'mathematics'
-                ? 'z. B. Längen oder Winkel'
-                : subject === 'english'
-                  ? 'z. B. Simple Present'
-                  : 'z. B. Bestäubung'
-            }
-            onChange={(e) => {
-              setQuery(e.target.value);
-              setPage(0);
-            }}
-          />
-        </label>
+        <div className="catalog-filters">
+          <label className="study-search">
+            Thema suchen
+            <input
+              type="search"
+              value={query}
+              disabled={disabled}
+              placeholder={
+                subject === 'mathematics'
+                  ? 'z. B. Längen oder Winkel'
+                  : subject === 'english'
+                    ? 'z. B. Simple Present'
+                    : 'z. B. Bestäubung'
+              }
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setPage(0);
+              }}
+            />
+          </label>
+          <label>
+            Themen filtern
+            <select
+              value={areaId}
+              disabled={disabled}
+              onChange={(e) => {
+                setAreaId(e.target.value);
+                setPage(0);
+              }}
+            >
+              <option value="">Alle Themen</option>
+              {areas.map((area) => (
+                <option key={area.id} value={area.id}>
+                  {area.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
       </div>
-      {(selectedArea || searching) && (
-        <button
-          className="secondary-button"
-          disabled={disabled}
-          onClick={() => enterArea('')}
-        >
-          ← Alle Lernbereiche
-        </button>
-      )}
-      {searching && (
-        <p role="status">
-          {matches.length}{' '}
-          {matches.length === 1
-            ? 'Unterthema gefunden'
-            : 'Unterthemen gefunden'}
+      {(query.trim() || areaId) && (
+        <p role="status" className="catalog-results">
+          {destinations.length}{' '}
+          {destinations.length === 1 ? 'Thema gefunden' : 'Themen gefunden'}
         </p>
       )}
-      {!selectedArea && !searching ? (
+      {destinations.length ? (
         <div className="study-grid">
-          {areas.map((a) => {
-            const count = catalog.units.filter((u) => u.areaId === a.id).length;
-            return (
-              <button
-                className="study-card"
-                key={a.id}
-                disabled={disabled}
-                onClick={() => enterArea(a.id)}
-              >
-                <strong>{a.name}</strong>
-                <span>
-                  {count} {count === 1 ? 'Unterthema' : 'Unterthemen'}
-                </span>
-                <span className="study-action">Entdecken →</span>
-              </button>
-            );
-          })}
-        </div>
-      ) : matches.length ? (
-        <div className="study-grid">
-          {visibleUnits.map((unit) => {
-            const questions = unitQuestions(state, unit);
+          {visible.map(({ key, link, unit }) => {
+            const questions = unit ? unitQuestions(state, unit) : [];
             const solved = questions.filter((q) => q.solved).length;
             return (
               <button
                 className="study-card"
-                key={unit.id}
-                disabled={disabled || !questions.length}
-                onClick={() => onSelect(unit)}
+                aria-label={
+                  link
+                    ? `${link.label}: ${unit?.name}. ${unit?.goal}`
+                    : undefined
+                }
+                key={key}
+                disabled={disabled || (!!unit && !link && !questions.length)}
+                onClick={(event) => {
+                  selected.current = event.currentTarget;
+                  if (link) onSupplement?.(link);
+                  else if (unit) onSelect(unit);
+                  else onNatureGames?.();
+                }}
               >
-                <strong>{unit.name}</strong>
+                <strong>{link?.label ?? unit?.name ?? 'Naturspiele'}</strong>
+                {link && <span className="study-context">{unit?.name}</span>}
                 <span>
-                  {searching
-                    ? areas.find((a) => a.id === unit.areaId)?.name
-                    : unit.goal}
+                  {areas.find((area) => area.id === unit?.areaId)?.name}
+                </span>
+                <span>
+                  {unit?.goal ??
+                    'Entdecke Blüten und Futterketten. Ohne Lernpunkte.'}
                 </span>
                 <small>
-                  {questions.length
-                    ? `${questions.length} ${questions.length === 1 ? 'Aufgabe' : 'Aufgaben'} · ${solved} schon gelöst`
-                    : 'Auf dieser Stufe noch keine Aufgaben'}
+                  {!unit
+                    ? 'Kostenlos ausprobieren'
+                    : link
+                      ? 'Gemeinsam entdecken und üben'
+                      : questions.length
+                        ? `${questions.length} ${questions.length === 1 ? 'Aufgabe' : 'Aufgaben'} · ${solved} schon gelöst`
+                        : 'Auf dieser Stufe noch keine Aufgaben'}
                 </small>
-                <span className="study-action">Kurze Runde starten →</span>
+                <span className="study-action">
+                  {link || !unit ? 'Öffnen →' : 'Kurze Runde starten →'}
+                </span>
               </button>
             );
           })}
@@ -170,6 +239,7 @@ export default function StudyBrowser({
             disabled={disabled}
             onClick={() => {
               setQuery('');
+              setAreaId('');
               setPage(0);
             }}
           >
@@ -177,15 +247,15 @@ export default function StudyBrowser({
           </button>
         </div>
       )}
-      {(selectedArea || searching) && pageCount > 1 && (
-        <nav className="page-controls" aria-label="Unterthemen-Seiten">
+      {pageCount > 1 && (
+        <nav className="page-controls" aria-label="Themen-Seiten">
           <button
             type="button"
             className="secondary-button"
             disabled={disabled || currentPage === 0}
             onClick={() => turnPage(currentPage - 1)}
           >
-            ← Vorige Unterthemen
+            ← Vorige Themen
           </button>
           <span aria-live="polite">
             Seite {currentPage + 1} von {pageCount}
@@ -196,13 +266,12 @@ export default function StudyBrowser({
             disabled={disabled || currentPage === pageCount - 1}
             onClick={() => turnPage(currentPage + 1)}
           >
-            Weitere Unterthemen →
+            Weitere Themen →
           </button>
         </nav>
       )}
       <p className="sample-note">
-        Wähle frei. Du kannst jederzeit das Thema oder die Stufe wechseln.
-        Quellen und Lernziele findest du bei der Übung.
+        Du kannst jederzeit das Thema oder die Stufe wechseln.
       </p>
     </section>
   );

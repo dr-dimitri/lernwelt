@@ -1,4 +1,11 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it, vi } from 'vitest';
 import MultiplicationPanel from './MultiplicationPanel';
@@ -69,25 +76,29 @@ it('prüft per Enter und führt den Fokus über Rückmeldung zur nächsten Aufga
   expect(
     screen.queryByText('16', { selector: 'strong' }),
   ).not.toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toBeDisabled();
   await user.type(input, '16{Enter}');
   expect(desktop.answerMultiplication).toHaveBeenCalledWith({
     mode: 'tables',
     sequence: 0,
     answer: '16',
   });
-  expect(
-    await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Richtig! +1 Punkt' }),
+    ).toHaveFocus(),
+  );
   expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
     '10 Punkte',
   );
   expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1');
   vi.mocked(desktop.getMultiplicationState).mockResolvedValue(success.state);
   await user.tab();
-  expect(screen.getByRole('button', { name: 'Nächste Aufgabe' })).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Weiter' })).toHaveFocus();
   await user.keyboard('{Enter}');
-  expect(await screen.findByLabelText('Dein Ergebnis')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus(),
+  );
   expect(screen.getByLabelText('Dein Ergebnis')).toHaveValue('');
   expect(screen.getByRole('heading', { name: '6 × 5 = ?' })).toBeVisible();
   expect(desktop.answerMultiplication).toHaveBeenCalledTimes(1);
@@ -111,7 +122,8 @@ it('lässt falsche und aufgedeckte Antworten ohne Punkteabzug weiterbauen', asyn
     '9 Punkte',
   );
   expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1');
-  await user.click(screen.getByRole('button', { name: 'Nächste Aufgabe' }));
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
+  await user.click(await screen.findByRole('button', { name: 'Hilfe' }));
   await user.click(
     await screen.findByRole('button', { name: 'Lösung zeigen' }),
   );
@@ -130,11 +142,9 @@ it('zeigt Rechenbilder nur auf Wunsch und kehrt per Schließen ins Antwortfeld z
   render(<MultiplicationPanel profileVersion={0} />);
   await screen.findByLabelText('Dein Ergebnis');
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-  await user.click(
-    screen.getByRole('button', { name: 'Zeig mir einen Rechentipp' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Tipp' }));
   const dialog = screen.getByRole('dialog', {
-    name: 'Zeig mir einen Rechentipp',
+    name: 'Tipp',
   });
   expect(within(dialog).getByRole('img')).toBeVisible();
   expect(desktop.answerMultiplication).not.toHaveBeenCalled();
@@ -156,17 +166,13 @@ it('erklärt nach einer falschen Antwort auf Wunsch die Teilprodukte und gibt de
   });
   render(<MultiplicationPanel profileVersion={0} />);
   const input = await screen.findByLabelText('Dein Ergebnis');
-  expect(
-    screen.queryByRole('button', { name: 'Rechenweg ansehen' }),
-  ).not.toBeInTheDocument();
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   expect(
     screen.queryByText('6 × 7 = 5 × 7 + 1 × 7 = 35 + 7 = 42'),
   ).not.toBeInTheDocument();
   await user.type(input, '40{Enter}');
-  await user.click(
-    await screen.findByRole('button', { name: 'Rechenweg ansehen' }),
-  );
-  const dialog = screen.getByRole('dialog', { name: 'Rechenweg ansehen' });
+  await user.click(await screen.findByRole('button', { name: 'Hilfe' }));
+  const dialog = screen.getByRole('dialog', { name: 'Hilfe' });
   expect(within(dialog).getByRole('img')).toHaveAccessibleName(
     /Zerlege 6 in 5 und 1/,
   );
@@ -175,9 +181,7 @@ it('erklärt nach einer falschen Antwort auf Wunsch die Teilprodukte und gibt de
   ).toBeVisible();
   expect(desktop.answerMultiplication).toHaveBeenCalledTimes(1);
   await user.click(within(dialog).getByRole('button', { name: 'Schließen' }));
-  expect(
-    screen.getByRole('button', { name: 'Rechenweg ansehen' }),
-  ).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Hilfe' })).toHaveFocus();
 });
 
 it('speichert Reihe, Robotendesign und Farben gemeinsam und zeigt sie nach erneutem Laden', async () => {
@@ -222,7 +226,9 @@ it('speichert Reihe, Robotendesign und Farben gemeinsam und zeigt sie nach erneu
     await screen.findByRole('heading', { name: '5 × 3 = ?' }),
   ).toBeVisible();
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-  expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus(),
+  );
   unmount();
   vi.mocked(desktop.getMultiplicationState).mockResolvedValue(customized);
   render(<MultiplicationPanel profileVersion={0} />);
@@ -313,6 +319,7 @@ it('beendet acht Aufgaben mit einem Bauwerk und setzt erst nach Weiterbauen fort
     },
   });
   render(<MultiplicationPanel profileVersion={0} />);
+  await user.click(await screen.findByRole('button', { name: 'Hilfe' }));
   await user.click(
     await screen.findByRole('button', { name: 'Lösung zeigen' }),
   );
@@ -321,7 +328,7 @@ it('beendet acht Aufgaben mit einem Bauwerk und setzt erst nach Weiterbauen fort
   ).toBeVisible();
   expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '8');
   expect(
-    screen.queryByRole('button', { name: 'Nächste Aufgabe' }),
+    screen.queryByRole('button', { name: 'Weiter' }),
   ).not.toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Pause machen' }));
   expect(
@@ -336,7 +343,9 @@ it('beendet acht Aufgaben mit einem Bauwerk und setzt erst nach Weiterbauen fort
   expect(desktop.configureMultiplication).toHaveBeenCalledWith(
     expect.objectContaining({ expectedRevision: 8, continueStage: true }),
   );
-  expect(await screen.findByLabelText('Dein Ergebnis')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus(),
+  );
   expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '0');
   expect(screen.getByRole('heading', { name: 'Roboter 2' })).toBeVisible();
 });
@@ -379,7 +388,9 @@ it('setzt eine fertige Etappe nach Neustart fort und zeigt den Inselausbau nach 
     await screen.findByRole('heading', { name: 'Inselausbau 1' }),
   ).toBeVisible();
   expect(screen.getByText(/2 Häuser bekommen je 8 Solarmodule/)).toBeVisible();
-  expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus(),
+  );
 });
 
 it('bietet Stolperaufgaben freiwillig an und kehrt nach der Runde zum normalen Üben zurück', async () => {
@@ -417,15 +428,19 @@ it('bietet Stolperaufgaben freiwillig an und kehrt nach der Runde zum normalen �
     ...review,
     task: null,
   });
-  await user.click(screen.getByRole('button', { name: 'Nächste Aufgabe' }));
-  expect(
-    await screen.findByRole('heading', { name: 'Für jetzt geschafft!' }),
-  ).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Für jetzt geschafft!' }),
+    ).toHaveFocus(),
+  );
   await user.click(screen.getByRole('button', { name: 'Normal weiterüben' }));
   expect(desktop.configureMultiplication).toHaveBeenLastCalledWith(
     expect.objectContaining({ review: false }),
   );
-  expect(await screen.findByLabelText('Dein Ergebnis')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus(),
+  );
 });
 
 it('behält den fertigen Roboter bei neuen Einstellungen und nutzt sie erst beim Weiterbauen', async () => {
@@ -474,7 +489,9 @@ it('behält den fertigen Roboter bei neuen Einstellungen und nutzt sie erst beim
   ).not.toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Weiterbauen' }));
   expect(await screen.findByText('Wasserforscher · Beerenlila')).toBeVisible();
-  expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus(),
+  );
 });
 
 it('behält bei Speicherfehler die identische Antwort und sperrt parallele Änderungen', async () => {
@@ -490,7 +507,7 @@ it('behält bei Speicherfehler die identische Antwort und sperrt parallele Ände
     );
   render(<MultiplicationPanel profileVersion={0} />);
   await user.type(await screen.findByLabelText('Dein Ergebnis'), '16');
-  const button = screen.getByRole('button', { name: 'Antwort prüfen' });
+  const button = screen.getByRole('button', { name: 'Prüfen' });
   fireEvent.click(button);
   fireEvent.click(button);
   expect(await screen.findByRole('alert')).toHaveTextContent('Speicherfehler');
@@ -500,16 +517,16 @@ it('behält bei Speicherfehler die identische Antwort und sperrt parallele Ände
     screen.getByRole('button', { name: 'Einmaleins-Insel' }),
   ).toBeDisabled();
   expect(screen.getByRole('button', { name: 'Dein Bauplan' })).toBeDisabled();
-  await user.click(
-    screen.getByRole('button', { name: 'Speichern erneut versuchen' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
   expect(vi.mocked(desktop.answerMultiplication).mock.calls[0]).toEqual(
     vi.mocked(desktop.answerMultiplication).mock.calls[1],
   );
   await act(async () => resolve(success));
-  expect(
-    await screen.findByRole('heading', { name: 'Richtig! +1 Punkt' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Richtig! +1 Punkt' }),
+    ).toHaveFocus(),
+  );
 });
 
 it('zeigt Konfigurationsfehler im offenen Bauplan und wiederholt exakt denselben Request', async () => {
@@ -527,7 +544,7 @@ it('zeigt Konfigurationsfehler im offenen Bauplan und wiederholt exakt denselben
   );
   expect(within(dialog).getByLabelText('Deine Reihe')).toBeDisabled();
   await user.click(
-    within(dialog).getByRole('button', { name: 'Speichern erneut versuchen' }),
+    within(dialog).getByRole('button', { name: 'Erneut versuchen' }),
   );
   expect(vi.mocked(desktop.configureMultiplication).mock.calls[0]).toEqual(
     vi.mocked(desktop.configureMultiplication).mock.calls[1],
@@ -547,13 +564,13 @@ it('führt beim Schließen eines fehlgeschlagenen Bauplans zum sichtbaren Fehler
   await user.click(screen.getByRole('button', { name: 'Schließen' }));
   expect(screen.getByRole('alert')).toHaveFocus();
   expect(screen.getByRole('button', { name: 'Dein Bauplan' })).toBeDisabled();
-  await user.click(
-    screen.getByRole('button', { name: 'Speichern erneut versuchen' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
   expect(vi.mocked(desktop.configureMultiplication).mock.calls[0]).toEqual(
     vi.mocked(desktop.configureMultiplication).mock.calls[1],
   );
-  expect(await screen.findByLabelText('Dein Ergebnis')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus(),
+  );
 });
 
 it('lässt ungültige Eingaben korrigieren und zeigt Profil- und Ladefehler', async () => {
@@ -570,18 +587,20 @@ it('lässt ungültige Eingaben korrigieren und zeigt Profil- und Ladefehler', as
   vi.mocked(desktop.getMultiplicationState).mockRejectedValueOnce(
     new Error('Ladefehler'),
   );
-  await user.click(screen.getByRole('button', { name: 'Nächste Aufgabe' }));
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
   expect(await screen.findByRole('alert')).toHaveTextContent('Ladefehler');
   vi.mocked(desktop.getMultiplicationState).mockResolvedValue({
     ...initial,
     profileReady: false,
     task: null,
   });
-  await user.click(screen.getByRole('button', { name: 'Trainer neu laden' }));
+  await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
   expect(await screen.findByText(/Speichere dein Lernprofil/)).toBeVisible();
-  expect(
-    screen.getByRole('heading', { name: 'Deine Einmaleins-Welten' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Deine Einmaleins-Welten' }),
+    ).toHaveFocus(),
+  );
   expect(screen.queryByLabelText('Dein Ergebnis')).not.toBeInTheDocument();
 });
 
@@ -627,11 +646,14 @@ it('holt nach unklarer Speicherung beim Neuladen den bestätigten Aufgabenstand 
   await user.type(await screen.findByLabelText('Dein Ergebnis'), '16{Enter}');
   await screen.findByRole('alert');
   vi.mocked(desktop.getMultiplicationState).mockResolvedValue(success.state);
-  await user.click(screen.getByRole('button', { name: 'Trainer neu laden' }));
+  await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
+  await user.click(screen.getByRole('button', { name: 'Wechseln' }));
   expect(
     await screen.findByRole('heading', { name: '6 × 5 = ?' }),
   ).toBeVisible();
-  expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus();
+  await waitFor(() =>
+    expect(screen.getByLabelText('Dein Ergebnis')).toHaveFocus(),
+  );
   expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
     '10 Punkte',
   );
@@ -765,4 +787,42 @@ it('startet nach einem Profilwechsel mit der neuen kleineren Sammlung und zeigt 
   expect(within(emptyShelf).queryByRole('list')).not.toBeInTheDocument();
   expect(within(emptyShelf).queryByRole('navigation')).not.toBeInTheDocument();
   expect(desktop.configureMultiplication).not.toHaveBeenCalled();
+});
+
+it('meldet ungesendete Rechenergebnisse und bewahrt sie bei einem abgebrochenen Weltwechsel', async () => {
+  const user = userEvent.setup();
+  const activity = vi.fn();
+  render(
+    <MultiplicationPanel
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  const field = await screen.findByLabelText('Dein Ergebnis');
+  await waitFor(() => expect(field).toHaveFocus());
+  await user.type(field, '16');
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });
+  const island = screen.getByRole('button', { name: 'Einmaleins-Insel' });
+  await user.click(island);
+  expect(screen.getByRole('button', { name: 'Bleiben' })).toHaveFocus();
+  await user.keyboard('{Escape}');
+  expect(island).toHaveFocus();
+  expect(field).toHaveValue('16');
+  expect(desktop.configureMultiplication).not.toHaveBeenCalled();
+});
+
+it('hält andere Fächer erreichbar, solange nur die Modul-Daten geladen werden', () => {
+  vi.mocked(desktop.getMultiplicationState).mockImplementation(
+    () => new Promise(() => {}),
+  );
+  const activity = vi.fn();
+  render(
+    <MultiplicationPanel
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
 });

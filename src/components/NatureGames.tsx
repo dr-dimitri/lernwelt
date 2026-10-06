@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { difficulties, type Difficulty } from '../domain/learning';
 import {
   flowerRounds,
@@ -17,7 +17,10 @@ import {
   ParticlePicture,
 } from './NatureArt';
 import InfoPanel from './InfoPanel';
+import useConfirmChange from './useConfirmChange';
 import '../nature.css';
+
+type ActivityChange = (activity: { dirty: boolean; busy: boolean }) => void;
 
 interface Feedback {
   text: string;
@@ -47,7 +50,15 @@ function DiscoveryTrail({
   );
 }
 
-function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
+function MatchGame({
+  round,
+  flower,
+  onActivityChange,
+}: {
+  round: MatchRound;
+  flower: boolean;
+  onActivityChange?: ActivityChange;
+}) {
   const [selected, setSelected] = useState<string | null>(null);
   const [found, setFound] = useState<string[]>([]);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
@@ -59,6 +70,13 @@ function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
   const foundTargets = round.items
     .filter((item) => found.includes(item.id))
     .map((item) => item.target);
+
+  useEffect(() => {
+    onActivityChange?.({
+      dirty: !!selected || (found.length > 0 && !complete),
+      busy: false,
+    });
+  }, [selected, found.length, complete, onActivityChange]);
 
   useEffect(() => {
     if (!moveFocus.current) return;
@@ -216,7 +234,7 @@ function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
       )}
       <div className="nature-round-actions">
         <InfoPanel>
-          <summary>Forscher-Tipp</summary>
+          <summary>Tipp</summary>
           <p className="nature-hint">{round.hint}</p>
         </InfoPanel>
         <button type="button" className="secondary-button" onClick={reset}>
@@ -227,7 +245,13 @@ function MatchGame({ round, flower }: { round: MatchRound; flower: boolean }) {
   );
 }
 
-function MeadowGame({ difficulty }: { difficulty: Difficulty }) {
+function MeadowGame({
+  difficulty,
+  onActivityChange,
+}: {
+  difficulty: Difficulty;
+  onActivityChange?: ActivityChange;
+}) {
   const round = meadowRound(difficulty);
   const [food, setFood] = useState<MeadowAnimal | null>(null);
   const [links, setLinks] = useState<[MeadowAnimal, MeadowAnimal][]>([]);
@@ -236,6 +260,13 @@ function MeadowGame({ difficulty }: { difficulty: Difficulty }) {
   const completionHeading = useRef<HTMLHeadingElement>(null);
   const moveFocus = useRef(false);
   const complete = links.length === round.links.length;
+
+  useEffect(() => {
+    onActivityChange?.({
+      dirty: !!food || (links.length > 0 && !complete),
+      busy: false,
+    });
+  }, [food, links.length, complete, onActivityChange]);
 
   useEffect(() => {
     if (!moveFocus.current) return;
@@ -393,7 +424,7 @@ function MeadowGame({ difficulty }: { difficulty: Difficulty }) {
       )}
       <div className="nature-round-actions">
         <InfoPanel>
-          <summary>Forscher-Tipp</summary>
+          <summary>Tipp</summary>
           <p className="nature-hint">{round.hint}</p>
         </InfoPanel>
         <button type="button" className="secondary-button" onClick={reset}>
@@ -404,8 +435,23 @@ function MeadowGame({ difficulty }: { difficulty: Difficulty }) {
   );
 }
 
-function NatureGamesSession({ difficulty }: { difficulty: Difficulty }) {
+function NatureGamesSession({
+  difficulty,
+  onActivityChange,
+}: {
+  difficulty: Difficulty;
+  onActivityChange?: ActivityChange;
+}) {
   const [active, setActive] = useState<NatureGameId>('matter');
+  const [dirty, setDirty] = useState(false);
+  const { requestChange, confirmation } = useConfirmChange(dirty);
+  const handleActivity = useCallback(
+    (activity: { dirty: boolean; busy: boolean }) => {
+      setDirty(activity.dirty);
+      onActivityChange?.(activity);
+    },
+    [onActivityChange],
+  );
   const headingId = useId();
   const name = natureGames.find((game) => game.id === active)!.name;
   return (
@@ -433,7 +479,9 @@ function NatureGamesSession({ difficulty }: { difficulty: Difficulty }) {
               key={game.id}
               aria-label={game.name}
               aria-pressed={active === game.id}
-              onClick={() => setActive(game.id)}
+              onClick={() => {
+                if (game.id !== active) requestChange(() => setActive(game.id));
+              }}
             >
               <span className="nature-game-symbol" aria-hidden="true">
                 {game.symbol}
@@ -447,7 +495,10 @@ function NatureGamesSession({ difficulty }: { difficulty: Difficulty }) {
         </div>
         <section aria-label={name} key={`${active}-${difficulty}`}>
           {active === 'meadow' ? (
-            <MeadowGame difficulty={difficulty} />
+            <MeadowGame
+              difficulty={difficulty}
+              onActivityChange={handleActivity}
+            />
           ) : (
             <MatchGame
               round={
@@ -456,9 +507,11 @@ function NatureGamesSession({ difficulty }: { difficulty: Difficulty }) {
                   : flowerRounds[difficulty]
               }
               flower={active === 'flower'}
+              onActivityChange={handleActivity}
             />
           )}
         </section>
+        {confirmation}
         <p className="nature-session-note">
           Freies Erkunden ohne Zeitlimit und ohne Lernpunkte. Beim Spiel- oder
           Stufenwechsel beginnt eine neue Runde. Beim Verlassen wird die Runde
@@ -471,8 +524,16 @@ function NatureGamesSession({ difficulty }: { difficulty: Difficulty }) {
 
 export default function NatureGames({
   difficulty,
+  onActivityChange,
 }: {
   difficulty: Difficulty;
+  onActivityChange?: ActivityChange;
 }) {
-  return <NatureGamesSession difficulty={difficulty} key={difficulty} />;
+  return (
+    <NatureGamesSession
+      difficulty={difficulty}
+      onActivityChange={onActivityChange}
+      key={difficulty}
+    />
+  );
 }

@@ -27,6 +27,8 @@ vi.mock('../lib/desktop', () => ({
     startMission: vi.fn(),
     actMission: vi.fn(),
     setDifficulty: vi.fn(),
+    getProfile: vi.fn(),
+    saveProfile: vi.fn(),
   },
 }));
 beforeEach(() => {
@@ -67,7 +69,7 @@ it('führt durch alle fünf Schritte mit Rückmeldung, Begründungswahl, Selbstc
     await screen.findByRole('button', { name: 'Lernrunde starten' }),
   );
   const field = await screen.findByLabelText('Deine Antwort in m');
-  expect(field).toHaveFocus();
+  await waitFor(() => expect(field).toHaveFocus());
   expect(screen.getByRole('img')).toHaveAccessibleName(
     /zwei Seiten mit Länge 7 m/,
   );
@@ -75,34 +77,38 @@ it('führt durch alle fünf Schritte mit Rückmeldung, Begründungswahl, Selbstc
     screen.queryByText(missionCorrect.explanation),
   ).not.toBeInTheDocument();
   await user.keyboard('22{Enter}');
-  expect(
-    await screen.findByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+    ).toHaveFocus(),
+  );
   expect(screen.getByText('+2 Lernpunkte')).toBeVisible();
   expect(screen.getByLabelText('Verfügbare Lernpunkte')).toHaveTextContent(
     '10 Punkte',
   );
   await user.tab();
-  expect(
-    screen.getByRole('button', { name: 'Nächster Schritt' }),
-  ).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Weiter' })).toHaveFocus();
   await user.keyboard('{Enter}');
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Einmal außen herum' }),
+    ).toHaveFocus(),
+  );
   expect(
-    await screen.findByRole('heading', { name: 'Einmal außen herum' }),
-  ).toHaveFocus();
-  expect(
-    screen.queryByRole('button', { name: 'Antwort prüfen' }),
+    screen.queryByRole('button', { name: 'Prüfen' }),
   ).not.toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: 'Nächster Schritt' }));
-  expect(await screen.findByLabelText('Deine Antwort in m')).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
+  await waitFor(() =>
+    expect(screen.getByLabelText('Deine Antwort in m')).toHaveFocus(),
+  );
   await user.keyboard('28{Enter}');
   await screen.findByText('9 + 5 + 9 + 5 = 28 m.');
-  await user.click(screen.getByRole('button', { name: 'Nächster Schritt' }));
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
   const options = await screen.findAllByRole('radio');
-  expect(options[0]).toHaveFocus();
+  await waitFor(() => expect(options[0]).toHaveFocus());
   await user.keyboard('{ArrowDown}');
   expect(options[1]).toBeChecked();
-  await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+  await user.click(screen.getByRole('button', { name: 'Prüfen' }));
   expect(desktop.actMission).toHaveBeenLastCalledWith(
     expect.objectContaining({
       action: 'answer',
@@ -111,26 +117,32 @@ it('führt durch alle fünf Schritte mit Rückmeldung, Begründungswahl, Selbstc
     }),
   );
   await screen.findByText('24 m² ist die Fläche. Der Rand ist 22 m lang.');
-  await user.click(screen.getByRole('button', { name: 'Nächster Schritt' }));
-  expect(
-    await screen.findByRole('heading', { name: 'Dein eigener Rand' }),
-  ).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Dein eigener Rand' }),
+    ).toHaveFocus(),
+  );
   expect(
     screen.getByText('Miss die Länge und Breite der Vorderseite in cm.'),
   ).toBeVisible();
   await user.click(
     screen.getByRole('button', { name: 'Selbstkontrolle ansehen' }),
   );
-  expect(
-    await screen.findByRole('heading', { name: 'Deine Selbstkontrolle' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Deine Selbstkontrolle' }),
+    ).toHaveFocus(),
+  );
   expect(screen.queryByText('+2 Lernpunkte')).not.toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Runde abschließen' }));
-  expect(
-    await screen.findByRole('heading', {
-      name: 'Deine Lernrunde ist geschafft!',
-    }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', {
+        name: 'Deine Lernrunde ist geschafft!',
+      }),
+    ).toHaveFocus(),
+  );
   expect(screen.getByText(/Deine nächste Wiederholung wartet/)).toBeVisible();
   const album = screen.getByRole('list', {
     name: 'Dein Themenalbum auf dieser Stufe',
@@ -158,28 +170,27 @@ it('zeigt Tipp und Lösung erst nach Bestätigung, führt den Fokus zur Hilfe un
       }),
     );
   render(<MissionPanel profileVersion={0} />);
-  await user.click(
-    await screen.findByRole('button', { name: 'Gib mir einen Tipp' }),
-  );
+  await user.click(await screen.findByRole('button', { name: 'Tipp' }));
   expect(await screen.findByRole('status')).toHaveTextContent(
     'zwei lange und zwei kurze Seiten',
   );
-  expect(screen.getByRole('status')).toHaveFocus();
+  await waitFor(() => expect(screen.getByRole('status')).toHaveFocus());
   expect(desktop.actMission).toHaveBeenLastCalledWith(
     expect.objectContaining({ action: 'hint', answer: null }),
   );
   expect(
     screen.queryByText(missionCorrect.explanation),
   ).not.toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Hilfe' }));
   await user.click(screen.getByRole('button', { name: 'Lösung ansehen' }));
   expect(await screen.findByText(missionCorrect.explanation)).toBeVisible();
-  expect(
-    screen.getByRole('heading', { name: 'Schauen wir uns den Weg an' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Schauen wir uns den Weg an' }),
+    ).toHaveFocus(),
+  );
   expect(screen.queryByText(/\+2 Lernpunkte/)).not.toBeInTheDocument();
-  expect(
-    screen.getByRole('button', { name: 'Nächster Schritt' }),
-  ).toBeEnabled();
+  expect(screen.getByRole('button', { name: 'Weiter' })).toBeEnabled();
 });
 
 it('behält nach Speicherfehler dieselbe Request-ID und Antwort und sperrt Änderungen bis zum Retry', async () => {
@@ -196,7 +207,7 @@ it('behält nach Speicherfehler dieselbe Request-ID und Antwort und sperrt Ände
     );
   render(<MissionPanel profileVersion={0} />);
   await user.type(await screen.findByLabelText('Deine Antwort in m'), '22');
-  const check = screen.getByRole('button', { name: 'Antwort prüfen' });
+  const check = screen.getByRole('button', { name: 'Prüfen' });
   fireEvent.click(check);
   fireEvent.click(check);
   expect(await screen.findByRole('alert')).toHaveTextContent('Transportfehler');
@@ -204,16 +215,16 @@ it('behält nach Speicherfehler dieselbe Request-ID und Antwort und sperrt Ände
   expect(screen.getByLabelText('Deine Antwort in m')).toBeDisabled();
   expect(screen.getByLabelText('Deine Antwort in m')).toHaveValue('22');
   expect(screen.getByRole('button', { name: /Vorschule/ })).toBeDisabled();
-  await user.click(
-    screen.getByRole('button', { name: 'Speichern erneut versuchen' }),
-  );
+  await user.click(screen.getByRole('button', { name: 'Erneut versuchen' }));
   expect(vi.mocked(desktop.actMission).mock.calls[0]).toEqual(
     vi.mocked(desktop.actMission).mock.calls[1],
   );
   await act(async () => save(missionAt(0, missionCorrect)));
-  expect(
-    await screen.findByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+    ).toHaveFocus(),
+  );
 });
 
 it('wechselt frei die Stufe, lädt deren bestätigte Runde und verrät unbekannte Längen nicht', async () => {
@@ -232,6 +243,7 @@ it('wechselt frei die Stufe, lädt deren bestätigte Runde und verrät unbekannt
   render(<MissionPanel profileVersion={0} />);
   await user.type(await screen.findByLabelText('Deine Antwort in m'), 'alte');
   await user.click(screen.getByRole('button', { name: /Streber/ }));
+  await user.click(screen.getByRole('button', { name: 'Wechseln' }));
   expect(
     await screen.findByRole('heading', { name: 'Dein eigener Zaun' }),
   ).toBeVisible();
@@ -268,7 +280,7 @@ it('nimmt gespeicherte Rückmeldung wieder auf ohne den anfänglichen Seitenfoku
   expect(heading).toHaveFocus();
   expect(screen.getByText(missionCorrect.explanation)).toBeVisible();
   expect(desktop.startMission).not.toHaveBeenCalled();
-  await user.click(screen.getByRole('button', { name: 'Nächster Schritt' }));
+  await user.click(screen.getByRole('button', { name: 'Weiter' }));
   expect(desktop.actMission).toHaveBeenCalledWith(
     expect.objectContaining({
       sessionId: missionActive.session!.id,
@@ -276,7 +288,7 @@ it('nimmt gespeicherte Rückmeldung wieder auf ohne den anfänglichen Seitenfoku
       action: 'next',
     }),
   );
-  expect((await screen.findAllByRole('radio'))[0]).toHaveFocus();
+  await waitFor(() => expect(screen.getAllByRole('radio')[0]).toHaveFocus());
 });
 
 it('überspringt die optionale Mitmachaufgabe ohne Antwort oder Selbstbewertung', async () => {
@@ -290,11 +302,13 @@ it('überspringt die optionale Mitmachaufgabe ohne Antwort oder Selbstbewertung'
   expect(desktop.actMission).toHaveBeenCalledWith(
     expect.objectContaining({ action: 'skip', answer: null, stepIndex: 4 }),
   );
-  expect(
-    await screen.findByRole('heading', {
-      name: 'Deine Lernrunde ist geschafft!',
-    }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', {
+        name: 'Deine Lernrunde ist geschafft!',
+      }),
+    ).toHaveFocus(),
+  );
 });
 
 it('erlaubt Eingabekorrektur ohne Request und verliert beim Tippen oder Rerender keinen Fokus', async () => {
@@ -313,7 +327,7 @@ it('erlaubt Eingabekorrektur ohne Request und verliert beim Tippen oder Rerender
   expect(field).toHaveValue('22');
   await user.tab();
   rerender(<MissionPanel profileVersion={0} />);
-  expect(screen.getByRole('button', { name: 'Antwort prüfen' })).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Prüfen' })).toHaveFocus();
   await user.keyboard('{Enter}');
   expect(await screen.findByText(missionCorrect.explanation)).toBeVisible();
 });
@@ -331,7 +345,7 @@ it.each(['22\t', '2\u000b2', '22\u007f', '22\u0085', '22\u009f'])(
     await user.click(field);
     await user.paste(pasted);
     expect(field).toHaveValue(pasted);
-    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }));
+    await user.click(screen.getByRole('button', { name: 'Prüfen' }));
 
     expect(desktop.actMission).not.toHaveBeenCalled();
     expect(screen.getByRole('alert')).toHaveTextContent(
@@ -341,20 +355,20 @@ it.each(['22\t', '2\u000b2', '22\u007f', '22\u0085', '22\u009f'])(
     expect(field).toHaveFocus();
     expect(field).toHaveValue(pasted);
     expect(
-      screen.queryByRole('button', { name: 'Speichern erneut versuchen' }),
+      screen.queryByRole('button', { name: 'Erneut versuchen' }),
     ).not.toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: 'Lösung ansehen' }),
-    ).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Hilfe' })).toBeEnabled();
 
     await user.clear(field);
     await user.type(field, '22{Enter}');
     expect(desktop.actMission).toHaveBeenCalledExactlyOnceWith(
       expect.objectContaining({ answer: '22', action: 'answer' }),
     );
-    expect(
-      await screen.findByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
-    ).toHaveFocus();
+    await waitFor(() =>
+      expect(
+        screen.getByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+      ).toHaveFocus(),
+    );
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   },
 );
@@ -426,8 +440,10 @@ it('holt nach Lade- oder Speicherfehler den bestätigten Zustand erneut', async 
   );
   render(<MissionPanel profileVersion={0} />);
   expect(await screen.findByRole('alert')).toHaveTextContent('Ladefehler');
-  await user.click(screen.getByRole('button', { name: 'Runde neu laden' }));
-  expect(await screen.findByLabelText('Deine Antwort in m')).toHaveFocus();
+  await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
+  await waitFor(() =>
+    expect(screen.getByLabelText('Deine Antwort in m')).toHaveFocus(),
+  );
   await user.keyboard('22{Enter}');
   expect(await screen.findByRole('alert')).toHaveTextContent(
     'Antwort verloren',
@@ -435,11 +451,14 @@ it('holt nach Lade- oder Speicherfehler den bestätigten Zustand erneut', async 
   vi.mocked(desktop.getMissionState).mockResolvedValue(
     missionAt(0, missionCorrect),
   );
-  await user.click(screen.getByRole('button', { name: 'Runde neu laden' }));
+  await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
+  await user.click(screen.getByRole('button', { name: 'Wechseln' }));
   expect(await screen.findByText(missionCorrect.explanation)).toBeVisible();
-  expect(
-    screen.getByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', { name: 'Das stimmt – gut gelöst!' }),
+    ).toHaveFocus(),
+  );
   expect(desktop.actMission).toHaveBeenCalledTimes(1);
   await waitFor(() =>
     expect(screen.queryByRole('alert')).not.toBeInTheDocument(),
@@ -452,14 +471,14 @@ it('fokussiert nach ausdrücklich erneutem Laden den gespeicherten Abschluss', a
     .mockRejectedValueOnce(new Error('Ladefehler'))
     .mockResolvedValue(missionCompleted);
   render(<MissionPanel profileVersion={0} />);
-  await user.click(
-    await screen.findByRole('button', { name: 'Runde neu laden' }),
+  await user.click(await screen.findByRole('button', { name: 'Erneut laden' }));
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', {
+        name: 'Deine Lernrunde ist geschafft!',
+      }),
+    ).toHaveFocus(),
   );
-  expect(
-    await screen.findByRole('heading', {
-      name: 'Deine Lernrunde ist geschafft!',
-    }),
-  ).toHaveFocus();
 });
 
 it('belässt den Seitenfokus beim ersten Laden und bei Profilaktualisierung', async () => {
@@ -538,7 +557,7 @@ it('ignoriert eine verspätete Themenantwort und kann das neue Thema nach Ladefe
   expect(
     screen.queryByRole('heading', { name: englishMissionMetadata.title }),
   ).not.toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: 'Runde neu laden' }));
+  await user.click(screen.getByRole('button', { name: 'Erneut laden' }));
   expect(
     await screen.findByRole('heading', { name: natureMissionMetadata.title }),
   ).toBeVisible();
@@ -563,11 +582,13 @@ it('schließt die Naturmission mit passendem Titel und fachneutraler Rückmeldun
   await user.click(
     await screen.findByRole('button', { name: 'Heute überspringen' }),
   );
-  expect(
-    await screen.findByRole('heading', {
-      name: 'Deine Lernrunde ist geschafft!',
-    }),
-  ).toHaveFocus();
+  await waitFor(() =>
+    expect(
+      screen.getByRole('heading', {
+        name: 'Deine Lernrunde ist geschafft!',
+      }),
+    ).toHaveFocus(),
+  );
   expect(
     screen.getByRole('heading', { name: natureMissionMetadata.title }),
   ).toBeVisible();
@@ -575,4 +596,89 @@ it('schließt die Naturmission mit passendem Titel und fachneutraler Rückmeldun
     screen.getByText(/Du hast das Thema auf verschiedenen Wegen entdeckt/),
   ).toBeVisible();
   expect(screen.queryByText(/Du hast den Rand/)).not.toBeInTheDocument();
+});
+
+it('öffnet die direkte Lernrunde am Antwortfeld und meldet nur ungesendete Eingaben als Entwurf', async () => {
+  const user = userEvent.setup();
+  const activity = vi.fn();
+  vi.mocked(desktop.getMissionState).mockResolvedValue(missionActive);
+  vi.mocked(desktop.actMission).mockResolvedValue(missionAt(0, missionCorrect));
+  render(
+    <MissionPanel
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  const field = await screen.findByLabelText('Deine Antwort in m');
+  await waitFor(() => expect(field).toHaveFocus());
+  expect(
+    screen.queryByLabelText('Schwierigkeitsgrad für alle Fächer'),
+  ).not.toBeInTheDocument();
+  await user.type(field, '22');
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });
+  await user.type(field, '{Enter}');
+  expect(await screen.findByText(missionCorrect.explanation)).toBeVisible();
+  expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+});
+
+it('führt den Spitznamen-Schritt im gewählten Missionsziel aus und erhält Name sowie Ziel nach einem Profilfehler', async () => {
+  const user = userEvent.setup();
+  const activity = vi.fn();
+  const saved = vi.fn();
+  vi.mocked(desktop.getMissionState)
+    .mockResolvedValueOnce({ ...missionActive, profileReady: false })
+    .mockResolvedValue(missionActive);
+  vi.mocked(desktop.getProfile).mockResolvedValue(null);
+  vi.mocked(desktop.saveProfile)
+    .mockRejectedValueOnce(new Error('Profil konnte nicht gespeichert werden'))
+    .mockResolvedValue({ displayName: 'Nova', grade: 5 });
+  render(
+    <MissionPanel
+      profileVersion={0}
+      topicId="math-perimeter-garden"
+      externalControls
+      onActivityChange={activity}
+      onProfileSaved={saved}
+    />,
+  );
+  const field = await screen.findByRole('textbox', {
+    name: 'Name oder Spitzname',
+  });
+  await user.type(field, 'Nova');
+  expect(activity).toHaveBeenLastCalledWith({ dirty: true, busy: false });
+  await user.click(screen.getByRole('button', { name: 'Speichern' }));
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Profil konnte nicht gespeichert werden',
+  );
+  expect(field).toHaveValue('Nova');
+  expect(
+    screen.getByRole('heading', { name: missionActive.metadata.title }),
+  ).toBeVisible();
+  expect(saved).not.toHaveBeenCalled();
+  await user.click(screen.getByRole('button', { name: 'Speichern' }));
+  await waitFor(() =>
+    expect(screen.getByLabelText('Deine Antwort in m')).toHaveFocus(),
+  );
+  expect(saved).toHaveBeenCalledOnce();
+  expect(desktop.getMissionState).toHaveBeenLastCalledWith(
+    'math-perimeter-garden',
+  );
+  expect(desktop.startMission).not.toHaveBeenCalled();
+});
+
+it('hält andere Fächer erreichbar, solange nur die Modul-Daten geladen werden', () => {
+  vi.mocked(desktop.getMissionState).mockImplementation(
+    () => new Promise(() => {}),
+  );
+  const activity = vi.fn();
+  render(
+    <MissionPanel
+      profileVersion={0}
+      externalControls
+      onActivityChange={activity}
+    />,
+  );
+  expect(activity).toHaveBeenLastCalledWith({ dirty: false, busy: false });
 });

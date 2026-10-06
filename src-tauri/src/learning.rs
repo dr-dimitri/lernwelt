@@ -74,6 +74,7 @@ pub struct Wallet {
     pub balance: i64,
     pub total_earned: i64,
     pub rewards: Vec<Reward>,
+    pub achievements: crate::achievements::AchievementProgress,
 }
 
 #[derive(Serialize)]
@@ -112,9 +113,12 @@ fn has_entry(connection: &Connection, kind: &str, item_id: &str) -> Result<bool,
 }
 
 pub fn wallet(connection: &Connection) -> Result<Wallet, String> {
-    let (balance, total_earned) = connection.query_row(
-        "SELECT COALESCE(SUM(amount), 0), COALESCE(SUM(CASE WHEN amount > 0 THEN amount ELSE 0 END), 0) FROM point_entries WHERE profile_id = 1",
-        [], |row| Ok((row.get(0)?, row.get(1)?)),
+    let (balance, total_earned, completed_tasks) = connection.query_row(
+        "SELECT COALESCE(SUM(amount), 0),
+                COALESCE(SUM(CASE WHEN amount > 0 THEN amount ELSE 0 END), 0),
+                COUNT(CASE WHEN amount > 0 AND kind IN ('answer', 'vocabulary', 'multiplication') THEN 1 END)
+         FROM point_entries WHERE profile_id = 1",
+        [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
     ).map_err(db_error)?;
     let rewards = REWARDS
         .iter()
@@ -132,6 +136,7 @@ pub fn wallet(connection: &Connection) -> Result<Wallet, String> {
         balance,
         total_earned,
         rewards,
+        achievements: crate::achievements::progress(total_earned, completed_tasks)?,
     })
 }
 

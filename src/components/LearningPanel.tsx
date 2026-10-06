@@ -1,4 +1,5 @@
 import VocabularyAudio from './VocabularyAudio';
+import ProfilePanel from './ProfilePanel';
 import StudyBrowser from './StudyBrowser';
 import {
   studyRound,
@@ -17,6 +18,7 @@ import { FlowerPicture, ParticlePicture } from './NatureArt';
 import {
   useEffect,
   useLayoutEffect,
+  useId,
   useRef,
   useState,
   type SubmitEvent,
@@ -34,13 +36,31 @@ export default function LearningPanel({
   subject,
   profileVersion,
   onSupplement,
+  onNatureGames,
+  active = true,
+  externalControls = false,
+  catalogRequest = 0,
+  onActivityChange,
+  onProfileSaved,
 }: {
   subject: SubjectId;
   profileVersion: number;
   onSupplement?: (link: StudySupplement) => void;
+  onNatureGames?: () => void;
+  active?: boolean;
+  externalControls?: boolean;
+  catalogRequest?: number;
+  onActivityChange?: (activity: { dirty: boolean; busy: boolean }) => void;
+  onProfileSaved?: () => void;
 }) {
+  const instanceId = useId();
+  const [navigation, setNavigation] = useState<(() => void) | null>(null);
+  const navigationDialog = useRef<HTMLDialogElement>(null);
+  const navigationSource = useRef<HTMLElement | null>(null);
+  const seenCatalogRequest = useRef(catalogRequest);
   const [state, setState] = useState<LearningState | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
@@ -57,6 +77,10 @@ export default function LearningPanel({
   );
   const playingNature = subject === 'nature' && natureMode === 'games';
 
+  const [childActivity, setChildActivity] = useState({
+    dirty: false,
+    busy: false,
+  });
   const [answer, setAnswer] = useState('');
   const [result, setResult] = useState<{
     questionId: string;
@@ -75,32 +99,40 @@ export default function LearningPanel({
   const [reload, setReload] = useState(0);
 
   useEffect(() => {
-    let active = true;
+    if (!active) {
+      // Reactivation begins with disabled cards until the fresh read settles.
+      setLoading(true);
+      return;
+    }
+    let current = true;
     const version = ++revision.current;
     setLoading(true);
+    setLoadFailed(false);
     desktop
       .getLearningState()
       .then((value) => {
-        if (active && revision.current === version) {
+        if (current && revision.current === version) {
           setState(value);
           setError('');
         }
       })
       .catch((reason: unknown) => {
-        if (active && revision.current === version)
+        if (current && revision.current === version) {
+          setLoadFailed(true);
           setError(
             reason instanceof Error
               ? reason.message
               : 'Deine Punkte konnten nicht geladen werden.',
           );
+        }
       })
       .finally(() => {
-        if (active && revision.current === version) setLoading(false);
+        if (current && revision.current === version) setLoading(false);
       });
     return () => {
-      active = false;
+      current = false;
     };
-  }, [profileVersion, reload]);
+  }, [profileVersion, reload, active]);
 
   useEffect(() => {
     setRomanRandom(false);
@@ -111,6 +143,7 @@ export default function LearningPanel({
     setAnswer('');
     setResult(null);
     setNotice('');
+    pending.current = null;
   }, [subject]);
 
   useEffect(() => {
@@ -122,6 +155,12 @@ export default function LearningPanel({
     (item) => item.id === studyUnitId && item.subject === subject,
   );
   const browsing = !!state?.studyCatalog && !studyUnit && !playingNature;
+  const needsProfile =
+    externalControls &&
+    !!state &&
+    !state.profileReady &&
+    !browsing &&
+    !playingNature;
   const regularPractice = !romanRandom && !playingNature && !browsing;
   const bank = state && studyUnit ? unitQuestions(state, studyUnit) : [];
   const legacyTopic = topics.find((item) => item.id === topicId) ?? topics[0];
@@ -147,9 +186,39 @@ export default function LearningPanel({
     setAnswer('');
     setResult(null);
     setNotice('');
+    pending.current = null;
   }, [question?.id]);
 
+  useEffect(() => {
+    if (!active && externalControls) {
+      setAnswer('');
+      setResult(null);
+      pending.current = null;
+    }
+  }, [active, externalControls]);
+
+  function requestNavigation(action: () => void) {
+    if (busy || loading || childActivity.busy) return;
+    if (
+      externalControls &&
+      (childActivity.dirty || pending.current || (answer.trim() && !result))
+    ) {
+      navigationSource.current = document.activeElement as HTMLElement;
+      setNavigation(() => action);
+      return;
+    }
+    action();
+  }
+
+  useEffect(() => {
+    if (navigation) {
+      navigationDialog.current?.showModal();
+      navigationDialog.current?.querySelector('button')?.focus();
+    } else if (navigationDialog.current?.open) navigationDialog.current.close();
+  }, [navigation]);
+
   function selectQuestion(id: string) {
+    pending.current = null;
     setQuestionId(id);
     setAnswer('');
     setResult(null);
@@ -172,11 +241,11 @@ export default function LearningPanel({
   }, [state?.difficulty, studyUnit?.id, roundIds, bank]);
 
   useLayoutEffect(() => {
-    if (focusPractice.current) {
+    if (focusPractice.current && active && !needsProfile) {
       focusPractice.current = false;
       practiceRef.current?.focus();
     }
-  }, [roundIds, roundFinished]);
+  }, [roundIds, roundFinished, active, needsProfile]);
 
   function startUnit(unit: StudyUnit, offset = 0) {
     setRomanRandom(false);
@@ -202,6 +271,13 @@ export default function LearningPanel({
       selectQuestion(questions[(questionIndex + 1) % questions.length].id);
     }
   }
+
+  useEffect(() => {
+    if (seenCatalogRequest.current !== catalogRequest) {
+      seenCatalogRequest.current = catalogRequest;
+      returnToTopics();
+    }
+  }, [catalogRequest]);
 
   function returnToTopics() {
     setRomanRandom(false);
@@ -243,7 +319,40 @@ export default function LearningPanel({
       setBusy(false);
     }
   }
-  const enabled = !!state?.profileReady && !busy && !loading;
+  const enabled =
+    !!state?.profileReady && active && !busy && !loading && !loadFailed;
+  const inputEnabled = enabled && !(pending.current && error);
+  const submitLabel = busy
+    ? externalControls
+      ? 'Wird gespeichert …'
+      : 'Bitte warten …'
+    : externalControls && pending.current && error
+      ? 'Erneut versuchen'
+      : externalControls
+        ? 'Prüfen'
+        : 'Antwort prüfen';
+  useEffect(() => {
+    if (active && !needsProfile)
+      onActivityChange?.({
+        dirty:
+          romanRandom || playingNature
+            ? childActivity.dirty
+            : !!pending.current || (!!answer.trim() && !result),
+        busy: busy || ((romanRandom || playingNature) && childActivity.busy),
+      });
+  }, [
+    active,
+    needsProfile,
+    childActivity,
+    romanRandom,
+    playingNature,
+    answer,
+    result,
+    busy,
+    loading,
+    error,
+    onActivityChange,
+  ]);
   const visibleResult =
     result && result.questionId === question?.id ? result.answer : null;
 
@@ -328,34 +437,56 @@ export default function LearningPanel({
 
   return (
     <section
-      className="detail-panel learning-panel"
-      aria-labelledby="learning-title"
+      className={`detail-panel learning-panel ${externalControls ? 'compact-learning-panel' : ''}`}
+      aria-labelledby={`${instanceId}-learning-title`}
+      hidden={!active}
+      data-mode={
+        needsProfile
+          ? 'profile'
+          : browsing
+            ? 'catalog'
+            : roundFinished
+              ? 'complete'
+              : 'practice'
+      }
     >
-      <div className="section-heading">
-        <div>
-          <p className="eyebrow">LERNEN LOHNT SICH</p>
-          <h2 id="learning-title">
-            {subject === 'nature'
-              ? 'Dein Forscherabenteuer'
-              : 'Dein Lernabenteuer'}
-          </h2>
+      {!externalControls && (
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">LERNEN LOHNT SICH</p>
+            <h2 id={`${instanceId}-learning-title`}>
+              {subject === 'nature'
+                ? 'Dein Forscherabenteuer'
+                : 'Dein Lernabenteuer'}
+            </h2>
+          </div>
+          <div className="points-balance" aria-label="Verfügbare Punkte">
+            {loading
+              ? '…'
+              : state
+                ? `${state.wallet.balance} ${state.wallet.balance === 1 ? 'Punkt' : 'Punkte'}`
+                : 'Nicht verfügbar'}
+          </div>
         </div>
-        <div className="points-balance" aria-label="Verfügbare Punkte">
-          {loading
-            ? '…'
+      )}
+      {externalControls && (
+        <h2
+          id={`${instanceId}-learning-title`}
+          className="learning-subject-title"
+        >
+          {subjects.find((item) => item.id === subject)?.name}
+        </h2>
+      )}
+      {!externalControls && (
+        <p className="points-explainer">
+          {playingNature
+            ? 'Ausprobieren, entdecken und noch einmal spielen. '
             : state
-              ? `${state.wallet.balance} ${state.wallet.balance === 1 ? 'Punkt' : 'Punkte'}`
-              : 'Nicht verfügbar'}
-        </div>
-      </div>
-      <p className="points-explainer">
-        {playingNature
-          ? 'Ausprobieren, entdecken und noch einmal spielen. '
-          : state
-            ? `Eine neue Aufgabe gelöst? +${state.pointsByDifficulty[state.difficulty]} ${state.pointsByDifficulty[state.difficulty] === 1 ? 'Punkt' : 'Punkte'}! `
-            : 'Löse neue Aufgaben und sammle Punkte. '}
-        Du darfst so oft probieren, wie du magst. Fehler kosten nichts.
-      </p>
+              ? `Eine neue Aufgabe gelöst? +${state.pointsByDifficulty[state.difficulty]} ${state.pointsByDifficulty[state.difficulty] === 1 ? 'Punkt' : 'Punkte'}! `
+              : 'Löse neue Aufgaben und sammle Punkte. '}
+          Du darfst so oft probieren, wie du magst. Fehler kosten nichts.
+        </p>
+      )}
       {loading && <p role="status">Dein Punktekonto wird geladen …</p>}
       {error && !rewardsOpen && (
         <div role="alert">
@@ -363,19 +494,24 @@ export default function LearningPanel({
           <button
             className="secondary-button"
             disabled={busy || loading}
-            onClick={() => setReload((value) => value + 1)}
+            onClick={() =>
+              requestNavigation(() => {
+                pending.current = null;
+                setReload((value) => value + 1);
+              })
+            }
           >
-            Punktekonto neu laden
+            {externalControls ? 'Erneut laden' : 'Punktekonto neu laden'}
           </button>
         </div>
       )}
-      {state && !state.profileReady && (
+      {state && !state.profileReady && !externalControls && (
         <p>
           Speichere dein Lernprofil über „Dein Profil“ oben, um Punkte zu
           sammeln.
         </p>
       )}
-      {state && subject === 'nature' && (
+      {state && subject === 'nature' && !externalControls && (
         <div className="nature-mode" role="group" aria-label="Dein Forscherweg">
           <button
             className="secondary-button"
@@ -395,47 +531,62 @@ export default function LearningPanel({
           </button>
         </div>
       )}
-      <div className="learning-workspace">
+      {needsProfile && (
+        <div className="learning-profile-step">
+          <h3>{studyUnit?.name ?? topic?.name}</h3>
+          <ProfilePanel
+            compact
+            onSaved={onProfileSaved}
+            onActivityChange={onActivityChange}
+          />
+        </div>
+      )}
+      <div className="learning-workspace" hidden={needsProfile}>
         {state && (
           <>
-            <div className="learning-settings">
-              <div className="level-section">
-                <h3>Wie möchtest du heute üben?</h3>
-                <div
-                  className="level-grid"
-                  aria-label="Schwierigkeitsgrad für alle Fächer"
-                >
-                  {difficulties.map((level) => (
-                    <button
-                      key={level.id}
-                      className="level-card"
-                      aria-pressed={state.difficulty === level.id}
-                      disabled={busy || loading}
-                      onClick={() => void changeDifficulty(level.id)}
-                    >
-                      <span aria-hidden="true">{level.symbol}</span>
-                      <strong>{level.name}</strong>
-                      <small>{level.description}</small>
-                      <small>
-                        {playingNature ? 'Bei Fragen: ' : ''}+
-                        {state.pointsByDifficulty[level.id]}{' '}
-                        {state.pointsByDifficulty[level.id] === 1
-                          ? 'Punkt'
-                          : 'Punkte'}{' '}
-                        pro neuer Lösung
-                      </small>
-                    </button>
-                  ))}
+            <div
+              className="learning-settings"
+              hidden={externalControls && studyUnit?.id !== 'math-roman'}
+            >
+              {!externalControls && (
+                <div className="level-section">
+                  <h3>Wie möchtest du heute üben?</h3>
+                  <div
+                    className="level-grid"
+                    aria-label="Schwierigkeitsgrad für alle Fächer"
+                  >
+                    {difficulties.map((level) => (
+                      <button
+                        key={level.id}
+                        className="level-card"
+                        aria-pressed={state.difficulty === level.id}
+                        disabled={busy || loading}
+                        onClick={() => void changeDifficulty(level.id)}
+                      >
+                        <span aria-hidden="true">{level.symbol}</span>
+                        <strong>{level.name}</strong>
+                        <small>{level.description}</small>
+                        <small>
+                          {playingNature ? 'Bei Fragen: ' : ''}+
+                          {state.pointsByDifficulty[level.id]}{' '}
+                          {state.pointsByDifficulty[level.id] === 1
+                            ? 'Punkt'
+                            : 'Punkte'}{' '}
+                          pro neuer Lösung
+                        </small>
+                      </button>
+                    ))}
+                  </div>
+                  <InfoPanel>
+                    <summary>Über die Stufen</summary>
+                    <p className="sample-note">
+                      Lustige Namen, keine Noten! „Vorschule“ ist der leichte
+                      Einstieg in dein Thema. Du kannst jederzeit wechseln.
+                      Deine Wahl gilt in allen Fächern.
+                    </p>
+                  </InfoPanel>
                 </div>
-                <InfoPanel>
-                  <summary>Über die Stufen</summary>
-                  <p className="sample-note">
-                    Lustige Namen, keine Noten! „Vorschule“ ist der leichte
-                    Einstieg in dein Thema. Du kannst jederzeit wechseln. Deine
-                    Wahl gilt in allen Fächern.
-                  </p>
-                </InfoPanel>
-              </div>
+              )}
               {studyUnit?.id === 'math-roman' && (
                 <div className="roman-mode">
                   <h3>Deine römischen Zahlen</h3>
@@ -448,7 +599,9 @@ export default function LearningPanel({
                       className="secondary-button"
                       aria-pressed={!romanRandom}
                       disabled={busy || loading}
-                      onClick={() => setRomanRandom(false)}
+                      onClick={() =>
+                        requestNavigation(() => setRomanRandom(false))
+                      }
                     >
                       Kurze Lernrunde
                     </button>
@@ -456,7 +609,9 @@ export default function LearningPanel({
                       className="secondary-button"
                       aria-pressed={romanRandom}
                       disabled={busy || loading}
-                      onClick={() => setRomanRandom(true)}
+                      onClick={() =>
+                        requestNavigation(() => setRomanRandom(true))
+                      }
                     >
                       Zufallsübung 1–9999
                     </button>
@@ -465,9 +620,9 @@ export default function LearningPanel({
                     <button
                       className="secondary-button"
                       disabled={busy || loading}
-                      onClick={returnToTopics}
+                      onClick={() => requestNavigation(returnToTopics)}
                     >
-                      ← Themenübersicht
+                      {externalControls ? 'Zu den Themen' : '← Themenübersicht'}
                     </button>
                   )}
                 </div>
@@ -528,31 +683,43 @@ export default function LearningPanel({
           </>
         )}
         {playingNature && state && (
-          <NatureGames key={state.difficulty} difficulty={state.difficulty} />
+          <NatureGames
+            key={state.difficulty}
+            difficulty={state.difficulty}
+            onActivityChange={setChildActivity}
+          />
         )}
-        {browsing && state && (
+        {state?.studyCatalog && (
           <StudyBrowser
             key={subject}
             state={state}
             subject={subject}
-            disabled={busy || loading}
+            disabled={busy || loading || loadFailed}
             onSelect={startUnit}
+            onSupplement={onSupplement}
+            onNatureGames={onNatureGames}
+            active={active && browsing}
             focusOnMount={returningTopics.current}
           />
         )}
-        {romanRandom && studyUnit?.id === 'math-roman' && state && (
-          <RomanPractice
-            difficulty={state.difficulty}
-            profileReady={state.profileReady}
-            disabled={busy || loading}
-            onBusyChange={setBusy}
-            onWalletChange={(wallet) => {
-              ++revision.current;
-              setLoading(false);
-              setState((current) => current && { ...current, wallet });
-            }}
-          />
-        )}
+        {active &&
+          !needsProfile &&
+          romanRandom &&
+          studyUnit?.id === 'math-roman' &&
+          state && (
+            <RomanPractice
+              difficulty={state.difficulty}
+              profileReady={state.profileReady}
+              disabled={busy || loading}
+              onBusyChange={setBusy}
+              onActivityChange={setChildActivity}
+              onWalletChange={(wallet) => {
+                ++revision.current;
+                setLoading(false);
+                setState((current) => current && { ...current, wallet });
+              }}
+            />
+          )}
         {regularPractice && studyUnit && roundFinished && (
           <div
             className="practice-area"
@@ -576,14 +743,14 @@ export default function LearningPanel({
                 )
               }
             >
-              Noch eine kurze Runde
+              {externalControls ? 'Neue Runde' : 'Noch eine kurze Runde'}
             </button>
             <button
               className="secondary-button"
               disabled={busy || loading}
-              onClick={returnToTopics}
+              onClick={() => requestNavigation(returnToTopics)}
             >
-              Zur Themenübersicht
+              {externalControls ? 'Zu den Themen' : 'Zur Themenübersicht'}
             </button>
           </div>
         )}
@@ -611,9 +778,9 @@ export default function LearningPanel({
                   <button
                     className="secondary-button"
                     disabled={busy || loading}
-                    onClick={returnToTopics}
+                    onClick={() => requestNavigation(returnToTopics)}
                   >
-                    ← Themenübersicht
+                    {externalControls ? 'Zu den Themen' : '← Themenübersicht'}
                   </button>
                   <span>
                     {
@@ -624,313 +791,407 @@ export default function LearningPanel({
                     / {studyUnit.name}
                   </span>
                 </nav>
-                <p>{studyUnit.goal}</p>
-                <p className="sample-note">
+                <p className="practice-goal">{studyUnit.goal}</p>
+                <p className="sample-note" hidden={externalControls}>
                   Aufgabe {questionIndex + 1} von {questions.length} in deiner
                   kurzen Runde · Du darfst Aufgaben überspringen.
                 </p>
               </>
             )}
-            <div className="question-navigation">
-              <label htmlFor="question-picker">Deine Aufgabe</label>
-              <select
-                id="question-picker"
-                value={question.id}
-                disabled={busy || loading}
-                onChange={(event) => selectQuestion(event.target.value)}
-              >
-                {questions.map((item, index) => (
-                  <option key={item.id} value={item.id}>
-                    Aufgabe {index + 1} von {questions.length}
-                    {item.solved ? ' · gelöst ✓' : ''}
-                  </option>
-                ))}
-              </select>
-              <button
-                className="secondary-button"
-                disabled={
-                  busy || loading || (!studyUnit && questions.length < 2)
-                }
-                onClick={nextQuestion}
-              >
-                Nächste Aufgabe →
-              </button>
-            </div>
-            {question.audioCardId && (
-              <VocabularyAudio
-                key={`audio-${question.id}`}
-                cardId={question.audioCardId}
-                disabled={busy || loading}
-              />
+            {externalControls && (
+              <div className="practice-progress" aria-label="Rundenfortschritt">
+                Aufgabe {questionIndex + 1} von {questions.length}
+              </div>
             )}
-            <form onSubmit={submit}>
-              <fieldset disabled={!enabled}>
-                {question.numberLine?.mode === 'place' ? (
-                  <>
-                    <legend className="answer-label">{question.prompt}</legend>
-                    <NumberLine
-                      key={question.id}
-                      diagram={question.numberLine}
-                      value={answer}
-                      disabled={!enabled}
-                      onChange={(value) => {
-                        setAnswer(value);
-                        setResult(null);
-                      }}
-                    />
-                    <button
-                      className="primary-button"
-                      type="submit"
-                      disabled={!answer}
-                    >
-                      {busy ? 'Bitte warten …' : 'Antwort prüfen'}
-                    </button>
-                  </>
-                ) : question.answerKind === 'choice' ? (
-                  <>
-                    <legend className="answer-label">{question.prompt}</legend>
-                    <div className="answer-options">
-                      {question.options.map((option) => (
-                        <label key={option} className="answer-option">
+            <div className="exercise-layout">
+              <div className="exercise-main">
+                <div className="question-navigation" hidden={externalControls}>
+                  <label htmlFor={`${instanceId}-question-picker`}>
+                    Deine Aufgabe
+                  </label>
+                  <select
+                    id={`${instanceId}-question-picker`}
+                    value={question.id}
+                    disabled={busy || loading}
+                    onChange={(event) =>
+                      requestNavigation(() =>
+                        selectQuestion(event.target.value),
+                      )
+                    }
+                  >
+                    {questions.map((item, index) => (
+                      <option key={item.id} value={item.id}>
+                        Aufgabe {index + 1} von {questions.length}
+                        {item.solved ? ' · gelöst ✓' : ''}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    className="secondary-button"
+                    disabled={
+                      busy || loading || (!studyUnit && questions.length < 2)
+                    }
+                    onClick={() => requestNavigation(nextQuestion)}
+                  >
+                    Nächste Aufgabe →
+                  </button>
+                </div>
+                {active && question.audioCardId && (
+                  <VocabularyAudio
+                    key={`audio-${question.id}`}
+                    cardId={question.audioCardId}
+                    disabled={busy || loading}
+                  />
+                )}
+                <form onSubmit={submit}>
+                  <fieldset disabled={!enabled || !!visibleResult?.correct}>
+                    {question.numberLine?.mode === 'place' ? (
+                      <>
+                        <legend className="answer-label">
+                          {question.prompt}
+                        </legend>
+                        <NumberLine
+                          key={question.id}
+                          diagram={question.numberLine}
+                          value={answer}
+                          disabled={!inputEnabled}
+                          onChange={(value) => {
+                            setAnswer(value);
+                            setResult(null);
+                          }}
+                        />
+                        {!visibleResult?.correct && (
+                          <button
+                            className="primary-button"
+                            type="submit"
+                            disabled={!answer}
+                          >
+                            {submitLabel}
+                          </button>
+                        )}
+                      </>
+                    ) : question.answerKind === 'choice' ? (
+                      <>
+                        <legend className="answer-label">
+                          {question.prompt}
+                        </legend>
+                        <div className="answer-options">
+                          {question.options.map((option) => (
+                            <label key={option} className="answer-option">
+                              <input
+                                type="radio"
+                                disabled={!inputEnabled}
+                                name="answer"
+                                value={option}
+                                checked={answer === option}
+                                required
+                                onChange={() => {
+                                  setAnswer(option);
+                                  setResult(null);
+                                }}
+                              />
+                              <span>{option}</span>
+                            </label>
+                          ))}
+                        </div>
+                        {!visibleResult?.correct && (
+                          <button className="primary-button" type="submit">
+                            {submitLabel}
+                          </button>
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        <label
+                          className="answer-label"
+                          htmlFor={`${instanceId}-practice-answer`}
+                        >
+                          {question.prompt}
+                        </label>
+                        {question.numberLine && (
+                          <NumberLine
+                            key={question.id}
+                            diagram={question.numberLine}
+                            value={answer}
+                            onChange={setAnswer}
+                            disabled={!inputEnabled}
+                          />
+                        )}
+                        {question.unit && (
+                          <p
+                            id={`${instanceId}-answer-format`}
+                            className="sample-note"
+                          >
+                            {question.unit} Große Zahlen ohne Punkte schreiben,
+                            z. B. 25000 oder 25 000.
+                          </p>
+                        )}
+                        <div className="answer-row">
                           <input
-                            type="radio"
-                            name="answer"
-                            value={option}
-                            checked={answer === option}
+                            id={`${instanceId}-practice-answer`}
+                            disabled={!inputEnabled}
+                            value={answer}
+                            maxLength={120}
                             required
-                            onChange={() => {
-                              setAnswer(option);
+                            autoComplete="off"
+                            aria-describedby={
+                              question.unit
+                                ? `${instanceId}-answer-format`
+                                : undefined
+                            }
+                            onChange={(event) => {
+                              setAnswer(event.target.value);
                               setResult(null);
                             }}
                           />
-                          <span>{option}</span>
-                        </label>
-                      ))}
+                          {!visibleResult?.correct && (
+                            <button className="primary-button" type="submit">
+                              {submitLabel}
+                            </button>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </fieldset>
+                </form>
+                {visibleResult && (
+                  <div className="feedback-panel inline-feedback">
+                    <div
+                      className={`answer-feedback ${visibleResult.correct ? 'correct' : ''}`}
+                      role="status"
+                    >
+                      <strong>
+                        {visibleResult.correct
+                          ? visibleResult.pointsAwarded > 0
+                            ? `Richtig! +${visibleResult.pointsAwarded} ${visibleResult.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
+                            : 'Richtig! Diese Aufgabe hast du bereits gelöst.'
+                          : 'Noch nicht richtig. Versuch es noch einmal!'}
+                      </strong>
+                      {visibleResult.correct ? (
+                        <p>{visibleResult.explanation}</p>
+                      ) : (
+                        <>
+                          {visibleResult.mistakeHint && (
+                            <p className="hint-box">
+                              {visibleResult.mistakeHint}
+                            </p>
+                          )}
+                          {!externalControls && (
+                            <p>
+                              Die Tipps helfen dir Schritt für Schritt. Du
+                              kannst auch den Lösungsweg anschauen und danach
+                              noch einmal versuchen.
+                            </p>
+                          )}
+                          <InfoPanel key={question.id}>
+                            <summary>
+                              {externalControls
+                                ? 'Lösungsweg'
+                                : 'Lösungsweg anschauen'}
+                            </summary>
+                            <p>{visibleResult.explanation}</p>
+                          </InfoPanel>
+                        </>
+                      )}
+                      {!visibleResult.correct && !externalControls && (
+                        <button
+                          className="secondary-button"
+                          onClick={() => setResult(null)}
+                        >
+                          Noch einmal versuchen
+                        </button>
+                      )}
+                      {visibleResult.correct && (
+                        <button
+                          className="primary-button"
+                          onClick={() => {
+                            nextQuestion();
+                            focusPractice.current = true;
+                            practiceRef.current?.focus();
+                          }}
+                        >
+                          {externalControls
+                            ? 'Weiter'
+                            : 'Weiter zur nächsten Aufgabe'}
+                        </button>
+                      )}
                     </div>
-                    <button className="primary-button" type="submit">
-                      {busy ? 'Bitte warten …' : 'Antwort prüfen'}
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <label className="answer-label" htmlFor="practice-answer">
-                      {question.prompt}
-                    </label>
-                    {question.numberLine && (
-                      <NumberLine
-                        key={question.id}
-                        diagram={question.numberLine}
-                        value={answer}
-                        onChange={setAnswer}
-                        disabled={!enabled}
-                      />
-                    )}
-                    {question.unit && (
-                      <p id="answer-format" className="sample-note">
-                        {question.unit} Große Zahlen ohne Punkte schreiben, z.
-                        B. 25000 oder 25 000.
-                      </p>
-                    )}
-                    <div className="answer-row">
-                      <input
-                        id="practice-answer"
-                        value={answer}
-                        maxLength={120}
-                        required
-                        autoComplete="off"
-                        aria-describedby={
-                          question.unit ? 'answer-format' : undefined
-                        }
-                        onChange={(event) => {
-                          setAnswer(event.target.value);
-                          setResult(null);
-                        }}
-                      />
-                      <button className="primary-button" type="submit">
-                        {busy ? 'Bitte warten …' : 'Antwort prüfen'}
+                  </div>
+                )}
+              </div>
+              <aside className="exercise-help" aria-label="Tipps und Hilfe">
+                <LearningHints
+                  key={question.id}
+                  question={question}
+                  compact={externalControls}
+                />
+                <InfoPanel
+                  paginate
+                  className="lesson"
+                  key={`lesson-${question.id}`}
+                >
+                  <summary>
+                    {externalControls ? 'Hilfe' : 'So geht’s · kurz erklärt'}
+                  </summary>
+                  {externalControls && (
+                    <div className="help-navigation">
+                      <button
+                        className="secondary-button"
+                        disabled={busy || loading}
+                        data-close-info
+                        onClick={() => requestNavigation(nextQuestion)}
+                      >
+                        Aufgabe überspringen
                       </button>
                     </div>
-                  </>
-                )}
-              </fieldset>
-            </form>
-            <LearningHints key={question.id} question={question} />
-            <InfoPanel paginate className="lesson" key={topic.id}>
-              <summary>So geht’s · kurz erklärt</summary>
-              <p>{topic.lesson}</p>
-              {topic.id === 'nature-water' && (
-                <div>
-                  <h3>Wasser im Teilchenmodell</h3>
-                  <div className="nature-lesson-models">
-                    {(['solid', 'liquid', 'gas'] as const).map(
-                      (value, index) => (
-                        <figure key={value}>
-                          <ParticlePicture state={value} />
-                          <figcaption>
-                            {
-                              [
-                                'Eis · fest',
-                                'Wasser · flüssig',
-                                'Wasserdampf · gasförmig',
-                              ][index]
-                            }
-                          </figcaption>
-                        </figure>
-                      ),
-                    )}
-                  </div>
-                  <p>
-                    Die Punkte sind ein Modell für winzige Teilchen. Wir können
-                    sie nicht mit bloßem Auge sehen. Im Eis schwingen sie an
-                    festen Plätzen. Im flüssigen Wasser bewegen sie sich
-                    aneinander vorbei. Im Wasserdampf bewegen sie sich frei mit
-                    großen Abständen. Wasserdampf selbst ist unsichtbar.
-                  </p>
-                </div>
-              )}
-              {topic.id === 'nature-plants' && (
-                <figure className="nature-lesson-flower">
-                  <FlowerPicture />
-                  <figcaption>
-                    Ein Blick in eine Blüte: Staubblätter bilden Pollen. Auf der
-                    Narbe kann Pollen landen. Im Fruchtknoten liegen die
-                    Samenanlagen.
-                  </figcaption>
-                </figure>
-              )}
-              {topic.tables?.map((table) => (
-                <LearningTable key={table.caption} table={table} />
-              ))}
-            </InfoPanel>
-            {question.competencyId === 'by.math.5.numbers.roman' && (
-              <RomanExplanation />
-            )}
-            {question.solved && (
-              <p className="sample-note">
-                Die Punkte für diese Aufgabe hast du bereits gesammelt. Du
-                kannst weiter üben.
-              </p>
-            )}
-            {visibleResult && (
-              <InfoPanel
-                autoOpen
-                returnFocusRef={practiceRef}
-                className="feedback-panel"
-              >
-                <summary>Deine Rückmeldung</summary>
-                <div
-                  className={`answer-feedback ${visibleResult.correct ? 'correct' : ''}`}
-                  role="status"
-                >
-                  <strong>
-                    {visibleResult.correct
-                      ? visibleResult.pointsAwarded > 0
-                        ? `Richtig! +${visibleResult.pointsAwarded} ${visibleResult.pointsAwarded === 1 ? 'Punkt' : 'Punkte'}`
-                        : 'Richtig! Diese Aufgabe hast du bereits gelöst.'
-                      : 'Noch nicht richtig. Versuch es noch einmal!'}
-                  </strong>
-                  {visibleResult.correct ? (
-                    <p>{visibleResult.explanation}</p>
-                  ) : (
-                    <>
-                      {visibleResult.mistakeHint && (
-                        <p className="hint-box">{visibleResult.mistakeHint}</p>
-                      )}
-                      <p>
-                        Die Tipps helfen dir Schritt für Schritt. Du kannst auch
-                        den Lösungsweg anschauen und danach noch einmal
-                        versuchen.
-                      </p>
-                      <InfoPanel key={question.id}>
-                        <summary>Lösungsweg anschauen</summary>
-                        <p>{visibleResult.explanation}</p>
-                      </InfoPanel>
-                    </>
                   )}
-                  <button
-                    className="primary-button"
-                    data-close-info
-                    onClick={() => {
-                      if (visibleResult.correct) nextQuestion();
-                      else setResult(null);
-                    }}
+                  <p>{topic.lesson}</p>
+                  {topic.id === 'nature-water' && (
+                    <div>
+                      <h3>Wasser im Teilchenmodell</h3>
+                      <div className="nature-lesson-models">
+                        {(['solid', 'liquid', 'gas'] as const).map(
+                          (value, index) => (
+                            <figure key={value}>
+                              <ParticlePicture state={value} />
+                              <figcaption>
+                                {
+                                  [
+                                    'Eis · fest',
+                                    'Wasser · flüssig',
+                                    'Wasserdampf · gasförmig',
+                                  ][index]
+                                }
+                              </figcaption>
+                            </figure>
+                          ),
+                        )}
+                      </div>
+                      <p>
+                        Die Punkte sind ein Modell für winzige Teilchen. Wir
+                        können sie nicht mit bloßem Auge sehen. Im Eis schwingen
+                        sie an festen Plätzen. Im flüssigen Wasser bewegen sie
+                        sich aneinander vorbei. Im Wasserdampf bewegen sie sich
+                        frei mit großen Abständen. Wasserdampf selbst ist
+                        unsichtbar.
+                      </p>
+                    </div>
+                  )}
+                  {topic.id === 'nature-plants' && (
+                    <figure className="nature-lesson-flower">
+                      <FlowerPicture />
+                      <figcaption>
+                        Ein Blick in eine Blüte: Staubblätter bilden Pollen. Auf
+                        der Narbe kann Pollen landen. Im Fruchtknoten liegen die
+                        Samenanlagen.
+                      </figcaption>
+                    </figure>
+                  )}
+                  {topic.tables?.map((table) => (
+                    <LearningTable key={table.caption} table={table} />
+                  ))}
+                </InfoPanel>
+                {question.competencyId === 'by.math.5.numbers.roman' && (
+                  <RomanExplanation />
+                )}
+                {question.solved && (
+                  <p className="sample-note">
+                    Die Punkte für diese Aufgabe hast du bereits gesammelt. Du
+                    kannst weiter üben.
+                  </p>
+                )}
+                {studyUnit && (
+                  <InfoPanel className="study-details">
+                    <summary>
+                      {externalControls
+                        ? 'Quellen'
+                        : 'Lernziel, Quellen und weitere Übungen'}
+                    </summary>
+                    <p>{studyUnit.goal}</p>
+                    <p>
+                      {studyUnit.curriculumRef} · {studyUnit.curriculumVersion}.
+                      Quelle: {studyUnit.source}.
+                    </p>
+                    <p>
+                      Aufgaben auf dieser Stufe: {bank.length}. Gelöst heißt
+                      hier einmal richtig beantwortet; es ist keine
+                      Lernstandsdiagnose.
+                    </p>
+                    {studyUnit.supplements.map((link) => (
+                      <button
+                        key={link.kind + link.target}
+                        className="secondary-button"
+                        disabled={busy || loading || !onSupplement}
+                        data-close-info
+                        onClick={() => onSupplement?.(link)}
+                      >
+                        {link.label}
+                      </button>
+                    ))}
+                  </InfoPanel>
+                )}
+                {solvedCount === questions.length && (
+                  <p className="completion-message">
+                    {studyUnit
+                      ? '✦ Diese Aufgaben hast du schon richtig gelöst. Lust auf eine weitere Runde?'
+                      : '✦ Alles geschafft in dieser Stufe! Lust auf ein anderes Thema oder eine Mitmachaufgabe?'}
+                  </p>
+                )}
+                {topic.activities.length > 0 && (
+                  <InfoPanel
+                    paginate
+                    className="activities"
+                    key={`activities-${topic.id}`}
                   >
-                    {visibleResult.correct
-                      ? 'Weiter zur nächsten Aufgabe'
-                      : 'Noch einmal versuchen'}
-                  </button>
-                </div>
-              </InfoPanel>
-            )}
-            {studyUnit && (
-              <InfoPanel className="study-details">
-                <summary>Lernziel, Quellen und weitere Übungen</summary>
-                <p>{studyUnit.goal}</p>
-                <p>
-                  {studyUnit.curriculumRef} · {studyUnit.curriculumVersion}.
-                  Quelle: {studyUnit.source}.
-                </p>
-                <p>
-                  Aufgaben auf dieser Stufe: {bank.length}. Gelöst heißt hier
-                  einmal richtig beantwortet; es ist keine Lernstandsdiagnose.
-                </p>
-                {studyUnit.supplements.map((link) => (
-                  <button
-                    key={link.kind + link.target}
-                    className="secondary-button"
-                    disabled={busy || loading || !onSupplement}
-                    onClick={() => onSupplement?.(link)}
-                  >
-                    {link.label}
-                  </button>
-                ))}
-              </InfoPanel>
-            )}
-            {solvedCount === questions.length && (
-              <p className="completion-message">
-                {studyUnit
-                  ? '✦ Diese Aufgaben hast du schon richtig gelöst. Lust auf eine weitere Runde?'
-                  : '✦ Alles geschafft in dieser Stufe! Lust auf ein anderes Thema oder eine Mitmachaufgabe?'}
-              </p>
-            )}
-            {topic.activities.length > 0 && (
-              <InfoPanel
-                paginate
-                className="activities"
-                key={`activities-${topic.id}`}
-              >
-                <summary>
-                  {subject === 'english'
-                    ? 'Sprich, lies & entdecke!'
-                    : subject === 'nature'
-                      ? 'Forschen & mitmachen!'
-                      : 'Stift raus!'}{' '}
-                  {topic.activities.length} Mitmachaufgaben
-                </summary>
-                <p>
-                  Für alle drei Stufen:{' '}
-                  {subject === 'english'
-                    ? 'Sprich, schreibe und probiere die Sprache aus.'
-                    : 'Zeichne, probiere aus und erkläre deinen Weg.'}{' '}
-                  Hier kontrollierst du selbst – ohne Punkte. Bei kniffligen
-                  Fragen hilft dir eine erwachsene Person.
-                </p>
-                {topic.activities.map((activity) => (
-                  <article key={activity.title}>
-                    <h4>{activity.title}</h4>
-                    <p>{activity.prompt}</p>
-                    <InfoPanel>
-                      <summary>So kannst du dich prüfen</summary>
-                      <p>{activity.check}</p>
-                    </InfoPanel>
-                  </article>
-                ))}
-              </InfoPanel>
-            )}
+                    <summary>
+                      {externalControls ? (
+                        'Mitmachen'
+                      ) : (
+                        <>
+                          {subject === 'english'
+                            ? 'Sprich, lies & entdecke!'
+                            : subject === 'nature'
+                              ? 'Forschen & mitmachen!'
+                              : 'Stift raus!'}{' '}
+                          {topic.activities.length} Mitmachaufgaben
+                        </>
+                      )}
+                    </summary>
+                    <p>
+                      Für alle drei Stufen:{' '}
+                      {subject === 'english'
+                        ? 'Sprich, schreibe und probiere die Sprache aus.'
+                        : 'Zeichne, probiere aus und erkläre deinen Weg.'}{' '}
+                      Hier kontrollierst du selbst – ohne Punkte. Bei kniffligen
+                      Fragen hilft dir eine erwachsene Person.
+                    </p>
+                    {topic.activities.map((activity) => (
+                      <article key={activity.title}>
+                        <h4>{activity.title}</h4>
+                        <p>{activity.prompt}</p>
+                        <InfoPanel>
+                          <summary>So kannst du dich prüfen</summary>
+                          <p>{activity.check}</p>
+                        </InfoPanel>
+                      </article>
+                    ))}
+                  </InfoPanel>
+                )}
+              </aside>
+            </div>
+          </div>
+        )}
+        {regularPractice && !roundFinished && state && !question && (
+          <div className="practice-area subject-empty">
+            <h3>Auf dieser Stufe gibt es hier noch keine Aufgabe.</h3>
+            <p>Du kannst die Stufe wechseln oder ein anderes Thema wählen.</p>
+            <button className="secondary-button" onClick={returnToTopics}>
+              Zu den Themen
+            </button>
           </div>
         )}
       </div>
-      {state && (
+      {state && !externalControls && (
         <InfoPanel className="rewards-area" onOpenChange={setRewardsOpen}>
           <summary>Deine Belohnungen</summary>
           <div>
@@ -986,7 +1247,7 @@ export default function LearningPanel({
         </InfoPanel>
       )}
       {notice && !rewardsOpen && <p role="status">{notice}</p>}
-      {state && !browsing && subject === 'nature' && (
+      {state && !externalControls && !browsing && subject === 'nature' && (
         <InfoPanel className="source-note">
           <summary>Für Neugierige & Erwachsene: Natur und Technik</summary>
           <p>
@@ -1009,7 +1270,7 @@ export default function LearningPanel({
           </p>
         </InfoPanel>
       )}
-      {state && !browsing && subject === 'english' && (
+      {state && !externalControls && !browsing && subject === 'english' && (
         <InfoPanel className="source-note">
           <summary>Für Neugierige & Erwachsene: Englisch-Lerninhalte</summary>
           <p>
@@ -1030,7 +1291,7 @@ export default function LearningPanel({
           </p>
         </InfoPanel>
       )}
-      {state && !browsing && subject === 'mathematics' && (
+      {state && !externalControls && !browsing && subject === 'mathematics' && (
         <InfoPanel className="source-note">
           <summary>Für Neugierige & Erwachsene: Lerninhalte</summary>
           <p>
@@ -1048,6 +1309,46 @@ export default function LearningPanel({
           </p>
         </InfoPanel>
       )}
+      <dialog
+        ref={navigationDialog}
+        className="navigation-confirm"
+        aria-labelledby={`${instanceId}-switch-title`}
+        onCancel={(event) => {
+          event.preventDefault();
+          setNavigation(null);
+          (navigationSource.current?.isConnected
+            ? navigationSource.current
+            : practiceRef.current
+          )?.focus();
+        }}
+      >
+        <h3 id={`${instanceId}-switch-title`}>Möchtest du wechseln?</h3>
+        <p>Deine noch nicht bestätigte Antwort wird dabei verworfen.</p>
+        <div className="dialog-actions">
+          <button
+            className="secondary-button"
+            onClick={() => {
+              setNavigation(null);
+              (navigationSource.current?.isConnected
+                ? navigationSource.current
+                : practiceRef.current
+              )?.focus();
+            }}
+          >
+            Bleiben
+          </button>
+          <button
+            className="primary-button"
+            onClick={() => {
+              const action = navigation;
+              setNavigation(null);
+              action?.();
+            }}
+          >
+            Wechseln
+          </button>
+        </div>
+      </dialog>
     </section>
   );
 }

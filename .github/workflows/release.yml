@@ -28,6 +28,7 @@ jobs:
       tag: ${{ steps.release.outputs.tag }}
       version: ${{ steps.release.outputs.version }}
       build: ${{ steps.release.outputs.build }}
+      matrix: ${{ steps.release.outputs.matrix }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -35,7 +36,7 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '24'
-      - name: Prepare tag at the checked merge commit
+      - name: Verify source and prepare stable or explicit rc tag
         id: release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -46,32 +47,17 @@ jobs:
     if: needs.prepare.outputs.build == 'true'
     env:
       RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
+      RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
     name: Release (${{ matrix.target }})
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - os: macos-latest
-            target: aarch64-apple-darwin
-            platform: darwin-aarch64
-            bundles: app,dmg
-          - os: macos-latest
-            target: x86_64-apple-darwin
-            platform: darwin-x86_64
-            bundles: app,dmg
-          - os: windows-latest
-            target: x86_64-pc-windows-msvc
-            platform: windows-x86_64
-            bundles: nsis
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
-      - name: Require a release from main
-        shell: bash
-        run: git merge-base --is-ancestor "$GITHUB_SHA" origin/main
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '24'
@@ -82,16 +68,19 @@ jobs:
           components: rustfmt, clippy
           targets: ${{ matrix.target }}
       - run: npm ci
-      - name: Verify release version
+      - name: Verify release source and prepare Tauri version override
         shell: bash
-        run: node scripts/check-release-version.mjs
+        run: node scripts/release-source.mjs --write-build-config
       - run: npm run check:all
         if: github.ref_type == 'tag'
       - name: Build signed update and installer
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
-        run: npm run desktop:build -- --target ${{ matrix.target }} --bundles ${{ matrix.bundles }}
+        run: npm run desktop:build -- --target ${{ matrix.target }} --bundles ${{ matrix.bundles }} --config release-build-config.json
+      - name: Verify macOS app and packed updater and DMG
+        if: runner.os == 'macOS'
+        run: node scripts/verify-macos-bundle.mjs "src-tauri/target/${{ matrix.target }}/release/bundle"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: ${{ matrix.platform }}
@@ -107,6 +96,7 @@ jobs:
     needs: [prepare, build]
     env:
       RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
+      RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
     concurrency:
       group: release-publish
       cancel-in-progress: false
@@ -122,7 +112,13 @@ jobs:
           node-version: '24'
       - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
         with:
-          path: release-assets
+          name: darwin-aarch64
+          path: release-assets/darwin-aarch64
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
+        if: ${{ !contains(needs.prepare.outputs.version, '-rc.') }}
+        with:
+          name: windows-x86_64
+          path: release-assets/windows-x86_64
       - name: Assemble complete update manifest
         run: node scripts/release-assets.mjs
       - name: Publish completed release

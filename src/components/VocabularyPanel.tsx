@@ -1,4 +1,6 @@
 import InfoPanel from './InfoPanel';
+import ProfilePanel from './ProfilePanel';
+import useConfirmChange from './useConfirmChange';
 import VocabularyAudio from './VocabularyAudio';
 import VocabularyListening from './VocabularyListening';
 import { useEffect, useRef, useState } from 'react';
@@ -37,9 +39,15 @@ type Feedback = {
 export default function VocabularyPanel({
   profileVersion,
   initialDeck = 'all',
+  externalControls = false,
+  onActivityChange,
+  onProfileSaved,
 }: {
   profileVersion: number;
   initialDeck?: string;
+  externalControls?: boolean;
+  onActivityChange?: (activity: { dirty: boolean; busy: boolean }) => void;
+  onProfileSaved?: () => void;
 }) {
   const [mode, setMode] = useState<'write' | 'listen'>('write');
   const [state, setState] = useState<VocabularyState | null>(null);
@@ -57,6 +65,28 @@ export default function VocabularyPanel({
   const completedHeading = useRef<HTMLHeadingElement>(null);
   const focusNextCard = useRef(false);
 
+  const { requestChange, confirmation } = useConfirmChange(
+    (mode === 'write' && !!answer && !feedback) || !!pending,
+    busy,
+  );
+
+  useEffect(() => {
+    if (externalControls && state && !state.profileReady) return;
+    onActivityChange?.({
+      dirty: (mode === 'write' && !!answer && !feedback) || !!pending,
+      busy: busy && (!!pending || !!state),
+    });
+  }, [
+    answer,
+    feedback,
+    pending,
+    busy,
+    mode,
+    state,
+    externalControls,
+    onActivityChange,
+  ]);
+
   useEffect(() => {
     const current = ++revision.current;
     setBusy(true);
@@ -69,7 +99,11 @@ export default function VocabularyPanel({
     void desktop
       .getVocabularyState(deck)
       .then((value) => {
-        if (current === revision.current) setState(value);
+        if (current === revision.current) {
+          setState(value);
+          if (externalControls && value.profileReady)
+            focusNextCard.current = true;
+        }
       })
       .catch((err: unknown) => {
         if (current === revision.current) setError(message(err));
@@ -83,7 +117,7 @@ export default function VocabularyPanel({
     return () => {
       ++revision.current;
     };
-  }, [deck, reload, profileVersion]);
+  }, [deck, reload, profileVersion, externalControls]);
 
   async function changeDifficulty(difficulty: Difficulty) {
     if (inFlight.current || pending) return;
@@ -198,7 +232,7 @@ export default function VocabularyPanel({
           className="secondary-button"
           aria-pressed={mode === 'write'}
           disabled={disabled}
-          onClick={() => setMode('write')}
+          onClick={() => requestChange(() => setMode('write'))}
         >
           Wörter schreiben
         </button>
@@ -207,7 +241,7 @@ export default function VocabularyPanel({
           className="secondary-button"
           aria-pressed={mode === 'listen'}
           disabled={disabled || !state}
-          onClick={() => setMode('listen')}
+          onClick={() => requestChange(() => setMode('listen'))}
         >
           3 Wörter hören
         </button>
@@ -230,7 +264,7 @@ export default function VocabularyPanel({
               onClick={() => void submit(pending.answer)}
               disabled={busy}
             >
-              Speichern erneut versuchen
+              Erneut versuchen
             </button>
           )}
         </div>
@@ -239,7 +273,7 @@ export default function VocabularyPanel({
         <button
           className="secondary-button"
           disabled={busy}
-          onClick={() => setReload((v) => v + 1)}
+          onClick={() => requestChange(() => setReload((v) => v + 1))}
         >
           {error ? 'Karten neu laden' : 'Fällige Karten laden'}
         </button>
@@ -254,25 +288,33 @@ export default function VocabularyPanel({
       {state && mode === 'write' && (
         <div className="vocabulary-workspace">
           <div className="vocabulary-settings">
-            <h3>Wie möchtest du Wörter üben?</h3>
-            <div
-              className="level-grid"
-              aria-label="Schwierigkeitsgrad für alle Fächer"
-            >
-              {difficulties.map((level) => (
-                <button
-                  key={level.id}
-                  className="level-card"
-                  aria-pressed={state.difficulty === level.id}
-                  disabled={disabled}
-                  onClick={() => void changeDifficulty(level.id)}
-                >
-                  <span aria-hidden="true">{level.symbol}</span>
-                  <strong>{level.name}</strong>
-                  <small>{modes[level.id]}</small>
-                </button>
-              ))}
-            </div>
+            <h3>
+              {externalControls
+                ? 'Dein Wortthema'
+                : 'Wie möchtest du Wörter üben?'}
+            </h3>
+            {!externalControls && (
+              <div
+                className="level-grid"
+                aria-label="Schwierigkeitsgrad für alle Fächer"
+              >
+                {difficulties.map((level) => (
+                  <button
+                    key={level.id}
+                    className="level-card"
+                    aria-pressed={state.difficulty === level.id}
+                    disabled={disabled}
+                    onClick={() =>
+                      requestChange(() => void changeDifficulty(level.id))
+                    }
+                  >
+                    <span aria-hidden="true">{level.symbol}</span>
+                    <strong>{level.name}</strong>
+                    <small>{modes[level.id]}</small>
+                  </button>
+                ))}
+              </div>
+            )}
             <InfoPanel>
               <summary>Stufen & Punkte</summary>
               <p className="sample-note">
@@ -287,7 +329,10 @@ export default function VocabularyPanel({
               <select
                 value={deck}
                 disabled={disabled}
-                onChange={(event) => setDeck(event.target.value)}
+                onChange={(event) => {
+                  const next = event.target.value;
+                  requestChange(() => setDeck(next));
+                }}
               >
                 <option value="all">
                   Alle Themen · {state.decks.length} Wörterwelten
@@ -326,14 +371,24 @@ export default function VocabularyPanel({
                 ))}
               </ol>
             </InfoPanel>
-            {!state.profileReady && (
-              <p>
-                Speichere dein Lernprofil über „Dein Profil“ oben. Dann kann
-                sich Lernwelt deine Wortkarten merken.
-              </p>
-            )}
+            {!state.profileReady &&
+              (externalControls ? (
+                <ProfilePanel
+                  compact
+                  onActivityChange={onActivityChange}
+                  onSaved={() => {
+                    setReload((value) => value + 1);
+                    onProfileSaved?.();
+                  }}
+                />
+              ) : (
+                <p>
+                  Speichere dein Lernprofil über „Dein Profil“ oben. Dann kann
+                  sich Lernwelt deine Wortkarten merken.
+                </p>
+              ))}
           </div>
-          {card && presented && (
+          {card && presented && (!externalControls || state.profileReady) && (
             <article className="flashcard" aria-labelledby="card-prompt">
               <p className="eyebrow">
                 {presented.reviews === 0
@@ -393,16 +448,24 @@ export default function VocabularyPanel({
                       type="submit"
                       disabled={disabled || !answer.trim()}
                     >
-                      Antwort prüfen
+                      {busy ? 'Wird gespeichert …' : 'Prüfen'}
                     </button>
-                    <button
-                      className="secondary-button"
-                      type="button"
-                      disabled={disabled}
-                      onClick={() => void submit(null)}
-                    >
-                      Weiß ich noch nicht · Lösung zeigen
-                    </button>
+                    <InfoPanel returnFocusRef={answerField}>
+                      <summary>Hilfe</summary>
+                      <p>
+                        Du weißt das Wort noch nicht? Schau die Lösung an. Die
+                        Karte kommt später wieder. Dafür gibt es keine Punkte.
+                      </p>
+                      <button
+                        className="secondary-button"
+                        type="button"
+                        disabled={disabled}
+                        data-close-info
+                        onClick={() => void submit(null)}
+                      >
+                        Lösung zeigen
+                      </button>
+                    </InfoPanel>
                   </div>
                 </form>
               ) : (
@@ -439,7 +502,7 @@ export default function VocabularyPanel({
                       setReload((v) => v + 1);
                     }}
                   >
-                    Nächste Karte
+                    Weiter
                   </button>
                 </>
               )}
@@ -510,6 +573,7 @@ export default function VocabularyPanel({
           ihre gewohnten Regeln.
         </p>
       </InfoPanel>
+      {confirmation}
     </section>
   );
 }
