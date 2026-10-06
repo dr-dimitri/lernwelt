@@ -102,6 +102,11 @@ export default function VocabularyPanel({
 
   useEffect(() => {
     const current = ++revision.current;
+    // A mode change keeps feedback until the next load. External level/profile
+    // changes must then load the selected mode, rather than the feedback's mode.
+    const requestedMode = mode === 'scramble' ? 'scramble' : 'write';
+    if (selection.current.mode !== requestedMode)
+      selection.current = { mode: requestedMode };
     setBusy(true);
     setError('');
     setState(null);
@@ -441,7 +446,9 @@ export default function VocabularyPanel({
                 </option>
                 {state.decks.map((item) => (
                   <option key={item.id} value={item.id}>
-                    {item.name}
+                    {mode === 'scramble' && item.id === 'hello'
+                      ? 'Das bin ich'
+                      : item.name}
                   </option>
                 ))}
               </select>

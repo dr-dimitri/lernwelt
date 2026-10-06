@@ -12,11 +12,7 @@
       "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
     ],
     "explanation": "I bedeutet ich. Robin spricht selbst. Deshalb: I am in the English Club.",
-    "options": [
-      "I",
-      "you",
-      "they"
-    ],
+    "options": ["I", "you", "they"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -34,11 +30,7 @@
       "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
     ],
     "explanation": "You kann du oder ihr bedeuten. Hier spricht Juno eine Person an.",
-    "options": [
-      "he",
-      "you",
-      "we"
-    ],
+    "options": ["he", "you", "we"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -74,11 +66,7 @@
       "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
     ],
     "explanation": "She reads a book. She ersetzt hier Juno.",
-    "options": [
-      "it",
-      "she",
-      "they"
-    ],
+    "options": ["it", "she", "they"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -96,11 +84,7 @@
       "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
     ],
     "explanation": "It is our mascot. Hier verwenden wir it für das erfundene Maskottchen Pip.",
-    "options": [
-      "we",
-      "it",
-      "I"
-    ],
+    "options": ["we", "it", "I"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -118,11 +102,7 @@
       "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
     ],
     "explanation": "They draw a poster. They bedeutet sie (Mehrzahl). We würde dich einschließen.",
-    "options": [
-      "we",
-      "he",
-      "they"
-    ],
+    "options": ["we", "he", "they"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -140,11 +120,7 @@
       "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
     ],
     "explanation": "I am Robin. Bei I steht am.",
-    "options": [
-      "am",
-      "is",
-      "are"
-    ],
+    "options": ["am", "is", "are"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -173,18 +149,14 @@
     "topicId": "english-hello",
     "difficulty": "vorschule",
     "competencyId": "by.english.5.club.be",
-    "prompt": "Robin fragt dich: „You ___ ready.“ Welches Wort fehlt?",
+    "prompt": "Robin sagt zu dir: „You ___ ready.“ Welches Wort fehlt?",
     "answer": "are",
     "hint": "Bei you ist die Form gleich, ob eine oder mehrere Personen angesprochen werden.",
     "furtherHints": [
       "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
     ],
     "explanation": "You are ready. Bei you steht are.",
-    "options": [
-      "is",
-      "are",
-      "am"
-    ],
+    "options": ["is", "are", "am"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -202,11 +174,7 @@
       "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
     ],
     "explanation": "It is small. Bei it steht is.",
-    "options": [
-      "am",
-      "are",
-      "is"
-    ],
+    "options": ["am", "are", "is"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -242,11 +210,7 @@
       "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
     ],
     "explanation": "They are at school. Bei they steht are.",
-    "options": [
-      "is",
-      "am",
-      "are"
-    ],
+    "options": ["is", "am", "are"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -282,11 +246,7 @@
       "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
     ],
     "explanation": "You are welcome! You bedeutet hier ihr, weil Robin mehrere Personen anspricht.",
-    "options": [
-      "they",
-      "you",
-      "we"
-    ],
+    "options": ["they", "you", "we"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -322,11 +282,7 @@
       "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
     ],
     "explanation": "I can see him. He steht als Subjekt, him als Objekt: Wen sehe ich?",
-    "options": [
-      "he",
-      "him",
-      "his"
-    ],
+    "options": ["he", "him", "his"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -362,11 +318,7 @@
       "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
     ],
     "explanation": "They are here. They ersetzt Robin and Juno, wenn die sprechende Figur nicht dazugehört.",
-    "options": [
-      "we",
-      "they",
-      "it"
-    ],
+    "options": ["we", "they", "it"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -456,11 +408,7 @@
       "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
     ],
     "explanation": "Yes, I am. ist die richtige Kurzantwort. Yes, I’m. ist keine vollständige positive Kurzantwort.",
-    "options": [
-      "Yes, I am.",
-      "Yes, I'm.",
-      "Yes, I is."
-    ],
+    "options": ["Yes, I am.", "Yes, I'm.", "Yes, I is."],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -478,11 +426,7 @@
       "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
     ],
     "explanation": "No, it isn’t. Das verneint die Frage. Die Langform lautet No, it is not.",
-    "options": [
-      "No, it isn't.",
-      "No, it aren't.",
-      "No, it am not."
-    ],
+    "options": ["No, it isn't.", "No, it aren't.", "No, it am not."],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -536,11 +480,7 @@
       "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
     ],
     "explanation": "I can help you. You ist hier ein Objekt. Es bleibt in beiden Formen gleich.",
-    "options": [
-      "your",
-      "you",
-      "I"
-    ],
+    "options": ["your", "you", "I"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -558,11 +498,7 @@
       "Lies noch einmal: Wer spricht? Über wen oder was wird gesprochen?"
     ],
     "explanation": "I like it. It ersetzt hier eine einzelne Sache und ist in beiden Formen gleich.",
-    "options": [
-      "him",
-      "it",
-      "they"
-    ],
+    "options": ["him", "it", "they"],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -652,11 +588,7 @@
       "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
     ],
     "explanation": "Yes, they are. They ersetzt die beiden Namen. Eine positive Kurzantwort verwendet die unverkürzte Form are.",
-    "options": [
-      "Yes, they are.",
-      "Yes, they're.",
-      "Yes, we is."
-    ],
+    "options": ["Yes, they are.", "Yes, they're.", "Yes, we is."],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
@@ -710,11 +642,7 @@
       "Prüfe zuerst die Person. Prüfe dann: Aussage, Verneinung oder Frage?"
     ],
     "explanation": "She isn’t tired. bedeutet dasselbe wie She is not tired. Auch She’s not tired ist möglich.",
-    "options": [
-      "She isn't tired.",
-      "She aren't tired.",
-      "She doesn't tired."
-    ],
+    "options": ["She isn't tired.", "She aren't tired.", "She doesn't tired."],
     "answerKind": "choice",
     "unit": null,
     "legacy": false
