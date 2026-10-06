@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Stabile CI-Pakete gibt es für macOS Apple Silicon und Windows x64. Ab Version 0.6.14 laufen Windows-Builds ausschließlich auf `main`; Vorabversionen von Issue-Branches enthalten nur Apple Silicon. Dieser Vorabtest erscheint als **0.6.14-rc.1**; die [stabile Version](https://github.com/dr-dimitri/lernwelt/releases/latest) bleibt 0.6.8. Vorhandene Windows-Vorabpakete und Intel-Mac-Installer stehen weiter unter [bisherige Releases](https://github.com/dr-dimitri/lernwelt/releases) bereit; neue Intel-Pakete baut die CI nicht mehr. Version 0.6.7 ergänzt eine einklappbare Seitenleiste: Die Navigation bleibt als schmale Symbolleiste erreichbar und schafft mehr Platz für die Aufgabe. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Alle Änderungen und Installationshinweise](docs/releases/0.6.7.md).
+Die [aktuelle stabile Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS Apple Silicon und Windows x64. Version **0.6.15** übernimmt die direkte Themenauswahl, einklappbare Navigation, Lernabzeichen und vollständig signierte macOS-Bundles aus dem Vorabtest. Windows-Builds laufen ausschließlich auf `main`; Vorabversionen enthalten nur Apple Silicon. Vorhandene Windows-Vorabpakete und Intel-Mac-Installer stehen weiter unter [bisherige Releases](https://github.com/dr-dimitri/lernwelt/releases) bereit; neue Intel-Pakete baut die CI nicht mehr. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Änderungen und Installationshinweise](docs/releases/0.6.15.md).
 
 ## Mitarbeit
 
@@ -41,7 +41,7 @@ Der Einstieg zeigt **Mathematik** mit direkten Themen. Vier beschriftete Fächer
 
 **Trainer & Spiele** erschließt Vokabeln, Einmaleins, Tastschreiben, Naturspiele und die Spielhalle. Die Fächer bieten außerdem passende konkrete Vokabeldecks und drei Lernreisen. **Stufe: …** öffnet jederzeit die drei freien Stufen. Bei ungesendeten Eingaben fragt ein Wechsel **Bleiben / Wechseln**; laufende Speicherungen sperren Wechsel. Profil, Sammlung/Abzeichen und App-Updates stehen als beschriftete Einstiege oben. Im kleinen Fenster öffnet **Menü öffnen** die Fachnavigation; Escape schließt es und gibt den Fokus zurück. [Gestaltung](docs/interface.md).
 
-Diese Oberfläche wird für Issue #149 zunächst ausschließlich als Vorabversion veröffentlicht. Issue #151 ergänzt die einklappbare Fachleiste im folgenden Vorabtest; die stabile Downloadversion bleibt 0.6.8. [Änderungen für den folgenden Test](docs/releases/0.6.10.md).
+Die zuvor in Vorabversionen geprüfte Oberfläche ist ab **0.6.15** im stabilen Kanal enthalten. [Änderungen dieser Version](docs/releases/0.6.15.md).
 
 ## App aktualisieren
 
@@ -69,7 +69,7 @@ npm run test:watch      # Frontend-Tests während der Entwicklung
 npm run format         # Frontend- und Konfigurationsformatierung anwenden
 ```
 
-Rust-Prüfungen benötigen `rustfmt` und `clippy`. In CI wird Rust 1.98.1 mit Node.js 24 verwendet. GitHub Actions prüft Pull Requests auf macOS und Windows und erstellt native Debug-Programme als kurzlebige Prüfartefakte. Diese sind keine signierten Installer. `npm run desktop:build` baut lokal ein Release-Artefakt.
+Rust-Prüfungen benötigen `rustfmt` und `clippy`. In CI wird Rust 1.98.1 mit Node.js 24 verwendet. GitHub Actions prüft Pull Requests auf macOS, nach dem Merge auf `main` zusätzlich auf Windows, und erstellt native Debug-Programme als kurzlebige Prüfartefakte. Diese sind keine signierten Installer. `npm run desktop:build` baut lokal ein Release-Artefakt.
 
 Der CI-Workflow kontrolliert bei Pull Requests den Issue-Branch, die passende `Closes #…`-Verknüpfung und die Reviewdatei. Das ersetzt nicht den inhaltlichen Review. Branch Protection ist nicht automatisch eingerichtet.
 
