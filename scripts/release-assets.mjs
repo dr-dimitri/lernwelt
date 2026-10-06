@@ -8,12 +8,20 @@ import {
 } from 'node:fs';
 import { basename, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { parseReleaseVersion, releaseVersion } from './release-policy.mjs';
+import { releaseTargets } from './release-platforms.mjs';
+import { releaseVersion } from './release-policy.mjs';
 
-const targets = ['darwin-aarch64', 'windows-x86_64'];
-function files(directory) {
+function files(directory, targets) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    if (entry.isDirectory()) return files(join(directory, entry.name));
+    if (entry.isDirectory()) {
+      if (
+        /darwin-x86_64|x86_64-apple-darwin/.test(entry.name) ||
+        (!targets.includes('windows-x86_64') &&
+          /windows-x86_64|x86_64-pc-windows-msvc/.test(entry.name))
+      )
+        throw new Error('Unexpected release artifact directory.');
+      return files(join(directory, entry.name), targets);
+    }
     if (!entry.isFile()) throw new Error('Unexpected release artifact type.');
     return [join(directory, entry.name)];
   });
@@ -26,7 +34,7 @@ export function prepareRelease(
   notes,
   repository = 'dr-dimitri/lernwelt',
 ) {
-  parseReleaseVersion(version);
+  const targets = releaseTargets(version);
   if (repository !== 'dr-dimitri/lernwelt')
     throw new Error('Unexpected release repository.');
   const inputs = readdirSync(root, { withFileTypes: true });
@@ -37,7 +45,7 @@ export function prepareRelease(
     )
   )
     throw new Error(
-      'Expected exactly Apple Silicon and Windows release artifacts.',
+      `Expected exactly release artifact directories: ${targets.join(', ')}.`,
     );
   const manifest = {
     version,
@@ -47,7 +55,7 @@ export function prepareRelease(
   };
   // Validate all targets before producing any publishable output.
   const assets = targets.map((target) => {
-    const entries = files(join(root, target));
+    const entries = files(join(root, target), targets);
     if (
       entries.some((file) =>
         /darwin-x86_64|x86_64-apple-darwin|_x(?:64|86_64)\.dmg$/.test(
@@ -56,6 +64,15 @@ export function prepareRelease(
       )
     )
       throw new Error(`Intel macOS artifact is unsupported: ${target}.`);
+    if (
+      !targets.includes('windows-x86_64') &&
+      entries.some((file) =>
+        /windows-x86_64|x86_64-pc-windows-msvc/.test(basename(file)),
+      )
+    )
+      throw new Error(
+        `Windows artifact is unsupported for this release: ${target}.`,
+      );
     const extension = target.startsWith('darwin')
       ? '.app.tar.gz'
       : '-setup.exe';

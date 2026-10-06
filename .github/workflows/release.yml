@@ -28,6 +28,7 @@ jobs:
       tag: ${{ steps.release.outputs.tag }}
       version: ${{ steps.release.outputs.version }}
       build: ${{ steps.release.outputs.build }}
+      matrix: ${{ steps.release.outputs.matrix }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -50,16 +51,7 @@ jobs:
     name: Release (${{ matrix.target }})
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - os: macos-latest
-            target: aarch64-apple-darwin
-            platform: darwin-aarch64
-            bundles: app,dmg
-          - os: windows-latest
-            target: x86_64-pc-windows-msvc
-            platform: windows-x86_64
-            bundles: nsis
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 45
     steps:

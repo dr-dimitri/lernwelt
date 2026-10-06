@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Neue CI-Pakete ab Version 0.6.13 gibt es für macOS Apple Silicon und Windows x64. Dieser Vorabtest erscheint als **0.6.13-rc.1**; die [stabile Version](https://github.com/dr-dimitri/lernwelt/releases/latest) bleibt 0.6.8. Vorhandene Intel-Mac-Installer stehen weiter unter [bisherige Releases](https://github.com/dr-dimitri/lernwelt/releases) bereit; neue Intel-Pakete baut die CI nicht mehr. Version 0.6.7 ergänzt eine einklappbare Seitenleiste: Die Navigation bleibt als schmale Symbolleiste erreichbar und schafft mehr Platz für die Aufgabe. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Alle Änderungen und Installationshinweise](docs/releases/0.6.7.md).
+Stabile CI-Pakete gibt es für macOS Apple Silicon und Windows x64. Ab Version 0.6.14 laufen Windows-Builds ausschließlich auf `main`; Vorabversionen von Issue-Branches enthalten nur Apple Silicon. Dieser Vorabtest erscheint als **0.6.14-rc.1**; die [stabile Version](https://github.com/dr-dimitri/lernwelt/releases/latest) bleibt 0.6.8. Vorhandene Windows-Vorabpakete und Intel-Mac-Installer stehen weiter unter [bisherige Releases](https://github.com/dr-dimitri/lernwelt/releases) bereit; neue Intel-Pakete baut die CI nicht mehr. Version 0.6.7 ergänzt eine einklappbare Seitenleiste: Die Navigation bleibt als schmale Symbolleiste erreichbar und schafft mehr Platz für die Aufgabe. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Alle Änderungen und Installationshinweise](docs/releases/0.6.7.md).
 
 ## Mitarbeit
 

@@ -3,6 +3,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { githubApi } from './release-github.mjs';
+import { releaseTargets } from './release-platforms.mjs';
 import {
   parseReleaseVersion,
   releaseTag,
@@ -22,19 +23,27 @@ export async function publishRelease(
   if (release && !release.draft && release.prerelease !== prerelease)
     throw new Error('Published release channel differs; leaving it unchanged.');
   if (release && !release.draft) return { published: false, unchanged: true };
-  const expected = [
-    `Lernwelt_${version}_darwin-aarch64.app.tar.gz`,
-    `Lernwelt_${version}_darwin-aarch64.app.tar.gz.sig`,
-    `Lernwelt_${version}_darwin-aarch64.dmg`,
-    `Lernwelt_${version}_windows-x86_64-setup.exe`,
-    `Lernwelt_${version}_windows-x86_64-setup.exe.sig`,
-    'latest.json',
-  ];
+  const expected = releaseTargets(version)
+    .flatMap((target) =>
+      target.startsWith('darwin')
+        ? [
+            `Lernwelt_${version}_${target}.app.tar.gz`,
+            `Lernwelt_${version}_${target}.app.tar.gz.sig`,
+            `Lernwelt_${version}_${target}.dmg`,
+          ]
+        : [
+            `Lernwelt_${version}_${target}-setup.exe`,
+            `Lernwelt_${version}_${target}-setup.exe.sig`,
+          ],
+    )
+    .concat('latest.json');
   if (
     assets.length !== expected.length ||
     !expected.every((name) => assets.includes(name))
   )
-    throw new Error('Expected exactly six validated release assets.');
+    throw new Error(
+      `Expected exactly ${expected.length} validated release assets.`,
+    );
   if (!release) {
     release = await api('POST', 'releases', {
       tag_name: tag,
@@ -112,7 +121,11 @@ if (
   );
   console.log(
     result.published
-      ? `Release ${version} published for Apple Silicon and Windows x64.`
+      ? `Release ${version} published for ${releaseTargets(version)
+          .map((target) =>
+            target === 'darwin-aarch64' ? 'Apple Silicon' : 'Windows x64',
+          )
+          .join(' and ')}.`
       : `Release ${version} is already published; leaving it unchanged.`,
   );
 }

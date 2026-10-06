@@ -14,10 +14,10 @@ import { join } from 'node:path';
 import test from 'node:test';
 import { prepareRelease } from './release-assets.mjs';
 
-function fixture(t) {
+function fixture(t, targets = ['darwin-aarch64', 'windows-x86_64']) {
   const root = mkdtempSync(join(tmpdir(), 'lernwelt-release-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  for (const target of ['darwin-aarch64', 'windows-x86_64']) {
+  for (const target of targets) {
     const dir = join(root, target, 'bundle');
     mkdirSync(dir, { recursive: true });
     const bundle = join(
@@ -94,6 +94,11 @@ test('rejects missing, invalid, empty or unexpected inputs before producing any 
       ),
     'missing signature': (root) =>
       rmSync(join(root, 'windows-x86_64', 'bundle', 'Lernwelt-setup.exe.sig')),
+    'empty signature': (root) =>
+      writeFileSync(
+        join(root, 'windows-x86_64', 'bundle', 'Lernwelt-setup.exe.sig'),
+        '',
+      ),
     'ambiguous updater': (root) =>
       writeFileSync(
         join(root, 'darwin-aarch64', 'bundle', 'Another.app.tar.gz'),
@@ -174,43 +179,133 @@ test('rejects invalid versions and unexpected destinations', (t) => {
   );
 });
 
-test('assembles all signed preview platforms with the exact rc version in URLs and manifest', (t) => {
-  const root = fixture(t);
+test('assembles exactly four signed Apple Silicon preview files with the rc version in URLs and manifest', (t) => {
+  const root = fixture(t, ['darwin-aarch64']);
   const output = join(root, 'output');
   const result = prepareRelease(root, output, '0.6.9-rc.1', 'Vorab testen');
   assert.equal(result.version, '0.6.9-rc.1');
-  assert.deepEqual(Object.keys(result.platforms), [
-    'darwin-aarch64',
-    'windows-x86_64',
+  assert.deepEqual(Object.keys(result.platforms), ['darwin-aarch64']);
+  assert.deepEqual(readdirSync(output).sort(), [
+    'Lernwelt_0.6.9-rc.1_darwin-aarch64.app.tar.gz',
+    'Lernwelt_0.6.9-rc.1_darwin-aarch64.app.tar.gz.sig',
+    'Lernwelt_0.6.9-rc.1_darwin-aarch64.dmg',
+    'latest.json',
   ]);
-  assert.equal(readdirSync(output).length, 6);
-  assert.ok(
-    readdirSync(output).every((name) => !name.includes('darwin-x86_64')),
-  );
   for (const entry of Object.values(result.platforms)) {
     assert.ok(
       entry.url.startsWith(
         'https://github.com/dr-dimitri/lernwelt/releases/download/v0.6.9-rc.1/Lernwelt_0.6.9-rc.1_',
       ),
     );
-    assert.ok(
-      readFileSync(join(output, entry.url.split('/').at(-1))).length > 0,
+    const name = entry.url.split('/').at(-1);
+    assert.equal(readFileSync(join(output, name), 'utf8'), 'darwin-aarch64');
+    assert.equal(
+      readFileSync(join(output, `${name}.sig`), 'utf8'),
+      entry.signature,
     );
+  }
+  assert.equal(
+    readFileSync(
+      join(output, 'Lernwelt_0.6.9-rc.1_darwin-aarch64.dmg'),
+      'utf8',
+    ),
+    'darwin-aarch64',
+  );
+  assert.deepEqual(
+    JSON.parse(readFileSync(join(output, 'latest.json'), 'utf8')),
+    result,
+  );
+});
+
+test('rejects missing, invalid, empty or extra preview inputs before producing any output', async (t) => {
+  const bundleDirectory = (root) => join(root, 'darwin-aarch64', 'bundle');
+  const updater = (root) => join(bundleDirectory(root), 'Lernwelt.app.tar.gz');
+  const faults = {
+    'missing Apple Silicon platform': (root) =>
+      rmSync(join(root, 'darwin-aarch64'), { recursive: true }),
+    'missing updater': (root) => rmSync(updater(root)),
+    'invalid signature': (root) =>
+      writeFileSync(`${updater(root)}.sig`, 'not a signature'),
+    'missing signature': (root) => rmSync(`${updater(root)}.sig`),
+    'empty signature': (root) => writeFileSync(`${updater(root)}.sig`, ''),
+    'empty updater': (root) => writeFileSync(updater(root), ''),
+    'ambiguous updater': (root) =>
+      writeFileSync(join(bundleDirectory(root), 'Another.app.tar.gz'), 'app'),
+    'missing DMG': (root) =>
+      rmSync(join(bundleDirectory(root), 'Lernwelt.dmg')),
+    'empty DMG': (root) =>
+      writeFileSync(join(bundleDirectory(root), 'Lernwelt.dmg'), ''),
+    'additional Windows platform': (root) =>
+      mkdirSync(join(root, 'windows-x86_64')),
+    'nested Windows platform': (root) =>
+      mkdirSync(join(bundleDirectory(root), 'windows-x86_64')),
+    'nested Windows build directory': (root) =>
+      mkdirSync(join(bundleDirectory(root), 'x86_64-pc-windows-msvc')),
+    'additional Windows installer': (root) =>
+      writeFileSync(join(bundleDirectory(root), 'Lernwelt-setup.exe'), 'exe'),
+    'additional Windows signature': (root) =>
+      writeFileSync(
+        join(bundleDirectory(root), 'Lernwelt-setup.exe.sig'),
+        'sig',
+      ),
+    'Windows updater replacing the Apple Silicon input': (root) => {
+      renameSync(
+        updater(root),
+        join(bundleDirectory(root), 'Lernwelt_windows-x86_64.app.tar.gz'),
+      );
+      renameSync(
+        `${updater(root)}.sig`,
+        join(bundleDirectory(root), 'Lernwelt_windows-x86_64.app.tar.gz.sig'),
+      );
+      assert.equal(readdirSync(bundleDirectory(root)).length, 3);
+    },
+    'Windows DMG replacing the Apple Silicon input': (root) => {
+      renameSync(
+        join(bundleDirectory(root), 'Lernwelt.dmg'),
+        join(bundleDirectory(root), 'Lernwelt_x86_64-pc-windows-msvc.dmg'),
+      );
+      assert.equal(readdirSync(bundleDirectory(root)).length, 3);
+    },
+    'additional Intel platform': (root) =>
+      mkdirSync(join(root, 'darwin-x86_64')),
+    'nested Intel platform': (root) =>
+      mkdirSync(join(bundleDirectory(root), 'darwin-x86_64')),
+    'Intel updater replacing the Apple Silicon input': (root) => {
+      renameSync(
+        updater(root),
+        join(bundleDirectory(root), 'Lernwelt_darwin-x86_64.app.tar.gz'),
+      );
+      renameSync(
+        `${updater(root)}.sig`,
+        join(bundleDirectory(root), 'Lernwelt_darwin-x86_64.app.tar.gz.sig'),
+      );
+    },
+    'Intel DMG replacing the Apple Silicon input': (root) =>
+      renameSync(
+        join(bundleDirectory(root), 'Lernwelt.dmg'),
+        join(bundleDirectory(root), 'Lernwelt_0.6.9-rc.1_x64.dmg'),
+      ),
+    'unexpected root file': (root) =>
+      writeFileSync(join(root, 'Lernwelt-setup.exe'), 'exe'),
+    'unexpected signature': (root) =>
+      writeFileSync(join(bundleDirectory(root), 'old.app.tar.gz.sig'), 'sig'),
+  };
+  for (const [name, corrupt] of Object.entries(faults)) {
+    await t.test(name, (child) => {
+      const root = fixture(child, ['darwin-aarch64']);
+      const output = join(root, 'output');
+      corrupt(root);
+      assert.throws(() => prepareRelease(root, output, '0.6.9-rc.1', ''));
+      assert.equal(existsSync(output), false);
+    });
   }
 });
 
-test('release CI schedules Apple Silicon and Windows jobs and retains the macOS package gate', () => {
+test('retains the macOS package verification gate before artifact upload', () => {
   const workflow = readFileSync(
     new URL('../.github/workflows/release.yml', import.meta.url),
     'utf8',
   );
-  const buildTargets = [...workflow.matchAll(/^\s+target:\s*(\S+)\s*$/gm)].map(
-    (match) => match[1],
-  );
-  assert.deepEqual(buildTargets, [
-    'aarch64-apple-darwin',
-    'x86_64-pc-windows-msvc',
-  ]);
   const verification = workflow.indexOf('node scripts/verify-macos-bundle.mjs');
   const upload = workflow.indexOf('uses: actions/upload-artifact');
   assert.ok(verification >= 0);
