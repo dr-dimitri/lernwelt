@@ -45,6 +45,10 @@ Grundlage der Vorabauswahl: [GitHub Releases API](https://docs.github.com/en/res
 
 Die vorhandene Version 0.1.0 enthält noch keinen Updater. Der erste Wechsel auf eine Version mit Updater erfolgt über den heruntergeladenen Installer. Danach können weitere veröffentlichte Versionen direkt in der App installiert werden.
 
-Updater-Signaturen sind unabhängig von Apples Developer-ID/Notarisierung und Windows-Code-Signing. Für diese Betriebssystemsignaturen sind keine Zertifikate eingerichtet. Die ersten Installer können daher Betriebssystemhinweise auslösen. Die Release-Pipeline enthält keine Linux-Pakete; andere Plattformen werden nicht als unterstützt ausgegeben.
+Updater-Signaturen sind unabhängig von Apples Developer-ID/Notarisierung und Windows-Code-Signing. Für diese Herausgebersignaturen sind keine Zertifikate eingerichtet. macOS-App-Bundles erhalten ab 0.6.12 eine vollständige Ad-hoc-Signatur (`bundle.macOS.signingIdentity: "-"`), die Info.plist und Ressourcen versiegelt. Die Release-CI prüft die erzeugte App sowie die Apps im Updater-Archiv und im schreibgeschützt eingehängten DMG mit `codesign --verify --deep --strict`, bevor Artefakte hochgeladen werden.
+
+Eine Ad-hoc-Signatur ersetzt keine Developer-ID oder Notarisierung. Nach dem ersten Öffnungsversuch eines heruntergeladenen Pakets kann macOS unter **Systemeinstellungen → Datenschutz & Sicherheit** die Schaltfläche **Dennoch öffnen** anbieten. [Apples Anleitung](https://support.apple.com/de-de/guide/mac-help/mh40616/mac) beschreibt die Freigabe der konkreten App. Das Release 0.6.11-rc.1 enthielt lediglich die Linker-Signatur des Programms und keine gültige Bundleversiegelung; seine Updater-Signaturen und Downloadprüfsummen waren davon unabhängig gültig. Die Korrektur wird in einer neuen Vorabversion veröffentlicht, ohne bestehende Pakete zu überschreiben.
+
+Die Release-Pipeline enthält keine Linux-Pakete; andere Plattformen werden nicht als unterstützt ausgegeben. Grundlage der macOS-Signierung: [Tauri macOS Code Signing](https://v2.tauri.app/distribute/sign/macos/).
 
 Grundlagen: [Tauri Updater](https://v2.tauri.app/plugin/updater/), [Tauri Process](https://v2.tauri.app/plugin/process/) und [GitHub-Pipeline](https://v2.tauri.app/distribute/pipelines/github/).

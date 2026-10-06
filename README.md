@@ -33,7 +33,7 @@ npm run desktop:build -- --bundles app  # macOS .app
 npm run desktop:build -- --bundles nsis # Windows Installer, auf Windows ausführen
 ```
 
-Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die lokale macOS-App ist noch nicht signiert oder notarisiert. Mathematik Klasse 5 enthält ein offline gebündeltes Übungspaket für alle sieben Lernbereiche; Englisch Klasse 5 bietet zwölf eigene Themen für die erste Fremdsprache.
+Native Artefakte liegen unter `src-tauri/target/release/bundle/`. Die macOS-App erhält eine vollständige Ad-hoc-Signatur, aber keine Apple-Developer-ID oder Notarisierung. Beim ersten Start eines heruntergeladenen Pakets kann macOS eine Freigabe unter **Systemeinstellungen → Datenschutz & Sicherheit → Dennoch öffnen** verlangen; [Apple beschreibt den Ablauf](https://support.apple.com/de-de/guide/mac-help/mh40616/mac). Mathematik Klasse 5 enthält ein offline gebündeltes Übungspaket für alle sieben Lernbereiche; Englisch Klasse 5 bietet zwölf eigene Themen für die erste Fremdsprache.
 
 ## Bedienung
 

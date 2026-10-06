@@ -90,6 +90,9 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         run: npm run desktop:build -- --target ${{ matrix.target }} --bundles ${{ matrix.bundles }} --config release-build-config.json
+      - name: Verify macOS app and packed updater and DMG
+        if: runner.os == 'macOS'
+        run: node scripts/verify-macos-bundle.mjs "src-tauri/target/${{ matrix.target }}/release/bundle"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: ${{ matrix.platform }}
