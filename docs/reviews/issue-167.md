@@ -46,3 +46,16 @@ Zusätzlich vom umsetzenden Agenten dokumentiert und dessen Nachweise geprüft: 
 Der Browserharness nutzt eine isolierte Test-IPC-Brücke gegen das echte `src/main.tsx`-/App-DOM und lokale Inhalte; er ersetzt weder die separat geprüfte Rust-Persistenz noch einen nativen Start-Smoke. Der Reviewer hat keine Windows-GUI, praktische Mikroskoparbeit oder Erprobung mit Kindern ausgeführt.
 
 Root koordiniert nach Issue #166 das Rebase auf aktuelles main, die additive Inhaltszählung und gemeinsame Command-Integration (Erdkern und Zellkern verwenden denselben Lesebefehl), Version/Releasehinweise, vollständige Abschlusschecks und nativen Smoke am Integrationsstand. Nach relevanten Änderungen diesen Review aktualisieren. PR, grüner CI-Abschluss, Merge, tatsächlich veröffentlichtes Release beider Plattformen und Branchbereinigung bleiben nach Projektworkflow erforderlich.
+
+
+## Integrationsnachweis auf main 0.6.17
+
+Agent `/root/integrate_cells` hat den Reviewdraft in einem separaten Commit erhalten und den Zellkern-Branch auf `d05a449807dc2c3ca4bdc067ad0c1a3eaa419073` (main, Version 0.6.17) rebasiert. Dies ist ein Integrations-/Selbstprüfnachweis, keine zusätzliche unabhängige Freigabe.
+
+Erdkern- und Zellkern-Navigation, Katalogeinträge und Testmodule sind additiv vereinigt. Die typisierte Aufgabenprojektion, Erdschichten-/Reihenfolgevalidierung sowie Handler, Build-Manifest, Capability und Desktop-Client bleiben gegenüber diesem main unverändert. Zellkern nutzt denselben bereits vorhandenen Lesebefehl `get_learning_explanation`, einschließlich der strengeren ID-Validierung auf ASCII-Buchstaben, Ziffern, Punkt und Bindestrich. Keine neue Migration. Der Help-Inhaltstest zählt nun beide Erweiterungen mit insgesamt 3.735 sichtbaren Aufgaben.
+
+Der Inhaltsgenerator lädt beide dedizierten Pakete. Seine zwei echten Neuaufbau-Regressionen bewahren alle 45 ursprünglichen Zellaufgaben und 18 neuen Zellkern-IDs; die erste prüft zusätzlich die unveränderte Erdkern-Datei und deren bestehende Katalogzuordnung. Die ursprünglichen Paketdateien und die `.focus.`-Bank sind im Integrationsdiff unverändert.
+
+Am 06.10.2026 in diesem integrierten Arbeitsbaum ausgeführt: `npm run check` vollständig grün (47 Dateien / 446 Frontendtests, 130 Skripttests, Formatierung, TypeScript und Vite-Build); `npm run check:rust` vollständig grün (fmt, Clippy mit `-D warnings`, 186 Rusttests). Vorab wurden 78 betroffene Frontendtests und die drei Zell-Rusttests gezielt ausgeführt, ebenfalls grün. Logs: `/private/tmp/lernwelt-167-integration-check.log`, `/private/tmp/lernwelt-167-integration-rust.log`. Die native App wurde bei der Integration nicht gestartet; ihr Schema-18-Stand darf die inzwischen auf Schema 19 migrierte Nutzerdatei nicht öffnen.
+
+Das nachfolgende Rebase auf Issue #166/main 0.6.18, die Versionsanpassung auf 0.6.19 und deren unabhängiger Review-/Abschlussnachweis bleiben Root zugeordnet.

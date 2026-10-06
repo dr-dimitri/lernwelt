@@ -76,6 +76,13 @@ function assertCellInventory({ content, originalIds, originalCells }) {
 
 test('rebuilds the real cell catalog with all 45 original and 18 nucleus tasks', (t) => {
   const options = fixture(t);
+  const earthBefore = readFileSync(
+    join(options.content, 'geography-earth-5-v1.json'),
+    'utf8',
+  );
+  const earthIdsBefore = options.catalog.units.find(
+    (unit) => unit.id === 'geography-earth-layers',
+  ).exerciseIds;
   const nucleusBefore = readFileSync(
     join(options.content, 'nature-nucleus-5-v1.json'),
     'utf8',
@@ -83,6 +90,19 @@ test('rebuilds the real cell catalog with all 45 original and 18 nucleus tasks',
   rebuild(options);
   const ids = assertCellInventory(options);
   assert.equal(ids.length, 63);
+  const rebuiltCatalog = readJson(
+    join(options.content, 'study-catalog-v1.json'),
+  );
+  assert.deepEqual(
+    rebuiltCatalog.units.find((unit) => unit.id === 'geography-earth-layers')
+      .exerciseIds,
+    earthIdsBefore,
+    'the independent earth expedition remains assigned to its original IDs',
+  );
+  assert.equal(
+    readFileSync(join(options.content, 'geography-earth-5-v1.json'), 'utf8'),
+    earthBefore,
+  );
   for (const task of options.nucleus.exercises)
     assert.ok(ids.includes(task.id), task.id);
   assert.equal(
