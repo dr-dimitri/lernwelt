@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { publishRelease } from './publish-release.mjs';
 
-const assets = ['darwin-aarch64', 'darwin-x86_64']
+const assets = ['darwin-aarch64']
   .flatMap((target) => [
     `Lernwelt_0.6.2_${target}.app.tar.gz`,
     `Lernwelt_0.6.2_${target}.app.tar.gz.sig`,
@@ -46,7 +46,7 @@ function fixture({
   return { api, upload, writes, uploads };
 }
 
-test('publishes a new draft only after all nine files were uploaded', async () => {
+test('publishes a new draft only after exactly six files were uploaded', async () => {
   const f = fixture();
   assert.deepEqual(await publishRelease(source, f.api, f.upload), {
     published: true,
@@ -62,14 +62,35 @@ test('publishes a new draft only after all nine files were uploaded', async () =
   });
 });
 
-test('leaves a published release untouched without uploads or writes', async () => {
-  const f = fixture({ existing: { id: 123, draft: false, prerelease: false } });
-  assert.deepEqual(await publishRelease(source, f.api, f.upload), {
-    published: false,
-    unchanged: true,
-  });
+test('leaves a historical three-platform release with nine assets untouched', async () => {
+  const historicalAssets = [
+    ...assets,
+    'Lernwelt_0.6.2_darwin-x86_64.app.tar.gz',
+    'Lernwelt_0.6.2_darwin-x86_64.app.tar.gz.sig',
+    'Lernwelt_0.6.2_darwin-x86_64.dmg',
+  ];
+  const existing = {
+    id: 123,
+    draft: false,
+    prerelease: false,
+    assets: historicalAssets.map((name) => ({ name, size: 100 })),
+  };
+  const before = structuredClone(existing);
+  const f = fixture({ existing });
+  assert.deepEqual(
+    await publishRelease(
+      { ...source, assets: historicalAssets },
+      f.api,
+      f.upload,
+    ),
+    {
+      published: false,
+      unchanged: true,
+    },
+  );
   assert.equal(f.writes.length, 0);
   assert.equal(f.uploads.length, 0);
+  assert.deepEqual(existing, before);
 });
 
 test('retries an existing draft without creating a second release', async () => {
@@ -85,11 +106,13 @@ test('does not create a release for missing or unexpected assets', async () => {
   for (const invalid of [
     assets.slice(1),
     [...assets.slice(1), 'unexpected.exe'],
+    [...assets, 'Lernwelt_0.6.2_darwin-x86_64.dmg'],
+    [...assets.slice(1), assets[1]],
   ]) {
     const f = fixture();
     await assert.rejects(
       () => publishRelease({ ...source, assets: invalid }, f.api, f.upload),
-      /all nine/,
+      /exactly six/,
     );
     assert.equal(f.writes.length, 0);
     assert.equal(f.uploads.length, 0);
@@ -102,6 +125,18 @@ test('keeps the draft on upload failure, missing uploaded file or zero-byte asse
     { uploaded: assets.slice(1).map((name) => ({ name, size: 100 })) },
     {
       uploaded: assets.map((name, index) => ({ name, size: index ? 100 : 0 })),
+    },
+    {
+      uploaded: [...assets, 'Lernwelt_0.6.2_darwin-x86_64.dmg'].map((name) => ({
+        name,
+        size: 100,
+      })),
+    },
+    {
+      uploaded: [...assets.slice(1), assets[1]].map((name) => ({
+        name,
+        size: 100,
+      })),
     },
   ]) {
     const f = fixture(options);
@@ -172,6 +207,26 @@ test('publishes rc assets as a prerelease without reading or changing stable lat
   });
   assert.ok(!reads.includes('releases/latest'));
   assert.deepEqual(uploads, [{ tag: `v${version}`, files: previewAssets }]);
+  assert.equal(uploads[0].files.length, 6);
+  assert.ok(uploads[0].files.every((name) => !name.includes('darwin-x86_64')));
+});
+
+test('keeps an existing draft with old Intel assets unpublished after retry', async () => {
+  const f = fixture({
+    existing: { id: 123, draft: true },
+    uploaded: [
+      ...assets,
+      'Lernwelt_0.6.2_darwin-x86_64.app.tar.gz',
+      'Lernwelt_0.6.2_darwin-x86_64.app.tar.gz.sig',
+      'Lernwelt_0.6.2_darwin-x86_64.dmg',
+    ].map((name) => ({ name, size: 100 })),
+  });
+  await assert.rejects(
+    () => publishRelease(source, f.api, f.upload),
+    /unexpected assets/,
+  );
+  assert.deepEqual(f.writes, []);
+  assert.deepEqual(f.uploads, [{ tag: 'v0.6.2', files: assets }]);
 });
 
 test('does not overwrite a published release with a conflicting channel', async () => {

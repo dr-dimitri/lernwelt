@@ -8,7 +8,7 @@ Tauri 2 · React · TypeScript · Vite · SQLite. Der Kernbetrieb funktioniert o
 
 ## Installieren
 
-Die [aktuelle Version](https://github.com/dr-dimitri/lernwelt/releases/latest) enthält Pakete für macOS mit Apple- oder Intel-Prozessor und Windows x64. Version 0.6.7 ergänzt eine einklappbare Seitenleiste: Die Navigation bleibt als schmale Symbolleiste erreichbar und schafft mehr Platz für die Aufgabe. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Alle Änderungen und Installationshinweise](docs/releases/0.6.7.md).
+Neue CI-Pakete ab Version 0.6.13 gibt es für macOS Apple Silicon und Windows x64. Dieser Vorabtest erscheint als **0.6.13-rc.1**; die [stabile Version](https://github.com/dr-dimitri/lernwelt/releases/latest) bleibt 0.6.8. Vorhandene Intel-Mac-Installer stehen weiter unter [bisherige Releases](https://github.com/dr-dimitri/lernwelt/releases) bereit; neue Intel-Pakete baut die CI nicht mehr. Version 0.6.7 ergänzt eine einklappbare Seitenleiste: Die Navigation bleibt als schmale Symbolleiste erreichbar und schafft mehr Platz für die Aufgabe. Nach jedem Merge erstellt GitHub CI automatisch ein neues Release. [Alle Änderungen und Installationshinweise](docs/releases/0.6.7.md).
 
 ## Mitarbeit
 
@@ -47,7 +47,7 @@ Diese Oberfläche wird für Issue #149 zunächst ausschließlich als Vorabversio
 
 Über **App aktualisieren** oben im Fenster kannst du neue Versionen prüfen, herunterladen und installieren. Lernwelt prüft standardmäßig einmal beim Start; diese Prüfung ist abschaltbar und bleibt lokal gespeichert. Standardmäßig werden nur stabile Releases angeboten. Mit **Vorabversionen (Pre-Releases) anbieten** kannst du zusätzlich auf GitHub als Vorabversion markierte Veröffentlichungen wählen. Diese Auswahl wird getrennt von der Startprüfung lokal gespeichert. Die Installation startet erst nach deinem Klick. Neue Pakete werden vor der Installation mit einer Signatur geprüft. Der Lernbetrieb funktioniert weiterhin offline; Profile und Antworten werden nicht übertragen.
 
-Die erste Installation einer Version mit Updater erfolgt über den GitHub-Release. Die bisherige Version 0.1.0 kann sich noch nicht selbst aktualisieren. macOS (Apple Silicon und Intel) sowie Windows x64 erhalten eigene Pakete. Die Pakete sind für den Updater signiert, haben aber noch keine Apple-Notarisierung oder Windows-Herausgebersignatur. [Bedienung und Release-Prozess](docs/app-updates.md).
+Die erste Installation einer Version mit Updater erfolgt über den GitHub-Release. Die bisherige Version 0.1.0 kann sich noch nicht selbst aktualisieren. macOS Apple Silicon sowie Windows x64 erhalten eigene Pakete. Die Pakete sind für den Updater signiert, haben aber noch keine Apple-Notarisierung oder Windows-Herausgebersignatur. [Bedienung und Release-Prozess](docs/app-updates.md).
 
 ## Lokale Daten
 

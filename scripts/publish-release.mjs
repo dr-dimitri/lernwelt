@@ -26,9 +26,6 @@ export async function publishRelease(
     `Lernwelt_${version}_darwin-aarch64.app.tar.gz`,
     `Lernwelt_${version}_darwin-aarch64.app.tar.gz.sig`,
     `Lernwelt_${version}_darwin-aarch64.dmg`,
-    `Lernwelt_${version}_darwin-x86_64.app.tar.gz`,
-    `Lernwelt_${version}_darwin-x86_64.app.tar.gz.sig`,
-    `Lernwelt_${version}_darwin-x86_64.dmg`,
     `Lernwelt_${version}_windows-x86_64-setup.exe`,
     `Lernwelt_${version}_windows-x86_64-setup.exe.sig`,
     'latest.json',
@@ -37,7 +34,7 @@ export async function publishRelease(
     assets.length !== expected.length ||
     !expected.every((name) => assets.includes(name))
   )
-    throw new Error('Expected all nine validated release assets.');
+    throw new Error('Expected exactly six validated release assets.');
   if (!release) {
     release = await api('POST', 'releases', {
       tag_name: tag,
@@ -52,11 +49,20 @@ export async function publishRelease(
   await upload(tag, assets);
   const uploaded = await api('GET', `releases/${release.id}`);
   if (
-    !assets.every((name) =>
-      uploaded.assets.some((asset) => asset.name === name && asset.size > 0),
+    !Array.isArray(uploaded.assets) ||
+    uploaded.assets.length !== expected.length ||
+    !expected.every((name) =>
+      uploaded.assets.some(
+        (asset) =>
+          asset.name === name &&
+          Number.isSafeInteger(asset.size) &&
+          asset.size > 0,
+      ),
     )
   )
-    throw new Error('Release upload is incomplete; keeping the draft.');
+    throw new Error(
+      'Release upload is incomplete or contains unexpected assets; keeping the draft.',
+    );
   const latest = prerelease
     ? null
     : await api('GET', 'releases/latest', undefined, true);
@@ -106,7 +112,7 @@ if (
   );
   console.log(
     result.published
-      ? `Release ${version} published with all three platforms.`
+      ? `Release ${version} published for Apple Silicon and Windows x64.`
       : `Release ${version} is already published; leaving it unchanged.`,
   );
 }
