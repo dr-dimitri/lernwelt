@@ -2,7 +2,7 @@
 
 ## Umfang und Reviewart
 
-Separater **Selbstreview durch den implementierenden Codex-Agenten**, nach der Umsetzung anhand des vollständigen Issue-151-Diffs. Dies ist keine unabhängige Freigabe; ein unabhängiger Review folgt vor einer Integration bzw. Veröffentlichung.
+Separater **Selbstreview durch den implementierenden Codex-Agenten**, gefolgt von einem **unabhängigen Review durch den Codex-Agenten `/root/prerelease`**. Beide prüften den vollständigen Issue-151-Diff. Der unabhängige Review fand einen P2-Befund, prüfte dessen Korrektur und gab den Stand anschließend frei; Einzelheiten stehen unten.
 
 Der Branch `codex/issue-151-navigation-einklappen` wurde von `main` angelegt und baut für den ausdrücklich gewünschten Vorabtest auf dem offenen Issue-149-Stand `c99cde90abefcb063c78e74923ea2aaf086b072c` auf. Die neue Änderung wurde getrennt gegen diese Abhängigkeit geprüft; deren eigener Review bleibt in `issue-149.md` dokumentiert. Der aktuelle Hauptbranch `8b573432e22631d33be9aa901b65beca48812a4b` bleibt unverändert.
 
@@ -17,7 +17,7 @@ Geprüft: Issue-151-Akzeptanzkriterien, `App.tsx`, `App.test.tsx`, die ergänzte
 - Oberhalb von 760 CSS-Pixeln greifen die Regeln für die Symbolleiste. Darunter bleiben Fachnamen sichtbar und das vorhandene Menü getrennt bedienbar. Escape schließt es und erhält den gespeicherten Desktopzustand.
 - Beim Layoutreview fiel die bisherige Inhaltsobergrenze von 2160 Pixeln auf: Sie hätte einen Teil der gewonnenen Fläche ungenutzt gelassen. Ausschließlich in der eingeklappten Desktopansicht wurde diese Begrenzung aufgehoben. Im Standardfenster wächst die tatsächliche Inhaltsfläche von 2160 auf 2304 Pixel.
 - Der anschließende unabhängige Review fand einen P2-Fehler im kleinen Höhen-Fallback: Bei 800 × 300 bzw. 1200 × 400 blieb die eingeklappte Leiste auf eine Bildschirmhöhe begrenzt, während ihre Ziele wegen der sichtbaren Namenshinweise nicht intern scrollten. Unter 651 CSS-Pixeln Höhe nimmt diese Desktopleiste nun am Dokumentfluss teil und erhält ihre natürliche Höhe. Mausrad und Tastaturfokus erreichen damit alle fünf Ziele; die Hinweisnamen bleiben unbeschnitten. Das Standardfenster verwendet weiter die feste Leiste. Dieser Befund entstand in der noch unveröffentlichten Umsetzung von Issue #151.
-- Keine offenen blockierenden Befunde im Selbstreview nach dieser Korrektur. Die unabhängige Nachprüfung ist separat zu dokumentieren. Version 0.6.10 dient dem folgenden Vorabtest; kein Merge oder eigenständiger stabiler Release wird mit diesem Review behauptet.
+- Keine offenen blockierenden Befunde nach der Korrektur und unabhängigen Nachprüfung; diese ist unten dokumentiert. Version 0.6.10 dient dem folgenden Vorabtest; kein Merge oder eigenständiger stabiler Release wird mit diesem Review behauptet.
 
 ## Tatsächlich ausgeführte Prüfungen
 
