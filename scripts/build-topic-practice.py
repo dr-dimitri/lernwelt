@@ -469,7 +469,7 @@ def build():
  catalog_path=ROOT/'src-tauri/content/study-catalog-v1.json'
  study=json.loads(catalog_path.read_text())
  originals=[]
- for name in ['curriculum-v1.json','english-5-v1.json','nature-5-v1.json','number-line-5-v1.json','geography-solar-5-v1.json','geography-earth-5-v1.json']:
+ for name in ['curriculum-v1.json','english-5-v1.json','nature-5-v1.json','nature-nucleus-5-v1.json','number-line-5-v1.json','geography-solar-5-v1.json','geography-earth-5-v1.json']:
   originals+=json.loads((ROOT/'src-tauri/content'/name).read_text())['exercises']
  originals+=json.loads((ROOT/'src-tauri/content/english-club-v1.json').read_text())
  # Rebuilding uses the original navigation assignments and adds the same finite v1 bank.
@@ -488,7 +488,8 @@ def build():
  for unit in study['units']:
   # The dedicated solar world has exactly one authored riddle per planet/level.
   if unit['subject']=='geography':continue
-  if all(sum(by_id[eid]['difficulty']==level for eid in unit['exerciseIds'] if '.club.' not in eid)>=12 for level in ['vorschule','koenner','streber']):continue
+  # Supplemental club and nucleus questions must not replace historical focus tasks.
+  if all(sum(by_id[eid]['difficulty']==level for eid in unit['exerciseIds'] if '.club.' not in eid and '.nucleus.' not in eid)>=12 for level in ['vorschule','koenner','streber']):continue
   exemplar=by_id[unit['exerciseIds'][0]] if unit['exerciseIds'] else dict(topicId=('english-'+unit['id'].removeprefix('english-vocabulary-') if unit['id'].removeprefix('english-vocabulary-') in ['hello','family','home','school','day','friends','shopping','party','past','stories','travel','words'] else 'english-words'))
   key=unit['id'].split('-',1)[1]
   for l,level in enumerate(['vorschule','koenner','streber']):
