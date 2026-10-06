@@ -79,7 +79,7 @@ it('bedient Grafikbereiche mit Tastatur und verrät keine Schichtnamen im Rätse
   const user = userEvent.setup();
   await quiz(user);
   const model = screen.getByLabelText(
-    'Isometrisch aufgeschnittene Erdkugel mit Bereichen A bis D von außen nach innen',
+    /aufgeschnittene Erdkugel mit Bereichen A bis D von außen nach innen/i,
   );
   for (const layer of earthLayers)
     expect(model).not.toHaveTextContent(layer.name);
